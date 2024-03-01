@@ -1,12 +1,8 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
 import { Scene } from "./Scene";
-import { useThree } from "@react-three/fiber";
-import gsap from "gsap";
-
-import "./css/index.css";
-import { useEffect } from "react";
+import styled from "styled-components";
+import "./font.css";
 
 const productList = [
   {
@@ -28,20 +24,36 @@ const productList = [
 
 export const List = () => {
   return (
-    <Canvas
-      id="canvas"
-      gl={{ antialias: true }}
-      camera={{
-        fov: 60,
-        aspect: window.innerWidth / window.innerHeight,
-        near: 0.5,
-        far: 100,
-        position: [5, 5, 50],
-      }}
-    >
-      <Suspense>
-        <Scene productList={productList} />
-      </Suspense>
-    </Canvas>
+    <ListWrapperUI>
+      <Canvas
+        id="canvas"
+        gl={{ antialias: true }}
+        camera={{
+          fov: 60,
+          aspect: window.innerWidth / window.innerHeight,
+          near: 0.5,
+          far: 100,
+          position: [5, 5, 50],
+        }}
+      >
+        <Suspense>
+          <Scene productList={productList} />
+        </Suspense>
+      </Canvas>
+    </ListWrapperUI>
   );
 };
+
+const ListWrapperUI = styled.div`
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  weight: 100vw;
+  background: radial-gradient(
+      ellipse at bottom,
+      rgb(83, 173, 241) 0%,
+      transparent
+    ),
+    radial-gradient(ellipse at top, rgb(12, 73, 187) 100%, transparent);
+  font-family: "Archivo_SemiExpanded-Bold";
+`;

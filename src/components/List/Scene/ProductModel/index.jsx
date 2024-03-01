@@ -73,8 +73,24 @@ const MetaTag = ({ name, content }) => {
         top: "-150px",
       }}
     >
-      <p style={{ fontSize: "30px", margin: 0 }}>{name}</p>
-      <p style={{ fontSize: "15px", margin: 0 }}>{content}</p>
+      <p
+        style={{
+          fontSize: "30px",
+          margin: 0,
+          fontFamily: "Archivo_SemiExpanded-Bold",
+        }}
+      >
+        {name}
+      </p>
+      <p
+        style={{
+          fontSize: "15px",
+          margin: 0,
+          fontFamily: "Archivo_Condensed-Light",
+        }}
+      >
+        {content}
+      </p>
     </Html>
   );
 };

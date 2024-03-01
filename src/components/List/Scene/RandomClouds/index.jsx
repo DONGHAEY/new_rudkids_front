@@ -15,7 +15,7 @@ const positions = [...Array(50)].map(() => ({
 }));
 
 export function RandomClouds() {
-  const cloudGlbs = useGLTF(["/cloud_test.glb"]);
+  const cloudGlbs = useGLTF(["/models/cloud_test.glb"]);
   return (
     <>
       {positions.map((props, i) => (
