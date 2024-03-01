@@ -12,11 +12,11 @@ export const FirstSeasonModel = ({ data }) => {
     ABeautifulWorld: gltfs[1],
   };
 
-  const { scene, animation } = productGltf[data?.name];
+  const { scene } = productGltf[data?.name];
 
   return (
-    <group>
-      <primitive scale={0.06} object={scene} />
-    </group>
+    // <group>
+    <primitive scale={0.06} object={scene} />
+    // </group>
   );
 };

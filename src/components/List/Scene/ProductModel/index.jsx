@@ -42,7 +42,7 @@ export const ProductModel = ({
         }
       );
     }
-  }, [selected]);
+  }, [selected, cameraX, cameraZ, three.camera.position]);
 
   return (
     <group
@@ -52,25 +52,29 @@ export const ProductModel = ({
       position-x={x}
       position-z={z}
     >
-      {sign && selected && (
-        <Html
-          center
-          style={{
-            backgroundColor: "rgba(0, 0,0, 10%)",
-            borderRadius: "20px",
-            margin: 0,
-            padding: "20px",
-            whiteSpace: "nowrap",
-            color: "white",
-            position: "absolute",
-            top: "-150px",
-          }}
-        >
-          <p style={{ fontSize: "30px", margin: 0 }}>{data.name}</p>
-          <p style={{ fontSize: "15px", margin: 0 }}>{data.content}</p>
-        </Html>
-      )}
+      {sign && selected && <MetaTag name={data.name} content={data.content} />}
       <FirstSeasonModel data={data} />
     </group>
+  );
+};
+
+const MetaTag = ({ name, content }) => {
+  return (
+    <Html
+      center
+      style={{
+        backgroundColor: "rgba(0, 0,0, 10%)",
+        borderRadius: "20px",
+        margin: 0,
+        padding: "20px",
+        whiteSpace: "nowrap",
+        color: "white",
+        position: "absolute",
+        top: "-150px",
+      }}
+    >
+      <p style={{ fontSize: "30px", margin: 0 }}>{name}</p>
+      <p style={{ fontSize: "15px", margin: 0 }}>{content}</p>
+    </Html>
   );
 };

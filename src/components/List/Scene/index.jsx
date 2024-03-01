@@ -1,22 +1,40 @@
-import { useThree, Canvas } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
-import { useGLTF, OrbitControls, useBounds } from "@react-three/drei";
-import { Suspense } from "react";
-import gsap from "gsap";
 import { useState } from "react";
-import { useEffect } from "react";
 import { RandomClouds } from "./RandomClouds";
 import { ViewButton } from "./ViewButton";
 import { ProductModel } from "./ProductModel";
+import { OrbitControls } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { useEffect } from "react";
+import gsap from "gsap";
 
 export const Scene = ({ productList }) => {
+  const zoomStartZ = 100;
+
+  const [isFirstAnimated, setIsFirstAnimated] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
+
+  const three = useThree();
+
+  useEffect(() => {
+    if (!three.camera) return;
+    gsap.fromTo(
+      three.camera.position,
+      {
+        z: zoomStartZ,
+      },
+      {
+        z: 30,
+        duration: 1.3,
+        onComplete: () => {
+          setIsFirstAnimated(true);
+        },
+      },
+      "<"
+    );
+  }, [three.camera.position]);
 
   return (
     <>
-      {selectedProductId != null && (
-        <ViewButton productId={selectedProductId} />
-      )}
       {productList.map((data, idx) => {
         return (
           <ProductModel
@@ -31,6 +49,16 @@ export const Scene = ({ productList }) => {
         );
       })}
       <RandomClouds />
+      <ViewButton productId={selectedProductId} />
+      {/*  */}
+      <ambientLight intensity={5} position={[0, 10, 0]} />
+      <OrbitControls
+        minPolarAngle={Math.PI / 2.5}
+        maxPolarAngle={Math.PI / 2}
+        minDistance={15}
+        maxDistance={isFirstAnimated ? 40 : zoomStartZ}
+        enablePan={false}
+      />
     </>
   );
 };
