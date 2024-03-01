@@ -6,11 +6,10 @@ import { OrbitControls } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 import gsap from "gsap";
+import { motion } from "framer-motion-3d";
 
 export const Scene = ({ productList }) => {
-  const zoomStartZ = 100;
-
-  const [isFirstAnimated, setIsFirstAnimated] = useState(false);
+  const [controlMaxDistance, setControlMaxDistance] = useState(100);
   const [selectedProductId, setSelectedProductId] = useState(null);
 
   const three = useThree();
@@ -20,34 +19,46 @@ export const Scene = ({ productList }) => {
     gsap.fromTo(
       three.camera.position,
       {
-        z: zoomStartZ,
+        z: 100,
       },
       {
         z: 30,
-        duration: 1.3,
+        duration: 1.2,
         onComplete: () => {
-          setIsFirstAnimated(true);
+          setControlMaxDistance(30);
         },
       },
       "<"
     );
-  }, [three.camera.position]);
+  }, [three.camera]);
 
   return (
     <>
-      {productList.map((data, idx) => {
-        return (
-          <ProductModel
-            key={idx}
-            setSelectedProductId={setSelectedProductId}
-            selectedProductId={selectedProductId}
-            data={data}
-            rotation={((Math.PI * 2) / productList.length) * idx}
-            cameraRadius={20}
-            radius={7}
-          />
-        );
-      })}
+      <motion.mesh
+        initial={{
+          rotateY: 0,
+        }}
+        animate={{ rotateY: Math.PI * 2 }}
+        transition={{
+          duration: 0.7,
+        }}
+      >
+        <group>
+          {productList.map((data, idx) => {
+            return (
+              <ProductModel
+                key={idx}
+                setSelectedProductId={setSelectedProductId}
+                selectedProductId={selectedProductId}
+                data={data}
+                rotation={((Math.PI * 2) / productList.length) * idx}
+                cameraRadius={20}
+                radius={7}
+              />
+            );
+          })}
+        </group>
+      </motion.mesh>
       <RandomClouds />
       <ViewButton productId={selectedProductId} />
       {/*  */}
@@ -56,7 +67,7 @@ export const Scene = ({ productList }) => {
         minPolarAngle={Math.PI / 2.5}
         maxPolarAngle={Math.PI / 2}
         minDistance={15}
-        maxDistance={isFirstAnimated ? 40 : zoomStartZ}
+        maxDistance={controlMaxDistance}
         enablePan={false}
       />
     </>
