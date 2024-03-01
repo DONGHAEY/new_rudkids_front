@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useState } from "react";
 import { useEffect } from "react";
 import { FirstSeasonModel } from "./FirstSeasonModel";
+import styled from "styled-components";
 
 export const ProductModel = ({
   data,
@@ -73,24 +74,26 @@ const MetaTag = ({ name, content }) => {
         top: "-150px",
       }}
     >
-      <p
-        style={{
-          fontSize: "30px",
-          margin: 0,
-          fontFamily: "Archivo_SemiExpanded-Bold",
-        }}
-      >
-        {name}
-      </p>
-      <p
-        style={{
-          fontSize: "15px",
-          margin: 0,
-          fontFamily: "Archivo_Condensed-Light",
-        }}
-      >
-        {content}
-      </p>
+      <ProductName>{name}</ProductName>
+      <ProductContent>{content}</ProductContent>
     </Html>
   );
 };
+
+const ProductName = styled.p`
+  @font-face {
+    font-family: "Archivo_SemiExpanded-Bold";
+    src: url("/fonts/Archivo/Archivo_SemiExpanded-Bold.ttf");
+  }
+  font-family: "Archivo_SemiExpanded-Bold";
+  font-size: 30px;
+`;
+
+const ProductContent = styled.p`
+  @font-face {
+    font-family: "Archivo_SemiExpanded-Bold";
+    src: url("/fonts/Archivo/Archivo_SemiExpanded-Bold.ttf");
+  }
+  font-family: "Archivo_SemiExpanded-Bold";
+  font-size: 15px;
+`;

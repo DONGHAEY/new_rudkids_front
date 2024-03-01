@@ -2,7 +2,6 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Scene } from "./Scene";
 //
-import { css } from "styled-components";
 import styled from "styled-components";
 //
 
@@ -46,20 +45,7 @@ export const List = () => {
   );
 };
 
-const fonts = css`
-  @font-face {
-    font-family: "Archivo_SemiExpanded-Bold";
-    src: url("/fonts/Archivo/Archivo_SemiExpanded-Bold.ttf");
-  }
-
-  @font-face {
-    font-family: "Archivo_Condensed-Light";
-    src: url("/fonts/Archivo/Archivo_SemiExpanded-Light.ttf");
-  }
-`;
-
 const ListWrapperUI = styled.div`
-  // ${fonts}
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -70,5 +56,4 @@ const ListWrapperUI = styled.div`
       transparent
     ),
     radial-gradient(ellipse at top, rgb(12, 73, 187) 100%, transparent);
-  font-family: "Archivo_SemiExpanded-Bold";
 `;
