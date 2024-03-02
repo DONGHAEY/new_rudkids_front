@@ -1,15 +1,43 @@
+import { useEffect } from "react";
 import styled from "styled-components";
-import { kakaoClipboard } from "react-kakao-share";
+import useDevicetype from "../../hooks/useDeviceType";
 
 export const Share = () => {
-  const clipData = {
-    title: "Rudkids",
-    description:
-      "루키즈에서 재미있는 기분을 주는 미친 물건들을 만나보세요, 아주 즐거울거에요",
-    image:
-      "https://i.namu.wiki/i/pcuapOq_pmNJ-l3XnG1-5y-FawoBIe9NV6Xs8n8s4l9NxmbdzN34XJxhpm1iy6uWMK2MMcxPtD9_S3Wv1HGQxw.webp",
-    APIKEY: "89277aa3114d4374c718f792f03a60c2",
-  };
+  const deviceType = useDevicetype();
+
+  const Kakao = window.Kakao;
+  useEffect(() => {
+    if (!Kakao.isInitialized()) Kakao.init("89277aa3114d4374c718f792f03a60c2");
+  }, []);
+
+  async function shareMessage() {
+    if (deviceType === "Web") {
+      Kakao.Share.sendDefault({
+        objectType: "text",
+        text: "일상속의 작은 재미의 상점 - Rudkids",
+        link: {
+          mobileWebUrl: "http://localhost:3000",
+          webUrl: "http://localhost:3000",
+        },
+        serverCallbackArgs: {
+          key: "value", // 사용자 정의 파라미터 설정
+        },
+      });
+    } else {
+      try {
+        await window.navigator.share({
+          title: "일상속의 작은 재미의 상점 - Rudkids",
+          text: "이곳에서 일상속의 재미들을 느껴보세요",
+          url: "http://localhost:3000",
+          image: "",
+        });
+        alert("공유 성공");
+      } catch (e) {
+        alert("공유 실패");
+      }
+    }
+  }
+
   return (
     <ShareWrapperUI>
       <InvitedOnlyUI>
@@ -17,9 +45,7 @@ export const Share = () => {
         <br />
         Invite Only
       </InvitedOnlyUI>
-      <ShareButtonUI onClick={() => kakaoClipboard(clipData)}>
-        🔗 Copy link
-      </ShareButtonUI>
+      <ShareButtonUI onClick={shareMessage}>🔗 Copy link</ShareButtonUI>
     </ShareWrapperUI>
   );
 };
@@ -27,8 +53,8 @@ export const Share = () => {
 const ShareWrapperUI = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: rgba(196, 196, 196, 0.2);
-  backdrop-filter: blur(15px);
+  background-color: rgba(196, 196, 196, 0.5);
+  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   justify-content: center;
