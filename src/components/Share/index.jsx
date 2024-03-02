@@ -50,7 +50,7 @@ export const Share = () => {
         <br />
         Invite Only
       </InvitedOnlyUI>
-      <ShareProgress shareCount={sharedCount} />
+      <ShareProgress sharedCount={sharedCount} />
       <ShareButtonUI onClick={shareMessage}>🔗 Copy link</ShareButtonUI>
     </ShareWrapperUI>
   );

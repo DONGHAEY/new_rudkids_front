@@ -3,9 +3,8 @@ import { IoFishSharp } from "react-icons/io5";
 import { LiaBreadSliceSolid } from "react-icons/lia";
 import { FaBreadSlice } from "react-icons/fa";
 import styled from "styled-components";
-import { useState } from "react";
 
-export const ShareProgress = ({ sharedCount, maxSharedCount }) => {
+export const ShareProgress = ({ sharedCount }) => {
   return (
     <SharedProgressWrapperUI>
       {[
@@ -17,7 +16,7 @@ export const ShareProgress = ({ sharedCount, maxSharedCount }) => {
         FishIconUI,
         FishIconUI,
       ].map((Icon, idx) => {
-        return <Icon key={idx} isPrepared={sharedCount > idx} />;
+        return <Icon key={idx} isPrepared={idx < sharedCount} />;
       })}
     </SharedProgressWrapperUI>
   );
