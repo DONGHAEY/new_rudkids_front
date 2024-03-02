@@ -20,7 +20,6 @@ export const FirstSeasonModel = ({ data, isSelected }) => {
   const { actions } = useAnimations(animations, productModelRef);
 
   useEffect(() => {
-    console.log(actions, animations);
     if (isSelected) {
       actions?.["wave"]?.reset().fadeIn(0.5).play();
     } else {
@@ -28,9 +27,5 @@ export const FirstSeasonModel = ({ data, isSelected }) => {
     }
   }, [isSelected, actions, animations]);
 
-  return (
-    // <group>
-    <primitive ref={productModelRef} scale={0.04} object={scene} />
-    // </group>
-  );
+  return <primitive ref={productModelRef} scale={0.04} object={scene} />;
 };

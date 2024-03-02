@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RandomClouds } from "./RandomClouds";
 import { ViewButton } from "./ViewButton";
 import { ProductModel } from "./ProductModel";
-import { Loader, OrbitControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 import gsap from "gsap";

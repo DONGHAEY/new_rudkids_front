@@ -25,6 +25,7 @@ const BluredBackground = styled.div`
   border-radius: 50%;
   filter: blur(300px);
 `;
+
 const Container = styled.div`
   position: fixed;
   display: flex;

@@ -1,5 +1,4 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
 import { Scene } from "./Scene";
 
 import styled from "styled-components";
@@ -26,26 +25,22 @@ const productList = [
 
 export const List = () => {
   return (
-    <>
-      <ListWrapperUI>
-        <Canvas
-          id="canvas"
-          gl={{ antialias: true }}
-          camera={{
-            fov: 60,
-            aspect: window.innerWidth / window.innerHeight,
-            near: 0.5,
-            far: 100,
-            position: [5, 5, 50],
-          }}
-        >
-          <Suspense fallback={null}>
-            <Scene productList={productList} />
-          </Suspense>
-          <Loader />
-        </Canvas>
-      </ListWrapperUI>
-    </>
+    <ListWrapperUI>
+      <Canvas
+        id="canvas"
+        gl={{ antialias: true }}
+        camera={{
+          fov: 60,
+          aspect: window.innerWidth / window.innerHeight,
+          near: 0.5,
+          far: 100,
+          position: [5, 5, 50],
+        }}
+      >
+        <Scene productList={productList} />
+        <Loader />
+      </Canvas>
+    </ListWrapperUI>
   );
 };
 
