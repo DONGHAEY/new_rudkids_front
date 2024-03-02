@@ -5,6 +5,9 @@ import styled from "styled-components";
 export const Loader = () => {
   const progress = useProgress();
 
+  if (progress.progress >= 100) {
+    return null;
+  }
   return (
     <Html center>
       <BluredBackground />

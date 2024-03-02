@@ -39,9 +39,10 @@ export const List = () => {
             position: [5, 5, 50],
           }}
         >
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={null}>
             <Scene productList={productList} />
           </Suspense>
+          <Loader />
         </Canvas>
       </ListWrapperUI>
     </>
