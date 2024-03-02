@@ -1,0 +1,39 @@
+// import { IsEnteredAtom } from "../store";
+import { Html, useProgress } from "@react-three/drei";
+import styled from "styled-components";
+
+export const Loader = () => {
+  const progress = useProgress();
+
+  return (
+    <Html center>
+      <BluredBackground />
+      <Container>
+        <ProgressBar>{progress.progress.toFixed(0)}%</ProgressBar>
+      </Container>
+    </Html>
+  );
+};
+
+const BluredBackground = styled.div`
+  width: 400px;
+  height: 400px;
+  background-color: red;
+  border-radius: 50%;
+  filter: blur(300px);
+`;
+const Container = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  justify-content: flex-start;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  gap: 20px;
+`;
+const ProgressBar = styled.div`
+  font-size: 20px;
+  color: #ccc;
+`;

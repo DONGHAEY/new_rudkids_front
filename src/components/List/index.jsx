@@ -1,8 +1,11 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Scene } from "./Scene";
+
 //
+
 import styled from "styled-components";
+import { Loader } from "../Loader";
 //
 
 const productList = [
@@ -37,7 +40,7 @@ export const List = () => {
           position: [5, 5, 50],
         }}
       >
-        <Suspense>
+        <Suspense fallback={<Loader />}>
           <Scene productList={productList} />
         </Suspense>
       </Canvas>

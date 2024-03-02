@@ -54,7 +54,7 @@ export const ProductModel = ({
       position-z={z}
     >
       {sign && selected && <MetaTag name={data.name} content={data.content} />}
-      <FirstSeasonModel data={data} />
+      <FirstSeasonModel data={data} isSelected={selected} />
     </group>
   );
 };

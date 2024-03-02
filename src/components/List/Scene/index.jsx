@@ -53,7 +53,7 @@ export const Scene = ({ productList }) => {
                 data={data}
                 rotation={((Math.PI * 2) / productList.length) * idx}
                 cameraRadius={20}
-                radius={7}
+                radius={5}
               />
             );
           })}
