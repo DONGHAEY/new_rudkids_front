@@ -43,21 +43,19 @@ export const Scene = ({ productList }) => {
           duration: 0.7,
         }}
       >
-        <group>
-          {productList.map((data, idx) => {
-            return (
-              <ProductModel
-                key={idx}
-                setSelectedProductId={setSelectedProductId}
-                selectedProductId={selectedProductId}
-                data={data}
-                rotation={((Math.PI * 2) / productList.length) * idx}
-                cameraRadius={20}
-                radius={5}
-              />
-            );
-          })}
-        </group>
+        {productList.map((data, idx) => {
+          return (
+            <ProductModel
+              key={idx}
+              setSelectedProductId={setSelectedProductId}
+              selectedProductId={selectedProductId}
+              data={data}
+              rotation={((Math.PI * 2) / productList.length) * idx}
+              cameraRadius={20}
+              radius={5}
+            />
+          );
+        })}
       </motion.mesh>
       <RandomClouds />
       <ViewButton productId={selectedProductId} />

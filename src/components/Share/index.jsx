@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import useDevicetype from "../../hooks/useDeviceType";
 import { ShareProgress } from "./ShareProgress";
@@ -10,10 +10,10 @@ export const Share = () => {
 
   const [sharedCount, setSharedCount] = useState(0);
 
-  const Kakao = window.Kakao;
-  useEffect(() => {
-    if (!Kakao.isInitialized()) Kakao.init("89277aa3114d4374c718f792f03a60c2");
-  }, []);
+  // const Kakao = window.Kakao;
+  // useEffect(() => {
+  //   if (!Kakao?.isInitialized()) Kakao.init("89277aa3114d4374c718f792f03a60c2");
+  // }, []);
 
   async function shareMessage() {
     if (deviceType === "Web") {
@@ -28,7 +28,7 @@ export const Share = () => {
       //     key: "value", // 사용자 정의 파라미터 설정
       //   },
       // });
-      alert("모바일로 접속 부탁드립니다");
+      alert("Mobile Please");
     } else {
       try {
         await window.navigator.share({
@@ -38,9 +38,13 @@ export const Share = () => {
         });
         setSharedCount(sharedCount + 1);
       } catch (e) {
-        alert("공유 실패");
+        // alert("공유 실패");
       }
     }
+  }
+
+  if (sharedCount >= 7) {
+    return null;
   }
 
   return (

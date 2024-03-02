@@ -3,6 +3,7 @@ import { Scene } from "./Scene";
 
 import styled from "styled-components";
 import { Loader } from "../Loader";
+import { Suspense } from "react";
 //
 
 const productList = [
@@ -37,8 +38,9 @@ export const List = () => {
           position: [5, 5, 50],
         }}
       >
-        <Scene productList={productList} />
-        <Loader />
+        <Suspense fallback={<Loader />}>
+          <Scene productList={productList} />
+        </Suspense>
       </Canvas>
     </ListWrapperUI>
   );
