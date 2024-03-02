@@ -1,7 +1,15 @@
 import { List } from "./components/List/index";
+import { useKakaoScript } from "react-kakao-share";
+import { Share } from "./components/Share";
 
 function App() {
-  return <List />;
+  useKakaoScript();
+  return (
+    <>
+      <List />
+      <Share />
+    </>
+  );
 }
 
 export default App;
