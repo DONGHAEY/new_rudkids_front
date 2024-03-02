@@ -36,8 +36,7 @@ export const Share = () => {
           text: "이곳에서 일상속의 재미 프로젝트들을 만나보세요!",
           url: weburl,
         });
-        alert("공유 성공");
-        sharedCount(sharedCount + 1);
+        setSharedCount(sharedCount + 1);
       } catch (e) {
         alert("공유 실패");
       }
