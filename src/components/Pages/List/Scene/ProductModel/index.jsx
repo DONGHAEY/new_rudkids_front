@@ -1,10 +1,9 @@
 import { useThree } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
+import { useAnimations } from "@react-three/drei";
 import gsap from "gsap";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useEffect } from "react";
-import { FirstSeasonModel } from "./FirstSeasonModel";
-import styled from "styled-components";
+import { ProductTag } from "./ProductTag";
 
 export const ProductModel = ({
   data,
@@ -13,12 +12,17 @@ export const ProductModel = ({
   radius,
   cameraRadius,
   rotation,
+  gltf,
 }) => {
   const three = useThree();
   const x = radius * Math.cos(rotation);
   const z = radius * Math.sin(rotation);
   const cameraX = cameraRadius * Math.cos(rotation);
   const cameraZ = cameraRadius * Math.sin(rotation);
+  const productModelRef = useRef(null);
+
+  const { scene, animations } = gltf;
+  const { actions } = useAnimations(animations, productModelRef);
 
   const [sign, setSign] = useState(false);
 
@@ -45,6 +49,14 @@ export const ProductModel = ({
     }
   }, [selected, cameraX, cameraZ, three.camera.position]);
 
+  useEffect(() => {
+    if (selected) {
+      actions?.["wave"]?.reset().fadeIn(0.5).play();
+    } else {
+      actions?.["wave"]?.stop();
+    }
+  }, [selected, actions, animations]);
+
   return (
     <group
       onClick={() => setSelectedProductId(data.id)}
@@ -53,47 +65,10 @@ export const ProductModel = ({
       position-x={x}
       position-z={z}
     >
-      {sign && selected && <MetaTag name={data.name} content={data.content} />}
-      <FirstSeasonModel data={data} isSelected={selected} />
+      {sign && selected && (
+        <ProductTag name={data.name} content={data.content} />
+      )}
+      <primitive ref={productModelRef} scale={0.04} object={scene} />
     </group>
   );
 };
-
-const MetaTag = ({ name, content }) => {
-  return (
-    <Html
-      center
-      style={{
-        backgroundColor: "rgba(0, 0,0, 10%)",
-        borderRadius: "20px",
-        margin: 0,
-        padding: "20px",
-        whiteSpace: "nowrap",
-        color: "white",
-        position: "absolute",
-        top: "-150px",
-      }}
-    >
-      <ProductName>{name}</ProductName>
-      <ProductContent>{content}</ProductContent>
-    </Html>
-  );
-};
-
-const ProductName = styled.p`
-  @font-face {
-    font-family: "Archivo_SemiExpanded-Bold";
-    src: url("/fonts/Archivo/Archivo_SemiExpanded-Bold.ttf");
-  }
-  font-family: "Archivo_SemiExpanded-Bold";
-  font-size: 30px;
-`;
-
-const ProductContent = styled.p`
-  @font-face {
-    font-family: "Archivo_SemiExpanded-Bold";
-    src: url("/fonts/Archivo/Archivo_SemiExpanded-Bold.ttf");
-  }
-  font-family: "Archivo_SemiExpanded-Bold";
-  font-size: 15px;
-`;

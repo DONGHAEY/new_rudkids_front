@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RandomClouds } from "./RandomClouds";
 import { ViewButton } from "./ViewButton";
 import { ProductModel } from "./ProductModel";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 import gsap from "gsap";
@@ -32,9 +32,15 @@ export const Scene = ({ productList }) => {
     );
   }, [three.camera]);
 
+  const productGltf = {
+    PetFly: useGLTF("/models/dancer.glb"),
+    Nothing: useGLTF("/models/card.glb"),
+    ABeautifulWorld: useGLTF("/models/credit_card.glb"),
+  };
+
   return (
     <>
-      <motion.mesh
+      <motion.group
         initial={{
           rotateY: 0,
         }}
@@ -47,16 +53,17 @@ export const Scene = ({ productList }) => {
           return (
             <ProductModel
               key={idx}
+              gltf={productGltf[data.name]}
               setSelectedProductId={setSelectedProductId}
               selectedProductId={selectedProductId}
               data={data}
               rotation={((Math.PI * 2) / productList.length) * idx}
               cameraRadius={20}
-              radius={5}
+              radius={3.5}
             />
           );
         })}
-      </motion.mesh>
+      </motion.group>
       <RandomClouds />
       <ViewButton productId={selectedProductId} />
       {/*  */}
