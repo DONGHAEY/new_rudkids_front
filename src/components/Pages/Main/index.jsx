@@ -5,6 +5,7 @@ import { SkipSlider } from "./SkipSlider";
 export const Main = () => {
   const videoRef = useRef(null);
   const [percentage, setPercentage] = useState(0);
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
   /** 영상페이지(건너뛰기) */
 
   useEffect(() => {
@@ -20,6 +21,7 @@ export const Main = () => {
   }, [videoRef.current]);
 
   const goNextPage = () => {
+    setIsPlayingVideo(false);
     setTimeout(() => {
       window.location.href = "/hand-motion";
     }, 300);
@@ -31,16 +33,57 @@ export const Main = () => {
     }
   }, [percentage]);
 
+  const playVideo = () => {
+    if (videoRef.current) {
+      videoRef?.current?.play();
+      setIsPlayingVideo(true);
+    }
+  };
+
   return (
     <MainWrapperUI>
-      <EngagingVideoUI ref={videoRef} muted autoPlay>
-        <source src="/videos/engage.mp4" type="video/mp4" />
-      </EngagingVideoUI>
-      {percentage > 0 && (
-        <SkipButtomWrapperUI>
-          <SkipSlider onUnlockedHandler={goNextPage} />
-        </SkipButtomWrapperUI>
-      )}
+      <VideoWrapperUI>
+        <EngagingVideoUI ref={videoRef} playsInline>
+          <source src="/videos/engage.mp4" type="video/mp4" />
+        </EngagingVideoUI>
+        {!isPlayingVideo && (
+          <div
+            style={{
+              position: "absolute",
+              zIndex: 2,
+              color: "black",
+              backgroundColor: "white",
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            onClick={playVideo}
+          >
+            <img src="/images/Calling.png" style={{ minHeight: "100vh" }} />
+          </div>
+        )}
+      </VideoWrapperUI>
+      {/* <iframe
+        style={{
+          position: "absolute",
+          zIndex: 0,
+          width: "100%",
+          height: "100%",
+          // pointerEvents: "none",
+        }}
+        src="/videos/engage.mp4?autoplay=1&mute=1&controls=0&loop=1"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe> */}
+      {/* <video loop muted autoplay playsinline src={"/videos/engage.mp4"} /> */}
+      <SkipButtomWrapperUI>
+        <SkipSlider onUnlockedHandler={goNextPage} />
+      </SkipButtomWrapperUI>
     </MainWrapperUI>
   );
 };
@@ -55,6 +98,12 @@ const MainWrapperUI = styled.div`
   background-color: black;
 `;
 
+const VideoWrapperUI = styled.div`
+  position: relative;
+  height: 100%;
+  width: 100%;
+`;
+
 const SkipButtomWrapperUI = styled.div`
   position: absolute;
   bottom: 0;
@@ -65,4 +114,6 @@ const SkipButtomWrapperUI = styled.div`
 const EngagingVideoUI = styled.video`
   height: 100%;
   width: 100%;
+  position: absolute;
+  z-index: 0;
 `;
