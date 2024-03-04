@@ -62,10 +62,7 @@ export const Main = () => {
             }}
             onClick={playVideo}
           >
-            <img
-              src={"/assets/images/Calling.png"}
-              style={{ minHeight: "100vh" }}
-            />
+            <img src={"/Calling.png"} style={{ minHeight: "100vh" }} />
           </div>
         )}
       </VideoWrapperUI>
