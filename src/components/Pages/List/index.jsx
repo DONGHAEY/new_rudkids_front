@@ -4,7 +4,6 @@ import { Scene } from "./Scene";
 import styled from "styled-components";
 import { Loader } from "../../Loader";
 import { Suspense } from "react";
-//
 
 const productList = [
   {

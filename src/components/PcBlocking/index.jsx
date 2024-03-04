@@ -47,7 +47,7 @@ const RequestContentUI = styled.p`
 `;
 
 const PhoneNumberInputUI = styled.input`
-  padding: 10px;
+  padding: 15px;
   padding-inline: 30px;
   border: 0;
   border-radius: 30px;
@@ -55,7 +55,7 @@ const PhoneNumberInputUI = styled.input`
 `;
 
 const SendLinkButtonUI = styled.button`
-  padding: 8px;
+  padding: 10px;
   border: 0;
   background-color: black;
   color: white;

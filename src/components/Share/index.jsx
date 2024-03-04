@@ -1,17 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { ShareProgress } from "./ShareProgress";
+import { useLocation } from "react-router-dom";
 
 export const Share = () => {
   const weburl = "https://new-rudkids-front.vercel.app";
 
   const [sharedCount, setSharedCount] = useState(0);
+  const [canPass, setCanPass] = useState(false);
+  const location = useLocation();
 
   // const Kakao = window.Kakao;
   // useEffect(() => {
   //   if (!Kakao?.isInitialized()) Kakao.init("89277aa3114d4374c718f792f03a60c2");
   // }, []);
+
+  useEffect(() => {
+    setCanPass(false);
+    if (location.pathname.includes("login")) {
+      setCanPass(true);
+    }
+    if (sharedCount >= 7) {
+      canPass(true);
+    }
+  }, [location.pathname, sharedCount]);
 
   async function shareMessage() {
     if (!isMobile) {
@@ -28,7 +41,7 @@ export const Share = () => {
     }
   }
 
-  if (sharedCount >= 7) {
+  if (canPass) {
     return null;
   }
 
