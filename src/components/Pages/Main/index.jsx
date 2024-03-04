@@ -62,25 +62,13 @@ export const Main = () => {
             }}
             onClick={playVideo}
           >
-            <img src="/images/Calling.png" style={{ minHeight: "100vh" }} />
+            <img
+              src={"/assets/images/Calling.png"}
+              style={{ minHeight: "100vh" }}
+            />
           </div>
         )}
       </VideoWrapperUI>
-      {/* <iframe
-        style={{
-          position: "absolute",
-          zIndex: 0,
-          width: "100%",
-          height: "100%",
-          // pointerEvents: "none",
-        }}
-        src="/videos/engage.mp4?autoplay=1&mute=1&controls=0&loop=1"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe> */}
-      {/* <video loop muted autoplay playsinline src={"/videos/engage.mp4"} /> */}
       <SkipButtomWrapperUI>
         <SkipSlider onUnlockedHandler={goNextPage} />
       </SkipButtomWrapperUI>
