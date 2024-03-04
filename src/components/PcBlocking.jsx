@@ -11,7 +11,7 @@ export const PcBlocking = () => {
       <TitleUI>
         Mobile Only!
         <br />
-        to connect with your Phone!
+        to travel on your Hand!
       </TitleUI>
       <RequestContentUI>Please Type your phone number!</RequestContentUI>
       <PhoneNumberInputUI placeholder="your phone number" />

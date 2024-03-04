@@ -1,4 +1,3 @@
-// import { IsEnteredAtom } from "../store";
 import { Html, useProgress } from "@react-three/drei";
 import styled from "styled-components";
 

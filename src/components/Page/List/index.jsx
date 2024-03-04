@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { Scene } from "./Scene";
 
 import styled from "styled-components";
-import { Loader } from "../Loader";
+import { Loader } from "../../Loader";
 import { Suspense } from "react";
 //
 
