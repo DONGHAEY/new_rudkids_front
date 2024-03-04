@@ -1,11 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
-import useDevicetype from "../../hooks/useDeviceType";
+import { isMobile } from "react-device-detect";
 import { ShareProgress } from "./ShareProgress";
-//
 
 export const Share = () => {
-  const deviceType = useDevicetype();
   const weburl = "https://new-rudkids-front.vercel.app";
 
   const [sharedCount, setSharedCount] = useState(0);
@@ -16,18 +14,7 @@ export const Share = () => {
   // }, []);
 
   async function shareMessage() {
-    if (deviceType === "Web") {
-      // Kakao.Share.sendDefault({
-      //   objectType: "text",
-      //   text: "일상속의 작은 재미의 상점 - Rudkids",
-      //   link: {
-      //     mobileWebUrl: weburl,
-      //     webUrl: weburl,
-      //   },
-      //   serverCallbackArgs: {
-      //     key: "value", // 사용자 정의 파라미터 설정
-      //   },
-      // });
+    if (!isMobile) {
       alert("Mobile Please");
     } else {
       try {
@@ -37,9 +24,7 @@ export const Share = () => {
           url: weburl,
         });
         setSharedCount(sharedCount + 1);
-      } catch (e) {
-        // alert("공유 실패");
-      }
+      } catch (e) {}
     }
   }
 

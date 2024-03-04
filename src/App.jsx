@@ -1,4 +1,5 @@
 import { List } from "./components/List/index";
+import { PcBlocking } from "./components/PcBlocking";
 import { Share } from "./components/Share";
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div>
       <List />
       <Share />
-      {/* <ShareTest /> */}
+      <PcBlocking />
     </div>
   );
 }
