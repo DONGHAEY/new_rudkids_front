@@ -34,7 +34,7 @@ export const Login = () => {
           }}
         >
           <LoginCenterUI>
-            <LogoImageUI src={"/images/Rudkids_Logo.png"} />
+            <LogoImageUI src={"/images/rudkids_logo.png"} />
             <EngagingMentUI>Let's Laugh More!!</EngagingMentUI>
             <LoginButtonWrapperUI>
               <LoginButtonUI>Instagram</LoginButtonUI>
