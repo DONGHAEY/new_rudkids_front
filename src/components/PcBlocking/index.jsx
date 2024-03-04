@@ -7,7 +7,7 @@ export const PcBlocking = () => {
   }
 
   return (
-    <PckBlockingWrapperUI>
+    <PcBlockingWrapperUI>
       <TitleUI>
         Mobile Only!
         <br />
@@ -16,11 +16,11 @@ export const PcBlocking = () => {
       <RequestContentUI>Please Type your phone number!</RequestContentUI>
       <PhoneNumberInputUI placeholder="your phone number" />
       <SendLinkButtonUI>Send Link</SendLinkButtonUI>
-    </PckBlockingWrapperUI>
+    </PcBlockingWrapperUI>
   );
 };
 
-const PckBlockingWrapperUI = styled.div`
+const PcBlockingWrapperUI = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(196, 196, 196, 0.5);
@@ -32,9 +32,9 @@ const PckBlockingWrapperUI = styled.div`
   align-items: center;
   gap: 20px;
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
-  z-index: 10;
 `;
 
 const TitleUI = styled.p`

@@ -70,9 +70,9 @@ const ShareWrapperUI = styled.div`
   align-items: center;
   gap: 20px;
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
-  z-index: 10;
 `;
 
 const ShareButtonUI = styled.button`
