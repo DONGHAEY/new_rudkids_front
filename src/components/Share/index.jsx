@@ -11,13 +11,12 @@ export const Share = () => {
   const [canPass, setCanPass] = useState(false);
   const location = useLocation();
 
-  // const Kakao = window.Kakao;
-  // useEffect(() => {
-  //   if (!Kakao?.isInitialized()) Kakao.init("89277aa3114d4374c718f792f03a60c2");
-  // }, []);
-
   useEffect(() => {
     setCanPass(false);
+
+    //추가 로직//
+    // 1. 로그인이 되어있는가? 되어있지 않으면 setCanPass(true);
+    // 2. 로그인이 되어있으면 아래 로직 실행, sharedCount는 유저data에서 들고오기
     if (location.pathname.includes("login")) {
       setCanPass(true);
     }

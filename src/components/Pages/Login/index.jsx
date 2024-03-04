@@ -6,6 +6,7 @@ import { Scene } from "./Scene";
 import { Loader } from "../../Loader";
 
 export const Login = () => {
+  /** 로그인페이지(구글,인스타그램) */
   return (
     <LoginWrapperUI>
       <Canvas

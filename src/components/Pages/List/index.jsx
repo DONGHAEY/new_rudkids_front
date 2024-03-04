@@ -24,6 +24,7 @@ const productList = [
 ];
 
 export const List = () => {
+  /** 아이템리스트페이지(아이템GLB파일*애니메이션 포함) */
   return (
     <ListWrapperUI>
       <Canvas
