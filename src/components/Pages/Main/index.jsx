@@ -43,27 +43,13 @@ export const Main = () => {
   return (
     <MainWrapperUI>
       <VideoWrapperUI>
-        <EngagingVideoUI ref={videoRef} playsInline>
+        <EngagingVideoUI ref={videoRef} playsInline autoPlay={"autoplay"}>
           <source src="/videos/engage.mp4" type="video/mp4" />
         </EngagingVideoUI>
         {!isPlayingVideo && (
-          <div
-            style={{
-              position: "absolute",
-              zIndex: 2,
-              color: "black",
-              backgroundColor: "white",
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            onClick={playVideo}
-          >
-            <img src={"/Calling.png"} style={{ minHeight: "100vh" }} />
-          </div>
+          <TabToPlayWrapperUI onClick={playVideo}>
+            <p>Tab to Play</p>
+          </TabToPlayWrapperUI>
         )}
       </VideoWrapperUI>
       <SkipButtomWrapperUI>
@@ -81,6 +67,21 @@ const MainWrapperUI = styled.div`
   justify-content: center;
   align-items: center;
   background-color: black;
+`;
+
+const TabToPlayWrapperUI = styled.div`
+  position: absolute;
+  z-index: 2;
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  -webkit-backdrop-filter: blur(13px);
+  backdrop-filter: blur(13px);
+  align-items: center;
+  font-size: 35px;
 `;
 
 const VideoWrapperUI = styled.div`
