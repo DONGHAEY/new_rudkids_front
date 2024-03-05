@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { SkipSlider } from "./SkipSlider";
+
+import { CustomSlider } from "./SkipSlider/CustomSlider";
 
 export const Main = () => {
   const videoRef = useRef(null);
@@ -21,10 +22,9 @@ export const Main = () => {
   }, [videoRef.current]);
 
   const goNextPage = () => {
-    setIsPlayingVideo(false);
     setTimeout(() => {
       window.location.href = "/hand-motion";
-    }, 300);
+    }, 500);
   };
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export const Main = () => {
   return (
     <MainWrapperUI>
       <VideoWrapperUI>
-        <EngagingVideoUI ref={videoRef} playsInline autoPlay={"autoplay"}>
+        <EngagingVideoUI ref={videoRef} playsInline autoPlay={"autoplay"} loop>
           <source src="/videos/engage.mp4" type="video/mp4" />
         </EngagingVideoUI>
         {!isPlayingVideo && (
@@ -52,9 +52,11 @@ export const Main = () => {
           </TabToPlayWrapperUI>
         )}
       </VideoWrapperUI>
-      <SkipButtomWrapperUI>
-        <SkipSlider onUnlockedHandler={goNextPage} />
-      </SkipButtomWrapperUI>
+      {
+        <SkipButtomWrapperUI>
+          <CustomSlider slidedHandler={goNextPage} />
+        </SkipButtomWrapperUI>
+      }
     </MainWrapperUI>
   );
 };
@@ -92,9 +94,11 @@ const VideoWrapperUI = styled.div`
 
 const SkipButtomWrapperUI = styled.div`
   position: absolute;
-  bottom: 0;
-  color: white;
-  margin-bottom: 10px;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const EngagingVideoUI = styled.video`
