@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-
 import { AppleSlider } from "./SkipSlider/CustomSlider";
+import gsap from "gsap";
 
 export const Main = () => {
   const videoRef = useRef(null);
+  const skipButtomWrapperRef = useRef(null);
+
   const [percentage, setPercentage] = useState(0);
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
   /** 영상페이지(건너뛰기) */
@@ -21,6 +23,29 @@ export const Main = () => {
     };
   }, [videoRef.current]);
 
+  let appearSkipSectionTimeout = null;
+  useEffect(() => {
+    if (!skipButtomWrapperRef.current) return;
+    if (!isPlayingVideo) return;
+    appearSkipSectionTimeout = setTimeout(() => {
+      gsap.fromTo(
+        skipButtomWrapperRef.current,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 10,
+        },
+        "<"
+      );
+    }, 6000);
+
+    return () => {
+      clearTimeout(appearSkipSectionTimeout);
+    };
+  }, [skipButtomWrapperRef.current, isPlayingVideo]);
+
   const goNextPage = () => {
     setTimeout(() => {
       window.location.href = "/hand-motion";
@@ -36,14 +61,20 @@ export const Main = () => {
   const playVideo = () => {
     if (videoRef.current) {
       videoRef?.current?.play();
-      setIsPlayingVideo(true);
     }
   };
 
   return (
     <MainWrapperUI>
       <VideoWrapperUI>
-        <EngagingVideoUI ref={videoRef} playsInline autoPlay={"autoPlay"}>
+        <EngagingVideoUI
+          ref={videoRef}
+          playsInline
+          autoPlay
+          onPlay={() => {
+            setIsPlayingVideo(true);
+          }}
+        >
           <source src="/videos/engage.mp4" type="video/mp4" />
         </EngagingVideoUI>
         {!isPlayingVideo && (
@@ -52,11 +83,10 @@ export const Main = () => {
           </TabToPlayWrapperUI>
         )}
       </VideoWrapperUI>
-      {
-        <SkipButtomWrapperUI>
-          <AppleSlider slidedHandler={goNextPage} />
-        </SkipButtomWrapperUI>
-      }
+
+      <SkipButtomWrapperUI ref={skipButtomWrapperRef}>
+        <AppleSlider slidedHandler={goNextPage} />
+      </SkipButtomWrapperUI>
     </MainWrapperUI>
   );
 };
@@ -99,6 +129,7 @@ const SkipButtomWrapperUI = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
 `;
 
 const EngagingVideoUI = styled.video`
