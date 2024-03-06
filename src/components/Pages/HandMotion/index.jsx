@@ -12,6 +12,15 @@ export const HandMotion = () => {
   const resultsRef = useRef(null);
   const downloadRef = useRef(null);
 
+  const takeAPhoto = () => {
+    if (downloadRef.current && canvasRef.current) {
+      const href = String(canvasRef.current.toDataURL("image/jpeg"));
+      downloadRef.current.href = href;
+      downloadRef.current.download = "good.jpg";
+      downloadRef.current?.click();
+    }
+  };
+
   const onResults = (results) => {
     resultsRef.current = results;
     const canvasCtx = canvasRef.current?.getContext("2d");
@@ -60,50 +69,32 @@ export const HandMotion = () => {
             await hands.send({ image: webcamRef.current.video });
           }
         },
-        width: 1920,
-        height: 1080,
+        width: "100%",
+        height: "100%",
       });
       camera.start();
     }
   }, []);
 
   return (
-    <>
-      <button
-        onClick={() => {
-          if (downloadRef.current && canvasRef.current) {
-            const href = String(canvasRef.current.toDataURL("image/jpeg"));
-            downloadRef.current.href = href;
-            downloadRef.current.download = "good.jpg";
-            downloadRef.current?.click();
-          }
+    <div className={styles.container}>
+      <Webcam
+        audio={false}
+        style={{ visibility: "hidden" }}
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        videoConstraints={{
+          facingMode: "user",
         }}
-      >
-        사진찍기
-      </button>
-      <div className={styles.container}>
-        <Webcam
-          audio={false}
-          style={{ visibility: "hidden" }}
-          width={1920}
-          height={1080}
-          ref={webcamRef}
-          screenshotFormat="image/jpeg"
-          videoConstraints={{
-            width: 1920,
-            height: 1080,
-            facingMode: "user",
-          }}
-        />
-        <canvas
-          width={1920}
-          height={1080}
-          ref={canvasRef}
-          className={styles.canvas}
-        />
-        <a ref={downloadRef} style={{ display: "none" }} />
-      </div>
-    </>
+      />
+      <canvas
+        width={"100vh"}
+        height={"100vw"}
+        ref={canvasRef}
+        className={styles.canvas}
+      />
+      <a ref={downloadRef} style={{ display: "none" }} />
+    </div>
   );
 };
 // ==============================================

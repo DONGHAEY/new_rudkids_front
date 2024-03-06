@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-import { CustomSlider } from "./SkipSlider/CustomSlider";
+import { AppleSlider } from "./SkipSlider/CustomSlider";
 
 export const Main = () => {
   const videoRef = useRef(null);
@@ -43,7 +43,7 @@ export const Main = () => {
   return (
     <MainWrapperUI>
       <VideoWrapperUI>
-        <EngagingVideoUI ref={videoRef} playsInline autoPlay={"autoplay"} loop>
+        <EngagingVideoUI ref={videoRef} playsInline autoPlay={"autoPlay"}>
           <source src="/videos/engage.mp4" type="video/mp4" />
         </EngagingVideoUI>
         {!isPlayingVideo && (
@@ -54,7 +54,7 @@ export const Main = () => {
       </VideoWrapperUI>
       {
         <SkipButtomWrapperUI>
-          <CustomSlider slidedHandler={goNextPage} />
+          <AppleSlider slidedHandler={goNextPage} />
         </SkipButtomWrapperUI>
       }
     </MainWrapperUI>

@@ -2,65 +2,119 @@ import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
 
-export const CustomSlider = ({ slidedHandler }) => {
+export const AppleSlider = ({ slidedHandler }) => {
   const slideballRef = useRef(null);
   const slideRef = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isArrived, setIsArrived] = useState(false);
 
-  const handleOnDrag = (e, data) => {
-    if (!slideRef?.current || !slideballRef?.current) return null;
-    const slidepos = slideRef.current.getBoundingClientRect();
-    const slideballPos = slideballRef.current.getBoundingClientRect();
-    const startPosX = 10;
-    const endPosX = slidepos.width - slideballPos.width - 10;
+  const [left, setLeft] = useState(0);
 
-    if (data.x >= startPosX && data.x <= endPosX) {
-      setIsArrived(false);
-      setPosition({ ...position, x: data.x });
-    }
-    if (data.x >= endPosX) {
-      setIsArrived(true);
-      setPosition({
-        ...position,
-        x: endPosX,
-      });
+  let isDragging = false;
+  let isArrived = false;
+  let clickX = 0;
+  let clickY = 0;
+
+  const onTouchStart = (e) => {
+    isDragging = true;
+    clickX = e.targetTouches[0].screenX;
+    clickY = e.targetTouches[0].screenY;
+    /** */
+    document.removeEventListener("touchmove", onTouchMove);
+    document.removeEventListener("touchend", onEnd);
+    /** */
+    document.addEventListener("touchmove", onTouchMove);
+    document.addEventListener("touchend", onEnd);
+  };
+
+  const onMouseDown = (e) => {
+    isDragging = true;
+    clickX = e.screenX;
+    clickY = e.screenY;
+    /** */
+    document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("mouseup", onEnd);
+    /** */
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onEnd);
+  };
+
+  const onTouchMove = (e) => {
+    if (isDragging) {
+      const nowX = e.targetTouches[0].screenX;
+      const nowY = e.targetTouches[0].screenY;
+      let moveY = nowX - clickX;
+      let moveX = nowY - clickY;
+
+      const slidepos = slideRef.current.getBoundingClientRect();
+      const slideballPos = slideballRef.current.getBoundingClientRect();
+      const endPosX = slidepos.width - slideballPos.width - 10;
+
+      const touchPos = left + moveY;
+
+      isArrived = false;
+      if (touchPos >= 0 && touchPos <= endPosX) {
+        setLeft(touchPos);
+      }
+      if (touchPos >= endPosX) {
+        isArrived = true;
+        setLeft(endPosX);
+      }
     }
   };
 
-  const handleStopDrag = () => {
-    if (isArrived) {
-      slidedHandler();
-    } else {
-      setPosition({
-        ...position,
-        x: 0,
-      });
+  const onMouseMove = (e) => {
+    if (isDragging) {
+      const nowX = e.screenX;
+      const nowY = e.screenY;
+      let moveY = nowX - clickX;
+      let moveX = nowY - clickY;
+
+      const slidepos = slideRef.current.getBoundingClientRect();
+      const slideballPos = slideballRef.current.getBoundingClientRect();
+      const endPosX = slidepos.width - slideballPos.width - 10;
+
+      const touchPos = left + moveY;
+
+      isArrived = false;
+      if (touchPos >= 0 && touchPos <= endPosX) {
+        setLeft(touchPos);
+      }
+      if (touchPos >= endPosX) {
+        isArrived = true;
+        setLeft(endPosX);
+      }
     }
   };
 
-  useEffect(() => {
-    if (slideRef.current) {
-      console.log(slideRef.current);
+  const onEnd = (e) => {
+    if (isDragging) {
+      if (isArrived) {
+        slidedHandler();
+      } else {
+        setLeft(0);
+      }
     }
-  }, [slideRef.current, position.x]);
+    isDragging = false;
+    isArrived = false;
+  };
 
   return (
-    <SliderWrapperUI ref={slideRef}>
-      <MoveLightTextWrapperUI>
-        <MoveLightTextUI>Slide To Skip</MoveLightTextUI>
-      </MoveLightTextWrapperUI>
-      <Draggable
-        axis="x"
-        allowAnyClick={false}
-        disabled={isArrived}
-        position={position}
-        onDrag={(e, data) => handleOnDrag(e, data)}
-        onStop={handleStopDrag}
-      >
-        <SlideBallUI ref={slideballRef} />
-      </Draggable>
-    </SliderWrapperUI>
+    <AppleSliderWrapperUI ref={slideRef}>
+      <div
+        style={{
+          marginLeft: left,
+        }}
+      />
+      <SliderWrapperUI>
+        <MoveLightTextWrapperUI>
+          <MoveLightTextUI>Slide To Skip</MoveLightTextUI>
+        </MoveLightTextWrapperUI>
+        <SlideBallUI
+          onTouchStart={onTouchStart}
+          onMouseDown={onMouseDown}
+          ref={slideballRef}
+        />
+      </SliderWrapperUI>
+    </AppleSliderWrapperUI>
   );
 };
 
@@ -93,10 +147,17 @@ const MoveLightTextUI = styled.p`
   }
 `;
 
+const AppleSliderWrapperUI = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  max-width: 250px;
+`;
+
 const SliderWrapperUI = styled.div`
   display: flex;
   flex-direction: row;
-  width: 200px;
+  width: 100%;
   display: flex;
   align-items: center;
   position: relative;
@@ -111,5 +172,6 @@ const SlideBallUI = styled.div`
   width: 40px;
   margin: 5px;
   border-radius: 100%;
+  cursor: pointer;
   z-index: 1;
 `;
