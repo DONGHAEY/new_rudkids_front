@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
-import { css } from "@emotion/css";
 import { Camera } from "@mediapipe/camera_utils";
 import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
 import { HAND_CONNECTIONS, Hands } from "@mediapipe/hands";
@@ -14,10 +13,9 @@ export const HandMotion = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const resultsRef = useRef(null);
-  // const downloadRef = useRef(null);
   const screenshotSectionRef = useRef(null);
-  const resultImageRef = useRef(null);
-  const [image, takeScreenshot] = useScreenshot();
+  const resultScreenshotRef = useRef(null);
+  const [screenshotUrl, takeScreenshot] = useScreenshot();
   const getImage = () => takeScreenshot(screenshotSectionRef.current);
 
   const windowSize = useWindowSize();
@@ -27,21 +25,23 @@ export const HandMotion = () => {
   });
 
   useEffect(() => {
-    if (resultImageRef.current && image) {
-      gsap.fromTo(
-        resultImageRef.current,
-        {
-          marginTop: 3000,
-          rotationZ: 15,
-        },
-        {
-          marginTop: 0,
-          rotationZ: 0,
-          duration: 0.8,
-        }
-      );
-    }
-  }, [image, resultImageRef.current]);
+    (async () => {
+      if (resultScreenshotRef.current && screenshotUrl) {
+        gsap.fromTo(
+          resultScreenshotRef.current,
+          {
+            marginTop: 1000,
+            rotationZ: 20,
+          },
+          {
+            marginTop: 0,
+            rotationZ: 0,
+            duration: 0.8,
+          }
+        );
+      }
+    })();
+  }, [screenshotUrl, resultScreenshotRef.current]);
 
   useEffect(() => {
     // 카메라 정방형 모드 //
@@ -125,7 +125,6 @@ export const HandMotion = () => {
             Let me check if you're really a Rudkdis club.
           </p>
         </SideTopWrapperUI>
-
         <canvas
           style={{
             borderRadius: "20px",
@@ -135,7 +134,6 @@ export const HandMotion = () => {
           height={canvasSize.height}
           ref={canvasRef}
         />
-
         <SideBottomWrapperUI>
           <ButtonUI onClick={getImage}>
             <img
@@ -144,10 +142,45 @@ export const HandMotion = () => {
                 height: "60%",
                 borderRadius: "100%",
               }}
-              src="https://i.namu.wiki/i/zMbgxQWR9-Sx80ySy1A68XJ6olavu1RPRCM2oqdEstTSaRfFYG7fB3rKuR5MTg8spyRztIC_klrVZS1VHGXmFg.webp"
+              src="/camera.webp"
+              alt="camera_button_image"
             />
           </ButtonUI>
         </SideBottomWrapperUI>
+        {screenshotUrl && (
+          <ScreenshotPreviewBlurUI>
+            <ScreenshotPreviewWraperUI ref={resultScreenshotRef}>
+              <img
+                src={screenshotUrl}
+                style={{
+                  width: "75%",
+                }}
+              />
+              <ShareTabUI>
+                <div
+                  onClick={async () => {
+                    const imageFile = await convertURLtoFile(screenshotUrl);
+                    const data = {
+                      files: [imageFile],
+                      title: "루키즈!",
+                    };
+                    try {
+                      if (!window.navigator.canShare(data)) {
+                        throw new Error("Can't share data.", data);
+                      }
+                      await window.navigator.share(data);
+                    } catch (err) {
+                      console.error(err.name, err.message);
+                    }
+                  }}
+                >
+                  공유
+                </div>
+                <div>닫기</div>
+              </ShareTabUI>
+            </ScreenshotPreviewWraperUI>
+          </ScreenshotPreviewBlurUI>
+        )}
         <Webcam
           audio={false}
           style={{ display: "none" }}
@@ -156,25 +189,22 @@ export const HandMotion = () => {
           width={canvasSize.width}
           height={canvasSize.height}
           screenshotQuality={1}
-          mirrored={false}
           videoConstraints={{
             facingMode: "user",
           }}
         />
-        {image && (
-          <ScreenshotViewWrapper>
-            <img
-              ref={resultImageRef}
-              src={image}
-              style={{
-                width: "75%",
-              }}
-            />
-          </ScreenshotViewWrapper>
-        )}
       </HandMotionWrapperUI>
     </CenterWrapperUI>
   );
+};
+
+const convertURLtoFile = async (url) => {
+  const response = await fetch(url);
+  const data = await response.blob();
+  const ext = url.split(".").pop(); // url 구조에 맞게 수정할 것
+  const filename = url.split("/").pop(); // url 구조에 맞게 수정할 것
+  const metadata = { type: `image/${ext}` };
+  return new File([data], filename, metadata);
 };
 
 const CenterWrapperUI = styled.div`
@@ -186,7 +216,7 @@ const CenterWrapperUI = styled.div`
   align-items: center;
 `;
 
-const ScreenshotViewWrapper = styled.div`
+const ScreenshotPreviewBlurUI = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -199,6 +229,14 @@ const ScreenshotViewWrapper = styled.div`
   backdrop-filter: blur(18px);
 `;
 
+const ScreenshotPreviewWraperUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+`;
+
 const HandMotionWrapperUI = styled.div`
   width: 100%;
   max-width: 600px;
@@ -207,10 +245,10 @@ const HandMotionWrapperUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 40px;
   background-color: black;
   color: white;
   position: relative;
-  gap: 25px;
   background: radial-gradient(
       ellipse at bottom,
       rgb(83, 173, 241) 0%,
@@ -249,4 +287,10 @@ const SideBottomWrapperUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+const ShareTabUI = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 `;
