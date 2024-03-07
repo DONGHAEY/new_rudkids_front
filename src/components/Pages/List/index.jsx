@@ -3,7 +3,7 @@ import { Scene } from "./Scene";
 
 import styled from "styled-components";
 import { Loader } from "../../Loader";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 
 const productList = [
   {
@@ -25,6 +25,7 @@ const productList = [
 
 export const List = () => {
   /** 아이템리스트페이지(아이템GLB파일*애니메이션 포함) */
+
   return (
     <ListWrapperUI>
       <Canvas

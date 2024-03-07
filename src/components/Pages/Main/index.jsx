@@ -1,33 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { AppleSlider } from "./SkipSlider/CustomSlider";
+import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 
 export const Main = () => {
   const videoRef = useRef(null);
   const skipButtomWrapperRef = useRef(null);
+  const navigate = useNavigate();
 
-  const [percentage, setPercentage] = useState(0);
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+
   /** 영상페이지(건너뛰기) */
 
-  useEffect(() => {
-    if (!videoRef.current) return;
-    const endTime = videoRef.current.duration;
-    const interval = setInterval(() => {
-      let currentTime = videoRef.current.currentTime;
-      setPercentage((currentTime * 100) / endTime);
-    }, 500);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [videoRef.current]);
+  const goNextPage = () => {
+    navigate("list");
+  };
 
-  let appearSkipSectionTimeout = null;
+  const playVideo = () => {
+    if (videoRef.current) {
+      videoRef.current?.play();
+    }
+  };
+
   useEffect(() => {
-    if (!skipButtomWrapperRef.current) return;
-    if (!isPlayingVideo) return;
-    appearSkipSectionTimeout = setTimeout(() => {
+    if (isPlayingVideo) {
       gsap.fromTo(
         skipButtomWrapperRef.current,
         {
@@ -36,33 +33,11 @@ export const Main = () => {
         {
           opacity: 1,
           duration: 10,
-        },
-        "<"
+          delay: 5, // 5초 지연 추가
+        }
       );
-    }, 6000);
-
-    return () => {
-      clearTimeout(appearSkipSectionTimeout);
-    };
-  }, [skipButtomWrapperRef.current, isPlayingVideo]);
-
-  const goNextPage = () => {
-    setTimeout(() => {
-      window.location.href = "/hand-motion";
-    }, 500);
-  };
-
-  useEffect(() => {
-    if (percentage >= 100) {
-      goNextPage();
     }
-  }, [percentage]);
-
-  const playVideo = () => {
-    if (videoRef.current) {
-      videoRef?.current?.play();
-    }
-  };
+  }, [isPlayingVideo]);
 
   return (
     <MainWrapperUI>
@@ -70,9 +45,15 @@ export const Main = () => {
         <EngagingVideoUI
           ref={videoRef}
           playsInline
-          autoPlay
+          // autoPlay
           onPlay={() => {
             setIsPlayingVideo(true);
+          }}
+          onPause={() => {
+            setIsPlayingVideo(false);
+          }}
+          onEnded={() => {
+            goNextPage();
           }}
         >
           <source src="/videos/engage.mp4" type="video/mp4" />

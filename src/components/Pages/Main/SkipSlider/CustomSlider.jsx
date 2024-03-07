@@ -13,6 +13,10 @@ export const AppleSlider = ({ slidedHandler }) => {
   let clickX = 0;
   let clickY = 0;
 
+  useEffect(() => {
+    setLeft(0);
+  }, []);
+
   const onTouchStart = (e) => {
     isDragging = true;
     clickX = e.targetTouches[0].screenX;

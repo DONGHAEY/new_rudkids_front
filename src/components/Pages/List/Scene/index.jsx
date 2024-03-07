@@ -14,8 +14,14 @@ export const Scene = ({ productList }) => {
 
   const three = useThree();
 
+  const productGltf = {
+    PetFly: useGLTF("/models/dancer.glb"),
+    Nothing: useGLTF("/models/card.glb"),
+    ABeautifulWorld: useGLTF("/models/credit_card.glb"),
+  };
+
   useEffect(() => {
-    if (!three.camera) return;
+    if (!three.camera.position) return;
     gsap.fromTo(
       three.camera.position,
       {
@@ -27,16 +33,9 @@ export const Scene = ({ productList }) => {
         onComplete: () => {
           setControlMaxDistance(30);
         },
-      },
-      "<"
+      }
     );
-  }, [three.camera]);
-
-  const productGltf = {
-    PetFly: useGLTF("/models/dancer.glb"),
-    Nothing: useGLTF("/models/card.glb"),
-    ABeautifulWorld: useGLTF("/models/credit_card.glb"),
-  };
+  }, [three.camera.position]);
 
   return (
     <>
