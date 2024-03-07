@@ -16,6 +16,8 @@ export const HandMotion = () => {
   const screenshotSectionRef = useRef(null);
   const resultScreenshotRef = useRef(null);
   const [screenshotUrl, takeScreenshot] = useScreenshot();
+  const [screenShotUrlTmp, setScreenShotUrlTmp] = useState("");
+
   const getImage = () => takeScreenshot(screenshotSectionRef.current);
 
   const windowSize = useWindowSize();
@@ -25,8 +27,14 @@ export const HandMotion = () => {
   });
 
   useEffect(() => {
+    if (screenshotUrl) {
+      setScreenShotUrlTmp(screenshotUrl);
+    }
+  }, [screenshotUrl]);
+
+  useEffect(() => {
     (async () => {
-      if (resultScreenshotRef.current && screenshotUrl) {
+      if (resultScreenshotRef.current && screenShotUrlTmp) {
         gsap.fromTo(
           resultScreenshotRef.current,
           {
@@ -41,7 +49,7 @@ export const HandMotion = () => {
         );
       }
     })();
-  }, [screenshotUrl, resultScreenshotRef.current]);
+  }, [screenshotUrl, screenShotUrlTmp]);
 
   useEffect(() => {
     // 카메라 정방형 모드 //
@@ -147,11 +155,11 @@ export const HandMotion = () => {
             />
           </ButtonUI>
         </SideBottomWrapperUI>
-        {screenshotUrl && (
+        {screenShotUrlTmp && (
           <ScreenshotPreviewBlurUI>
             <ScreenshotPreviewWraperUI ref={resultScreenshotRef}>
               <img
-                src={screenshotUrl}
+                src={screenShotUrlTmp}
                 style={{
                   width: "75%",
                 }}
@@ -159,7 +167,7 @@ export const HandMotion = () => {
               <ShareTabUI>
                 <div
                   onClick={async () => {
-                    const response = await fetch(screenshotUrl);
+                    const response = await fetch(screenShotUrlTmp);
                     const blob = await response.blob();
                     const filename = "rudkids_standard.png"; // url 구조에 맞게 수정할 것
                     const metadata = { type: `image/png` };
@@ -180,24 +188,24 @@ export const HandMotion = () => {
                 >
                   공유
                 </div>
-                <div>닫기</div>
+                <div onClick={() => setScreenShotUrlTmp("")}>닫기</div>
               </ShareTabUI>
             </ScreenshotPreviewWraperUI>
           </ScreenshotPreviewBlurUI>
         )}
-        <Webcam
-          audio={false}
-          style={{ display: "none" }}
-          ref={webcamRef}
-          screenshotFormat="image/jpeg"
-          width={canvasSize.width}
-          height={canvasSize.height}
-          screenshotQuality={1}
-          videoConstraints={{
-            facingMode: "user",
-          }}
-        />
       </HandMotionWrapperUI>
+      <Webcam
+        audio={false}
+        style={{ display: "none" }}
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        width={canvasSize.width}
+        height={canvasSize.height}
+        screenshotQuality={1}
+        videoConstraints={{
+          facingMode: "user",
+        }}
+      />
     </CenterWrapperUI>
   );
 };
