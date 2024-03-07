@@ -58,7 +58,7 @@ export const Scene = ({ productList }) => {
               data={data}
               rotation={((Math.PI * 2) / productList.length) * idx}
               cameraRadius={20}
-              radius={3.5}
+              radius={4}
             />
           );
         })}
@@ -66,7 +66,7 @@ export const Scene = ({ productList }) => {
       <RandomClouds />
       <ViewButton productId={selectedProductId} />
       {/*  */}
-      <ambientLight intensity={1.5} position={[5, 10, 5]} />
+      <ambientLight intensity={2.5} position={[5, 10, 5]} />
       <OrbitControls
         minPolarAngle={Math.PI / 2.5}
         maxPolarAngle={Math.PI / 2}
