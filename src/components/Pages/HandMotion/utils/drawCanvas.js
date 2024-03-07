@@ -1,4 +1,8 @@
 export const drawCameraScene = (ctx, image, width, height) => {
+  // width = ctx.canvas.width;
+  // height = ctx.canvas.height;
+  ctx.translate(width, 0);
+  ctx.scale(-1, 1);
   ctx.drawImage(image, 0, 0, width, height);
 };
 
