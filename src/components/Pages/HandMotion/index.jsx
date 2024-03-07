@@ -159,10 +159,15 @@ export const HandMotion = () => {
               <ShareTabUI>
                 <div
                   onClick={async () => {
-                    const imageFile = await convertURLtoFile(screenshotUrl);
+                    const response = await fetch(screenshotUrl);
+                    const blob = await response.blob();
+                    const filename = "rudkids_standard.png"; // url 구조에 맞게 수정할 것
+                    const metadata = { type: `image/png` };
+                    const imageFile = new File([blob], filename, metadata);
                     const data = {
                       files: [imageFile],
                     };
+
                     try {
                       if (!window.navigator.canShare(data)) {
                         throw new Error("Can't share data.", data);
@@ -195,15 +200,6 @@ export const HandMotion = () => {
       </HandMotionWrapperUI>
     </CenterWrapperUI>
   );
-};
-
-const convertURLtoFile = async (url) => {
-  const response = await fetch(url);
-  const data = await response.blob();
-  const ext = url.split(".").pop(); // url 구조에 맞게 수정할 것
-  const filename = url.split("/").pop(); // url 구조에 맞게 수정할 것
-  const metadata = { type: `image/png` };
-  return new File([data], filename, metadata);
 };
 
 const CenterWrapperUI = styled.div`
