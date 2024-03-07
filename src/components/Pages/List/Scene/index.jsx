@@ -66,7 +66,7 @@ export const Scene = ({ productList }) => {
       <RandomClouds />
       <ViewButton productId={selectedProductId} />
       {/*  */}
-      <ambientLight intensity={2} position={[0, 10, 0]} />
+      <ambientLight intensity={1.5} position={[5, 10, 5]} />
       <OrbitControls
         minPolarAngle={Math.PI / 2.5}
         maxPolarAngle={Math.PI / 2}

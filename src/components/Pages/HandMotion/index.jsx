@@ -31,10 +31,12 @@ export const HandMotion = () => {
       gsap.fromTo(
         resultImageRef.current,
         {
-          marginTop: 10000,
+          marginTop: 3000,
+          rotationZ: 15,
         },
         {
           marginTop: 0,
+          rotationZ: 0,
           duration: 0.8,
         }
       );
