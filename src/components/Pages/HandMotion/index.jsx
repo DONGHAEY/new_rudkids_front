@@ -116,6 +116,7 @@ export const HandMotion = () => {
           style={{
             padding: "10px",
             borderRadius: "20px",
+            objectFit: "cover",
           }}
           width={canvasSize.width}
           height={canvasSize.height}
