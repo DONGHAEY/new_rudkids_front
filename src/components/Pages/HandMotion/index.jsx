@@ -33,7 +33,7 @@ export const HandMotion = () => {
     // 카메라 정방형 모드 //
     const width = windowSize.width <= 400 ? windowSize.width : 400;
     let canvasWidth = width - 50;
-    let canvasHeight = width;
+    let canvasHeight = width - 50;
     setCanvasSize({
       width: canvasWidth,
       height: canvasHeight,
