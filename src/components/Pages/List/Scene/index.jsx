@@ -15,9 +15,9 @@ export const Scene = ({ productList }) => {
   const three = useThree();
 
   const productGltf = {
-    PetFly: useGLTF("/models/dancer.glb"),
-    Nothing: useGLTF("/models/card.glb"),
-    ABeautifulWorld: useGLTF("/models/credit_card.glb"),
+    PetFly: useGLTF("/models/MyPetFly.glb"),
+    Nothing: useGLTF("/models/Nothing.glb"),
+    ABeautifulWorld: useGLTF("/models/ABeautifulWorld.glb"),
   };
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export const Scene = ({ productList }) => {
       <RandomClouds />
       <ViewButton productId={selectedProductId} />
       {/*  */}
-      <ambientLight intensity={5} position={[0, 10, 0]} />
+      <ambientLight intensity={2} position={[0, 10, 0]} />
       <OrbitControls
         minPolarAngle={Math.PI / 2.5}
         maxPolarAngle={Math.PI / 2}

@@ -7,12 +7,18 @@ import { HAND_CONNECTIONS, Hands } from "@mediapipe/hands";
 import { drawCameraScene, drawSquare } from "./utils/drawCanvas";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import styled from "styled-components";
+import { useScreenshot } from "use-react-screenshot";
+import gsap from "gsap";
 
 export const HandMotion = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const resultsRef = useRef(null);
-  const downloadRef = useRef(null);
+  // const downloadRef = useRef(null);
+  const screenshotSectionRef = useRef(null);
+  const resultImageRef = useRef(null);
+  const [image, takeScreenshot] = useScreenshot();
+  const getImage = () => takeScreenshot(screenshotSectionRef.current);
 
   const windowSize = useWindowSize();
   const [canvasSize, setCanvasSize] = useState({
@@ -20,14 +26,20 @@ export const HandMotion = () => {
     height: 0,
   });
 
-  const takePhotoHandler = () => {
-    if (downloadRef.current && canvasRef.current) {
-      const href = String(canvasRef.current.toDataURL("image/jpeg"));
-      downloadRef.current.href = href;
-      downloadRef.current.download = "good.jpg";
-      downloadRef.current?.click();
+  useEffect(() => {
+    if (resultImageRef.current && image) {
+      gsap.fromTo(
+        resultImageRef.current,
+        {
+          marginTop: 10000,
+        },
+        {
+          marginTop: 0,
+          duration: 0.8,
+        }
+      );
     }
-  };
+  }, [image, resultImageRef.current]);
 
   useEffect(() => {
     // 카메라 정방형 모드 //
@@ -52,11 +64,11 @@ export const HandMotion = () => {
     for (const landmarks of results?.multiHandLandmarks) {
       drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
         color: "#ffffff",
-        lineWidth: 4,
+        lineWidth: 2,
       });
       drawLandmarks(canvasCtx, landmarks, {
         color: "#ff0000",
-        lineWidth: 5,
+        lineWidth: 3,
         radius: 2,
       });
       drawSquare(canvasCtx, landmarks);
@@ -93,7 +105,7 @@ export const HandMotion = () => {
 
   return (
     <CenterWrapperUI>
-      <HandMotionWrapperUI>
+      <HandMotionWrapperUI ref={screenshotSectionRef}>
         <SideTopWrapperUI>
           <p
             style={{
@@ -123,7 +135,7 @@ export const HandMotion = () => {
         />
 
         <SideBottomWrapperUI>
-          <ButtonUI onClick={takePhotoHandler}>
+          <ButtonUI onClick={getImage}>
             <img
               style={{
                 width: "60%",
@@ -147,7 +159,17 @@ export const HandMotion = () => {
             facingMode: "user",
           }}
         />
-        <a ref={downloadRef} />
+        {image && (
+          <ScreenshotViewWrapper>
+            <img
+              ref={resultImageRef}
+              src={image}
+              style={{
+                width: "75%",
+              }}
+            />
+          </ScreenshotViewWrapper>
+        )}
       </HandMotionWrapperUI>
     </CenterWrapperUI>
   );
@@ -162,6 +184,19 @@ const CenterWrapperUI = styled.div`
   align-items: center;
 `;
 
+const ScreenshotViewWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  position: absolute;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+`;
+
 const HandMotionWrapperUI = styled.div`
   width: 100%;
   max-width: 600px;
@@ -172,6 +207,7 @@ const HandMotionWrapperUI = styled.div`
   justify-content: center;
   background-color: black;
   color: white;
+  position: relative;
   gap: 25px;
   background: radial-gradient(
       ellipse at bottom,
