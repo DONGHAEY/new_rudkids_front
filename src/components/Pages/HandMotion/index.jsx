@@ -114,7 +114,6 @@ export const HandMotion = () => {
 
         <canvas
           style={{
-            padding: "10px",
             borderRadius: "20px",
             objectFit: "cover",
           }}
