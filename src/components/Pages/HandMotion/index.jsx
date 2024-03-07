@@ -162,7 +162,6 @@ export const HandMotion = () => {
                     const imageFile = await convertURLtoFile(screenshotUrl);
                     const data = {
                       files: [imageFile],
-                      title: "루키즈!",
                     };
                     try {
                       if (!window.navigator.canShare(data)) {
