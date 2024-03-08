@@ -242,8 +242,7 @@ const ScreenshotPreviewWraperUI = styled.div`
 
 const HandMotionWrapperUI = styled.div`
   width: 100%;
-  max-width: 600px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

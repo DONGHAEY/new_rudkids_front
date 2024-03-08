@@ -48,10 +48,8 @@ export const List = () => {
 };
 
 const ListWrapperUI = styled.div`
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  weight: 100vw;
+  height: 100%;
+  weight: 100%;
   background: radial-gradient(
       ellipse at bottom,
       rgb(83, 173, 241) 0%,

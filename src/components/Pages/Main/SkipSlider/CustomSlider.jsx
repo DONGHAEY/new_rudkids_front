@@ -154,7 +154,7 @@ const MoveLightTextUI = styled.p`
 const AppleSliderWrapperUI = styled.div`
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width: 100%;
   max-width: 250px;
 `;
 
@@ -172,8 +172,8 @@ const SliderWrapperUI = styled.div`
 const SlideBallUI = styled.div`
   height: 100%;
   background-color: white;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   margin: 5px;
   border-radius: 100%;
   cursor: pointer;

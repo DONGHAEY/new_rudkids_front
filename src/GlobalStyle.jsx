@@ -13,6 +13,16 @@ const GlobalStyle = createGlobalStyle`
     width:100%;
     overflow: hidden;
     background-color:black;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+  }
+
+  #root {
+    width:100%;
+    height:100%;
+    max-width: 1000px;
   }
 
 `;

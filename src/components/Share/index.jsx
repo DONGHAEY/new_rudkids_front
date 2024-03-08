@@ -58,8 +58,8 @@ export const Share = () => {
 };
 
 const ShareWrapperUI = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: rgba(196, 196, 196, 0.5);
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
@@ -69,7 +69,7 @@ const ShareWrapperUI = styled.div`
   align-items: center;
   gap: 20px;
   position: fixed;
-  z-index: 1;
+  z-index: 1000;
   top: 0;
   left: 0;
 `;

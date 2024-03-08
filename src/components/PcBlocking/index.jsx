@@ -32,7 +32,7 @@ const PcBlockingWrapperUI = styled.div`
   align-items: center;
   gap: 20px;
   position: fixed;
-  z-index: 1;
+  z-index: 1000;
   top: 0;
   left: 0;
 `;

@@ -48,8 +48,9 @@ export const Login = () => {
 };
 
 const LoginWrapperUI = styled.div`
-  width: 100vw;
   height: 100vh;
+  weight: 100vw;
+  position: relative;
   background: radial-gradient(
       ellipse at bottom,
       rgb(83, 173, 241) 0%,

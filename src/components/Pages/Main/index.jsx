@@ -73,8 +73,8 @@ export const Main = () => {
 };
 
 const MainWrapperUI = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -106,9 +106,9 @@ const VideoWrapperUI = styled.div`
 const SkipButtomWrapperUI = styled.div`
   position: absolute;
   bottom: 20px;
-  width: 100%;
   display: flex;
   align-items: center;
+  width: 100%;
   justify-content: center;
   opacity: 0;
 `;

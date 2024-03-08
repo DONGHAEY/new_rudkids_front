@@ -1,11 +1,7 @@
-import { useState } from "react";
 import { RandomClouds } from "./RandomClouds";
 import { OrbitControls } from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
 
 export const Scene = () => {
-  const three = useThree();
-
   return (
     <>
       <RandomClouds />
