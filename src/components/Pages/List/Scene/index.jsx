@@ -7,6 +7,7 @@ import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 import gsap from "gsap";
 import { motion } from "framer-motion-3d";
+import { SunModel } from "./SunModel";
 
 export const Scene = ({ productList }) => {
   const [controlMaxDistance, setControlMaxDistance] = useState(100);
@@ -19,6 +20,8 @@ export const Scene = ({ productList }) => {
     Nothing: useGLTF("/models/Nothing.glb"),
     ABeautifulWorld: useGLTF("/models/ABeautifulWorld.glb"),
   };
+
+  const grassGltf = useGLTF("/models/hand_painted_grasses.glb");
 
   useEffect(() => {
     if (!three.camera.position) return;
@@ -57,16 +60,19 @@ export const Scene = ({ productList }) => {
               selectedProductId={selectedProductId}
               data={data}
               rotation={((Math.PI * 2) / productList.length) * idx}
-              cameraRadius={20}
-              radius={4}
+              cameraRadius={23}
+              radius={5}
             />
           );
         })}
       </motion.group>
       <RandomClouds />
       <SunModel position={[-25, 20, 30]} />
+      {/* grass */}
+      <primitive scale={20} object={grassGltf.scene} position={[0, -23, 0]} />
+      {/* grass */}
       {/*  */}
-      <ambientLight intensity={1.3} position={[0, 0, 0]} color={0xffffff} />
+      <ambientLight intensity={1.5} position={[-25, 20, 30]} color={0xffffff} />
       <ViewButton productId={selectedProductId} />
       <OrbitControls
         minPolarAngle={Math.PI / 2.5}
@@ -74,22 +80,6 @@ export const Scene = ({ productList }) => {
         minDistance={15}
         maxDistance={controlMaxDistance}
         enablePan={false}
-      />
-    </>
-  );
-};
-
-const SunModel = ({ position }) => {
-  const sunGltf = useGLTF("/models/the_sun.glb");
-  return (
-    <>
-      <primitive scale={9} object={sunGltf.scene} position={position} />
-      <directionalLight
-        // ref={lightRef}
-        castShadow={true}
-        args={[0xffa400, 1.3]}
-        lookAt={[0, 0, 0]}
-        position={position}
       />
     </>
   );

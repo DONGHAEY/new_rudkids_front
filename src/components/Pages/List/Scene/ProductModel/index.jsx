@@ -68,7 +68,7 @@ export const ProductModel = ({
       {sign && selected && (
         <ProductTag name={data.name} content={data.content} />
       )}
-      <primitive ref={productModelRef} scale={2.3} object={scene} />
+      <primitive ref={productModelRef} scale={2.7} object={scene} />
     </group>
   );
 };
