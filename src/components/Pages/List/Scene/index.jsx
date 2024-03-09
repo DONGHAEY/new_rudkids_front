@@ -64,15 +64,32 @@ export const Scene = ({ productList }) => {
         })}
       </motion.group>
       <RandomClouds />
-      <ViewButton productId={selectedProductId} />
+      <SunModel position={[-25, 20, 30]} />
       {/*  */}
-      <ambientLight intensity={2.5} position={[5, 10, 5]} />
+      <ambientLight intensity={1.3} position={[0, 0, 0]} color={0xffffff} />
+      <ViewButton productId={selectedProductId} />
       <OrbitControls
         minPolarAngle={Math.PI / 2.5}
         maxPolarAngle={Math.PI / 2}
         minDistance={15}
         maxDistance={controlMaxDistance}
         enablePan={false}
+      />
+    </>
+  );
+};
+
+const SunModel = ({ position }) => {
+  const sunGltf = useGLTF("/models/the_sun.glb");
+  return (
+    <>
+      <primitive scale={9} object={sunGltf.scene} position={position} />
+      <directionalLight
+        // ref={lightRef}
+        castShadow={true}
+        args={[0xffa400, 1.3]}
+        lookAt={[0, 0, 0]}
+        position={position}
       />
     </>
   );
