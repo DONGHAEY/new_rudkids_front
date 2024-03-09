@@ -16,6 +16,8 @@ export const Scene = ({ productList }) => {
 
   const three = useThree();
 
+  const portalGltf = useGLTF("/models/portal.glb");
+
   useEffect(() => {
     if (!three.camera.position) return;
     gsap.fromTo(
@@ -60,10 +62,8 @@ export const Scene = ({ productList }) => {
       </motion.group>
       <RandomClouds />
       <SunModel position={[-25, 20, 30]} />
-      {/* grass */}
       <GrassModel position={[0, -23, 0]} />
-      {/* grass */}
-      <ambientLight intensity={1.5} position={[-25, 20, 30]} color={0xffffff} />
+      <ambientLight intensity={1} position={[-25, 20, 30]} color={0xffffff} />
       <ViewButton productId={selectedProductId} />
       <OrbitControls
         minPolarAngle={Math.PI / 2.5}

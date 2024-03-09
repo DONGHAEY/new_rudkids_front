@@ -4,6 +4,13 @@ import gsap from "gsap";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { ProductTag } from "./ProductTag";
+import { motion } from "framer-motion-3d";
+
+const productGltfUrl = {
+  PetFly: "/models/MyPetFly.glb",
+  Nothing: "/models/Nothing.glb",
+  ABeautifulWorld: "/models/ABeautifulWorld.glb",
+};
 
 export const ProductModel = ({
   data,
@@ -14,25 +21,21 @@ export const ProductModel = ({
   rotation,
 }) => {
   const three = useThree();
+  const [sign, setSign] = useState(false);
   const x = radius * Math.cos(rotation);
   const z = radius * Math.sin(rotation);
+
   const cameraX = cameraRadius * Math.cos(rotation);
   const cameraZ = cameraRadius * Math.sin(rotation);
   const productModelRef = useRef(null);
 
-  const productGltfUrl = {
-    PetFly: "/models/MyPetFly.glb",
-    Nothing: "/models/Nothing.glb",
-    ABeautifulWorld: "/models/ABeautifulWorld.glb",
-  };
-
   const { scene, animations } = useGLTF(productGltfUrl[data.name]);
 
   const handGltf = useGLTF("/models/hand.glb");
+
   const handGltfScene = handGltf.scene.clone();
   const { actions } = useAnimations(animations, productModelRef);
 
-  const [sign, setSign] = useState(false);
   const selected = selectedProductId === data.id;
 
   useEffect(() => {
@@ -56,14 +59,6 @@ export const ProductModel = ({
     }
   }, [selected, cameraX, cameraZ, three.camera.position]);
 
-  // useEffect(() => {
-  //   if (selected) {
-  //     actions?.["wave"]?.reset().fadeIn(0.5).play();
-  //   } else {
-  //     actions?.["wave"]?.stop();
-  //   }
-  // }, [selected, actions, animations]);
-
   return (
     <group
       position-x={x}
@@ -76,13 +71,23 @@ export const ProductModel = ({
         <ProductTag name={data.name} content={data.content} />
       )}
       <primitive ref={productModelRef} scale={2.7} object={scene} />
-      {selected && sign && (
-        <primitive
-          scale={0.25}
+      {selected && (
+        <motion.primitive
+          initial={{
+            rotateY: 0,
+            rotateZ: 0,
+            rotateX: 0,
+          }}
+          animate={{
+            rotateY: Math.PI,
+            rotateZ: Math.PI * 0.3,
+            rotateX: Math.PI * 0.3,
+          }}
+          transition={{
+            duration: 0.8,
+          }}
+          scale={0.2}
           object={handGltfScene}
-          rotation-y={Math.PI}
-          rotation-z={Math.PI * 0.3}
-          rotation-x={Math.PI * 0.3}
           position={[-1, -5, 1.5]}
         />
       )}

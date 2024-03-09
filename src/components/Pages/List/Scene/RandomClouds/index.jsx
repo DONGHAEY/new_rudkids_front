@@ -1,7 +1,7 @@
 import { BakeShadows, useGLTF } from "@react-three/drei";
 import { CloudDetailed } from "./CloudDetailed";
 
-const positions = [...Array(50)].map(() => ({
+const positions = [...Array(35)].map(() => ({
   position: [
     50 - Math.random() * 80,
     75 - Math.random() * 80,
