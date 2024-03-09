@@ -8,20 +8,13 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import { motion } from "framer-motion-3d";
 import { SunModel } from "./SunModel";
+import { GrassModel } from "./GrassModel";
 
 export const Scene = ({ productList }) => {
   const [controlMaxDistance, setControlMaxDistance] = useState(100);
   const [selectedProductId, setSelectedProductId] = useState(null);
 
   const three = useThree();
-
-  const productGltf = {
-    PetFly: useGLTF("/models/MyPetFly.glb"),
-    Nothing: useGLTF("/models/Nothing.glb"),
-    ABeautifulWorld: useGLTF("/models/ABeautifulWorld.glb"),
-  };
-
-  const grassGltf = useGLTF("/models/hand_painted_grasses.glb");
 
   useEffect(() => {
     if (!three.camera.position) return;
@@ -55,7 +48,6 @@ export const Scene = ({ productList }) => {
           return (
             <ProductModel
               key={idx}
-              gltf={productGltf[data.name]}
               setSelectedProductId={setSelectedProductId}
               selectedProductId={selectedProductId}
               data={data}
@@ -69,9 +61,8 @@ export const Scene = ({ productList }) => {
       <RandomClouds />
       <SunModel position={[-25, 20, 30]} />
       {/* grass */}
-      <primitive scale={20} object={grassGltf.scene} position={[0, -23, 0]} />
+      <GrassModel position={[0, -23, 0]} />
       {/* grass */}
-      {/*  */}
       <ambientLight intensity={1.5} position={[-25, 20, 30]} color={0xffffff} />
       <ViewButton productId={selectedProductId} />
       <OrbitControls

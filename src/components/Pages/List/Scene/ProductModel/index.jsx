@@ -3,7 +3,6 @@ import { useAnimations, useGLTF } from "@react-three/drei";
 import gsap from "gsap";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
-import { motion } from "framer-motion-3d";
 import { ProductTag } from "./ProductTag";
 
 export const ProductModel = ({
@@ -13,7 +12,6 @@ export const ProductModel = ({
   radius,
   cameraRadius,
   rotation,
-  gltf,
 }) => {
   const three = useThree();
   const x = radius * Math.cos(rotation);
@@ -22,12 +20,19 @@ export const ProductModel = ({
   const cameraZ = cameraRadius * Math.sin(rotation);
   const productModelRef = useRef(null);
 
-  const { scene, animations } = gltf;
-  const portalGltf = useGLTF("/models/hand.glb");
+  const productGltfUrl = {
+    PetFly: "/models/MyPetFly.glb",
+    Nothing: "/models/Nothing.glb",
+    ABeautifulWorld: "/models/ABeautifulWorld.glb",
+  };
+
+  const { scene, animations } = useGLTF(productGltfUrl[data.name]);
+
+  const handGltf = useGLTF("/models/hand.glb");
+  const handGltfScene = handGltf.scene.clone();
   const { actions } = useAnimations(animations, productModelRef);
 
   const [sign, setSign] = useState(false);
-
   const selected = selectedProductId === data.id;
 
   useEffect(() => {
@@ -71,14 +76,14 @@ export const ProductModel = ({
         <ProductTag name={data.name} content={data.content} />
       )}
       <primitive ref={productModelRef} scale={2.7} object={scene} />
-      {selected && (
+      {selected && sign && (
         <primitive
-          scale={0.23}
-          object={portalGltf.scene}
+          scale={0.25}
+          object={handGltfScene}
           rotation-y={Math.PI}
           rotation-z={Math.PI * 0.3}
           rotation-x={Math.PI * 0.3}
-          position={[-1, -5, 1.3]}
+          position={[-1, -5, 1.5]}
         />
       )}
     </group>
