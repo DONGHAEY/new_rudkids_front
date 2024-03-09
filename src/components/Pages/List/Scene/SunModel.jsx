@@ -24,7 +24,6 @@ export const SunModel = ({ position }) => {
         decay={0.95}
         opacity={1.5}
         position={position}
-        // debug={true}
         lookAt={[0, 0, 0]}
       />
     </>

@@ -23,18 +23,12 @@ const ViewButtonDivStyle = {
   width: "80%",
 };
 
-export const ViewButton = ({ productId }) => {
+export const WatchButton = ({ productId, onClick, isWatching }) => {
   if (!productId) return null;
-
+  if (isWatching) return null;
   return (
     <Html fullscreen style={ViewButtonStyle}>
-      <div
-        onClick={() => {
-          // productId의 디테일 페이지로 이동;
-          alert(productId);
-        }}
-        style={ViewButtonDivStyle}
-      >
+      <div onClick={onClick} style={ViewButtonDivStyle}>
         Watch
       </div>
     </Html>

@@ -36,7 +36,6 @@ export const List = () => {
           aspect: window.innerWidth / window.innerHeight,
           near: 0.5,
           far: 100,
-          position: [5, 5, 50],
         }}
       >
         <Suspense fallback={<Loader />}>

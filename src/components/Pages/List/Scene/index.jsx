@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { RandomClouds } from "./RandomClouds";
-import { ViewButton } from "./ViewButton";
+import { WatchButton } from "./WatchButton";
 import { ProductModel } from "./ProductModel";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
@@ -13,6 +13,7 @@ import { GrassModel } from "./GrassModel";
 export const Scene = ({ productList }) => {
   const [controlMaxDistance, setControlMaxDistance] = useState(100);
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const [isWatching, setIsWatching] = useState(false);
 
   const three = useThree();
 
@@ -43,7 +44,7 @@ export const Scene = ({ productList }) => {
         }}
         animate={{ rotateY: Math.PI * 2 }}
         transition={{
-          duration: 0.7,
+          duration: 1,
         }}
       >
         {productList.map((data, idx) => {
@@ -52,6 +53,7 @@ export const Scene = ({ productList }) => {
               key={idx}
               setSelectedProductId={setSelectedProductId}
               selectedProductId={selectedProductId}
+              isWatching={isWatching}
               data={data}
               rotation={((Math.PI * 2) / productList.length) * idx}
               cameraRadius={23}
@@ -64,11 +66,20 @@ export const Scene = ({ productList }) => {
       <SunModel position={[-25, 20, 30]} />
       <GrassModel position={[0, -23, 0]} />
       <ambientLight intensity={1} position={[-25, 20, 30]} color={0xffffff} />
-      <ViewButton productId={selectedProductId} />
+      <WatchButton
+        onClick={() => {
+          setIsWatching(true);
+        }}
+        isWatching={isWatching}
+        productId={selectedProductId}
+      />
       <OrbitControls
         minPolarAngle={Math.PI / 2.5}
         maxPolarAngle={Math.PI / 2}
         minDistance={15}
+        enableZoom={!isWatching}
+        enableRotate={!isWatching}
+        enableDamping={!isWatching}
         maxDistance={controlMaxDistance}
         enablePan={false}
       />
