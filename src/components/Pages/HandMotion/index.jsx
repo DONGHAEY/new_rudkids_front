@@ -64,9 +64,33 @@ export const HandMotion = () => {
 
   const onHandResults = (results) => {
     const canvasCtx = canvasRef.current?.getContext("2d");
+    // console.log(results);
     for (const landmarks of results?.multiHandLandmarks) {
+      let color = "#ffffff";
+      //fuck you
+      if (
+        landmarks[11].y > landmarks[12].y && //중지
+        landmarks[7].y < landmarks[8].y &&
+        landmarks[15].y < landmarks[16].y &&
+        landmarks[19].y < landmarks[20].y
+      ) {
+        if (
+          landmarks[3].x < landmarks[4].x &&
+          landmarks[17].x > landmarks[2].x
+        ) {
+          color = "#ff00ff";
+          console.log("오른손 뻑큐?");
+        } else if (
+          landmarks[3].x > landmarks[4].x &&
+          landmarks[17].x < landmarks[2].x
+        ) {
+          color = "#ff00ff";
+          console.log("왼손 뻑큐?");
+        }
+        //fuck you
+      }
       drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
-        color: "#ffffff",
+        color,
         lineWidth: 1,
       });
       drawLandmarks(canvasCtx, landmarks, {
@@ -124,8 +148,8 @@ export const HandMotion = () => {
             canvasCtx.save();
             canvasCtx.clearRect(0, 0, canvasWidth, canvasHeight);
             drawCameraScene(canvasCtx, image, canvasWidth, canvasHeight);
-            await face.send({ image });
             await hands.send({ image });
+            await face.send({ image });
             canvasCtx.restore();
           }
         },
