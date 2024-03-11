@@ -5,17 +5,24 @@ import { PointLight } from "three";
 export const SunModel = ({ position }) => {
   const sunRef = useRef(null);
   const sunGltf = useGLTF("/models/the_sun.glb");
-  // const animations = useAnimations(sunGltf.animations, sunRef);
+  const animations = useAnimations(sunGltf.animations, sunRef);
 
-  // useEffect(() => {
-  //   const animationName = sunGltf.animations?.[0]?.name;
-  //   if (animationName) {
-  //     animations[animationName]?.reset().fadeIn(0.5).play();
-  //   }
-  // }, [animations]);
+  useEffect(() => {
+    const animationName = sunGltf.animations?.[0]?.name;
+    if (animationName) {
+      animations[animationName]?.reset().play();
+    }
+  }, [animations]);
+
   return (
     <>
-      <primitive scale={2.5} object={sunGltf.scene} position={position} />
+      <primitive
+        scale={2.5}
+        object={sunGltf.scene}
+        position={position}
+        castShadow={true}
+        receiveShadow={true}
+      />
       <SpotLight
         color={0xffea9f}
         intensity={20}
@@ -25,6 +32,9 @@ export const SunModel = ({ position }) => {
         opacity={1.5}
         position={position}
         lookAt={[0, 0, 0]}
+        castShadow={true}
+        receiveShadow={true}
+        isLight={true}
       />
     </>
   );

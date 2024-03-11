@@ -1,36 +1,49 @@
 import { Html } from "@react-three/drei";
-import { useRef } from "react";
+import styled from "styled-components";
 
-const ViewButtonStyle = {
-  position: "fixed",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-};
-
-const ViewButtonDivStyle = {
-  position: "absolute",
-  backgroundColor: "blue",
-  padding: 15,
-  textAlign: "center",
-  borderRadius: "10px",
-  color: "white",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  bottom: 0,
-  marginBottom: 30,
-  width: "80%",
-};
-
-export const WatchButton = ({ productId, onClick, isWatching }) => {
+export const WatchButton = ({
+  productId,
+  setProductId,
+  isWatching,
+  setIsWatching,
+}) => {
   if (!productId) return null;
   if (isWatching) return null;
+
+  const clickHandler = () => {
+    let d = productId;
+    setIsWatching(true);
+    setProductId(d);
+  };
+
   return (
-    <Html fullscreen style={ViewButtonStyle}>
-      <div onClick={onClick} style={ViewButtonDivStyle}>
-        Watch
-      </div>
-    </Html>
+    <WatchButtonWrapperUI fullscreen>
+      <WatchButtonUI onClick={clickHandler}>Watch</WatchButtonUI>
+    </WatchButtonWrapperUI>
   );
 };
+
+const WatchButtonWrapperUI = styled(Html)`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const WatchButtonUI = styled.div`
+  position: absolute;
+  background-color: #fff628;
+  color: #111111;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  bottom: 0;
+  margin-bottom: 20px;
+  width: 40%;
+  min-width: 200px;
+  font-weight: bold;
+  cursor: pointer;
+`;

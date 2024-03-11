@@ -25,17 +25,15 @@ export const ProductModel = ({
   data,
   selectedProductId,
   setSelectedProductId,
-  radius,
+  distance,
   isWatching,
-  cameraRadius,
+  cameraDistance,
   rotation,
 }) => {
   const three = useThree();
-  const x = radius * Math.cos(rotation);
-  const z = radius * Math.sin(rotation);
+  const x = distance * Math.cos(rotation);
+  const z = distance * Math.sin(rotation);
   const rotationY = Math.PI / 2 - rotation;
-
-  const { x: cameraX, z: cameraZ } = getLookAtPos(cameraRadius, rotation);
 
   const [isCameraMovingFinished, setCameraMovingFinished] = useState(false);
 
@@ -54,10 +52,11 @@ export const ProductModel = ({
 
   useEffect(() => {
     if (selected) {
+      const { x: cameraX, z: cameraZ } = getLookAtPos(cameraDistance, rotation);
       gsap.to(three.camera.position, {
         x: cameraX,
         z: cameraZ,
-        duration: 2,
+        duration: 1.8,
         onComplete: () => {
           setCameraMovingFinished(true);
         },
@@ -65,56 +64,46 @@ export const ProductModel = ({
     } else {
       setCameraMovingFinished(false);
     }
-  }, [selected, isWatching, cameraX, cameraZ, three.camera.position]);
+  }, [selected, cameraDistance, rotation, three.camera]);
 
   useEffect(() => {
-    if (!handRef.current || !productGroupRef.current) return;
-    if (selected && isWatching) {
-      const timeline = gsap.timeline();
-
-      const { x: hitPointX, z: hitPointZ } = getLookAtPos(
-        cameraRadius - 5,
-        rotation
-      );
-
-      timeline
-        .to(three.camera.position, {
-          x: cameraX,
-          z: cameraZ,
-          duration: 1,
-        })
-        .to(productGroupRef.current.rotation, {
-          y: rotationY - Math.PI,
-          duration: 0.5,
-        })
-        .to(handRef.current.rotation, {
-          x: Math.PI / 2,
-          duration: 0.5,
-        })
-        .to(handRef.current.rotation, {
-          x: Math.PI / 5,
-          duration: 0.5,
-        })
-        .to(productGroupRef.current.position, {
-          x: hitPointX,
-          z: hitPointZ,
-          y: three.camera.position.y,
-          duration: 0.5,
-        })
-        .to(productRef.current.position, {
-          y: -30,
-          duration: 2,
-          delay: 2,
-        });
-      timeline.play();
-    }
-  }, [
-    isWatching,
-    selected,
-    handRef.current,
-    productRef.current,
-    three.camera.position,
-  ]);
+    if (!selected || !isWatching) return;
+    const { x: cameraX, z: cameraZ } = getLookAtPos(cameraDistance, rotation);
+    gsap.to(three.camera.position, {
+      x: cameraX,
+      z: cameraZ,
+    });
+    const timeline = gsap.timeline();
+    const { x: collidePointX, z: collidePointZ } = getLookAtPos(
+      cameraDistance - 1.5,
+      rotation
+    );
+    timeline
+      .to(productGroupRef.current.rotation, {
+        y: rotationY - Math.PI,
+        duration: 0.35,
+      })
+      .to(handRef.current.rotation, {
+        x: Math.PI / 1.3,
+        duration: 0.3,
+      })
+      .to(handRef.current.rotation, {
+        x: Math.PI / 3.5,
+        duration: 0.3,
+      })
+      .to(productGroupRef.current.position, {
+        x: collidePointX,
+        z: collidePointZ,
+        y: three.camera.position.y,
+        duration: 0.28,
+      })
+      .to(productRef.current.position, {
+        y: -20,
+        duration: 2,
+        delay: 4,
+      });
+    timeline.play();
+  }, [isWatching, selected]);
 
   return (
     <group
@@ -122,17 +111,18 @@ export const ProductModel = ({
       position-z={z}
       rotation-y={rotationY}
       ref={productGroupRef}
-      onClick={() => setSelectedProductId(data.id)}
-      // onPointerMissed={() => setSelectedProductId(null)}
+      onClick={() => {
+        if (!selectedProductId) {
+          setSelectedProductId(data.id);
+        } else {
+          setSelectedProductId(null);
+        }
+      }}
     >
       {selected && isCameraMovingFinished && !isWatching && (
-        <ProductTag
-          rotation-y={Math.PI / 2 - rotation}
-          name={data.name}
-          content={data.content}
-        />
+        <ProductTag name={data.name} content={data.content} position-y={5.5} />
       )}
-      <primitive ref={productRef} scale={2.7} object={scene} />
+      <primitive ref={productRef} scale={2.8} object={scene} />
       {selected && (
         <motion.primitive
           ref={handRef}
@@ -151,7 +141,7 @@ export const ProductModel = ({
           }}
           scale={0.2}
           object={handGltfScene}
-          position={[-1, -5, 2.5]}
+          position={[-1, -5, 1.5]}
         />
       )}
     </group>

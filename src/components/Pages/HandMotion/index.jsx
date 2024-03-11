@@ -3,6 +3,7 @@ import Webcam from "react-webcam";
 import { Camera } from "@mediapipe/camera_utils";
 import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
 import { HAND_CONNECTIONS, Hands } from "@mediapipe/hands";
+import { FaceMesh } from "@mediapipe/face_mesh";
 import { drawCameraScene, drawSquare } from "./utils/drawCanvas";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import styled from "styled-components";
@@ -12,7 +13,6 @@ import gsap from "gsap";
 export const HandMotion = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  const resultsRef = useRef(null);
   const screenshotSectionRef = useRef(null);
   const resultScreenshotRef = useRef(null);
   const [screenshotUrl, takeScreenshot] = useScreenshot();
@@ -62,28 +62,30 @@ export const HandMotion = () => {
     });
   }, [windowSize.width, windowSize.height, webcamRef.current]);
 
-  const onResults = (results) => {
-    resultsRef.current = results;
+  const onHandResults = (results) => {
     const canvasCtx = canvasRef.current?.getContext("2d");
-    const canvasWidth = canvasCtx.canvas.width;
-    const canvasHeight = canvasCtx.canvas.height;
-    canvasCtx.save();
-    canvasCtx.clearRect(0, 0, canvasWidth, canvasHeight);
-    drawCameraScene(canvasCtx, results.image, canvasWidth, canvasHeight);
-
     for (const landmarks of results?.multiHandLandmarks) {
       drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
         color: "#ffffff",
-        lineWidth: 2,
+        lineWidth: 1,
       });
       drawLandmarks(canvasCtx, landmarks, {
         color: "#ff0000",
-        lineWidth: 3,
-        radius: 2,
+        lineWidth: 1,
+        radius: 1,
       });
-      drawSquare(canvasCtx, landmarks);
     }
-    canvasCtx.restore();
+  };
+
+  const onFaceResults = (results) => {
+    const canvasCtx = canvasRef.current?.getContext("2d");
+    for (const landmarks of results?.multiFaceLandmarks) {
+      drawLandmarks(canvasCtx, landmarks, {
+        color: "#ffffff",
+        lineWidth: 0.5,
+        radius: 0.5,
+      });
+    }
   };
 
   useEffect(() => {
@@ -92,23 +94,46 @@ export const HandMotion = () => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
       },
     });
+
+    const face = new FaceMesh({
+      locateFile: (file) => {
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
+      },
+    });
+
     hands.setOptions({
       maxNumHands: 2,
       modelComplexity: 1,
       minDetectionConfidence: 0.5,
       minTrackingConfidence: 0.5,
     });
+
+    face.setOptions({
+      maxNumFaces: 2,
+      selfieMode: false,
+    });
+
     if (webcamRef.current) {
+      const canvasCtx = canvasRef.current?.getContext("2d");
       const camera = new Camera(webcamRef.current.video ?? null, {
         onFrame: async () => {
-          if (webcamRef.current?.video) {
-            await hands.send({ image: webcamRef.current.video });
+          const image = webcamRef.current?.video;
+          if (image) {
+            const canvasWidth = canvasCtx.canvas.width;
+            const canvasHeight = canvasCtx.canvas.height;
+            canvasCtx.save();
+            canvasCtx.clearRect(0, 0, canvasWidth, canvasHeight);
+            drawCameraScene(canvasCtx, image, canvasWidth, canvasHeight);
+            await face.send({ image });
+            await hands.send({ image });
+            canvasCtx.restore();
           }
         },
         width: canvasSize.width,
         height: canvasSize.height,
       });
-      hands.onResults(onResults);
+      hands.onResults(onHandResults);
+      face.onResults(onFaceResults);
       camera.start();
     }
   }, [webcamRef.current]);
@@ -133,26 +158,14 @@ export const HandMotion = () => {
             Let me check if you're really a Rudkdis club.
           </p>
         </SideTopWrapperUI>
-        <canvas
-          style={{
-            borderRadius: "20px",
-            objectFit: "cover",
-          }}
+        <CanvasUI
           width={canvasSize.width}
           height={canvasSize.height}
           ref={canvasRef}
         />
         <SideBottomWrapperUI>
           <ButtonUI onClick={getImage}>
-            <img
-              style={{
-                width: "60%",
-                height: "60%",
-                borderRadius: "100%",
-              }}
-              src="/camera.webp"
-              alt="camera_button_image"
-            />
+            <ButtonImageUI src="/camera.webp" alt="camera_button_image" />
           </ButtonUI>
         </SideBottomWrapperUI>
         {screenShotUrlTmp && (
@@ -175,7 +188,6 @@ export const HandMotion = () => {
                     const data = {
                       files: [imageFile],
                     };
-
                     try {
                       if (!window.navigator.canShare(data)) {
                         throw new Error("Can't share data.", data);
@@ -240,6 +252,11 @@ const ScreenshotPreviewWraperUI = styled.div`
   gap: 10px;
 `;
 
+const CanvasUI = styled.canvas`
+  border-radius: 20px;
+  object-fit: cover;
+`;
+
 const HandMotionWrapperUI = styled.div`
   width: 100%;
   height: 100%;
@@ -273,6 +290,12 @@ const ButtonUI = styled.div`
   &:hover {
     cursor: pointer;
   }
+`;
+
+const ButtonImageUI = styled.img`
+  width: 60%;
+  height: 60%;
+  border-radius: 100%;
 `;
 
 const SideTopWrapperUI = styled.div`

@@ -17,10 +17,10 @@ export const Scene = ({ productList }) => {
 
   const three = useThree();
 
-  const portalGltf = useGLTF("/models/portal.glb");
+  // const portalGltf = useGLTF("/models/portal.glb");
 
   useEffect(() => {
-    if (!three.camera.position) return;
+    if (!three.camera) return;
     gsap.fromTo(
       three.camera.position,
       {
@@ -34,7 +34,7 @@ export const Scene = ({ productList }) => {
         },
       }
     );
-  }, [three.camera.position]);
+  }, [three.camera]);
 
   return (
     <>
@@ -42,7 +42,7 @@ export const Scene = ({ productList }) => {
         initial={{
           rotateY: 0,
         }}
-        animate={{ rotateY: Math.PI * 2 }}
+        animate={{ rotateY: Math.PI * 4 }}
         transition={{
           duration: 1,
         }}
@@ -56,27 +56,26 @@ export const Scene = ({ productList }) => {
               isWatching={isWatching}
               data={data}
               rotation={((Math.PI * 2) / productList.length) * idx}
-              cameraRadius={23}
-              radius={5}
+              distance={4.5}
+              cameraDistance={20}
             />
           );
         })}
       </motion.group>
       <RandomClouds />
       <SunModel position={[-25, 20, 30]} />
-      <GrassModel position={[0, -23, 0]} />
+      <GrassModel position={[0, -41, 0]} />
       <ambientLight intensity={1} position={[-25, 20, 30]} color={0xffffff} />
       <WatchButton
-        onClick={() => {
-          setIsWatching(true);
-        }}
         isWatching={isWatching}
+        setIsWatching={setIsWatching}
         productId={selectedProductId}
+        setProductId={setSelectedProductId}
       />
       <OrbitControls
         minPolarAngle={Math.PI / 2.5}
         maxPolarAngle={Math.PI / 2}
-        minDistance={15}
+        minDistance={20}
         enableZoom={!isWatching}
         enableRotate={!isWatching}
         enableDamping={!isWatching}
