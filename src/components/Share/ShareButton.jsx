@@ -23,7 +23,7 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
 
   const CheckedUI = (
     <img
-      style={{ width: "12px" }}
+      style={{ width: "12px", height: "12px", objectFit: "cover" }}
       src="/assets/Images/shareComponent/checked.png"
     />
   );
@@ -32,7 +32,7 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
     <SharedProgressWrapperUI>
       {!isShared && (
         <img
-          style={{ width: "95%" }}
+          style={{ width: "95%", height: "95%", objectFit: "cover" }}
           onClick={share}
           alt={"add_friend.png"}
           src={"/assets/Images/shareComponent/add_friend.png"}
@@ -40,7 +40,12 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
       )}
       {isShared && (
         <img
-          style={{ width: "95%", borderRadius: "100%" }}
+          style={{
+            width: "95%",
+            height: "95%",
+            objectFit: "cover",
+            borderRadius: "100%",
+          }}
           alt={`${idx + 1}.png`}
           src={`/assets/Images/shareComponent/friends/${idx + 1}.png`}
         ></img>
