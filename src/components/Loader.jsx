@@ -11,7 +11,7 @@ export const Loader = () => {
     <Html center>
       <BluredBackground />
       <Container>
-        <ProgressBar>{progress.progress.toFixed(0)}%</ProgressBar>
+        <ProgressBar>Loading...</ProgressBar>
       </Container>
     </Html>
   );
@@ -26,7 +26,7 @@ const BluredBackground = styled.div`
 `;
 
 const Container = styled.div`
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   transform: translate(-50%, -50%);
@@ -34,6 +34,7 @@ const Container = styled.div`
   align-items: center;
   top: 50%;
   left: 50%;
+  z-index: 1;
   gap: 20px;
 `;
 const ProgressBar = styled.div`

@@ -40,7 +40,7 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
           }}
           alt={`${idx + 1}.png`}
           src={`/assets/Images/shareComponent/friends/${idx + 1}.png`}
-        ></img>
+        />
       )}
       <ShareStatusTextUI isShared={isShared}>
         {isShared ? (

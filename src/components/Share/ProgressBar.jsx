@@ -11,15 +11,15 @@ export const ProgressBar = ({ length, cnt }) => {
 
   useEffect(() => {
     gsap.to(progressRef.current, {
-      width: `${percentage}%`,
+      width: `${percentage + 5 > 100 ? 100 : percentage + 5}%`,
     });
   }, [percentage]);
 
   return (
     <ProgressBarUI>
-      <CountBallUI>
+      {/* <CountBallUI>
         {cnt}/{length}
-      </CountBallUI>
+      </CountBallUI> */}
       <ProgressBarFillUI ref={progressRef} />
     </ProgressBarUI>
   );
@@ -28,7 +28,7 @@ export const ProgressBar = ({ length, cnt }) => {
 const ProgressBarUI = styled.div`
   background-color: white;
   height: 13px;
-  width: 40%;
+  width: 60%;
   border: #d6d6d6 solid 1px;
   border-radius: 30px;
   position: relative;

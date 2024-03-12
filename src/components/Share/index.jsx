@@ -16,27 +16,26 @@ export const Share = () => {
 
   const [canpass, setCanpass] = useState(false);
 
-  const ref = useRef(null);
+  const loaderRef = useRef(null);
 
   useEffect(() => {
     const anim = Lottie.loadAnimation({
-      container: ref.current, // the dom element that will contain the animation
+      container: loaderRef.current, // the dom element that will contain the animation
       renderer: "svg",
       loop: false,
       autoplay: true,
       path: "/Rudkids_tape.json",
     });
     anim.addEventListener("complete", () => {
-      ref.current.style.display = "none";
+      loaderRef.current.style.display = "none";
     });
-
     return () => anim.destroy();
-  }, [ref.current]);
+  }, [loaderRef.current]);
 
   const invitedFriendCnt = useMemo(() => {
     let invitedFriendCnt = 0;
     friendSharedStatList.forEach((d) => {
-      if (d == true) {
+      if (d === true) {
         invitedFriendCnt += 1;
       }
     });
@@ -60,19 +59,14 @@ export const Share = () => {
     <ShareWrapperUI>
       <CenterWrapperUI>
         <LockImgUI src={"/assets/Images/shareComponent/Lock.png"} />
-        <BlurBoxUI>
-          <InviteOnlyImageUI
-            src={"/assets/Images/shareComponent/invite_only.png"}
-          />
-          <Invite5FriendsUI>INVITE 5 FRIENDS</Invite5FriendsUI>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "10px",
-            }}
-          >
+        <ShareBoxUI>
+          <ShareBoxTopSectionUI>
+            <BoxTitleUI style={{ fontSize: "23px" }}>Rudkids is</BoxTitleUI>
+            <BoxTitleUI style={{ fontSize: "30px" }}>Invite Only</BoxTitleUI>
+            <BoxDescriptionUI>INVITE 5 FRIENDS</BoxDescriptionUI>
+          </ShareBoxTopSectionUI>
+          <img src="/assets/Images/shareComponent/label.png" />
+          <ShareBoxMiddleSectionUI>
             <FriendListUI>
               {friendSharedStatList.map((friendSharedStat, idx_) => {
                 return (
@@ -98,28 +92,28 @@ export const Share = () => {
               length={friendSharedStatList.length}
               cnt={invitedFriendCnt}
             />
-          </div>
-          <Why5FriendsUI>
+          </ShareBoxMiddleSectionUI>
+          <ShareBoxBottomSectionUI>
             <InfoImgUI src="/assets/Images/shareComponent/info.png" />
             Why 5 Friends?
-          </Why5FriendsUI>
-        </BlurBoxUI>
+          </ShareBoxBottomSectionUI>
+        </ShareBoxUI>
       </CenterWrapperUI>
       <div
+        ref={loaderRef}
         style={{
           position: "absolute",
-          // backgroundColor: "black",
-          scale: "148%",
-          overflow: "hidden",
+          scale: "150%",
           width: "100%",
-          height: "100%",
+          height: "200%",
           zIndex: 1,
         }}
-        ref={ref}
       />
     </ShareWrapperUI>
   );
 };
+
+/********************** */
 
 const LockImgUI = styled.img`
   width: 30px;
@@ -131,18 +125,36 @@ const InfoImgUI = styled.img`
   cursor: pointer;
 `;
 
-const Invite5FriendsUI = styled.p`
+const BoxTitleWrapperUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BoxTitleUI = styled.p`
+  @font-face {
+    font-family: "Poppins-Bold";
+    src: url("/fonts/Poppins/Poppins-Bold.ttf");
+  }
+  font-family: "Poppins-Bold";
+  margin: 0;
+  line-height: 30px;
+`;
+
+const BoxDescriptionUI = styled.p`
   @font-face {
     font-family: "Poppins-SemiBold";
     src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
   }
   font-family: "Poppins-SemiBold";
-  background-color: #24ff00;
-  color: black;
+  background-color: black;
+  color: white;
   border-radius: 30px;
   padding-inline: 15px;
-  padding-block: 5px;
+  padding-block: 3px;
   font-size: 13px;
+  margin-top: 13px;
 `;
 
 const ShareWrapperUI = styled.div`
@@ -166,23 +178,22 @@ const FriendListUI = styled.div`
   justify-content: center;
   align-items: center;
   padding-inline: 30px;
-  padding-block: 15px;
   flex-wrap: wrap;
   gap: 10px;
   max-width: 300px;
   overflow: scroll;
 `;
 
-const Why5FriendsUI = styled.p`
+const ShareBoxBottomSectionUI = styled.p`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 20px;
   gap: 3px;
-  margin-top: 20px;
   color: #575757;
   font-size: 11px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   @font-face {
     font-family: "Poppins-SemiBold";
     src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
@@ -190,19 +201,16 @@ const Why5FriendsUI = styled.p`
   font-family: "Poppins-SemiBold";
 `;
 
-const BlurBoxUI = styled.div`
+const ShareBoxUI = styled.div`
   display: flex;
   border: solid white 0.1px;
   width: 100%;
   flex-direction: column;
-  align-items: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  gap: 15px;
+  overflow: hidden;
   background-color: rgba(196, 196, 196, 0.5);
   border-radius: 30px;
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 `;
 
 const CenterWrapperUI = styled.div`
@@ -214,6 +222,19 @@ const CenterWrapperUI = styled.div`
   max-width: 350px;
 `;
 
-const InviteOnlyImageUI = styled.img`
-  width: 60%;
+const ShareBoxTopSectionUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #89ff60;
+  padding-block: 30px;
+`;
+
+const ShareBoxMiddleSectionUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
 `;
