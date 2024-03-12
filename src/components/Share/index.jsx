@@ -161,6 +161,7 @@ const Why5FriendsUI = styled.p`
 
 const BlurBoxUI = styled.div`
   display: flex;
+  border: solid white 0.1px;
   width: 100%;
   flex-direction: column;
   align-items: center;
