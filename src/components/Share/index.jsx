@@ -17,25 +17,21 @@ export const Share = () => {
   const [canpass, setCanpass] = useState(false);
 
   const ref = useRef(null);
+
   useEffect(() => {
-    if (!ref.current) return;
-    Lottie.loadAnimation({
+    const anim = Lottie.loadAnimation({
       container: ref.current, // the dom element that will contain the animation
       renderer: "svg",
       loop: false,
       autoplay: true,
       path: "/Rudkids_tape.json",
-
-      // rendererSettings: {
-      //   context: ref.current, // the canvas context
-      //   scaleMode: "zoom",
-      //   clearCanvas: false,
-      //   progressiveLoad: false, // Boolean, only svg renderer, loads dom elements when needed. Might speed up initialization for large number of elements.
-      //   hideOnTransparent: true, //Boolean, only svg renderer, hides elements when opacity reaches 0 (defaults to true)
-      // },
     });
-    return () => Lottie.destroy();
-  }, []);
+    anim.addEventListener("complete", () => {
+      ref.current.style.display = "none";
+    });
+
+    return () => anim.destroy();
+  }, [ref.current]);
 
   const invitedFriendCnt = useMemo(() => {
     let invitedFriendCnt = 0;
@@ -110,14 +106,17 @@ export const Share = () => {
         </BlurBoxUI>
       </CenterWrapperUI>
       <div
-        ref={ref}
         style={{
           position: "absolute",
+          // backgroundColor: "black",
+          scale: "148%",
+          overflow: "hidden",
           width: "100%",
           height: "100%",
           zIndex: 1,
         }}
-      ></div>
+        ref={ref}
+      />
     </ShareWrapperUI>
   );
 };
@@ -155,6 +154,7 @@ const ShareWrapperUI = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
+  overflow: hidden;
   z-index: 1000;
   top: 0;
   left: 0;
