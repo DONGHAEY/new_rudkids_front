@@ -24,7 +24,7 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
   const CheckedUI = (
     <img
       style={{ width: "12px" }}
-      src="/assets/images/shareComponent/checked.png"
+      src="/assets/Images/shareComponent/checked.png"
     />
   );
 
@@ -35,14 +35,14 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
           style={{ width: "95%" }}
           onClick={share}
           alt={"add_friend.png"}
-          src={"/assets/images/shareComponent/add_friend.png"}
+          src={"/assets/Images/shareComponent/add_friend.png"}
         />
       )}
       {isShared && (
         <img
           style={{ width: "95%", borderRadius: "100%" }}
           alt={`${idx + 1}.png`}
-          src={`/assets/images/shareComponent/friends/${idx + 1}.png`}
+          src={`/assets/Images/shareComponent/friends/${idx + 1}.png`}
         ></img>
       )}
       <ShareStatusTextUI isShared={isShared}>
