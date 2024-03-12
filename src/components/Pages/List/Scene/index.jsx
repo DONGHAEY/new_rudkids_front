@@ -14,7 +14,6 @@ export const Scene = ({ productList }) => {
   const [controlMaxDistance, setControlMaxDistance] = useState(100);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [isWatching, setIsWatching] = useState(false);
-
   const three = useThree();
 
   // const portalGltf = useGLTF("/models/portal.glb");

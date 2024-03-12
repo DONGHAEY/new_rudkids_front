@@ -68,16 +68,21 @@ export const ProductModel = ({
 
   useEffect(() => {
     if (!selected || !isWatching) return;
+
     const { x: cameraX, z: cameraZ } = getLookAtPos(cameraDistance, rotation);
+
     gsap.to(three.camera.position, {
       x: cameraX,
       z: cameraZ,
     });
+
     const timeline = gsap.timeline();
+
     const { x: collidePointX, z: collidePointZ } = getLookAtPos(
       cameraDistance - 1.5,
       rotation
     );
+
     timeline
       .to(productGroupRef.current.rotation, {
         y: rotationY - Math.PI,
@@ -119,30 +124,54 @@ export const ProductModel = ({
         }
       }}
     >
-      {selected && isCameraMovingFinished && !isWatching && (
-        <ProductTag name={data.name} content={data.content} position-y={5.5} />
-      )}
-      <primitive ref={productRef} scale={2.8} object={scene} />
-      {selected && (
+      {!selected && (
         <motion.primitive
-          ref={handRef}
+          ref={productRef}
           initial={{
-            rotateY: 0,
-            rotateZ: 0,
-            rotateX: 0,
+            y: 0,
           }}
           animate={{
-            rotateY: Math.PI,
-            rotateZ: Math.PI * 0.3,
-            rotateX: Math.PI * 0.3,
+            y: 1,
           }}
           transition={{
-            duration: 0.8,
+            duration: 1.3,
+            repeat: Infinity,
+            repeatType: "mirror",
           }}
-          scale={0.2}
-          object={handGltfScene}
-          position={[-1, -5, 1.5]}
+          scale={2.8}
+          object={scene}
         />
+      )}
+      {selected && (
+        <>
+          <primitive ref={productRef} scale={2.8} object={scene} />
+          <motion.primitive
+            ref={handRef}
+            initial={{
+              rotateY: 0,
+              rotateZ: 0,
+              rotateX: 0,
+            }}
+            animate={{
+              rotateY: Math.PI,
+              rotateZ: Math.PI * 0.3,
+              rotateX: Math.PI * 0.3,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
+            scale={0.2}
+            object={handGltfScene}
+            position={[-1, -5, 1.5]}
+          />
+          {isCameraMovingFinished && !isWatching && (
+            <ProductTag
+              name={data.name}
+              content={data.content}
+              position-y={5.5}
+            />
+          )}
+        </>
       )}
     </group>
   );
