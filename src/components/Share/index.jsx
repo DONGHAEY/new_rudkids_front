@@ -13,20 +13,19 @@ export const Share = () => {
     false,
   ]);
 
-  const percentage = useMemo(() => {
-    const friendCnt = friendSharedStatList.length;
+  const invitedFriendCnt = useMemo(() => {
     let invitedFriendCnt = 0;
     friendSharedStatList.forEach((d) => {
       if (d == true) {
         invitedFriendCnt += 1;
       }
     });
-    return (invitedFriendCnt * 100) / friendCnt;
+    return invitedFriendCnt;
   });
 
   const allInvited = useMemo(() => {
-    return percentage === 100;
-  }, [percentage]);
+    return invitedFriendCnt === friendSharedStatList.length;
+  }, [invitedFriendCnt, friendSharedStatList]);
 
   if (allInvited) {
     //모두 초대 되었다는 API 요청
@@ -72,7 +71,10 @@ export const Share = () => {
                 );
               })}
             </FriendListUI>
-            <ProgressBar percentage={percentage} />
+            <ProgressBar
+              length={friendSharedStatList.length}
+              cnt={invitedFriendCnt}
+            />
           </div>
           <Why5FriendsUI>
             <InfoImgUI src="/assets/Images/shareComponent/info.png" />
