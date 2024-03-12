@@ -2,27 +2,31 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   * {
-    margin: 0;
-    padding: 0;
+    margin : 0;
+    padding : 0;
   }
 
-  html, body {
-    margin: 0;
+  html {
+    width : 100%;
+    height : 100%;
+    margin: 0 auto;
     padding:0;
-    height: 100%;
+  }
+
+  body {
     width:100%;
-    overflow: hidden;
+    height: 100%;
+    max-width: 1024px;
+    max-height: 1024px;
     background-color:black;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    margin: 0 auto;
+    padding:0;
   }
 
   #root {
     width:100%;
     height:100%;
-    max-width: 1000px;
+    position:relative;
   }
 
 `;

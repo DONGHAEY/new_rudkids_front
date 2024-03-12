@@ -79,13 +79,15 @@ export const HandMotion = () => {
           landmarks[17].x > landmarks[2].x
         ) {
           color = "#ff00ff";
-          console.log("오른손 뻑큐?");
+          // console.log("오른손 뻑큐?");
+          drawPunch(canvasCtx);
         } else if (
           landmarks[3].x > landmarks[4].x &&
           landmarks[17].x < landmarks[2].x
         ) {
           color = "#ff00ff";
-          console.log("왼손 뻑큐?");
+          // console.log("왼손 뻑큐?");
+          drawPunch(canvasCtx);
         }
         //fuck you
       }
@@ -103,6 +105,7 @@ export const HandMotion = () => {
 
   const onFaceResults = (results) => {
     const canvasCtx = canvasRef.current?.getContext("2d");
+
     for (const landmarks of results?.multiFaceLandmarks) {
       drawLandmarks(canvasCtx, landmarks, {
         color: "#ffffff",
@@ -110,6 +113,18 @@ export const HandMotion = () => {
         radius: 0.5,
       });
     }
+  };
+
+  const drawPunch = (canvasCtx, positionX = 0, positionY = 0) => {
+    var image = new Image();
+    image.src = "/punch-kill.gif";
+    canvasCtx.drawImage(
+      image,
+      positionX,
+      positionY,
+      positionX + 100,
+      positionY + 100
+    );
   };
 
   useEffect(() => {
@@ -147,6 +162,8 @@ export const HandMotion = () => {
             const canvasHeight = canvasCtx.canvas.height;
             canvasCtx.save();
             canvasCtx.clearRect(0, 0, canvasWidth, canvasHeight);
+            // canvasCtx.translate(canvasWidth, 0);
+            // canvasCtx.scale(-1, 1);
             drawCameraScene(canvasCtx, image, canvasWidth, canvasHeight);
             await hands.send({ image });
             await face.send({ image });

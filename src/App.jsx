@@ -26,8 +26,7 @@ function App() {
           {/*  */}
           <Route path="/policy-privacy" element={null} />
         </Routes>
-        {/* <Share />
-        <PcBlocking /> */}
+        {/* <PcBlocking /> */}
       </BrowserRouter>
     </>
   );

@@ -4,6 +4,7 @@ import { Scene } from "./Scene";
 import styled from "styled-components";
 import { Loader } from "../../Loader";
 import { Suspense } from "react";
+import { Share } from "../../Share";
 
 const productList = [
   {
@@ -42,6 +43,7 @@ export const List = () => {
           <Scene productList={productList} />
         </Suspense>
       </Canvas>
+      <Share />
     </ListWrapperUI>
   );
 };
