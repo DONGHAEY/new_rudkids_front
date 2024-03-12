@@ -14,15 +14,15 @@ export const ProgressBar = ({ percentage }) => {
       style={{
         backgroundColor: "white",
         height: "13px",
-        width: "70%",
-        border: "#D6D6D6 solid 2px",
+        width: "50%",
+        border: "#D6D6D6 solid 1px",
         borderRadius: "30px",
       }}
     >
       <div
         ref={progressRef}
         style={{
-          backgroundColor: "#36B44C",
+          backgroundColor: "#24FF00",
           height: "100%",
           width: 0,
           borderRadius: "30px",

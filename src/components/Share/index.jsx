@@ -38,33 +38,43 @@ export const Share = () => {
       <CenterWrapperUI>
         <LockImgUI src={"/assets/Images/shareComponent/Lock.png"} />
         <BlurBoxUI>
-          <img
-            width={"70%"}
+          <InviteOnlyImageUI
             src={"/assets/Images/shareComponent/invite_only.png"}
           />
           <Invite5FriendsUI>INVITE 5 FRIENDS</Invite5FriendsUI>
-          <FriendListUI>
-            {friendSharedStatList.map((friendSharedStat, idx_) => {
-              return (
-                <ShareButton
-                  key={idx_}
-                  isShared={friendSharedStat}
-                  idx={idx_}
-                  onShared={() => {
-                    setFriendSharedStatList((friendSharedStatList) => {
-                      return friendSharedStatList.map((stat, idx) => {
-                        if (idx_ === idx) {
-                          return true;
-                        }
-                        return stat;
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "0px",
+            }}
+          >
+            <FriendListUI>
+              {friendSharedStatList.map((friendSharedStat, idx_) => {
+                return (
+                  <ShareButton
+                    key={idx_}
+                    isShared={friendSharedStat}
+                    idx={idx_}
+                    onShared={() => {
+                      setFriendSharedStatList((friendSharedStatList) => {
+                        return friendSharedStatList.map((stat, idx) => {
+                          if (idx_ === idx) {
+                            return true;
+                          }
+                          return stat;
+                        });
                       });
-                    });
-                  }}
-                />
-              );
-            })}
-          </FriendListUI>
-          <ProgressBar percentage={percentage} />
+                    }}
+                  />
+                );
+              })}
+            </FriendListUI>
+            <ProgressBar percentage={percentage} />
+          </div>
+          <Why5FriendsUI>Why 5 Friends?</Why5FriendsUI>
         </BlurBoxUI>
       </CenterWrapperUI>
     </ShareWrapperUI>
@@ -79,7 +89,7 @@ const Invite5FriendsUI = styled.p`
   background-color: #000000;
   color: white;
   border-radius: 30px;
-  padding-inline: 20px;
+  padding-inline: 10px;
   padding-block: 5px;
   font-weight: bold;
   font-size: 13px;
@@ -112,6 +122,13 @@ const FriendListUI = styled.div`
   overflow: scroll;
 `;
 
+const Why5FriendsUI = styled.p`
+  margin-top: 20px;
+  color: #575757;
+  font-size: 13px;
+  font-weight: bold;
+`;
+
 const BlurBoxUI = styled.div`
   display: flex;
   width: 100%;
@@ -135,24 +152,6 @@ const CenterWrapperUI = styled.div`
   max-width: 350px;
 `;
 
-const InviteOnlyTitleUI = styled.div`
-  @font-face {
-    font-family: "AppleGaramond-Light";
-    src: url("/fonts/Super Dessert.ttf");
-  }
-  font-family: "AppleGaramond-Light";
-  font-size: 30px;
-  -webkit-text-stroke: 2px white;
-  text-align: center;
-`;
-
-const InviteOnlyContentUI = styled.div`
-  @font-face {
-    font-family: "AppleGaramond-Light";
-    src: url("/fonts/Super Dessert.ttf");
-  }
-  font-family: "AppleGaramond-Light";
-  font-size: 40px;
-  -webkit-text-stroke: 3px white;
-  text-align: center;
+const InviteOnlyImageUI = styled.img`
+  width: 60%;
 `;

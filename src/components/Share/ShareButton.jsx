@@ -21,6 +21,13 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
     } catch (e) {}
   };
 
+  const CheckedUI = (
+    <img
+      style={{ width: "12px" }}
+      src="/assets/images/shareComponent/checked.png"
+    />
+  );
+
   return (
     <SharedProgressWrapperUI>
       {!isShared && (
@@ -41,10 +48,7 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
       <ShareStatusTextUI isShared={isShared}>
         {isShared ? (
           <>
-            <img
-              style={{ width: "12px" }}
-              src="/assets/images/shareComponent/checked.png"
-            />
+            {CheckedUI}
             <p>invited</p>
           </>
         ) : (
@@ -79,6 +83,3 @@ const ShareStatusTextUI = styled.p`
   gap: 2px;
   color: ${({ isShared }) => (isShared ? "black" : "#DF0000")};
 `;
-
-// const SharedImageUI = styled.div`
-// `
