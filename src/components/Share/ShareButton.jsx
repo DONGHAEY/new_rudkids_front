@@ -21,13 +21,6 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
     } catch (e) {}
   };
 
-  const CheckedUI = (
-    <img
-      style={{ width: "12px", height: "12px", objectFit: "cover" }}
-      src="/assets/Images/shareComponent/checked.png"
-    />
-  );
-
   return (
     <SharedProgressWrapperUI>
       {!isShared && (
@@ -53,8 +46,11 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
       <ShareStatusTextUI isShared={isShared}>
         {isShared ? (
           <>
-            {CheckedUI}
-            <p>invited</p>
+            <img
+              style={{ width: "12px", height: "12px", objectFit: "cover" }}
+              src="/assets/Images/shareComponent/checked.png"
+            />
+            {"invited"}
           </>
         ) : (
           "Not invited"
@@ -79,12 +75,16 @@ const SharedProgressWrapperUI = styled.div`
 `;
 
 const ShareStatusTextUI = styled.p`
-  font-size: 10px;
-  font-weight: bold;
+  font-size: 9px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 2px;
+  @font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  }
+  font-family: "Poppins-SemiBold";
   color: ${({ isShared }) => (isShared ? "black" : "#DF0000")};
 `;

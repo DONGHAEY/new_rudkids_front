@@ -13,6 +13,8 @@ export const Share = () => {
     false,
   ]);
 
+  const [canpass, setCanpass] = useState(false);
+
   const invitedFriendCnt = useMemo(() => {
     let invitedFriendCnt = 0;
     friendSharedStatList.forEach((d) => {
@@ -23,11 +25,15 @@ export const Share = () => {
     return invitedFriendCnt;
   });
 
-  const allInvited = useMemo(() => {
-    return invitedFriendCnt === friendSharedStatList.length;
+  useEffect(() => {
+    if (invitedFriendCnt === friendSharedStatList.length) {
+      setTimeout(() => {
+        setCanpass(true);
+      }, 1300);
+    }
   }, [invitedFriendCnt, friendSharedStatList]);
 
-  if (allInvited) {
+  if (canpass) {
     //모두 초대 되었다는 API 요청
     return null;
   }
@@ -45,9 +51,8 @@ export const Share = () => {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
               alignItems: "center",
-              gap: "0px",
+              gap: "10px",
             }}
           >
             <FriendListUI>
@@ -97,12 +102,16 @@ const InfoImgUI = styled.img`
 `;
 
 const Invite5FriendsUI = styled.p`
-  background-color: #000000;
-  color: white;
+  @font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  }
+  font-family: "Poppins-SemiBold";
+  background-color: #24ff00;
+  color: black;
   border-radius: 30px;
-  padding-inline: 10px;
+  padding-inline: 15px;
   padding-block: 5px;
-  font-weight: bold;
   font-size: 13px;
 `;
 
@@ -142,8 +151,12 @@ const Why5FriendsUI = styled.p`
   gap: 3px;
   margin-top: 20px;
   color: #575757;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 11px;
+  @font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  }
+  font-family: "Poppins-SemiBold";
 `;
 
 const BlurBoxUI = styled.div`

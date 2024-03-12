@@ -28,7 +28,7 @@ export const ProgressBar = ({ length, cnt }) => {
 const ProgressBarUI = styled.div`
   background-color: white;
   height: 13px;
-  width: 50%;
+  width: 40%;
   border: #d6d6d6 solid 1px;
   border-radius: 30px;
   position: relative;
