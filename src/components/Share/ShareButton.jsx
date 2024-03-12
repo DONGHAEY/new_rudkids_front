@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { isMobile } from "react-device-detect";
+import { isMobile, isSafari } from "react-device-detect";
 
 export const ShareButton = ({ isShared, idx, onShared }) => {
   const weburl = "https://new-rudkids-front.vercel.app";
@@ -22,7 +22,7 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
   };
 
   return (
-    <SharedProgressWrapperUI isShared={isShared}>
+    <SharedProgressWrapperUI>
       {!isShared && (
         <img
           style={{ width: "95%" }}
@@ -38,7 +38,19 @@ export const ShareButton = ({ isShared, idx, onShared }) => {
           src={`/assets/images/shareComponent/friends/${idx + 1}.png`}
         ></img>
       )}
-      <p style={{ fontSize: "10px" }}>{isShared ? "invited" : "Not invited"}</p>
+      <ShareStatusTextUI isShared={isShared}>
+        {isShared ? (
+          <>
+            <img
+              style={{ width: "12px" }}
+              src="/assets/images/shareComponent/checked.png"
+            />
+            <p>invited</p>
+          </>
+        ) : (
+          "Not invited"
+        )}
+      </ShareStatusTextUI>
     </SharedProgressWrapperUI>
   );
 };
@@ -48,10 +60,7 @@ const SharedProgressWrapperUI = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  ${({ isShared }) =>
-    !isShared
-      ? "background-image: -webkit-linear-gradient(top, #fccb90 0%, #d57eeb 100%);"
-      : "  background-color: rgba(255, 255, 255, 30%);"}
+  background-color: rgba(255, 255, 255, 30%);
   gap: 5px;
   padding-block: 20px;
   padding-inline: 10px;
@@ -59,3 +68,17 @@ const SharedProgressWrapperUI = styled.div`
   width: 50px;
   height: 50px;
 `;
+
+const ShareStatusTextUI = styled.p`
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  color: ${({ isShared }) => (isShared ? "black" : "#DF0000")};
+`;
+
+// const SharedImageUI = styled.div`
+// `

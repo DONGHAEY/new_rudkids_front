@@ -38,10 +38,10 @@ export const Share = () => {
       <CenterWrapperUI>
         <LockImgUI src={"/assets/Images/shareComponent/Lock.png"} />
         <BlurBoxUI>
-          <div>
-            <InviteOnlyTitleUI>Rudkids is</InviteOnlyTitleUI>
-            <InviteOnlyContentUI>invite Only</InviteOnlyContentUI>
-          </div>
+          <img
+            width={"70%"}
+            src={"/assets/Images/shareComponent/invite_only.png"}
+          />
           <Invite5FriendsUI>INVITE 5 FRIENDS</Invite5FriendsUI>
           <FriendListUI>
             {friendSharedStatList.map((friendSharedStat, idx_) => {
@@ -142,6 +142,7 @@ const InviteOnlyTitleUI = styled.div`
   }
   font-family: "AppleGaramond-Light";
   font-size: 30px;
+  -webkit-text-stroke: 2px white;
   text-align: center;
 `;
 
@@ -151,6 +152,7 @@ const InviteOnlyContentUI = styled.div`
     src: url("/fonts/Super Dessert.ttf");
   }
   font-family: "AppleGaramond-Light";
-  font-size: 35px;
+  font-size: 40px;
+  -webkit-text-stroke: 3px white;
   text-align: center;
 `;
