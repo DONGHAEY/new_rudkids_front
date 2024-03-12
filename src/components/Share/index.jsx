@@ -74,7 +74,10 @@ export const Share = () => {
             </FriendListUI>
             <ProgressBar percentage={percentage} />
           </div>
-          <Why5FriendsUI>Why 5 Friends?</Why5FriendsUI>
+          <Why5FriendsUI>
+            <InfoImgUI src="/assets/Images/shareComponent/info.png" />
+            Why 5 Friends?
+          </Why5FriendsUI>
         </BlurBoxUI>
       </CenterWrapperUI>
     </ShareWrapperUI>
@@ -82,7 +85,13 @@ export const Share = () => {
 };
 
 const LockImgUI = styled.img`
-  width: 40px;
+  width: 30px;
+`;
+const InfoImgUI = styled.img`
+  width: 15px;
+  height: 15px;
+  objectfit: cover;
+  cursor: pointer;
 `;
 
 const Invite5FriendsUI = styled.p`
@@ -123,6 +132,12 @@ const FriendListUI = styled.div`
 `;
 
 const Why5FriendsUI = styled.p`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  gap: 3px;
   margin-top: 20px;
   color: #575757;
   font-size: 13px;
@@ -139,8 +154,8 @@ const BlurBoxUI = styled.div`
   gap: 15px;
   background-color: rgba(196, 196, 196, 0.5);
   border-radius: 30px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 `;
 
 const CenterWrapperUI = styled.div`
