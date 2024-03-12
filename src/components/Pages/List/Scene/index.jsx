@@ -26,10 +26,10 @@ export const Scene = ({ productList }) => {
         z: 100,
       },
       {
-        z: 30,
-        duration: 1.2,
+        z: 15,
+        duration: 1.5,
         onComplete: () => {
-          setControlMaxDistance(30);
+          setControlMaxDistance(20);
         },
       }
     );
@@ -74,11 +74,11 @@ export const Scene = ({ productList }) => {
       <OrbitControls
         minPolarAngle={Math.PI / 2.5}
         maxPolarAngle={Math.PI / 2}
-        minDistance={20}
+        minDistance={15}
+        maxDistance={controlMaxDistance}
         enableZoom={!isWatching}
         enableRotate={!isWatching}
         enableDamping={!isWatching}
-        maxDistance={controlMaxDistance}
         enablePan={false}
       />
     </>

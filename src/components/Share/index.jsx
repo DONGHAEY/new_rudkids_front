@@ -209,8 +209,8 @@ const ShareBoxUI = styled.div`
   overflow: hidden;
   background-color: rgba(196, 196, 196, 0.5);
   border-radius: 30px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
 `;
 
 const CenterWrapperUI = styled.div`
