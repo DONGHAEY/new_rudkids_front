@@ -9,6 +9,8 @@ import { Order } from "./components/Pages/Order";
 //
 import { PcBlocking } from "./components/PcBlocking";
 import { Share } from "./components/Share";
+import Lottie from "lottie-web";
+import { useEffect, useRef } from "react";
 //
 
 function App() {

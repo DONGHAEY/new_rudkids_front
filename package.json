@@ -17,6 +17,7 @@
     "framer-motion-3d": "^11.0.8",
     "gsap": "^3.12.5",
     "leva": "^0.9.35",
+    "lottie-web": "^5.12.2",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",

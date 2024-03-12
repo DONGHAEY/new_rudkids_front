@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { ShareButton } from "./ShareButton";
 import { ProgressBar } from "./ProgressBar";
+import Lottie from "lottie-web";
 
 export const Share = () => {
   const [friendSharedStatList, setFriendSharedStatList] = useState([
@@ -14,6 +15,27 @@ export const Share = () => {
   ]);
 
   const [canpass, setCanpass] = useState(false);
+
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!ref.current) return;
+    Lottie.loadAnimation({
+      container: ref.current, // the dom element that will contain the animation
+      renderer: "svg",
+      loop: false,
+      autoplay: true,
+      path: "/Rudkids_tape.json",
+
+      // rendererSettings: {
+      //   context: ref.current, // the canvas context
+      //   scaleMode: "zoom",
+      //   clearCanvas: false,
+      //   progressiveLoad: false, // Boolean, only svg renderer, loads dom elements when needed. Might speed up initialization for large number of elements.
+      //   hideOnTransparent: true, //Boolean, only svg renderer, hides elements when opacity reaches 0 (defaults to true)
+      // },
+    });
+    return () => Lottie.destroy();
+  }, []);
 
   const invitedFriendCnt = useMemo(() => {
     let invitedFriendCnt = 0;
@@ -87,6 +109,15 @@ export const Share = () => {
           </Why5FriendsUI>
         </BlurBoxUI>
       </CenterWrapperUI>
+      <div
+        ref={ref}
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          zIndex: 1,
+        }}
+      ></div>
     </ShareWrapperUI>
   );
 };
