@@ -72,8 +72,8 @@ export const Scene = ({ productList }) => {
         setProductId={setSelectedProductId}
       />
       <OrbitControls
-        minPolarAngle={Math.PI / 2.5}
-        maxPolarAngle={Math.PI / 2}
+        minPolarAngle={!isWatching ? Math.PI / 2.5 : 0}
+        maxPolarAngle={!isWatching ? Math.PI / 2 : Math.PI * 2}
         minDistance={15}
         maxDistance={controlMaxDistance}
         enableZoom={!isWatching}

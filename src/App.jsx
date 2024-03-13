@@ -11,7 +11,6 @@ import { PcBlocking } from "./components/PcBlocking";
 import { Share } from "./components/Share";
 import Lottie from "lottie-web";
 import { useEffect, useRef } from "react";
-import { Grant } from "./components/Grant";
 //
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/test" element={<Grant />} /> */}
           <Route path="/" element={<Main />} />
           <Route path="/hand-motion" element={<HandMotion />} />
           <Route path="/login" element={<Login />} />

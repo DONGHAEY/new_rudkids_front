@@ -95,17 +95,23 @@ export const ProductModel = ({
       .to(handRef.current.rotation, {
         x: Math.PI / 3.5,
         duration: 0.3,
+        ease: "power3.inOut",
       })
-      .to(productGroupRef.current.position, {
-        x: collidePointX,
-        z: collidePointZ,
-        y: three.camera.position.y,
-        duration: 0.28,
-      })
+      .to(
+        productGroupRef.current.position,
+        {
+          x: collidePointX,
+          z: collidePointZ,
+          y: three.camera.position.y,
+          duration: 0.28,
+          ease: "power3.inOut",
+        },
+        "-=0.25"
+      )
       .to(productRef.current.position, {
         y: -20,
         duration: 2,
-        delay: 4,
+        delay: 1,
       });
     timeline.play();
   }, [isWatching, selected]);
@@ -158,7 +164,8 @@ export const ProductModel = ({
               rotateX: Math.PI * 0.3,
             }}
             transition={{
-              duration: 0.8,
+              duration: 1.5,
+              ease: "easeInOut",
             }}
             scale={0.2}
             object={handGltfScene}
