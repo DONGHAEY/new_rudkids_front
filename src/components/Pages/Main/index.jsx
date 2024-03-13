@@ -60,7 +60,7 @@ export const Main = () => {
         </EngagingVideoUI>
         {!isPlayingVideo && (
           <TabToPlayWrapperUI onClick={playVideo}>
-            <p>Tab to Play</p>
+            Tab to Play
           </TabToPlayWrapperUI>
         )}
       </VideoWrapperUI>

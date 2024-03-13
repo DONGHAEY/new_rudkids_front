@@ -3,9 +3,16 @@ import styled from "styled-components";
 
 import { ShareButton } from "./ShareButton";
 import { ProgressBar } from "./ProgressBar";
-import Lottie from "lottie-web";
+// import Lottie from "lottie-web";
+// import Lottie from "lottie-react";
+// import Lottie from "react-lottie";
+import { Player, PlayerEvent } from "@lottiefiles/react-lottie-player";
+import gsap from "gsap";
+// import lockToUnlockAnim from "../../../public/lock_to_unlock.json";
 
 export const Share = () => {
+  const shareWrapperRef = useRef(null);
+
   const [friendSharedStatList, setFriendSharedStatList] = useState([
     false,
     false,
@@ -15,22 +22,22 @@ export const Share = () => {
   ]);
 
   const [canpass, setCanpass] = useState(false);
-
   const loaderRef = useRef(null);
+  const lockerAnimRef = useRef(null);
 
-  useEffect(() => {
-    const anim = Lottie.loadAnimation({
-      container: loaderRef.current, // the dom element that will contain the animation
-      renderer: "svg",
-      loop: false,
-      autoplay: true,
-      path: "/Rudkids_tape.json",
-    });
-    anim.addEventListener("complete", () => {
-      loaderRef.current.style.display = "none";
-    });
-    return () => anim.destroy();
-  }, [loaderRef.current]);
+  // useEffect(() => {
+  //   const anim = Lottie.loadAnimation({
+  //     container: loaderRef.current, // the dom element that will contain the animation
+  //     renderer: "svg",
+  //     loop: false,
+  //     autoplay: true,
+  //     path: "/Rudkids_tape.json",
+  //   });
+  //   anim.addEventListener("complete", () => {
+  //     loaderRef.current.style.display = "none";
+  //   });
+  //   return () => anim.destroy();
+  // }, [loaderRef.current]);
 
   const invitedFriendCnt = useMemo(() => {
     let invitedFriendCnt = 0;
@@ -44,9 +51,7 @@ export const Share = () => {
 
   useEffect(() => {
     if (invitedFriendCnt === friendSharedStatList.length) {
-      setTimeout(() => {
-        setCanpass(true);
-      }, 1300);
+      lockerAnimRef.current.play();
     }
   }, [invitedFriendCnt, friendSharedStatList]);
 
@@ -55,10 +60,40 @@ export const Share = () => {
     return null;
   }
 
+  const onSharedHandler = (idx_) => {
+    setFriendSharedStatList((friendSharedStatList) => {
+      return friendSharedStatList.map((stat, idx) => {
+        if (idx_ === idx) {
+          return true;
+        }
+        return stat;
+      });
+    });
+  };
+
   return (
     <ShareWrapperUI>
-      <CenterWrapperUI>
-        <LockImgUI src={"/assets/Images/shareComponent/Lock.png"} />
+      <CenterWrapperUI ref={shareWrapperRef}>
+        {/* <LockImgUI src={"/assets/Images/shareComponent/Lock.png"} /> */}
+        <Player
+          src="/lock_to_unlock.json"
+          className="players"
+          direction={-1}
+          style={{ height: "40px" }}
+          ref={lockerAnimRef}
+          onEvent={(e) => {
+            if (e === PlayerEvent.Complete) {
+              gsap.to(shareWrapperRef.current, {
+                marginBottom: 1000,
+                opacity: 0,
+                duration: 1,
+                onComplete: () => {
+                  setCanpass(true);
+                },
+              });
+            }
+          }}
+        />
         <ShareBoxUI>
           <ShareBoxTopSectionUI>
             <BoxTitleUI style={{ fontSize: "23px" }}>Rudkids is</BoxTitleUI>
@@ -68,25 +103,14 @@ export const Share = () => {
           <img src="/assets/Images/shareComponent/label.png" />
           <ShareBoxMiddleSectionUI>
             <FriendListUI>
-              {friendSharedStatList.map((friendSharedStat, idx_) => {
-                return (
-                  <ShareButton
-                    key={idx_}
-                    isShared={friendSharedStat}
-                    idx={idx_}
-                    onShared={() => {
-                      setFriendSharedStatList((friendSharedStatList) => {
-                        return friendSharedStatList.map((stat, idx) => {
-                          if (idx_ === idx) {
-                            return true;
-                          }
-                          return stat;
-                        });
-                      });
-                    }}
-                  />
-                );
-              })}
+              {friendSharedStatList.map((friendSharedStat, idx) => (
+                <ShareButton
+                  key={idx}
+                  isShared={friendSharedStat}
+                  idx={idx}
+                  onShared={() => onSharedHandler(idx)}
+                />
+              ))}
             </FriendListUI>
             <ProgressBar
               length={friendSharedStatList.length}
@@ -99,7 +123,7 @@ export const Share = () => {
           </ShareBoxBottomSectionUI>
         </ShareBoxUI>
       </CenterWrapperUI>
-      <div
+      {/* <div
         ref={loaderRef}
         style={{
           position: "absolute",
@@ -108,7 +132,7 @@ export const Share = () => {
           height: "200%",
           zIndex: 1,
         }}
-      />
+      /> */}
     </ShareWrapperUI>
   );
 };
