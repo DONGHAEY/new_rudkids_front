@@ -105,14 +105,21 @@ export const ProductModel = ({
           y: three.camera.position.y,
           duration: 0.28,
           ease: "power3.inOut",
+          onStart: () => {
+            new Audio("/audio/hit_sound_2.mp3").play();
+          },
         },
         "-=0.25"
       )
       .to(productRef.current.position, {
         y: -20,
         duration: 2,
-        delay: 1,
+        delay: 3,
+        onStart: () => {
+          new Audio("/audio/slide_sound.mp3").play();
+        },
       });
+
     timeline.play();
   }, [isWatching, selected]);
 
