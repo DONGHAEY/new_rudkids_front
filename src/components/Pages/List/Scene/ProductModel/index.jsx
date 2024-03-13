@@ -12,6 +12,11 @@ const productGltfUrl = {
   ABeautifulWorld: "/models/ABeautifulWorld.glb",
 };
 
+const sounds = {
+  hit: new Audio("/audio/hit_sound_2.mp3"),
+  slide: new Audio("/audio/slide_sound.mp3"),
+};
+
 const getLookAtPos = (distance, rotation) => {
   const lookAtPosX = distance * Math.cos(rotation);
   const lookAtPosZ = distance * Math.sin(rotation);
@@ -106,7 +111,7 @@ export const ProductModel = ({
           duration: 0.28,
           ease: "power3.inOut",
           onStart: () => {
-            new Audio("/audio/hit_sound_2.mp3").play();
+            sounds.hit.play();
           },
         },
         "-=0.25"
@@ -116,7 +121,7 @@ export const ProductModel = ({
         duration: 2,
         delay: 3,
         onStart: () => {
-          new Audio("/audio/slide_sound.mp3").play();
+          sounds.slide.play();
         },
       });
 
