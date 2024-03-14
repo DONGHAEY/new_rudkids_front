@@ -26,6 +26,7 @@ function App() {
           <Route path="/my" element={<My />} />
           <Route path="/order/:id" element={<Order />} />
           {/*  */}
+
           <Route path="/policy-privacy" element={null} />
         </Routes>
         {/* <PcBlocking /> */}
