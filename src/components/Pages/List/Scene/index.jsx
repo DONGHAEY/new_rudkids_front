@@ -200,6 +200,7 @@ export const Scene = ({ productList }) => {
   }, [selectedProductId, isWatching, handRef.current]);
 
   const productClickHandler = (productId) => {
+    if (isWatching) return;
     if (selectedProductId === productId) {
       setSelectedProductId(null);
     } else {
@@ -262,9 +263,8 @@ export const Scene = ({ productList }) => {
         minDistance={15}
         maxDistance={controlMaxDistance}
         enableZoom={!isWatching}
-        enableRotate={false}
-        enableDamping={!isWatching}
-        enablePan={false}
+        enableRotate={!isWatching}
+        enableDamping={false}
       />
     </>
   );
