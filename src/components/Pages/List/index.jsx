@@ -43,7 +43,7 @@ export const List = () => {
           <Scene productList={productList} />
         </Suspense>
       </Canvas>
-      <Share />
+      {/* <Share /> */}
     </ListWrapperUI>
   );
 };
