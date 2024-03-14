@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 
-import { ShareButton } from "./ShareButton";
-import { ProgressBar } from "./ProgressBar";
 // import Lottie from "lottie-web";
 // import Lottie from "lottie-react";
 // import Lottie from "react-lottie";
@@ -24,20 +22,6 @@ export const Share = () => {
   const [canpass, setCanpass] = useState(false);
   const loaderRef = useRef(null);
   const lockerAnimRef = useRef(null);
-
-  // useEffect(() => {
-  //   const anim = Lottie.loadAnimation({
-  //     container: loaderRef.current, // the dom element that will contain the animation
-  //     renderer: "svg",
-  //     loop: false,
-  //     autoplay: true,
-  //     path: "/Rudkids_tape.json",
-  //   });
-  //   anim.addEventListener("complete", () => {
-  //     loaderRef.current.style.display = "none";
-  //   });
-  //   return () => anim.destroy();
-  // }, [loaderRef.current]);
 
   const invitedFriendCnt = useMemo(() => {
     let invitedFriendCnt = 0;
@@ -73,81 +57,35 @@ export const Share = () => {
 
   return (
     <ShareWrapperUI>
-      <CenterWrapperUI ref={shareWrapperRef}>
-        {/* <LockImgUI src={"/assets/Images/shareComponent/Lock.png"} /> */}
-        <Player
-          src="/lock_to_unlock.json"
-          className="players"
-          direction={-1}
-          style={{ height: "40px" }}
-          ref={lockerAnimRef}
-          onEvent={(e) => {
-            if (e === PlayerEvent.Complete) {
-              gsap.to(shareWrapperRef.current, {
-                marginBottom: 1000,
-                opacity: 0,
-                duration: 1,
-                onComplete: () => {
-                  setCanpass(true);
-                },
-              });
-            }
+      <BoxTopUI>
+        <img
+          style={{
+            width: "100%",
+            // opacity: 0.5,
           }}
+          src="/assets/Images/shareComponent/rudkids_album.png"
         />
-        <ShareBoxUI>
-          <ShareBoxTopSectionUI>
-            <BoxTitleUI style={{ fontSize: "23px" }}>Rudkids is</BoxTitleUI>
-            <BoxTitleUI style={{ fontSize: "30px" }}>Invite Only</BoxTitleUI>
-            <BoxDescriptionUI>INVITE 5 FRIENDS</BoxDescriptionUI>
-          </ShareBoxTopSectionUI>
-          <img src="/assets/Images/shareComponent/label.png" />
-          <ShareBoxMiddleSectionUI>
-            <FriendListUI>
-              {friendSharedStatList.map((friendSharedStat, idx) => (
-                <ShareButton
-                  key={idx}
-                  isShared={friendSharedStat}
-                  idx={idx}
-                  onShared={() => onSharedHandler(idx)}
-                />
-              ))}
-            </FriendListUI>
-            <ProgressBar
-              length={friendSharedStatList.length}
-              cnt={invitedFriendCnt}
-            />
-          </ShareBoxMiddleSectionUI>
-          <ShareBoxBottomSectionUI>
-            <InfoImgUI src="/assets/Images/shareComponent/info.png" />
-            Why 5 Friends?
-          </ShareBoxBottomSectionUI>
-        </ShareBoxUI>
-      </CenterWrapperUI>
-      {/* <div
-        ref={loaderRef}
-        style={{
-          position: "absolute",
-          scale: "150%",
-          width: "100%",
-          height: "200%",
-          zIndex: 1,
-        }}
-      /> */}
+      </BoxTopUI>
+      <BoxMiddleUI>
+        <img
+          style={{
+            width: "140px",
+          }}
+          src="/assets/Images/shareComponent/rudkids_logo.png"
+        />
+        <BoxTitleWrapperUI>
+          <BoxTitleUI>Guys! Don't be</BoxTitleUI>
+          <BoxTitleUI>so boring.</BoxTitleUI>
+          <BoxTitleUI>Just Kidding.</BoxTitleUI>
+        </BoxTitleWrapperUI>
+        <BoxButtonUI>Rudkids world</BoxButtonUI>
+      </BoxMiddleUI>
+      <BoxBottomUI>Rudkids</BoxBottomUI>
     </ShareWrapperUI>
   );
 };
 
 /********************** */
-
-const LockImgUI = styled.img`
-  width: 30px;
-`;
-const InfoImgUI = styled.img`
-  width: 15px;
-  height: 15px;
-  objectfit: cover;
-  cursor: pointer;
-`;
 
 const BoxTitleWrapperUI = styled.div`
   display: flex;
@@ -163,10 +101,11 @@ const BoxTitleUI = styled.p`
   }
   font-family: "Poppins-Bold";
   margin: 0;
-  line-height: 30px;
+  font-size: 31px;
+  line-height: 120%;
 `;
 
-const BoxDescriptionUI = styled.p`
+const BoxButtonUI = styled.p`
   @font-face {
     font-family: "Poppins-SemiBold";
     src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
@@ -175,10 +114,11 @@ const BoxDescriptionUI = styled.p`
   background-color: black;
   color: white;
   border-radius: 30px;
-  padding-inline: 15px;
+  padding-inline: 25px;
   padding-block: 3px;
-  font-size: 13px;
+  font-size: 24px;
   margin-top: 13px;
+  cursor: pointer;
 `;
 
 const ShareWrapperUI = styled.div`
@@ -187,78 +127,37 @@ const ShareWrapperUI = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
   overflow: hidden;
   z-index: 1000;
   top: 0;
   left: 0;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 `;
 
-const FriendListUI = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding-inline: 30px;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-width: 300px;
-  overflow: scroll;
+const BoxTopUI = styled.div`
+  width: 100%;
+  height: 250px;
+  // overflow: hidden;
 `;
 
-const ShareBoxBottomSectionUI = styled.p`
+const BoxMiddleUI = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 3px;
-  color: #575757;
-  font-size: 11px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  gap: 20px;
+  // padding: 5px;
+  width: 100%;
+  border-radius: 10px;
+`;
+const BoxBottomUI = styled.div`
   @font-face {
     font-family: "Poppins-SemiBold";
     src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
   }
   font-family: "Poppins-SemiBold";
-`;
-
-const ShareBoxUI = styled.div`
-  display: flex;
-  border: solid white 0.1px;
-  width: 100%;
-  flex-direction: column;
-  overflow: hidden;
-  background-color: rgba(196, 196, 196, 0.5);
-  border-radius: 30px;
-  -webkit-backdrop-filter: blur(7px);
-  backdrop-filter: blur(7px);
-`;
-
-const CenterWrapperUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  gap: 20px;
-  max-width: 350px;
-`;
-
-const ShareBoxTopSectionUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #89ff60;
   padding-block: 30px;
-`;
-
-const ShareBoxMiddleSectionUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  margin-top: 25px;
+  font-size: 16px;
 `;

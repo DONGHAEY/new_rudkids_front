@@ -19,10 +19,14 @@ export const Scene = () => {
   useEffect(() => {
     timeline = gsap.timeline();
     timeline
-      .to(productRef.current.rotation, {
-        duration: 200,
-        y: Math.PI * 2,
-      })
+      .to(
+        productRef.current.rotation,
+        {
+          duration: 200,
+          y: Math.PI * 2,
+        },
+        20
+      )
       .to(
         productRef.current.rotation,
         {
