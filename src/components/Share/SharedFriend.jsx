@@ -16,9 +16,7 @@ export const SharedFriend = ({ isShared, idx }) => {
           />
         )}
       </CircleImgWrapper>
-      <ShareStatusTextUI isShared={isShared}>
-        {isShared ? "invited" : "Not invited"}
-      </ShareStatusTextUI>
+      <ShareStatusTextUI isShared={isShared}>invited</ShareStatusTextUI>
     </SharedFriendUI>
   );
 };
@@ -29,8 +27,7 @@ const SharedFriendUI = styled.div`
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 80px;
-  height: 80px;
+  height: 100%;
 `;
 
 const ShareStatusTextUI = styled.p`

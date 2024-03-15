@@ -4,7 +4,7 @@ import { SharedFriend } from "../SharedFriend";
 import { useEffect, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 
-export const Step2 = () => {
+export const Step2 = ({ ref }) => {
   const friendCnt = 5;
   const [friendSharedCount, setFriendSharedCount] = useState(0);
 
@@ -71,7 +71,7 @@ export const Step2 = () => {
             {new Array(friendCnt).fill("").map((_, idx) => (
               <SharedFriend
                 key={idx}
-                isShared={idx < friendSharedCount}
+                isShared={idx < friendSharedCount ? true : false}
                 idx={idx}
               />
             ))}
@@ -97,8 +97,8 @@ const SharedButtonUI = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
   border-radius: 100%;
 `;
@@ -208,9 +208,8 @@ const BottomBoxWrapperUI = styled.div`
 const BottomBoxUI = styled.div`
   background-color: rgba(255, 255, 255, 60%);
   width: 100%;
-  //   height: 100%;
   max-height: 80%;
-  padding-block: 50px;
+  padding-block: 40px;
   position: relative;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
@@ -223,10 +222,11 @@ const FriendListUI = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-inline: 20px;
-  padding-block: 20px;
+  padding-inline: 15px;
+  padding-block: 15px;
   gap: 20px;
   width: 75%;
+  height: 70px;
   margin-top: 30px;
   background-color: #efefef;
   border-radius: 30px;
