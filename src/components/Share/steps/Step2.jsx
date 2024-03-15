@@ -1,14 +1,32 @@
 import styled from "styled-components";
 import { ProgressBar } from "../ProgressBar";
 import { SharedFriend } from "../SharedFriend";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
+import gsap from "gsap";
 
 export const Step2 = ({ ref }) => {
   const friendCnt = 5;
   const [friendSharedCount, setFriendSharedCount] = useState(0);
 
+  const [isopen, setIsopen] = useState(false);
+
   const weburl = "https://new-rudkids-front.vercel.app";
+  const bottomBoxRef = useRef(null);
+
+  useEffect(() => {
+    if (isopen === false) {
+      gsap.to(bottomBoxRef.current, {
+        top: "270px",
+        duration: 0.5,
+      });
+    } else {
+      gsap.to(bottomBoxRef.current, {
+        top: "0px",
+        duration: 0.5,
+      });
+    }
+  }, [bottomBoxRef.current, isopen]);
 
   const shareHandler = async () => {
     if (!isMobile) {
@@ -41,53 +59,64 @@ export const Step2 = ({ ref }) => {
         />
         <PopinPUI fontSize={"13px"}>This Page is Locked</PopinPUI>
       </LockDescriptionBoxUI>
-      <BottomBoxWrapperUI>
-        <BottomBoxUI>
-          <ArrowButtonUI
-            children={
-              <img
-                style={{ width: "60%", objectFit: "cover" }}
-                src="/assets/Images/shareComponent/arrow.png"
-              />
-            }
-          />
-          <img
-            style={{ width: "150px" }}
-            src="/assets/Images/shareComponent/friend_group_icon.png"
-          />
-          <BoxTitleWrapperUI>
-            <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
-            <PopinPUI fontSize={"35px"}>Invited Only</PopinPUI>
-          </BoxTitleWrapperUI>
-          <FriendListUI>
-            <div>
-              <SharedButtonUI onClick={shareHandler}>
-                <img
-                  style={{ width: "30%" }}
-                  src={"/assets/Images/shareComponent/add.png"}
-                />
-              </SharedButtonUI>
-            </div>
-            {new Array(friendCnt).fill("").map((_, idx) => (
-              <SharedFriend
-                key={idx}
-                isShared={idx < friendSharedCount ? true : false}
-                idx={idx}
-              />
-            ))}
-          </FriendListUI>
-          <ProgressBarSectionUI>
-            <ProgressBar length={friendCnt} cnt={friendSharedCount} />
-            <ProgressBarSectionGoalImgUI
-              src={"/assets/Images/shareComponent/goal_key.png"}
+      <BottomBoxUI
+        style={{
+          top: "270px",
+        }}
+        ref={bottomBoxRef}
+      >
+        <ArrowButtonUI
+          onClick={() => setIsopen(!isopen)}
+          children={
+            <img
+              style={{
+                width: "60%",
+                objectFit: "cover",
+              }}
+              src={
+                isopen
+                  ? "/assets/Images/shareComponent/arrow_down.png"
+                  : "/assets/Images/shareComponent/arrow.png"
+              }
             />
-          </ProgressBarSectionUI>
-          <AskSectionUI>
-            <InfoImgUI src="/assets/Images/shareComponent/info.png" />
-            Why 5 Friends?
-          </AskSectionUI>
-        </BottomBoxUI>
-      </BottomBoxWrapperUI>
+          }
+        />
+        <img
+          style={{ width: "150px" }}
+          src="/assets/Images/shareComponent/friend_group_icon.png"
+        />
+        <BoxTitleWrapperUI>
+          <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
+          <PopinPUI fontSize={"35px"}>Invited Only</PopinPUI>
+        </BoxTitleWrapperUI>
+        <FriendListUI>
+          <div>
+            <SharedButtonUI onClick={shareHandler}>
+              <img
+                style={{ width: "30%" }}
+                src={"/assets/Images/shareComponent/add.png"}
+              />
+            </SharedButtonUI>
+          </div>
+          {new Array(friendCnt).fill("").map((_, idx) => (
+            <SharedFriend
+              key={idx}
+              isShared={idx < friendSharedCount ? true : false}
+              idx={idx}
+            />
+          ))}
+        </FriendListUI>
+        <ProgressBarSectionUI>
+          <ProgressBar length={friendCnt} cnt={friendSharedCount} />
+          <ProgressBarSectionGoalImgUI
+            src={"/assets/Images/shareComponent/goal_key.png"}
+          />
+        </ProgressBarSectionUI>
+        <AskSectionUI>
+          <InfoImgUI src="/assets/Images/shareComponent/info.png" />
+          Why 5 Friends?
+        </AskSectionUI>
+      </BottomBoxUI>
     </Step2WrapperUI>
   );
 };
@@ -107,8 +136,10 @@ const Step2WrapperUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: end;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 `;
 
 const AskSectionUI = styled.p`
@@ -183,7 +214,7 @@ const ArrowButtonUI = styled.div`
 `;
 
 const LockDescriptionBoxUI = styled.div`
-  position: fixed;
+  position: absolute;
   top: 25px;
   display: flex;
   flex-direction: row;
@@ -194,15 +225,6 @@ const LockDescriptionBoxUI = styled.div`
   border-radius: 30px;
   padding: 15px;
   padding-inline: 20px;
-`;
-
-const BottomBoxWrapperUI = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: end;
 `;
 
 const BottomBoxUI = styled.div`
