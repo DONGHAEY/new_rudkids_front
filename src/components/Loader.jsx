@@ -34,7 +34,7 @@ const Container = styled.div`
   align-items: center;
   top: 50%;
   left: 50%;
-  z-index: 1;
+  z-index: 1000;
   gap: 20px;
 `;
 const ProgressBar = styled.div`
