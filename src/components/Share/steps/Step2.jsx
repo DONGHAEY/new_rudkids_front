@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import gsap from "gsap";
 
-export const Step2 = ({ ref }) => {
+export const Step2 = ({ next }) => {
   const friendCnt = 5;
   const [friendSharedCount, setFriendSharedCount] = useState(0);
 
@@ -107,7 +107,11 @@ export const Step2 = ({ ref }) => {
           ))}
         </FriendListUI>
         <ProgressBarSectionUI>
-          <ProgressBar length={friendCnt} cnt={friendSharedCount} />
+          <ProgressBar
+            length={friendCnt}
+            cnt={friendSharedCount}
+            onGetIn={next}
+          />
           <ProgressBarSectionGoalImgUI
             src={"/assets/Images/shareComponent/goal_key.png"}
           />
@@ -230,7 +234,7 @@ const LockDescriptionBoxUI = styled.div`
 const BottomBoxUI = styled.div`
   background-color: rgba(255, 255, 255, 60%);
   width: 100%;
-  max-height: 80%;
+  max-height: 70%;
   padding-block: 40px;
   position: relative;
   border-top-left-radius: 30px;

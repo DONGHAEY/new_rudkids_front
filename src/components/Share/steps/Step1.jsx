@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const Step1 = ({ ref, next, prev }) => {
+export const Step1 = ({ next, prev }) => {
   return (
-    <Step1WrapperUI ref={ref}>
+    <Step1WrapperUI>
       <BoxTopUI>
         <img
           style={{

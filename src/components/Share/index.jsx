@@ -2,20 +2,38 @@ import { createRef, useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { Step1 } from "./steps/Step1";
 import { Step2 } from "./steps/Step2";
+import gsap from "gsap";
 
 const stepComponentSrcList = [Step1, Step2];
+const totalStep = stepComponentSrcList.length;
 
 export const Share = () => {
+  const shareWrapperRef = useRef(null);
   const [step, setStep] = useState(0);
 
-  const stepComponentRefList = new Array(stepComponentSrcList.length)
-    .fill(null)
-    .map(() => createRef());
+  useEffect(() => {
+    if (!shareWrapperRef.current) return;
+    if (step >= totalStep) {
+      shareWrapperRef.current.style.display = "none";
+    } else {
+      shareWrapperRef.current.style.display = "block";
+    }
+  }, [step, shareWrapperRef.current]);
 
   const next = () => {
-    if (step + 1 <= stepComponentSrcList.length - 1) {
-      setStep(step + 1);
-    }
+    gsap.to(shareWrapperRef.current, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        if (step + 1 <= totalStep) {
+          gsap.to(shareWrapperRef.current, {
+            opacity: 1,
+            duration: 0.5,
+          });
+          setStep(step + 1);
+        }
+      },
+    });
   };
 
   const prev = () => {
@@ -25,17 +43,14 @@ export const Share = () => {
   };
 
   const stepComponentList = stepComponentSrcList.map((StepComp, idx) => {
-    return (
-      <StepComp
-        key={idx}
-        ref={stepComponentRefList[idx]}
-        next={next}
-        prev={prev}
-      />
-    );
+    return <StepComp key={idx} next={next} prev={prev} />;
   });
 
-  return <ShareWrapperUI>{stepComponentList[step]}</ShareWrapperUI>;
+  return (
+    <ShareWrapperUI ref={shareWrapperRef}>
+      {stepComponentList[step]}
+    </ShareWrapperUI>
+  );
 };
 
 /********************** */

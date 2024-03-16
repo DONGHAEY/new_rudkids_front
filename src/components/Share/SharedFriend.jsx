@@ -26,7 +26,7 @@ const SharedFriendUI = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 3px;
   height: 100%;
 `;
 

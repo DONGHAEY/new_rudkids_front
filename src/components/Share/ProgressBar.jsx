@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 
-export const ProgressBar = ({ length, cnt }) => {
+export const ProgressBar = ({ length, cnt, onGetIn }) => {
   const progressRef = useRef(null);
   const [canpass, setCanpass] = useState(false);
 
@@ -36,7 +36,7 @@ export const ProgressBar = ({ length, cnt }) => {
           <GoalBoxUI>Goal</GoalBoxUI>
         </ProgressBarUI>
       ) : (
-        <GoalButtonUI>Get in</GoalButtonUI>
+        <GoalButtonUI onClick={onGetIn}>Get in</GoalButtonUI>
       )}
     </ProgressBarWrapperUI>
   );
