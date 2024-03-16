@@ -3,11 +3,14 @@ import { ProgressBar } from "../ProgressBar";
 import { SharedFriend } from "../SharedFriend";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
+import { Alert } from "../../Alert";
 import gsap from "gsap";
 
 export const Step2 = ({ next }) => {
   const friendCnt = 5;
   const [friendSharedCount, setFriendSharedCount] = useState(0);
+
+  const [alertOpen, setAlertOpen] = useState(false);
 
   const [isopen, setIsopen] = useState(false);
 
@@ -116,11 +119,19 @@ export const Step2 = ({ next }) => {
             src={"/assets/Images/shareComponent/goal_key.png"}
           />
         </ProgressBarSectionUI>
-        <AskSectionUI>
+        <AskSectionUI onClick={() => setAlertOpen(true)}>
           <InfoImgUI src="/assets/Images/shareComponent/info.png" />
           Why 5 Friends?
         </AskSectionUI>
       </BottomBoxUI>
+      {alertOpen && (
+        <Alert
+          title={"Rudkids is<br />Not for everyone 👑"}
+          content={"Rudkids is a place where only<br />lucky guys can come in."}
+          buttonContent={"Yeeeaaah!"}
+          onChecked={() => setAlertOpen(false)}
+        />
+      )}
     </Step2WrapperUI>
   );
 };
