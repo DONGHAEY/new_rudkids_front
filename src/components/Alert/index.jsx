@@ -23,8 +23,6 @@ export const Alert = ({
 };
 
 const AlertBackgroundUI = styled.div`
-  // -webkit-backdrop-filter: blur(0.5px);
-  // backdrop-filter: blur(0.5px);
   background-color: rgba(0, 0, 0, 50%);
   display: flex;
   position: absolute;

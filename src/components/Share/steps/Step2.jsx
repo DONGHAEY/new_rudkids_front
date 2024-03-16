@@ -218,9 +218,9 @@ const PopinPUI = styled.p`
 
 const ArrowButtonUI = styled.div`
   position: absolute;
-  width: 50px;
-  height: 50px;
-  top: -20px;
+  width: 40px;
+  height: 40px;
+  top: -15px;
   border-radius: 100%;
   background-color: black;
   display: flex;
