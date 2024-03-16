@@ -126,6 +126,7 @@ export const Step2 = ({ next }) => {
       </BottomBoxUI>
       {alertOpen && (
         <Alert
+          imageUrl={"/assets/Images/shareComponent/quiet_face.png"}
           title={"Rudkids is<br />Not for everyone 👑"}
           content={"Rudkids is a place where only<br />lucky guys can come in."}
           buttonContent={"Yeeeaaah!"}

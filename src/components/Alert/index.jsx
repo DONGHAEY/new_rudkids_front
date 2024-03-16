@@ -10,7 +10,7 @@ export const Alert = ({
   return (
     <AlertBackgroundUI>
       <AlertBoxUI>
-        {imageUrl && <img src={imageUrl} alt={"alert icon"} />}
+        {imageUrl && <ImgUI src={imageUrl} alt={"alert icon"} />}
         <TitleUI dangerouslySetInnerHTML={{ __html: title }}></TitleUI>
         <ContentUI dangerouslySetInnerHTML={{ __html: content }}></ContentUI>
         <BrUI />
@@ -46,8 +46,12 @@ const AlertBoxUI = styled.div`
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  padding-top: 25px;
   padding-inline: 20px;
+`;
+
+const ImgUI = styled.img`
+  width: 60px;
+  margin-top: 15px;
 `;
 
 const TitleUI = styled.p`
@@ -57,6 +61,7 @@ const TitleUI = styled.p`
   }
   font-family: "Poppins-SemiBold";
   font-size: 19px;
+  margin-top: 15px;
   line-height: 110%;
 `;
 
