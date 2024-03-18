@@ -112,7 +112,7 @@ export const MyPetFly = () => {
         onTouchStart={touchStartHandler}
         onTouchMove={tocuhMoveHandler}
         onWheel={wheelHandler}
-        onScroll={(e) => alert("test")}
+        onScroll={(e) => e.preventDefault()}
       >
         {componentSrcList.map((Component, idx) => (
           <ComponentWrapper
