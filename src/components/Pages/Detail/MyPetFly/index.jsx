@@ -11,7 +11,6 @@ import {
   useState,
 } from "react";
 import { Scene } from "./Scene";
-import { Pages } from "./Pages";
 import styled from "styled-components";
 import gsap from "gsap";
 import { Page0 } from "./Pages/Page0";
@@ -41,7 +40,6 @@ export const MyPetFly = () => {
   }, [page, scrollWrapperRef.current]);
 
   const wheelHandler = (e) => {
-    console.log(e);
     e.preventDefault();
     if (!scrolling) {
       //scrolling
@@ -64,13 +62,15 @@ export const MyPetFly = () => {
 
   let startTouchEvent = undefined;
   const touchStartHandler = (e) => {
-    startTouchEvent = e.touches?.[0];
+    e.preventDefault();
+    startTouchEvent = e;
   };
 
   const tocuhMoveHandler = (e) => {
+    e.preventDefault();
     if (!scrolling) {
       if (startTouchEvent) {
-        const st = startTouchEvent.screenY;
+        const st = startTouchEvent.touches?.[0]?.screenY;
         const ed = e.touches[0]?.screenY;
         if (st < ed) {
           if (page - 1 >= 0) {
@@ -112,6 +112,7 @@ export const MyPetFly = () => {
         onTouchStart={touchStartHandler}
         onTouchMove={tocuhMoveHandler}
         onWheel={wheelHandler}
+        onScroll={(e) => alert("test")}
       >
         {componentSrcList.map((Component, idx) => (
           <ComponentWrapper
@@ -140,5 +141,6 @@ const PagesScrollWrapperUI = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
