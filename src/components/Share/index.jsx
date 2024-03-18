@@ -9,24 +9,32 @@ const totalStep = stepComponentSrcList.length;
 
 export const Share = () => {
   const shareWrapperRef = useRef(null);
+  const shareComponentRef = useRef(null);
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    if (!shareWrapperRef.current) return;
+    if (!shareComponentRef.current) return;
     if (step >= totalStep) {
-      shareWrapperRef.current.style.display = "none";
+      gsap.to(shareWrapperRef.current, {
+        opacity: "0%",
+        duration: 1,
+        onComplete: () => {
+          shareWrapperRef.current.style.display = "none";
+        },
+      });
     } else {
+      shareWrapperRef.current.style.opacity = "100%";
       shareWrapperRef.current.style.display = "block";
     }
-  }, [step, shareWrapperRef.current]);
+  }, [step, shareComponentRef.current]);
 
   const next = () => {
-    gsap.to(shareWrapperRef.current, {
+    gsap.to(shareComponentRef.current, {
       opacity: 0,
       duration: 0.5,
       onComplete: () => {
         if (step + 1 <= totalStep) {
-          gsap.to(shareWrapperRef.current, {
+          gsap.to(shareComponentRef.current, {
             opacity: 1,
             duration: 0.5,
           });
@@ -48,7 +56,9 @@ export const Share = () => {
 
   return (
     <ShareWrapperUI ref={shareWrapperRef}>
-      {stepComponentList[step]}
+      <ShareComponentWrapper ref={shareComponentRef}>
+        {stepComponentList[step]}
+      </ShareComponentWrapper>
     </ShareWrapperUI>
   );
 };
@@ -56,6 +66,17 @@ export const Share = () => {
 /********************** */
 
 const ShareWrapperUI = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+`;
+
+const ShareComponentWrapper = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { MyPetFly } from "./MyPetFly";
+import { MyPetFly } from "./MyPetFly/index";
 
 export const Detail = () => {
   const params = useParams();
