@@ -9,21 +9,19 @@ import gsap from "gsap";
 
 const componentSrcList = [Page0, Page1, Page2, Page3, Page4];
 
-export const Pages = ({ page, maxPage }) => {
+export const Pages = ({ page, maxPage, wrapperRef }) => {
   const pageRefList = new Array(maxPage + 1).fill(null).map(() => createRef());
-
-  // useEffect(() => {
-  //   gsap.to(pageListWrapperRef.current, {
-  //     scrollTop:
-  //       (pageListWrapperRef.current.scrollHeight / componentSrcList.length) *
-  //       page,
-  //     duration: 0.5,
-  //     ease: "power3.inOut",
-  //   });
-  // }, [page, pageRefList]);
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+    gsap.to(wrapperRef.current, {
+      scrollTop:
+        (wrapperRef.current.scrollHeight / componentSrcList.length) * page,
+      duration: 2,
+      ease: "power3.inOut",
+    });
+  }, [page, wrapperRef.current]);
 
   return componentSrcList.map((Component, idx) => {
-    // return <Component key={idx} />;
     return (
       <ComponentWrapper
         key={idx}
