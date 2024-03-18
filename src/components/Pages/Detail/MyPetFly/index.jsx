@@ -141,6 +141,6 @@ const PagesScrollWrapperUI = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
 `;
