@@ -29,6 +29,7 @@ export const MyPetFly = () => {
   const handler = (e) => {
     e.preventDefault();
     if (!scrolling) {
+      //scrolling
       if (e.deltaY > 0) {
         if (page + 1 <= maxPage) {
           setPage((page) => page + 1);
@@ -41,7 +42,7 @@ export const MyPetFly = () => {
     }
     clearTimeout(scrolling);
     scrolling = setTimeout(() => {
-      console.log("stop Scrolling");
+      // stop Scrolling
       scrolling = undefined;
     }, 100);
   };
@@ -60,7 +61,7 @@ export const MyPetFly = () => {
           far: 100,
         }}
       >
-        <Scene maxPage={maxPage} page={page} />
+        <Scene offset={page / maxPage} />
       </Canvas>
       <PagesScrollWrapperUI ref={PagesScrollWrapperRef}>
         <Pages

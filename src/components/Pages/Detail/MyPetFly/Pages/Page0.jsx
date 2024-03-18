@@ -12,15 +12,46 @@ export const Page0 = () => {
         alignItems: "center",
       }}
     >
-      <p
+      <div
         style={{
-          backgroundColor: "green",
+          width: "100%",
+          height: "100%",
+          backgroundColor: "burlywood",
+          zIndex: -2,
+        }}
+      />
+      <div
+        style={{
           position: "absolute",
-          zIndex: -30,
+          zIndex: -1,
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          height: "80%",
+          justifyContent: "space-between",
         }}
       >
-        앞으로 더 재미있는것을 구현할것입니까?
-      </p>
+        <p
+          style={{
+            fontSize: "50px",
+            fontWeight: "bold",
+          }}
+        >
+          ????
+          <br />
+          WTF
+        </p>
+        <p
+          style={{
+            fontSize: "26px",
+            textAlign: "center",
+          }}
+        >
+          It's Not Just
+          <br />
+          Kidding
+        </p>
+      </div>
     </div>
   );
 };

@@ -4,58 +4,42 @@ import { useFrame } from "@react-three/fiber";
 import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 
-const timeline = gsap.timeline();
+let timeline;
 const timelineOption = {
   offset: 0,
 };
 
-export const Scene = ({ page, maxPage }) => {
+export const Scene = ({ offset }) => {
   // const scroll = useScroll();
   const gltf = useGLTF("/models/Nothing.glb");
   const productRef = useRef();
 
   useFrame(() => {
     // scroll.offset// 페이지 전체중 0~1까지의 range로 표현됨.
-    console.log(timelineOption.offset);
     timeline.seek(timelineOption.offset * timeline.duration());
   });
 
   useEffect(() => {
+    timeline = gsap.timeline();
     timeline
       .to(productRef.current.rotation, {
-        duration: 50,
-        z: Math.PI / 8,
-      })
-      .to(productRef.current.position, {
-        x: 1.8,
-        duration: 50,
+        x: Math.PI * 3,
+        y: Math.PI / 2,
+        duration: 2,
       })
       .to(productRef.current.rotation, {
-        duration: 100,
-        z: -1 * (Math.PI / 8),
-      })
-      .to(productRef.current.position, {
-        x: -1,
-        duration: 100,
-      })
-      .to(productRef.current.rotation, {
-        duration: 50,
-        z: 0,
-      })
-      .to(productRef.current.position, {
-        x: 0,
-        duration: 50,
+        x: Math.PI * 6,
+        y: Math.PI / 4,
+        duration: 3,
       });
   }, [productRef.current]);
 
   useEffect(() => {
-    // console.log((1 / maxPage) * page, "-");
-    const offset = (1 / maxPage) * page;
     gsap.to(timelineOption, {
       offset,
       duration: 2,
     });
-  }, [page, maxPage]);
+  }, [offset]);
 
   return (
     <Suspense fallback={<Loader />}>
@@ -63,7 +47,7 @@ export const Scene = ({ page, maxPage }) => {
       <primitive
         ref={productRef}
         object={gltf.scene}
-        scale={0.5}
+        scale={0.8}
         position={[0, 0, 0]}
       />
       {/* <Circle args={[8, 32]} rotation-x={-Math.PI / 2} position-y={-2}>
