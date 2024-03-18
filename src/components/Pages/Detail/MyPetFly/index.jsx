@@ -30,15 +30,6 @@ export const MyPetFly = () => {
   const pageRefList = new Array(maxPage + 1).fill(null).map(() => createRef());
 
   useEffect(() => {
-    window.addEventListener("wheel", handler);
-    window.addEventListener("scroll", handler);
-    return () => {
-      window.removeEventListener("wheel", handler);
-      window.removeEventListener("scroll", handler);
-    };
-  }, [window, page]);
-
-  useEffect(() => {
     if (!scrollWrapperRef.current) return;
     gsap.to(scrollWrapperRef.current, {
       scrollTop:
@@ -49,7 +40,7 @@ export const MyPetFly = () => {
     });
   }, [page, scrollWrapperRef.current]);
 
-  const handler = (e) => {
+  const wheelHandler = (e) => {
     console.log(e);
     e.preventDefault();
     if (!scrolling) {
@@ -71,6 +62,35 @@ export const MyPetFly = () => {
     }, 100);
   };
 
+  let startTouchEvent = undefined;
+  const touchStartHandler = (e) => {
+    startTouchEvent = e.touches?.[0];
+  };
+
+  const tocuhMoveHandler = (e) => {
+    if (!scrolling) {
+      if (startTouchEvent) {
+        const st = startTouchEvent.screenY;
+        const ed = e.touches[0]?.screenY;
+        if (st < ed) {
+          if (page - 1 >= 0) {
+            setPage((page) => page - 1);
+          }
+        } else {
+          if (page + 1 <= maxPage) {
+            setPage((page) => page + 1);
+          }
+        }
+        console.log(startTouchEvent.screenY, e.touches[0]?.screenY);
+      }
+    }
+    clearTimeout(scrolling);
+    scrolling = setTimeout(() => {
+      startTouchEvent = undefined;
+      scrolling = undefined;
+    }, 100);
+  };
+
   return (
     <DetailPageUI>
       <Canvas
@@ -87,7 +107,12 @@ export const MyPetFly = () => {
       >
         <Scene offset={page / maxPage} />
       </Canvas>
-      <PagesScrollWrapperUI ref={scrollWrapperRef}>
+      <PagesScrollWrapperUI
+        ref={scrollWrapperRef}
+        onTouchStart={touchStartHandler}
+        onTouchMove={tocuhMoveHandler}
+        onWheel={wheelHandler}
+      >
         {componentSrcList.map((Component, idx) => (
           <ComponentWrapper
             key={idx}
@@ -115,5 +140,5 @@ const PagesScrollWrapperUI = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow: scroll;
+  overflow: hidden;
 `;
