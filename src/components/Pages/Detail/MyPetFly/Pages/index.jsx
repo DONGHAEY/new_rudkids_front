@@ -26,7 +26,7 @@ export const Pages = ({ page, maxPage, wrapperRef }) => {
       <ComponentWrapper
         key={idx}
         ref={pageRefList[idx]}
-        children={<Component />}
+        children={<Component isRender={idx === page} />}
       />
     );
   });

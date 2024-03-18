@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Page4 = () => {
+export const Page4 = ({ isRender }) => {
   return (
     <div
       style={{

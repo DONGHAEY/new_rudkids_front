@@ -3,6 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Loader } from "../../../Loader";
 import {
   Suspense,
+  createRef,
   useCallback,
   useEffect,
   useMemo,
@@ -13,18 +14,36 @@ import { Scene } from "./Scene";
 import { Pages } from "./Pages";
 import styled from "styled-components";
 import gsap from "gsap";
+import { Page0 } from "./Pages/Page0";
+import { Page1 } from "./Pages/Page1";
+import { Page2 } from "./Pages/Page2";
+import { Page3 } from "./Pages/Page3";
+import { Page4 } from "./Pages/Page4";
 
-const maxPage = 4;
+const componentSrcList = [Page0, Page1, Page2, Page3, Page4];
+const maxPage = componentSrcList.length - 1; //페이지가 0부터 시작하기 때문에 1을 빼주자...
 let scrolling;
 
 export const MyPetFly = () => {
   const [page, setPage] = useState(0);
-  const PagesScrollWrapperRef = useRef(null);
+  const scrollWrapperRef = useRef(null);
+  const pageRefList = new Array(maxPage + 1).fill(null).map(() => createRef());
 
   useEffect(() => {
     window.addEventListener("wheel", handler);
     return () => window.removeEventListener("wheel", handler);
   }, [window, page]);
+
+  useEffect(() => {
+    if (!scrollWrapperRef.current) return;
+    gsap.to(scrollWrapperRef.current, {
+      scrollTop:
+        (scrollWrapperRef.current.scrollHeight / componentSrcList.length) *
+        page,
+      duration: 2,
+      ease: "power3.inOut",
+    });
+  }, [page, scrollWrapperRef.current]);
 
   const handler = (e) => {
     e.preventDefault();
@@ -63,16 +82,23 @@ export const MyPetFly = () => {
       >
         <Scene offset={page / maxPage} />
       </Canvas>
-      <PagesScrollWrapperUI ref={PagesScrollWrapperRef}>
-        <Pages
-          page={page}
-          maxPage={maxPage}
-          wrapperRef={PagesScrollWrapperRef}
-        />
+      <PagesScrollWrapperUI ref={scrollWrapperRef}>
+        {componentSrcList.map((Component, idx) => (
+          <ComponentWrapper
+            key={idx}
+            ref={pageRefList[idx]}
+            children={<Component isRender={idx === page} />}
+          />
+        ))}
       </PagesScrollWrapperUI>
     </DetailPageUI>
   );
 };
+
+const ComponentWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 const DetailPageUI = styled.div`
   width: 100%;
