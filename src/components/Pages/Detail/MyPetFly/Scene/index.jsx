@@ -1,32 +1,29 @@
 import * as THREE from "three";
-import { Circle, useGLTF, useScroll } from "@react-three/drei";
+import { Circle, Loader, useGLTF, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { Suspense, useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 
 const timeline = gsap.timeline();
 
-export const Scene = ({ maxPage, page, setPage }) => {
-  const scroll = useScroll();
-  const gltf = useGLTF("/models/cloud_test.glb");
+export const Scene = ({ page, maxPage }) => {
+  // const scroll = useScroll();
+  const gltf = useGLTF("/models/Nothing.glb");
   const productRef = useRef();
 
-  const divided = 1 / maxPage;
+  const timelineOption = {
+    offset: 0,
+  };
+
   useFrame(() => {
     // scroll.offset// 페이지 전체중 0~1까지의 range로 표현됨.
-    const currentPage = Math.round(scroll.offset / divided);
-    if (currentPage >= 0 && currentPage <= maxPage) {
-      if (page != currentPage) {
-        setPage(currentPage);
-      }
-    }
-    timeline.seek(scroll.offset * timeline.duration());
+    timeline.seek(timelineOption.offset * timeline.duration());
   });
 
   useEffect(() => {
     timeline
       .to(productRef.current.rotation, {
-        duration: 200,
+        duration: 50,
         y: Math.PI * 2,
       })
       .to(
@@ -80,11 +77,14 @@ export const Scene = ({ maxPage, page, setPage }) => {
   }, [productRef.current]);
 
   useEffect(() => {
-    console.log(page, " page - from scene comp");
-  }, [page]);
+    gsap.to(timelineOption, {
+      offset: 1 / page,
+      duration: 1,
+    });
+  }, [page, maxPage]);
 
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <ambientLight intensity={2} />
       <primitive
         ref={productRef}
@@ -95,6 +95,6 @@ export const Scene = ({ maxPage, page, setPage }) => {
       {/* <Circle args={[8, 32]} rotation-x={-Math.PI / 2} position-y={-2}>
         <meshStandardMaterial color={"#ffffff"} side={THREE.DoubleSide} />
       </Circle> */}
-    </>
+    </Suspense>
   );
 };
