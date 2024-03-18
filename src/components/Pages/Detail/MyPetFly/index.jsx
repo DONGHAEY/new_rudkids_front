@@ -31,7 +31,11 @@ export const MyPetFly = () => {
 
   useEffect(() => {
     window.addEventListener("wheel", handler);
-    return () => window.removeEventListener("wheel", handler);
+    window.addEventListener("scroll", handler);
+    return () => {
+      window.removeEventListener("wheel", handler);
+      window.removeEventListener("scroll", handler);
+    };
   }, [window, page]);
 
   useEffect(() => {
@@ -46,6 +50,7 @@ export const MyPetFly = () => {
   }, [page, scrollWrapperRef.current]);
 
   const handler = (e) => {
+    console.log(e);
     e.preventDefault();
     if (!scrolling) {
       //scrolling
