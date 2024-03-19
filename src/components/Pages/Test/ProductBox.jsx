@@ -29,6 +29,7 @@ const BoxUI = styled.div`
   border-radius: 7px;
   display: flex;
   flex-direction: column;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
   justify-content: space-between;
   overflow: hidden;
 `;
