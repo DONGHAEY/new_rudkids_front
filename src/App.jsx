@@ -11,6 +11,7 @@ import { PcBlocking } from "./components/PcBlocking";
 import { Share } from "./components/Share";
 import Lottie from "lottie-web";
 import { useEffect, useRef } from "react";
+import { ListTest } from "./components/Pages/Test";
 //
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
           <Route path="/my" element={<My />} />
           <Route path="/order/:id" element={<Order />} />
           {/*  */}
-
+          <Route path="/test" element={<ListTest />} />
           <Route path="/policy-privacy" element={null} />
         </Routes>
         {/* <PcBlocking /> */}
