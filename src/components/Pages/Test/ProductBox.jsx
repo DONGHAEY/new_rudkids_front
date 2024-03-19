@@ -25,11 +25,11 @@ const BoxUI = styled.div`
   height: 200px;
   background-color: #f6f6f6;
   ${({ isRotated }) =>
-    isRotated ? "transform: perspective(90px) rotateX(-6deg);" : ""}
+    isRotated ? "transform: perspective(300px) rotateX(-20deg);" : ""}
   border-radius: 7px;
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
+  box-shadow: 5px 5px 10px rgba(0, 0.6, 0.6, 0.6); /* 그림자 설정 */
   justify-content: space-between;
   overflow: hidden;
 `;
