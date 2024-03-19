@@ -58,6 +58,7 @@ export const MyPetFly = () => {
       // stop Scrolling
       scrolling = undefined;
     }, 100);
+    return false;
   };
 
   let startTouchEvent = undefined;
@@ -81,7 +82,6 @@ export const MyPetFly = () => {
             setPage((page) => page + 1);
           }
         }
-        console.log(startTouchEvent.screenY, e.touches[0]?.screenY);
       }
     }
     clearTimeout(scrolling);
@@ -89,10 +89,15 @@ export const MyPetFly = () => {
       startTouchEvent = undefined;
       scrolling = undefined;
     }, 100);
+    return false;
   };
 
   return (
-    <DetailPageUI>
+    <DetailPageUI
+      onWheel={wheelHandler}
+      onTouchStart={touchStartHandler}
+      onTouchMove={tocuhMoveHandler}
+    >
       <Canvas
         style={{
           position: "absolute",
@@ -107,13 +112,7 @@ export const MyPetFly = () => {
       >
         <Scene offset={page / maxPage} />
       </Canvas>
-      <PagesScrollWrapperUI
-        ref={scrollWrapperRef}
-        onTouchStart={touchStartHandler}
-        onTouchMove={tocuhMoveHandler}
-        onWheel={wheelHandler}
-        onScroll={(e) => e.preventDefault()}
-      >
+      <PagesScrollWrapperUI ref={scrollWrapperRef}>
         {componentSrcList.map((Component, idx) => (
           <ComponentWrapper
             key={idx}
@@ -135,12 +134,14 @@ const DetailPageUI = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  background: none;
+  oveflow: hidden;
 `;
 
 const PagesScrollWrapperUI = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
 `;
