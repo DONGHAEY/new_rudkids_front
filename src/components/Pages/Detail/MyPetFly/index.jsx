@@ -28,17 +28,6 @@ export const MyPetFly = () => {
   const scrollWrapperRef = useRef(null);
   const pageRefList = new Array(maxPage + 1).fill(null).map(() => createRef());
 
-  useEffect(() => {
-    if (!scrollWrapperRef.current) return;
-    gsap.to(scrollWrapperRef.current, {
-      scrollTop:
-        (scrollWrapperRef.current.scrollHeight / componentSrcList.length) *
-        page,
-      duration: 2,
-      ease: "power3.inOut",
-    });
-  }, [page, scrollWrapperRef.current]);
-
   const wheelHandler = (e) => {
     e.preventDefault();
     if (!scrolling) {
@@ -58,17 +47,14 @@ export const MyPetFly = () => {
       // stop Scrolling
       scrolling = undefined;
     }, 100);
-    return false;
   };
 
   let startTouchEvent = undefined;
   const touchStartHandler = (e) => {
-    e.preventDefault();
     startTouchEvent = e;
   };
 
   const tocuhMoveHandler = (e) => {
-    e.preventDefault();
     if (!scrolling) {
       if (startTouchEvent) {
         const st = startTouchEvent.touches?.[0]?.screenY;
@@ -92,6 +78,17 @@ export const MyPetFly = () => {
     return false;
   };
 
+  useEffect(() => {
+    if (!scrollWrapperRef.current) return;
+    gsap.to(scrollWrapperRef.current, {
+      scrollTop:
+        (scrollWrapperRef.current.scrollHeight / componentSrcList.length) *
+        page,
+      duration: 2,
+      ease: "power3.inOut",
+    });
+  }, [page, scrollWrapperRef.current]);
+
   return (
     <DetailPageUI
       onWheel={wheelHandler}
@@ -101,6 +98,7 @@ export const MyPetFly = () => {
       <Canvas
         style={{
           position: "absolute",
+          zIndex: 0,
         }}
         gl={{ antialias: true }}
         camera={{
@@ -112,7 +110,7 @@ export const MyPetFly = () => {
       >
         <Scene offset={page / maxPage} />
       </Canvas>
-      <PagesScrollWrapperUI ref={scrollWrapperRef}>
+      <PagesWrapperUI ref={scrollWrapperRef}>
         {componentSrcList.map((Component, idx) => (
           <ComponentWrapper
             key={idx}
@@ -120,28 +118,26 @@ export const MyPetFly = () => {
             children={<Component isRender={idx === page} />}
           />
         ))}
-      </PagesScrollWrapperUI>
+      </PagesWrapperUI>
     </DetailPageUI>
   );
 };
+
+const DetailPageUI = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
 
 const ComponentWrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
 
-const DetailPageUI = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  background: none;
-  oveflow: hidden;
-`;
-
-const PagesScrollWrapperUI = styled.div`
+const PagesWrapperUI = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow-y: hidden;
+  overflow-y: scroll;
   overflow-x: hidden;
 `;

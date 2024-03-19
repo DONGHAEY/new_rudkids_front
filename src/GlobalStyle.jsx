@@ -21,6 +21,11 @@ const GlobalStyle = createGlobalStyle`
     background-color:black;
     margin: 0 auto;
     padding:0;
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-use-select: none;
+    user-select: none;
   }
 
   #root {
