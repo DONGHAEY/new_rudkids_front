@@ -117,7 +117,7 @@ export const HandMotion = () => {
 
   const drawPunch = (canvasCtx, positionX = 0, positionY = 0) => {
     var image = new Image();
-    image.src = "/punch-kill.gif";
+    image.src = "/assets/Images/HandMotion/punch-kill.gif";
     canvasCtx.drawImage(
       image,
       positionX,
@@ -206,7 +206,10 @@ export const HandMotion = () => {
         />
         <SideBottomWrapperUI>
           <ButtonUI onClick={getImage}>
-            <ButtonImageUI src="/camera.webp" alt="camera_button_image" />
+            <ButtonImageUI
+              src="/assets/Images/HandMotion/camera.webp"
+              alt="camera_button_image"
+            />
           </ButtonUI>
         </SideBottomWrapperUI>
         {screenShotUrlTmp && (

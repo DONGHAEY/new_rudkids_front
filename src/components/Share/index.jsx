@@ -1,11 +1,11 @@
-import { createRef, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Step1 } from "./Steps/Step1";
 import { Step2 } from "./Steps/Step2";
 import gsap from "gsap";
 
 const stepComponentSrcList = [Step1, Step2];
-const totalStep = stepComponentSrcList.length;
+const totalStepCount = stepComponentSrcList.length;
 
 export const Share = () => {
   const shareWrapperRef = useRef(null);
@@ -14,7 +14,7 @@ export const Share = () => {
 
   useEffect(() => {
     if (!shareComponentRef.current) return;
-    if (step >= totalStep) {
+    if (step >= totalStepCount) {
       const completeHandler = () => {
         shareWrapperRef.current.style.display = "none";
       };
@@ -31,7 +31,7 @@ export const Share = () => {
 
   const next = () => {
     const completeHandler = () => {
-      if (step + 1 <= totalStep) {
+      if (step + 1 <= totalStepCount) {
         gsap.to(shareComponentRef.current, {
           opacity: 1,
           duration: 0.5,
