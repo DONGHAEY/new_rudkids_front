@@ -1,10 +1,7 @@
 import { createRef, useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { ProductBox } from "./ProductBox";
-import { useWindowSize } from "../../../hooks/useWindowSize";
 import gsap from "gsap";
-
-const gap = 45;
 
 export const ListTest = () => {
   const itemList = [
@@ -43,33 +40,13 @@ export const ListTest = () => {
     return new Array(itemList.length).fill(null).map((_) => createRef(null));
   }, [itemList]);
 
+  const gap = 45;
   const getBoundaryY = (index) => {
     return {
       minY: gap * (lastItemIdx - index),
       maxY: itemListRef.current.clientHeight - gap * index - gap,
     };
   };
-
-  useEffect(() => {
-    itemWrapperRefList.map((productBoxWrapperRef, itemIdx) => {
-      gsap.to(productBoxWrapperRef.current, {
-        y: getBoundaryY(itemIdx).minY,
-        duration: 0,
-      });
-    });
-  }, [itemWrapperRefList.length]);
-
-  useEffect(() => {
-    const eventPreventHandler = (e) => {
-      e.preventDefault();
-    };
-    window.addEventListener("wheel", eventPreventHandler, {
-      passive: false,
-    });
-    window.addEventListener("touchmove", eventPreventHandler, {
-      passive: false,
-    });
-  }, []);
 
   const lastItemIdx = itemWrapperRefList.length - 1;
   const currentItemRef = itemWrapperRefList[currentItemIdx];
@@ -98,7 +75,6 @@ export const ListTest = () => {
   };
 
   const focusItem = (targetItemIdx) => {
-    console.log(targetItemIdx, currentItemIdx, "____");
     let currnetItemIdxTemp = currentItemIdx;
     if (targetItemIdx <= currentItemIdx) {
       currnetItemIdxTemp++;
@@ -143,6 +119,51 @@ export const ListTest = () => {
     prevTouchEvent = null;
   };
 
+  const itemWrapperList = itemList?.map((productData, idx) => {
+    const itemIdx = lastItemIdx - idx;
+    const itemRef = itemWrapperRefList[itemIdx];
+    const isRotated = itemIdx !== currentItemIdx || isRotate;
+    const clickHandler = () => {
+      focusItem(itemIdx);
+    };
+    return (
+      <ItemWrapperUI
+        onClick={clickHandler}
+        key={itemIdx}
+        ref={itemRef}
+        children={
+          <ProductBox
+            name={productData?.name}
+            color={productData?.color}
+            image={productData?.image}
+            isRotated={isRotated}
+          />
+        }
+      />
+    );
+  });
+
+  useEffect(() => {
+    itemWrapperRefList.map((productBoxWrapperRef, itemIdx) => {
+      gsap.to(productBoxWrapperRef.current, {
+        y: getBoundaryY(itemIdx).minY,
+        duration: 0,
+      });
+    });
+  }, [itemWrapperRefList.length]);
+
+  useEffect(() => {
+    const eventPreventHandler = (e) => {
+      e.preventDefault();
+    };
+    window.addEventListener("wheel", eventPreventHandler, {
+      passive: false,
+    });
+    window.addEventListener("touchmove", eventPreventHandler, {
+      passive: false,
+    });
+  }, []);
+
   return (
     <TestWrapperUI>
       <LogoSectionUI>Rudkids</LogoSectionUI>
@@ -151,35 +172,13 @@ export const ListTest = () => {
         onTouchStart={touchStartHandler}
         onTouchMove={touchMoveHandler}
         onTouchEnd={touchEndHandler}
-      >
-        {/* 휴대폰만됨 지금 */}
-        {itemList?.map((productData, idx) => {
-          return (
-            <ItemWrapperUI
-              onClick={() => {
-                focusItem(lastItemIdx - idx);
-              }}
-              style={{
-                zIndex: idx,
-              }}
-              key={lastItemIdx - idx}
-              ref={itemWrapperRefList[lastItemIdx - idx]}
-            >
-              <ProductBox
-                name={productData?.name}
-                color={productData?.color}
-                image={productData?.image}
-                isRotated={
-                  idx !== itemList.length - 1 - currentItemIdx || isRotate
-                }
-              />
-            </ItemWrapperUI>
-          );
-        })}
-      </ItemListUI>
+        children={itemWrapperList}
+      />
     </TestWrapperUI>
   );
 };
+
+/***********************         ****/
 
 const TestWrapperUI = styled.div`
   width: 100%;
