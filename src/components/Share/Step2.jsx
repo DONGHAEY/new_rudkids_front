@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { ProgressBar } from "../ProgressBar";
-import { SharedStatus } from "../ShareStatus";
+import { ProgressBar } from "./ProgressBar";
+import { SharedStatus } from "./ShareStatus";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
-import { Alert } from "../../Alert";
+import { Alert } from "../Alert";
 import gsap from "gsap";
 
 const lockIconSrc = "/assets/Images/share/Steps/Step2/lock_icon.png";
