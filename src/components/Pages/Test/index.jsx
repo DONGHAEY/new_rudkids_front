@@ -1,11 +1,11 @@
-import { createRef, useEffect, useMemo, useState } from "react";
+import { createRef, useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { ProductBox } from "./ProductBox";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import gsap from "gsap";
 
 export const ListTest = () => {
-  const productList = [
+  const itemList = [
     {
       color: "#FFE818",
       name: "My Pet Fly",
@@ -29,21 +29,23 @@ export const ListTest = () => {
   ];
 
   const gap = 45;
-  const { height: windowHeight } = useWindowSize();
-  const [selectedIdx, setSelectedIdx] = useState(0);
+  const [stackedCount, setStackedCount] = useState(0);
+  const [isMoving, setIsMoving] = useState(false);
 
-  const productBoxWrapperRefList = new Array(productList.length)
-    .fill(null)
-    .map((_) => createRef(null));
+  const itemListRef = useRef(null);
+  const itemWrapperRefList = useMemo(() => {
+    if (!itemList.length) return [];
+    return new Array(itemList.length).fill(null).map((_) => createRef(null));
+  }, [itemList]);
 
   useEffect(() => {
-    productBoxWrapperRefList.map((productBoxWrapperRef, idx) => {
+    itemWrapperRefList.map((productBoxWrapperRef, idx) => {
       gsap.to(productBoxWrapperRef.current, {
         y: gap * idx,
         duration: 0,
       });
     });
-  }, [productBoxWrapperRefList.length]);
+  }, [itemWrapperRefList.length]);
 
   useEffect(() => {
     const eventPreventHandler = (e) => {
@@ -58,27 +60,28 @@ export const ListTest = () => {
   }, []);
 
   const moveCurrent = (topValue) => {
-    // if (selectedIdx > productList.length - 1) return;
-    const movingDomRef =
-      productBoxWrapperRefList[productList.length - selectedIdx - 1];
+    const movingDomRef = itemWrapperRefList[itemList.length - stackedCount - 1];
+    console.log(itemListRef.current.clientHeight, "clientHeight");
+    console.log(itemListRef.current.offsetHeight, "offsetHeight");
     if (movingDomRef) {
-      const minYValue = gap * (productList.length - selectedIdx - 1);
-      let maxYValue = windowHeight - 140;
-      maxYValue -= gap * selectedIdx;
+      const minYValue = gap * (itemList.length - stackedCount - 1);
+      let maxYValue = itemListRef.current.clientHeight - gap;
+      maxYValue -= gap * stackedCount;
       const currentTopValue = gsap.getProperty(movingDomRef.current, "y");
       let targetYValue = topValue + currentTopValue;
-
+      setIsMoving(false);
       if (targetYValue <= minYValue) {
-        if (selectedIdx - 1 >= 0) {
-          setSelectedIdx(selectedIdx - 1);
+        if (stackedCount - 1 >= 0) {
+          setStackedCount(stackedCount - 1);
         }
         targetYValue = minYValue;
-      }
-      if (targetYValue >= maxYValue) {
-        if (selectedIdx + 1 < productList.length) {
-          setSelectedIdx(selectedIdx + 1);
+      } else if (targetYValue >= maxYValue) {
+        if (stackedCount + 1 < itemList.length) {
+          setStackedCount(stackedCount + 1);
         }
         targetYValue = maxYValue;
+      } else {
+        setIsMoving(true);
       }
       gsap.to(movingDomRef.current, {
         y: targetYValue,
@@ -87,56 +90,50 @@ export const ListTest = () => {
   };
 
   let prevTouchEvent = null;
+  const touchStartHandler = (currentTouchEvent) => {
+    prevTouchEvent = currentTouchEvent;
+  };
+  const touchMoveHandler = (currentTouchEvent) => {
+    if (prevTouchEvent) {
+      const prevTouchPos = prevTouchEvent?.touches[0].screenY;
+      const currentTouchPos = currentTouchEvent?.touches[0].screenY;
+      if (prevTouchPos > currentTouchPos) {
+        moveCurrent(100);
+      } else {
+        moveCurrent(-100);
+      }
+    }
+    prevTouchEvent = currentTouchEvent;
+  };
+  const touchEndHandler = () => {
+    prevTouchEvent = null;
+  };
+
   return (
     <TestWrapperUI>
-      <div
-        style={{
-          backgroundColor: "none",
-          paddingBlock: "30px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "30px",
-          fontWeight: "bold",
-          color: "white",
-        }}
-      >
-        LOGO
-      </div>
-      <ProductBoxListUI
-        onTouchStart={(currentTouchEvent) => {
-          prevTouchEvent = currentTouchEvent;
-        }}
-        onTouchMove={(currentTouchEvent) => {
-          if (prevTouchEvent) {
-            const prevTouchPos = prevTouchEvent?.touches[0].screenY;
-            const currentTouchPos = currentTouchEvent?.touches[0].screenY;
-            if (prevTouchPos > currentTouchPos) {
-              moveCurrent(250);
-            } else {
-              moveCurrent(-250);
-            }
-          }
-          prevTouchEvent = currentTouchEvent;
-        }}
-        onTouchEnd={() => {
-          prevTouchEvent = null;
-        }}
+      <LogoSectionUI>LOGO</LogoSectionUI>
+      <ItemListUI
+        ref={itemListRef}
+        onTouchStart={touchStartHandler}
+        onTouchMove={touchMoveHandler}
+        onTouchEnd={touchEndHandler}
       >
         {/* 휴대폰만됨 지금 */}
-        {productList?.map((productData, idx) => {
+        {itemList?.map((productData, idx) => {
           return (
-            <ProductBoxWrapper key={idx} ref={productBoxWrapperRefList[idx]}>
+            <ItemWrapperUI key={idx} ref={itemWrapperRefList[idx]}>
               <ProductBox
                 name={productData?.name}
                 color={productData?.color}
                 image={productData?.image}
-                isRotated
+                isRotated={
+                  idx !== itemList.length - 1 - stackedCount || !isMoving
+                }
               />
-            </ProductBoxWrapper>
+            </ItemWrapperUI>
           );
         })}
-      </ProductBoxListUI>
+      </ItemListUI>
     </TestWrapperUI>
   );
 };
@@ -144,6 +141,8 @@ export const ListTest = () => {
 const TestWrapperUI = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
   background: radial-gradient(
       ellipse at bottom,
       rgb(83, 173, 241) 0%,
@@ -152,7 +151,7 @@ const TestWrapperUI = styled.div`
     radial-gradient(ellipse at top, rgb(12, 73, 187) 100%, transparent);
 `;
 
-const ProductBoxListUI = styled.div`
+const ItemListUI = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
@@ -161,7 +160,18 @@ const ProductBoxListUI = styled.div`
   justify-content: center;
 `;
 
-const ProductBoxWrapper = styled.div`
+const LogoSectionUI = styled.div`
+  background-color: none;
+  padding-block: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+`;
+
+const ItemWrapperUI = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
