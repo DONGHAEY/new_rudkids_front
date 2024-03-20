@@ -1,23 +1,16 @@
 import styled from "styled-components";
 
+const rudkidsAlbumSrc = "/assets/Images/share/Steps/Step1/rudkids_album.png";
+const rudkidsLogoSrc = "/assets/Images/share/Steps/Step1/rudkids_logo.png";
+
 export const Step1 = ({ next, prev }) => {
   return (
     <Step1WrapperUI>
       <BoxTopUI>
-        <img
-          style={{
-            width: "100%",
-          }}
-          src="/assets/Images/share/Steps/Step1/rudkids_album.png"
-        />
+        <img width="100%" src={rudkidsAlbumSrc} />
       </BoxTopUI>
       <BoxMiddleUI>
-        <img
-          style={{
-            width: "140px",
-          }}
-          src="/assets/Images/share/Steps/Step1/rudkids_logo.png"
-        />
+        <img width="140px" src={rudkidsLogoSrc} />
         <BoxTitleWrapperUI>
           <BoxTitleUI>Guys! Don't be</BoxTitleUI>
           <BoxTitleUI>so boring.</BoxTitleUI>

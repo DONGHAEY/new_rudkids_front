@@ -6,9 +6,10 @@ export const Alert = ({
   content = null,
   buttonContent = null,
   onChecked = null,
+  open = false,
 }) => {
   return (
-    <AlertBoxWrapperUI>
+    <AlertBoxWrapperUI hidden={!open}>
       <AlertBoxUI>
         {imageUrl && (
           <ImgWrapperUI>
@@ -28,9 +29,8 @@ export const Alert = ({
 
 const AlertBoxWrapperUI = styled.div`
   background-color: rgba(0, 0, 0, 50%);
-  display: flex;
   position: absolute;
-  display: flex;
+  display: ${({ hidden }) => (hidden ? "none" : "flex")};
   align-items: center;
   justify-content: center;
   top: 0;

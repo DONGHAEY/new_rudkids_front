@@ -6,15 +6,21 @@ import { isMobile } from "react-device-detect";
 import { Alert } from "../../Alert";
 import gsap from "gsap";
 
+const lockIconSrc = "/assets/Images/share/Steps/Step2/lock_icon.png";
+const arrowDownIconSrc = "/assets/Images/share/Steps/Step2/arrow_down.png";
+const arrowUpIconSrc = "/assets/Images/share/Steps/Step2/arrow.png";
+const friendGroupIconSrc =
+  "/assets/Images/share/Steps/Step2/friend_group_icon.png";
+const addIconSrc = "/assets/Images/share/Steps/Step2/add.png";
+const goalKeyIconSrc = "/assets/Images/share/Steps/Step2/goal_key.png";
+const infoIconSrc = "/assets/Images/share/Steps/Step2/info.png";
+const quietFaceIconSrc = "/assets/Images/share/Steps/Step2/quiet_face.png";
+
 export const Step2 = ({ next }) => {
   const friendCnt = 5;
   const [friendSharedCount, setFriendSharedCount] = useState(0);
-
   const [alertOpen, setAlertOpen] = useState(false);
-
   const [isopen, setIsopen] = useState(false);
-
-  const weburl = "https://new-rudkids-front.vercel.app";
   const bottomBoxRef = useRef(null);
 
   useEffect(() => {
@@ -32,6 +38,7 @@ export const Step2 = ({ next }) => {
   }, [bottomBoxRef.current, isopen]);
 
   const shareHandler = async () => {
+    const weburl = "https://new-rudkids-front.vercel.app";
     if (!isMobile) {
       alert("모바일로 접속해주세요!");
       if (friendSharedCount + 1 <= friendCnt) {
@@ -54,40 +61,23 @@ export const Step2 = ({ next }) => {
   return (
     <Step2WrapperUI>
       <LockDescriptionBoxUI>
-        <img
-          style={{
-            width: "13px",
-          }}
-          src="/assets/Images/share/Steps/Step2/lock_icon.png"
-        />
+        <img width="13px" src={lockIconSrc} />
         <PopinPUI fontSize={"13px"}>This Page is Locked</PopinPUI>
       </LockDescriptionBoxUI>
-      <BottomBoxUI
-        style={{
-          top: "270px",
-        }}
-        ref={bottomBoxRef}
-      >
+      <BottomBoxUI ref={bottomBoxRef}>
         <ArrowButtonUI
           onClick={() => setIsopen(!isopen)}
           children={
             <img
+              width="60%"
               style={{
-                width: "60%",
                 objectFit: "cover",
               }}
-              src={
-                isopen
-                  ? "/assets/Images/share/Steps/Step2/arrow_down.png"
-                  : "/assets/Images/share/Steps/Step2/arrow.png"
-              }
+              src={isopen ? arrowDownIconSrc : arrowUpIconSrc}
             />
           }
         />
-        <img
-          style={{ width: "150px" }}
-          src="/assets/Images/share/Steps/Step2/friend_group_icon.png"
-        />
+        <img width="150px" src={friendGroupIconSrc} />
         <BoxTitleWrapperUI>
           <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
           <PopinPUI fontSize={"35px"}>Invited Only</PopinPUI>
@@ -95,10 +85,7 @@ export const Step2 = ({ next }) => {
         <FriendListUI>
           <div>
             <SharedButtonUI onClick={shareHandler}>
-              <img
-                style={{ width: "30%" }}
-                src={"/assets/Images/share/Steps/Step2/add.png"}
-              />
+              <img width="30%" src={addIconSrc} />
             </SharedButtonUI>
           </div>
           {new Array(friendCnt).fill("").map((_, idx) => (
@@ -115,38 +102,24 @@ export const Step2 = ({ next }) => {
             cnt={friendSharedCount}
             onGetIn={next}
           />
-          <ProgressBarSectionGoalImgUI
-            src={"/assets/Images/share/Steps/Step2/goal_key.png"}
-          />
+          <ProgressBarSectionGoalImgUI src={goalKeyIconSrc} />
         </ProgressBarSectionUI>
         <AskSectionUI onClick={() => setAlertOpen(true)}>
-          <InfoImgUI src="/assets/Images/share/Steps/Step2/info.png" />
+          <InfoImgUI src={infoIconSrc} />
           Why 5 Friends?
         </AskSectionUI>
       </BottomBoxUI>
-      {alertOpen && (
-        <Alert
-          imageUrl={"/assets/Images/share/Steps/Step2/quiet_face.png"}
-          title={"Rudkids is<br />Not for everyone 👑"}
-          content={"Rudkids is a place where only<br />lucky guys can come in."}
-          buttonContent={"Yeeeaaah!"}
-          onChecked={() => setAlertOpen(false)}
-        />
-      )}
+      <Alert
+        open={alertOpen}
+        imageUrl={quietFaceIconSrc}
+        title={"Rudkids is<br />Not for everyone 👑"}
+        content={"Rudkids is a place where only<br />lucky guys can come in."}
+        buttonContent={"Yeeeaaah!"}
+        onChecked={() => setAlertOpen(false)}
+      />
     </Step2WrapperUI>
   );
 };
-
-const SharedButtonUI = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
-  border-radius: 100%;
-`;
 
 const Step2WrapperUI = styled.div`
   display: flex;
@@ -164,6 +137,17 @@ const Step2WrapperUI = styled.div`
     font-family: "Poppins-Bold";
     src: url("/fonts/Poppins/Poppins-Bold.ttf");
   }
+`;
+
+const SharedButtonUI = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 100%;
 `;
 
 const AskSectionUI = styled.p`
@@ -247,6 +231,7 @@ const BottomBoxUI = styled.div`
   background-color: rgba(255, 255, 255, 60%);
   width: 100%;
   max-height: 70%;
+  top: 270px;
   padding-block: 40px;
   position: relative;
   border-top-left-radius: 30px;
