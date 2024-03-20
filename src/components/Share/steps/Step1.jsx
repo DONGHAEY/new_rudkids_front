@@ -8,7 +8,7 @@ export const Step1 = ({ next, prev }) => {
           style={{
             width: "100%",
           }}
-          src="/assets/Images/shareComponent/rudkids_album.png"
+          src="/assets/Images/share/Steps/Step1/rudkids_album.png"
         />
       </BoxTopUI>
       <BoxMiddleUI>
@@ -16,7 +16,7 @@ export const Step1 = ({ next, prev }) => {
           style={{
             width: "140px",
           }}
-          src="/assets/Images/shareComponent/rudkids_logo.png"
+          src="/assets/Images/share/Steps/Step1/rudkids_logo.png"
         />
         <BoxTitleWrapperUI>
           <BoxTitleUI>Guys! Don't be</BoxTitleUI>
@@ -35,13 +35,21 @@ const BoxTitleWrapperUI = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const BoxTitleUI = styled.p`
   @font-face {
     font-family: "Poppins-Bold";
     src: url("/fonts/Poppins/Poppins-Bold.ttf");
   }
+  @font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  }
+  @font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  }
+`;
+
+const BoxTitleUI = styled.p`
   font-family: "Poppins-Bold";
   margin: 0;
   font-size: 31px;
@@ -49,10 +57,6 @@ const BoxTitleUI = styled.p`
 `;
 
 const BoxButtonUI = styled.p`
-  @font-face {
-    font-family: "Poppins-SemiBold";
-    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
-  }
   font-family: "Poppins-SemiBold";
   background-color: black;
   color: white;
@@ -79,10 +83,6 @@ const BoxMiddleUI = styled.div`
   border-radius: 10px;
 `;
 const BoxBottomUI = styled.div`
-  @font-face {
-    font-family: "Poppins-SemiBold";
-    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
-  }
   font-family: "Poppins-SemiBold";
   padding-block: 30px;
   font-size: 16px;

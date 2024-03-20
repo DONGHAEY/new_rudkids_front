@@ -1,7 +1,7 @@
 import { createRef, useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
-import { Step1 } from "./steps/Step1";
-import { Step2 } from "./steps/Step2";
+import { Step1 } from "./Steps/Step1";
+import { Step2 } from "./Steps/Step2";
 import gsap from "gsap";
 
 const stepComponentSrcList = [Step1, Step2];
@@ -15,32 +15,34 @@ export const Share = () => {
   useEffect(() => {
     if (!shareComponentRef.current) return;
     if (step >= totalStep) {
+      const completeHandler = () => {
+        shareWrapperRef.current.style.display = "none";
+      };
       gsap.to(shareWrapperRef.current, {
-        opacity: "0%",
+        opacity: 0,
         duration: 1,
-        onComplete: () => {
-          shareWrapperRef.current.style.display = "none";
-        },
+        onComplete: completeHandler,
       });
     } else {
-      shareWrapperRef.current.style.opacity = "100%";
+      shareWrapperRef.current.style.opacity = 1;
       shareWrapperRef.current.style.display = "block";
     }
   }, [step, shareComponentRef.current]);
 
   const next = () => {
+    const completeHandler = () => {
+      if (step + 1 <= totalStep) {
+        gsap.to(shareComponentRef.current, {
+          opacity: 1,
+          duration: 0.5,
+        });
+        setStep(step + 1);
+      }
+    };
     gsap.to(shareComponentRef.current, {
       opacity: 0,
       duration: 0.5,
-      onComplete: () => {
-        if (step + 1 <= totalStep) {
-          gsap.to(shareComponentRef.current, {
-            opacity: 1,
-            duration: 0.5,
-          });
-          setStep(step + 1);
-        }
-      },
+      onComplete: completeHandler,
     });
   };
 
@@ -62,8 +64,6 @@ export const Share = () => {
     </ShareWrapperUI>
   );
 };
-
-/********************** */
 
 const ShareWrapperUI = styled.div`
   position: absolute;

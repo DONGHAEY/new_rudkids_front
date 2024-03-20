@@ -99,6 +99,7 @@ export const ListTest = () => {
     setCurrentItemIdx(currnetItemIdxTemp);
   };
 
+  /** Drag Handler Logics */
   let prevTouchEvent = null;
   const touchStartHandler = (currentTouchEvent) => {
     prevTouchEvent = currentTouchEvent;
@@ -118,6 +119,7 @@ export const ListTest = () => {
   const touchEndHandler = () => {
     prevTouchEvent = null;
   };
+  /** Drag Handler Logics */
 
   const itemWrapperList = itemList?.map((productData, idx) => {
     const itemIdx = lastItemIdx - idx;

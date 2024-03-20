@@ -8,9 +8,13 @@ export const Alert = ({
   onChecked = null,
 }) => {
   return (
-    <AlertBackgroundUI>
+    <AlertBoxWrapperUI>
       <AlertBoxUI>
-        {imageUrl && <ImgUI src={imageUrl} alt={"alert icon"} />}
+        {imageUrl && (
+          <ImgWrapperUI>
+            <ImgUI src={imageUrl} alt={"alert icon"} />
+          </ImgWrapperUI>
+        )}
         <TitleUI dangerouslySetInnerHTML={{ __html: title }}></TitleUI>
         <ContentUI dangerouslySetInnerHTML={{ __html: content }}></ContentUI>
         <BrUI />
@@ -18,11 +22,11 @@ export const Alert = ({
           <ButtonUI onClick={onChecked}>{buttonContent}</ButtonUI>
         </ButtonWrapperUI>
       </AlertBoxUI>
-    </AlertBackgroundUI>
+    </AlertBoxWrapperUI>
   );
 };
 
-const AlertBackgroundUI = styled.div`
+const AlertBoxWrapperUI = styled.div`
   background-color: rgba(0, 0, 0, 50%);
   display: flex;
   position: absolute;
@@ -37,7 +41,6 @@ const AlertBackgroundUI = styled.div`
 
 const AlertBoxUI = styled.div`
   background-color: rgba(255, 255, 255, 100%);
-  // max-width: 260px;
   display: flex;
   border-radius: 20px;
   align-items: center;
@@ -45,18 +48,31 @@ const AlertBoxUI = styled.div`
   flex-direction: column;
   text-align: center;
   padding-inline: 20px;
-`;
-
-const ImgUI = styled.img`
-  width: 60px;
-  margin-top: 15px;
-`;
-
-const TitleUI = styled.p`
   @font-face {
     font-family: "Poppins-SemiBold";
     src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
   }
+  @font-face {
+    font-family: "Poppins-Medium";
+    src: url("/fonts/Poppins/Poppins-Medium.ttf");
+  }
+  @font-face {
+    font-family: "Poppins-Bold";
+    src: url("/fonts/Poppins/Poppins-Bold.ttf");
+  }
+`;
+
+const ImgWrapperUI = styled.div`
+  height: 70px;
+  margin-top: 15px;
+`;
+
+const ImgUI = styled.img`
+  height: 100%;
+  object-fit: cover;
+`;
+
+const TitleUI = styled.p`
   font-family: "Poppins-SemiBold";
   font-size: 19px;
   margin-top: 15px;
@@ -64,10 +80,6 @@ const TitleUI = styled.p`
 `;
 
 const ContentUI = styled.p`
-  @font-face {
-    font-family: "Poppins-Medium";
-    src: url("/fonts/Poppins/Poppins-Medium.ttf");
-  }
   font-family: "Poppins-Medium";
   font-size: 14px;
   margin-top: 10px;
@@ -87,10 +99,6 @@ const ButtonUI = styled.button`
   border: none;
   background: none;
   color: #368bff;
-  @font-face {
-    font-family: "Poppins-Bold";
-    src: url("/fonts/Poppins/Poppins-Bold.ttf");
-  }
   font-family: "Poppins-Bold";
   font-weight: bold;
   font-size: 16px;

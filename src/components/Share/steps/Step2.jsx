@@ -58,7 +58,7 @@ export const Step2 = ({ next }) => {
           style={{
             width: "13px",
           }}
-          src="/assets/Images/shareComponent/lock_icon.png"
+          src="/assets/Images/share/Steps/Step2/lock_icon.png"
         />
         <PopinPUI fontSize={"13px"}>This Page is Locked</PopinPUI>
       </LockDescriptionBoxUI>
@@ -78,15 +78,15 @@ export const Step2 = ({ next }) => {
               }}
               src={
                 isopen
-                  ? "/assets/Images/shareComponent/arrow_down.png"
-                  : "/assets/Images/shareComponent/arrow.png"
+                  ? "/assets/Images/share/Steps/Step2/arrow_down.png"
+                  : "/assets/Images/share/Steps/Step2/arrow.png"
               }
             />
           }
         />
         <img
           style={{ width: "150px" }}
-          src="/assets/Images/shareComponent/friend_group_icon.png"
+          src="/assets/Images/share/Steps/Step2/friend_group_icon.png"
         />
         <BoxTitleWrapperUI>
           <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
@@ -97,7 +97,7 @@ export const Step2 = ({ next }) => {
             <SharedButtonUI onClick={shareHandler}>
               <img
                 style={{ width: "30%" }}
-                src={"/assets/Images/shareComponent/add.png"}
+                src={"/assets/Images/share/Steps/Step2/add.png"}
               />
             </SharedButtonUI>
           </div>
@@ -116,17 +116,17 @@ export const Step2 = ({ next }) => {
             onGetIn={next}
           />
           <ProgressBarSectionGoalImgUI
-            src={"/assets/Images/shareComponent/goal_key.png"}
+            src={"/assets/Images/share/Steps/Step2/goal_key.png"}
           />
         </ProgressBarSectionUI>
         <AskSectionUI onClick={() => setAlertOpen(true)}>
-          <InfoImgUI src="/assets/Images/shareComponent/info.png" />
+          <InfoImgUI src="/assets/Images/share/Steps/Step2/info.png" />
           Why 5 Friends?
         </AskSectionUI>
       </BottomBoxUI>
       {alertOpen && (
         <Alert
-          imageUrl={"/assets/Images/shareComponent/quiet_face.png"}
+          imageUrl={"/assets/Images/share/Steps/Step2/quiet_face.png"}
           title={"Rudkids is<br />Not for everyone 👑"}
           content={"Rudkids is a place where only<br />lucky guys can come in."}
           buttonContent={"Yeeeaaah!"}
@@ -156,6 +156,14 @@ const Step2WrapperUI = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  @font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  }
+  @font-face {
+    font-family: "Poppins-Bold";
+    src: url("/fonts/Poppins/Poppins-Bold.ttf");
+  }
 `;
 
 const AskSectionUI = styled.p`
@@ -167,10 +175,6 @@ const AskSectionUI = styled.p`
   color: #575757;
   font-size: 15px;
   margin-top: 25px;
-  @font-face {
-    font-family: "Poppins-SemiBold";
-    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
-  }
   font-family: "Poppins-SemiBold";
   cursor: pointer;
 `;
@@ -206,10 +210,6 @@ const BoxTitleWrapperUI = styled.div`
 `;
 
 const PopinPUI = styled.p`
-  @font-face {
-    font-family: "Poppins-Bold";
-    src: url("/fonts/Poppins/Poppins-Bold.ttf");
-  }
   font-family: "Poppins-Bold";
   margin: 0;
   font-size: ${({ fontSize }) => fontSize ?? "31px"};

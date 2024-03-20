@@ -48,6 +48,14 @@ const ProgressBarWrapperUI = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  }
+  @font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  }
 `;
 
 const ProgressBarUI = styled.div`
@@ -88,10 +96,6 @@ const CountBallUI = styled.div`
 `;
 
 const GoalBoxUI = styled.div`
-  @font-face {
-    font-family: "Poppins-SemiBold";
-    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
-  }
   font-family: "Poppins-SemiBold";
   position: absolute;
   bottom: -35px;
@@ -120,9 +124,5 @@ const GoalButtonUI = styled.button`
   justify-content: center;
   border: none;
   cursor: pointer;
-  @font-face {
-    font-family: "Poppins-SemiBold";
-    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
-  }
   font-family: "Poppins-SemiBold";
 `;

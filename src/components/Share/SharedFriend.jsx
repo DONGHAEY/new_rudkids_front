@@ -7,12 +7,12 @@ export const SharedFriend = ({ isShared, idx }) => {
         {!isShared ? (
           <CircleImgUI
             alt={"empty_friend.png"}
-            src={"/assets/Images/shareComponent/empty_friend.png"}
+            src={"/assets/Images/share/SharedFriend/empty_friend.png"}
           />
         ) : (
           <CircleImgUI
             alt={`${idx + 1}.png`}
-            src={`/assets/Images/shareComponent/friends/${idx + 1}.png`}
+            src={`/assets/Images/share/SharedFriend/friends/${idx + 1}.png`}
           />
         )}
       </CircleImgWrapper>
@@ -28,15 +28,15 @@ const SharedFriendUI = styled.div`
   align-items: center;
   gap: 3px;
   height: 100%;
+  @font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  }
 `;
 
 const ShareStatusTextUI = styled.p`
   font-size: 11.93px;
   gap: 2px;
-  @font-face {
-    font-family: "Poppins-SemiBold";
-    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
-  }
   font-family: "Poppins-SemiBold";
   color: ${({ isShared }) => (isShared ? "black" : "#A6A6A6")};
 `;
