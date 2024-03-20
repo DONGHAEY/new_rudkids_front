@@ -1,27 +1,28 @@
 import styled from "styled-components";
 
-export const SharedFriend = ({ isShared, idx }) => {
+export const SharedStatus = ({ isShared, idx }) => {
+  const NotSharedImg = (
+    <CircleImgUI
+      alt={"empty_friend.png"}
+      src={"/assets/Images/share/SharedFriend/empty_friend.png"}
+    />
+  );
+  const SharedImg = (
+    <CircleImgUI
+      alt={`${idx + 1}.png`}
+      src={`/assets/Images/share/SharedFriend/friends/${idx + 1}.png`}
+    />
+  );
+
   return (
-    <SharedFriendUI>
-      <CircleImgWrapper>
-        {!isShared ? (
-          <CircleImgUI
-            alt={"empty_friend.png"}
-            src={"/assets/Images/share/SharedFriend/empty_friend.png"}
-          />
-        ) : (
-          <CircleImgUI
-            alt={`${idx + 1}.png`}
-            src={`/assets/Images/share/SharedFriend/friends/${idx + 1}.png`}
-          />
-        )}
-      </CircleImgWrapper>
+    <SharedStatusUI>
+      <CircleImgWrapper children={!isShared ? NotSharedImg : SharedImg} />
       <ShareStatusTextUI isShared={isShared}>invited</ShareStatusTextUI>
-    </SharedFriendUI>
+    </SharedStatusUI>
   );
 };
 
-const SharedFriendUI = styled.div`
+const SharedStatusUI = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ProgressBar } from "../ProgressBar";
-import { SharedFriend } from "../SharedFriend";
+import { SharedStatus } from "../ShareStatus";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Alert } from "../../Alert";
@@ -85,13 +85,10 @@ export const Step2 = ({ next }) => {
               <img width="30%" src={addIconSrc} />
             </SharedButtonUI>
           </div>
-          {new Array(friendCnt).fill("").map((_, idx) => (
-            <SharedFriend
-              key={idx}
-              isShared={idx < friendSharedCount ? true : false}
-              idx={idx}
-            />
-          ))}
+          {new Array(friendCnt).fill("").map((_, idx) => {
+            const isShared = idx < friendSharedCount;
+            return <SharedStatus key={idx} isShared={isShared} idx={idx} />;
+          })}
         </FriendListUI>
         <ProgressBarSectionUI>
           <ProgressBar
