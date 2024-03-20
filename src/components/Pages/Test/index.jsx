@@ -111,7 +111,7 @@ export const ListTest = () => {
 
   return (
     <TestWrapperUI>
-      <LogoSectionUI>LOGO</LogoSectionUI>
+      <LogoSectionUI>Rudkids</LogoSectionUI>
       <ItemListUI
         ref={itemListRef}
         onTouchStart={touchStartHandler}
@@ -162,7 +162,7 @@ const ItemListUI = styled.div`
 
 const LogoSectionUI = styled.div`
   background-color: none;
-  padding-block: 30px;
+  padding-block: 50px;
   display: flex;
   align-items: center;
   justify-content: center;

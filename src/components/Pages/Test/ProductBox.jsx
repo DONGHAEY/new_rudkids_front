@@ -12,23 +12,13 @@ export const ProductBox = ({ color, isRotated, name, image }) => {
         </BoxButtonWrapperUI>
       </BoxBarUI>
       <BoxContentUI>
-        <BoxContentImgUI src={image ?? "/assets/Images/List/nothing.png"} />
-        <div
+        <BoxContentImgUI
           style={{
-            width: "100%",
-            backgroundColor: "gray",
+            zIndex: 1,
           }}
-        >
-          <img
-            src="/assets/Images/List/grass.png"
-            style={{
-              width: "100%",
-              position: "absolute",
-              zIndex: -1,
-              bototm: 0,
-            }}
-          />
-        </div>
+          src={image ?? "/assets/Images/List/nothing.png"}
+        />
+        <BoxBackgroundUI src={"/assets/Images/List/grass.png"} />
       </BoxContentUI>
     </BoxUI>
   );
@@ -99,5 +89,14 @@ const BoxContentImgWrapperUI = styled.div`
 
 const BoxContentImgUI = styled.img`
   position: absolute;
+  z-index: 1;
   height: 80%;
+`;
+
+const BoxBackgroundUI = styled.img`
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 70%;
+  bottom: 0;
 `;
