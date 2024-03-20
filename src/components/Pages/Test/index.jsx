@@ -4,33 +4,38 @@ import { ProductBox } from "./ProductBox";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import gsap from "gsap";
 
+const gap = 45;
+
 export const ListTest = () => {
   const itemList = [
     {
+      id: 1,
       color: "#FFE818",
       name: "My Pet Fly",
       image: "/assets/Images/List/my_pet_fly.png",
     },
     {
+      id: 2,
       color: "#FF3BA5",
       name: "A beautiful World",
       image: "/assets/Images/List/a_beautiful_world.png",
     },
     {
+      id: 3,
       color: "#26A4FF",
       name: "!! Nothing",
       image: "/assets/Images/List/nothing.png",
     },
     {
+      id: 4,
       color: "green",
       name: "shirt",
       image: "/assets/Images/List/shirt.png",
     },
-  ];
+  ].reverse();
 
-  const gap = 45;
-  const [stackedCount, setStackedCount] = useState(0);
-  const [isMoving, setIsMoving] = useState(false);
+  const [currentItemIdx, setCurrentItemIdx] = useState(0);
+  const [isRotate, setRotate] = useState(true);
 
   const itemListRef = useRef(null);
   const itemWrapperRefList = useMemo(() => {
@@ -38,10 +43,17 @@ export const ListTest = () => {
     return new Array(itemList.length).fill(null).map((_) => createRef(null));
   }, [itemList]);
 
+  const getBoundaryY = (index) => {
+    return {
+      minY: gap * (lastItemIdx - index),
+      maxY: itemListRef.current.clientHeight - gap * index - gap,
+    };
+  };
+
   useEffect(() => {
-    itemWrapperRefList.map((productBoxWrapperRef, idx) => {
+    itemWrapperRefList.map((productBoxWrapperRef, itemIdx) => {
       gsap.to(productBoxWrapperRef.current, {
-        y: gap * idx,
+        y: getBoundaryY(itemIdx).minY,
         duration: 0,
       });
     });
@@ -59,34 +71,56 @@ export const ListTest = () => {
     });
   }, []);
 
-  const moveCurrent = (topValue) => {
-    const movingDomRef = itemWrapperRefList[itemList.length - stackedCount - 1];
-    console.log(itemListRef.current.clientHeight, "clientHeight");
-    console.log(itemListRef.current.offsetHeight, "offsetHeight");
-    if (movingDomRef) {
-      const minYValue = gap * (itemList.length - stackedCount - 1);
-      let maxYValue = itemListRef.current.clientHeight - gap;
-      maxYValue -= gap * stackedCount;
-      const currentTopValue = gsap.getProperty(movingDomRef.current, "y");
-      let targetYValue = topValue + currentTopValue;
-      setIsMoving(false);
-      if (targetYValue <= minYValue) {
-        if (stackedCount - 1 >= 0) {
-          setStackedCount(stackedCount - 1);
-        }
-        targetYValue = minYValue;
-      } else if (targetYValue >= maxYValue) {
-        if (stackedCount + 1 < itemList.length) {
-          setStackedCount(stackedCount + 1);
-        }
-        targetYValue = maxYValue;
-      } else {
-        setIsMoving(true);
+  const lastItemIdx = itemWrapperRefList.length - 1;
+  const currentItemRef = itemWrapperRefList[currentItemIdx];
+
+  const moveCurrentItem = (topValue) => {
+    const { minY, maxY } = getBoundaryY(currentItemIdx);
+    const currentTopValue = gsap.getProperty(currentItemRef.current, "y");
+    let targetYValue = topValue + currentTopValue;
+    setRotate(true);
+    if (targetYValue <= minY) {
+      if (currentItemIdx - 1 >= 0) {
+        setCurrentItemIdx(currentItemIdx - 1);
       }
-      gsap.to(movingDomRef.current, {
-        y: targetYValue,
-      });
+      targetYValue = minY;
+    } else if (targetYValue >= maxY) {
+      if (currentItemIdx + 1 <= lastItemIdx) {
+        setCurrentItemIdx(currentItemIdx + 1);
+      }
+      targetYValue = maxY;
+    } else {
+      setRotate(false);
     }
+    gsap.to(currentItemRef.current, {
+      y: targetYValue,
+    });
+  };
+
+  const focusItem = (targetItemIdx) => {
+    console.log(targetItemIdx, currentItemIdx, "____");
+    let currnetItemIdxTemp = currentItemIdx;
+    if (targetItemIdx <= currentItemIdx) {
+      currnetItemIdxTemp++;
+    }
+    while (targetItemIdx > currnetItemIdxTemp) {
+      let selectedRef = itemWrapperRefList[currnetItemIdxTemp];
+      let { maxY } = getBoundaryY(currnetItemIdxTemp);
+      gsap.to(selectedRef.current, {
+        y: maxY,
+      });
+      currnetItemIdxTemp++;
+    }
+    while (targetItemIdx < currnetItemIdxTemp) {
+      let selectedRef = itemWrapperRefList[currnetItemIdxTemp - 1];
+      let { minY } = getBoundaryY(currnetItemIdxTemp - 1);
+      gsap.to(selectedRef.current, {
+        y: minY,
+      });
+      currnetItemIdxTemp--;
+    }
+    setRotate(false);
+    setCurrentItemIdx(currnetItemIdxTemp);
   };
 
   let prevTouchEvent = null;
@@ -98,9 +132,9 @@ export const ListTest = () => {
       const prevTouchPos = prevTouchEvent?.touches[0].screenY;
       const currentTouchPos = currentTouchEvent?.touches[0].screenY;
       if (prevTouchPos > currentTouchPos) {
-        moveCurrent(100);
+        moveCurrentItem(100);
       } else {
-        moveCurrent(-100);
+        moveCurrentItem(-100);
       }
     }
     prevTouchEvent = currentTouchEvent;
@@ -121,13 +155,22 @@ export const ListTest = () => {
         {/* 휴대폰만됨 지금 */}
         {itemList?.map((productData, idx) => {
           return (
-            <ItemWrapperUI key={idx} ref={itemWrapperRefList[idx]}>
+            <ItemWrapperUI
+              onClick={() => {
+                focusItem(lastItemIdx - idx);
+              }}
+              style={{
+                zIndex: idx,
+              }}
+              key={lastItemIdx - idx}
+              ref={itemWrapperRefList[lastItemIdx - idx]}
+            >
               <ProductBox
                 name={productData?.name}
                 color={productData?.color}
                 image={productData?.image}
                 isRotated={
-                  idx !== itemList.length - 1 - stackedCount || !isMoving
+                  idx !== itemList.length - 1 - currentItemIdx || isRotate
                 }
               />
             </ItemWrapperUI>
