@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ProductBox = ({ color, isRotated, name, image }) => {
+export const ItemBox = ({ color, isRotated, name, image }) => {
   return (
     <BoxUI isRotated={isRotated}>
       <BoxBarUI backgroundColor={color ?? "#FFE818"}>

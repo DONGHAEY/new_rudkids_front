@@ -1,6 +1,6 @@
 import { createRef, useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
-import { ProductBox } from "./ProductBox";
+import { ItemBox } from "./ItemBox";
 import gsap from "gsap";
 
 export const ListTest = () => {
@@ -132,7 +132,7 @@ export const ListTest = () => {
         key={itemIdx}
         ref={itemRef}
         children={
-          <ProductBox
+          <ItemBox
             name={productData?.name}
             color={productData?.color}
             image={productData?.image}
