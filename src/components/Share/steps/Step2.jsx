@@ -58,6 +58,11 @@ export const Step2 = ({ next }) => {
     } catch (e) {}
   };
 
+  const arrowButtonClickHandler = () => setIsopen(!isopen);
+
+  const ArrowDownIconImg = <ArrowButtonImgUI src={arrowDownIconSrc} />;
+  const ArrowUpIconImg = <ArrowButtonImgUI src={arrowUpIconSrc} />;
+
   return (
     <Step2WrapperUI>
       <LockDescriptionBoxUI>
@@ -66,16 +71,8 @@ export const Step2 = ({ next }) => {
       </LockDescriptionBoxUI>
       <BottomBoxUI ref={bottomBoxRef}>
         <ArrowButtonUI
-          onClick={() => setIsopen(!isopen)}
-          children={
-            <img
-              width="60%"
-              style={{
-                objectFit: "cover",
-              }}
-              src={isopen ? arrowDownIconSrc : arrowUpIconSrc}
-            />
-          }
+          onClick={arrowButtonClickHandler}
+          children={isopen ? ArrowDownIconImg : ArrowUpIconImg}
         />
         <img width="150px" src={friendGroupIconSrc} />
         <BoxTitleWrapperUI>
@@ -211,6 +208,11 @@ const ArrowButtonUI = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+`;
+
+const ArrowButtonImgUI = styled.img`
+  width: 60%;
+  object-fit: cover;
 `;
 
 const LockDescriptionBoxUI = styled.div`
