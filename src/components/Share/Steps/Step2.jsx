@@ -11,9 +11,9 @@ import { IoAdd } from "react-icons/io5";
 import gsap from "gsap";
 
 const friendGroupIconSrc =
-  "/assets/Images/share/Steps/Step2/friend_group_icon.png";
-const goalKeyIconSrc = "/assets/Images/share/Steps/Step2/goal_key.png";
-const quietFaceIconSrc = "/assets/Images/share/Steps/Step2/quiet_face.png";
+  "/assets/Images/share/Steps/Step2/friend_group_icon.webp";
+const goalKeyIconSrc = "/assets/Images/share/Steps/Step2/goal_key.webp";
+const quietFaceIconSrc = "/assets/Images/share/Steps/Step2/quiet_face.webp";
 
 export const Step2 = ({ next }) => {
   const friendCnt = 5;

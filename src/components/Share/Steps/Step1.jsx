@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const rudkidsAlbumSrc = "/assets/Images/share/Steps/Step1/rudkids_album.png";
-const rudkidsLogoSrc = "/assets/Images/share/Steps/Step1/rudkids_logo.png";
+const rudkidsAlbumSrc = "/assets/Images/share/Steps/Step1/rudkids_album.webp";
+const rudkidsLogoSrc = "/assets/Images/share/Steps/Step1/rudkids_logo.webp";
 
 export const Step1 = ({ next, prev }) => {
   return (
