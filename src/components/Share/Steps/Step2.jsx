@@ -89,7 +89,7 @@ export const Step2 = ({ next }) => {
         </BoxTitleWrapperUI>
         <FriendListUI>
           <ShareButtonUI
-            children={<IoAdd width="100%" color="gray" size={30} />}
+            children={<IoAdd color="gray" size={30} />}
             onClick={shareHandler}
           />
           {new Array(friendCnt).fill("").map((_, idx) => {
@@ -129,7 +129,6 @@ const Step2WrapperUI = styled.div`
   justify-content: end;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   @font-face {
     font-family: Poppins-SemiBold;
     src: url(${PoppinsSemiBoldFont}) format(woff2);
@@ -151,6 +150,7 @@ const FriendGroupImgUI = styled.img`
 
 const ShareButtonUI = styled.div`
   height: 85%;
+  width: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -178,7 +178,6 @@ const ProgressBarSectionUI = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  position: relative;
   margin-top: 30px;
 `;
 

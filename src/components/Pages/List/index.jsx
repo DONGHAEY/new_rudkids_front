@@ -159,9 +159,6 @@ export const List = () => {
     const eventPreventHandler = (e) => {
       e.preventDefault();
     };
-    window.addEventListener("wheel", eventPreventHandler, {
-      passive: false,
-    });
     window.addEventListener("touchmove", eventPreventHandler, {
       passive: false,
     });
@@ -189,6 +186,8 @@ const ListWrapperUI = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
   background: radial-gradient(
       ellipse at bottom,
       rgb(83, 173, 241) 0%,
@@ -201,8 +200,8 @@ const ItemListUI = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-  overflow-bottom: hidden;
   display: flex;
+  overflow-bottom: hidden;
   justify-content: center;
 `;
 
