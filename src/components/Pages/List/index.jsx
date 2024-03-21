@@ -155,14 +155,14 @@ export const List = () => {
     });
   }, [itemWrapperRefList.length]);
 
-  useEffect(() => {
-    const eventPreventHandler = (e) => {
-      e.preventDefault();
-    };
-    window.addEventListener("touchmove", eventPreventHandler, {
-      passive: false,
-    });
-  }, []);
+  // useEffect(() => {
+  //   const eventPreventHandler = (e) => {
+  //     e.preventDefault();
+  //   };
+  //   window.addEventListener("touchmove", eventPreventHandler, {
+  //     passive: false,
+  //   });
+  // }, []);
 
   return (
     <ListWrapperUI>
