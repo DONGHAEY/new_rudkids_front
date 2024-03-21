@@ -7,10 +7,10 @@ export const Step1 = ({ next, prev }) => {
   return (
     <Step1WrapperUI>
       <BoxTopUI>
-        <img width="100%" src={rudkidsAlbumSrc} />
+        <img fetchpriority="high" width="100%" src={rudkidsAlbumSrc} />
       </BoxTopUI>
       <BoxMiddleUI>
-        <img width="140px" src={rudkidsLogoSrc} />
+        <img width="140px" fetchPriority="high" src={rudkidsLogoSrc} />
         <BoxTitleWrapperUI>
           <BoxTitleUI>Guys! Don't be</BoxTitleUI>
           <BoxTitleUI>so boring.</BoxTitleUI>

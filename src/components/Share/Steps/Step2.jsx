@@ -68,7 +68,7 @@ export const Step2 = ({ next }) => {
   return (
     <Step2WrapperUI>
       <LockDescriptionBoxUI>
-        <img width="13px" src={lockIconSrc} />
+        <img width="13px" fetchPriority="high" src={lockIconSrc} />
         <PopinPUI fontSize={"13px"}>This Page is Locked</PopinPUI>
       </LockDescriptionBoxUI>
       <BottomBoxUI ref={bottomBoxRef}>
@@ -76,7 +76,13 @@ export const Step2 = ({ next }) => {
           onClick={arrowButtonClickHandler}
           children={isopen ? ArrowDownIconImg : ArrowUpIconImg}
         />
-        <img width="150px" src={friendGroupIconSrc} />
+        <img
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
+          width="150px"
+          src={friendGroupIconSrc}
+        />
         <BoxTitleWrapperUI>
           <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
           <PopinPUI fontSize={"35px"}>Invited Only</PopinPUI>
