@@ -28,6 +28,18 @@ export const Alert = ({
 };
 
 const AlertBoxWrapperUI = styled.div`
+  @font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+  }
+  @font-face {
+    font-family: "Poppins-Medium";
+    src: url("/fonts/Poppins/Poppins-Medium.ttf");
+  }
+  @font-face {
+    font-family: "Poppins-Bold";
+    src: url("/fonts/Poppins/Poppins-Bold.ttf");
+  }
   background-color: rgba(0, 0, 0, 50%);
   position: absolute;
   display: ${({ hidden }) => (hidden ? "none" : "flex")};
@@ -48,18 +60,6 @@ const AlertBoxUI = styled.div`
   flex-direction: column;
   text-align: center;
   padding-inline: 20px;
-  @font-face {
-    font-family: "Poppins-SemiBold";
-    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
-  }
-  @font-face {
-    font-family: "Poppins-Medium";
-    src: url("/fonts/Poppins/Poppins-Medium.ttf");
-  }
-  @font-face {
-    font-family: "Poppins-Bold";
-    src: url("/fonts/Poppins/Poppins-Bold.ttf");
-  }
 `;
 
 const ImgWrapperUI = styled.div`
@@ -100,7 +100,6 @@ const ButtonUI = styled.button`
   background: none;
   color: #368bff;
   font-family: "Poppins-Bold";
-  font-weight: bold;
   font-size: 16px;
   cursor: pointer;
 `;
