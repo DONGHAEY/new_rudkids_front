@@ -24,6 +24,7 @@ export const PopinsFontsCss = css`
     return `@font-face {
     font-family: "${popinsFontInfo.fontFamily}";
     src: url(${popinsFontInfo.src}) format("woff2");
+    font-display: swap;
   }`;
   })}
 `;

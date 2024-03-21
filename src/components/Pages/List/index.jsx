@@ -183,7 +183,7 @@ export const List = () => {
   );
 };
 
-/***********************         ****/
+/***************************/
 
 const ListWrapperUI = styled.div`
   width: 100%;
