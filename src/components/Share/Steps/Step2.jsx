@@ -1,19 +1,18 @@
 import styled from "styled-components";
 import { ProgressBar } from "../ProgressBar";
 import { SharedStatus } from "../SharedStatus";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Alert } from "../../Alert";
+import { BiSolidLockAlt } from "react-icons/bi";
+import { VscInfo } from "react-icons/vsc";
+import { IoAdd } from "react-icons/io5";
 import gsap from "gsap";
 
-const lockIconSrc = "/assets/Images/share/Steps/Step2/lock_icon.png";
-const arrowDownIconSrc = "/assets/Images/share/Steps/Step2/arrow_down.png";
-const arrowUpIconSrc = "/assets/Images/share/Steps/Step2/arrow.png";
 const friendGroupIconSrc =
   "/assets/Images/share/Steps/Step2/friend_group_icon.png";
-const addIconSrc = "/assets/Images/share/Steps/Step2/add.png";
 const goalKeyIconSrc = "/assets/Images/share/Steps/Step2/goal_key.png";
-const infoIconSrc = "/assets/Images/share/Steps/Step2/info.png";
 const quietFaceIconSrc = "/assets/Images/share/Steps/Step2/quiet_face.png";
 
 export const Step2 = ({ next }) => {
@@ -62,19 +61,22 @@ export const Step2 = ({ next }) => {
   const askSectionClickHandler = () => setAlertOpen(true);
   const alertCheckedHandler = () => setAlertOpen(false);
 
-  const ArrowDownIconImg = <ArrowButtonImgUI src={arrowDownIconSrc} />;
-  const ArrowUpIconImg = <ArrowButtonImgUI src={arrowUpIconSrc} />;
-
   return (
     <Step2WrapperUI>
       <LockDescriptionBoxUI>
-        <img width="13px" fetchPriority="high" src={lockIconSrc} />
+        <BiSolidLockAlt width="13px" />
         <PopinPUI fontSize={"13px"}>This Page is Locked</PopinPUI>
       </LockDescriptionBoxUI>
       <BottomBoxUI ref={bottomBoxRef}>
         <ArrowButtonUI
           onClick={arrowButtonClickHandler}
-          children={isopen ? ArrowDownIconImg : ArrowUpIconImg}
+          children={
+            isopen ? (
+              <FaArrowDown color="white" width="60%" />
+            ) : (
+              <FaArrowUp color="white" width="60%" />
+            )
+          }
         />
         <FriendGroupImgWrapperUI>
           <FriendGroupImgUI fetchpriority="high" src={friendGroupIconSrc} />
@@ -85,9 +87,8 @@ export const Step2 = ({ next }) => {
         </BoxTitleWrapperUI>
         <FriendListUI>
           <ShareButtonUI
-            children={
-              <ShareButtonImgUI src={addIconSrc} onClick={shareHandler} />
-            }
+            children={<IoAdd width="100%" color="gray" size={30} />}
+            onClick={shareHandler}
           />
           {new Array(friendCnt).fill("").map((_, idx) => {
             const isShared = idx < friendSharedCount;
@@ -103,7 +104,7 @@ export const Step2 = ({ next }) => {
           <ProgressBarSectionGoalImgUI src={goalKeyIconSrc} />
         </ProgressBarSectionUI>
         <AskSectionUI onClick={askSectionClickHandler}>
-          <InfoImgUI src={infoIconSrc} />
+          <VscInfo width="15px" />
           Why 5 Friends?
         </AskSectionUI>
       </BottomBoxUI>
@@ -174,12 +175,6 @@ const AskSectionUI = styled.p`
   cursor: pointer;
 `;
 
-const InfoImgUI = styled.img`
-  width: 15px;
-  height: 15px;
-  objectfit: cover;
-`;
-
 const ProgressBarSectionUI = styled.div`
   display: flex;
   flex-direction: row;
@@ -224,11 +219,6 @@ const ArrowButtonUI = styled.div`
   cursor: pointer;
 `;
 
-const ArrowButtonImgUI = styled.img`
-  width: 60%;
-  object-fit: cover;
-`;
-
 const LockDescriptionBoxUI = styled.div`
   position: absolute;
   top: 25px;
@@ -236,7 +226,7 @@ const LockDescriptionBoxUI = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   background-color: rgba(255, 255, 255, 60%);
   border-radius: 30px;
   padding: 15px;
