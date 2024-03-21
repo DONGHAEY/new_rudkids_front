@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import PoppinsBoldFont from "../../fonts/Poppins/Poppins-Bold.ttf";
+import PoppinsSemiBoldFont from "../../fonts/Poppins/Poppins-SemiBold.ttf";
+import PoppinsMediumFont from "../../fonts/Poppins/Poppins-Medium.ttf";
 
 export const Alert = ({
   imageUrl = null,
@@ -29,16 +32,16 @@ export const Alert = ({
 
 const AlertBoxWrapperUI = styled.div`
   @font-face {
-    font-family: "Poppins-SemiBold";
-    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+    font-family: Poppins-SemiBold;
+    src: url(${PoppinsSemiBoldFont}) format(woff2);
   }
   @font-face {
-    font-family: "Poppins-Bold";
-    src: url("/fonts/Poppins/Poppins-Bold.ttf");
+    font-family: Poppins-Bold;
+    src: url(${PoppinsBoldFont}) format(woff2);
   }
   @font-face {
-    font-family: "Poppins-Medium";
-    src: url("/fonts/Poppins/Poppins-Medium.ttf");
+    font-family: Poppins-Medium;
+    src: url(${PoppinsMediumFont}) format(woff2);
   }
   background-color: rgba(0, 0, 0, 50%);
   position: absolute;
@@ -73,14 +76,14 @@ const ImgUI = styled.img`
 `;
 
 const TitleUI = styled.p`
-  font-family: "Poppins-SemiBold";
+  font-family: Poppins-SemiBold;
   font-size: 19px;
   margin-top: 15px;
   line-height: 110%;
 `;
 
 const ContentUI = styled.p`
-  font-family: "Poppins-Medium";
+  font-family: Poppins-Medium;
   font-size: 14px;
   margin-top: 10px;
   line-height: 110%;
@@ -99,7 +102,7 @@ const ButtonUI = styled.button`
   border: none;
   background: none;
   color: #368bff;
-  font-family: "Poppins-Bold";
+  font-family: Poppins-Bold;
   font-size: 16px;
   cursor: pointer;
 `;

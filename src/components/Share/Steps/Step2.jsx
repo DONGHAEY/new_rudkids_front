@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import PoppinsBoldFont from "../../../fonts/Poppins/Poppins-Bold.ttf";
+import PoppinsSemiBoldFont from "../../../fonts/Poppins/Poppins-SemiBold.ttf";
 import { ProgressBar } from "../ProgressBar";
 import { SharedStatus } from "../SharedStatus";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
@@ -79,7 +81,7 @@ export const Step2 = ({ next }) => {
           }
         />
         <FriendGroupImgWrapperUI>
-          <FriendGroupImgUI fetchpriority="high" src={friendGroupIconSrc} />
+          <FriendGroupImgUI src={friendGroupIconSrc} />
         </FriendGroupImgWrapperUI>
         <BoxTitleWrapperUI>
           <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
@@ -129,16 +131,12 @@ const Step2WrapperUI = styled.div`
   height: 100%;
   overflow: hidden;
   @font-face {
-    font-family: "Poppins-SemiBold";
-    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+    font-family: Poppins-SemiBold;
+    src: url(${PoppinsSemiBoldFont}) format(woff2);
   }
   @font-face {
-    font-family: "Poppins-Bold";
-    src: url("/fonts/Poppins/Poppins-Bold.ttf");
-  }
-  @font-face {
-    font-family: "Poppins-Medium";
-    src: url("/fonts/Poppins/Poppins-Medium.ttf");
+    font-family: Poppins-Bold;
+    src: url(${PoppinsBoldFont}) format(woff2);
   }
 `;
 
@@ -170,7 +168,7 @@ const AskSectionUI = styled.p`
   color: #575757;
   font-size: 15px;
   margin-top: 25px;
-  font-family: "Poppins-SemiBold";
+  font-family: Poppins-SemiBold;
   cursor: pointer;
 `;
 
@@ -199,7 +197,7 @@ const BoxTitleWrapperUI = styled.div`
 `;
 
 const PopinPUI = styled.p`
-  font-family: "Poppins-Bold";
+  font-family: Poppins-Bold;
   margin: 0;
   font-size: ${({ fontSize }) => fontSize ?? "31px"};
   line-height: 120%;

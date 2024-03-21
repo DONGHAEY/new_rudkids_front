@@ -61,12 +61,6 @@ const ListWrapperUI = styled.div`
     radial-gradient(ellipse at top, rgb(12, 73, 187) 100%, transparent);
 `;
 
-const JoystickImgUI = styled.img`
-  cursor: pointer;
-  transform: rotate(30deg);
-  transform-origin: bottom;
-`;
-
 {
   /* <div
         style={{
@@ -88,21 +82,4 @@ const JoystickImgUI = styled.img`
           <img src="/assets/Images/List/joystick_body.png" />
         </div>
       </div> */
-}
-
-{
-  /* <Canvas
-        id="canvas"
-        gl={{ antialias: true }}
-        camera={{
-          fov: 60,
-          aspect: window.innerWidth / window.innerHeight,
-          near: 0.5,
-          far: 100,
-        }}
-      >
-        <Suspense fallback={<Loader />}>
-          <Scene productList={productList} />
-        </Suspense>
-      </Canvas> */
 }

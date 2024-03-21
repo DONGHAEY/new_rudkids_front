@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import { useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
+import PoppinsSemiBoldFont from "../../fonts/Poppins/Poppins-SemiBold.ttf";
 
 export const ProgressBar = ({ length, cnt, onGetIn }) => {
   const progressRef = useRef(null);
@@ -49,12 +50,8 @@ const ProgressBarWrapperUI = styled.div`
   align-items: center;
   justify-content: center;
   @font-face {
-    font-family: "Poppins-SemiBold";
-    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
-  }
-  @font-face {
-    font-family: "Poppins-SemiBold";
-    src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
+    font-family: Poppins-SemiBold;
+    src: url(${PoppinsSemiBoldFont}) format(woff2);
   }
 `;
 
@@ -91,12 +88,12 @@ const CountBallUI = styled.div`
   align-items: center;
   justify-content: center;
   color: black;
-  font-weight: bold;
+  font-family: Poppins-SemiBold;
   font-size: 10px;
 `;
 
 const GoalBoxUI = styled.div`
-  font-family: "Poppins-SemiBold";
+  font-family: Poppins-SemiBold;
   position: absolute;
   bottom: -35px;
   right: 0;
@@ -124,5 +121,5 @@ const GoalButtonUI = styled.button`
   justify-content: center;
   border: none;
   cursor: pointer;
-  font-family: "Poppins-SemiBold";
+  font-family: Poppins-SemiBold;
 `;
