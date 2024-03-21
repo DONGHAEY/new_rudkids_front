@@ -216,7 +216,6 @@ const LogoSectionUI = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 30px;
-  font-weight: bold;
   font-family: ${PoppinsFonts.poppinsBold.fontFamily};
   color: white;
 `;

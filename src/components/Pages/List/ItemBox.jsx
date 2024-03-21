@@ -44,12 +44,11 @@ const BoxTitleUI = styled.div`
   padding: 10px;
   padding-block: 2px;
   border-radius: 15px;
-  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  font-family: ${PoppinsFonts.poppinsBold.fontFamily};
+  font-family: ${PoppinsFonts.poppinsSemiBold.fontFamily};
 `;
 
 const BoxButtonWrapperUI = styled.div`
