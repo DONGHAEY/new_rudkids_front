@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ProgressBar } from "../ProgressBar";
 import { SharedStatus } from "../SharedStatus";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Alert } from "../../Alert";
 import gsap from "gsap";
@@ -76,13 +76,9 @@ export const Step2 = ({ next }) => {
           onClick={arrowButtonClickHandler}
           children={isopen ? ArrowDownIconImg : ArrowUpIconImg}
         />
-        <img
-          loading="lazy"
-          decoding="async"
-          fetchpriority="low"
-          width="150px"
-          src={friendGroupIconSrc}
-        />
+        <FriendGroupImgWrapperUI>
+          <FriendGroupImgUI fetchpriority="high" src={friendGroupIconSrc} />
+        </FriendGroupImgWrapperUI>
         <BoxTitleWrapperUI>
           <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
           <PopinPUI fontSize={"35px"}>Invited Only</PopinPUI>
@@ -139,6 +135,15 @@ const Step2WrapperUI = styled.div`
     font-family: "Poppins-Bold";
     src: url("/fonts/Poppins/Poppins-Bold.ttf");
   }
+`;
+
+const FriendGroupImgWrapperUI = styled.div`
+  height: 90px;
+`;
+
+const FriendGroupImgUI = styled.img`
+  height: 100%;
+  object-fit: cover;
 `;
 
 const ShareButtonUI = styled.div`
