@@ -136,6 +136,10 @@ const Step2WrapperUI = styled.div`
     font-family: "Poppins-Bold";
     src: url("/fonts/Poppins/Poppins-Bold.ttf");
   }
+  @font-face {
+    font-family: "Poppins-Medium";
+    src: url("/fonts/Poppins/Poppins-Medium.ttf");
+  }
 `;
 
 const FriendGroupImgWrapperUI = styled.div`
@@ -155,11 +159,6 @@ const ShareButtonUI = styled.div`
   background-color: white;
   border-radius: 100%;
   aspect-ratio: 1 / 1;
-`;
-
-const ShareButtonImgUI = styled.img`
-  object-fit: cover;
-  height: 40%;
 `;
 
 const AskSectionUI = styled.p`

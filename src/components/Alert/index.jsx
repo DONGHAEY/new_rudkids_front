@@ -16,8 +16,8 @@ export const Alert = ({
             <ImgUI src={imageUrl} alt={"alert icon"} />
           </ImgWrapperUI>
         )}
-        <TitleUI dangerouslySetInnerHTML={{ __html: title }}></TitleUI>
-        <ContentUI dangerouslySetInnerHTML={{ __html: content }}></ContentUI>
+        <TitleUI dangerouslySetInnerHTML={{ __html: title }} />
+        <ContentUI dangerouslySetInnerHTML={{ __html: content }} />
         <BrUI />
         <ButtonWrapperUI>
           <ButtonUI onClick={onChecked}>{buttonContent}</ButtonUI>
@@ -33,12 +33,12 @@ const AlertBoxWrapperUI = styled.div`
     src: url("/fonts/Poppins/Poppins-SemiBold.ttf");
   }
   @font-face {
-    font-family: "Poppins-Medium";
-    src: url("/fonts/Poppins/Poppins-Medium.ttf");
-  }
-  @font-face {
     font-family: "Poppins-Bold";
     src: url("/fonts/Poppins/Poppins-Bold.ttf");
+  }
+  @font-face {
+    font-family: "Poppins-Medium";
+    src: url("/fonts/Poppins/Poppins-Medium.ttf");
   }
   background-color: rgba(0, 0, 0, 50%);
   position: absolute;
