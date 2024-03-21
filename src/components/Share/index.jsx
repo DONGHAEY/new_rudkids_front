@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Step1 } from "./Step1";
-import { Step2 } from "./Step2";
 import gsap from "gsap";
+import { Step1 } from "./Steps/Step1";
+import { Step2 } from "./Steps/Step2";
 
 const stepComponentSrcList = [Step1, Step2];
 const totalStepCount = stepComponentSrcList.length;

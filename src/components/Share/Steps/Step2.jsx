@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { ProgressBar } from "./ProgressBar";
-import { SharedStatus } from "./ShareStatus";
+import { ProgressBar } from "../ProgressBar";
+import { SharedStatus } from "../SharedStatus";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
-import { Alert } from "../Alert";
+import { Alert } from "../../Alert";
 import gsap from "gsap";
 
 const lockIconSrc = "/assets/Images/share/Steps/Step2/lock_icon.png";
@@ -59,6 +59,8 @@ export const Step2 = ({ next }) => {
   };
 
   const arrowButtonClickHandler = () => setIsopen(!isopen);
+  const askSectionClickHandler = () => setAlertOpen(true);
+  const alertCheckedHandler = () => setAlertOpen(false);
 
   const ArrowDownIconImg = <ArrowButtonImgUI src={arrowDownIconSrc} />;
   const ArrowUpIconImg = <ArrowButtonImgUI src={arrowUpIconSrc} />;
@@ -80,11 +82,11 @@ export const Step2 = ({ next }) => {
           <PopinPUI fontSize={"35px"}>Invited Only</PopinPUI>
         </BoxTitleWrapperUI>
         <FriendListUI>
-          <div>
-            <SharedButtonUI onClick={shareHandler}>
-              <img width="30%" src={addIconSrc} />
-            </SharedButtonUI>
-          </div>
+          <ShareButtonUI
+            children={
+              <ShareButtonImgUI src={addIconSrc} onClick={shareHandler} />
+            }
+          />
           {new Array(friendCnt).fill("").map((_, idx) => {
             const isShared = idx < friendSharedCount;
             return <SharedStatus key={idx} isShared={isShared} idx={idx} />;
@@ -98,7 +100,7 @@ export const Step2 = ({ next }) => {
           />
           <ProgressBarSectionGoalImgUI src={goalKeyIconSrc} />
         </ProgressBarSectionUI>
-        <AskSectionUI onClick={() => setAlertOpen(true)}>
+        <AskSectionUI onClick={askSectionClickHandler}>
           <InfoImgUI src={infoIconSrc} />
           Why 5 Friends?
         </AskSectionUI>
@@ -109,7 +111,7 @@ export const Step2 = ({ next }) => {
         title={"Rudkids is<br />Not for everyone 👑"}
         content={"Rudkids is a place where only<br />lucky guys can come in."}
         buttonContent={"Yeeeaaah!"}
-        onChecked={() => setAlertOpen(false)}
+        onChecked={alertCheckedHandler}
       />
     </Step2WrapperUI>
   );
@@ -133,15 +135,19 @@ const Step2WrapperUI = styled.div`
   }
 `;
 
-const SharedButtonUI = styled.div`
+const ShareButtonUI = styled.div`
+  height: 85%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: white;
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
   border-radius: 100%;
+  aspect-ratio: 1 / 1;
+`;
+
+const ShareButtonImgUI = styled.img`
+  object-fit: cover;
+  height: 40%;
 `;
 
 const AskSectionUI = styled.p`
@@ -246,7 +252,7 @@ const FriendListUI = styled.div`
   align-items: center;
   padding-inline: 15px;
   padding-block: 15px;
-  gap: 20px;
+  gap: 10px;
   width: 75%;
   height: 70px;
   margin-top: 30px;

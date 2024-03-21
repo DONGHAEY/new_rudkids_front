@@ -23,12 +23,13 @@ export const SharedStatus = ({ isShared, idx }) => {
 };
 
 const SharedStatusUI = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
   gap: 3px;
-  height: 100%;
   @font-face {
     font-family: "Poppins-SemiBold";
     src: url("/fonts/Poppins/Poppins-SemiBold.ttf");

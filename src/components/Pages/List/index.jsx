@@ -29,7 +29,7 @@ export const List = () => {
 
   return (
     <ListWrapperUI>
-      <Canvas
+      {/* <Canvas
         id="canvas"
         gl={{ antialias: true }}
         camera={{
@@ -42,7 +42,7 @@ export const List = () => {
         <Suspense fallback={<Loader />}>
           <Scene productList={productList} />
         </Suspense>
-      </Canvas>
+      </Canvas> */}
       <Share />
     </ListWrapperUI>
   );
