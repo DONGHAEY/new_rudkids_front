@@ -34,7 +34,10 @@ export const ProgressBar = ({ length, cnt, onGetIn }) => {
             {cnt}/{length}
           </CountBallUI>
           <ProgressBarFillUI ref={progressRef} />
-          <GoalBoxUI>Goal</GoalBoxUI>
+          <GoalBoxUI>
+            <GoalBoxArrow />
+            Goal
+          </GoalBoxUI>
         </ProgressBarUI>
       ) : (
         <GoalButtonUI onClick={onGetIn}>Get in</GoalButtonUI>
@@ -63,6 +66,14 @@ const ProgressBarUI = styled.div`
   flex-direction: row;
   justify-content: start;
   align-items: center;
+`;
+
+const GoalBoxArrow = styled.div`
+  position: absolute;
+  top: -8px;
+  border-bottom: 8px solid red;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
 `;
 
 const ProgressBarFillUI = styled.div`
@@ -97,6 +108,10 @@ const GoalBoxUI = styled.div`
   color: white;
   font-size: 10px;
   padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding-inline: 9px;
   margin: 0;
   border-radius: 10px;
