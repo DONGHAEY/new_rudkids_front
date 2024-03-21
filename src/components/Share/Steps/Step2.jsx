@@ -170,6 +170,7 @@ const ProgressBarSectionUI = styled.div`
   justify-content: center;
   width: 100%;
   margin-top: 30px;
+  position: relative;
 `;
 
 const ProgressBarSectionGoalImgUI = styled.img`
