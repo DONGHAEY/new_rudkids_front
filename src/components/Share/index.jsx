@@ -13,6 +13,24 @@ export const Share = ({ onShareComplete }) => {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
+    if (localStorage.getItem("share_complete") === "true") {
+      setStep(totalStepCount);
+    }
+  }, [totalStepCount]);
+
+  useEffect(() => {
+    //사용자 쉐어 다되면
+    let isShareComplete = false;
+    if (step === totalStepCount) {
+      isShareComplete = true;
+    }
+    if (isShareComplete) {
+      localStorage.setItem("share_complete", "true");
+      onShareComplete();
+    }
+  }, [step, totalStepCount]);
+
+  useEffect(() => {
     if (!shareComponentRef.current) return;
     if (step >= totalStepCount) {
       const completeHandler = () => {
@@ -37,8 +55,6 @@ export const Share = ({ onShareComplete }) => {
           duration: 0.5,
         });
         setStep(step + 1);
-      } else {
-        onShareComplete();
       }
     };
     gsap.to(shareComponentRef.current, {
