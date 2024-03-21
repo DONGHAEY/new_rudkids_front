@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import PoppinsBoldFont from "../../../fonts/Poppins/Poppins-Bold.ttf";
-import PoppinsSemiBoldFont from "../../../fonts/Poppins/Poppins-SemiBold.ttf";
-
+import { PoppinsFonts } from "../../../fonts/Poppins";
 const rudkidsAlbumSrc = "/assets/Images/share/Steps/Step1/rudkids_album.webp";
 const rudkidsLogoSrc = "/assets/Images/share/Steps/Step1/rudkids_logo.webp";
 
@@ -30,25 +28,17 @@ const BoxTitleWrapperUI = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @font-face {
-    font-family: Poppins-Bold;
-    src: url(${PoppinsBoldFont});
-  }
-  @font-face {
-    font-family: Poppins-SemiBold;
-    src: url(${PoppinsSemiBoldFont}) format(woff2);
-  }
 `;
 
 const BoxTitleUI = styled.p`
-  font-family: Poppins-Bold;
+  font-family: ${PoppinsFonts.poppinsBold.fontFamily};
   margin: 0;
   font-size: 31px;
   line-height: 120%;
 `;
 
 const BoxButtonUI = styled.p`
-  font-family: Poppins-SemiBold;
+  font-family: ${PoppinsFonts.poppinsSemiBold.fontFamily};
   background-color: black;
   color: white;
   border-radius: 30px;
@@ -72,7 +62,7 @@ const BoxMiddleUI = styled.div`
   border-radius: 10px;
 `;
 const BoxBottomUI = styled.div`
-  font-family: Poppins-SemiBold;
+  font-family: ${PoppinsFonts.poppinsSemiBold.fontFamily};
   padding-block: 30px;
   font-size: 16px;
 `;

@@ -24,11 +24,11 @@ const productList = [
   },
 ];
 
-export const List = () => {
+export const List_3D = () => {
   /** 아이템리스트페이지(아이템GLB파일*애니메이션 포함) */
 
   return (
-    <ListWrapperUI>
+    <List3DWrapperUI>
       <Canvas
         id="canvas"
         gl={{ antialias: true }}
@@ -44,11 +44,11 @@ export const List = () => {
         </Suspense>
       </Canvas>
       <Share />
-    </ListWrapperUI>
+    </List3DWrapperUI>
   );
 };
 
-const ListWrapperUI = styled.div`
+const List3DWrapperUI = styled.div`
   height: 100%;
   weight: 100%;
   display: flex;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { PoppinsFonts } from "../../../fonts/Poppins";
 
 export const ItemBox = ({ color, isRotated, name, image }) => {
   return (
@@ -48,6 +49,7 @@ const BoxTitleUI = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 12px;
+  font-family: ${PoppinsFonts.poppinsBold.fontFamily};
 `;
 
 const BoxButtonWrapperUI = styled.div`

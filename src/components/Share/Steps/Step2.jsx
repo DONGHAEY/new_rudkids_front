@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import PoppinsBoldFont from "../../../fonts/Poppins/Poppins-Bold.ttf";
-import PoppinsSemiBoldFont from "../../../fonts/Poppins/Poppins-SemiBold.ttf";
 import { ProgressBar } from "../ProgressBar";
 import { SharedStatus } from "../SharedStatus";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
@@ -11,6 +9,7 @@ import { BiSolidLockAlt } from "react-icons/bi";
 import { VscInfo } from "react-icons/vsc";
 import { IoAdd } from "react-icons/io5";
 import gsap from "gsap";
+import { PoppinsFonts } from "../../../fonts/Poppins";
 
 const friendGroupIconSrc =
   "/assets/Images/share/Steps/Step2/friend_group_icon.webp";
@@ -129,14 +128,6 @@ const Step2WrapperUI = styled.div`
   justify-content: end;
   width: 100%;
   height: 100%;
-  @font-face {
-    font-family: Poppins-SemiBold;
-    src: url(${PoppinsSemiBoldFont}) format(woff2);
-  }
-  @font-face {
-    font-family: Poppins-Bold;
-    src: url(${PoppinsBoldFont}) format(woff2);
-  }
 `;
 
 const FriendGroupImgWrapperUI = styled.div`
@@ -168,7 +159,7 @@ const AskSectionUI = styled.p`
   color: #575757;
   font-size: 15px;
   margin-top: 25px;
-  font-family: Poppins-SemiBold;
+  font-family: ${PoppinsFonts.poppinsSemiBold.fontFamily};
   cursor: pointer;
 `;
 
@@ -189,6 +180,7 @@ const ProgressBarSectionGoalImgUI = styled.img`
 `;
 
 const BoxTitleWrapperUI = styled.div`
+  font-family: ${PoppinsFonts.poppinsSemiBold.fontFamily};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -196,7 +188,7 @@ const BoxTitleWrapperUI = styled.div`
 `;
 
 const PopinPUI = styled.p`
-  font-family: Poppins-Bold;
+  font-family: ${PoppinsFonts.poppinsBold.fontFamily};
   margin: 0;
   font-size: ${({ fontSize }) => fontSize ?? "31px"};
   line-height: 120%;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ItemBox } from "./ItemBox";
 import gsap from "gsap";
 import { Share } from "../../Share";
+import { PoppinsFonts } from "../../../fonts/Poppins";
 
 export const List = () => {
   const itemList = [
@@ -216,6 +217,7 @@ const LogoSectionUI = styled.div`
   justify-content: center;
   font-size: 30px;
   font-weight: bold;
+  font-family: ${PoppinsFonts.poppinsBold.fontFamily};
   color: white;
 `;
 

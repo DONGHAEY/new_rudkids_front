@@ -7,7 +7,7 @@ import { Step2 } from "./Steps/Step2";
 const stepComponentSrcList = [Step1, Step2];
 const totalStepCount = stepComponentSrcList.length;
 
-export const Share = ({ onShareComplete }) => {
+export const Share = ({ onShareComplete = null }) => {
   const shareWrapperRef = useRef(null);
   const shareComponentRef = useRef(null);
   const [step, setStep] = useState(0);
@@ -26,7 +26,9 @@ export const Share = ({ onShareComplete }) => {
     }
     if (isShareComplete) {
       localStorage.setItem("share_complete", "true");
-      onShareComplete();
+      if (onShareComplete && typeof onShareComplete === "function") {
+        onShareComplete();
+      }
     }
   }, [step, totalStepCount]);
 

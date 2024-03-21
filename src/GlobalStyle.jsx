@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
+import { PoppinsFonts, PopinsFontsCss } from "./fonts/Poppins/index";
+
 const GlobalStyle = createGlobalStyle`
   * {
     margin : 0;
@@ -34,6 +36,8 @@ const GlobalStyle = createGlobalStyle`
     position:relative;
   }
 
+  ${PopinsFontsCss}
+  font-family : ${PoppinsFonts.poppinsMedium.fontFamily};
 `;
 
 export default GlobalStyle;

@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { List } from "./components/Pages/List";
+import { List_3D } from "./components/Pages/List3D";
 import { HandMotion } from "./components/Pages/HandMotion";
 import { Login } from "./components/Pages/Login";
 import { Detail } from "./components/Pages/Detail";
@@ -22,11 +23,11 @@ function App() {
           <Route path="/hand-motion" element={<HandMotion />} />
           <Route path="/login" element={<Login />} />
           <Route path="/list" element={<List />} />
+          <Route path="/list-3d" element={<List_3D />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/my" element={<My />} />
           <Route path="/order/:id" element={<Order />} />
           {/*  */}
-          {/* <Route path="/test" element={<ListTest />} /> */}
           <Route path="/policy-privacy" element={null} />
         </Routes>
         {/* <PcBlocking /> */}

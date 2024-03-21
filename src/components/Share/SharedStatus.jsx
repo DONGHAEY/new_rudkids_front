@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PoppinsSemiBoldFont from "../../fonts/Poppins/Poppins-SemiBold.ttf";
+import { PoppinsFonts } from "../../fonts/Poppins";
 
 export const SharedStatus = ({ isShared, idx }) => {
   const NotSharedImg = (
@@ -31,16 +31,12 @@ const SharedStatusUI = styled.div`
   justify-content: center;
   aspect-ratio: 1 / 1;
   gap: 3px;
-  @font-face {
-    font-family: Poppins-SemiBold;
-    src: url(${PoppinsSemiBoldFont}) format(woff2);
-  }
 `;
 
 const ShareStatusTextUI = styled.p`
   font-size: 11.93px;
   gap: 2px;
-  font-family: Poppins-SemiBold;
+  font-family: ${PoppinsFonts.poppinsBold.fontFamily};
   color: ${({ isShared }) => (isShared ? "black" : "#A6A6A6")};
 `;
 
