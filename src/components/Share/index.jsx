@@ -7,7 +7,7 @@ import { Step2 } from "./Steps/Step2";
 const stepComponentSrcList = [Step1, Step2];
 const totalStepCount = stepComponentSrcList.length;
 
-export const Share = () => {
+export const Share = ({ onShareComplete }) => {
   const shareWrapperRef = useRef(null);
   const shareComponentRef = useRef(null);
   const [step, setStep] = useState(0);
@@ -37,6 +37,8 @@ export const Share = () => {
           duration: 0.5,
         });
         setStep(step + 1);
+      } else {
+        onShareComplete();
       }
     };
     gsap.to(shareComponentRef.current, {

@@ -155,17 +155,17 @@ export const List = () => {
     });
   }, [itemWrapperRefList.length]);
 
-  useEffect(() => {
+  const shareCompleteHandler = () => {
     const eventPreventHandler = (e) => {
       e.preventDefault();
     };
     window.addEventListener("wheel", eventPreventHandler, {
       passive: false,
     });
-    // window.addEventListener("touchmove", eventPreventHandler, {
-    //   passive: false,
-    // });
-  }, []);
+    window.addEventListener("touchmove", eventPreventHandler, {
+      passive: false,
+    });
+  };
 
   return (
     <ListWrapperUI>
@@ -177,7 +177,7 @@ export const List = () => {
         onTouchEnd={touchEndHandler}
         children={itemWrapperList}
       />
-      <Share />
+      <Share onShareComplete={shareCompleteHandler} />
     </ListWrapperUI>
   );
 };
