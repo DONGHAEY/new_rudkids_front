@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { PoppinsFonts } from "../../../fonts/Poppins";
+
 const rudkidsAlbumSrc = "/assets/Images/share/Steps/Step1/rudkids_album.webp";
 const rudkidsLogoSrc = "/assets/Images/share/Steps/Step1/rudkids_logo.webp";
 
@@ -7,10 +8,20 @@ export const Step1 = ({ next, prev }) => {
   return (
     <Step1WrapperUI>
       <BoxTopUI>
-        <img width="100%" src={rudkidsAlbumSrc} />
+        <img
+          loading="lazy"
+          fetchpriority="high"
+          width="100%"
+          src={rudkidsAlbumSrc}
+        />
       </BoxTopUI>
       <BoxMiddleUI>
-        <img width="140px" src={rudkidsLogoSrc} />
+        <img
+          loading="lazy"
+          fetchpriority="high"
+          width="140px"
+          src={rudkidsLogoSrc}
+        />
         <BoxTitleWrapperUI>
           <BoxTitleUI>Guys! Don't be</BoxTitleUI>
           <BoxTitleUI>so boring.</BoxTitleUI>

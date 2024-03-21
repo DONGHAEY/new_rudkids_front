@@ -35,9 +35,7 @@ const GlobalStyle = createGlobalStyle`
     height:100%;
     position:relative;
   }
-
   ${PopinsFontsCss}
-  font-family : ${PoppinsFonts.poppinsMedium.fontFamily};
 `;
 
 export default GlobalStyle;
