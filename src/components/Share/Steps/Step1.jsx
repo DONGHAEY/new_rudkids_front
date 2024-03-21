@@ -8,20 +8,10 @@ export const Step1 = ({ next, prev }) => {
   return (
     <Step1WrapperUI>
       <BoxTopUI>
-        <img
-          loading="lazy"
-          fetchpriority="high"
-          width="100%"
-          src={rudkidsAlbumSrc}
-        />
+        <img width="100%" src={rudkidsAlbumSrc} />
       </BoxTopUI>
       <BoxMiddleUI>
-        <img
-          loading="lazy"
-          fetchpriority="high"
-          width="140px"
-          src={rudkidsLogoSrc}
-        />
+        <img width="140px" src={rudkidsLogoSrc} />
         <BoxTitleWrapperUI>
           <BoxTitleUI>Guys! Don't be</BoxTitleUI>
           <BoxTitleUI>so boring.</BoxTitleUI>

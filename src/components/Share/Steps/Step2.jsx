@@ -80,7 +80,7 @@ export const Step2 = ({ next }) => {
           }
         />
         <FriendGroupImgWrapperUI>
-          <FriendGroupImgUI src={friendGroupIconSrc} />
+          <FriendGroupImgUI fetchPriority="high" src={friendGroupIconSrc} />
         </FriendGroupImgWrapperUI>
         <BoxTitleWrapperUI>
           <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
