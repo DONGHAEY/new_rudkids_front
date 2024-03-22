@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
-import Draggable from "react-draggable";
 
 export const AppleSlider = ({ slidedHandler }) => {
   const slideballRef = useRef(null);

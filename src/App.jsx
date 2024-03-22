@@ -12,27 +12,27 @@ import { PcBlocking } from "./components/PcBlocking";
 import { Share } from "./components/Share";
 import Lottie from "lottie-web";
 import { useEffect, useRef } from "react";
-//
+import { GlobalStyle, GlobalFont } from "./GlobalStyle";
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/hand-motion" element={<HandMotion />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/list" element={<List />} />
-          <Route path="/list-3d" element={<List_3D />} />
-          <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/my" element={<My />} />
-          <Route path="/order/:id" element={<Order />} />
-          {/*  */}
-          <Route path="/policy-privacy" element={null} />
-        </Routes>
-        {/* <PcBlocking /> */}
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <GlobalFont />
+      <GlobalStyle />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/hand-motion" element={<HandMotion />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/list" element={<List />} />
+        <Route path="/list-3d" element={<List_3D />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/my" element={<My />} />
+        <Route path="/order/:id" element={<Order />} />
+        {/*  */}
+        <Route path="/policy-privacy" element={null} />
+      </Routes>
+      {/* <PcBlocking /> */}
+    </BrowserRouter>
   );
 }
 

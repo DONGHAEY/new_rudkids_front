@@ -10,20 +10,19 @@ import { motion } from "framer-motion-3d";
 import { SunModel } from "./SunModel";
 import { GrassModel } from "./GrassModel";
 
-const sounds = {
-  hit: new Audio("/audio/hit_sound_2.mp3"),
-  slide: new Audio("/audio/slide_sound.mp3"),
-  scare: new Audio("/audio/scare.mp3"),
-};
-
-const getPositionForXZAngle = (distance, angleRad) => {
-  return {
-    x: distance * Math.cos(angleRad),
-    z: distance * Math.sin(angleRad),
-  };
-};
-
 export const Scene = ({ productList }) => {
+  const getPositionForXZAngle = (distance, angleRad) => {
+    return {
+      x: distance * Math.cos(angleRad),
+      z: distance * Math.sin(angleRad),
+    };
+  };
+  const sounds = {
+    hit: new Audio("/audio/hit_sound_2.mp3"),
+    slide: new Audio("/audio/slide_sound.mp3"),
+    scare: new Audio("/audio/scare.mp3"),
+  };
+
   const [controlMaxDistance, setControlMaxDistance] = useState(Infinity);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [isWatching, setIsWatching] = useState(false);

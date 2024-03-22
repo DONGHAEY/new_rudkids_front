@@ -2,7 +2,11 @@ import { createGlobalStyle } from "styled-components";
 
 import { PoppinsFonts, PopinsFontsCss } from "./fonts/Poppins/index";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalFont = createGlobalStyle`
+  ${PopinsFontsCss}
+`;
+
+export const GlobalStyle = createGlobalStyle`
   * {
     margin : 0;
     padding : 0;
@@ -35,7 +39,4 @@ const GlobalStyle = createGlobalStyle`
     height:100%;
     position:relative;
   }
-  ${PopinsFontsCss}
 `;
-
-export default GlobalStyle;
