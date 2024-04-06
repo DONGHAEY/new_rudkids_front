@@ -1,9 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-// import Hand from "./pages/Hand";
 import { PcBlocking } from "./components/PcBlocking";
 import { Share } from "./components/Share";
-import Lottie from "lottie-web";
+// import Lottie from "lottie-web";
 import { useEffect, useRef } from "react";
 import MainPage from "./pages/Main";
 import ListPage from "./pages/List";
