@@ -35,7 +35,7 @@ export const Scene = ({ productList }) => {
     .fill(null)
     .map(() => createRef());
 
-  const handGltf = useGLTF("/assets/models/hand.glb");
+  const handGltf = useGLTF("/Models/hand.glb");
   const handGroupRef = useRef(null);
   const handRef = useRef(null);
 

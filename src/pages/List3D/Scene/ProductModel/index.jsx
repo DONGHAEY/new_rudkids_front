@@ -5,9 +5,9 @@ import { useEffect } from "react";
 import { ProductTag } from "./ProductTag";
 
 const productGltfUrl = {
-  PetFly: "/assets/models/MyPetFly.glb",
-  Nothing: "/assets/models/Nothing.glb",
-  ABeautifulWorld: "/assets/models/ABeautifulWorld.glb",
+  PetFly: "/Models/MyPetFly.glb",
+  Nothing: "/Models/Nothing.glb",
+  ABeautifulWorld: "/Models/ABeautifulWorld.glb",
 };
 
 export const ProductModel = ({ data, isWatching, selected }) => {

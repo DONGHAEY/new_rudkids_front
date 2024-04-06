@@ -1,18 +1,18 @@
 @font-face {
   font-family: "Poppins-Medium";
-  src: url("/public/assets/Fonts/Poppins-Medium.ttf") format("woff2");
+  src: url("/public/Fonts/Poppins-Medium.ttf") format("woff2");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Poppins-Bold";
-  src: url("/public/assets/Fonts/Poppins-Bold.ttf") format("woff2");
+  src: url("/public/Fonts/Poppins-Bold.ttf") format("woff2");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Poppins-SemiBold";
-  src: url("/public/assets/Fonts/Poppins-SemiBold.ttf") format("woff2");
+  src: url("/public/Fonts/Poppins-SemiBold.ttf") format("woff2");
   font-display: swap;
 }
 

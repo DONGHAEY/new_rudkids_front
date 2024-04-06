@@ -4,7 +4,7 @@ import { PointLight } from "three";
 
 export const SunModel = ({ position }) => {
   const sunRef = useRef(null);
-  const sunGltf = useGLTF("/assets/models/the_sun.glb");
+  const sunGltf = useGLTF("/Models/the_sun.glb");
   const animations = useAnimations(sunGltf.animations, sunRef);
 
   useEffect(() => {

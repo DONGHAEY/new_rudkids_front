@@ -9,7 +9,7 @@ const timelineOption = {
 };
 
 export const Scene = ({ offset, moveDuration = 2 }) => {
-  const gltf = useGLTF("/assets/models/Nothing.glb");
+  const gltf = useGLTF("/Models/Nothing.glb");
   const productRef = useRef();
 
   useFrame(() => {

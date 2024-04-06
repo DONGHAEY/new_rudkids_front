@@ -93,7 +93,7 @@ const HandPage = () => {
     <CenterWrapperUI>
       <HandMotionWrapperUI ref={screenshotSectionRef}>
         <SideTopWrapperUI>
-          <img width={"100px"} src={"/assets/Images/rudkids_logo.webp"} />
+          <img width={"100px"} src={"/assets/rudkids_logo.webp"} />
           <p
             style={{
               fontSize: "14px",

@@ -44,7 +44,7 @@ const Page0 = ({ isRender }) => {
         }}
       >
         <img
-          src={"/assets/images/rudkids_logo.webp"}
+          src={"/Images/rudkids_logo.webp"}
           style={{ height: "8%", maxWidth: "100%" }}
         />
         <img
