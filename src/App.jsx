@@ -1,35 +1,25 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { List } from "./components/Pages/List";
-import { List_3D } from "./components/Pages/List3D";
-import { HandMotion } from "./components/Pages/HandMotion";
-import { Login } from "./components/Pages/Login";
-import { Detail } from "./components/Pages/Detail";
-import { My } from "./components/Pages/My";
-import { Main } from "./components/Pages/Main";
-import { Order } from "./components/Pages/Order";
-//
+import "./App.css";
+// import Hand from "./pages/Hand";
 import { PcBlocking } from "./components/PcBlocking";
 import { Share } from "./components/Share";
 import Lottie from "lottie-web";
 import { useEffect, useRef } from "react";
-import { GlobalStyle, GlobalFont } from "./GlobalStyle";
+import MainPage from "./pages/Main";
+import ListPage from "./pages/List";
+import DetailPage from "./pages/Detail";
+import List3dPage from "./pages/List3D";
+import HandPage from "./pages/Hand";
 
 function App() {
   return (
     <BrowserRouter>
-      <GlobalFont />
-      <GlobalStyle />
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/hand-motion" element={<HandMotion />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/list" element={<List />} />
-        <Route path="/list-3d" element={<List_3D />} />
-        <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/my" element={<My />} />
-        <Route path="/order/:id" element={<Order />} />
-        {/*  */}
-        <Route path="/policy-privacy" element={null} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/list-3d" element={<List3dPage />} />
+        <Route path="/list" element={<ListPage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
+        <Route path="/hand" element={<HandPage />} />
       </Routes>
       {/* <PcBlocking /> */}
     </BrowserRouter>
