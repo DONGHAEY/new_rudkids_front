@@ -1,21 +1,3 @@
-@font-face {
-  font-family: "Poppins-Medium";
-  src: "/Fonts/Poppins-Medium.ttf" format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins-Bold";
-  src: "/Fonts/Poppins-Bold.ttf" format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins-SemiBold";
-  src: "/Fonts/Poppins-SemiBold.ttf" format("woff2");
-  font-display: swap;
-}
-
 * {
   margin: 0;
   padding: 0;
