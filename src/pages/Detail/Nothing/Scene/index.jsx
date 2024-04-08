@@ -19,6 +19,7 @@ const Scene = ({ offset, moveDuration = 2 }) => {
 
   useEffect(() => {
     if (!itemModelRef.current) return;
+    if (timeline.duration() !== 0) return;
     timeline
       .to(itemModelRef.current.rotation, {
         x: Math.PI * 3,
