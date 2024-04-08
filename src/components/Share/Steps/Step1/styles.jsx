@@ -8,7 +8,7 @@ export const BoxTitleWrapperUI = styled.div`
 `;
 
 export const LogoWrapperUI = styled.div`
-  height: 80px;
+  height: 100px;
   object-fit: cover;
 `;
 

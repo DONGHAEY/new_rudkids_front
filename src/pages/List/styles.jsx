@@ -22,15 +22,13 @@ export const ItemListUI = styled.div`
   justify-content: center;
 `;
 
-export const LogoSectionUI = styled.div`
-  background-color: none;
+export const LogoWrapperUI = styled.div`
   padding-block: 50px;
+  object-fit: cover;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
-  font-family: Poppins-Bold;
-  color: white;
 `;
 
 export const ItemWrapperUI = styled.div`

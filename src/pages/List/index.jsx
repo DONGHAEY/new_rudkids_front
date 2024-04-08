@@ -2,7 +2,7 @@ import {
   ItemListUI,
   ItemWrapperUI,
   ListWrapperUI,
-  LogoSectionUI,
+  LogoWrapperUI,
 } from "./styles";
 import { createRef, useEffect, useMemo, useRef, useState } from "react";
 
@@ -178,7 +178,9 @@ const ListPage = () => {
   return (
     <>
       <ListWrapperUI ref={listWrapperRef}>
-        <LogoSectionUI>Rudkids</LogoSectionUI>
+        <LogoWrapperUI>
+          <img height="100%" src={"/Images/rudkids_logo.webp"} />
+        </LogoWrapperUI>
         <ItemListUI
           ref={itemListRef}
           onTouchStart={touchStartHandler}

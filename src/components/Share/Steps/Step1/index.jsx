@@ -11,7 +11,6 @@ import {
 } from "./styles";
 import { FaInstagram } from "react-icons/fa";
 import rudkidsAlbumSrc from "./assets/rudkids_album.webp";
-import rudkidsLogoSrc from "./assets/rudkids_logo.webp";
 
 const Step1 = ({ next, prev }) => {
   return (
@@ -21,7 +20,7 @@ const Step1 = ({ next, prev }) => {
       </BoxTopUI>
       <BoxMiddleUI>
         <LogoWrapperUI>
-          <LogoImgUI src={rudkidsLogoSrc} />
+          <LogoImgUI src="/Images/rudkids_logo.webp" />
         </LogoWrapperUI>
         <BoxTitleWrapperUI>
           <BoxTitleUI>Guys! Don't be</BoxTitleUI>
