@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const List3DWrapperUI = styled.div`
+export const PageUI = styled.div`
   height: 100%;
   weight: 100%;
   display: flex;

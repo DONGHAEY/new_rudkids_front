@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import {
   EngagingVideoUI,
-  MainWrapperUI,
+  PageUI,
   SkipButtomWrapperUI,
   TabToPlayWrapperUI,
   VideoWrapperUI,
@@ -13,7 +13,7 @@ import engageVideoSrc from "./assets/engage.mp4";
 
 const Main = () => {
   const videoRef = useRef(null);
-  const mainWrapperRef = useRef(null);
+  const pageRef = useRef(null);
   const skipSliderWrapperRef = useRef(null);
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const Main = () => {
     goNextPage();
   };
   const slidingHandler = (offset = 1) => {
-    gsap.to(mainWrapperRef.current, {
+    gsap.to(pageRef.current, {
       opacity: 1 - offset,
     });
   };
@@ -61,7 +61,7 @@ const Main = () => {
   }, [isPlayingVideo]);
 
   return (
-    <MainWrapperUI ref={mainWrapperRef}>
+    <PageUI ref={pageRef}>
       <VideoWrapperUI>
         <EngagingVideoUI
           ref={videoRef}
@@ -84,7 +84,7 @@ const Main = () => {
           slidingHandler={slidingHandler}
         />
       </SkipButtomWrapperUI>
-    </MainWrapperUI>
+    </PageUI>
   );
 };
 

@@ -1,68 +1,47 @@
 import {
-  ItemListUI,
-  ItemWrapperUI,
-  ListWrapperUI,
+  ItemBoxListUI,
+  ItemBoxWrapperUI,
+  PageUI,
   LogoWrapperUI,
 } from "./styles";
-import { createRef, useEffect, useMemo, useRef, useState } from "react";
-
+import { createRef, useEffect, useState } from "react";
 import Share from "../../components/Share";
 import ItemBox from "./ItemBox";
-
+import itemDataList from "./itemDataList";
 import gsap from "gsap";
 
 const ListPage = () => {
-  const itemList = [
-    {
-      id: 1,
-      color: "#FFE818",
-      name: "My Pet Fly",
-      imageSrc: "/Images/List/my_pet_fly.png",
-    },
-    {
-      id: 2,
-      color: "#FF3BA5",
-      name: "A beautiful World",
-      imageSrc: "/Images/List/a_beautiful_world.png",
-    },
-    {
-      id: 3,
-      color: "#26A4FF",
-      name: "!! Nothing",
-      imageSrc: "/Images/List/nothing.png",
-    },
-    {
-      id: 4,
-      color: "green",
-      name: "shirt",
-      imageSrc: "/Images/List/shirt.png",
-    },
-  ].reverse();
-
   const [currentItemIdx, setCurrentItemIdx] = useState(0);
   const [isRotate, setRotate] = useState(true);
-  const listWrapperRef = useRef(null);
-  const itemListRef = useRef(null);
-  const itemWrapperRefList = useMemo(() => {
-    if (!itemList.length) return [];
-    return new Array(itemList.length).fill(null).map((_) => createRef(null));
-  }, [itemList]);
+  const pageRef = createRef(null);
+  const itemBoxListRef = createRef(null);
+  const itemBoxRefList = new Array(itemDataList.length)
+    .fill(null)
+    .map((_) => createRef(null));
 
-  const gap = 45;
+  const itemBoxgap = 45;
   const moveSpeed = 200;
-  const lastItemIdx = itemWrapperRefList.length - 1;
-  const currentItemRef = itemWrapperRefList[currentItemIdx];
+  const lastItemIdx = itemBoxRefList.length - 1;
+  const currentItemRef = itemBoxRefList[currentItemIdx];
 
-  const getBoundaryY = (index) => {
+  const getItemBoxPosY = (itemBoxIdx) => {
+    if (!itemBoxList[itemBoxIdx]) return undefined;
+    return gsap.getProperty(itemBoxRefList[itemBoxIdx].current, "y");
+  };
+
+  const getItemBoxBoundaryY = (itemBoxIdx) => {
     return {
-      minY: gap * (lastItemIdx - index),
-      maxY: itemListRef.current.clientHeight - gap * index - gap,
+      minY: itemBoxgap * (lastItemIdx - itemBoxIdx),
+      maxY:
+        itemBoxListRef.current.clientHeight -
+        itemBoxgap * itemBoxIdx -
+        itemBoxgap,
     };
   };
 
   const moveCurrentItem = (topValue) => {
-    const { minY, maxY } = getBoundaryY(currentItemIdx);
-    const currentTopValue = gsap.getProperty(currentItemRef.current, "y");
+    const { minY, maxY } = getItemBoxBoundaryY(currentItemIdx);
+    const currentTopValue = getItemBoxPosY(currentItemIdx);
     let targetYValue = topValue + currentTopValue;
     setRotate(true);
     if (targetYValue <= minY) {
@@ -83,22 +62,22 @@ const ListPage = () => {
     });
   };
 
-  const focusItem = (targetItemIdx) => {
+  const focusItem = (targetItemBoxIdx) => {
     let currnetItemIdxTemp = currentItemIdx;
-    if (targetItemIdx <= currentItemIdx) {
+    if (targetItemBoxIdx <= currentItemIdx) {
       currnetItemIdxTemp++;
     }
-    while (targetItemIdx > currnetItemIdxTemp) {
-      let selectedRef = itemWrapperRefList[currnetItemIdxTemp];
-      let { maxY } = getBoundaryY(currnetItemIdxTemp);
+    while (targetItemBoxIdx > currnetItemIdxTemp) {
+      let selectedRef = itemBoxRefList[currnetItemIdxTemp];
+      let { maxY } = getItemBoxBoundaryY(currnetItemIdxTemp);
       gsap.to(selectedRef.current, {
         y: maxY,
       });
       currnetItemIdxTemp++;
     }
-    while (targetItemIdx < currnetItemIdxTemp) {
-      let selectedRef = itemWrapperRefList[currnetItemIdxTemp - 1];
-      let { minY } = getBoundaryY(currnetItemIdxTemp - 1);
+    while (targetItemBoxIdx < currnetItemIdxTemp) {
+      let selectedRef = itemBoxRefList[currnetItemIdxTemp - 1];
+      let { minY } = getItemBoxBoundaryY(currnetItemIdxTemp - 1);
       gsap.to(selectedRef.current, {
         y: minY,
       });
@@ -130,65 +109,62 @@ const ListPage = () => {
   };
   /** Drag Handler Logics */
 
-  const itemWrapperList = itemList?.map((productData, idx) => {
-    const itemIdx = lastItemIdx - idx;
-    const itemRef = itemWrapperRefList[itemIdx];
+  const itemBoxList = itemDataList?.map((itemData, itemIdx) => {
+    itemIdx = lastItemIdx - itemIdx;
+
+    const itemBoxRef = itemBoxRefList[itemIdx];
     const isRotated = itemIdx !== currentItemIdx || isRotate;
     const clickHandler = () => {
       focusItem(itemIdx);
     };
+
     return (
-      <ItemWrapperUI
-        onClick={clickHandler}
-        key={itemIdx}
-        ref={itemRef}
-        children={
-          <ItemBox
-            name={productData?.name}
-            color={productData?.color}
-            imageSrc={productData?.imageSrc}
-            isRotated={isRotated}
-          />
-        }
-      />
+      <ItemBoxWrapperUI onClick={clickHandler} key={itemIdx} ref={itemBoxRef}>
+        <ItemBox
+          name={itemData?.name}
+          color={itemData?.color}
+          imageSrc={itemData?.imageSrc}
+          isRotated={isRotated}
+        />
+      </ItemBoxWrapperUI>
     );
   });
 
   useEffect(() => {
-    itemWrapperRefList.map((productBoxWrapperRef, itemIdx) => {
-      gsap.to(productBoxWrapperRef.current, {
-        y: getBoundaryY(itemIdx).minY,
-        duration: 0,
+    itemBoxRefList.map((productBoxWrapperRef, itemBoxIdx) => {
+      const { minY } = getItemBoxBoundaryY(itemBoxIdx);
+      gsap.set(productBoxWrapperRef.current, {
+        y: minY,
       });
     });
-  }, [itemWrapperRefList.length]);
+  }, []);
 
   useEffect(() => {
     const eventPreventHandler = (e) => {
       e.preventDefault();
     };
-    listWrapperRef.current.addEventListener("wheel", eventPreventHandler, {
+    pageRef.current.addEventListener("wheel", eventPreventHandler, {
       passive: false,
     });
-    listWrapperRef.current.addEventListener("touchmove", eventPreventHandler, {
+    pageRef.current.addEventListener("touchmove", eventPreventHandler, {
       passive: false,
     });
-  }, [listWrapperRef.current]);
+  }, []);
 
   return (
     <>
-      <ListWrapperUI ref={listWrapperRef}>
+      <PageUI ref={pageRef}>
         <LogoWrapperUI>
           <img height="100%" src={"/Images/rudkids_logo.webp"} />
         </LogoWrapperUI>
-        <ItemListUI
-          ref={itemListRef}
+        <ItemBoxListUI
+          ref={itemBoxListRef}
           onTouchStart={touchStartHandler}
           onTouchMove={touchMoveHandler}
           onTouchEnd={touchEndHandler}
-          children={itemWrapperList}
+          children={itemBoxList}
         />
-      </ListWrapperUI>
+      </PageUI>
       <Share />
     </>
   );

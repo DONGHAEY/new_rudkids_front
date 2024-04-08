@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import backgroundImgSrc from "./assets/background.png";
 
-export const ListWrapperUI = styled.div`
+export const PageUI = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -13,7 +13,7 @@ export const ListWrapperUI = styled.div`
   background-repeat: none;
 `;
 
-export const ItemListUI = styled.div`
+export const ItemBoxListUI = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
@@ -31,7 +31,7 @@ export const LogoWrapperUI = styled.div`
   justify-content: center;
 `;
 
-export const ItemWrapperUI = styled.div`
+export const ItemBoxWrapperUI = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

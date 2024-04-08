@@ -2,7 +2,7 @@ import {
   ButtonImageUI,
   ButtonUI,
   CanvasUI,
-  CenterWrapperUI,
+  PageUI,
   DescriptionUI,
   HandMotionWrapperUI,
   ScreenshotPreviewBlurUI,
@@ -89,7 +89,7 @@ const HandPage = () => {
   }, [previewImgSrc, resultScreenshotRef.current]);
 
   return (
-    <CenterWrapperUI>
+    <PageUI>
       <HandMotionWrapperUI ref={screenshotSectionRef}>
         <SideTopWrapperUI>
           <img width={"100px"} src={"/Images/rudkids_logo.webp"} />
@@ -119,7 +119,7 @@ const HandPage = () => {
         {previewImgSrc && <ScreenshotPreviewBlurUI />}
       </HandMotionWrapperUI>
       <RudkidsWebcam canvasRef={canvasRef} canvasSize={canvasSize} />
-    </CenterWrapperUI>
+    </PageUI>
   );
 };
 

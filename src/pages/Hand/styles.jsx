@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CenterWrapperUI = styled.div`
+export const PageUI = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
