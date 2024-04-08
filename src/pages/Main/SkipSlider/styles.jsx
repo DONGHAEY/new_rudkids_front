@@ -34,6 +34,7 @@ export const AppleSliderWrapperUI = styled.div`
   flex-direction: row;
   width: 100%;
   max-width: 250px;
+  position: relative;
 `;
 
 export const SliderWrapperUI = styled.div`
@@ -42,7 +43,6 @@ export const SliderWrapperUI = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  position: relative;
   background-color: rgba(255, 255, 255, 80%);
   border-radius: 60px;
 `;

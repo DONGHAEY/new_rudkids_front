@@ -13,7 +13,8 @@ import engageVideoSrc from "./assets/engage.mp4";
 
 const Main = () => {
   const videoRef = useRef(null);
-  const skipButtomWrapperRef = useRef(null);
+  const mainWrapperRef = useRef(null);
+  const skipSliderWrapperRef = useRef(null);
   const navigate = useNavigate();
 
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
@@ -33,25 +34,34 @@ const Main = () => {
   const onEndedHandler = () => {
     goNextPage();
   };
+  const slidingHandler = (offset = 1) => {
+    gsap.to(mainWrapperRef.current, {
+      opacity: 1 - offset,
+    });
+  };
 
   useEffect(() => {
     if (isPlayingVideo) {
       gsap.fromTo(
-        skipButtomWrapperRef.current,
+        skipSliderWrapperRef.current,
         {
           opacity: 0,
         },
         {
           opacity: 1,
-          duration: 10,
+          duration: 5,
           delay: 5, // 5초 지연 추가
         }
       );
+    } else {
+      gsap.set(skipSliderWrapperRef.current, {
+        opacity: 0,
+      });
     }
   }, [isPlayingVideo]);
 
   return (
-    <MainWrapperUI>
+    <MainWrapperUI ref={mainWrapperRef}>
       <VideoWrapperUI>
         <EngagingVideoUI
           ref={videoRef}
@@ -68,8 +78,11 @@ const Main = () => {
           </TabToPlayWrapperUI>
         )}
       </VideoWrapperUI>
-      <SkipButtomWrapperUI ref={skipButtomWrapperRef}>
-        <SkipSlider slidedHandler={goNextPage} />
+      <SkipButtomWrapperUI ref={skipSliderWrapperRef}>
+        <SkipSlider
+          slidedHandler={goNextPage}
+          slidingHandler={slidingHandler}
+        />
       </SkipButtomWrapperUI>
     </MainWrapperUI>
   );

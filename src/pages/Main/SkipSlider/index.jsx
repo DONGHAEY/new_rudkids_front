@@ -7,20 +7,16 @@ import {
   SliderWrapperUI,
 } from "./styles";
 
-const SkipSlider = ({ slidedHandler }) => {
+const SkipSlider = ({ slidedHandler, slidingHandler }) => {
   const slideballRef = useRef(null);
   const slideRef = useRef(null);
 
-  const [left, setLeft] = useState(0);
+  const [leftSpace, setLeftSpace] = useState(0);
 
   let isDragging = false;
   let isArrived = false;
   let clickX = 0;
   let clickY = 0;
-
-  useEffect(() => {
-    setLeft(0);
-  }, []);
 
   const onTouchStart = (e) => {
     isDragging = true;
@@ -50,22 +46,21 @@ const SkipSlider = ({ slidedHandler }) => {
     if (isDragging) {
       const nowX = e.targetTouches[0].screenX;
       const nowY = e.targetTouches[0].screenY;
-      let moveY = nowX - clickX;
-      let moveX = nowY - clickY;
+      let moveX = nowX - clickX;
+      let moveY = nowY - clickY;
 
       const slidepos = slideRef.current.getBoundingClientRect();
       const slideballPos = slideballRef.current.getBoundingClientRect();
       const endPosX = slidepos.width - slideballPos.width - 10;
-
-      const touchPos = left + moveY;
+      const touchPos = leftSpace + moveX;
 
       isArrived = false;
       if (touchPos >= 0 && touchPos <= endPosX) {
-        setLeft(touchPos);
+        setLeftSpace(touchPos);
       }
       if (touchPos >= endPosX) {
         isArrived = true;
-        setLeft(endPosX);
+        setLeftSpace(endPosX);
       }
     }
   };
@@ -74,22 +69,21 @@ const SkipSlider = ({ slidedHandler }) => {
     if (isDragging) {
       const nowX = e.screenX;
       const nowY = e.screenY;
-      let moveY = nowX - clickX;
-      let moveX = nowY - clickY;
+      let moveX = nowX - clickX;
+      let moveY = nowY - clickY;
 
       const slidepos = slideRef.current.getBoundingClientRect();
       const slideballPos = slideballRef.current.getBoundingClientRect();
       const endPosX = slidepos.width - slideballPos.width - 10;
-
-      const touchPos = left + moveY;
+      const touchPos = leftSpace + moveX;
 
       isArrived = false;
       if (touchPos >= 0 && touchPos <= endPosX) {
-        setLeft(touchPos);
+        setLeftSpace(touchPos);
       }
       if (touchPos >= endPosX) {
         isArrived = true;
-        setLeft(endPosX);
+        setLeftSpace(endPosX);
       }
     }
   };
@@ -99,18 +93,28 @@ const SkipSlider = ({ slidedHandler }) => {
       if (isArrived) {
         slidedHandler();
       } else {
-        setLeft(0);
+        setLeftSpace(0);
       }
     }
     isDragging = false;
     isArrived = false;
   };
 
+  useEffect(() => {
+    if (typeof slidingHandler !== "function") return;
+    if (!slideRef) return;
+    const slidepos = slideRef.current.getBoundingClientRect();
+    const slideballPos = slideballRef.current.getBoundingClientRect();
+    const endPosX = slidepos.width - slideballPos.width - 10;
+    const slideOffset = leftSpace / endPosX;
+    slidingHandler(slideOffset);
+  }, [slidingHandler, leftSpace, slideRef]);
+
   return (
     <AppleSliderWrapperUI ref={slideRef}>
       <div
         style={{
-          marginLeft: left,
+          marginLeft: leftSpace,
         }}
       />
       <SliderWrapperUI>
