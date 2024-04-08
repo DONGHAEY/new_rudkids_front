@@ -9,6 +9,11 @@ export const CenterWrapperUI = styled.div`
   align-items: center;
 `;
 
+export const DescriptionUI = styled.p`
+  font-size: 14px;
+  margin-top: 10px;
+`;
+
 export const ScreenshotPreviewBlurUI = styled.div`
   width: 100%;
   height: 100%;

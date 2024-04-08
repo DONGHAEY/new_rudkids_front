@@ -41,7 +41,6 @@ const ListPage = () => {
 
   const [currentItemIdx, setCurrentItemIdx] = useState(0);
   const [isRotate, setRotate] = useState(true);
-
   const listWrapperRef = useRef(null);
   const itemListRef = useRef(null);
   const itemWrapperRefList = useMemo(() => {
@@ -51,15 +50,15 @@ const ListPage = () => {
 
   const gap = 45;
   const moveSpeed = 200;
+  const lastItemIdx = itemWrapperRefList.length - 1;
+  const currentItemRef = itemWrapperRefList[currentItemIdx];
+
   const getBoundaryY = (index) => {
     return {
       minY: gap * (lastItemIdx - index),
       maxY: itemListRef.current.clientHeight - gap * index - gap,
     };
   };
-
-  const lastItemIdx = itemWrapperRefList.length - 1;
-  const currentItemRef = itemWrapperRefList[currentItemIdx];
 
   const moveCurrentItem = (topValue) => {
     const { minY, maxY } = getBoundaryY(currentItemIdx);

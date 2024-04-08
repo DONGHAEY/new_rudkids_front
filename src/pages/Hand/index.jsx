@@ -3,6 +3,7 @@ import {
   ButtonUI,
   CanvasUI,
   CenterWrapperUI,
+  DescriptionUI,
   HandMotionWrapperUI,
   ScreenshotPreviewBlurUI,
   ScreenshotPreviewImgUI,
@@ -58,20 +59,18 @@ const HandPage = () => {
   }, [windowSize.width, windowSize.height]);
 
   const takeAPhoto = () => takeScreenshot(screenshotSectionRef.current);
+  const openScreenshotPrievew = () => {
+    setPreviewImgSrc(screenshotUrl);
+  };
+  const closeScreenshotPreview = () => {
+    setPreviewImgSrc("");
+  };
 
   useEffect(() => {
     if (screenshotUrl) {
       openScreenshotPrievew(screenshotUrl);
     }
   }, [screenshotUrl]);
-
-  const openScreenshotPrievew = () => {
-    setPreviewImgSrc(screenshotUrl);
-  };
-
-  const closeScreenshotPreview = () => {
-    setPreviewImgSrc("");
-  };
 
   useEffect(() => {
     if (!previewImgSrc) return;
@@ -94,14 +93,9 @@ const HandPage = () => {
       <HandMotionWrapperUI ref={screenshotSectionRef}>
         <SideTopWrapperUI>
           <img width={"100px"} src={"/Images/rudkids_logo.webp"} />
-          <p
-            style={{
-              fontSize: "14px",
-              marginTop: "10px",
-            }}
-          >
+          <DescriptionUI>
             Let me check if you're really a Rudkdis club.
-          </p>
+          </DescriptionUI>
         </SideTopWrapperUI>
         <CanvasUI
           width={canvasSize.width}

@@ -6,7 +6,6 @@ import {
   FriendGroupImgUI,
   FriendGroupImgWrapperUI,
   FriendListUI,
-  LockDescriptionBoxUI,
   PopinPUI,
   ProgressBarGoalImgUI,
   ProgressBarSectionUI,
@@ -18,7 +17,6 @@ import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Alert } from "../../../Alert";
-import { BiSolidLockAlt } from "react-icons/bi";
 import { VscInfo } from "react-icons/vsc";
 import gsap from "gsap";
 
@@ -32,20 +30,6 @@ const Step2 = ({ next }) => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [isopen, setIsopen] = useState(false);
   const bottomBoxRef = useRef(null);
-
-  useEffect(() => {
-    if (isopen === false) {
-      gsap.to(bottomBoxRef.current, {
-        top: "270px",
-        duration: 0.5,
-      });
-    } else {
-      gsap.to(bottomBoxRef.current, {
-        top: "0px",
-        duration: 0.5,
-      });
-    }
-  }, [bottomBoxRef.current, isopen]);
 
   const shareHandler = async () => {
     const weburl = "https://new-rudkids-front.vercel.app";
@@ -98,12 +82,22 @@ const Step2 = ({ next }) => {
     return false;
   };
 
+  useEffect(() => {
+    if (isopen === false) {
+      gsap.to(bottomBoxRef.current, {
+        top: "270px",
+        duration: 0.5,
+      });
+    } else {
+      gsap.to(bottomBoxRef.current, {
+        top: "0px",
+        duration: 0.5,
+      });
+    }
+  }, [bottomBoxRef.current, isopen]);
+
   return (
     <Step2WrapperUI>
-      <LockDescriptionBoxUI>
-        <BiSolidLockAlt width="13px" />
-        <PopinPUI fontSize={"13px"}>This Page is Locked</PopinPUI>
-      </LockDescriptionBoxUI>
       <BottomBoxUI
         onTouchStart={touchStartHandler}
         onTouchMove={touchMoveHandler}

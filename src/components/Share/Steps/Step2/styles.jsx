@@ -90,20 +90,6 @@ export const ArrowButtonUI = styled.div`
   cursor: pointer;
 `;
 
-export const LockDescriptionBoxUI = styled.div`
-  position: absolute;
-  top: 25px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  background-color: rgba(255, 255, 255, 60%);
-  border-radius: 30px;
-  padding: 15px;
-  padding-inline: 20px;
-`;
-
 export const BottomBoxUI = styled.div`
   background-color: rgba(255, 255, 255, 60%);
   width: 100%;
