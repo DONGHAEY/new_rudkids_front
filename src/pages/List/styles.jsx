@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import backgroundImgSrc from "./assets/background.png";
 
 export const ListWrapperUI = styled.div`
   width: 100%;
@@ -7,12 +8,9 @@ export const ListWrapperUI = styled.div`
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  background: radial-gradient(
-      ellipse at bottom,
-      rgb(83, 173, 241) 0%,
-      transparent
-    ),
-    radial-gradient(ellipse at top, rgb(12, 73, 187) 100%, transparent);
+  background-image: url(${backgroundImgSrc});
+  background-size: cover;
+  background-repeat: none;
 `;
 
 export const ItemListUI = styled.div`
