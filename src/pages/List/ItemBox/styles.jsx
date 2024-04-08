@@ -1,5 +1,6 @@
 import styled from "styled-components";
 export const BoxUI = styled.div`
+  z-index: 0;
   background-color: #f6f6f6;
   ${({ $isRotated }) =>
     $isRotated ? "transform: perspective(300px) rotateX(-20deg);" : ""}
@@ -52,6 +53,7 @@ export const BoxContentUI = styled.div`
   height: 100%;
   object-fit: cover;
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
   position: relative;

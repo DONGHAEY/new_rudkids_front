@@ -22,12 +22,7 @@ const ItemBox = ({ color, isRotated, name, imageSrc }) => {
         </BoxButtonWrapperUI>
       </BoxBarUI>
       <BoxContentUI>
-        <BoxContentImgUI
-          style={{
-            zIndex: 1,
-          }}
-          src={imageSrc}
-        />
+        <BoxContentImgUI src={imageSrc} />
         <BoxBackgroundUI src={grassImgSrc} />
       </BoxContentUI>
     </BoxUI>

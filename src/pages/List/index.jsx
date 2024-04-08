@@ -3,16 +3,22 @@ import {
   ItemBoxWrapperUI,
   PageUI,
   LogoWrapperUI,
+  NavigateButtonUI,
 } from "./styles";
 import { createRef, useEffect, useState } from "react";
 import Share from "../../components/Share";
 import ItemBox from "./ItemBox";
 import itemDataList from "./itemDataList";
+import { GoArrowRight } from "react-icons/go";
 import gsap from "gsap";
+import { useNavigate } from "react-router-dom";
 
 const ListPage = () => {
-  const [currentItemIdx, setCurrentItemIdx] = useState(0);
+  const navigate = useNavigate();
+  const [currentMoveItemBoxIdx, setCurrentMoveItemBoxIdx] = useState(0);
+  const [selectedItemBoxIdx, setSelectedItemBoxIdx] = useState(null);
   const [isRotate, setRotate] = useState(true);
+
   const pageRef = createRef(null);
   const itemBoxListRef = createRef(null);
   const itemBoxRefList = new Array(itemDataList.length)
@@ -22,7 +28,7 @@ const ListPage = () => {
   const itemBoxgap = 45;
   const moveSpeed = 200;
   const lastItemIdx = itemBoxRefList.length - 1;
-  const currentItemRef = itemBoxRefList[currentItemIdx];
+  const currentItemRef = itemBoxRefList[currentMoveItemBoxIdx];
 
   const getItemBoxPosY = (itemBoxIdx) => {
     if (!itemBoxList[itemBoxIdx]) return undefined;
@@ -40,18 +46,18 @@ const ListPage = () => {
   };
 
   const moveCurrentItem = (topValue) => {
-    const { minY, maxY } = getItemBoxBoundaryY(currentItemIdx);
-    const currentTopValue = getItemBoxPosY(currentItemIdx);
+    const { minY, maxY } = getItemBoxBoundaryY(currentMoveItemBoxIdx);
+    const currentTopValue = getItemBoxPosY(currentMoveItemBoxIdx);
     let targetYValue = topValue + currentTopValue;
     setRotate(true);
     if (targetYValue <= minY) {
-      if (currentItemIdx - 1 >= 0) {
-        setCurrentItemIdx(currentItemIdx - 1);
+      if (currentMoveItemBoxIdx - 1 >= 0) {
+        setCurrentMoveItemBoxIdx(currentMoveItemBoxIdx - 1);
       }
       targetYValue = minY;
     } else if (targetYValue >= maxY) {
-      if (currentItemIdx + 1 <= lastItemIdx) {
-        setCurrentItemIdx(currentItemIdx + 1);
+      if (currentMoveItemBoxIdx + 1 <= lastItemIdx) {
+        setCurrentMoveItemBoxIdx(currentMoveItemBoxIdx + 1);
       }
       targetYValue = maxY;
     } else {
@@ -63,8 +69,8 @@ const ListPage = () => {
   };
 
   const focusItem = (targetItemBoxIdx) => {
-    let currnetItemIdxTemp = currentItemIdx;
-    if (targetItemBoxIdx <= currentItemIdx) {
+    let currnetItemIdxTemp = currentMoveItemBoxIdx;
+    if (targetItemBoxIdx <= currentMoveItemBoxIdx) {
       currnetItemIdxTemp++;
     }
     while (targetItemBoxIdx > currnetItemIdxTemp) {
@@ -84,7 +90,7 @@ const ListPage = () => {
       currnetItemIdxTemp--;
     }
     setRotate(false);
-    setCurrentItemIdx(currnetItemIdxTemp);
+    setCurrentMoveItemBoxIdx(currnetItemIdxTemp);
   };
 
   /** Drag Handler Logics */
@@ -93,6 +99,7 @@ const ListPage = () => {
     prevTouchEvent = currentTouchEvent;
   };
   const touchMoveHandler = (currentTouchEvent) => {
+    setSelectedItemBoxIdx(false);
     if (prevTouchEvent) {
       const prevTouchPos = prevTouchEvent?.touches[0].screenY;
       const currentTouchPos = currentTouchEvent?.touches[0].screenY;
@@ -113,9 +120,15 @@ const ListPage = () => {
     itemIdx = lastItemIdx - itemIdx;
 
     const itemBoxRef = itemBoxRefList[itemIdx];
-    const isRotated = itemIdx !== currentItemIdx || isRotate;
+    const isRotated = itemIdx !== currentMoveItemBoxIdx || isRotate;
+    const isButton = itemIdx === selectedItemBoxIdx;
+
     const clickHandler = () => {
       focusItem(itemIdx);
+      setSelectedItemBoxIdx(itemIdx);
+    };
+    const navigateBtnClickHandler = () => {
+      navigate(`/detail/${itemData.id}`);
     };
 
     return (
@@ -126,9 +139,19 @@ const ListPage = () => {
           imageSrc={itemData?.imageSrc}
           isRotated={isRotated}
         />
+        {isButton && (
+          <NavigateButtonUI onClick={navigateBtnClickHandler}>
+            <span>{itemData.name}</span>
+            <GoArrowRight />
+          </NavigateButtonUI>
+        )}
       </ItemBoxWrapperUI>
     );
   });
+
+  useEffect(() => {
+    console.log(selectedItemBoxIdx);
+  }, [selectedItemBoxIdx]);
 
   useEffect(() => {
     itemBoxRefList.map((productBoxWrapperRef, itemBoxIdx) => {

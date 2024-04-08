@@ -8,7 +8,7 @@ const timelineOption = {
   offset: 0,
 };
 
-export const Scene = ({ offset, moveDuration = 2 }) => {
+const Scene = ({ offset, moveDuration = 2 }) => {
   const gltf = useGLTF("/Models/Nothing.glb");
   const productRef = useRef();
 
@@ -39,6 +39,12 @@ export const Scene = ({ offset, moveDuration = 2 }) => {
     });
   }, [offset]);
 
+  useEffect(() => {
+    gsap.set(timelineOption, {
+      offset: 0,
+    });
+  }, []);
+
   return (
     <>
       <ambientLight intensity={2} />
@@ -51,3 +57,5 @@ export const Scene = ({ offset, moveDuration = 2 }) => {
     </>
   );
 };
+
+export default Scene;

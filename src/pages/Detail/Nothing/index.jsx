@@ -1,11 +1,11 @@
-import { lazy, useState } from "react";
-import { Scene } from "./Scene";
+import { lazy, useState, Suspense } from "react";
 import { CanvasUI } from "./styles";
 
 import PagesRenderer from "../PagesRenderer";
 import PagesScroller from "../PagesScroller";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 
+const Scene = lazy(() => import("./Scene"));
 const Page0 = lazy(() => import("./Pages/Page0"));
 const Page1 = lazy(() => import("./Pages/Page1"));
 const Page2 = lazy(() => import("./Pages/Page2"));
@@ -21,22 +21,26 @@ export const Nothing = () => {
   const moveDuration = 2;
 
   return (
-    <PagesScroller page={page} maxPage={maxPage} setPage={setPage}>
-      <CanvasUI
-        gl={{ antialias: true }}
-        camera={{
-          fov: 60,
-          aspect: windowWidth / windowHeight,
-          near: 0.5,
-          far: 100,
-        }}
-        children={<Scene offset={page / maxPage} moveDuration={moveDuration} />}
-      />
-      <PagesRenderer
-        page={page}
-        componentSrcList={componentSrcList}
-        moveDuration={moveDuration}
-      />
-    </PagesScroller>
+    <Suspense fallback={<div>loading</div>}>
+      <PagesScroller page={page} maxPage={maxPage} setPage={setPage}>
+        <CanvasUI
+          gl={{ antialias: true }}
+          camera={{
+            fov: 60,
+            aspect: windowWidth / windowHeight,
+            near: 0.5,
+            far: 100,
+          }}
+          children={
+            <Scene offset={page / maxPage} moveDuration={moveDuration} />
+          }
+        />
+        <PagesRenderer
+          page={page}
+          componentSrcList={componentSrcList}
+          moveDuration={moveDuration}
+        />
+      </PagesScroller>
+    </Suspense>
   );
 };
