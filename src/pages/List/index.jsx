@@ -129,6 +129,7 @@ const ListPage = () => {
     };
     const navigateBtnClickHandler = () => {
       navigate(`/detail/${itemData.id}`);
+      // window.location.href = `/detail/${itemData.id}`;
     };
 
     return (
