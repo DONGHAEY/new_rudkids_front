@@ -54,5 +54,6 @@ export const NavigateButtonUI = styled.button`
   justify-content: center;
   gap: 5px;
   border: none;
+  font-family: Poppins-Bold;
   z-index: 1;
 `;
