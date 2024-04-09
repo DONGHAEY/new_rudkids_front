@@ -10,7 +10,7 @@ const CallbackPage = () => {
 
   useEffect(() => {
     if (PlatformTypes.includes(platform)) {
-      window.location.href = `${serverUrl}/auth/${platform}/callback${window.location.search}`;
+      //   window.location.href = `${serverUrl}/auth/${platform}/callback${window.location.search}`;
     }
   }, [platform]);
 
