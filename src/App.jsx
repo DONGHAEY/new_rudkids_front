@@ -8,6 +8,7 @@ import ListPage from "./pages/List";
 import DetailPage from "./pages/Detail";
 import List3dPage from "./pages/List3D";
 import HandPage from "./pages/Hand";
+import CallbackPage from "./pages/Callback";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/list" element={<ListPage />} />
         <Route path="/detail/:id" element={<DetailPage />} />
         <Route path="/hand" element={<HandPage />} />
+        <Route path="/callback/:platform" element={<CallbackPage />} />
       </Routes>
       {/* <PcBlocking /> */}
     </BrowserRouter>
