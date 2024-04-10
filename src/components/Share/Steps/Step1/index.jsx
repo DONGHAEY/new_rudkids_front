@@ -15,7 +15,7 @@ import rudkidsAlbumSrc from "./assets/rudkids_album.webp";
 const Step1 = ({ next, prev }) => {
   const loginBtnClickHandler = () => {
     localStorage.setItem("redirect_url", window.location);
-    window.location.href = `http://localhost:3000/auth/instagram/login`;
+    window.location.href = `${process.env.REACT_APP_SERVER_URL}/auth/instagram/login`;
   };
 
   return (

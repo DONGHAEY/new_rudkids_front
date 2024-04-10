@@ -1,9 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import axios from "axios";
 import qs from "qs";
+import { instagramLogin } from "../../apis/user/login";
 
-const serverUrl = "http://localhost:3000";
 const PlatformTypes = ["instagram"];
 
 const CallbackPage = () => {
@@ -14,9 +13,9 @@ const CallbackPage = () => {
     if (PlatformTypes.includes(platform)) {
       const searchParams = qs.parse(window.location.search.slice(1));
       const redirect_url = localStorage.getItem("redirect_url");
-      searchParams.redirect_url = redirect_url;
-      const searchParamsStr = qs.stringify(searchParams);
-      window.location.href = `${serverUrl}/auth/${platform}/callback?${searchParamsStr}`;
+      instagramLogin(searchParams).then(() => {
+        window.location.href = redirect_url;
+      });
     }
   }, [platform]);
 
