@@ -13,6 +13,11 @@ import { FaInstagram } from "react-icons/fa";
 import rudkidsAlbumSrc from "./assets/rudkids_album.webp";
 
 const Step1 = ({ next, prev }) => {
+  const loginBtnClickHandler = () => {
+    localStorage.setItem("redirect_url", window.location);
+    window.location.href = `http://localhost:3000/auth/instagram/login`;
+  };
+
   return (
     <Step1WrapperUI>
       <BoxTopUI>
@@ -27,7 +32,7 @@ const Step1 = ({ next, prev }) => {
           <BoxTitleUI>so boring.</BoxTitleUI>
           <BoxTitleUI>Just Kidding.</BoxTitleUI>
         </BoxTitleWrapperUI>
-        <BoxButtonUI onClick={next}>
+        <BoxButtonUI onClick={loginBtnClickHandler}>
           <FaInstagram fontSize={"20px"} /> Sign in with instagram
         </BoxButtonUI>
       </BoxMiddleUI>
