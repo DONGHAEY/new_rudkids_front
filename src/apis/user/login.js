@@ -2,6 +2,7 @@ import axiosInstance from "../axiosInstance";
 import qs from "qs";
 
 export const instagramLogin = async (searchParams) => {
+  console.log("asdfasdfasdf");
   return await axiosInstance
     .get(`/auth/instagram/callback?${qs.stringify(searchParams)}`)
     .then((response) => response.data)
