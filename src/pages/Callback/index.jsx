@@ -15,10 +15,11 @@ const CallbackPage = () => {
       if (PlatformTypes.includes(platform)) {
         const searchParams = qs.parse(window.location.search.slice(1));
         const redirect_url = localStorage.getItem("redirect_url");
-        await instagramLogin(searchParams);
-        //쿠키 들어오는거 확인좀...
-        console.log(await getUser());
-        // window.location.href = redirect_url;
+        const data = await instagramLogin(searchParams);
+        if (data["token"]) {
+          localStorage.setItem("token", data["token"]);
+        }
+        window.location.href = redirect_url;
       }
     })();
   }, [platform]);
