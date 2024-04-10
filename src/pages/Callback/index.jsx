@@ -16,6 +16,7 @@ const CallbackPage = () => {
         const searchParams = qs.parse(window.location.search.slice(1));
         const redirect_url = localStorage.getItem("redirect_url");
         const data = await instagramLogin(searchParams);
+
         if (data["token"]) {
           localStorage.setItem("token", data["token"]);
         }
