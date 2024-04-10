@@ -12,7 +12,7 @@ const CallbackPage = () => {
 
   useEffect(() => {
     if (PlatformTypes.includes(platform)) {
-      const searchParams = qs.parse(window.location.search);
+      const searchParams = qs.parse(window.location.search.slice(1));
       const redirect_url = localStorage.getItem("redirect_url");
       searchParams.redirect_url = redirect_url;
       const searchParamsStr = qs.stringify(searchParams);
