@@ -4,7 +4,7 @@ import axios from "axios";
 import qs from "qs";
 
 const serverUrl = "http://localhost:3000";
-const PlatformTypes = "instagram";
+const PlatformTypes = ["instagram"];
 
 const CallbackPage = () => {
   const params = useParams();
@@ -15,8 +15,8 @@ const CallbackPage = () => {
       const searchParams = qs.parse(window.location.search);
       const redirect_url = localStorage.getItem("redirect_url");
       searchParams.redirect_url = redirect_url;
-      alert(redirect_url);
       const searchParamsStr = qs.stringify(searchParams);
+      alert(searchParamsStr);
       window.location.href = `${serverUrl}/auth/${platform}/callback?${searchParamsStr}`;
     }
   }, [platform]);
