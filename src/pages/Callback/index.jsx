@@ -8,7 +8,7 @@ const Callback = () => {
     if (!cookies.token) return;
     localStorage.setItem("token", cookies.token);
     const redirectUrl = localStorage.getItem("redirect_url");
-    location.replace(redirectUrl ?? "/");
+    window.location.href.replace(redirectUrl ?? "/");
   }, [cookies.token, setCookie, cookies]);
 
   return "리디렉션중...";
