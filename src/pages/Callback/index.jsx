@@ -10,15 +10,15 @@ const CallbackPage = () => {
   const platform = params.platform;
 
   useEffect(() => {
-    if (PlatformTypes.includes(platform)) {
-      const searchParams = qs.parse(window.location.search.slice(1));
-      const redirect_url = localStorage.getItem("redirect_url");
-      instagramLogin(searchParams)
-        .then((data) => {
-          window.location.href = redirect_url;
-        })
-        .catch((e) => console.log(e));
-    }
+    (async () => {
+      if (PlatformTypes.includes(platform)) {
+        const searchParams = qs.parse(window.location.search.slice(1));
+        const redirect_url = localStorage.getItem("redirect_url");
+        await instagramLogin(searchParams);
+        //쿠키 들어오는거 확인좀...
+        // window.location.href = redirect_url;
+      }
+    })();
   }, [platform]);
 
   return "리디렉션중...";
