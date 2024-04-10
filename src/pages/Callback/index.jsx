@@ -13,8 +13,8 @@ const CallbackPage = () => {
     if (PlatformTypes.includes(platform)) {
       const searchParams = qs.parse(window.location.search.slice(1));
       const redirect_url = localStorage.getItem("redirect_url");
-      instagramLogin(searchParams).then(() => {
-        window.location.href = redirect_url;
+      instagramLogin(searchParams).then((data) => {
+        // window.location.href = redirect_url;
       });
     }
   }, [platform]);
