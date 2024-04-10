@@ -15,7 +15,7 @@ const CallbackPage = () => {
       const redirect_url = localStorage.getItem("redirect_url");
       instagramLogin(searchParams)
         .then((data) => {
-          // window.location.href = redirect_url;
+          window.location.href = redirect_url;
         })
         .catch((e) => console.log(e));
     }
