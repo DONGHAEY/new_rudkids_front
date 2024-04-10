@@ -16,7 +16,6 @@ const CallbackPage = () => {
       const redirect_url = localStorage.getItem("redirect_url");
       searchParams.redirect_url = redirect_url;
       const searchParamsStr = qs.stringify(searchParams);
-      alert(searchParamsStr);
       window.location.href = `${serverUrl}/auth/${platform}/callback?${searchParamsStr}`;
     }
   }, [platform]);
