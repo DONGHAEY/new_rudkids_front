@@ -19,7 +19,7 @@ function App() {
         <Route path="/list" element={<ListPage />} />
         <Route path="/detail/:id" element={<DetailPage />} />
         <Route path="/hand" element={<HandPage />} />
-        <Route path="/callback/:platform" element={<CallbackPage />} />
+        <Route path="/callback" element={<CallbackPage />} />
       </Routes>
       {/* <PcBlocking /> */}
     </BrowserRouter>

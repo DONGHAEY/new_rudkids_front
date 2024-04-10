@@ -1,34 +1,17 @@
-import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import qs from "qs";
-import { instagramLogin } from "../../apis/user/login";
-import { getUser } from "../../apis/user/getUser";
+import { useCookies } from "react-cookie";
 
-const PlatformTypes = ["instagram"];
-
-const CallbackPage = () => {
-  const params = useParams();
-  const platform = params.platform;
-
+const Callback = () => {
+  const [cookies, setCookie] = useCookies(["token"]);
   useEffect(() => {
-    (async () => {
-      if (PlatformTypes.includes(platform)) {
-        const searchParams = qs.parse(window.location.search.slice(1));
-        const redirect_url = localStorage.getItem("redirect_url");
-        const data = await instagramLogin(searchParams);
-        console.log(data, "??");
-        console.log(data, "??");
-        console.log(data, "??");
-        console.log(data, "??");
-        if (data["token"]) {
-          localStorage.setItem("token", data["token"]);
-        }
-        // window.location.href = redirect_url;
-      }
-    })();
-  }, [platform]);
+    console.log(cookies);
+    if (!cookies.token) return;
+    localStorage.setItem("token", cookies.token);
+    const redirectUrl = localStorage.getItem("redirect_url");
+    location.replace(redirectUrl ?? "/");
+  }, [cookies.token, setCookie, cookies]);
 
   return "리디렉션중...";
 };
 
-export default CallbackPage;
+export default Callback;
