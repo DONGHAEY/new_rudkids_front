@@ -6,7 +6,6 @@ export const instagramLogin = async (searchParams) => {
   return await axiosInstance
     .get(`/api/auth/instagram/callback?${qs.stringify(searchParams)}`)
     .then((response) => {
-      console.log(response.data, "??");
       return response.data;
     })
     .catch((e) => e);

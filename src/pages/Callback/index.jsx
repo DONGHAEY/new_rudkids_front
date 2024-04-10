@@ -16,11 +16,14 @@ const CallbackPage = () => {
         const searchParams = qs.parse(window.location.search.slice(1));
         const redirect_url = localStorage.getItem("redirect_url");
         const data = await instagramLogin(searchParams);
-
+        console.log(data, "??");
+        console.log(data, "??");
+        console.log(data, "??");
+        console.log(data, "??");
         if (data["token"]) {
           localStorage.setItem("token", data["token"]);
         }
-        window.location.href = redirect_url;
+        // window.location.href = redirect_url;
       }
     })();
   }, [platform]);
