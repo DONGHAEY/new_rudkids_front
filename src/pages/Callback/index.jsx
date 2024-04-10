@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import qs from "qs";
 import { instagramLogin } from "../../apis/user/login";
-import getUser from "../../apis/user/getUser";
+import { getUser } from "../../apis/user/getUser";
 
 const PlatformTypes = ["instagram"];
 
