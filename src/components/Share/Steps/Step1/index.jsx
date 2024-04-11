@@ -12,6 +12,7 @@ import {
 import { useEffect } from "react";
 import { FaInstagram } from "react-icons/fa";
 import rudkidsAlbumSrc from "./assets/rudkids_album.webp";
+import { getUser } from "../../../../apis/user/getUser";
 
 const Step1 = ({ next, prev }) => {
   const loginBtnClickHandler = () => {
@@ -19,7 +20,13 @@ const Step1 = ({ next, prev }) => {
     window.location.href = `${process.env.REACT_APP_SERVER_URL}/api/auth/instagram/login`;
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const userData = getUser();
+    console.log(userData);
+    if (userData) {
+      next();
+    }
+  }, []);
 
   return (
     <Step1WrapperUI>
