@@ -1,10 +1,7 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_SERVER_URL,
-});
-
-axiosInstance.defaults.withCredentials = true;
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
+axios.defaults.withCredentials = true;
 
 // const requestInterceptors = (config) => {
 //   if (config?.headers) {
@@ -17,4 +14,4 @@ axiosInstance.defaults.withCredentials = true;
 
 // axiosInstance.interceptors.request.use(requestInterceptors);
 
-export default axiosInstance;
+export default axios;
