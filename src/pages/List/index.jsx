@@ -26,7 +26,7 @@ const ListPage = () => {
     .map((_) => createRef(null));
 
   const itemBoxgap = 45;
-  const moveSpeed = 200;
+  const moveSpeed = 100;
   const lastItemIdx = itemBoxRefList.length - 1;
   const currentItemRef = itemBoxRefList[currentMoveItemBoxIdx];
 
@@ -127,9 +127,9 @@ const ListPage = () => {
       focusItem(itemIdx);
       setSelectedItemBoxIdx(itemIdx);
     };
+
     const navigateBtnClickHandler = () => {
       navigate(`/detail/${itemData.id}`);
-      // window.location.href = `/detail/${itemData.id}`;
     };
 
     return (

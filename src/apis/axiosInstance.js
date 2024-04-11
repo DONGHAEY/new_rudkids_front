@@ -5,15 +5,15 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-const requestInterceptors = (config) => {
-  if (config?.headers) {
-    const token = localStorage.getItem("token");
-    console.log(token);
-    config.headers["token"] = token ?? "";
-  }
-  return config;
-};
+// const requestInterceptors = (config) => {
+//   if (config?.headers) {
+//     const token = localStorage.getItem("token");
+//     console.log(token);
+//     config.headers["token"] = token ?? "";
+//   }
+//   return config;
+// };
 
-axiosInstance.interceptors.request.use(requestInterceptors);
+// axiosInstance.interceptors.request.use(requestInterceptors);
 
 export default axiosInstance;
