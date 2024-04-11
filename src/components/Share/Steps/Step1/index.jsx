@@ -9,6 +9,7 @@ import {
   LogoWrapperUI,
   Step1WrapperUI,
 } from "./styles";
+import { useEffect } from "react";
 import { FaInstagram } from "react-icons/fa";
 import rudkidsAlbumSrc from "./assets/rudkids_album.webp";
 
@@ -17,6 +18,8 @@ const Step1 = ({ next, prev }) => {
     localStorage.setItem("redirect_url", window.location);
     window.location.href = `${process.env.REACT_APP_SERVER_URL}/api/auth/instagram/login`;
   };
+
+  useEffect(() => {}, []);
 
   return (
     <Step1WrapperUI>
