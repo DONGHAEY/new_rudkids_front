@@ -19,7 +19,7 @@ const CallbackPage = () => {
       await instagramLogin(searchParams);
       console.log("?2");
       //쿠키 들어오는거 확인좀...
-      window.location.href = redirect_url;
+      // window.location.href = redirect_url;
       // }
     })();
   }, []);
