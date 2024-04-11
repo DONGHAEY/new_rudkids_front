@@ -21,11 +21,13 @@ const Step1 = ({ next, prev }) => {
   };
 
   useEffect(() => {
-    const userData = getUser();
-    console.log(userData);
-    if (userData) {
-      next();
-    }
+    (async () => {
+      const userData = await getUser();
+      console.log(userData);
+      if (userData) {
+        next();
+      }
+    })();
   }, []);
 
   return (
