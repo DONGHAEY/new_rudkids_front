@@ -15,9 +15,11 @@ const CallbackPage = () => {
       // if (PlatformTypes.includes(platform)) {
       const searchParams = qs.parse(window.location.search.slice(1));
       const redirect_url = localStorage.getItem("redirect_url");
+      console.log("?1");
       await instagramLogin(searchParams);
+      console.log("?2");
       //쿠키 들어오는거 확인좀...
-      window.location.href.replace(redirect_url);
+      window.location.href = redirect_url;
       // }
     })();
   }, []);
