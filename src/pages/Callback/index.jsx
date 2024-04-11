@@ -16,7 +16,10 @@ const CallbackPage = () => {
       const searchParams = qs.parse(window.location.search.slice(1));
       const redirect_url = localStorage.getItem("redirect_url");
       // console.log("?1");
-      await instagramLogin(searchParams);
+      const { token } = await instagramLogin(searchParams);
+      if (token) {
+        localStorage.setItem("token", token);
+      }
       // console.log("?2");
       //아 모르겠다 저장되겠지...
       window.location.href = redirect_url;
