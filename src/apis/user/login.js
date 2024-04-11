@@ -3,7 +3,7 @@ import qs from "qs";
 
 export const instagramLogin = async (searchParams) => {
   return await axiosInstance
-    .get(`/auth/instagram/callback?${qs.stringify(searchParams)}`, {
+    .get(`/api/auth/instagram/callback?${qs.stringify(searchParams)}`, {
       withCredentials: true,
     })
     .then((response) => response.data)
