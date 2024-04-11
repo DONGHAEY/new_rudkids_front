@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL + "/api";
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
 axios.defaults.withCredentials = true;
 
 // const requestInterceptors = (config) => {
