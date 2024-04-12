@@ -68,8 +68,7 @@ const Share = () => {
   }, [step, shareComponentRefList, isShareCompleted]);
 
   const next = () => {
-    if (isShareCompleted === undefined) return;
-    if (isShareCompleted === true) return;
+    if (isShareCompleted !== false) return;
     if (step + 1 <= totalStepCount) {
       gsap.to(shareComponentRefList[step].current, {
         opacity: 0,
@@ -83,8 +82,7 @@ const Share = () => {
   };
 
   const prev = () => {
-    if (isShareCompleted === undefined) return;
-    if (isShareCompleted === true) return;
+    if (isShareCompleted !== false) return;
     if (shareComponentRefList[step]) {
       gsap.to(shareComponentRefList[step].current, {
         opacity: 0,
@@ -101,6 +99,11 @@ const Share = () => {
 
   const stepComponentList = stepComponentSrcList.map((StepComp, idx) => {
     const currentRef = shareComponentRefList[idx];
+
+    if (isShareCompleted !== false) {
+      return null;
+    }
+
     return (
       <ShareComponentWrapperUI ref={currentRef} key={idx}>
         <StepComp next={next} prev={prev} />
