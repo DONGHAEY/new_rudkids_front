@@ -29,9 +29,9 @@ export const SharedStatus = ({ isShared, idx, active, onClick }) => {
       }
     } else {
       if (isShared) {
-        alert("이미 해당친구는 초대되었어요!");
+        alert("ah.. Don't Hit Me.... ay..");
       } else {
-        alert("해당 친구 초대단계가 아니에요!");
+        alert("Nock Nock..!");
       }
     }
   };

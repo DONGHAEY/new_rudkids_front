@@ -18,10 +18,20 @@ export const TabToPlayWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  -webkit-backdrop-filter: blur(13px);
-  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   align-items: center;
-  font-size: 35px;
+  font-size: 30px;
+  font-family: Poppins-Bold;
+  @keyframes motion {
+    0% {
+      margin-top: 0px;
+    }
+    100% {
+      margin-top: 20px;
+    }
+  }
+  animation: motion 0.8s linear 0s infinite alternate;
 `;
 
 export const VideoWrapperUI = styled.div`

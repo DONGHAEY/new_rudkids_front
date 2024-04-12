@@ -9,6 +9,7 @@ export const MoveLightTextWrapperUI = styled.div`
 
 export const MoveLightTextUI = styled.p`
   color: black;
+  font-family: Poppins-Bold;
   -webkit-mask-image: linear-gradient(
     -75deg,
     rgba(0, 0, 0, 0.3) 30%,
@@ -17,7 +18,7 @@ export const MoveLightTextUI = styled.p`
   );
   -webkit-mask-size: 300%;
   animation: shine 5s infinite;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   @-webkit-keyframes shine {
     from {

@@ -9,6 +9,7 @@ import {
   VideoWrapperUI,
 } from "./styles";
 import SkipSlider from "./SkipSlider";
+import rudkidsLogoSrc from "./assets/rudkids_logo.png";
 import engageVideoSrc from "./assets/engage.mp4";
 
 const Main = () => {
@@ -74,7 +75,8 @@ const Main = () => {
         </EngagingVideoUI>
         {!isPlayingVideo && (
           <TabToPlayWrapperUI onClick={playVideo}>
-            Tab to Play
+            <img width={"50%"} src={rudkidsLogoSrc} />
+            <span>Tab to Play</span>
           </TabToPlayWrapperUI>
         )}
       </VideoWrapperUI>
