@@ -24,7 +24,7 @@ import friendGroupIconSrc from "./assets/friend_group_icon.webp";
 import goalKeyIconSrc from "./assets/goal_key.webp";
 import quietFaceIconSrc from "./assets/quiet_face.webp";
 
-const Step2 = ({ next }) => {
+const Step2 = ({ next, isRender }) => {
   const maxSharedCnt = 3;
   const [friendSharedCnt, setFriendSharedCnt] = useState(0);
   const [alertOpen, setAlertOpen] = useState(false);
@@ -102,10 +102,12 @@ const Step2 = ({ next }) => {
   }, [bottomBoxRef.current, isopen]);
 
   useEffect(() => {
+    if (!isRender) return;
     if (localStorage.getItem("share_complete") === "true") {
+      console.log("a");
       next();
     }
-  }, []);
+  }, [isRender]);
 
   return (
     <Step2WrapperUI>

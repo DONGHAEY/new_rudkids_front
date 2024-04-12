@@ -14,20 +14,21 @@ import { FaInstagram } from "react-icons/fa";
 import rudkidsAlbumSrc from "./assets/rudkids_album.webp";
 import { getUser } from "../../../../apis/user/getUser";
 
-const Step1 = ({ next, prev }) => {
+const Step1 = ({ next, prev, isRender }) => {
   const loginBtnClickHandler = () => {
     localStorage.setItem("redirect_url", window.location);
     window.location.href = `${process.env.REACT_APP_SERVER_URL}/api/auth/instagram/login`;
   };
 
   useEffect(() => {
+    if (!isRender) return;
     (async () => {
       const userData = await getUser();
       if (userData?.id) {
         next();
       }
     })();
-  }, []);
+  }, [isRender]);
 
   return (
     <Step1WrapperUI>

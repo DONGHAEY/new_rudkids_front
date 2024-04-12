@@ -84,7 +84,7 @@ const Share = () => {
     const currentRef = shareComponentRefList[idx];
     return (
       <ShareComponentWrapperUI ref={currentRef} key={idx}>
-        <StepComp next={next} prev={prev} />
+        <StepComp next={next} prev={prev} isRender={idx === step} />
       </ShareComponentWrapperUI>
     );
   });
