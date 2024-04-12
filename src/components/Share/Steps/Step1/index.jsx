@@ -24,7 +24,9 @@ const Step1 = ({ next, prev }) => {
     (async () => {
       const userData = await getUser();
       console.log(userData);
-      if (userData) {
+      console.log("asdf=-1");
+      if (userData?.id) {
+        console.log("asdf=-2");
         next();
       }
     })();
