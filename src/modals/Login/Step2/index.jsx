@@ -101,11 +101,6 @@ const Step2 = ({ next, isRender }) => {
     }
   }, [bottomBoxRef.current, isopen]);
 
-  if (isRender && localStorage.getItem("share_complete") === "true") {
-    next();
-    return null;
-  }
-
   return (
     <ModalUI>
       <BottomBoxUI
