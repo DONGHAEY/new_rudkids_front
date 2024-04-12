@@ -82,6 +82,11 @@ const Step2 = ({ next }) => {
     return false;
   };
 
+  const getInClickHandler = () => {
+    localStorage.setItem("share_complete", "true");
+    next();
+  };
+
   useEffect(() => {
     if (isopen === false) {
       gsap.to(bottomBoxRef.current, {
@@ -95,6 +100,12 @@ const Step2 = ({ next }) => {
       });
     }
   }, [bottomBoxRef.current, isopen]);
+
+  useEffect(() => {
+    if (localStorage.getItem("share_complete") === "true") {
+      next();
+    }
+  }, []);
 
   return (
     <Step2WrapperUI>
@@ -138,7 +149,7 @@ const Step2 = ({ next }) => {
           <ProgressBar
             length={maxSharedCnt}
             cnt={friendSharedCnt}
-            onGetIn={next}
+            onGetIn={getInClickHandler}
           />
           <ProgressBarGoalImgUI src={goalKeyIconSrc} />
         </ProgressBarSectionUI>

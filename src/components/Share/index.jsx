@@ -13,7 +13,6 @@ const Share = () => {
     .map(() => createRef());
 
   const [step, setStep] = useState(0);
-  const [isShareCompleted, setIsShareCompleted] = useState(undefined);
 
   const disable = useCallback(() => {
     gsap.to(shareWrapperRef.current.style, {
@@ -36,28 +35,14 @@ const Share = () => {
   }, [shareWrapperRef]);
 
   useEffect(() => {
-    if (localStorage.getItem("share_complete") === "true") {
-      setIsShareCompleted(true);
-    } else if (step === totalStepCount) {
-      setIsShareCompleted(true);
+    if (step === totalStepCount) {
+      disable();
     } else {
-      setIsShareCompleted(false);
+      enable();
     }
   }, [step, totalStepCount]);
 
   useEffect(() => {
-    if (isShareCompleted === true) {
-      disable();
-      localStorage.setItem("share_complete", "true");
-    } else if (isShareCompleted === false) {
-      localStorage.setItem("share_complete", "false");
-      enable();
-    }
-  }, [isShareCompleted]);
-
-  useEffect(() => {
-    if (isShareCompleted === undefined) return;
-    if (isShareCompleted === true) return;
     if (shareComponentRefList[step]) {
       shareComponentRefList[step].current.style.display = "block";
       gsap.to(shareComponentRefList[step].current, {
@@ -65,10 +50,9 @@ const Share = () => {
         duration: 0.5,
       });
     }
-  }, [step, shareComponentRefList, isShareCompleted]);
+  }, [step, shareComponentRefList]);
 
   const next = () => {
-    if (isShareCompleted !== false) return;
     if (step + 1 <= totalStepCount) {
       gsap.to(shareComponentRefList[step].current, {
         opacity: 0,
@@ -82,7 +66,6 @@ const Share = () => {
   };
 
   const prev = () => {
-    if (isShareCompleted !== false) return;
     if (shareComponentRefList[step]) {
       gsap.to(shareComponentRefList[step].current, {
         opacity: 0,
@@ -99,11 +82,6 @@ const Share = () => {
 
   const stepComponentList = stepComponentSrcList.map((StepComp, idx) => {
     const currentRef = shareComponentRefList[idx];
-
-    if (isShareCompleted !== false) {
-      return null;
-    }
-
     return (
       <ShareComponentWrapperUI ref={currentRef} key={idx}>
         <StepComp next={next} prev={prev} />
