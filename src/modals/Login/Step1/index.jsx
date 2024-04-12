@@ -14,17 +14,18 @@ import rudkidsAlbumSrc from "./assets/rudkids_album.webp";
 import { useUserQuery } from "../../../queries/user";
 
 const Step1 = ({ next, isRender }) => {
-  const { data: userData } = useUserQuery();
+  // const { data: userData } = useUserQuery();
 
   const LoginBtnClickHandler = () => {
-    localStorage.setItem("redirect_url", window.location);
-    window.location.href = `${process.env.REACT_APP_SERVER_URL}/api/auth/instagram/login`;
+    next();
+    //localStorage.setItem("redirect_url", window.location);
+    //window.location.href = `${process.env.REACT_APP_SERVER_URL}/api/auth/instagram/login`;
   };
 
-  if (isRender && userData) {
-    next();
-    return null;
-  }
+  // if (isRender && userData) {
+  //   next();
+  //   return null;
+  // }
 
   return (
     <ModalUI>

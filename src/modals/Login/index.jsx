@@ -4,12 +4,13 @@ import Step2 from "./Step2";
 import { useUserQuery } from "../../queries/user";
 
 const LoginModal = () => {
-  const { data: userData } = useUserQuery();
-
-  const isLoggedin = userData ? true : false;
+  // const { data: userData, isLoading: userLoading } = useUserQuery();
+  // const isLoggedin = !userLoading && userData ? true : false;
   const isShareCompleted = localStorage.getItem("share_complete") === "true";
 
-  if (isLoggedin && isShareCompleted) {
+  const isOpen = !isShareCompleted;
+
+  if (!isOpen) {
     return null;
   }
 
