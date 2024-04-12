@@ -10,6 +10,7 @@ import {
   ProgressBarGoalImgUI,
   ProgressBarSectionUI,
   ModalUI,
+  BottomBoxWrapper,
 } from "./styles";
 import { ProgressBar } from "./ProgressBar";
 import { SharedStatus } from "./SharedStatus";
@@ -86,51 +87,53 @@ const Step2 = ({ next, isRender }) => {
   return (
     <>
       <ModalUI onScroll={scrollHandler} ref={modalRef}>
-        <BottomBoxUI ref={bottomBoxRef}>
-          <ArrowButtonUI
-            onClick={arrowButtonClickHandler}
-            children={
-              isopen ? (
-                <FaArrowDown color="white" width="60%" />
-              ) : (
-                <FaArrowUp color="white" width="60%" />
-              )
-            }
-          />
-          <FriendGroupImgWrapperUI>
-            <FriendGroupImgUI alt="friendGroup" src={friendGroupIconSrc} />
-          </FriendGroupImgWrapperUI>
-          <BoxTitleWrapperUI>
-            <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
-            <PopinPUI fontSize={"35px"}>Invited Only</PopinPUI>
-          </BoxTitleWrapperUI>
-          <FriendListUI>
-            {new Array(maxSharedCnt).fill("").map((_, idx) => {
-              const isShared = idx < friendSharedCnt;
-              return (
-                <SharedStatus
-                  key={idx}
-                  isShared={isShared}
-                  idx={idx}
-                  active={friendSharedCnt === idx}
-                  onClick={shareHandler}
-                />
-              );
-            })}
-          </FriendListUI>
-          <ProgressBarSectionUI>
-            <ProgressBar
-              length={maxSharedCnt}
-              cnt={friendSharedCnt}
-              onGetIn={getInClickHandler}
+        <BottomBoxWrapper>
+          <BottomBoxUI ref={bottomBoxRef}>
+            <ArrowButtonUI
+              onClick={arrowButtonClickHandler}
+              children={
+                isopen ? (
+                  <FaArrowDown color="white" width="60%" />
+                ) : (
+                  <FaArrowUp color="white" width="60%" />
+                )
+              }
             />
-            <ProgressBarGoalImgUI src={goalKeyIconSrc} />
-          </ProgressBarSectionUI>
-          <AskSectionUI onClick={askSectionClickHandler}>
-            <VscInfo width="15px" />
-            Why {maxSharedCnt} Friends?
-          </AskSectionUI>
-        </BottomBoxUI>
+            <FriendGroupImgWrapperUI>
+              <FriendGroupImgUI alt="friendGroup" src={friendGroupIconSrc} />
+            </FriendGroupImgWrapperUI>
+            <BoxTitleWrapperUI>
+              <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
+              <PopinPUI fontSize={"35px"}>Invited Only</PopinPUI>
+            </BoxTitleWrapperUI>
+            <FriendListUI>
+              {new Array(maxSharedCnt).fill("").map((_, idx) => {
+                const isShared = idx < friendSharedCnt;
+                return (
+                  <SharedStatus
+                    key={idx}
+                    isShared={isShared}
+                    idx={idx}
+                    active={friendSharedCnt === idx}
+                    onClick={shareHandler}
+                  />
+                );
+              })}
+            </FriendListUI>
+            <ProgressBarSectionUI>
+              <ProgressBar
+                length={maxSharedCnt}
+                cnt={friendSharedCnt}
+                onGetIn={getInClickHandler}
+              />
+              <ProgressBarGoalImgUI src={goalKeyIconSrc} />
+            </ProgressBarSectionUI>
+            <AskSectionUI onClick={askSectionClickHandler}>
+              <VscInfo width="15px" />
+              Why {maxSharedCnt} Friends?
+            </AskSectionUI>
+          </BottomBoxUI>
+        </BottomBoxWrapper>
       </ModalUI>
       <Alert
         open={alertOpen}
