@@ -21,16 +21,17 @@ const Step1 = ({ next, prev }) => {
   };
 
   useEffect(() => {
-    (async () => {
-      const userData = await getUser();
-      console.log(userData);
-      console.log("asdf=-1");
-      if (userData?.id) {
-        console.log("asdf=-2");
-        next();
-      }
-    })();
-  }, []);
+    if (next) {
+      (async () => {
+        const userData = await getUser();
+        if (userData?.id) {
+          next();
+        }
+      })();
+    } else {
+      console.log("asdfasdf -else");
+    }
+  }, [next]);
 
   return (
     <Step1WrapperUI>
