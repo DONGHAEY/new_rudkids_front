@@ -6,12 +6,12 @@ import {
   NavigateButtonUI,
 } from "./styles";
 import { createRef, useEffect, useState } from "react";
-import Share from "../../components/Share";
 import ItemBox from "./ItemBox";
 import itemDataList from "./itemDataList";
 import { GoArrowRight } from "react-icons/go";
 import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
+import LoginModal from "../../modals/Login";
 
 const ListPage = () => {
   const navigate = useNavigate();
@@ -189,7 +189,7 @@ const ListPage = () => {
           children={itemBoxList}
         />
       </PageUI>
-      <Share />
+      <LoginModal />
     </>
   );
 };

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Step2WrapperUI = styled.div`
+export const ModalUI = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -10,6 +10,8 @@ export const Step2WrapperUI = styled.div`
   justify-content: end;
   width: 100%;
   height: 100%;
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
 `;
 
 export const FriendGroupImgWrapperUI = styled.div`
@@ -91,7 +93,7 @@ export const ArrowButtonUI = styled.div`
 `;
 
 export const BottomBoxUI = styled.div`
-  background-color: rgba(255, 255, 255, 60%);
+  background-color: rgba(255, 255, 255, 85%);
   width: 100%;
   max-height: 70%;
   top: 270px;

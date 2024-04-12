@@ -12,7 +12,6 @@ export const PageUI = styled.div`
 
 export const TabToPlayWrapperUI = styled.div`
   position: absolute;
-  z-index: 2;
   color: white;
   width: 100%;
   height: 100%;

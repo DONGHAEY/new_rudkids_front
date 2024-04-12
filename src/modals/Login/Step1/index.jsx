@@ -7,31 +7,27 @@ import {
   BoxTopUI,
   LogoImgUI,
   LogoWrapperUI,
-  Step1WrapperUI,
+  ModalUI,
 } from "./styles";
-import { useEffect } from "react";
 import { FaInstagram } from "react-icons/fa";
 import rudkidsAlbumSrc from "./assets/rudkids_album.webp";
-import { getUser } from "../../../../apis/user/getUser";
+import { useUserQuery } from "../../../queries/user";
 
-const Step1 = ({ next, prev, isRender }) => {
-  const loginBtnClickHandler = () => {
+const Step1 = ({ next, isRender }) => {
+  const { data: userData } = useUserQuery();
+
+  const LoginBtnClickHandler = () => {
     localStorage.setItem("redirect_url", window.location);
     window.location.href = `${process.env.REACT_APP_SERVER_URL}/api/auth/instagram/login`;
   };
 
-  useEffect(() => {
-    if (!isRender) return;
-    (async () => {
-      const userData = await getUser();
-      if (userData?.id) {
-        next();
-      }
-    })();
-  }, [isRender]);
+  if (isRender && userData) {
+    next();
+    return null;
+  }
 
   return (
-    <Step1WrapperUI>
+    <ModalUI>
       <BoxTopUI>
         <img width="100%" src={rudkidsAlbumSrc} />
       </BoxTopUI>
@@ -44,12 +40,12 @@ const Step1 = ({ next, prev, isRender }) => {
           <BoxTitleUI>so boring.</BoxTitleUI>
           <BoxTitleUI>Just Kidding.</BoxTitleUI>
         </BoxTitleWrapperUI>
-        <BoxButtonUI onClick={loginBtnClickHandler}>
+        <BoxButtonUI onClick={LoginBtnClickHandler}>
           <FaInstagram fontSize={"20px"} /> Sign in with instagram
         </BoxButtonUI>
       </BoxMiddleUI>
       <BoxBottomUI>Rudkids</BoxBottomUI>
-    </Step1WrapperUI>
+    </ModalUI>
   );
 };
 

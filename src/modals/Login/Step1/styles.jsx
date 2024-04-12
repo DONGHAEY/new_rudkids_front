@@ -58,12 +58,17 @@ export const BoxBottomUI = styled.div`
   font-size: 16px;
 `;
 
-export const Step1WrapperUI = styled.div`
+export const ModalUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   width: 100%;
   height: 100%;
 `;

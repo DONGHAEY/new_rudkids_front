@@ -9,14 +9,14 @@ import {
   PopinPUI,
   ProgressBarGoalImgUI,
   ProgressBarSectionUI,
-  Step2WrapperUI,
+  ModalUI,
 } from "./styles";
-import { ProgressBar } from "../../ProgressBar";
-import { SharedStatus } from "../../SharedStatus";
+import { ProgressBar } from "./ProgressBar";
+import { SharedStatus } from "./SharedStatus";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
-import { Alert } from "../../../Alert";
+import { Alert } from "../../Alert";
 import { VscInfo } from "react-icons/vsc";
 import gsap from "gsap";
 
@@ -32,7 +32,7 @@ const Step2 = ({ next, isRender }) => {
   const bottomBoxRef = useRef(null);
 
   const shareHandler = async () => {
-    const weburl = "https://new-rudkids-front.vercel.app";
+    const weburl = "https://www.rud.kids";
     if (!isMobile) {
       alert("모바일로 접속해주세요!");
       if (friendSharedCnt + 1 <= maxSharedCnt) {
@@ -101,16 +101,13 @@ const Step2 = ({ next, isRender }) => {
     }
   }, [bottomBoxRef.current, isopen]);
 
-  useEffect(() => {
-    if (!isRender) return;
-    if (localStorage.getItem("share_complete") === "true") {
-      console.log("a");
-      next();
-    }
-  }, [isRender]);
+  if (isRender && localStorage.getItem("share_complete") === "true") {
+    next();
+    return null;
+  }
 
   return (
-    <Step2WrapperUI>
+    <ModalUI>
       <BottomBoxUI
         onTouchStart={touchStartHandler}
         onTouchMove={touchMoveHandler}
@@ -168,7 +165,7 @@ const Step2 = ({ next, isRender }) => {
         buttonContent={"Yeeeaaah!"}
         onChecked={alertCheckedHandler}
       />
-    </Step2WrapperUI>
+    </ModalUI>
   );
 };
 

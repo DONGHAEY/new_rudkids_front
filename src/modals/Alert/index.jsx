@@ -1,6 +1,6 @@
 import {
   AlertBoxUI,
-  AlertBoxWrapperUI,
+  ModalUI,
   BrUI,
   ButtonUI,
   ButtonWrapperUI,
@@ -19,7 +19,7 @@ export const Alert = ({
   open = false,
 }) => {
   return (
-    <AlertBoxWrapperUI hidden={!open}>
+    <ModalUI hidden={!open}>
       <AlertBoxUI>
         {imageUrl && (
           <ImgWrapperUI>
@@ -33,6 +33,6 @@ export const Alert = ({
           <ButtonUI onClick={onChecked}>{buttonContent}</ButtonUI>
         </ButtonWrapperUI>
       </AlertBoxUI>
-    </AlertBoxWrapperUI>
+    </ModalUI>
   );
 };

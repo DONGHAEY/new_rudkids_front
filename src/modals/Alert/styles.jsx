@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AlertBoxWrapperUI = styled.div`
+export const ModalUI = styled.div`
   background-color: rgba(0, 0, 0, 50%);
   position: absolute;
   display: ${({ hidden }) => (hidden ? "none" : "flex")};
