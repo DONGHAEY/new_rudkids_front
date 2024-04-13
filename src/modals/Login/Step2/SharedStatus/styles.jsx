@@ -18,20 +18,21 @@ export const ShareStatusTextUI = styled.p`
 `;
 
 export const CircleImgWrapperUI = styled.div`
-  height: 100%;
+  height: 90%;
   cursor: ${({ $active }) => ($active ? "pointer" : "")};
   border-radius: 100%;
   @keyframes motion {
     0% {
       border: 0px solid transparent;
       border-opacity: 0;
+      background-image: radial-gradient(circle, lime, transparent);
     }
     100% {
       border: 3px solid transparent;
       border-opacity: 1;
+      background-image: radial-gradient(circle, lime, transparent);
     }
   }
-  background-image: radial-gradient(circle, lime, transparent);
   ${({ $active }) =>
     $active
       ? `animation: motion 1s linear 0s infinite alternate;`

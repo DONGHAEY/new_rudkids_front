@@ -120,7 +120,7 @@ export const FriendListUI = styled.div`
   min-width: 220px;
   max-gap: 10px;
   gap: 5px;
-  height: 70px;
+  height: 75px;
   margin-top: 30px;
   background-color: #efefef;
   border-radius: 20px;
