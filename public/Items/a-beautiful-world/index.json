@@ -1,0 +1,8 @@
+{
+  "color": "#FF3BA5",
+  "name": "A Beautiful World",
+  "price": 139000,
+  "imageSrc": "/Items/a-beautiful-world/a_beautiful_world.png",
+  "modelSrc": "/Items/a-beautiful-world/a_beautiful_world.glb",
+  "components": []
+}

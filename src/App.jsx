@@ -8,7 +8,8 @@ import DetailPage from "./pages/Detail";
 import List3dPage from "./pages/List3D";
 import HandPage from "./pages/Hand";
 import CallbackPage from "./pages/Callback";
-import LoginModal from "./modals/Login";
+import InvitationPage from "./pages/Invitation";
+import SchoolInvitationPage from "./pages/SchoolInvitation";
 
 function App() {
   const [queryClient] = useState(
@@ -28,6 +29,11 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/list-3d" element={<List3dPage />} />
           <Route path="/list" element={<ListPage />} />
+          <Route path="/invitation/:user_id" element={<InvitationPage />} />
+          <Route
+            path="/school-invitation/:school_name"
+            element={<SchoolInvitationPage />}
+          />
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/hand" element={<HandPage />} />
           <Route path="/callback" element={<CallbackPage />} />
