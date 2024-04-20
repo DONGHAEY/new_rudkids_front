@@ -8,7 +8,7 @@ const LoginModal = () => {
   const isLoggedin = !userLoading && userData ? true : false;
   const isShareCompleted = localStorage.getItem("share_complete") === "true";
 
-  const isOpen = !isShareCompleted;
+  const isOpen = !isShareCompleted && !isLoggedin;
 
   if (!isOpen) {
     return null;
