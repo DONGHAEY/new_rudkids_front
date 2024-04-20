@@ -17,6 +17,7 @@ import {
   TopImgUI,
   TopSectionUI,
   UserBoxUI,
+  MoreUserTextUI,
 } from "./styles";
 
 const SchoolInvitationPage = () => {
@@ -24,6 +25,9 @@ const SchoolInvitationPage = () => {
   const schoolName = params["school_name"];
   const { data: schoolData } = useSchoolQuery(schoolName);
   const { data: schoolUsersData } = useSchoolUsersQuery(schoolName);
+
+  const moreUserCount =
+    schoolUsersData?.meta.total - schoolUsersData?.meta.take;
 
   const navigate = useNavigate();
 
@@ -67,14 +71,9 @@ const SchoolInvitationPage = () => {
             <IoIosAdd fontSize={"30px"} />
           </UserBoxUI>
         </UserBoxSliderUI>
-        <p
-          style={{
-            width: "100%",
-            textAlign: "right",
-          }}
-        >
-          +{schoolUsersData?.meta.total - schoolUsersData?.meta.take} more
-        </p>
+        {moreUserCount > 0 && (
+          <MoreUserTextUI>+{moreUserCount} more</MoreUserTextUI>
+        )}
       </BottomSectionUI>
     </PageUI>
   );

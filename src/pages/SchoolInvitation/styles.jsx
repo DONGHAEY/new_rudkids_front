@@ -14,6 +14,8 @@ export const PageUI = styled.div`
   align-items: center;
   color: white;
   text-align: center;
+  overflow: scroll;
+  gap: 20px;
 `;
 
 export const TopImgUI = styled.img`
@@ -21,20 +23,17 @@ export const TopImgUI = styled.img`
 `;
 
 export const TopSectionUI = styled.div`
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
 `;
 
 export const MiddleSectionUI = styled.div`
-  margin-top: 20px;
   display: flex;
-  gap: 15px;
+  gap: 10px;
+  height: 40%;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
 `;
 
 export const SchoolLogoUI = styled.img`
@@ -67,6 +66,7 @@ export const EnterButtonUI = styled.div`
   border-radius: 16px;
   cursor: pointer;
   font-family: Poppins-SemiBold;
+  z-index: 30;
 `;
 
 export const PageDescriptionUI = styled.p`
@@ -76,13 +76,19 @@ export const PageDescriptionUI = styled.p`
 
 export const BottomSectionUI = styled.div`
   width: 100%;
-  max-width: 70%;
-  margin-top: 25px;
+  height: 15%;
+  max-width: 75%;
   display: flex;
   width: 100%;
   gap: 15px;
   flex-direction: column;
   align-items: center;
+  justify-content: end;
+`;
+
+export const MoreUserTextUI = styled.p`
+  width: 100%;
+  textalign: right;
 `;
 
 export const UserBoxSliderUI = styled.div`
@@ -91,11 +97,10 @@ export const UserBoxSliderUI = styled.div`
   height: 80px;
   padding-block: 10px;
   border-radius: 16px;
-  margin-top: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  overflow: scroll;
+  overflow-x: scroll;
 `;
 
 export const UserBoxUI = styled.div`
