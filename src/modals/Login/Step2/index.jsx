@@ -19,15 +19,16 @@ import { useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Alert } from "../../Alert";
 import { VscInfo } from "react-icons/vsc";
-
 import friendGroupIconSrc from "./assets/friend_group_icon.webp";
 import goalKeyIconSrc from "./assets/goal_key.webp";
 import quietFaceIconSrc from "./assets/quiet_face.webp";
+import { useUserQuery } from "../../../queries/user";
 
 const Step2 = ({ next, isRender }) => {
   const maxSharedCnt = 3;
   const [friendSharedCnt, setFriendSharedCnt] = useState(0);
   const [alertOpen, setAlertOpen] = useState(false);
+  const { data: userData } = useUserQuery();
 
   const modalRef = useRef(null);
   const bottomBoxRef = useRef(null);
@@ -35,7 +36,7 @@ const Step2 = ({ next, isRender }) => {
   const [isopen, setIsopen] = useState(false);
 
   const shareHandler = async () => {
-    const weburl = "https://www.rud.kids";
+    const weburl = `https://www.rud.kids/invitation/${userData.id}`;
     if (!isMobile) {
       alert("모바일로 접속해주세요!");
       if (friendSharedCnt + 1 <= maxSharedCnt) {

@@ -20,9 +20,9 @@ import {
   MoreUserTextUI,
 } from "./styles";
 
-const SchoolInvitationPage = () => {
+const SchoolInvitationPage = ({ routeInfo }) => {
   const params = useParams();
-  const schoolName = params["school_name"];
+  const schoolName = params[routeInfo.paramKeys[0]];
   const { data: schoolData } = useSchoolQuery(schoolName);
   const { data: schoolUsersData } = useSchoolUsersQuery(schoolName);
 

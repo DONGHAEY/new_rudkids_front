@@ -17,7 +17,6 @@ const Step1 = ({ next, isRender }) => {
   const { data: userData } = useUserQuery();
 
   const LoginBtnClickHandler = () => {
-    next();
     localStorage.setItem("redirect_url", window.location);
     window.location.href = `${process.env.REACT_APP_SERVER_URL}/api/auth/instagram/login`;
   };
