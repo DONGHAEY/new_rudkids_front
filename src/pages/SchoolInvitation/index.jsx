@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useSchoolQuery } from "../../queries/school";
-import { useEffect } from "react";
 import { useSchoolUsersQuery } from "../../queries/user";
 import prizeIconSrc from "./assets/prize.png";
 import { IoEnterOutline } from "react-icons/io5";
@@ -49,11 +48,14 @@ const SchoolInvitationPage = () => {
       </MiddleSectionUI>
       <BottomSectionUI>
         <UserBoxSliderUI>
-          {schoolUsersData?.map((schoolUser) => {
+          {schoolUsersData?.data.map((schoolUser) => {
             return (
               <UserBoxUI key={schoolUser?.id}>
                 <UserBoxUI.UserImgWrapperUI>
-                  <UserBoxUI.UserImgUI src={schoolUser?.imageUrl} />
+                  <UserBoxUI.UserImgUI
+                    src={schoolUser?.imageUrl}
+                    alt={schoolUser?.nickname + "이미지"}
+                  />
                 </UserBoxUI.UserImgWrapperUI>
                 <UserBoxUI.UserNicknameUI>
                   {schoolUser?.nickname}
@@ -71,7 +73,7 @@ const SchoolInvitationPage = () => {
             textAlign: "right",
           }}
         >
-          +0 more
+          +{schoolUsersData?.meta.total - schoolUsersData?.meta.take} more
         </p>
       </BottomSectionUI>
     </PageUI>
