@@ -17,7 +17,7 @@ const CallbackPage = () => {
       // console.log("?1");
       await instagramLogin(searchParams);
       //아 모르겠다 저장되겠지...
-      window.location.href = redirect_url;
+      window.location.href = redirect_url ?? "/";
       // }
     })();
   }, []);
