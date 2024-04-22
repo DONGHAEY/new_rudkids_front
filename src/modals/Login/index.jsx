@@ -6,7 +6,7 @@ import {
   useSetMySchoolMutation,
   useUserQuery,
 } from "../../queries/user";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 const LoginModal = () => {
   const { data: userData, isLoading: userLoading } = useUserQuery();
@@ -23,21 +23,25 @@ const LoginModal = () => {
   const inviterUserId = localStorage.getItem("inviter_user_id");
 
   useEffect(() => {
-    if (!userData) return;
-    if (!isOpen) return;
+    if (!isLoggedin) return;
     if (schoolName) {
       setMySchoolMutation.mutate(schoolName);
     }
     if (inviterUserId) {
       setMyInviterMutation.mutate(inviterUserId);
     }
-  }, [userData, isOpen, schoolName, inviterUserId]);
+  }, [isLoggedin, schoolName, inviterUserId]);
+
+  //이건 한번만 랜더해야함 (그렇게 안하면 꼬임)
+  const stepsRenderer = useMemo(() => {
+    return <StepsRenderer stepComponentSrcList={[Step1, Step2]} />;
+  }, []);
 
   if (!isOpen) {
     return null;
   }
 
-  return <StepsRenderer stepComponentSrcList={[Step1, Step2]} />;
+  return stepsRenderer;
 };
 
 export default LoginModal;
