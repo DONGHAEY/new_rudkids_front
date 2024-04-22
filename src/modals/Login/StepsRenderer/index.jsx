@@ -1,4 +1,4 @@
-import { createRef, useEffect, useRef, useState } from "react";
+import React, { createRef, memo, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ShareComponentWrapperUI, ShareWrapperUI } from "./styles";
 
@@ -67,4 +67,6 @@ const StepsRenderer = ({ stepComponentSrcList }) => {
   return <ShareWrapperUI ref={shareWrapperRef} children={stepComponentList} />;
 };
 
-export default StepsRenderer;
+//이건 한번만 랜더해야함 (그렇게 안하면 꼬임)
+export default memo(StepsRenderer);
+//이건 한번만 랜더해야함 (그렇게 안하면 꼬임)

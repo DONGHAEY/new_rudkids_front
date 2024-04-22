@@ -32,16 +32,11 @@ const LoginModal = () => {
     }
   }, [isLoggedin, schoolName, inviterUserId]);
 
-  //이건 한번만 랜더해야함 (그렇게 안하면 꼬임)
-  const stepsRenderer = useMemo(() => {
-    return <StepsRenderer stepComponentSrcList={[Step1, Step2]} />;
-  }, []);
-
   if (!isOpen) {
     return null;
   }
 
-  return stepsRenderer;
+  return <StepsRenderer stepComponentSrcList={[Step1, Step2]} />;
 };
 
 export default LoginModal;
