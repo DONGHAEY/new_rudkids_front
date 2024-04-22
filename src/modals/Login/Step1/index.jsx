@@ -21,7 +21,7 @@ const Step1 = ({ next, isRender }) => {
     window.location.href = `${process.env.REACT_APP_SERVER_URL}/api/auth/instagram/login`;
   };
 
-  if (userData && isRender) {
+  if (isRender) {
     next();
     return null;
   }
