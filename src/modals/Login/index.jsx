@@ -7,11 +7,9 @@ import {
   useUserQuery,
 } from "../../queries/user";
 import { useEffect } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
 
 const LoginModal = () => {
   const { data: userData, isLoading: userLoading } = useUserQuery();
-  const [searchParams] = useSearchParams();
 
   const isLoggedin = !userLoading && userData ? true : false;
   const isShareCompleted = localStorage.getItem("share_complete") === "true";
@@ -21,8 +19,8 @@ const LoginModal = () => {
 
   const isOpen = !isShareCompleted || !isLoggedin;
 
-  const schoolName = searchParams.get("school_name");
-  const inviterUserId = searchParams.get("inviter_user_id");
+  const schoolName = localStorage.getItem("school_name");
+  const inviterUserId = localStorage.getItem("inviter_user_id");
 
   useEffect(() => {
     if (!userData) return;

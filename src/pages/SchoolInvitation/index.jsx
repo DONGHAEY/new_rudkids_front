@@ -33,7 +33,8 @@ const SchoolInvitationPage = ({ routeInfo }) => {
 
   const onEnterBtnClickHandler = () => {
     if (schoolData) {
-      navigate(`/list?school_name=${schoolData?.name}`);
+      localStorage.setItem("school_name", schoolData.name);
+      navigate(`/list`);
     }
   };
 
