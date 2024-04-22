@@ -65,25 +65,14 @@ const StepsRenderer = ({ stepComponentSrcList }) => {
     });
   }, [currentComponentRef.current]);
 
-  const [allRendered, setAllRendered] = useState(false);
-
   const stepComponentList = stepComponentSrcList.map((StepComp, idx) => {
     const currentRef = shareComponentRefList[idx];
     return (
       <ShareComponentWrapperUI ref={currentRef} key={idx}>
-        {allRendered && (
-          <StepComp next={next} prev={prev} isRender={idx === step} />
-        )}
+        {<StepComp next={next} prev={prev} isRender={idx === step} />}
       </ShareComponentWrapperUI>
     );
   });
-
-  useEffect(() => {
-    console.log(stepComponentList.length, totalStepCount);
-    if (stepComponentList.length === totalStepCount) {
-      setAllRendered(true);
-    }
-  }, [stepComponentList.length]);
 
   return <ShareWrapperUI ref={shareWrapperRef} children={stepComponentList} />;
 };
