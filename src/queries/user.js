@@ -8,7 +8,7 @@ import { getSchoolUsers } from "../apis/user/getSchoolUsers";
 
 export const useUserQuery = () => {
   return useQuery({
-    queryKey: [queryKey.user],
+    queryKey: [queryKey.user, "my"],
     queryFn: getUser,
   });
 };
@@ -21,7 +21,7 @@ export const useSetMyInviterMutation = () => {
 
 export const useInvitedUsersQuery = (inviterUserId) => {
   return useQuery({
-    queryKey: [queryKey.user, "invited"],
+    queryKey: [queryKey.user, "invited", "list"],
     queryFn: () => getInvitedUsers(inviterUserId),
   });
 };
@@ -34,7 +34,7 @@ export const useSetMySchoolMutation = () => {
 
 export const useSchoolUsersQuery = (schoolName) => {
   return useQuery({
-    queryKey: [queryKey.user, queryKey.school],
+    queryKey: [queryKey.user, queryKey.school, "list"],
     queryFn: () => getSchoolUsers(schoolName),
   });
 };
