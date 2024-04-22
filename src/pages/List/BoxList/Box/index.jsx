@@ -10,15 +10,15 @@ import {
 } from "./styles";
 import grassImgSrc from "./assets/grass.png";
 
-const ItemBox = ({ color, isRotated, name, imageSrc }) => {
+const Box = ({ color, isRotated, name, imageSrc, key }) => {
   return (
-    <BoxUI $isRotated={isRotated}>
+    <BoxUI $isRotated={isRotated} key={key}>
       <BoxBarUI $backgroundColor={color ?? "#FFE818"}>
         <BoxTitleUI>{name}</BoxTitleUI>
         <BoxButtonWrapperUI>
-          <BoxButtonUI $backgroundColor="#E01A22" />
-          <BoxButtonUI $backgroundColor="#00A507" />
-          <BoxButtonUI $backgroundColor="#2479FF" />
+          <BoxButtonUI key={1} $backgroundColor="#E01A22" />
+          <BoxButtonUI key={2} $backgroundColor="#00A507" />
+          <BoxButtonUI key={3} $backgroundColor="#2479FF" />
         </BoxButtonWrapperUI>
       </BoxBarUI>
       <BoxContentUI>
@@ -29,4 +29,4 @@ const ItemBox = ({ color, isRotated, name, imageSrc }) => {
   );
 };
 
-export default ItemBox;
+export default Box;

@@ -11,68 +11,79 @@ const StepsRenderer = ({ stepComponentSrcList }) => {
 
   const [step, setStep] = useState(0);
 
-  const disable = useCallback(() => {
-    shareWrapperRef.current.style.display = "none";
-  }, [shareWrapperRef]);
-
-  const enable = useCallback(() => {
-    shareWrapperRef.current.style.display = "block";
-  }, [shareWrapperRef]);
+  const currentComponentRef = shareComponentRefList[step];
 
   useEffect(() => {
+    if (!shareWrapperRef.current) return;
     if (step === totalStepCount) {
-      disable();
+      shareWrapperRef.current.display = "none";
     } else {
-      enable();
+      shareWrapperRef.current.display = "block";
     }
-  }, [step, totalStepCount]);
+  }, [step, totalStepCount, shareWrapperRef.current]);
 
   useEffect(() => {
-    if (shareComponentRefList[step]) {
-      shareComponentRefList[step].current.style.display = "block";
-      gsap.to(shareComponentRefList[step].current, {
-        opacity: 1,
-        duration: 0.5,
-      });
+    if (!shareComponentRefList?.[step].current) {
+      return;
     }
-  }, [step, shareComponentRefList]);
+    shareComponentRefList[step].current.style.display = "block";
+    gsap.to(shareComponentRefList[step].current, {
+      opacity: 1,
+      duration: 0.5,
+    });
+  }, [step, shareComponentRefList[step].current]);
 
-  const next = () => {
+  const next = useCallback(() => {
+    if (!currentComponentRef.current) {
+      return;
+    }
     if (step + 1 <= totalStepCount) {
-      gsap.to(shareComponentRefList[step].current, {
+      gsap.to(currentComponentRef.current, {
         opacity: 0,
         duration: 0.5,
         onComplete: () => {
-          shareComponentRefList[step].current.style.display = "none";
+          currentComponentRef.current.style.display = "none";
           setStep(step + 1);
         },
       });
     }
-  };
+  }, currentComponentRef.current);
 
-  const prev = () => {
-    if (shareComponentRefList[step]) {
-      gsap.to(shareComponentRefList[step].current, {
-        opacity: 0,
-        duration: 0.5,
-        onComplete: () => {
-          if (shareComponentRefList[step - 1]) {
-            shareComponentRefList[step].current.style.display = "none";
-            setStep(step - 1);
-          }
-        },
-      });
+  const prev = useCallback(() => {
+    if (!currentComponentRef.current) {
+      return;
     }
-  };
+    gsap.to(currentComponentRef.current, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        if (shareComponentRefList[step - 1]) {
+          currentComponentRef.current.style.display = "none";
+          setStep(step - 1);
+        }
+      },
+    });
+  }, [currentComponentRef.current]);
+
+  const [allRendered, setAllRendered] = useState(false);
 
   const stepComponentList = stepComponentSrcList.map((StepComp, idx) => {
     const currentRef = shareComponentRefList[idx];
     return (
       <ShareComponentWrapperUI ref={currentRef} key={idx}>
-        <StepComp next={next} prev={prev} isRender={idx === step} />
+        {allRendered && (
+          <StepComp next={next} prev={prev} isRender={idx === step} />
+        )}
       </ShareComponentWrapperUI>
     );
   });
+
+  useEffect(() => {
+    console.log(stepComponentList.length, totalStepCount);
+    if (stepComponentList.length === totalStepCount) {
+      setAllRendered(true);
+    }
+  }, [stepComponentList.length]);
 
   return <ShareWrapperUI ref={shareWrapperRef} children={stepComponentList} />;
 };

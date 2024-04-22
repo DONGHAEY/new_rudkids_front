@@ -12,6 +12,7 @@ import {
 import { FaInstagram } from "react-icons/fa";
 import rudkidsAlbumSrc from "./assets/rudkids_album.webp";
 import { useUserQuery } from "../../../queries/user";
+import { useEffect } from "react";
 
 const Step1 = ({ next, isRender }) => {
   const { data: userData } = useUserQuery();
@@ -21,10 +22,12 @@ const Step1 = ({ next, isRender }) => {
     window.location.href = `${process.env.REACT_APP_SERVER_URL}/api/auth/instagram/login`;
   };
 
-  if (isRender && userData) {
-    next();
-    return null;
-  }
+  useEffect(() => {
+    console.log(userData);
+    if (userData && isRender) {
+      next();
+    }
+  }, [isRender, userData]);
 
   return (
     <ModalUI>
