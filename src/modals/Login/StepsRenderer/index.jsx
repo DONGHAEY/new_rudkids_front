@@ -16,9 +16,9 @@ const StepsRenderer = ({ stepComponentSrcList }) => {
   useEffect(() => {
     if (!shareWrapperRef.current) return;
     if (step === totalStepCount) {
-      shareWrapperRef.current.display = "none";
+      shareWrapperRef.current.style.display = "none";
     } else {
-      shareWrapperRef.current.display = "block";
+      shareWrapperRef.current.style.display = "block";
     }
   }, [step, totalStepCount, shareWrapperRef.current]);
 
