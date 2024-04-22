@@ -34,7 +34,7 @@ export const useSetMySchoolMutation = () => {
 
 export const useSchoolUsersQuery = (schoolName) => {
   return useQuery({
-    queryKey: [queryKey.user, "school"],
+    queryKey: [queryKey.user, queryKey.school],
     queryFn: () => getSchoolUsers(schoolName),
   });
 };

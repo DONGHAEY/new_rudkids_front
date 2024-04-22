@@ -7,30 +7,33 @@ import {
   useUserQuery,
 } from "../../queries/user";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const LoginModal = () => {
   const { data: userData, isLoading: userLoading } = useUserQuery();
+  const params = useParams();
+
   const isLoggedin = !userLoading && userData ? true : false;
   const isShareCompleted = localStorage.getItem("share_complete") === "true";
+
   const setMySchoolMutation = useSetMySchoolMutation();
   const setMyInviterMutation = useSetMyInviterMutation();
 
   const isOpen = !isShareCompleted || !isLoggedin;
 
+  const schoolName = params["school_name"];
+  const inviterUserId = params["inviter_user_id"];
+
   useEffect(() => {
-    if (userData) {
-      const schoolName = localStorage.getItem("school_name");
-      const inviterUserId = localStorage.getItem("inviter_user_id");
-      if (schoolName) {
-        setMySchoolMutation.mutate(schoolName);
-      }
-      if (inviterUserId) {
-        setMyInviterMutation.mutate(inviterUserId);
-      }
+    if (!userData) return;
+    if (!isOpen) return;
+    if (schoolName) {
+      setMySchoolMutation.mutate(schoolName);
     }
-    localStorage.removeItem("school_name");
-    localStorage.removeItem("inviter_user_id");
-  }, [userData]);
+    if (inviterUserId) {
+      setMyInviterMutation.mutate(inviterUserId);
+    }
+  }, [userData, isOpen, schoolName, inviterUserId]);
 
   if (!isOpen) {
     return null;
