@@ -27,7 +27,6 @@ export const Nothing = () => {
       >
         <Scene offset={page / maxPage} moveDuration={moveDuration} />
       </CanvasUI>
-
       <PagesRenderer
         page={page}
         componentSrcList={componentSrcList}

@@ -6,7 +6,7 @@ import {
   useSetMySchoolMutation,
   useUserQuery,
 } from "../../queries/user";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
 const LoginModal = () => {
   const { data: userData, isLoading: userLoading } = useUserQuery();
