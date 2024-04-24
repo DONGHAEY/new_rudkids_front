@@ -28,7 +28,7 @@ export const useSetMyInviterMutation = () => {
 
 export const useInvitedUsersQuery = (inviterUserId) => {
   return useQuery({
-    queryKey: [queryKey.user, "invited", "list"],
+    queryKey: [queryKey.user, inviterUserId, "list"],
     queryFn: () => getInvitedUsers(inviterUserId),
   });
 };
@@ -41,7 +41,7 @@ export const useSetMySchoolMutation = () => {
 
 export const useSchoolUsersQuery = (schoolName) => {
   return useQuery({
-    queryKey: [queryKey.user, queryKey.school, "list"],
+    queryKey: [queryKey.user, queryKey.school, schoolName, "list"],
     queryFn: () => getSchoolUsers(schoolName),
   });
 };

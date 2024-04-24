@@ -34,6 +34,7 @@ export const MiddleSectionUI = styled.div`
   height: 40%;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const SchoolLogoUI = styled.img`
@@ -127,9 +128,11 @@ UserBoxUI.UserImgWrapperUI = styled.div`
 `;
 
 UserBoxUI.UserImgUI = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
   height: 100%;
-  border-radius: 100%;
-  object-fit: cover;
 `;
 
 UserBoxUI.UserNicknameUI = styled.p`

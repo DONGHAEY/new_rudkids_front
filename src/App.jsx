@@ -18,7 +18,11 @@ function App() {
   const routesChildren = Object.keys(routes)?.map((routeKey) => {
     const route = routes[routeKey];
     return (
-      <Route path={route.path} element={<route.element routeInfo={route} />} />
+      <Route
+        key={route.path}
+        path={route.path}
+        element={<route.element routeInfo={route} />}
+      />
     );
   });
 

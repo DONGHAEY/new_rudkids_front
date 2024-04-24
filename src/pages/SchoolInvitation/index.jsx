@@ -46,7 +46,11 @@ const SchoolInvitationPage = ({ routeInfo }) => {
         <PageDescriptionUI>Students Are Invited</PageDescriptionUI>
       </TopSectionUI>
       <MiddleSectionUI>
-        <SchoolLogoUI src={schoolData?.imageUrl} />
+        <SchoolLogoUI
+          src={schoolData?.imageUrl}
+          onError={(e) => (e.currentTarget.src = "/Images/rudkids_logo.webp")}
+          alt={schoolData?.name + " school Img"}
+        />
         <SchoolDescriptionUI>{schoolData?.description}</SchoolDescriptionUI>
         <EnterButtonUI onClick={onEnterBtnClickHandler}>
           <IoEnterOutline fontSize={"25px"} />
@@ -61,6 +65,9 @@ const SchoolInvitationPage = ({ routeInfo }) => {
                 <UserBoxUI.UserImgWrapperUI>
                   <UserBoxUI.UserImgUI
                     src={schoolUser?.imageUrl}
+                    onError={(e) =>
+                      (e.currentTarget.src = "/Images/rudkids_logo.webp")
+                    }
                     alt={schoolUser?.nickname + "이미지"}
                   />
                 </UserBoxUI.UserImgWrapperUI>

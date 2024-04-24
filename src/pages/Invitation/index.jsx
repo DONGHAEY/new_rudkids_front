@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   BottomSectionUI,
   EnterButtonUI,
@@ -6,6 +6,7 @@ import {
   InviterProfileImgUI,
   MiddleSectionUI,
   MoreUserTextUI,
+  NickNameCardUI,
   PageDescriptionUI,
   PageUI,
   TitleUI,
@@ -18,10 +19,10 @@ import { useInvitedUsersQuery, useOtherUserQuery } from "../../queries/user";
 import prizeIconSrc from "./assets/prize.png";
 import { IoEnterOutline } from "react-icons/io5";
 import { IoIosAdd } from "react-icons/io";
-import { useEffect } from "react";
 
 const InvitationPage = ({ routeInfo }) => {
   const params = useParams();
+  const navigate = useNavigate();
   const inviterUserId = params[routeInfo.paramKeys[0]];
 
   const { data: inviterData } = useOtherUserQuery(inviterUserId);
@@ -30,32 +31,30 @@ const InvitationPage = ({ routeInfo }) => {
   const moreUserCount =
     invitedUsersData?.meta.total - invitedUsersData?.meta.take;
 
+  const onEnterBtnClickHandler = () => {
+    if (inviterData) {
+      localStorage.setItem("inviter_user_id", inviterData.id);
+      navigate(`/list`);
+    }
+  };
+
   return (
     <PageUI>
       <TopImgUI src={prizeIconSrc} />
       <TopSectionUI>
         <TitleUI>You are invited</TitleUI>
         <PageDescriptionUI>
-          by
-          <div
-            style={{
-              paddingBlock: "4px",
-              paddingInline: "10px",
-              backgroundColor: "white",
-              color: "black",
-              borderRadius: "10px",
-              fontFamily: "Poppins-Bold",
-              fontSize: "20px",
-            }}
-          >
-            @{inviterData?.nickname}
-          </div>
+          <p>by</p>
+          <NickNameCardUI>@{inviterData?.nickname}</NickNameCardUI>
         </PageDescriptionUI>
       </TopSectionUI>
       <MiddleSectionUI>
-        <InviterProfileImgUI src={inviterData?.imageUrl} />
+        <InviterProfileImgUI
+          src={inviterData?.imageUrl}
+          onError={(e) => (e.currentTarget.src = "/Images/rudkids_logo.webp")}
+        />
         <InviterDescriptionUI>{inviterData?.nickname}</InviterDescriptionUI>
-        <EnterButtonUI onClick={null}>
+        <EnterButtonUI onClick={onEnterBtnClickHandler}>
           <IoEnterOutline fontSize={"25px"} />
           Enter
         </EnterButtonUI>
@@ -68,7 +67,9 @@ const InvitationPage = ({ routeInfo }) => {
                 <UserBoxUI.UserImgWrapperUI>
                   <UserBoxUI.UserImgUI
                     src={invitedUser?.imageUrl}
-                    alt={invitedUser?.nickname + "이미지"}
+                    onError={(e) =>
+                      (e.currentTarget.src = "/Images/rudkids_logo.webp")
+                    }
                   />
                 </UserBoxUI.UserImgWrapperUI>
                 <UserBoxUI.UserNicknameUI>

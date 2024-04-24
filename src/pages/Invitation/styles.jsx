@@ -28,19 +28,31 @@ export const TopSectionUI = styled.div`
   align-items: center;
 `;
 
+export const NickNameCardUI = styled.p`
+  padding-block: 4px;
+  padding-inline: 10px;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  font-family: Poppins-Bold;
+  font-size: 18px;
+`;
+
 export const MiddleSectionUI = styled.div`
   display: flex;
   gap: 10px;
   height: 40%;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const InviterProfileImgUI = styled.img`
   width: 40%;
+  border-radius: 50%;
 `;
 
-export const InviterDescriptionUI = styled.p`
+export const InviterDescriptionUI = styled.div`
   font-family: Poppins-Medium;
   font-size: 13px;
 `;
@@ -69,7 +81,7 @@ export const EnterButtonUI = styled.div`
   z-index: 30;
 `;
 
-export const PageDescriptionUI = styled.p`
+export const PageDescriptionUI = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -91,7 +103,7 @@ export const BottomSectionUI = styled.div`
   justify-content: end;
 `;
 
-export const MoreUserTextUI = styled.p`
+export const MoreUserTextUI = styled.div`
   width: 100%;
   textalign: right;
 `;
@@ -132,9 +144,11 @@ UserBoxUI.UserImgWrapperUI = styled.div`
 `;
 
 UserBoxUI.UserImgUI = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
   height: 100%;
-  border-radius: 100%;
-  object-fit: cover;
 `;
 
 UserBoxUI.UserNicknameUI = styled.p`
