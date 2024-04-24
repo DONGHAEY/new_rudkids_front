@@ -22,7 +22,7 @@ export const useOtherUserQuery = (userId) => {
 
 export const useSetMyInviterMutation = () => {
   return useMutation({
-    mutationFn: setMyInviter,
+    mutationFn: (inviterUserId) => setMyInviter(inviterUserId),
   });
 };
 
