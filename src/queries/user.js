@@ -1,6 +1,6 @@
 import queryKey from "../queries/key";
 import { useMutation, useQuery } from "react-query";
-import { getUser } from "../apis/user/getUser";
+import { getMeUser, getOtherUser } from "../apis/user/getUser";
 import { setMyInviter } from "../apis/user/setMyInviter";
 import { getInvitedUsers } from "../apis/user/getInvitedUsers";
 import { setMySchool } from "../apis/user/setMySchool";
@@ -8,8 +8,15 @@ import { getSchoolUsers } from "../apis/user/getSchoolUsers";
 
 export const useUserQuery = () => {
   return useQuery({
-    queryKey: [queryKey.user, "my"],
-    queryFn: getUser,
+    queryKey: [queryKey.user, "me"],
+    queryFn: getMeUser,
+  });
+};
+
+export const useOtherUserQuery = (userId) => {
+  return useQuery({
+    queryKey: [queryKey.user, userId],
+    queryFn: () => getOtherUser(userId),
   });
 };
 
