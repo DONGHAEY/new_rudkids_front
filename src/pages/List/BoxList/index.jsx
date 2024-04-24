@@ -125,8 +125,12 @@ const BoxList = ({ itemDataList }) => {
     const isButton = itemIdx === selectedItemBoxIdx;
 
     const clickHandler = () => {
-      focusItem(itemIdx);
-      setSelectedItemBoxIdx(itemIdx);
+      if (isButton) {
+        navigateBtnClickHandler();
+      } else {
+        focusItem(itemIdx);
+        setSelectedItemBoxIdx(itemIdx);
+      }
     };
 
     const navigateBtnClickHandler = () => {
@@ -140,7 +144,6 @@ const BoxList = ({ itemDataList }) => {
           color={itemData?.color}
           imageSrc={itemData?.imageSrc}
           isRotated={isRotated}
-          onClick={isButton && navigateBtnClickHandler}
         />
         {isButton && (
           <NavigateButtonUI onClick={navigateBtnClickHandler}>
