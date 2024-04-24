@@ -5,10 +5,9 @@ export const ComponentWrapperUI = styled.div`
   height: 100%;
 `;
 
-export const PagesScrollerUI = styled.div`
+export const PagesRendererUI = styled.div`
   position: absolute;
+  overflow: scroll;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
 `;

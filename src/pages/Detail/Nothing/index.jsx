@@ -11,11 +11,16 @@ const Scene = lazy(() => import("./Scene"));
 export const Nothing = () => {
   const maxPage = componentSrcList.length - 1; //페이지가 0부터 시작하기 때문에 1을 빼주자...
   const [page, setPage] = useState(0);
-  const moveDuration = 2;
+  const moveDuration = 1.8;
   const { width: windowWidth, height: windowHeight } = useWindowSize();
 
   return (
-    <PagesScroller page={page} maxPage={maxPage} setPage={setPage}>
+    <PagesScroller
+      page={page}
+      maxPage={maxPage}
+      setPage={setPage}
+      moveDuration={moveDuration}
+    >
       <CanvasUI
         gl={{ antialias: true }}
         camera={{

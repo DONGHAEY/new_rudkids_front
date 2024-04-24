@@ -26,6 +26,7 @@ const Page5 = () => {
           alignItems: "center",
           justifyContent: "center",
           zIndex: 1,
+          overflow: "scroll",
         }}
       >
         <button
@@ -40,6 +41,19 @@ const Page5 = () => {
         >
           Add To Cart
         </button>
+        {/* <div
+          style={{
+            // top: 0,
+            zIndex: 1000,
+            overflow: "scroll",
+            width: "70px",
+            backgroundColor: "black",
+            color: "white",
+            height: "100px",
+          }}
+        >
+          <p>asdfasdfasdfasdfasdfadsasdfasdffjadskfjkdjfk</p>
+        </div> */}
       </div>
     </div>
   );
