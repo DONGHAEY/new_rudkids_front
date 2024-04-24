@@ -140,6 +140,7 @@ const BoxList = ({ itemDataList }) => {
           color={itemData?.color}
           imageSrc={itemData?.imageSrc}
           isRotated={isRotated}
+          onClick={isButton && navigateBtnClickHandler}
         />
         {isButton && (
           <NavigateButtonUI onClick={navigateBtnClickHandler}>
