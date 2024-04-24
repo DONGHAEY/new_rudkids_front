@@ -8,18 +8,15 @@ export const PageUI = styled.div`
   );
   width: 100%;
   height: 100%;
+  min-height: 580px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
+  gap: 30px;
+  padding-block: 15px;
   text-align: center;
-  overflow: scroll;
-  gap: 15px;
-`;
-
-export const TopImgUI = styled.img`
-  width: 60px;
 `;
 
 export const TopSectionUI = styled.div`
@@ -28,11 +25,16 @@ export const TopSectionUI = styled.div`
   align-items: center;
 `;
 
+export const TopImgUI = styled.img`
+  height: 60px;
+`;
+
 export const NickNameCardUI = styled.p`
   padding-block: 4px;
   padding-inline: 10px;
   background-color: white;
   color: black;
+
   border-radius: 10px;
   font-family: Poppins-Bold;
   font-size: 18px;
@@ -48,7 +50,7 @@ export const MiddleSectionUI = styled.div`
 `;
 
 export const InviterProfileImgUI = styled.img`
-  width: 40%;
+  height: 50%;
   border-radius: 50%;
 `;
 
@@ -94,6 +96,7 @@ export const PageDescriptionUI = styled.div`
 
 export const BottomSectionUI = styled.div`
   width: 100%;
+  height: 140px;
   max-width: 75%;
   display: flex;
   width: 100%;

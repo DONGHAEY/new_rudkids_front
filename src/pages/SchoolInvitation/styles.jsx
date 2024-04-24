@@ -8,14 +8,15 @@ export const PageUI = styled.div`
   );
   width: 100%;
   height: 100%;
+  min-height: 580px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
-  text-align: center;
-  overflow: scroll;
   gap: 30px;
+  padding-block: 15px;
+  text-align: center;
 `;
 
 export const TopSectionUI = styled.div`
