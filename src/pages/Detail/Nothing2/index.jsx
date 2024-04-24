@@ -5,58 +5,30 @@ import {
   ContentSectionUI,
   ProductNameTextUI,
   ProductPriceTextUI,
+  FlexWrapperUI,
+  ComponentListUI,
+  ComponentUI,
 } from "./styles";
+
+import ActionBar from "../../../components/ActionBar";
 
 const Nothing2 = () => {
   return (
     <PageUI>
       <Header />
-      <ModelDragger />
-      <ContentSectionUI>
-        <ProductNameTextUI>Nothing</ProductNameTextUI>
-        <ProductPriceTextUI>₩ 139,000</ProductPriceTextUI>
-      </ContentSectionUI>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "end",
-          width: "80%",
-          height: "150px",
-          overflow: "scroll",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "#EDEDED",
-            height: "140px",
-            margin: "10px",
-            aspectRatio: "1/1",
-          }}
-        >
-          <img />
-        </div>
-        <div
-          style={{
-            backgroundColor: "#EDEDED",
-            height: "140px",
-            margin: "10px",
-            aspectRatio: "1/1",
-          }}
-        >
-          <img />
-        </div>
-        <div
-          style={{
-            backgroundColor: "#EDEDED",
-            height: "140px",
-            margin: "10px",
-            aspectRatio: "1/1",
-          }}
-        >
-          <img />
-        </div>
-      </div>
+      <FlexWrapperUI>
+        <ModelDragger />
+        <ContentSectionUI>
+          <ProductNameTextUI>Nothing</ProductNameTextUI>
+          <ProductPriceTextUI>₩ 139,000</ProductPriceTextUI>
+        </ContentSectionUI>
+        <ComponentListUI>
+          <ComponentUI />
+          <ComponentUI />
+          <ComponentUI />
+        </ComponentListUI>
+      </FlexWrapperUI>
+      <ActionBar />
     </PageUI>
   );
 };

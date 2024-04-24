@@ -1,16 +1,21 @@
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoMdCart } from "react-icons/io";
-import { LogoWrapperUI, HeaderUI } from "./styles";
+import { LogoWrapperUI, HeaderWrapperUI, SpacerUI, HeaderUI } from "./styles";
 
-const Header = () => {
+const Header = ({ $backgroundColor = "none" }) => {
   return (
-    <HeaderUI>
-      <AiOutlineMenu />
-      <LogoWrapperUI>
-        <img height="80%" src={"/Images/rudkids_logo.webp"} />
-      </LogoWrapperUI>
-      <IoMdCart />
-    </HeaderUI>
+    <>
+      <HeaderWrapperUI $backgroundColor={$backgroundColor}>
+        <HeaderUI>
+          <AiOutlineMenu />
+          <LogoWrapperUI>
+            <img height="100%" src={"/Images/rudkids_logo.webp"} />
+          </LogoWrapperUI>
+          <IoMdCart />
+        </HeaderUI>
+      </HeaderWrapperUI>
+      <SpacerUI />
+    </>
   );
 };
 
