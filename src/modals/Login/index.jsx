@@ -9,9 +9,9 @@ import {
 import { useEffect } from "react";
 
 const LoginModal = () => {
-  const { data: userData, isLoading: userLoading } = useUserQuery();
+  const { data: userData } = useUserQuery();
 
-  const isLoggedin = !userLoading && userData ? true : false;
+  const isLoggedin = userData ? true : false;
   const isShareCompleted = localStorage.getItem("share_complete") === "true";
 
   const setMySchoolMutation = useSetMySchoolMutation();
