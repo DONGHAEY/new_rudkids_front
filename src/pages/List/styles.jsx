@@ -20,3 +20,12 @@ export const LogoWrapperUI = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const HeaderUI = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 30px;
+  font-size: 25px;
+`;
