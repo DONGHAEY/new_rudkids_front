@@ -7,7 +7,6 @@ var inappdeny_exec_vanillajs = (callback) => {
 };
 
 inappdeny_exec_vanillajs(() => {
-  /* Do things after DOM has fully loaded */
   var useragt = navigator.userAgent.toLowerCase();
   var target_url = location.href;
   if (useragt.match(/kakaotalk/i)) {

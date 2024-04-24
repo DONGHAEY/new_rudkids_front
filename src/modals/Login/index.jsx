@@ -19,18 +19,19 @@ const LoginModal = () => {
 
   const isOpen = !isShareCompleted || !isLoggedin;
 
-  const schoolName = localStorage.getItem("school_name");
-  const inviterUserId = localStorage.getItem("inviter_user_id");
-
   useEffect(() => {
     if (!isLoggedin) return;
-    if (schoolName) {
-      setMySchoolMutation.mutate(schoolName);
-    }
-    if (inviterUserId) {
-      setMyInviterMutation.mutate(inviterUserId);
-    }
-  }, [isLoggedin, schoolName, inviterUserId]);
+    const schoolName = localStorage.getItem("school_name");
+    const inviterUserId = localStorage.getItem("inviter_user_id");
+    (async () => {
+      if (schoolName) {
+        await setMySchoolMutation.mutateAsync(schoolName);
+      }
+      if (inviterUserId) {
+        await setMyInviterMutation.mutateAsync(inviterUserId);
+      }
+    })();
+  }, [isLoggedin]);
 
   if (!isOpen) {
     return null;

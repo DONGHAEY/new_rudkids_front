@@ -72,12 +72,10 @@ const PagesScroller = ({
     const options = {
       passive: false,
     };
-
     window.addEventListener("touchstart", touchStartHandler, options);
     window.addEventListener("touchmove", touchMoveHandler, options);
     window.addEventListener("touchend", touchEndHandler, options);
     window.addEventListener("wheel", wheelHandler, options);
-
     return () => {
       window.removeEventListener("touchstart", touchStartHandler);
       window.removeEventListener("touchmove", touchMoveHandler);
