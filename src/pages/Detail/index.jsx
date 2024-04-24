@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import { Nothing } from "./Nothing";
+import Nothing2 from "./Nothing2";
 
 const DetailPage = ({ routeInfo }) => {
   const params = useParams();
 
   const componts = {
     1: <Nothing />,
-    2: <Nothing />,
+    2: <Nothing2 />,
     3: <Nothing />,
     4: <Nothing />,
   };

@@ -3,8 +3,7 @@ import itemDataList from "./itemDataList";
 import { PageUI, LogoWrapperUI, HeaderUI } from "./styles";
 import BoxList from "./BoxList";
 import LoginModal from "../../modals/Login";
-import { AiOutlineMenu } from "react-icons/ai";
-import { IoMdCart } from "react-icons/io";
+import Header from "../../components/Header";
 
 const ListPage = () => {
   const pageRef = createRef(null);
@@ -24,16 +23,10 @@ const ListPage = () => {
   return (
     <>
       <PageUI ref={pageRef}>
-        <HeaderUI>
-          <AiOutlineMenu />
-          <LogoWrapperUI>
-            <img height="80%" src={"/Images/rudkids_logo.webp"} />
-          </LogoWrapperUI>
-          <IoMdCart />
-        </HeaderUI>
+        <Header />
         <BoxList itemDataList={itemDataList} />
       </PageUI>
-      <LoginModal />
+      {/* <LoginModal /> */}
     </>
   );
 };
