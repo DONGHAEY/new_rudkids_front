@@ -40,8 +40,8 @@ const SchoolInvitationPage = ({ routeInfo }) => {
 
   return (
     <PageUI>
-      <TopImgUI src={prizeIconSrc} />
       <TopSectionUI>
+        <TopImgUI src={prizeIconSrc} />
         <SchoolNameUI>{schoolData?.name}</SchoolNameUI>
         <PageDescriptionUI>Students Are Invited</PageDescriptionUI>
       </TopSectionUI>
@@ -81,9 +81,7 @@ const SchoolInvitationPage = ({ routeInfo }) => {
             <IoIosAdd fontSize={"30px"} />
           </UserBoxUI>
         </UserBoxSliderUI>
-        {moreUserCount > 0 && (
-          <MoreUserTextUI>+{moreUserCount} more</MoreUserTextUI>
-        )}
+        <MoreUserTextUI>+{moreUserCount} more</MoreUserTextUI>
       </BottomSectionUI>
     </PageUI>
   );

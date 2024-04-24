@@ -33,7 +33,7 @@ const ListPage = () => {
         </HeaderUI>
         <BoxList itemDataList={itemDataList} />
       </PageUI>
-      {/* <LoginModal /> */}
+      <LoginModal />
     </>
   );
 };

@@ -15,17 +15,17 @@ export const PageUI = styled.div`
   color: white;
   text-align: center;
   overflow: scroll;
-  gap: 20px;
-`;
-
-export const TopImgUI = styled.img`
-  width: 60px;
+  gap: 30px;
 `;
 
 export const TopSectionUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const TopImgUI = styled.img`
+  width: 60px;
 `;
 
 export const MiddleSectionUI = styled.div`
@@ -38,7 +38,7 @@ export const MiddleSectionUI = styled.div`
 `;
 
 export const SchoolLogoUI = styled.img`
-  width: 40%;
+  height: 50%;
 `;
 
 export const SchoolDescriptionUI = styled.p`
@@ -49,6 +49,7 @@ export const SchoolDescriptionUI = styled.p`
 export const SchoolNameUI = styled.h1`
   font-family: Poppins-Bold;
   font-size: 30px;
+  margin-top: 20px;
 `;
 
 export const EnterButtonUI = styled.div`
@@ -77,7 +78,6 @@ export const PageDescriptionUI = styled.p`
 
 export const BottomSectionUI = styled.div`
   width: 100%;
-  height: 15%;
   max-width: 75%;
   display: flex;
   width: 100%;
@@ -89,7 +89,9 @@ export const BottomSectionUI = styled.div`
 
 export const MoreUserTextUI = styled.p`
   width: 100%;
-  textalign: right;
+  font-family: Poppins-Medium;
+  font-size: 12px;
+  text-align: right;
 `;
 
 export const UserBoxSliderUI = styled.div`
@@ -107,7 +109,7 @@ export const UserBoxSliderUI = styled.div`
 export const UserBoxUI = styled.div`
   width: 100%;
   height: 100%;
-  aspect-ratio: 1 /1;
+  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
   align-items: center;

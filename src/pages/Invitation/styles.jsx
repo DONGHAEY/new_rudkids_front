@@ -15,7 +15,7 @@ export const PageUI = styled.div`
   color: white;
   text-align: center;
   overflow: scroll;
-  gap: 20px;
+  gap: 15px;
 `;
 
 export const TopImgUI = styled.img`
@@ -59,6 +59,7 @@ export const InviterDescriptionUI = styled.div`
 
 export const TitleUI = styled.h1`
   font-family: Poppins-Bold;
+  margin-top: 15px;
   font-size: 30px;
 `;
 
@@ -93,7 +94,6 @@ export const PageDescriptionUI = styled.div`
 
 export const BottomSectionUI = styled.div`
   width: 100%;
-  height: 15%;
   max-width: 75%;
   display: flex;
   width: 100%;
@@ -105,7 +105,9 @@ export const BottomSectionUI = styled.div`
 
 export const MoreUserTextUI = styled.div`
   width: 100%;
-  textalign: right;
+  font-family: Poppins-Medium;
+  font-size: 12px;
+  text-align: right;
 `;
 
 export const UserBoxSliderUI = styled.div`

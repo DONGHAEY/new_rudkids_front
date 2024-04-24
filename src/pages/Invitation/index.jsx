@@ -40,8 +40,8 @@ const InvitationPage = ({ routeInfo }) => {
 
   return (
     <PageUI>
-      <TopImgUI src={prizeIconSrc} />
       <TopSectionUI>
+        <TopImgUI src={prizeIconSrc} />
         <TitleUI>You are invited</TitleUI>
         <PageDescriptionUI>
           <p>by</p>
@@ -82,9 +82,7 @@ const InvitationPage = ({ routeInfo }) => {
             <IoIosAdd fontSize={"30px"} />
           </UserBoxUI>
         </UserBoxSliderUI>
-        {moreUserCount > 0 && (
-          <MoreUserTextUI>+{moreUserCount} more</MoreUserTextUI>
-        )}
+        <MoreUserTextUI>+{moreUserCount} more</MoreUserTextUI>
       </BottomSectionUI>
     </PageUI>
   );
