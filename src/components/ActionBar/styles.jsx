@@ -4,7 +4,7 @@ export const SpacerUI = styled.div`
   margin-top: 70px;
 `;
 
-export const ActionBarUI = styled.div`
+export const ActionBarWrapperUI = styled.div`
   position: absolute;
   height: 70px;
   max-width: 100%;
@@ -16,9 +16,20 @@ export const ActionBarUI = styled.div`
   justify-content: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background-color: rgba(255, 255, 255 0.5);
+  background-color: rgba(255, 255, 255 0.3);
   -webkit-backdrop-filter: blur(50px);
   backdrop-filter: blur(50px);
+`;
+
+export const ActionBarUI = styled.div`
+  height: 100%;
+  width: 100%;
+  padding-inline: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 `;
 
 export const ActionButtonUI = styled.button`
@@ -27,10 +38,9 @@ export const ActionButtonUI = styled.button`
   border-radius: 30px;
   font-family: Poppins-Bold;
   color: white;
-  font-size: 20px;
+  font-size: 15px;
   padding-inline: 15px;
   width: 100%;
-  margin-inline: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
