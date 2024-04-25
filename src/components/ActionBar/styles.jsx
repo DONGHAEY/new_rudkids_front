@@ -13,7 +13,7 @@ export const ActionBarUI = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: rgba(255, 255, 255 0.5);
@@ -28,14 +28,13 @@ export const ActionButtonUI = styled.button`
   font-family: Poppins-Bold;
   color: white;
   font-size: 20px;
-  padding-inline: 20px;
+  padding-inline: 15px;
   width: 100%;
-  margin-inline: 10px;
+  margin-inline: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  min-width: 150px;
   height: 50px;
   gap: 10px;
   cursor: pointer;
