@@ -30,6 +30,26 @@ export const HeaderUI = styled.div`
   padding-inline: 30px;
 `;
 
+export const IconWrapperUI = styled.div`
+  position: relative;
+  cursor: pointer;
+`;
+
+export const CartCntTextUI = styled.p`
+  position: absolute;
+  font-size: 8px;
+  width: 10px;
+  right: -5px;
+  bottom: 0;
+  background-color: red;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  padding: 3px;
+`;
+
 export const SpacerUI = styled.div`
   margin-top: 80px;
 `;
