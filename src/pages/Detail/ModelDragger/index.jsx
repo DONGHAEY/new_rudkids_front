@@ -14,7 +14,7 @@ import GuideLabel from "./GuideLabel";
 import { useGLTF } from "@react-three/drei";
 
 const ModelDragger = ({ modelUrls = [], modelIdx = 0, modelName = "" }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const gltfs = useGLTF([...modelUrls]);
   const gltf = gltfs?.[modelIdx];
