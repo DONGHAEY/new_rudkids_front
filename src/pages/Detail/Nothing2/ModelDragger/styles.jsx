@@ -14,6 +14,14 @@ export const CanvasUI = styled(Canvas)`
   position: absolute;
 `;
 
+export const PlayingControllerUI = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  z-index: 2;
+`;
+
 export const ModelTextWrapperUI = styled.div`
   position: absolute;
   width: 100%;

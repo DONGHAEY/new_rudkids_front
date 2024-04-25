@@ -1,4 +1,5 @@
 import ModelDragger from "./ModelDragger";
+import ActionBar from "../../../components/ActionBar";
 import Header from "../../../components/Header";
 import {
   PageUI,
@@ -10,12 +11,10 @@ import {
   ComponentUI,
 } from "./styles";
 
-import ActionBar from "../../../components/ActionBar";
-
 const Nothing2 = () => {
   return (
     <PageUI>
-      <Header />
+      <Header $backgroundColor="white" />
       <FlexWrapperUI>
         <ModelDragger />
         <ContentSectionUI>

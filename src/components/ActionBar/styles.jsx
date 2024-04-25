@@ -16,8 +16,9 @@ export const ActionBarUI = styled.div`
   justify-content: space-around;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255 0.5);
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
 `;
 
 export const ActionButtonUI = styled.button`

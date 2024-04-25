@@ -1,9 +1,8 @@
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import React, { createRef } from "react";
 
 const Scene = ({ gltf, autoRotate = false }) => {
   const itemModelRef = createRef();
-
   return (
     <>
       <ambientLight intensity={1.5} />
@@ -21,7 +20,7 @@ const Scene = ({ gltf, autoRotate = false }) => {
         enableDamping={true}
         enablePan={false}
         autoRotate={autoRotate}
-        autoRotateSpeed={0.5}
+        autoRotateSpeed={1.5}
       />
     </>
   );
