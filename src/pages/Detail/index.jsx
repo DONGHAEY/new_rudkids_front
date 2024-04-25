@@ -1,18 +1,35 @@
-import { useParams } from "react-router-dom";
-import { Nothing } from "./Nothing";
-import Nothing2 from "./Nothing2";
+import ModelDragger from "./ModelDragger";
+import ActionBar from "../../components/ActionBar";
+import Header from "../../components/Header";
+import {
+  PageUI,
+  ContentSectionUI,
+  ProductNameTextUI,
+  ProductPriceTextUI,
+  FlexWrapperUI,
+  ComponentListUI,
+  ComponentUI,
+} from "./styles";
 
-const DetailPage = ({ routeInfo }) => {
-  const params = useParams();
-
-  const componts = {
-    1: <Nothing />,
-    2: <Nothing2 />,
-    3: <Nothing />,
-    4: <Nothing />,
-  };
-  /** 아이템디테일페이지(아이템GLB파일 *3D키프레임재생, 구매버튼, 토스위젯) */
-  return componts[params[routeInfo.paramKeys[0]]];
+const DetailPage = () => {
+  return (
+    <PageUI>
+      <Header $backgroundColor="white" />
+      <FlexWrapperUI>
+        <ModelDragger />
+        <ContentSectionUI>
+          <ProductNameTextUI>Nothing</ProductNameTextUI>
+          <ProductPriceTextUI>₩ 139,000</ProductPriceTextUI>
+        </ContentSectionUI>
+        <ComponentListUI>
+          <ComponentUI />
+          <ComponentUI />
+          <ComponentUI />
+        </ComponentListUI>
+      </FlexWrapperUI>
+      <ActionBar />
+    </PageUI>
+  );
 };
 
 export default DetailPage;

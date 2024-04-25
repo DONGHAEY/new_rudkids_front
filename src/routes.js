@@ -6,6 +6,7 @@ import HandPage from "./pages/Hand";
 import CallbackPage from "./pages/Callback";
 import InvitationPage from "./pages/Invitation";
 import SchoolInvitationPage from "./pages/SchoolInvitation";
+import PerformancePage from "./pages/Performance";
 
 export const routes = {
   ["main"]: {
@@ -37,6 +38,11 @@ export const routes = {
     path: "detail/:id",
     paramKeys: ["id"],
     element: DetailPage,
+  },
+  ["performance"]: {
+    path: "performance/:id",
+    paramKeys: ["id"],
+    element: PerformancePage,
   },
   ["hand"]: {
     path: "hand",

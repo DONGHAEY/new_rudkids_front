@@ -1,5 +1,3 @@
-import { Canvas } from "@react-three/fiber";
-import { useWindowSize } from "../../../../hooks/useWindowSize";
 import Scene from "./Scene";
 import {
   CanvasUI,
@@ -8,15 +6,13 @@ import {
   ModelTextWrapperUI,
   PlayingControllerUI,
 } from "./styles";
-import { useGLTF } from "@react-three/drei";
+
 import { FaRegPlayCircle } from "react-icons/fa";
 import { FaRegCirclePause } from "react-icons/fa6";
 import { useState } from "react";
 import GuideLabel from "./GuideLabel";
 
 const ModelDragger = () => {
-  const gltf = useGLTF("/Models/Nothing.glb");
-
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
@@ -37,7 +33,7 @@ const ModelDragger = () => {
           far: 100,
         }}
       >
-        <Scene gltf={gltf} autoRotate={isPlaying} />
+        {<Scene autoRotate={isPlaying} />}
       </CanvasUI>
     </ModelDraggerBackgroundUI>
   );

@@ -1,7 +1,9 @@
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import React, { createRef } from "react";
 
-const Scene = ({ gltf, autoRotate = false }) => {
+const Scene = ({ autoRotate = false }) => {
+  const gltf = useGLTF("/Models/Nothing.glb");
+
   const itemModelRef = createRef();
   return (
     <>
