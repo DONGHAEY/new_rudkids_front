@@ -22,7 +22,7 @@ const Scene = ({ autoRotate = false, gltf }) => {
         enableDamping={true}
         enablePan={false}
         autoRotate={autoRotate}
-        autoRotateSpeed={1.5}
+        autoRotateSpeed={2}
       />
     </>
   );

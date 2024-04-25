@@ -15,7 +15,7 @@ export const HeaderWrapperUI = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 90px;
+  height: 80px;
   font-size: 25px;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
 `;

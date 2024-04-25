@@ -22,19 +22,21 @@ export const ActionBarUI = styled.div`
 `;
 
 export const ActionButtonUI = styled.button`
-  background-color: red;
+  background-color: ${({ $backgroundColor }) => $backgroundColor ?? "red"};
   border: none;
   border-radius: 30px;
   font-family: Poppins-Bold;
   color: white;
   font-size: 20px;
+  padding-inline: 20px;
   width: 100%;
+  margin-inline: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 150px;
+  min-width: 150px;
   height: 50px;
-  gap: 5px;
+  gap: 10px;
   cursor: pointer;
 `;
