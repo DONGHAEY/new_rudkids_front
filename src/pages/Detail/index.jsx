@@ -8,6 +8,7 @@ import {
   ProductPriceTextUI,
   FlexWrapperUI,
   ComponentListUI,
+  ModelDescriptionUI,
 } from "./styles";
 import { useParams } from "react-router-dom";
 import { useProductQuery } from "../../queries/product";
@@ -28,10 +29,17 @@ const DetailPage = ({ routeInfo }) => {
 
   const productPrice = productData?.price?.toLocaleString("ko-KR");
   const productComponents = [
-    { imageUrl: productData.imageUrl, modelUrl: productData.modelUrl },
-    ...productData?.components.map((productComponentData) => ({
-      imageUrl: productComponentData.imageUrl,
-      modelUrl: productComponentData.modelUrl,
+    {
+      name: productData.name,
+      description: productData.description,
+      imageUrl: productData.imageUrl,
+      modelUrl: productData.modelUrl,
+    },
+    ...productData?.components.map((_) => ({
+      name: _.name,
+      description: _.description,
+      imageUrl: _.imageUrl,
+      modelUrl: _.modelUrl,
     })),
   ];
 
@@ -40,11 +48,15 @@ const DetailPage = ({ routeInfo }) => {
       <Header $backgroundColor="#ffffff" />
       <FlexWrapperUI>
         <ModelDragger
+          modelName={productComponents[selectedModelIdx]?.name}
           modelUrls={productComponents?.map((_) => _.modelUrl)}
           modelIdx={selectedModelIdx}
         />
         <ContentSectionUI>
           <ProductNameTextUI>{productName}</ProductNameTextUI>
+          <ModelDescriptionUI>
+            {productComponents[selectedModelIdx]?.description}
+          </ModelDescriptionUI>
           <ProductPriceTextUI>₩ {productPrice}</ProductPriceTextUI>
         </ContentSectionUI>
         <ComponentListUI>

@@ -28,6 +28,13 @@ export const ProductPriceTextUI = styled.h3`
   font-family: Poppins-Medium;
 `;
 
+export const ModelDescriptionUI = styled.p`
+  font-family: Poppins-Medium;
+  overflow-x: scroll;
+  width : 100%:
+  font-size: 13px;
+`;
+
 export const ComponentListUI = styled.div`
   display: flex;
   flex-direction: row;

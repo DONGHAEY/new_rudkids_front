@@ -13,7 +13,7 @@ import { useState } from "react";
 import GuideLabel from "./GuideLabel";
 import { useGLTF } from "@react-three/drei";
 
-const ModelDragger = ({ modelUrls = [], modelIdx = 0 }) => {
+const ModelDragger = ({ modelUrls = [], modelIdx = 0, modelName = "" }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const gltfs = useGLTF([...modelUrls]);
@@ -22,7 +22,7 @@ const ModelDragger = ({ modelUrls = [], modelIdx = 0 }) => {
   return (
     <ModelDraggerBackgroundUI>
       <ModelTextWrapperUI>
-        <ModelTextUI>3D</ModelTextUI>
+        <ModelTextUI>{modelName}</ModelTextUI>
       </ModelTextWrapperUI>
       <PlayingControllerUI onClick={() => setIsPlaying(!isPlaying)}>
         {isPlaying ? <FaRegCirclePause /> : <FaRegPlayCircle />}
