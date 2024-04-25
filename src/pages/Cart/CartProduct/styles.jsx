@@ -24,7 +24,14 @@ export const WrapperUI = styled.div`
 export const QuantityGroupUI = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 10px;
+`;
+
+export const QuantityTextUI = styled.p`
+  font-family: Poppins-SemiBold;
+  min-width: 15px;
+  text-align: center;
 `;
 
 export const QuantityButtonUI = styled.div`

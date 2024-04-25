@@ -6,11 +6,11 @@ import {
   CloseIconWrapperUI,
   QuantityButtonUI,
   QuantityGroupUI,
+  QuantityTextUI,
   WrapperUI,
 } from "./styles";
 import {
   useCartProductDeleteMutation,
-  useCartProductMutation,
   useCartProductQuantityMutation,
 } from "../../../queries/cart";
 
@@ -44,7 +44,7 @@ const CartProduct = ({ cartProduct }) => {
         </div>
         <QuantityGroupUI>
           <QuantityButtonUI onClick={minusClickHandler}>-</QuantityButtonUI>
-          <div>{cartProduct.quantity}</div>
+          <QuantityTextUI>{cartProduct.quantity}</QuantityTextUI>
           <QuantityButtonUI onClick={plusClickHandler}>+</QuantityButtonUI>
         </QuantityGroupUI>
       </WrapperUI>
