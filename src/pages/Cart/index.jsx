@@ -1,20 +1,37 @@
+import { useEffect } from "react";
 import Header from "../../components/Header";
+import { useCartQuery } from "../../queries/cart";
+import { FlexWrapperUI, ListWrapperUI, PageUI } from "./styles";
+import CartProduct from "./CartProduct";
 
 const CartPage = () => {
+  const { data: myCartData } = useCartQuery();
+
+  useEffect(() => {
+    console.log(myCartData);
+  }, [myCartData]);
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        // alignItems: "center",
-        // justifyContent: "center",
-        backgroundColor: "white",
-        width: "100%",
-        height: "100%",
-      }}
-    >
+    <PageUI>
       <Header $backgroundColor="white" />
-    </div>
+      <FlexWrapperUI>
+        <ListWrapperUI>
+          <h2
+            style={{
+              fontFamily: "Poppins-SemiBold",
+              marginBlock: "20px",
+              width: "80%",
+              textAlign: "left",
+            }}
+          >
+            My Cart
+          </h2>
+          {myCartData?.cartProducts?.map((cartProduct) => {
+            return <CartProduct cartProduct={cartProduct} />;
+          })}
+        </ListWrapperUI>
+      </FlexWrapperUI>
+    </PageUI>
   );
 };
 

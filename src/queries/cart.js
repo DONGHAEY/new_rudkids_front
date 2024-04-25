@@ -3,7 +3,8 @@ import queryKey from "./key";
 import { getCart } from "../apis/cart/getCart";
 import { getCartCnt } from "../apis/cart/getCartCnt";
 import { putCartProduct } from "../apis/cart/putCartProduct";
-import { editCartProductAmount } from "../apis/cart/editCartProductAmount";
+import { editCartProductQuantity } from "../apis/cart/editCartProductQuantity";
+import { deleteCartProduct } from "../apis/cart/deleteCartProduct";
 
 export const useCartQuery = () => {
   return useQuery({
@@ -22,19 +23,29 @@ export const useCartCntQuery = () => {
 export const useCartProductMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (productId) => {
-      putCartProduct(productId);
-      queryClient.invalidateQueries(queryKey.cart);
+    mutationFn: async (productId) => {
+      await putCartProduct(productId);
+      await queryClient.invalidateQueries(queryKey.cart);
     },
   });
 };
 
-export const useCartProductAmountMutation = (productId) => {
+export const useCartProductDeleteMutation = (productId) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (amount) => {
-      editCartProductAmount(productId, amount);
-      queryClient.invalidateQueries(queryKey.cart);
+    mutationFn: async () => {
+      await deleteCartProduct(productId);
+      await queryClient.invalidateQueries(queryKey.cart);
+    },
+  });
+};
+
+export const useCartProductQuantityMutation = (productId) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (quantity) => {
+      await editCartProductQuantity(productId, quantity);
+      await queryClient.invalidateQueries(queryKey.cart);
     },
   });
 };

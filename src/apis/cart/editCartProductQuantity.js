@@ -1,9 +1,9 @@
 import axiosInstance from "../axiosInstance";
 
-export const editCartProductAmount = async (productId, productAmount = 1) => {
+export const editCartProductQuantity = async (productId, quantity = 1) => {
   return await axiosInstance
     .put(`/api/cart/${productId}/amount`, {
-      productAmount,
+      quantity,
     })
     .then((response) => response.data);
 };
