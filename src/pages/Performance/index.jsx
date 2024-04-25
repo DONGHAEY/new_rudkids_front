@@ -1,13 +1,12 @@
 import { useParams } from "react-router-dom";
 import { Nothing } from "./Nothing";
-import Nothing2 from "../Detail";
 
 const PerformancePage = ({ routeInfo }) => {
   const params = useParams();
 
   const componts = {
     1: <Nothing />,
-    2: <Nothing2 />,
+    2: <Nothing />,
     3: <Nothing />,
     4: <Nothing />,
   };

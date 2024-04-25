@@ -37,10 +37,3 @@ export const ComponentListUI = styled.div`
   height: 150px;
   overflow-x: scroll;
 `;
-
-export const ComponentUI = styled.div`
-  background-color: #ededed;
-  height: 90%;
-  margin: 10px;
-  aspect-ratio: 1/1;
-`;

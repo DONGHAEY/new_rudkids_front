@@ -11,9 +11,13 @@ import { FaRegPlayCircle } from "react-icons/fa";
 import { FaRegCirclePause } from "react-icons/fa6";
 import { useState } from "react";
 import GuideLabel from "./GuideLabel";
+import { useGLTF } from "@react-three/drei";
 
-const ModelDragger = () => {
+const ModelDragger = ({ modelUrls = [], modelIdx = 0 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const gltfs = useGLTF([...modelUrls]);
+  const gltf = gltfs?.[modelIdx];
 
   return (
     <ModelDraggerBackgroundUI>
@@ -33,7 +37,7 @@ const ModelDragger = () => {
           far: 100,
         }}
       >
-        {<Scene autoRotate={isPlaying} />}
+        {gltf && <Scene gltf={gltf} autoRotate={isPlaying} />}
       </CanvasUI>
     </ModelDraggerBackgroundUI>
   );

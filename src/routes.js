@@ -35,13 +35,13 @@ export const routes = {
     element: SchoolInvitationPage,
   },
   ["detail"]: {
-    path: "detail/:id",
-    paramKeys: ["id"],
+    path: "detail/:product_name",
+    paramKeys: ["product_name"],
     element: DetailPage,
   },
   ["performance"]: {
-    path: "performance/:id",
-    paramKeys: ["id"],
+    path: "performance/:product_name",
+    paramKeys: ["product_name"],
     element: PerformancePage,
   },
   ["hand"]: {

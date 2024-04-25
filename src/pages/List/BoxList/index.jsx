@@ -5,93 +5,90 @@ import { useNavigate } from "react-router-dom";
 import { GoArrowRight } from "react-icons/go";
 import Box from "./Box";
 
-const BoxList = ({ itemDataList }) => {
-  const [currentMoveItemBoxIdx, setCurrentMoveItemBoxIdx] = useState(0);
-  const [selectedItemBoxIdx, setSelectedItemBoxIdx] = useState(null);
+const BoxList = ({ listData = [] }) => {
+  const [currentMoveBoxIdx, setCurrentMoveBoxIdx] = useState(0);
+  const [selectedBoxIdx, setSelectedBoxIdx] = useState(null);
   const [isRotate, setRotate] = useState(true);
 
   const navigate = useNavigate();
 
-  const itemBoxListRef = createRef(null);
-  const itemBoxRefList = new Array(itemDataList.length)
+  const boxListRef = createRef(null);
+  const boxRefList = new Array(listData?.length)
     .fill(null)
     .map((_) => createRef(null));
 
-  const itemBoxgap = 45;
+  const boxGap = 45;
   const moveSpeed = 100;
-  const lastItemIdx = itemBoxRefList.length - 1;
-  const currentItemRef = itemBoxRefList[currentMoveItemBoxIdx];
+  const lastBoxIdx = boxRefList.length - 1;
+  const currentBoxRef = boxRefList[currentMoveBoxIdx];
 
   useEffect(() => {
-    itemBoxRefList.map((productBoxWrapperRef, itemBoxIdx) => {
-      const { minY } = getItemBoxBoundaryY(itemBoxIdx);
+    boxRefList?.map((productBoxWrapperRef, boxIdx) => {
+      const { minY } = getBoxBoundaryPosY(boxIdx);
       gsap.set(productBoxWrapperRef.current, {
         y: minY,
       });
     });
-  }, []);
+  }, [lastBoxIdx]);
 
-  const getItemBoxPosY = (itemBoxIdx) => {
-    if (!itemBoxList[itemBoxIdx]) return undefined;
-    return gsap.getProperty(itemBoxRefList[itemBoxIdx].current, "y");
+  const getBoxPosY = (boxIdx) => {
+    if (!boxList[boxIdx]) return undefined;
+    return gsap.getProperty(boxRefList[boxIdx].current, "y");
   };
 
-  const getItemBoxBoundaryY = (itemBoxIdx) => {
+  const getBoxBoundaryPosY = (boxIdx) => {
     return {
-      minY: itemBoxgap * (lastItemIdx - itemBoxIdx),
-      maxY:
-        itemBoxListRef.current.clientHeight -
-        itemBoxgap * itemBoxIdx -
-        itemBoxgap,
+      minY: boxGap * (lastBoxIdx - boxIdx),
+      maxY: boxListRef.current.clientHeight - boxGap * boxIdx - boxGap,
     };
   };
 
-  const moveCurrentItem = (topValue) => {
-    const { minY, maxY } = getItemBoxBoundaryY(currentMoveItemBoxIdx);
-    const currentTopValue = getItemBoxPosY(currentMoveItemBoxIdx);
+  const moveCurrentBox = (topValue) => {
+    const { minY, maxY } = getBoxBoundaryPosY(currentMoveBoxIdx);
+    const currentTopValue = getBoxPosY(currentMoveBoxIdx);
     let targetYValue = topValue + currentTopValue;
     setRotate(true);
     if (targetYValue <= minY) {
-      if (currentMoveItemBoxIdx - 1 >= 0) {
-        setCurrentMoveItemBoxIdx(currentMoveItemBoxIdx - 1);
+      if (currentMoveBoxIdx - 1 >= 0) {
+        setCurrentMoveBoxIdx(currentMoveBoxIdx - 1);
       }
       targetYValue = minY;
     } else if (targetYValue >= maxY) {
-      if (currentMoveItemBoxIdx + 1 <= lastItemIdx) {
-        setCurrentMoveItemBoxIdx(currentMoveItemBoxIdx + 1);
+      if (currentMoveBoxIdx + 1 <= lastBoxIdx) {
+        setCurrentMoveBoxIdx(currentMoveBoxIdx + 1);
       }
       targetYValue = maxY;
     } else {
       setRotate(false);
     }
-    gsap.to(currentItemRef.current, {
+    gsap.to(currentBoxRef.current, {
       y: targetYValue,
     });
   };
 
-  const focusItem = (targetItemBoxIdx) => {
-    let currnetItemIdxTemp = currentMoveItemBoxIdx;
-    if (targetItemBoxIdx <= currentMoveItemBoxIdx) {
-      currnetItemIdxTemp++;
+  const focusBox = (targetBoxIdx) => {
+    let currentBoxIdxTemp = currentMoveBoxIdx;
+    if (targetBoxIdx <= currentMoveBoxIdx) {
+      currentBoxIdxTemp++;
     }
-    while (targetItemBoxIdx > currnetItemIdxTemp) {
-      let selectedRef = itemBoxRefList[currnetItemIdxTemp];
-      let { maxY } = getItemBoxBoundaryY(currnetItemIdxTemp);
+    while (targetBoxIdx > currentBoxIdxTemp) {
+      let selectedRef = boxRefList[currentBoxIdxTemp];
+      let { maxY } = getBoxBoundaryPosY(currentBoxIdxTemp);
       gsap.to(selectedRef.current, {
         y: maxY,
       });
-      currnetItemIdxTemp++;
+      currentBoxIdxTemp++;
     }
-    while (targetItemBoxIdx < currnetItemIdxTemp) {
-      let selectedRef = itemBoxRefList[currnetItemIdxTemp - 1];
-      let { minY } = getItemBoxBoundaryY(currnetItemIdxTemp - 1);
+    while (targetBoxIdx < currentBoxIdxTemp) {
+      let selectedRef = boxRefList[currentBoxIdxTemp - 1];
+      let { minY } = getBoxBoundaryPosY(currentBoxIdxTemp - 1);
       gsap.to(selectedRef.current, {
         y: minY,
       });
-      currnetItemIdxTemp--;
+      currentBoxIdxTemp--;
     }
     setRotate(false);
-    setCurrentMoveItemBoxIdx(currnetItemIdxTemp);
+    setCurrentMoveBoxIdx(currentBoxIdxTemp);
   };
 
   /** Drag Handler Logics */
@@ -100,14 +97,14 @@ const BoxList = ({ itemDataList }) => {
     prevTouchEvent = currentTouchEvent;
   };
   const touchMoveHandler = (currentTouchEvent) => {
-    setSelectedItemBoxIdx(false);
+    setSelectedBoxIdx(false);
     if (prevTouchEvent) {
       const prevTouchPos = prevTouchEvent?.touches[0].screenY;
       const currentTouchPos = currentTouchEvent?.touches[0].screenY;
       if (prevTouchPos > currentTouchPos) {
-        moveCurrentItem(-1 * moveSpeed);
+        moveCurrentBox(-1 * moveSpeed);
       } else {
-        moveCurrentItem(moveSpeed);
+        moveCurrentBox(moveSpeed);
       }
     }
     prevTouchEvent = currentTouchEvent;
@@ -117,37 +114,37 @@ const BoxList = ({ itemDataList }) => {
   };
   /** Drag Handler Logics */
 
-  const itemBoxList = itemDataList?.map((itemData, itemIdx) => {
-    itemIdx = lastItemIdx - itemIdx;
+  const boxList = listData?.map((boxData, boxIdx) => {
+    boxIdx = lastBoxIdx - boxIdx;
 
-    const itemBoxRef = itemBoxRefList[itemIdx];
-    const isRotated = itemIdx !== currentMoveItemBoxIdx || isRotate;
-    const isButton = itemIdx === selectedItemBoxIdx;
+    const boxRef = boxRefList[boxIdx];
+    const isRotated = boxIdx !== currentMoveBoxIdx || isRotate;
+    const isButton = boxIdx === selectedBoxIdx;
 
     const clickHandler = () => {
       if (isButton) {
         navigateBtnClickHandler();
       } else {
-        focusItem(itemIdx);
-        setSelectedItemBoxIdx(itemIdx);
+        focusBox(boxIdx);
+        setSelectedBoxIdx(boxIdx);
       }
     };
 
     const navigateBtnClickHandler = () => {
-      navigate(`/detail/${itemData.id}`);
+      navigate(`/detail/${boxData.id}`);
     };
 
     return (
-      <BoxWrapperUI onClick={clickHandler} key={itemIdx} ref={itemBoxRef}>
+      <BoxWrapperUI onClick={clickHandler} key={boxIdx} ref={boxRef}>
         <Box
-          name={itemData?.name}
-          color={itemData?.color}
-          imageSrc={itemData?.imageSrc}
+          name={boxData?.name}
+          color={boxData?.color}
+          imageSrc={boxData?.imageSrc}
           isRotated={isRotated}
         />
         {isButton && (
           <NavigateButtonUI onClick={navigateBtnClickHandler}>
-            <span>{itemData.name}</span>
+            <span>{boxData.name}</span>
             <GoArrowRight />
           </NavigateButtonUI>
         )}
@@ -157,11 +154,11 @@ const BoxList = ({ itemDataList }) => {
 
   return (
     <BoxListUI
-      ref={itemBoxListRef}
+      ref={boxListRef}
       onTouchStart={touchStartHandler}
       onTouchMove={touchMoveHandler}
       onTouchEnd={touchEndHandler}
-      children={itemBoxList}
+      children={boxList}
     />
   );
 };

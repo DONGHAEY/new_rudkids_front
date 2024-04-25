@@ -1,10 +1,10 @@
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import React, { createRef } from "react";
 
-const Scene = ({ autoRotate = false }) => {
-  const gltf = useGLTF("/Models/Nothing.glb");
-
+const Scene = ({ autoRotate = false, gltf }) => {
   const itemModelRef = createRef();
+  if (!gltf?.scene) return;
+
   return (
     <>
       <ambientLight intensity={1.5} />
