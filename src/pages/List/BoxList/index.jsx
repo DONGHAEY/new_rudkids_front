@@ -1,5 +1,5 @@
 import { createRef, useEffect, useState } from "react";
-import { BoxListUI, BoxWrapperUI, NavigateButtonUI } from "./styles";
+import { ListUI, BoxWrapperUI, NavigateButtonUI } from "./styles";
 import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
 import { GoArrowRight } from "react-icons/go";
@@ -12,7 +12,7 @@ const BoxList = ({ listData = [] }) => {
 
   const navigate = useNavigate();
 
-  const boxListRef = createRef(null);
+  const listRef = createRef(null);
   const boxRefList = new Array(listData?.length)
     .fill(null)
     .map((_) => createRef(null));
@@ -39,7 +39,7 @@ const BoxList = ({ listData = [] }) => {
   const getBoxBoundaryPosY = (boxIdx) => {
     return {
       minY: boxGap * (lastBoxIdx - boxIdx),
-      maxY: boxListRef.current.clientHeight - boxGap * boxIdx - boxGap,
+      maxY: listRef.current.clientHeight - boxGap * boxIdx - boxGap,
     };
   };
 
@@ -131,7 +131,7 @@ const BoxList = ({ listData = [] }) => {
     };
 
     const navigateBtnClickHandler = () => {
-      navigate(`/detail/${boxData.id}`);
+      navigate(`/detail/${boxData.name}`);
     };
 
     return (
@@ -153,8 +153,8 @@ const BoxList = ({ listData = [] }) => {
   });
 
   return (
-    <BoxListUI
-      ref={boxListRef}
+    <ListUI
+      ref={listRef}
       onTouchStart={touchStartHandler}
       onTouchMove={touchMoveHandler}
       onTouchEnd={touchEndHandler}
