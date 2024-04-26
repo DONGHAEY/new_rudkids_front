@@ -19,7 +19,7 @@ const OrderBar = () => {
       totalPrice += cartProduct.product.price * cartProduct.quantity;
     });
     return totalPrice;
-  }, [cartData]);
+  }, [cartData?.cartProducts]);
 
   return (
     <>

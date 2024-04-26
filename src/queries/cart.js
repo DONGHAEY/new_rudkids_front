@@ -64,14 +64,14 @@ export const useCartProductQuantityMutation = (productId) => {
       return await editCartProductQuantity(productId, quantity);
     },
     onSuccess: async (data) => {
-      const cartData = queryClient.getQueryData(queryKey.cart);
+      const cartData = queryClient.getQueryData([queryKey.cart]);
       cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
         if (cartProduct?.product?.id === productId) {
           return data;
         }
         return cartProduct;
       });
-      await queryClient.setQueryData(queryKey.cart, cartData);
+      await queryClient.setQueryData([queryKey.cart], cartData);
     },
   });
 };
