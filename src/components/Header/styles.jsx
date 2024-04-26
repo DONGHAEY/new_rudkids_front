@@ -37,16 +37,20 @@ export const IconWrapperUI = styled.div`
 
 export const CartCntTextUI = styled.p`
   position: absolute;
-  font-size: 8px;
-  width: 10px;
-  right: -5px;
-  bottom: 0;
+  font-size: 14px;
+  width: 14px;
+  aspect-ratio: 1/1;
+  font-family: Poppins-Bold;
+  line-height: 14px;
+  right: -8px;
+  top: -8px;
   background-color: red;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 100%;
+  z-index: -1;
   padding: 3px;
 `;
 
