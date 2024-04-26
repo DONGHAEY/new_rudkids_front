@@ -27,7 +27,11 @@ export const useCartProductMutation = () => {
       await putCartProduct(productId);
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries(queryKey.cart);
+      const cartCntData = await queryClient.getQueryData([
+        queryKey.cart,
+        "cnt",
+      ]);
+      await queryClient.setQueryData([queryKey.cart, "cnt"], cartCntData + 1);
     },
   });
 };
@@ -39,7 +43,16 @@ export const useCartProductDeleteMutation = (productId) => {
       await deleteCartProduct(productId);
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries(queryKey.cart);
+      const cartData = queryClient.getQueryData(queryKey.cart);
+      cartData.cartProducts = cartData?.cartProducts?.filter(
+        (cartProduct) => cartProduct?.product?.id !== productId
+      );
+      await queryClient.setQueryData(queryKey.cart, cartData);
+      const cartCntData = await queryClient.getQueryData([
+        queryKey.cart,
+        "cnt",
+      ]);
+      await queryClient.setQueryData([queryKey.cart, "cnt"], cartCntData - 1);
     },
   });
 };
@@ -48,10 +61,17 @@ export const useCartProductQuantityMutation = (productId) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (quantity) => {
-      await editCartProductQuantity(productId, quantity);
+      return await editCartProductQuantity(productId, quantity);
     },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries(queryKey.cart);
+    onSuccess: async (data) => {
+      const cartData = queryClient.getQueryData(queryKey.cart);
+      cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
+        if (cartProduct?.product?.id === productId) {
+          return data;
+        }
+        return cartProduct;
+      });
+      await queryClient.setQueryData(queryKey.cart, cartData);
     },
   });
 };

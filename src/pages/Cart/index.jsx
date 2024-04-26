@@ -19,7 +19,9 @@ const CartPage = () => {
         <PageDescriptionUI>My Cart</PageDescriptionUI>
         <ListWrapperUI>
           {myCartData?.cartProducts?.map((cartProduct) => {
-            return <CartProduct cartProduct={cartProduct} />;
+            return (
+              <CartProduct key={cartProduct.id} cartProduct={cartProduct} />
+            );
           })}
         </ListWrapperUI>
       </FlexWrapperUI>
