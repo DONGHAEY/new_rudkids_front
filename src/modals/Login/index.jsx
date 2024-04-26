@@ -11,13 +11,13 @@ import { useEffect, useMemo } from "react";
 const LoginModal = () => {
   const { data: userData, isLoading: userLoading } = useUserQuery();
 
-  const isLoggedin = userData ? true : false;
+  const isLoggedin = userData && !userLoading ? true : false;
   const isShareCompleted = localStorage.getItem("share_complete") === "true";
 
   const setMySchoolMutation = useSetMySchoolMutation();
   const setMyInviterMutation = useSetMyInviterMutation();
 
-  const isOpen = !isShareCompleted || (!isLoggedin && !userLoading);
+  const isOpen = !isShareCompleted || !isLoggedin;
 
   useEffect(() => {
     if (!isLoggedin) return;
