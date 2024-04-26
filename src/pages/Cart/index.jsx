@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Header from "../../components/Header";
 import { useCartQuery } from "../../queries/cart";
 import {
@@ -17,8 +16,8 @@ const CartPage = () => {
     <PageUI>
       <Header $backgroundColor="white" />
       <FlexWrapperUI>
+        <PageDescriptionUI>My Cart</PageDescriptionUI>
         <ListWrapperUI>
-          <PageDescriptionUI>My Cart</PageDescriptionUI>
           {myCartData?.cartProducts?.map((cartProduct) => {
             return <CartProduct cartProduct={cartProduct} />;
           })}

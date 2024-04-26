@@ -25,6 +25,6 @@ export const ListWrapperUI = styled.div`
 export const PageDescriptionUI = styled.h2`
   font-family: Poppins-SemiBold;
   margin-block: 20px;
-  width: 80%;
+  width: 90%;
   text-align: left;
 `;
