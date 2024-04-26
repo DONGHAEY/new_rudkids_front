@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const SpacerUI = styled.div`
+  margin-top: 180px;
+`;
+
 export const OrderBarWrapperUI = styled.div`
   position: absolute;
   bottom: 0;

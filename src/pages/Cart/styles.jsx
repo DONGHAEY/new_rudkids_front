@@ -8,7 +8,7 @@ export const PageUI = styled.div`
 `;
 
 export const FlexWrapperUI = styled.div`
-  margin-top: 10px;
+  padding-block: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,4 +20,11 @@ export const ListWrapperUI = styled.div`
   flex-direction: column;
   gap: 10px;
   width: 90%;
+`;
+
+export const PageDescriptionUI = styled.h2`
+  font-family: Poppins-SemiBold;
+  margin-block: 20px;
+  width: 80%;
+  text-align: left;
 `;

@@ -15,17 +15,29 @@ const Header = ({ $backgroundColor = "none" }) => {
   const navigate = useNavigate();
   const { data: cartCntData = 0 } = useCartCntQuery();
 
+  const logoClickHandler = () => {
+    navigate("/list");
+  };
+
+  const cartBtnClickHandler = () => {
+    navigate("/cart");
+  };
+
+  const listBtnClickHandler = () => {
+    //
+  };
+
   return (
     <>
       <HeaderWrapperUI $backgroundColor={$backgroundColor}>
         <HeaderUI>
-          <IconWrapperUI onClick={() => {}}>
+          <IconWrapperUI onClick={listBtnClickHandler}>
             <AiOutlineMenu />
           </IconWrapperUI>
-          <LogoWrapperUI>
+          <LogoWrapperUI onClick={logoClickHandler}>
             <img height="100%" src={"/Images/rudkids_logo.webp"} />
           </LogoWrapperUI>
-          <IconWrapperUI onClick={() => navigate("/cart")}>
+          <IconWrapperUI onClick={cartBtnClickHandler}>
             <IoMdCart />
             <CartCntTextUI>{cartCntData}</CartCntTextUI>
           </IconWrapperUI>

@@ -4,6 +4,7 @@ import {
   BuyButtonUI,
   OrderBarUI,
   OrderBarWrapperUI,
+  SpacerUI,
   TotalPriceTextUI,
   TotalTextUI,
 } from "./styles";
@@ -33,6 +34,7 @@ const OrderBar = () => {
           <BuyButtonUI>BUY NOW</BuyButtonUI>
         </OrderBarUI>
       </OrderBarWrapperUI>
+      <SpacerUI />
     </>
   );
 };
