@@ -143,7 +143,7 @@ const BoxList = ({ listData = [] }) => {
           isRotated={isRotated}
         />
         {isButton && (
-          <NavigateButtonUI onClick={navigateBtnClickHandler}>
+          <NavigateButtonUI>
             <span>{boxData.name}</span>
             <GoArrowRight />
           </NavigateButtonUI>

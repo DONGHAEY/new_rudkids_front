@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 import { useProductQuery } from "../../queries/product";
 import { useState } from "react";
 import ProductComponent from "./ProductComponent";
+import { useCartProductMutation } from "../../queries/cart";
 
 const DetailPage = ({ routeInfo }) => {
   const params = useParams();
@@ -72,7 +73,7 @@ const DetailPage = ({ routeInfo }) => {
           })}
         </ComponentListUI>
       </FlexWrapperUI>
-      <ActionBar />
+      <ActionBar productId={productData?.id} />
     </PageUI>
   );
 };

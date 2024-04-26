@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import { useCartQuery } from "../../queries/cart";
 import { FlexWrapperUI, ListWrapperUI, PageUI } from "./styles";
 import CartProduct from "./CartProduct";
+import OrderBar from "../../components/OrderBar";
 
 const CartPage = () => {
   const { data: myCartData } = useCartQuery();
@@ -31,6 +32,7 @@ const CartPage = () => {
           })}
         </ListWrapperUI>
       </FlexWrapperUI>
+      <OrderBar />
     </PageUI>
   );
 };

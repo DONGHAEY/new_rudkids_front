@@ -6,8 +6,19 @@ import {
   ActionButtonUI,
   SpacerUI,
 } from "./styles";
+import { useCartProductMutation } from "../../queries/cart";
 
-const ActionBar = () => {
+const ActionBar = ({ productId }) => {
+  const putCartProductMutation = useCartProductMutation();
+
+  const cartButtonClickHandler = async () => {
+    if (productId) {
+      try {
+        await putCartProductMutation.mutateAsync(productId);
+      } catch (e) {}
+    }
+  };
+
   return (
     <>
       <ActionBarWrapperUI>
@@ -16,7 +27,7 @@ const ActionBar = () => {
             <MdRemoveRedEye fontSize="20px" />
             <p>More</p>
           </ActionButtonUI>
-          <ActionButtonUI>
+          <ActionButtonUI onClick={cartButtonClickHandler}>
             <BsCartPlusFill fontSize="20px" />
             <p>Cart</p>
           </ActionButtonUI>
