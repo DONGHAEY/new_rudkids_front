@@ -1,9 +1,12 @@
 import { IoIosClose } from "react-icons/io";
+import { FaPlus } from "react-icons/fa6";
+import { FaMinus } from "react-icons/fa6";
 import {
   CartProductNameUI,
   CartProductPriceUI,
   CartProductUI,
   CloseIconWrapperUI,
+  InfoTextWrapperUI,
   QuantityButtonUI,
   QuantityGroupUI,
   QuantityTextUI,
@@ -34,22 +37,26 @@ const CartProduct = ({ cartProduct }) => {
 
   return (
     <CartProductUI>
-      <img height={"100%"} src={cartProduct.product.imageUrl} />
+      <img height="100%" src={cartProduct.product.imageUrl} />
       <WrapperUI>
-        <div>
+        <InfoTextWrapperUI>
           <CartProductNameUI>{cartProduct.product.name}</CartProductNameUI>
           <CartProductPriceUI>
             ₩ {cartProduct.product.price.toLocaleString("ko-KR")}
           </CartProductPriceUI>
-        </div>
+        </InfoTextWrapperUI>
         <QuantityGroupUI>
-          <QuantityButtonUI onClick={minusClickHandler}>-</QuantityButtonUI>
+          <QuantityButtonUI onClick={minusClickHandler}>
+            <FaMinus />
+          </QuantityButtonUI>
           <QuantityTextUI>{cartProduct.quantity}</QuantityTextUI>
-          <QuantityButtonUI onClick={plusClickHandler}>+</QuantityButtonUI>
+          <QuantityButtonUI onClick={plusClickHandler}>
+            <FaPlus />
+          </QuantityButtonUI>
         </QuantityGroupUI>
       </WrapperUI>
       <CloseIconWrapperUI onClick={deleteClickHandler}>
-        <IoIosClose />
+        <IoIosClose color="#999999" />
       </CloseIconWrapperUI>
     </CartProductUI>
   );

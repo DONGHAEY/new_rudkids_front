@@ -28,7 +28,7 @@ const OrderBar = () => {
           <div>
             <TotalTextUI>Total</TotalTextUI>
             <TotalPriceTextUI>
-              ₩ {totalPrice?.toLocaleString("ko-KR")}
+              {totalPrice?.toLocaleString("ko-KR")}
             </TotalPriceTextUI>
           </div>
           <BuyButtonUI>BUY NOW</BuyButtonUI>

@@ -8,7 +8,7 @@ export const OrderBarWrapperUI = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 180px;
+  height: 181px;
   display: flex;
 `;
 
@@ -17,7 +17,7 @@ export const OrderBarUI = styled.div`
   width: 100%;
   border-radius: 30px;
   background-color: rgba(244, 244, 244, 0.84);
-  padding: 30px;
+  padding: 24px;
   flex-direction: column;
   justify-content: space-between;
 `;
@@ -35,12 +35,12 @@ export const TotalPriceTextUI = styled.p`
 `;
 
 export const BuyButtonUI = styled.button`
-  background-color: red;
+  background-color: #ec0000;
   color: white;
   height: 60px;
   border: none;
   border-radius: 24px;
   font-family: Poppins-Bold;
-  font-fize: 20px;
+  font-size: 20px;
   cursor: pointer;
 `;
