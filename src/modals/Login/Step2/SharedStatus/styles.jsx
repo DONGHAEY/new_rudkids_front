@@ -28,7 +28,7 @@ export const CircleImgWrapperUI = styled.div`
       background-image: radial-gradient(circle, lime, transparent);
     }
     100% {
-      border: 3px solid transparent;
+      border: 7.5px solid transparent;
       border-opacity: 1;
       background-image: radial-gradient(circle, lime, transparent);
     }

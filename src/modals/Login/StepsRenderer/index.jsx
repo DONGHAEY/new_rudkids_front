@@ -26,7 +26,7 @@ const StepsRenderer = ({ stepComponentSrcList }) => {
       opacity: 1,
       duration: 0.5,
     });
-  }, [step, shareComponentRefList]);
+  }, [step, totalStepCount]);
 
   const next = () => {
     if (step + 1 <= totalStepCount) {

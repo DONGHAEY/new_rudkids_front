@@ -32,7 +32,7 @@ export const ProductPriceTextUI = styled.h3`
 
 export const ModelDescriptionUI = styled.p`
   font-family: Poppins-Medium;
-  font-size: 13px;
+  font-size: 14.5px;
 `;
 
 export const ComponentListUI = styled.div`

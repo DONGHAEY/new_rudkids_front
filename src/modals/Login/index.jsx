@@ -6,7 +6,7 @@ import {
   useSetMySchoolMutation,
   useUserQuery,
 } from "../../queries/user";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 const LoginModal = () => {
   const { data: userData } = useUserQuery();
@@ -18,7 +18,6 @@ const LoginModal = () => {
   const setMyInviterMutation = useSetMyInviterMutation();
 
   const isOpen = !isShareCompleted || !isLoggedin;
-
   useEffect(() => {
     if (!isLoggedin) return;
     const schoolName = localStorage.getItem("school_name");
@@ -33,11 +32,13 @@ const LoginModal = () => {
     })();
   }, [isLoggedin]);
 
+  const stepComponentSrcList = [Step1, Step2];
+
   if (!isOpen) {
     return null;
   }
 
-  return <StepsRenderer stepComponentSrcList={[Step1, Step2]} />;
+  return <StepsRenderer stepComponentSrcList={stepComponentSrcList} />;
 };
 
 export default LoginModal;

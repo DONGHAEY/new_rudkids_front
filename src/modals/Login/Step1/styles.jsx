@@ -27,9 +27,9 @@ export const BoxButtonUI = styled.p`
   font-family: Poppins-SemiBold;
   background-color: black;
   color: white;
-  border-radius: 30px;
+  border-radius: 18px;
   padding-inline: 20px;
-  height: 50px;
+  height: 60px;
   font-size: 14px;
   margin-top: 13px;
   cursor: pointer;
@@ -37,7 +37,7 @@ export const BoxButtonUI = styled.p`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 9px;
 `;
 export const BoxTopUI = styled.div`
   width: 100%;

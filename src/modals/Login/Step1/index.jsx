@@ -9,8 +9,8 @@ import {
   LogoWrapperUI,
   ModalUI,
 } from "./styles";
-import { FaInstagram } from "react-icons/fa";
 import rudkidsAlbumSrc from "./assets/rudkids_album.webp";
+import instagramLogoSrc from "./assets/instagram_logo.png";
 import { useUserQuery } from "../../../queries/user";
 
 const Step1 = ({ next, isRender }) => {
@@ -41,7 +41,8 @@ const Step1 = ({ next, isRender }) => {
           <BoxTitleUI>Just Kidding.</BoxTitleUI>
         </BoxTitleWrapperUI>
         <BoxButtonUI onClick={LoginBtnClickHandler}>
-          <FaInstagram fontSize={"20px"} /> Sign in with instagram
+          <img src={instagramLogoSrc} alt="instagram" width="31px" /> Sign in
+          with instagram
         </BoxButtonUI>
       </BoxMiddleUI>
       <BoxBottomUI>Rudkids</BoxBottomUI>

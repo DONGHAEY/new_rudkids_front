@@ -108,7 +108,7 @@ const Step2 = ({ next, isRender }) => {
               <PopinPUI fontSize={"35px"}>Invited Only</PopinPUI>
             </BoxTitleWrapperUI>
             <FriendListUI>
-              {new Array(maxSharedCnt).fill("").map((_, idx) => {
+              {new Array(maxSharedCnt).fill(null).map((_, idx) => {
                 const isShared = idx < friendSharedCnt;
                 return (
                   <SharedStatus
