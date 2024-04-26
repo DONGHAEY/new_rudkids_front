@@ -25,6 +25,8 @@ export const useCartProductMutation = () => {
   return useMutation({
     mutationFn: async (productId) => {
       await putCartProduct(productId);
+    },
+    onSuccess: async () => {
       await queryClient.invalidateQueries(queryKey.cart);
     },
   });
@@ -35,6 +37,8 @@ export const useCartProductDeleteMutation = (productId) => {
   return useMutation({
     mutationFn: async () => {
       await deleteCartProduct(productId);
+    },
+    onSuccess: async () => {
       await queryClient.invalidateQueries(queryKey.cart);
     },
   });
@@ -45,6 +49,8 @@ export const useCartProductQuantityMutation = (productId) => {
   return useMutation({
     mutationFn: async (quantity) => {
       await editCartProductQuantity(productId, quantity);
+    },
+    onSuccess: async () => {
       await queryClient.invalidateQueries(queryKey.cart);
     },
   });
