@@ -9,7 +9,7 @@ import {
 import { useEffect, useMemo } from "react";
 
 const LoginModal = () => {
-  const { data: userData } = useUserQuery();
+  const { data: userData, isLoading: userLoading } = useUserQuery();
 
   const isLoggedin = userData ? true : false;
   const isShareCompleted = localStorage.getItem("share_complete") === "true";
@@ -17,7 +17,8 @@ const LoginModal = () => {
   const setMySchoolMutation = useSetMySchoolMutation();
   const setMyInviterMutation = useSetMyInviterMutation();
 
-  const isOpen = !isShareCompleted || !isLoggedin;
+  const isOpen = !isShareCompleted || (!isLoggedin && !userLoading);
+
   useEffect(() => {
     if (!isLoggedin) return;
     const schoolName = localStorage.getItem("school_name");
