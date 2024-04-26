@@ -1,19 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { useState } from "react";
 import { routes } from "./routes";
+import { useAxiosInterceptors } from "./hooks/useAxiosInterceptors";
 
 function App() {
-  const [queryClient] = useState(
-    new QueryClient({
-      defaultOptions: {
-        queries: {
-          refetchOnWindowFocus: false,
-        },
-      },
-    })
-  );
+  useAxiosInterceptors();
 
   const routesChildren = Object.keys(routes)?.map((routeKey) => {
     const route = routes[routeKey];
@@ -26,13 +17,7 @@ function App() {
     );
   });
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes children={routesChildren} />
-      </BrowserRouter>
-    </QueryClientProvider>
-  );
+  return <Routes children={routesChildren} />;
 }
 
 export default App;
