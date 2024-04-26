@@ -22,16 +22,16 @@ export const ContentSectionUI = styled.div`
 
 export const ProductNameTextUI = styled.h1`
   font-family: Poppins-Bold;
+  font-size: 28px;
 `;
 
 export const ProductPriceTextUI = styled.h3`
   font-family: Poppins-Medium;
+  font-size: 20px;
 `;
 
 export const ModelDescriptionUI = styled.p`
   font-family: Poppins-Medium;
-  overflow-x: scroll;
-  width : 100%:
   font-size: 13px;
 `;
 
@@ -40,7 +40,6 @@ export const ComponentListUI = styled.div`
   flex-direction: row;
   align-items: end;
   width: 80%;
-  margin-block: 10px;
-  height: 150px;
+  margin-block: 5px;
   overflow-x: scroll;
 `;

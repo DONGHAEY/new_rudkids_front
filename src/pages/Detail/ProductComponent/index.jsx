@@ -1,10 +1,18 @@
-import { ProductComponentImgUI, ProductComponentWrapperUI } from "./styles";
+import {
+  NameTextUI,
+  ProductComponentImgUI,
+  ProductComponentImgWrapperUI,
+  ProductComponentUI,
+} from "./styles";
 
-const ProductComponent = ({ imageUrl, selected, onClick }) => {
+const ProductComponent = ({ imageUrl, name, selected, onClick }) => {
   return (
-    <ProductComponentWrapperUI onClick={onClick} $selected={selected}>
-      <ProductComponentImgUI src={imageUrl} />
-    </ProductComponentWrapperUI>
+    <ProductComponentUI>
+      <ProductComponentImgWrapperUI onClick={onClick} $selected={selected}>
+        <ProductComponentImgUI src={imageUrl} />
+      </ProductComponentImgWrapperUI>
+      <NameTextUI>{name}</NameTextUI>
+    </ProductComponentUI>
   );
 };
 

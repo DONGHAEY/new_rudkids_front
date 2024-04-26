@@ -38,10 +38,10 @@ export const IconWrapperUI = styled.div`
 export const CartCntTextUI = styled.p`
   position: absolute;
   font-size: 14px;
-  width: 14px;
-  aspect-ratio: 1/1;
+  width: 15px;
+  height: 15px;
   font-family: Poppins-Bold;
-  line-height: 14px;
+  line-height: 0px;
   right: -8px;
   top: -8px;
   background-color: red;

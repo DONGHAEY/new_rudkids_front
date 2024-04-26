@@ -1,16 +1,29 @@
 import styled from "styled-components";
 
-export const ProductComponentWrapperUI = styled.div`
+export const ProductComponentUI = styled.div`
+  margin: 6px;
+  display: flex;
+  height: 150px;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const NameTextUI = styled.p`
+  font-size: 14px;
+  font-family: Poppins-Bold;
+`;
+
+export const ProductComponentImgWrapperUI = styled.div`
   background-color: #ededed;
   position: relative;
   object-fit: cover;
-  height: 90%;
-  margin: 10px;
+  height: 110px;
+  aspect-ratio: 1/1;
   display: flex;
   align-items: center;
   justify-content: center;
   border: ${({ $selected }) => ($selected ? "solid black 1px" : "none")};
-  aspect-ratio: 1/1;
+  border-radius: 13.5px;
 `;
 
 export const ProductComponentImgUI = styled.img`

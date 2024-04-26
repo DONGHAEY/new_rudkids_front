@@ -68,6 +68,7 @@ const DetailPage = ({ routeInfo }) => {
                 selected={idx === selectedModelIdx}
                 onClick={() => setSelectedModelIdx(idx)}
                 imageUrl={_.imageUrl}
+                name={_.name}
               />
             );
           })}
