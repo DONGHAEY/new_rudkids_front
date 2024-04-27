@@ -11,6 +11,7 @@ import { useEffect, useMemo } from "react";
 const LoginModal = () => {
   const { data: userData, isLoading: userLoading } = useUserQuery();
 
+  const loading = userLoading;
   const isLoggedin = userData && !userLoading ? true : false;
   const isShareCompleted = localStorage.getItem("share_complete") === "true";
 
@@ -21,6 +22,7 @@ const LoginModal = () => {
 
   useEffect(() => {
     if (!isLoggedin) return;
+
     const schoolName = localStorage.getItem("school_name");
     const inviterUserId = localStorage.getItem("inviter_user_id");
     (async () => {
@@ -35,7 +37,7 @@ const LoginModal = () => {
 
   const stepComponentSrcList = [Step1, Step2];
 
-  if (!isOpen) {
+  if (!isOpen || loading) {
     return null;
   }
 
