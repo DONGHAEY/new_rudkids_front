@@ -5,7 +5,7 @@ import LoginModal from "../../modals/Login";
 import Header from "../../components/Header";
 import { useProductListQuery } from "../../queries/product";
 
-const colorList = ["#FFE818", "#FF3BA5", "#26A4FF", "green"];
+const colorList = ["#FFE818", "#26A4FF", "#FF3BA5", "green"];
 
 const ListPage = () => {
   const pageRef = createRef(null);
