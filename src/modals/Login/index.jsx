@@ -10,15 +10,15 @@ import { useEffect, useMemo } from "react";
 
 const LoginModal = () => {
   const { data: userData, isLoading: userLoading } = useUserQuery();
-
   const loading = userLoading;
-  const isLoggedin = userData && !userLoading ? true : false;
+
+  const isLoggedin = userData ? true : false;
   const isShareCompleted = localStorage.getItem("share_complete") === "true";
 
   const setMySchoolMutation = useSetMySchoolMutation();
   const setMyInviterMutation = useSetMyInviterMutation();
 
-  const isOpen = !isShareCompleted || !isLoggedin;
+  const isOpen = (!isShareCompleted || !isLoggedin) && !loading;
 
   useEffect(() => {
     if (!isLoggedin) return;
@@ -37,7 +37,7 @@ const LoginModal = () => {
 
   const stepComponentSrcList = [Step1, Step2];
 
-  if (!isOpen || loading) {
+  if (!isOpen) {
     return null;
   }
 
