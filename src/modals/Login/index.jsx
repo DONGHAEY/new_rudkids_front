@@ -6,23 +6,16 @@ import {
   useSetMySchoolMutation,
   useUserQuery,
 } from "../../queries/user";
-import { useEffect, useMemo } from "react";
+import { useEffect, useState } from "react";
 
 const LoginModal = () => {
-  const { data: userData, isLoading: userLoading } = useUserQuery();
-  const loading = userLoading;
-
-  const isLoggedin = userData ? true : false;
-  const isShareCompleted = localStorage.getItem("share_complete") === "true";
-
+  const [isOpen, setIsOpen] = useState(false);
+  const { data: userData, isFetched } = useUserQuery();
   const setMySchoolMutation = useSetMySchoolMutation();
   const setMyInviterMutation = useSetMyInviterMutation();
 
-  const isOpen = (!isShareCompleted || !isLoggedin) && !loading;
-
   useEffect(() => {
-    if (!isLoggedin) return;
-
+    if (!userData) return;
     const schoolName = localStorage.getItem("school_name");
     const inviterUserId = localStorage.getItem("inviter_user_id");
     (async () => {
@@ -33,15 +26,22 @@ const LoginModal = () => {
         await setMyInviterMutation.mutateAsync(inviterUserId);
       }
     })();
-  }, [isLoggedin]);
+  }, [userData]);
 
-  const stepComponentSrcList = [Step1, Step2];
+  const openStateUpdate = () => {
+    const isLoggedin = userData ? true : false;
+    const isShareCompleted = localStorage.getItem("share_complete") === "true";
+    setIsOpen(!isShareCompleted || !isLoggedin);
+  };
 
-  if (!isOpen) {
-    return null;
-  }
+  useEffect(() => {
+    if (!isFetched) return;
+    openStateUpdate();
+  }, [isFetched]);
 
-  return <StepsRenderer stepComponentSrcList={stepComponentSrcList} />;
+  const stepRenderer = <StepsRenderer stepComponentSrcList={[Step1, Step2]} />;
+  if (!isOpen) return null;
+  return stepRenderer;
 };
 
 export default LoginModal;

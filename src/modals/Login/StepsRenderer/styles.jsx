@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ShareWrapperUI = styled.div`
+export const WrapperUI = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@ export const ShareWrapperUI = styled.div`
   overflow: hidden;
 `;
 
-export const ShareComponentWrapperUI = styled.div`
+export const StepCompWrapperUI = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;

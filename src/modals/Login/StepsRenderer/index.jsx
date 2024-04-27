@@ -1,28 +1,36 @@
-import React, { createRef, memo, useEffect, useRef, useState } from "react";
+import React, {
+  createRef,
+  memo,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import gsap from "gsap";
-import { ShareComponentWrapperUI, ShareWrapperUI } from "./styles";
+import { StepCompWrapperUI, WrapperUI } from "./styles";
 
 const StepsRenderer = ({ stepComponentSrcList }) => {
   const totalStepCount = stepComponentSrcList.length;
   const [step, setStep] = useState(0);
-  const shareWrapperRef = useRef(null);
-  const shareComponentRefList = new Array(totalStepCount)
-    .fill(null)
-    .map(() => createRef());
+
+  const wrapperRef = useRef(null);
+  const componentRefList = useMemo(() => {
+    return new Array(totalStepCount).fill(null).map((_) => createRef(_));
+  }, [totalStepCount]);
 
   useEffect(() => {
-    if (!shareWrapperRef.current) return;
+    if (!wrapperRef.current) return;
     if (step === totalStepCount) {
-      shareWrapperRef.current.style.display = "none";
+      wrapperRef.current.style.display = "none";
     } else {
-      shareWrapperRef.current.style.display = "block";
+      wrapperRef.current.style.display = "block";
     }
-  }, [step, totalStepCount, shareWrapperRef.current]);
+  }, [step, totalStepCount, wrapperRef.current]);
 
   useEffect(() => {
-    if (!shareComponentRefList[step]?.current) return;
-    shareComponentRefList[step].current.style.display = "block";
-    gsap.to(shareComponentRefList[step].current, {
+    if (!componentRefList[step]?.current) return;
+    componentRefList[step].current.style.display = "block";
+    gsap.to(componentRefList[step].current, {
       opacity: 1,
       duration: 0.5,
     });
@@ -30,11 +38,11 @@ const StepsRenderer = ({ stepComponentSrcList }) => {
 
   const next = () => {
     if (step + 1 <= totalStepCount) {
-      gsap.to(shareComponentRefList[step].current, {
+      gsap.to(componentRefList[step].current, {
         opacity: 0,
         duration: 0.5,
         onComplete: () => {
-          shareComponentRefList[step].current.style.display = "none";
+          componentRefList[step].current.style.display = "none";
           setStep(step + 1);
         },
       });
@@ -42,31 +50,30 @@ const StepsRenderer = ({ stepComponentSrcList }) => {
   };
 
   const prev = () => {
-    gsap.to(shareComponentRefList[step].current, {
+    gsap.to(componentRefList[step].current, {
       opacity: 0,
       duration: 0.5,
       onComplete: () => {
-        if (shareComponentRefList[step - 1]) {
-          shareComponentRefList[step].current.style.display = "none";
+        if (componentRefList[step - 1]) {
+          componentRefList[step].current.style.display = "none";
           setStep(step - 1);
         }
       },
     });
   };
 
-  const stepComponentList = stepComponentSrcList.map((StepComp, idx) => {
+  const stepComponents = stepComponentSrcList.map((StepComp, idx) => {
+    const ref = componentRefList[idx];
     return (
-      <ShareComponentWrapperUI
+      <StepCompWrapperUI
         key={idx}
-        ref={shareComponentRefList[idx]}
+        ref={ref}
         children={<StepComp next={next} prev={prev} isRender={idx === step} />}
       />
     );
   });
 
-  return <ShareWrapperUI ref={shareWrapperRef} children={stepComponentList} />;
+  return <WrapperUI ref={wrapperRef} children={stepComponents} />;
 };
 
-//이건 한번만 랜더해야함 (그렇게 안하면 꼬임)
 export default memo(StepsRenderer);
-//이건 한번만 랜더해야함 (그렇게 안하면 꼬임)
