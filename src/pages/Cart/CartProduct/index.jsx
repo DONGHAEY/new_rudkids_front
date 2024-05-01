@@ -28,7 +28,9 @@ const CartProduct = ({ cartProduct }) => {
     await quantityMutation.mutateAsync(quantity);
   };
   const deleteClickHandler = async () => {
-    await deleteMutation.mutateAsync();
+    if (window.confirm("정말로 삭제하시겠습니까?")) {
+      await deleteMutation.mutateAsync();
+    }
   };
 
   return (

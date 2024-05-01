@@ -14,7 +14,7 @@ const CartPage = () => {
 
   return (
     <PageUI>
-      <Header />
+      <Header isFixed={false} />
       <FlexWrapperUI>
         <PageDescriptionUI>My Cart</PageDescriptionUI>
         <ListWrapperUI>

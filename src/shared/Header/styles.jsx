@@ -9,7 +9,7 @@ export const LogoWrapperUI = styled.div`
 `;
 
 export const HeaderWrapperUI = styled.div`
-  position: absolute;
+  position: ${({ position }) => position};
   display: flex;
   z-index: 100;
   align-items: center;

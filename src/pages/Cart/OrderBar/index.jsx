@@ -39,12 +39,12 @@ const OrderBar = ({ cartData }) => {
         <OrderBarUI>
           <ColWrapperUI>
             <RowBeetwenUI>
-              <PriceNameTextUI>총가격</PriceNameTextUI>
+              <PriceNameTextUI>총 상품가격</PriceNameTextUI>
               <PriceTextUI>₩ {totalPrice?.toLocaleString("ko-KR")}</PriceTextUI>
             </RowBeetwenUI>
             <RowBeetwenUI>
               <PriceNameTextUI>배송비</PriceNameTextUI>
-              <PriceTextUI>무료</PriceTextUI>
+              <PriceTextUI>₩ 0</PriceTextUI>
             </RowBeetwenUI>
           </ColWrapperUI>
           <RowBeetwenUI>

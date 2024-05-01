@@ -8,7 +8,7 @@ export const CartProductUI = styled.div`
   justify-content: space-between;
   padding: 20px;
   height: 80px;
-  background-color: rgba(247, 247, 247, 0.78);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
 `;
 

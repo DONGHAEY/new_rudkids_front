@@ -17,7 +17,7 @@ export const OrderBarUI = styled.div`
   width: 100%;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  background-color: rgba(244, 244, 244, 0.84);
+  background-color: rgba(244, 244, 244, 0.93);
   padding-bottom: 24px;
   padding-top: 30px;
   padding-inline: 30px;
@@ -40,7 +40,7 @@ export const ColWrapperUI = styled.div`
 `;
 
 export const PriceNameTextUI = styled.div`
-  font-family: Poppins-Bold;
+  font-family: Pretendard-Bold;
   font-size: 13px;
   line-height: 13px;
   color: #818181;
@@ -62,8 +62,8 @@ export const TotalPriceTextUI = styled.p`
 
 export const PriceTextUI = styled.p`
   color: #818181;
-  font-size: 17px;
-  line-height: 17px;
+  font-size: 16px;
+  line-height: 16px;
   font-family: Poppins-SemiBold;
 `;
 
