@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { useCartQuery } from "../../queries/cart";
 import {
   BuyButtonUI,
   OrderBarUI,
@@ -8,9 +7,14 @@ import {
   TotalPriceTextUI,
   TotalTextUI,
 } from "./styles";
+import { useNavigate } from "react-router-dom";
+import { useIsMutating } from "react-query";
+import queryKey from "../../../queries/key";
 
-const OrderBar = () => {
-  const { data: cartData } = useCartQuery();
+const OrderBar = ({ cartData }) => {
+  const navigate = useNavigate();
+
+  const cartMutating = useIsMutating([queryKey.cart]);
 
   const totalPrice = useMemo(() => {
     if (!cartData) return 0;
@@ -20,6 +24,10 @@ const OrderBar = () => {
     });
     return totalPrice;
   }, [cartData?.cartProducts]);
+
+  const buyButtonClickHandler = async () => {
+    navigate(`/order`);
+  };
 
   return (
     <>
@@ -31,7 +39,12 @@ const OrderBar = () => {
               {totalPrice?.toLocaleString("ko-KR")}
             </TotalPriceTextUI>
           </div>
-          <BuyButtonUI>BUY NOW</BuyButtonUI>
+          <BuyButtonUI
+            disabled={cartMutating !== 0}
+            onClick={buyButtonClickHandler}
+          >
+            BUY NOW
+          </BuyButtonUI>
         </OrderBarUI>
       </OrderBarWrapperUI>
       <SpacerUI />

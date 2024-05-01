@@ -6,7 +6,7 @@ import {
   ActionButtonUI,
   SpacerUI,
 } from "./styles";
-import { useCartProductMutation } from "../../queries/cart";
+import { useCartProductMutation } from "../../../queries/cart";
 
 const ActionBar = ({ productId }) => {
   const putCartProductMutation = useCartProductMutation();

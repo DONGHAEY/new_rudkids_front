@@ -1,6 +1,6 @@
 import ModelDragger from "./ModelDragger";
-import ActionBar from "../../components/ActionBar";
-import Header from "../../components/Header";
+import ActionBar from "./ActionBar";
+import Header from "../../shared/Header";
 import {
   PageUI,
   ContentSectionUI,
@@ -14,7 +14,6 @@ import { useParams } from "react-router-dom";
 import { useProductQuery } from "../../queries/product";
 import { useState } from "react";
 import ProductComponent from "./ProductComponent";
-import { useCartProductMutation } from "../../queries/cart";
 
 const DetailPage = ({ routeInfo }) => {
   const params = useParams();

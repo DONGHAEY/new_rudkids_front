@@ -5,6 +5,8 @@ import { setMyInviter } from "../apis/user/setMyInviter";
 import { getInvitedUsers } from "../apis/user/getInvitedUsers";
 import { setMySchool } from "../apis/user/setMySchool";
 import { getSchoolUsers } from "../apis/user/getSchoolUsers";
+import { sendPhoneAuthKey } from "../apis/user/sendPhoneAuthKey";
+import { setPhoneNumber } from "../apis/user/setPhoneNumber";
 
 export const useUserQuery = () => {
   return useQuery({
@@ -43,5 +45,21 @@ export const useSchoolUsersQuery = (schoolName) => {
   return useQuery({
     queryKey: [queryKey.user, queryKey.school, schoolName, "list"],
     queryFn: () => getSchoolUsers(schoolName),
+  });
+};
+
+export const useSendPhoneAuthKeyMutation = () => {
+  return useMutation({
+    mutationFn: (phoneNumber) => sendPhoneAuthKey({ phoneNumber }),
+  });
+};
+
+export const useSetPhoneNumberMutation = () => {
+  return useMutation({
+    mutationFn: ({ phoneNumber, authKey }) =>
+      setPhoneNumber({
+        phoneNumber,
+        authKey,
+      }),
   });
 };

@@ -19,18 +19,14 @@ import {
 
 const CartProduct = ({ cartProduct }) => {
   const quantityMutation = useCartProductQuantityMutation(
-    cartProduct.product.id
+    cartProduct?.product.id
   );
-  const deleteMutation = useCartProductDeleteMutation(cartProduct.product.id);
 
-  const plusClickHandler = async () => {
-    await quantityMutation.mutateAsync(cartProduct.quantity + 1);
+  const deleteMutation = useCartProductDeleteMutation(cartProduct?.product.id);
+
+  const quantityClickHandler = async (quantity) => {
+    await quantityMutation.mutateAsync(quantity);
   };
-
-  const minusClickHandler = async () => {
-    await quantityMutation.mutateAsync(cartProduct.quantity - 1);
-  };
-
   const deleteClickHandler = async () => {
     await deleteMutation.mutateAsync();
   };
@@ -46,11 +42,15 @@ const CartProduct = ({ cartProduct }) => {
           </CartProductPriceUI>
         </InfoTextWrapperUI>
         <QuantityGroupUI>
-          <QuantityButtonUI onClick={minusClickHandler}>
+          <QuantityButtonUI
+            onClick={() => quantityClickHandler(cartProduct.quantity - 1)}
+          >
             <FaMinus />
           </QuantityButtonUI>
           <QuantityTextUI>{cartProduct.quantity}</QuantityTextUI>
-          <QuantityButtonUI onClick={plusClickHandler}>
+          <QuantityButtonUI
+            onClick={() => quantityClickHandler(cartProduct.quantity + 1)}
+          >
             <FaPlus />
           </QuantityButtonUI>
         </QuantityGroupUI>

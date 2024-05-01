@@ -35,7 +35,7 @@ export const TotalPriceTextUI = styled.p`
 `;
 
 export const BuyButtonUI = styled.button`
-  background-color: #ec0000;
+  background-color: ${({ disabled }) => (disabled ? "gray" : "#ec0000")};
   color: white;
   height: 60px;
   border: none;

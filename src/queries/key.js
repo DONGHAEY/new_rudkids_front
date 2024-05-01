@@ -3,6 +3,7 @@ const queryKey = {
   school: "school",
   product: "product",
   cart: "cart",
+  order: "order",
 };
 
 export default queryKey;

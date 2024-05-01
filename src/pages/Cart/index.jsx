@@ -1,5 +1,8 @@
-import Header from "../../components/Header";
-import { useCartQuery } from "../../queries/cart";
+import Header from "../../shared/Header";
+import {
+  useCartProductQuantityMutation,
+  useCartQuery,
+} from "../../queries/cart";
 import {
   FlexWrapperUI,
   ListWrapperUI,
@@ -7,7 +10,7 @@ import {
   PageDescriptionUI,
 } from "./styles";
 import CartProduct from "./CartProduct";
-import OrderBar from "../../components/OrderBar";
+import OrderBar from "./OrderBar";
 
 const CartPage = () => {
   const { data: myCartData } = useCartQuery();
@@ -20,12 +23,12 @@ const CartPage = () => {
         <ListWrapperUI>
           {myCartData?.cartProducts?.map((cartProduct) => {
             return (
-              <CartProduct key={cartProduct.id} cartProduct={cartProduct} />
+              <CartProduct key={cartProduct?.id} cartProduct={cartProduct} />
             );
           })}
         </ListWrapperUI>
       </FlexWrapperUI>
-      <OrderBar />
+      <OrderBar cartData={myCartData} />
     </PageUI>
   );
 };

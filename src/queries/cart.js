@@ -39,6 +39,7 @@ export const useCartProductMutation = () => {
 export const useCartProductDeleteMutation = (productId) => {
   const queryClient = useQueryClient();
   return useMutation({
+    mutationKey: [queryKey.cart, productId, "delete"],
     mutationFn: async () => {
       await deleteCartProduct(productId);
     },
@@ -57,21 +58,45 @@ export const useCartProductDeleteMutation = (productId) => {
   });
 };
 
+let quantityMutationPromise = {};
 export const useCartProductQuantityMutation = (productId) => {
   const queryClient = useQueryClient();
   return useMutation({
+    mutationKey: [queryKey.cart, productId, "qunatity"],
     mutationFn: async (quantity) => {
-      return await editCartProductQuantity(productId, quantity);
-    },
-    onSuccess: async (data) => {
+      if (quantity <= 0) return null;
       const cartData = queryClient.getQueryData([queryKey.cart]);
       cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
         if (cartProduct?.product?.id === productId) {
-          return data;
+          return {
+            ...cartProduct,
+            quantity,
+          };
         }
         return cartProduct;
       });
       await queryClient.setQueryData([queryKey.cart], cartData);
+      if (quantityMutationPromise[productId]) {
+        quantityMutationPromise[productId][0](null);
+      }
+      return await new Promise((resolve, reject) => {
+        quantityMutationPromise[productId] = [resolve, reject];
+        setTimeout(async () => {
+          const res = await editCartProductQuantity(productId, quantity);
+          resolve(res);
+        }, 500);
+      });
+    },
+    onSuccess: async (data) => {
+      // if (!data) return null;
+      // const cartData = queryClient.getQueryData([queryKey.cart]);
+      // cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
+      //   if (cartProduct?.product?.id === productId) {
+      //     return data;
+      //   }
+      //   return cartProduct;
+      // });
+      // await queryClient.setQueryData([queryKey.cart], cartData);
     },
   });
 };

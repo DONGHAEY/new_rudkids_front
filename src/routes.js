@@ -8,6 +8,8 @@ import InvitationPage from "./pages/Invitation";
 import SchoolInvitationPage from "./pages/SchoolInvitation";
 import PerformancePage from "./pages/Performance";
 import CartPage from "./pages/Cart";
+import OrderPage from "./pages/Order";
+import PayPage from "./pages/Pay";
 
 export const routes = {
   ["main"]: {
@@ -49,6 +51,16 @@ export const routes = {
     path: "cart",
     paramKeys: [],
     element: CartPage,
+  },
+  ["order"]: {
+    path: "order",
+    paramKeys: [],
+    element: OrderPage,
+  },
+  ["pay"]: {
+    path: "order/:order_id/pay",
+    paramKeys: ["order_id"],
+    element: PayPage,
   },
   ["hand"]: {
     path: "hand",
