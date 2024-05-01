@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const SpacerUI = styled.div`
-  margin-top: 180px;
+  margin-top: 244px;
 `;
 
 export const OrderBarWrapperUI = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 181px;
+  height: 244px;
   display: flex;
 `;
 
@@ -28,10 +28,40 @@ export const TotalTextUI = styled.p`
   font-family: Poppins-SemiBold;
   line-height: 14px;
 `;
+
+export const ColWrapperUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+`;
+
+export const PriceNameTextUI = styled.div`
+  font-family: Poppins-Bold;
+  font-size: 13px;
+  line-height: 13px;
+  color: #818181;
+`;
+
+export const RowBeetwenUI = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export const TotalPriceTextUI = styled.p`
   color: black;
   font-size: 20px;
   font-family: Poppins-Bold;
+`;
+
+export const PriceTextUI = styled.p`
+  color: #818181;
+  font-size: 17px;
+  line-height: 17px;
+  font-family: Poppins-SemiBold;
 `;
 
 export const BuyButtonUI = styled.button`

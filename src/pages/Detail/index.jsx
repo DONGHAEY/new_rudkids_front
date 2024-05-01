@@ -45,7 +45,7 @@ const DetailPage = ({ routeInfo }) => {
 
   return (
     <PageUI>
-      <Header $backgroundColor="#ffffff" />
+      <Header $backgroundColor="none" />
       <FlexWrapperUI>
         <ModelDragger
           modelName={productComponents[selectedModelIdx]?.name}

@@ -1,3 +1,4 @@
+import backgroundImgSrc from "./assets/background.png";
 import styled from "styled-components";
 
 export const PageUI = styled.div`
@@ -5,10 +6,14 @@ export const PageUI = styled.div`
   width: 100%;
   height: 100%;
   overflow-y: scroll;
+  background-image: url(${backgroundImgSrc});
+  background-size: cover;
+  background-repeat: none;
 `;
 
 export const FlexWrapperUI = styled.div`
-  padding-block: 20px;
+  padding-block: 10px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +29,8 @@ export const ListWrapperUI = styled.div`
 
 export const PageDescriptionUI = styled.h2`
   font-family: Poppins-SemiBold;
-  margin-block: 20px;
+  margin-bottom: 10px;
+  font-size: 20px;
   width: 90%;
   text-align: left;
 `;

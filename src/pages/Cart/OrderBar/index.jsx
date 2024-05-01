@@ -1,8 +1,12 @@
 import { useMemo } from "react";
 import {
   BuyButtonUI,
+  ColWrapperUI,
   OrderBarUI,
   OrderBarWrapperUI,
+  PriceNameTextUI,
+  PriceTextUI,
+  RowBeetwenUI,
   SpacerUI,
   TotalPriceTextUI,
   TotalTextUI,
@@ -33,12 +37,22 @@ const OrderBar = ({ cartData }) => {
     <>
       <OrderBarWrapperUI>
         <OrderBarUI>
-          <div>
+          <ColWrapperUI>
+            <RowBeetwenUI>
+              <PriceNameTextUI>총가격</PriceNameTextUI>
+              <PriceTextUI>₩ {totalPrice?.toLocaleString("ko-KR")}</PriceTextUI>
+            </RowBeetwenUI>
+            <RowBeetwenUI>
+              <PriceNameTextUI>배송비</PriceNameTextUI>
+              <PriceTextUI>무료</PriceTextUI>
+            </RowBeetwenUI>
+          </ColWrapperUI>
+          <RowBeetwenUI>
             <TotalTextUI>Total</TotalTextUI>
             <TotalPriceTextUI>
-              {totalPrice?.toLocaleString("ko-KR")}
+              ₩ {totalPrice?.toLocaleString("ko-KR")}
             </TotalPriceTextUI>
-          </div>
+          </RowBeetwenUI>
           <BuyButtonUI
             disabled={cartMutating !== 0}
             onClick={buyButtonClickHandler}

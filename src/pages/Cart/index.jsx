@@ -17,7 +17,7 @@ const CartPage = () => {
 
   return (
     <PageUI>
-      <Header $backgroundColor="white" />
+      <Header />
       <FlexWrapperUI>
         <PageDescriptionUI>My Cart</PageDescriptionUI>
         <ListWrapperUI>
