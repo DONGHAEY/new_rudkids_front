@@ -17,7 +17,7 @@ export const OrderBarUI = styled.div`
   width: 100%;
   border-radius: 30px;
   background-color: rgba(244, 244, 244, 0.84);
-  padding: 24px;
+  padding: 30px;
   flex-direction: column;
   justify-content: space-between;
 `;
