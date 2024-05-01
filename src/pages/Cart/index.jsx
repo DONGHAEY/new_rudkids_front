@@ -1,8 +1,5 @@
 import Header from "../../shared/Header";
-import {
-  useCartProductQuantityMutation,
-  useCartQuery,
-} from "../../queries/cart";
+import { useCartQuery } from "../../queries/cart";
 import {
   FlexWrapperUI,
   ListWrapperUI,

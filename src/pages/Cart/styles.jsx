@@ -23,7 +23,7 @@ export const FlexWrapperUI = styled.div`
 export const ListWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 14px;
   width: 90%;
 `;
 
