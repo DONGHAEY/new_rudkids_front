@@ -7,6 +7,9 @@ export const PageUI = styled.div`
   height: 100%;
   overflow-y: scroll;
   background-image: url(${backgroundImgSrc});
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-size: cover;
   background-repeat: none;
 `;
@@ -16,8 +19,21 @@ export const FlexWrapperUI = styled.div`
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
+  width: 90%;
+`;
+
+export const PageDescriptionTextUI = styled.h2`
+  font-family: Poppins-SemiBold;
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: left;
+`;
+
+export const PageDescriptionUI = styled.h2`
+  font-family: Poppins-SemiBold;
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: left;
 `;
 
 export const ListWrapperUI = styled.div`
@@ -25,12 +41,4 @@ export const ListWrapperUI = styled.div`
   flex-direction: column;
   gap: 14px;
   width: 90%;
-`;
-
-export const PageDescriptionUI = styled.h2`
-  font-family: Poppins-SemiBold;
-  margin-bottom: 10px;
-  font-size: 20px;
-  width: 90%;
-  text-align: left;
 `;

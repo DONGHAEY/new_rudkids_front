@@ -1,19 +1,22 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import {
-  FieldsWrapperUI,
   CartProductsWrapperUI,
   PageFormUI,
   TotalPriceTextUI,
   TotalPriceWrapperUI,
   PaymentInfoWrapperUI,
+  ListWrapperUI,
+  FlexWrapperUI,
+  PageDescriptionTextUI,
+  ProductLengthTextUI,
+  PageTopSectionUI,
 } from "./styles";
 import { useCreateOrderMutation } from "../../queries/order";
 import CartProduct from "./CartProduct";
 import { useCartQuery } from "../../queries/cart";
-import { Controller, useForm } from "react-hook-form";
-import PhoneAuthInput from "./PhoneAuthInput";
-import FieldArea from "./FieldArea/FieldArea";
-import ObjectFieldArea from "./FieldArea/ObjectFieldArea";
+import { useForm } from "react-hook-form";
+import Header from "../../shared/Header";
+import { IoMdAdd } from "react-icons/io";
 
 function OrderPage({}) {
   const createOrderMutation = useCreateOrderMutation();
@@ -39,7 +42,7 @@ function OrderPage({}) {
     console.log(formData);
     //주문자 정보 있는지 첵
     //배송지 정보 있는지 첵
-    //카트Id 있는지 첵
+    //카트Id 있는지 첵y
     //결제할 금액이 0원이 넘는지도
     // const orderData = await createOrderMutation.mutateAsync({});
     // const orderName = `루키즈`;
@@ -47,103 +50,77 @@ function OrderPage({}) {
 
   return (
     <>
-      <PageFormUI onSubmit={handleSubmit(onSubmit)}>
-        <FieldsWrapperUI>
-          <ObjectFieldArea label={"주문자 정보"}>
-            <FieldArea
-              label="이름"
-              errorMessage={errors?.orderer?.name?.message}
-            >
-              <input
-                placeholder="주문자 이름"
-                {...register("orderer.name", {
-                  required: "주문자명은 필수입니다.",
-                  minLength: {
-                    value: 2,
-                    message: "2자 이상으로 입력해주세요.",
-                  },
-                  maxLength: {
-                    value: 13,
-                    message: "13자 이하로 입력해주세요",
-                  },
-                })}
+      <PageFormUI>
+        <Header isFixed={false} />
+        <FlexWrapperUI>
+          <PageTopSectionUI>
+            <PageDescriptionTextUI>Order Products</PageDescriptionTextUI>
+            <ProductLengthTextUI>
+              {cartData?.cartProducts?.length}개
+            </ProductLengthTextUI>
+          </PageTopSectionUI>
+          <ListWrapperUI>
+            {cartData?.cartProducts?.map((cartProductData) => (
+              <CartProduct
+                key={cartProductData.id}
+                cartProduct={cartProductData}
               />
-            </FieldArea>
-            <FieldArea
-              label="전화번호"
-              errorMessage={errors?.orderer?.phoneNumber?.message}
+            ))}
+          </ListWrapperUI>
+        </FlexWrapperUI>
+        <FlexWrapperUI>
+          <PageTopSectionUI>
+            <PageDescriptionTextUI>📮 Shipping Adress</PageDescriptionTextUI>
+          </PageTopSectionUI>
+          <div
+            style={{
+              width: "100%",
+              height: "184px",
+              border: "solid 2px #C3E2FF",
+              borderRadius: "12px",
+              backgroundColor: "#FFFFFF",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "15px",
+            }}
+          >
+            <p
+              style={{
+                fontSize: "17px",
+                fontFamily: "Pretendard-SemiBold",
+              }}
             >
-              <Controller
-                name="orderer.phoneNumber"
-                control={control}
-                defaultValue={""}
-                rules={{ required: "전화번호인증은 필수입니다." }}
-                render={({ field }) => (
-                  <PhoneAuthInput
-                    ref={field.ref}
-                    onChange={field.onChange}
-                    value={field.value}
-                  />
-                )}
-              />
-            </FieldArea>
-          </ObjectFieldArea>
-          {/* <Controller
-            name="deliveryAddress"
-            control={control}
-            defaultValue={""}
-            rules={{ required: "배송지 입력은 필수입니다." }}
-            render={({ field, fieldState }) => (
-              <ObjectFieldArea
-                label={"배송지"}
-                errorMessage={fieldState.error && fieldState.error.message}
+              배송지를 먼저 입력해주세요
+            </p>
+            <button
+              style={{
+                backgroundColor: "#257ED6",
+                color: "white",
+                border: "none",
+                borderRadius: "24px",
+                padding: "16px",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "5px",
+              }}
+            >
+              <IoMdAdd fontSize="18px" />
+              <p
+                style={{
+                  fontFamily: "Pretendard-Bold",
+                  fontSize: "14px",
+                }}
               >
-                <DeliveryAddressInput />
-              </ObjectFieldArea>
-            )}
-          /> */}
-          <ObjectFieldArea label={"배송지 정보"}>
-            <FieldArea
-              label="상세주소"
-              errorMessage={errors?.deliveryAddress?.detail?.message}
-            >
-              <input
-                placeholder="상세주소"
-                {...register("deliveryAddress.detail", {
-                  required: "필수입니다.",
-                  minLength: {
-                    value: 3,
-                    message: "3자 이상으로 입력해주세요.",
-                  },
-                })}
-              />
-            </FieldArea>
-            <FieldArea
-              label="받는사람이름"
-              errorMessage={errors?.deliveryAddress?.recieverName?.message}
-            >
-              <input
-                placeholder="받는사람 이름"
-                {...register("deliveryAddress.recieverName", {
-                  required: "필수입니다.",
-                  minLength: {
-                    value: 1,
-                    message: "1자 이상으로 입력해주세요.",
-                  },
-                })}
-              />
-            </FieldArea>
-          </ObjectFieldArea>
-        </FieldsWrapperUI>
-        <CartProductsWrapperUI>
-          {cartData?.cartProducts?.map((cartProductData) => (
-            <CartProduct
-              key={cartProductData.id}
-              cartProductData={cartProductData}
-            />
-          ))}
-        </CartProductsWrapperUI>
-        <PaymentInfoWrapperUI>
+                등록하기
+              </p>
+            </button>
+          </div>
+        </FlexWrapperUI>
+        {/* <PaymentInfoWrapperUI>
           <div
             style={{
               display: "flex",
@@ -157,9 +134,9 @@ function OrderPage({}) {
                 {totalPrice?.toLocaleString("ko-KR")} WON
               </TotalPriceTextUI>
             </TotalPriceWrapperUI>
-            <button type="submit">TOSS로 계속</button>
+            <button onClick={handleSubmit(onSubmit)}>계속</button>
           </div>
-        </PaymentInfoWrapperUI>
+        </PaymentInfoWrapperUI> */}
       </PageFormUI>
     </>
   );

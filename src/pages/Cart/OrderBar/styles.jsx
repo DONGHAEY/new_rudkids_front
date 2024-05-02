@@ -40,7 +40,7 @@ export const ColWrapperUI = styled.div`
 `;
 
 export const PriceNameTextUI = styled.div`
-  font-family: Pretendard-Bold;
+  font-family: Pretendard-SemiBold;
   font-size: 13px;
   line-height: 13px;
   color: #818181;

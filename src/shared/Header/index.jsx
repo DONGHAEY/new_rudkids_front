@@ -11,7 +11,6 @@ import {
 import { useCartCntQuery } from "../../queries/cart";
 import rudkidsLogoSrc from "./assets/rudkids_logo.png";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const Header = ({ $backgroundColor = "none", isFixed = true }) => {
   const navigate = useNavigate();

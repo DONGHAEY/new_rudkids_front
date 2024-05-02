@@ -1,23 +1,29 @@
-const CartProduct = ({ cartProductData }) => {
+import {
+  CartProductNameUI,
+  CartProductPriceUI,
+  CartProductUI,
+  InfoTextWrapperUI,
+  QuantityGroupUI,
+  QuantityTextUI,
+  WrapperUI,
+} from "./styles";
+
+const CartProduct = ({ cartProduct }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        width: "100%",
-        height: "120px",
-        alignItems: "center",
-        backgroundColor: "gainsboro",
-        borderRadius: "20px",
-      }}
-    >
-      <img height="100%" src={cartProductData.product.imageUrl} />
-      <div>
-        <p>{cartProductData.product.name}</p>
-        <p>{cartProductData.product.price}원</p>
-        <p>{cartProductData.quantity}개</p>
-      </div>
-    </div>
+    <CartProductUI>
+      <img height="100%" src={cartProduct.product.imageUrl} />
+      <WrapperUI>
+        <InfoTextWrapperUI>
+          <CartProductNameUI>{cartProduct.product.name}</CartProductNameUI>
+          <CartProductPriceUI>
+            ₩ {cartProduct.product.price.toLocaleString("ko-KR")}
+          </CartProductPriceUI>
+        </InfoTextWrapperUI>
+        <QuantityGroupUI>
+          <QuantityTextUI>{cartProduct.quantity}개</QuantityTextUI>
+        </QuantityGroupUI>
+      </WrapperUI>
+    </CartProductUI>
   );
 };
 
