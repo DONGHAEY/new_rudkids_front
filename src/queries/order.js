@@ -15,3 +15,7 @@ export const useOrderQuery = (orderId) => {
     queryFn: () => getOrder(orderId),
   });
 };
+
+// export const editOrderShipping = () => {
+//   return useMutation
+// }

@@ -19,7 +19,6 @@ const OrderBar = ({ cartData }) => {
   const navigate = useNavigate();
 
   const cartMutating = useIsMutating([queryKey.cart]);
-
   const totalPrice = useMemo(() => {
     if (!cartData) return 0;
     let totalPrice = 0;
@@ -44,7 +43,7 @@ const OrderBar = ({ cartData }) => {
             </RowBeetwenUI>
             <RowBeetwenUI>
               <PriceNameTextUI>배송비</PriceNameTextUI>
-              <PriceTextUI>₩ 0</PriceTextUI>
+              <PriceTextUI>₩ {cartData?.shippingPrice}</PriceTextUI>
             </RowBeetwenUI>
           </ColWrapperUI>
           <RowBeetwenUI>
