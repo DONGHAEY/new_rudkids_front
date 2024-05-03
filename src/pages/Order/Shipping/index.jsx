@@ -19,8 +19,7 @@ import { useShippingListQuery } from "../../../queries/shipping";
 
 const Shipping = ({ value, setValue }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { data: shippingListData, isLoading: shippingListLoading } =
-    useShippingListQuery();
+  const { data: shippingListData } = useShippingListQuery();
 
   useEffect(() => {
     if (!shippingListData?.length) return;

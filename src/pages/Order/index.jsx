@@ -1,10 +1,6 @@
 import React, { useMemo } from "react";
 import {
-  CartProductsWrapperUI,
   PageFormUI,
-  productPriceTextUI,
-  productPriceWrapperUI,
-  PaymentInfoWrapperUI,
   ListWrapperUI,
   FlexWrapperUI,
   PageDescriptionTextUI,

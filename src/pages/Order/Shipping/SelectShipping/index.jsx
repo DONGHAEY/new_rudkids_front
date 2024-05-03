@@ -2,7 +2,6 @@ import { IoMdAdd } from "react-icons/io";
 import {
   ShippingListUI,
   ShippingListWrapperUI,
-  TitleUI,
   AddButtonUI,
   FlexWrapperUI,
   AddBtnTextUI,
@@ -26,7 +25,7 @@ const SelectShipping = ({ shipping, setShipping }) => {
     <ShippingListWrapperUI>
       <ShippingListUI>
         <AddButtonUI onClick={addBtnClickHandler}>
-          <IoMdAdd />
+          <IoMdAdd fontSize="20px" />
           <AddBtnTextUI>새 배송지 등록</AddBtnTextUI>
         </AddButtonUI>
         <FlexWrapperUI>

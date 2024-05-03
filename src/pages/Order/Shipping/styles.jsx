@@ -47,6 +47,7 @@ export const SelectUI = styled.select`
   font-family: Pretendard-Medium;
   font-size: 14px;
   border: solid 1.4px #e3e3e3;
+  background-color: #ffffff;
   color: black;
   border-radius: 17px;
   padding-block: 14px;

@@ -31,12 +31,14 @@ export const AddButtonUI = styled.button`
   justify-content: center;
   gap: 10px;
   background-color: white;
+  color: black;
   cursor: pointer;
 `;
 
 export const AddBtnTextUI = styled.p`
   font-family: Pretendard-SemiBold;
   font-size: 16px;
+  color: black;
 `;
 
 export const FlexWrapperUI = styled.div`
