@@ -14,9 +14,9 @@ import {
 import { useCreateOrderMutation } from "../../queries/order";
 import CartProduct from "./CartProduct";
 import { useCartQuery } from "../../queries/cart";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import Header from "../../shared/Header";
-import { IoMdAdd } from "react-icons/io";
+import Shipping from "./Shipping";
 
 function OrderPage({}) {
   const createOrderMutation = useCreateOrderMutation();
@@ -70,55 +70,15 @@ function OrderPage({}) {
         </FlexWrapperUI>
         <FlexWrapperUI>
           <PageTopSectionUI>
-            <PageDescriptionTextUI>📮 Shipping Adress</PageDescriptionTextUI>
+            <PageDescriptionTextUI>📮 Shipping Address</PageDescriptionTextUI>
           </PageTopSectionUI>
-          <div
-            style={{
-              width: "100%",
-              height: "184px",
-              border: "solid 2px #C3E2FF",
-              borderRadius: "12px",
-              backgroundColor: "#FFFFFF",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "15px",
+          <Controller
+            control={control}
+            name="shipping"
+            render={({ field: { onChange, value } }) => {
+              return <Shipping value={value} setValue={onChange} />;
             }}
-          >
-            <p
-              style={{
-                fontSize: "17px",
-                fontFamily: "Pretendard-SemiBold",
-              }}
-            >
-              배송지를 먼저 입력해주세요
-            </p>
-            <button
-              style={{
-                backgroundColor: "#257ED6",
-                color: "white",
-                border: "none",
-                borderRadius: "24px",
-                padding: "16px",
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "5px",
-              }}
-            >
-              <IoMdAdd fontSize="18px" />
-              <p
-                style={{
-                  fontFamily: "Pretendard-Bold",
-                  fontSize: "14px",
-                }}
-              >
-                등록하기
-              </p>
-            </button>
-          </div>
+          />
         </FlexWrapperUI>
         {/* <PaymentInfoWrapperUI>
           <div

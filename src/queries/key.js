@@ -4,6 +4,7 @@ const queryKey = {
   product: "product",
   cart: "cart",
   order: "order",
+  shipping: "shipping",
 };
 
 export default queryKey;

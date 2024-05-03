@@ -19,14 +19,16 @@ const OrderBar = ({ cartData }) => {
   const navigate = useNavigate();
 
   const cartMutating = useIsMutating([queryKey.cart]);
-  const totalPrice = useMemo(() => {
+  const productPrice = useMemo(() => {
     if (!cartData) return 0;
-    let totalPrice = 0;
+    let productPrice = 0;
     cartData.cartProducts?.forEach((cartProduct) => {
-      totalPrice += cartProduct.product.price * cartProduct.quantity;
+      productPrice += cartProduct.product.price * cartProduct.quantity;
     });
-    return totalPrice;
+    return productPrice;
   }, [cartData?.cartProducts]);
+
+  const totalPrice = productPrice + cartData?.shippingPrice;
 
   const buyButtonClickHandler = async () => {
     navigate(`/order`);
@@ -39,7 +41,9 @@ const OrderBar = ({ cartData }) => {
           <ColWrapperUI>
             <RowBeetwenUI>
               <PriceNameTextUI>총 상품가격</PriceNameTextUI>
-              <PriceTextUI>₩ {totalPrice?.toLocaleString("ko-KR")}</PriceTextUI>
+              <PriceTextUI>
+                ₩ {productPrice?.toLocaleString("ko-KR")}
+              </PriceTextUI>
             </RowBeetwenUI>
             <RowBeetwenUI>
               <PriceNameTextUI>배송비</PriceNameTextUI>
