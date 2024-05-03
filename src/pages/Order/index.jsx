@@ -2,8 +2,8 @@ import React, { useMemo } from "react";
 import {
   CartProductsWrapperUI,
   PageFormUI,
-  TotalPriceTextUI,
-  TotalPriceWrapperUI,
+  productPriceTextUI,
+  productPriceWrapperUI,
   PaymentInfoWrapperUI,
   ListWrapperUI,
   FlexWrapperUI,
@@ -17,18 +17,26 @@ import { useCartQuery } from "../../queries/cart";
 import { Controller, useForm } from "react-hook-form";
 import Header from "../../shared/Header";
 import Shipping from "./Shipping";
+import { useFetchPaymentWidget } from "../../hooks/usePaymentWidget";
+import { ANONYMOUS } from "@tosspayments/payment-widget-sdk";
+import PaymentsWidget from "./PaymentsWidget";
 
 function OrderPage({}) {
   const createOrderMutation = useCreateOrderMutation();
-  const { data: cartData } = useCartQuery();
 
-  const totalPrice = useMemo(() => {
+  const { data: cartData } = useCartQuery();
+  const [paymentWidget] = useFetchPaymentWidget({
+    widgetClientKey: "test_gck_oEjb0gm23PO0JJ6M9d548pGwBJn5",
+    customerKey: cartData?.id ?? ANONYMOUS,
+  });
+
+  const productPrice = useMemo(() => {
     if (!cartData) return 0;
-    let totalPrice = 0;
+    let productPrice = 0;
     cartData.cartProducts?.forEach((cartProduct) => {
-      totalPrice += cartProduct.product.price * cartProduct.quantity;
+      productPrice += cartProduct.product.price * cartProduct.quantity;
     });
-    return totalPrice;
+    return productPrice;
   }, [cartData?.cartProducts]);
 
   const {
@@ -51,7 +59,7 @@ function OrderPage({}) {
   return (
     <>
       <PageFormUI>
-        <Header isFixed={false} />
+        <Header isFixed={true} $backgroundColor="#f3f3f3" />
         <FlexWrapperUI>
           <PageTopSectionUI>
             <PageDescriptionTextUI>Order Products</PageDescriptionTextUI>
@@ -80,23 +88,14 @@ function OrderPage({}) {
             }}
           />
         </FlexWrapperUI>
-        {/* <PaymentInfoWrapperUI>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              width: "90%",
-            }}
-          >
-            <TotalPriceWrapperUI>
-              Total
-              <TotalPriceTextUI>
-                {totalPrice?.toLocaleString("ko-KR")} WON
-              </TotalPriceTextUI>
-            </TotalPriceWrapperUI>
-            <button onClick={handleSubmit(onSubmit)}>계속</button>
-          </div>
-        </PaymentInfoWrapperUI> */}
+        <FlexWrapperUI>
+          <PageTopSectionUI>
+            <PageDescriptionTextUI>결제수단</PageDescriptionTextUI>
+          </PageTopSectionUI>
+          {paymentWidget && (
+            <PaymentsWidget paymentWidget={paymentWidget} productPrice={0} />
+          )}
+        </FlexWrapperUI>
       </PageFormUI>
     </>
   );
