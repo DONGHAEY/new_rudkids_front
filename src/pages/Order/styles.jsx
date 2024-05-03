@@ -37,7 +37,7 @@ export const PageTopSectionUI = styled.div`
 `;
 
 export const PageDescriptionTextUI = styled.h2`
-  font-family: Poppins-SemiBold;
+  font-family: Pretendard-SemiBold;
   font-size: 20px;
   text-align: left;
 `;

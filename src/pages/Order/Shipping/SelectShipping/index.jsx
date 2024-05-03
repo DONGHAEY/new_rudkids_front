@@ -11,6 +11,7 @@ import { useShippingListQuery } from "../../../../queries/shipping";
 import Shipping from "./Shipping";
 import Popup from "../../../../shared/Popup";
 import { useState } from "react";
+import AddEditShipping from "../AddEditShipping";
 
 const SelectShipping = ({ shipping, setShipping }) => {
   const { data: shippingListData } = useShippingListQuery();
@@ -43,8 +44,12 @@ const SelectShipping = ({ shipping, setShipping }) => {
           })}
         </FlexWrapperUI>
       </ShippingListUI>
-      <Popup isOpen={isOpen} setIsOpen={setIsOpen} popupName="배송지 추가">
-        {/* <AddShipping /> */}
+      <Popup
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        popupName="📮 Shipping Adress"
+      >
+        <AddEditShipping />
       </Popup>
     </ShippingListWrapperUI>
   );

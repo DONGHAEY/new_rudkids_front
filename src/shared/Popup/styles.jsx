@@ -27,11 +27,11 @@ export const Center = styled.div`
 
 export const PopupHeaderUI = styled.div`
   display: flex;
-  padding-inline: 30px;
+  padding-inline: 25px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  min-height: 80px;
+  min-height: 60px;
   font-size: 20px;
 `;

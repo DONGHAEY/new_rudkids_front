@@ -31,6 +31,7 @@ const EmptyShipping = ({ setValue }) => {
       </AddButtonUI>
       <Popup isOpen={isOpen}>
         <SelectShipping setShipping={setShippingHandler} />
+        {/* AddEditShipping으로 바꿔도 될듯  */}
       </Popup>
     </EmptyShippingUI>
   );
