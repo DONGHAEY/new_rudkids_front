@@ -39,15 +39,16 @@ export const AddressTextUI = styled.p`
 `;
 
 export const SelectUI = styled.select`
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
   display: flex;
   position: relative;
   border: solid 1.4px #e3e3e3;
+  color: black;
   border-radius: 17px;
   padding-block: 14px;
   padding-inline: 25px;
-  // -moz-appearance: none;
-  // -webkit-appearance: none;
-  // appearance: none;
 `;
 
 export const EditIconImgUI = styled.img`
