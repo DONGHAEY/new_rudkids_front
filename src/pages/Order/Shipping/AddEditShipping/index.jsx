@@ -24,11 +24,19 @@ const AddEditShipping = ({ shippingData = null, onAction }) => {
   const editShippingMutation = useEditShippingMutation(shippingData?.id);
 
   const submitHandler = async (data) => {
-    await addShippingMutation.mutateAsync(data, {
-      onSettled: () => {
-        onAction();
-      },
-    });
+    if (shippingData?.id) {
+      await editShippingMutation.mutateAsync(data, {
+        onSettled: () => {
+          onAction();
+        },
+      });
+    } else {
+      await addShippingMutation.mutateAsync(data, {
+        onSettled: () => {
+          onAction();
+        },
+      });
+    }
   };
 
   const [popupIsOpen, setPopupIsOpen] = useState({
