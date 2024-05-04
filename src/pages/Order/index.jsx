@@ -1,6 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
-  PageFormUI,
+  PageUI,
   ListWrapperUI,
   FlexWrapperUI,
   PageDescriptionTextUI,
@@ -10,21 +10,27 @@ import {
 import { useCreateOrderMutation } from "../../queries/order";
 import CartProduct from "./CartProduct";
 import { useCartQuery } from "../../queries/cart";
-import { Controller, useForm } from "react-hook-form";
 import Header from "../../shared/Header";
 import Shipping from "./Shipping";
 import { useFetchPaymentWidget } from "../../hooks/usePaymentWidget";
 import { ANONYMOUS } from "@tosspayments/payment-widget-sdk";
 import PaymentsWidget from "./PaymentsWidget";
+import Submit from "./Submit";
 
-function OrderPage({}) {
+function OrderPage() {
+  //
+
   const createOrderMutation = useCreateOrderMutation();
 
   const { data: cartData } = useCartQuery();
+  const [shipping, setShipping] = useState(null);
+
   const [paymentWidget] = useFetchPaymentWidget({
     widgetClientKey: "test_gck_oEjb0gm23PO0JJ6M9d548pGwBJn5",
-    customerKey: cartData?.id ?? ANONYMOUS,
+    customerKey: ANONYMOUS,
   });
+
+  const [order, setOrder] = useState(null);
 
   const productPrice = useMemo(() => {
     if (!cartData) return 0;
@@ -34,26 +40,45 @@ function OrderPage({}) {
     });
     return productPrice;
   }, [cartData?.cartProducts]);
+  const totalPrice = productPrice + cartData?.shippingPrice;
 
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({});
+  const submitHandler = async () => {
+    if (!shipping) {
+      alert("배송정보를 입력해야해요!");
+      return;
+    }
+    if (!cartData?.id) {
+      return;
+    }
 
-  const onSubmit = async (formData) => {
-    console.log(formData);
-    //주문자 정보 있는지 첵
-    //배송지 정보 있는지 첵
-    //카트Id 있는지 첵y
-    //결제할 금액이 0원이 넘는지도
-    // const orderData = await createOrderMutation.mutateAsync({});
-    // const orderName = `루키즈`;
+    try {
+      if (!order) {
+        console.log({
+          cartId: cartData?.id,
+          shipping,
+        });
+        const orderData = await createOrderMutation.mutateAsync({
+          cartId: cartData?.id,
+          shipping,
+        });
+        const obj = {
+          orderId: orderData.id,
+          orderName: `루키즈`,
+          customerName: orderData?.orderer.name,
+          amount: orderData?.totalPrice,
+          successUrl: `${window.location.origin}/list`,
+          failUrl: `${window.location.origin}`,
+        };
+        paymentWidget.requestPayment(obj);
+        setOrder(obj);
+      } else {
+        paymentWidget.requestPayment(order);
+      }
+    } catch (e) {}
   };
 
   return (
-    <PageFormUI>
+    <PageUI>
       <Header isFixed={true} $backgroundColor="#f3f3f3" />
       <FlexWrapperUI>
         <PageTopSectionUI>
@@ -75,23 +100,27 @@ function OrderPage({}) {
         <PageTopSectionUI>
           <PageDescriptionTextUI>📮 Shipping Address</PageDescriptionTextUI>
         </PageTopSectionUI>
-        <Controller
-          control={control}
-          name="shipping"
-          render={({ field: { onChange, value } }) => {
-            return <Shipping value={value} setValue={onChange} />;
-          }}
-        />
+        <Shipping value={shipping} setValue={setShipping} />
       </FlexWrapperUI>
       <FlexWrapperUI>
         <PageTopSectionUI>
           <PageDescriptionTextUI>결제수단</PageDescriptionTextUI>
         </PageTopSectionUI>
         {paymentWidget && (
-          <PaymentsWidget paymentWidget={paymentWidget} productPrice={0} />
+          <PaymentsWidget
+            paymentWidget={paymentWidget}
+            totalPrice={totalPrice}
+          />
         )}
       </FlexWrapperUI>
-    </PageFormUI>
+      <Submit
+        onClick={() => {
+          console.log("8888");
+          submitHandler();
+        }}
+        totalPrice={totalPrice}
+      />
+    </PageUI>
   );
 }
 

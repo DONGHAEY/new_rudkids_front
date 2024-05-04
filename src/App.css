@@ -3,19 +3,21 @@
   padding: 0;
 }
 
-body,
-html {
-  width: 100%;
-  height: 100%;
+html,
+body {
+  margin: auto;
+  /*  */
+  width: 100vw;
   max-width: 430px;
-  max-height: 2024px;
-  margin: 0 auto;
-  padding: 0;
-  background-color: black;
+  /*  */
+  min-height: 100vh;
+  height: 100vh;
+  background: none;
 }
 
 #root {
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
+  background: none;
 }

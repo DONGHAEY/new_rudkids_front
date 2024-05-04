@@ -5,7 +5,7 @@ import queryKey from "./key";
 
 export const useCreateOrderMutation = () => {
   return useMutation({
-    mutationFn: (cartId) => createOrder({ cartId }),
+    mutationFn: ({ cartId, shipping }) => createOrder({ cartId, shipping }),
   });
 };
 
@@ -15,7 +15,3 @@ export const useOrderQuery = (orderId) => {
     queryFn: () => getOrder(orderId),
   });
 };
-
-// export const editOrderShipping = () => {
-//   return useMutation
-// }
