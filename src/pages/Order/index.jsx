@@ -76,7 +76,9 @@ function OrderPage() {
       } else {
         paymentWidget.requestPayment(order);
       }
-    } catch (e) {}
+    } catch (e) {
+      alert(e);
+    }
   };
 
   return (
