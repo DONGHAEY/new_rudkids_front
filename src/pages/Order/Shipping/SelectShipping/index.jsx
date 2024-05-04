@@ -48,7 +48,7 @@ const SelectShipping = ({ shipping, setShipping }) => {
         setIsOpen={setIsOpen}
         popupName="📮 Shipping Adress"
       >
-        <AddEditShipping />
+        <AddEditShipping onAction={() => setIsOpen(false)} />
       </Popup>
     </ShippingListWrapperUI>
   );

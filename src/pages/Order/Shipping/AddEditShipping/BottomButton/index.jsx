@@ -1,10 +1,12 @@
 import { ButtonWrapperUI, ButtonUI, SpacerUI } from "./styles";
 
-const BottomButton = ({ onClick, children }) => {
+const BottomButton = ({ onClick, children, ...buttonProps }) => {
   return (
     <>
       <ButtonWrapperUI>
-        <ButtonUI onClick={onClick}>{children}</ButtonUI>
+        <ButtonUI {...buttonProps} onClick={onClick}>
+          {children}
+        </ButtonUI>
       </ButtonWrapperUI>
       <SpacerUI />
     </>

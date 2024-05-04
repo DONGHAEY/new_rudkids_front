@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getShipppingList } from "../apis/shipping/getShippingList";
 import { addShippping } from "../apis/shipping/addShipping";
 import { deleteShippping } from "../apis/shipping/deleteShipping";
+import { searchAddress } from "../apis/shipping/searchAddress";
 
 export const useShippingListQuery = () => {
   return useQuery({
@@ -12,13 +13,18 @@ export const useShippingListQuery = () => {
 };
 
 export const useAddShippingMutation = () => {
+  const queryClient = useQueryClient();
   return useMutation({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries([queryKey.shipping, "list"]);
+    },
     mutationFn: ({
       name,
       address,
       detailAddress,
       recieverName,
       recieverPhoneNumber,
+      isDefault,
     }) =>
       addShippping({
         name,
@@ -26,6 +32,7 @@ export const useAddShippingMutation = () => {
         detailAddress,
         recieverName,
         recieverPhoneNumber,
+        isDefault,
       }),
   });
 };
@@ -44,5 +51,12 @@ export const useDeleteShippingMutation = (shippingId) => {
         shippingList?.filter((shippingData) => shippingData?.id !== shippingId)
       );
     },
+  });
+};
+
+export const useSearchAddressQuery = (query) => {
+  return useQuery({
+    queryKey: ["address", query],
+    queryFn: () => searchAddress(query),
   });
 };

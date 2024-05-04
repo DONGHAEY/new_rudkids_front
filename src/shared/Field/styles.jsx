@@ -1,8 +1,16 @@
 import styled from "styled-components";
 
-export const FieldUI = styled.div`
+export const ColFieldUI = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  gap: 10px;
+`;
+
+export const RowFieldUI = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
   gap: 10px;
 `;
 

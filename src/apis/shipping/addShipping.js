@@ -6,6 +6,7 @@ export const addShippping = async ({
   detailAddress,
   recieverName,
   recieverPhoneNumber,
+  isDefault,
 }) => {
   return await axiosInstance
     .post(`/api/shipping`, {
@@ -14,6 +15,7 @@ export const addShippping = async ({
       detailAddress,
       recieverName,
       recieverPhoneNumber,
+      isDefault,
     })
     .then((response) => response.data);
 };
