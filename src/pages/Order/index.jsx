@@ -55,24 +55,25 @@ function OrderPage() {
 
     try {
       if (!order) {
-        console.log({
-          cartId: cartData?.id,
-          shipping,
-        });
-        const orderData = await createOrderMutation.mutateAsync({
-          cartId: cartData?.id,
-          shipping,
-        });
-        const obj = {
-          orderId: orderData.id,
-          orderName: `루키즈`,
-          customerName: orderData?.orderer.name,
-          amount: orderData?.totalPrice,
-          successUrl: `${window.location.origin}/list`,
-          failUrl: `${window.location.origin}`,
-        };
-        paymentWidget.requestPayment(obj);
-        setOrder(obj);
+        await createOrderMutation.mutateAsync(
+          {
+            cartId: cartData?.id,
+            shipping,
+          },
+          {
+            onSuccess: (orderData) => {
+              const obj = {
+                orderId: orderData.id,
+                orderName: `루키즈`,
+                customerName: orderData?.orderer.name,
+                successUrl: `${window.location.origin}/list`,
+                failUrl: `${window.location.origin}`,
+              };
+              paymentWidget.requestPayment(obj);
+              setOrder(obj);
+            },
+          }
+        );
       } else {
         paymentWidget.requestPayment(order);
       }
