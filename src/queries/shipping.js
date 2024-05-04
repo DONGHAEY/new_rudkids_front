@@ -66,8 +66,7 @@ export const useEditShippingMutation = (shippingId) => {
 export const useDeleteShippingMutation = (shippingId) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => deleteShippping(shippingId),
-    onSuccess: async () => {
+    mutationFn: async () => {
       const shippingList = await queryClient.getQueryData([
         queryKey.shipping,
         "list",
@@ -76,6 +75,7 @@ export const useDeleteShippingMutation = (shippingId) => {
         [queryKey.shipping, "list"],
         shippingList?.filter((shippingData) => shippingData?.id !== shippingId)
       );
+      deleteShippping(shippingId);
     },
   });
 };

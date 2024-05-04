@@ -13,7 +13,7 @@ export const ShippingListWrapperUI = styled.div`
 export const ShippingListUI = styled.div`
   padding-block: 20px;
   display: flex;
-  width: 85%;
+  width: 90%;
   flex-direction: column;
   justify-content: center;
   align-items: center;

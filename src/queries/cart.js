@@ -59,6 +59,7 @@ export const useCartProductDeleteMutation = (productId) => {
 };
 
 let quantityMutationPromise = {};
+let quantityMutationTimeout = {};
 export const useCartProductQuantityMutation = (productId) => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -66,37 +67,58 @@ export const useCartProductQuantityMutation = (productId) => {
     mutationFn: async (quantity) => {
       if (quantity <= 0) return null;
       const cartData = queryClient.getQueryData([queryKey.cart]);
+      if (cartData?.cartProducts?.length) {
+        cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
+          if (cartProduct?.product?.id === productId) {
+            return {
+              ...cartProduct,
+              quantity,
+            };
+          }
+          return cartProduct;
+        });
+      }
+      await queryClient.setQueryData([queryKey.cart], cartData);
+      if (quantityMutationTimeout[productId]) {
+        clearTimeout(quantityMutationTimeout[productId]);
+        quantityMutationTimeout[productId] = null;
+      }
+      if (quantityMutationPromise[productId]) {
+        quantityMutationPromise[productId][0](null);
+        quantityMutationPromise[productId] = null;
+      }
+      return await new Promise((resolve, reject) => {
+        const timeout = setTimeout(async () => {
+          let res = null;
+          try {
+            res = await editCartProductQuantity(productId, quantity);
+          } catch (e) {
+            reject(e);
+          }
+          resolve(res);
+          quantityMutationTimeout[productId] = null;
+          quantityMutationPromise[productId] = null;
+        }, 350);
+        quantityMutationTimeout[productId] = timeout;
+        quantityMutationPromise[productId] = [resolve, reject];
+      });
+    },
+    onSuccess: async (data) => {
+      if (!data) return null;
+      const cartData = queryClient.getQueryData([queryKey.cart]);
       cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
         if (cartProduct?.product?.id === productId) {
-          return {
-            ...cartProduct,
-            quantity,
-          };
+          return data;
         }
         return cartProduct;
       });
       await queryClient.setQueryData([queryKey.cart], cartData);
-      if (quantityMutationPromise[productId]) {
-        quantityMutationPromise[productId][0](null);
-      }
-      return await new Promise((resolve, reject) => {
-        quantityMutationPromise[productId] = [resolve, reject];
-        setTimeout(async () => {
-          const res = await editCartProductQuantity(productId, quantity);
-          resolve(res);
-        }, 500);
-      });
     },
-    onSuccess: async (data) => {
-      // if (!data) return null;
-      // const cartData = queryClient.getQueryData([queryKey.cart]);
-      // cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
-      //   if (cartProduct?.product?.id === productId) {
-      //     return data;
-      //   }
-      //   return cartProduct;
-      // });
-      // await queryClient.setQueryData([queryKey.cart], cartData);
+    onError: async (e) => {
+      console.log(e, "--");
+      if (e?.response?.data?.statusCode === 404) {
+        await queryClient.invalidateQueries([queryKey.cart]);
+      }
     },
   });
 };

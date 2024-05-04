@@ -29,18 +29,16 @@ const SelectShipping = ({ shipping, setShipping }) => {
           <AddBtnTextUI>새 배송지 등록</AddBtnTextUI>
         </AddButtonUI>
         <FlexWrapperUI>
-          {shippingListData?.map((shippingData, idx) => {
-            return (
-              <Shipping
-                key={idx}
-                shippingData={shippingData}
-                isSelected={shipping?.id === shippingData.id}
-                onSelect={() => {
-                  setShipping(shippingData);
-                }}
-              />
-            );
-          })}
+          {shippingListData?.map((shippingData, idx) => (
+            <Shipping
+              key={idx}
+              shippingData={shippingData}
+              isSelected={shipping?.id === shippingData.id}
+              onSelect={() => {
+                setShipping(shippingData);
+              }}
+            />
+          ))}
         </FlexWrapperUI>
       </ShippingListUI>
       <Popup isOpen={isOpen} setIsOpen={setIsOpen} popupName="📮 Shipping Add">

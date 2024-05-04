@@ -16,7 +16,7 @@ export const AddEditShippingUI = styled.div`
   gap: 35px;
   padding-top: 15px;
   padding-bottom: 30px;
-  width: 85%;
+  width: 90%;
 `;
 
 export const DescriptionTextUI = styled.p`

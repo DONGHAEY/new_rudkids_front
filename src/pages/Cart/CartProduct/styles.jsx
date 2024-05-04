@@ -5,9 +5,7 @@ export const CartProductUI = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
   padding: 20px;
-  width: 100%;
   height: 80px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
@@ -17,7 +15,6 @@ export const WrapperUI = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 100%;
   padding-left: 25px;
   justify-content: space-between;
 `;

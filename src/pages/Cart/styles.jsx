@@ -39,6 +39,6 @@ export const PageDescriptionUI = styled.h2`
 export const ListWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 14px;
-  width: 90%;
 `;
