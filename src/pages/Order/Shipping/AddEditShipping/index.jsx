@@ -10,16 +10,25 @@ import RowField from "../../../../shared/Field/RowField";
 import Popup from "../../../../shared/Popup";
 import SearchAddress from "./SearchAddress";
 import { useState } from "react";
-import { useAddShippingMutation } from "../../../../queries/shipping";
+import {
+  useAddShippingMutation,
+  useEditShippingMutation,
+} from "../../../../queries/shipping";
 
-const AddEditShipping = ({ onAction }) => {
-  const { register, handleSubmit, watch, setValue } = useForm();
+const AddEditShipping = ({ shippingData = null, onAction }) => {
+  const { register, handleSubmit, watch, setValue } = useForm({
+    defaultValues: shippingData,
+  });
 
   const addShippingMutation = useAddShippingMutation();
+  const editShippingMutation = useEditShippingMutation(shippingData?.id);
 
   const submitHandler = async (data) => {
-    await addShippingMutation.mutateAsync(data);
-    onAction();
+    await addShippingMutation.mutateAsync(data, {
+      onSettled: () => {
+        onAction();
+      },
+    });
   };
 
   const [popupIsOpen, setPopupIsOpen] = useState({
@@ -54,7 +63,11 @@ const AddEditShipping = ({ onAction }) => {
         </ColField>
         <ColField name="배송지">
           <TextInputUI
-            ref={register("address").ref}
+            ref={
+              register("address", {
+                required: true,
+              }).ref
+            }
             value={watch("address")}
             onClick={() =>
               setPopupIsOpen({

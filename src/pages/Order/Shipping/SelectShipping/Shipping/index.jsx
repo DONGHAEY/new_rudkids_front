@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useDeleteShippingMutation } from "../../../../../queries/shipping";
+import Popup from "../../../../../shared/Popup";
 import {
   ShippingUI,
   ShippingWrapperUI,
@@ -12,16 +14,25 @@ import {
   AddressTextUI,
   ActionButtonUI,
 } from "./styles";
+import AddEditShipping from "../../AddEditShipping";
 
 const Shipping = ({ shippingData, isSelected = false, onSelect }) => {
   const deleteShippingMutation = useDeleteShippingMutation(shippingData.id);
 
   const deleteBtnClickHandler = async () => {
     if (shippingData.isDefault) {
-      alert("기본배송지는 삭제 할 수 없습니다.");
+      alert(
+        "기본배송지는 삭제 할 수 없습니다. (다른 배송지를 기본배송지로 등록하세요)"
+      );
       return;
     }
     await deleteShippingMutation.mutateAsync();
+  };
+
+  const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
+
+  const editBtnClickHandler = async () => {
+    setIsEditPopupOpen(true);
   };
 
   return (
@@ -52,13 +63,12 @@ const Shipping = ({ shippingData, isSelected = false, onSelect }) => {
           </ColWrapperUI>
         </ColWrapperUI>
         <RowWrapperUI gap="7px">
-          <ActionButtonUI>수정</ActionButtonUI>
+          <ActionButtonUI onClick={editBtnClickHandler}>수정</ActionButtonUI>
           <ActionButtonUI onClick={deleteBtnClickHandler}>삭제</ActionButtonUI>
         </RowWrapperUI>
         <ChooseButtonUI
           onClick={() => {
             if (typeof onSelect !== "function") return;
-            console.log("---");
             onSelect();
           }}
           isSelected={isSelected}
@@ -66,6 +76,16 @@ const Shipping = ({ shippingData, isSelected = false, onSelect }) => {
           선택
         </ChooseButtonUI>
       </ShippingUI>
+      <Popup
+        isOpen={isEditPopupOpen}
+        setIsOpen={setIsEditPopupOpen}
+        popupName="📮 Shipping Edit"
+      >
+        <AddEditShipping
+          shippingData={shippingData}
+          onAction={() => setIsEditPopupOpen(false)}
+        />
+      </Popup>
     </ShippingWrapperUI>
   );
 };

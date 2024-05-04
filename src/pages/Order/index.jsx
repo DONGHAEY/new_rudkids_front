@@ -53,47 +53,45 @@ function OrderPage({}) {
   };
 
   return (
-    <>
-      <PageFormUI>
-        <Header isFixed={true} $backgroundColor="#f3f3f3" />
-        <FlexWrapperUI>
-          <PageTopSectionUI>
-            <PageDescriptionTextUI>Order Products</PageDescriptionTextUI>
-            <ProductLengthTextUI>
-              {cartData?.cartProducts?.length}개
-            </ProductLengthTextUI>
-          </PageTopSectionUI>
-          <ListWrapperUI>
-            {cartData?.cartProducts?.map((cartProductData) => (
-              <CartProduct
-                key={cartProductData.id}
-                cartProduct={cartProductData}
-              />
-            ))}
-          </ListWrapperUI>
-        </FlexWrapperUI>
-        <FlexWrapperUI>
-          <PageTopSectionUI>
-            <PageDescriptionTextUI>📮 Shipping Address</PageDescriptionTextUI>
-          </PageTopSectionUI>
-          <Controller
-            control={control}
-            name="shipping"
-            render={({ field: { onChange, value } }) => {
-              return <Shipping value={value} setValue={onChange} />;
-            }}
-          />
-        </FlexWrapperUI>
-        <FlexWrapperUI>
-          <PageTopSectionUI>
-            <PageDescriptionTextUI>결제수단</PageDescriptionTextUI>
-          </PageTopSectionUI>
-          {paymentWidget && (
-            <PaymentsWidget paymentWidget={paymentWidget} productPrice={0} />
-          )}
-        </FlexWrapperUI>
-      </PageFormUI>
-    </>
+    <PageFormUI>
+      <Header isFixed={true} $backgroundColor="#f3f3f3" />
+      <FlexWrapperUI>
+        <PageTopSectionUI>
+          <PageDescriptionTextUI>Order Products</PageDescriptionTextUI>
+          <ProductLengthTextUI>
+            {cartData?.cartProducts?.length}개
+          </ProductLengthTextUI>
+        </PageTopSectionUI>
+        <ListWrapperUI>
+          {cartData?.cartProducts?.map((cartProductData) => (
+            <CartProduct
+              key={cartProductData.id}
+              cartProduct={cartProductData}
+            />
+          ))}
+        </ListWrapperUI>
+      </FlexWrapperUI>
+      <FlexWrapperUI>
+        <PageTopSectionUI>
+          <PageDescriptionTextUI>📮 Shipping Address</PageDescriptionTextUI>
+        </PageTopSectionUI>
+        <Controller
+          control={control}
+          name="shipping"
+          render={({ field: { onChange, value } }) => {
+            return <Shipping value={value} setValue={onChange} />;
+          }}
+        />
+      </FlexWrapperUI>
+      <FlexWrapperUI>
+        <PageTopSectionUI>
+          <PageDescriptionTextUI>결제수단</PageDescriptionTextUI>
+        </PageTopSectionUI>
+        {paymentWidget && (
+          <PaymentsWidget paymentWidget={paymentWidget} productPrice={0} />
+        )}
+      </FlexWrapperUI>
+    </PageFormUI>
   );
 }
 

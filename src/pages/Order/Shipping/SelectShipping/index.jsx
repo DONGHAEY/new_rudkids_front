@@ -43,11 +43,7 @@ const SelectShipping = ({ shipping, setShipping }) => {
           })}
         </FlexWrapperUI>
       </ShippingListUI>
-      <Popup
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        popupName="📮 Shipping Adress"
-      >
+      <Popup isOpen={isOpen} setIsOpen={setIsOpen} popupName="📮 Shipping Add">
         <AddEditShipping onAction={() => setIsOpen(false)} />
       </Popup>
     </ShippingListWrapperUI>

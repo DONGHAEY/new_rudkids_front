@@ -2,6 +2,7 @@ import queryKey from "../queries/key";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getShipppingList } from "../apis/shipping/getShippingList";
 import { addShippping } from "../apis/shipping/addShipping";
+import { editShippping } from "../apis/shipping/editShipping";
 import { deleteShippping } from "../apis/shipping/deleteShipping";
 import { searchAddress } from "../apis/shipping/searchAddress";
 
@@ -15,7 +16,7 @@ export const useShippingListQuery = () => {
 export const useAddShippingMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    onSuccess: async () => {
+    onSettled: async () => {
       await queryClient.invalidateQueries([queryKey.shipping, "list"]);
     },
     mutationFn: ({
@@ -27,6 +28,31 @@ export const useAddShippingMutation = () => {
       isDefault,
     }) =>
       addShippping({
+        name,
+        address,
+        detailAddress,
+        recieverName,
+        recieverPhoneNumber,
+        isDefault,
+      }),
+  });
+};
+
+export const useEditShippingMutation = (shippingId) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    onSettled: async () => {
+      await queryClient.invalidateQueries([queryKey.shipping, "list"]);
+    },
+    mutationFn: ({
+      name,
+      address,
+      detailAddress,
+      recieverName,
+      recieverPhoneNumber,
+      isDefault,
+    }) =>
+      editShippping(shippingId, {
         name,
         address,
         detailAddress,
