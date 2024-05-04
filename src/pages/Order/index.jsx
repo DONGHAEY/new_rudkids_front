@@ -43,11 +43,13 @@ function OrderPage() {
   const totalPrice = productPrice + cartData?.shippingPrice;
 
   const submitHandler = async () => {
+    alert("진입됨.");
     if (!shipping) {
       alert("배송정보를 입력해야해요!");
       return;
     }
     if (!cartData?.id) {
+      alert("카트 정보가 없습니다!");
       return;
     }
 
