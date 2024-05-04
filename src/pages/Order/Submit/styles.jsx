@@ -5,6 +5,7 @@ export const SubmitSectionUI = styled.div`
   display: flex;
   width: 100%;
   position: absolute;
+  pointer-events: auto;
   bottom: 0;
 `;
 

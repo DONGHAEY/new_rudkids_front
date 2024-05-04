@@ -11,13 +11,25 @@ import {
 const Submit = ({ totalPrice, onClick }) => {
   return (
     <>
-      <SubmitSectionUI>
+      <SubmitSectionUI
+        style={{
+          pointerEvents: "none",
+        }}
+        draggable={true}
+      >
         <SubmitUI>
           <TotalPriceWrapperUI>
             <TotalTextUI>Total</TotalTextUI>
             <TotalPriceTextUI>₩ {totalPrice}</TotalPriceTextUI>
           </TotalPriceWrapperUI>
-          <BuyNowButtonUI onClick={onClick}>Buy Now</BuyNowButtonUI>
+          <BuyNowButtonUI
+            style={{
+              pointerEvents: "auto",
+            }}
+            onClick={onClick}
+          >
+            Buy Now
+          </BuyNowButtonUI>
         </SubmitUI>
       </SubmitSectionUI>
       <Spacer />
