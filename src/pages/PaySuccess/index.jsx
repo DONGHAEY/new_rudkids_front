@@ -21,7 +21,7 @@ const PaySuccessPage = () => {
         });
         window.location.href = `https://www.rud.kids/orderDetail/${orderId}`;
       } catch (e) {
-        alert("결제 승인에 실패했습니다ㅠㅠ");
+        alert(e?.response?.data?.message);
         window.location.href = `https://www.rud.kids/list`;
       }
     })();
