@@ -43,7 +43,6 @@ function OrderPage() {
   const totalPrice = productPrice + cartData?.shippingPrice;
 
   const submitHandler = async () => {
-    alert("진입됨.");
     if (!shipping) {
       alert("배송정보를 입력해야해요!");
       return;
@@ -52,9 +51,11 @@ function OrderPage() {
       alert("카트 정보가 없습니다!");
       return;
     }
-    //
+    ///////////////////////////
+    ///////////////////////////
     try {
       if (!order) {
+        alert("진입됨.");
         await createOrderMutation.mutateAsync(
           {
             cartId: cartData?.id,
@@ -62,9 +63,9 @@ function OrderPage() {
           },
           {
             onSuccess: async (orderData) => {
-              console.log(orderData, "orderData");
+              console.log("data", orderData);
               const obj = {
-                orderId: orderData.id,
+                orderId: orderData?.id,
                 orderName: `루키즈`,
                 customerName: orderData?.orderer.name,
                 successUrl: `${window.location.origin}/order/success`,
@@ -73,13 +74,17 @@ function OrderPage() {
               setOrder(obj);
               paymentWidget.requestPayment(obj);
             },
+            onError: (e) => {
+              console.log("error", e);
+            },
           }
         );
       } else {
+        alert("진입 안됨.");
         paymentWidget.requestPayment(order);
       }
     } catch (e) {
-      alert(e);
+      alert("ㅁ", e);
     }
   };
 
