@@ -59,8 +59,8 @@ export const routes = {
     element: OrderPage,
   },
   ["paySuccess"]: {
-    path: "/paySuccess/:order_id",
-    paramKeys: ["order_id"],
+    path: "/paySuccess",
+    paramKeys: [],
     element: PaySuccess,
   },
   ["orderDetail"]: {

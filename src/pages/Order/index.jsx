@@ -18,8 +18,6 @@ import PaymentsWidget from "./PaymentsWidget";
 import Submit from "./Submit";
 
 function OrderPage() {
-  //
-
   const createOrderMutation = useCreateOrderMutation();
 
   const { data: cartData } = useCartQuery();
@@ -43,15 +41,14 @@ function OrderPage() {
   const totalPrice = productPrice + cartData?.shippingPrice;
 
   const submitHandler = async () => {
-    if (!shipping) {
-      alert("배송정보를 입력해야해요!");
-      return;
-    }
     if (!cartData?.id) {
       alert("카트 정보가 없습니다!");
       return;
     }
-    ///////////////////////////
+    if (!shipping) {
+      alert("배송정보를 입력해야해요!");
+      return;
+    }
     if (!order) {
       await createOrderMutation.mutateAsync(
         {
@@ -113,13 +110,7 @@ function OrderPage() {
           />
         )}
       </FlexWrapperUI>
-      <Submit
-        onClick={() => {
-          console.log("8888");
-          submitHandler();
-        }}
-        totalPrice={totalPrice}
-      />
+      <Submit onClick={submitHandler} totalPrice={totalPrice} />
     </PageUI>
   );
 }
