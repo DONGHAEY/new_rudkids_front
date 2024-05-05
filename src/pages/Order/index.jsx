@@ -52,38 +52,28 @@ function OrderPage() {
       return;
     }
     ///////////////////////////
-    try {
-      if (!order) {
-        console.log("---");
-        await createOrderMutation.mutateAsync(
-          {
-            cartId: cartData?.id,
-            shipping,
+    if (!order) {
+      await createOrderMutation.mutateAsync(
+        {
+          cartId: cartData?.id,
+          shipping,
+        },
+        {
+          onSuccess: async (orderData) => {
+            console.log("data", orderData);
+            const obj = {
+              orderId: orderData?.id,
+              orderName: `루키즈`,
+              successUrl: `https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app/paySuccess/${orderData?.id}`,
+              failUrl: `https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app/order/fail`,
+            };
+            setOrder(obj);
+            paymentWidget.requestPayment(obj);
           },
-          {
-            onSuccess: async (orderData) => {
-              console.log("data", orderData);
-              const obj = {
-                orderId: orderData?.id,
-                orderName: `루키즈`,
-                successUrl: `${window.location.origin}/paySuccess/${orderData?.id}`,
-                failUrl: `${window.location.origin}/order/fail`,
-              };
-              console.log(obj);
-              setOrder(obj);
-              paymentWidget.requestPayment(obj);
-            },
-            onError: (e) => {
-              console.log("error", e);
-            },
-          }
-        );
-      } else {
-        alert("진입 안됨.");
-        paymentWidget.requestPayment(order);
-      }
-    } catch (e) {
-      alert("ㅁ", e);
+        }
+      );
+    } else {
+      paymentWidget.requestPayment(order);
     }
   };
 
