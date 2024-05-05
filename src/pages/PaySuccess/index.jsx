@@ -19,12 +19,10 @@ const PaySuccessPage = () => {
           orderId,
           paymentKey,
         });
-        window.location.href.replace(
-          `https://www.rud.kids/orderDetail/${orderId}`
-        );
+        window.location.href = `https://www.rud.kids/orderDetail/${orderId}`;
       } catch (e) {
         alert("결제 승인에 실패했습니다ㅠㅠ");
-        window.location.href.replace(`https://www.rud.kids/list`);
+        window.location.href = `https://www.rud.kids/list`;
       }
     })();
   }, [orderId, paymentKey]);
