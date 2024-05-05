@@ -66,7 +66,7 @@ function OrderPage() {
               const obj = {
                 orderId: orderData?.id,
                 orderName: `루키즈`,
-                customerName: orderData?.orderer.name,
+                customerName: orderData?.orderer.nickname,
                 successUrl: `${window.location.origin}/paySuccess/${orderData?.id}`,
                 failUrl: `${window.location.origin}/order/fail`,
               };
