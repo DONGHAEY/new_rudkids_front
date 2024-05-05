@@ -21,6 +21,7 @@ const PaySuccessPage = () => {
         });
         window.location.href = `https://www.rud.kids/orderDetail/${orderId}`;
       } catch (e) {
+        console.log(e);
         alert(e?.response?.data?.message);
         window.location.href = `https://www.rud.kids/list`;
       }
