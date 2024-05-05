@@ -1,13 +1,15 @@
 //
 
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { createPayment } from "../../apis/payment/createPayment";
 
 const PaySuccessPage = () => {
   //
-  const location = useLocation();
-  const { orderId, paymentKey } = location.search;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const orderId = searchParams.get("orderId");
+  const paymentKey = searchParams.get("paymentKey");
 
   useEffect(() => {
     if (!orderId || !paymentKey) return;
