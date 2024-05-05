@@ -34,7 +34,7 @@ const PaySuccessPage = () => {
           color: "white",
         }}
       >
-        !!!{orderId} toss 결제 승인중!! 로딩중..
+        !!!{orderId} toss 결제 승인중!! 로딩중..!
       </p>
     </div>
   );
