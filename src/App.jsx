@@ -11,7 +11,8 @@ function App() {
   useEffect(() => {
     const FE_ORIGIN = "https://www.rud.kids";
     if (window.location.origin !== FE_ORIGIN) {
-      window.location.href = FE_ORIGIN + window.location.pathname;
+      window.location.href =
+        FE_ORIGIN + window.location.pathname + window.location.search;
     }
   }, []);
 
