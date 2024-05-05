@@ -1,7 +1,7 @@
 //
 
 import { useEffect } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { createPayment } from "../../apis/payment/createPayment";
 
 const PaySuccessPage = () => {

@@ -61,7 +61,7 @@ function OrderPage() {
             const obj = {
               orderId: orderData?.id,
               orderName: `루키즈`,
-              successUrl: `https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app/paySuccess/${orderData?.id}`,
+              successUrl: `https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app/paySuccess`,
               failUrl: `https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app/order/fail`,
             };
             setOrder(obj);
