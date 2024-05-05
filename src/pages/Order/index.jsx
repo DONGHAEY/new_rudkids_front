@@ -54,7 +54,7 @@ function OrderPage() {
     ///////////////////////////
     try {
       if (!order) {
-        alert("진입됨.");
+        console.log("---");
         await createOrderMutation.mutateAsync(
           {
             cartId: cartData?.id,
@@ -62,6 +62,7 @@ function OrderPage() {
           },
           {
             onSuccess: async (orderData) => {
+              console.log("data", orderData);
               const obj = {
                 orderId: orderData?.id,
                 orderName: `루키즈`,
@@ -69,11 +70,12 @@ function OrderPage() {
                 successUrl: `${window.location.origin}/paySuccess/${orderData?.id}`,
                 failUrl: `${window.location.origin}/order/fail`,
               };
+              console.log(obj);
               setOrder(obj);
               paymentWidget.requestPayment(obj);
             },
             onError: (e) => {
-              // console.log("error", e);
+              console.log("error", e);
             },
           }
         );
@@ -82,7 +84,7 @@ function OrderPage() {
         paymentWidget.requestPayment(order);
       }
     } catch (e) {
-      // alert("ㅁ", e);
+      alert("ㅁ", e);
     }
   };
 
