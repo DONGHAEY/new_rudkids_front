@@ -52,7 +52,7 @@ function OrderPage() {
       alert("카트 정보가 없습니다!");
       return;
     }
-    console.log(`${window.location.origin}`);
+    console.log(`${window.location.origin}, "-----`);
     try {
       if (!order) {
         await createOrderMutation.mutateAsync(
@@ -66,8 +66,8 @@ function OrderPage() {
                 orderId: orderData.id,
                 orderName: `루키즈`,
                 customerName: orderData?.orderer.name,
-                successUrl: `${window.location.origin}`,
-                failUrl: `${window.location.origin}`,
+                successUrl: `https://rud.kids/order/success`,
+                failUrl: `https://rud.kids/order/fail`,
               };
               setOrder(obj);
               paymentWidget.requestPayment(obj);
