@@ -26,7 +26,7 @@ function OrderPage() {
   const [shipping, setShipping] = useState(null);
 
   const [paymentWidget] = useFetchPaymentWidget({
-    widgetClientKey: "test_gck_oEjb0gm23PO0JJ6M9d548pGwBJn5",
+    widgetClientKey: process.env["REACT_APP_TOSS_WIDGET_KEY"],
     customerKey: cartData?.id ?? ANONYMOUS,
   });
 
@@ -52,7 +52,7 @@ function OrderPage() {
       alert("카트 정보가 없습니다!");
       return;
     }
-    console.log(`${window.location.origin}, "-----`);
+    //
     try {
       if (!order) {
         await createOrderMutation.mutateAsync(
@@ -66,8 +66,8 @@ function OrderPage() {
                 orderId: orderData.id,
                 orderName: `루키즈`,
                 customerName: orderData?.orderer.name,
-                successUrl: `https://rud.kids/order/success`,
-                failUrl: `https://rud.kids/order/fail`,
+                successUrl: `${window.location.origin}/order/success`,
+                failUrl: `${window.location.origin}/order/fail`,
               };
               setOrder(obj);
               paymentWidget.requestPayment(obj);
