@@ -27,7 +27,7 @@ function OrderPage() {
 
   const [paymentWidget] = useFetchPaymentWidget({
     widgetClientKey: "test_gck_oEjb0gm23PO0JJ6M9d548pGwBJn5",
-    customerKey: ANONYMOUS,
+    customerKey: cartData?.id ?? ANONYMOUS,
   });
 
   const [order, setOrder] = useState(null);
@@ -52,7 +52,7 @@ function OrderPage() {
       alert("카트 정보가 없습니다!");
       return;
     }
-
+    console.log(`${window.location.origin}`);
     try {
       if (!order) {
         await createOrderMutation.mutateAsync(
@@ -61,16 +61,16 @@ function OrderPage() {
             shipping,
           },
           {
-            onSuccess: (orderData) => {
+            onSuccess: async (orderData) => {
               const obj = {
                 orderId: orderData.id,
                 orderName: `루키즈`,
                 customerName: orderData?.orderer.name,
-                successUrl: `${window.location.origin}/list`,
+                successUrl: `${window.location.origin}`,
                 failUrl: `${window.location.origin}`,
               };
-              paymentWidget.requestPayment(obj);
               setOrder(obj);
+              paymentWidget.requestPayment(obj);
             },
           }
         );
