@@ -52,7 +52,6 @@ function OrderPage() {
       return;
     }
     ///////////////////////////
-    ///////////////////////////
     try {
       if (!order) {
         alert("진입됨.");
@@ -63,19 +62,18 @@ function OrderPage() {
           },
           {
             onSuccess: async (orderData) => {
-              console.log("data", orderData);
               const obj = {
                 orderId: orderData?.id,
                 orderName: `루키즈`,
                 customerName: orderData?.orderer.name,
-                successUrl: `${window.location.origin}/order/success`,
+                successUrl: `${window.location.origin}/paySuccess/${orderData?.id}`,
                 failUrl: `${window.location.origin}/order/fail`,
               };
               setOrder(obj);
               paymentWidget.requestPayment(obj);
             },
             onError: (e) => {
-              console.log("error", e);
+              // console.log("error", e);
             },
           }
         );
@@ -84,7 +82,7 @@ function OrderPage() {
         paymentWidget.requestPayment(order);
       }
     } catch (e) {
-      alert("ㅁ", e);
+      // alert("ㅁ", e);
     }
   };
 
