@@ -62,6 +62,7 @@ function OrderPage() {
           },
           {
             onSuccess: async (orderData) => {
+              console.log(orderData, "orderData");
               const obj = {
                 orderId: orderData.id,
                 orderName: `루키즈`,
