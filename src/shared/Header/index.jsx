@@ -31,7 +31,7 @@ const Header = ({ $backgroundColor = "none", isFixed = true }) => {
   return (
     <>
       <HeaderWrapperUI
-        position={isFixed ? "absolute" : "relative"}
+        position={isFixed ? "fixed" : "relative"}
         $backgroundColor={$backgroundColor}
       >
         <HeaderUI>

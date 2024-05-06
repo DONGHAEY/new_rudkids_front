@@ -5,10 +5,12 @@ export const SpacerUI = styled.div`
 `;
 
 export const OrderBarWrapperUI = styled.div`
-  position: absolute;
+  position: fixed;
+  max-width: 430px;
   bottom: 0;
   width: 100%;
   height: 244px;
+  pointer-events: none;
   display: flex;
 `;
 
@@ -73,6 +75,7 @@ export const BuyButtonUI = styled.button`
   height: 60px;
   border: none;
   border-radius: 24px;
+  pointer-events: all;
   font-family: Poppins-Bold;
   font-size: 20px;
   cursor: pointer;

@@ -13,7 +13,6 @@ import { useCartQuery } from "../../queries/cart";
 import Header from "../../shared/Header";
 import Shipping from "./Shipping";
 import { usePaymentWidget } from "../../hooks/usePaymentWidget";
-// import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 import Submit from "./Submit";
 
 function OrderPage() {

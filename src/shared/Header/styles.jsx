@@ -14,6 +14,7 @@ export const HeaderWrapperUI = styled.div`
   z-index: 100;
   align-items: center;
   justify-content: space-between;
+  max-width: 430px;
   width: 100%;
   height: 80px;
   font-size: 25px;

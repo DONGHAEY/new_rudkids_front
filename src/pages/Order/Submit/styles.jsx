@@ -4,8 +4,9 @@ export const SubmitSectionUI = styled.div`
   background-color: white;
   display: flex;
   width: 100%;
-  position: absolute;
-  pointer-events: auto;
+  position: fixed;
+  pointer-events: none;
+  max-width: 430px;
   bottom: 0;
 `;
 
@@ -26,14 +27,14 @@ export const TotalPriceWrapperUI = styled.div`
 `;
 
 export const BuyNowButtonUI = styled.button`
+  background-color: #ec0000;
+  color: white;
+  height: 60px;
+  border: none;
+  border-radius: 24px;
+  pointer-events: all;
   font-family: Poppins-Bold;
   font-size: 20px;
-  line-height: 20px;
-  padding-block: 18px;
-  border: none;
-  color: white;
-  background-color: #ec0000;
-  border-radius: 24px;
   cursor: pointer;
 `;
 
