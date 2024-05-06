@@ -10,28 +10,29 @@ const PaySuccessPage = () => {
   const [searchParams] = useSearchParams();
   const orderId = searchParams.get("orderId");
   const paymentKey = searchParams.get("paymentKey");
+  const amount = searchParams.get("amount");
   //
   useEffect(() => {
-    if (!orderId || !paymentKey) return;
+    if (!orderId || !paymentKey || !amount) return;
     (async () => {
       await createPaymentMutation.mutateAsync(
         {
           orderId,
           paymentKey,
+          amount: Number(amount),
         },
         {
           onSuccess: () => {
             window.location.href = `/orderDetail/${orderId}`;
           },
           onError: (e) => {
-            window.location.href = `/list`;
-            console.log(e, "에러가 왜 안뜰까??? 미치겠네..");
             alert(e?.response?.data?.message ?? "결제에 실패했습니다");
+            window.location.href = `/list`;
           },
         }
       );
     })();
-  }, [orderId, paymentKey]);
+  }, [orderId, paymentKey, amount]);
 
   return (
     <div>

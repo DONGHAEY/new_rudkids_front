@@ -10,10 +10,11 @@ function App() {
 
   const [originChecked, setOriginChecked] = useState(false);
   useEffect(() => {
-    const FE_ORIGIN = "https://www.rud.kids";
-    if (window.location.origin !== FE_ORIGIN) {
+    if (window.location.origin !== process.env.REACT_APP_FE_URL) {
       window.location.href =
-        FE_ORIGIN + window.location.pathname + window.location.search;
+        process.env.REACT_APP_FE_URL +
+        window.location.pathname +
+        window.location.search;
     } else {
       setOriginChecked(true);
     }

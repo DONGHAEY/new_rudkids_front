@@ -3,10 +3,11 @@ import { createPayment } from "../apis/payment/createPayment";
 
 export const useCreatePaymentMutation = () => {
   return useMutation({
-    mutationFn: ({ orderId, paymentKey }) =>
+    mutationFn: ({ orderId, paymentKey, amount }) =>
       createPayment({
         orderId,
         paymentKey,
+        amount,
       }),
   });
 };

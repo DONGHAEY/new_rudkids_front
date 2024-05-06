@@ -45,6 +45,10 @@ function OrderPage() {
       alert("카트 정보가 없습니다!");
       return;
     }
+    if (cartData?.cartProducts?.length <= 0) {
+      alert("카트가 비어있습니다.");
+      return;
+    }
     if (!shipping) {
       alert("배송정보를 입력해야해요!");
       return;
@@ -57,13 +61,16 @@ function OrderPage() {
         },
         {
           onSuccess: async (orderData) => {
-            const origin =
-              "https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app";
+            let originForToss = process.env.REACT_APP_FE_URL ?? "";
+            if (!originForToss.includes("http://localhost")) {
+              originForToss =
+                "https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app";
+            }
             const obj = {
               orderId: orderData?.id,
               orderName: `루키즈`,
-              successUrl: `${origin}/paySuccess`,
-              failUrl: `${origin}/order`,
+              successUrl: `${originForToss}/paySuccess`,
+              failUrl: `${originForToss}/order`,
             };
             setOrder(obj);
             paymentWidget.requestPayment(obj);
