@@ -17,6 +17,7 @@ const useRudkidsQueryClient = () => {
       default:
         break;
     }
+    return e;
   };
 
   const queryClient = new QueryClient({
