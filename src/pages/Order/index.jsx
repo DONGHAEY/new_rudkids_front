@@ -13,7 +13,7 @@ import { useCartQuery } from "../../queries/cart";
 import Header from "../../shared/Header";
 import Shipping from "./Shipping";
 import { usePaymentWidget } from "../../hooks/usePaymentWidget";
-import Submit from "./Submit";
+import OrderBar from "./OrderBar";
 
 function OrderPage() {
   const createOrderMutation = useCreateOrderMutation();
@@ -157,7 +157,7 @@ function OrderPage() {
           id="agreement"
         />
       </FlexWrapperUI>
-      <Submit onClick={submitHandler} totalPrice={totalPrice} />
+      <OrderBar onClick={submitHandler} totalPrice={totalPrice} />
     </PageUI>
   );
 }

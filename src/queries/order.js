@@ -5,6 +5,7 @@ import queryKey from "./key";
 
 export const useCreateOrderMutation = () => {
   return useMutation({
+    mutationKey: [queryKey.order],
     mutationFn: ({ cartId, shipping }) => createOrder({ cartId, shipping }),
   });
 };
