@@ -2,29 +2,32 @@
 
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { createPayment } from "../../apis/payment/createPayment";
+import { useCreatePaymentMutation } from "../../queries/payment";
 
 const PaySuccessPage = () => {
-  //
-  const [searchParams, setSearchParams] = useSearchParams();
+  const createPaymentMutation = useCreatePaymentMutation();
 
+  const [searchParams] = useSearchParams();
   const orderId = searchParams.get("orderId");
   const paymentKey = searchParams.get("paymentKey");
-
   useEffect(() => {
     if (!orderId || !paymentKey) return;
     (async () => {
-      try {
-        await createPayment({
+      await createPaymentMutation.mutateAsync(
+        {
           orderId,
           paymentKey,
-        });
-        window.location.href = `https://www.rud.kids/orderDetail/${orderId}`;
-      } catch (e) {
-        console.log(e);
-        alert(e?.response?.data?.message);
-        window.location.href = `https://www.rud.kids/list`;
-      }
+        },
+        {
+          onSuccess: () => {
+            window.location.href = `https://www.rud.kids/orderDetail/${orderId}`;
+          },
+          onError: (e) => {
+            alert(e?.response?.data?.message);
+            window.location.href = `https://www.rud.kids/list`;
+          },
+        }
+      );
     })();
   }, [orderId, paymentKey]);
 
