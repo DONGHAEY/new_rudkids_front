@@ -4,14 +4,8 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { ProductTag } from "./ProductTag";
 
-const productGltfUrl = {
-  PetFly: "/Models/MyPetFly.glb",
-  Nothing: "/Models/Nothing.glb",
-  ABeautifulWorld: "/Models/ABeautifulWorld.glb",
-};
-
 export const ProductModel = ({ data, isWatching, selected }) => {
-  const { scene, animations } = useGLTF(productGltfUrl[data.name]);
+  const { scene, animations } = useGLTF(data.modelUrl);
   const productBounceRef = useRef(null);
 
   useEffect(() => {

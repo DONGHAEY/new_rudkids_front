@@ -1,93 +1,45 @@
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import gsap from "gsap";
-import {
-  EngagingVideoUI,
-  PageUI,
-  SkipButtomWrapperUI,
-  TabToPlayWrapperUI,
-  VideoWrapperUI,
-} from "./styles";
-import SkipSlider from "./SkipSlider";
-import rudkidsLogoSrc from "./assets/rudkids_logo.png";
-import engageVideoSrc from "./assets/engage.mp4";
+import { createRef, useEffect } from "react";
+import { PageUI } from "./styles";
+import BoxList from "./BoxList";
+import LoginModal from "../../shared/Login";
+import Header from "../../shared/Header";
+import { useProductListQuery } from "../../queries/product";
 
-const Main = () => {
-  const videoRef = useRef(null);
-  const pageRef = useRef(null);
-  const skipSliderWrapperRef = useRef(null);
-  const navigate = useNavigate();
+const colorList = ["#FFE818", "#26A4FF", "#FF3BA5", "green"];
 
-  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+const MainPage = () => {
+  const pageRef = createRef(null);
 
-  /** 영상페이지(건너뛰기) */
-  const goNextPage = () => {
-    navigate("list");
-  };
-
-  const playVideo = () => {
-    if (videoRef.current) {
-      videoRef.current?.play();
-    }
-  };
-  const onPlayHandler = () => setIsPlayingVideo(true);
-  const onPauseHandler = () => setIsPlayingVideo(false);
-  const onEndedHandler = () => {
-    goNextPage();
-  };
-  const slidingHandler = (offset = 1) => {
-    gsap.to(pageRef.current, {
-      opacity: 1 - offset,
-    });
-  };
+  const { data: productListData } = useProductListQuery();
 
   useEffect(() => {
-    if (isPlayingVideo) {
-      gsap.fromTo(
-        skipSliderWrapperRef.current,
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          duration: 5,
-          delay: 5, // 5초 지연 추가
-        }
-      );
-    } else {
-      gsap.set(skipSliderWrapperRef.current, {
-        opacity: 0,
-      });
-    }
-  }, [isPlayingVideo]);
+    const eventPreventHandler = (e) => {
+      e.preventDefault();
+    };
+    if (!pageRef.current) return;
+    pageRef.current.addEventListener("wheel", eventPreventHandler, {
+      passive: false,
+    });
+    pageRef.current.addEventListener("touchmove", eventPreventHandler, {
+      passive: false,
+    });
+  }, [pageRef.current]);
+
+  const listData = productListData?.map((productData, idx) => ({
+    name: productData.name,
+    imageSrc: productData.imageUrl,
+    color: colorList[idx],
+  }));
 
   return (
-    <PageUI ref={pageRef}>
-      <VideoWrapperUI>
-        <EngagingVideoUI
-          ref={videoRef}
-          playsInline
-          onPlay={onPlayHandler}
-          onPause={onPauseHandler}
-          onEnded={onEndedHandler}
-        >
-          <source src={engageVideoSrc} type="video/mp4" />
-        </EngagingVideoUI>
-        {!isPlayingVideo && (
-          <TabToPlayWrapperUI onClick={playVideo}>
-            <img width={"50%"} src={rudkidsLogoSrc} />
-            <span>Tab to Play</span>
-          </TabToPlayWrapperUI>
-        )}
-      </VideoWrapperUI>
-      <SkipButtomWrapperUI ref={skipSliderWrapperRef}>
-        <SkipSlider
-          slidedHandler={goNextPage}
-          slidingHandler={slidingHandler}
-        />
-      </SkipButtomWrapperUI>
-    </PageUI>
+    <>
+      <PageUI ref={pageRef}>
+        <Header />
+        <BoxList listData={listData} />
+      </PageUI>
+      <LoginModal />
+    </>
   );
 };
 
-export default Main;
+export default MainPage;

@@ -191,7 +191,10 @@ export const Scene = ({ productList }) => {
           onComplete: () => {
             sounds.slide.play();
             setTimeout(() => {
-              window.location.href = "/detail/" + selectedProductId;
+              window.location.href =
+                "/product/" +
+                productList?.find((product) => product.id === selectedProductId)
+                  .name;
             }, 500);
           },
         },

@@ -1,12 +1,12 @@
+import VideoPage from "./pages/Video";
 import MainPage from "./pages/Main";
-import ListPage from "./pages/List";
 import DetailPage from "./pages/Detail";
 import List3dPage from "./pages/List3D";
 import HandPage from "./pages/Hand";
 import CallbackPage from "./pages/Callback";
 import InvitationPage from "./pages/Invitation";
 import SchoolInvitationPage from "./pages/SchoolInvitation";
-import PerformancePage from "./pages/Performance";
+import StoryPage from "./pages/Story";
 import CartPage from "./pages/Cart";
 import OrderPage from "./pages/Order";
 import OrderDetailPage from "./pages/OrderDetail";
@@ -18,10 +18,10 @@ export const routes = {
     paramKeys: [],
     element: MainPage,
   },
-  ["list"]: {
-    path: "list",
+  ["viedeo"]: {
+    path: "/video",
     paramKeys: [],
-    element: ListPage,
+    element: VideoPage,
   },
   ["list3d"]: {
     path: "list-3d",
@@ -38,15 +38,15 @@ export const routes = {
     paramKeys: ["school_name"],
     element: SchoolInvitationPage,
   },
-  ["detail"]: {
-    path: "detail/:product_name",
+  ["product"]: {
+    path: "product/:product_name",
     paramKeys: ["product_name"],
     element: DetailPage,
   },
-  ["performance"]: {
-    path: "performance/:product_name",
+  ["story"]: {
+    path: "product/:product_name/story",
     paramKeys: ["product_name"],
-    element: PerformancePage,
+    element: StoryPage,
   },
   ["cart"]: {
     path: "cart",

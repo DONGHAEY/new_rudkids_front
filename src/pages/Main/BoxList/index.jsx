@@ -131,7 +131,7 @@ const BoxList = ({ listData = [] }) => {
     };
 
     const navigateBtnClickHandler = () => {
-      navigate(`/detail/${boxData.name}`);
+      navigate(`/product/${boxData.name}`);
     };
 
     return (

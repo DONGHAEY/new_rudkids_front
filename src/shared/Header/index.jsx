@@ -17,7 +17,7 @@ const Header = ({ $backgroundColor = "none", isFixed = true }) => {
   const { data: cartCntData = 0 } = useCartCntQuery();
 
   const logoClickHandler = () => {
-    navigate("/list");
+    navigate("/");
   };
 
   const cartBtnClickHandler = () => {
