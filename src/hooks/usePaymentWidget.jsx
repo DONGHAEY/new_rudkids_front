@@ -1,11 +1,13 @@
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export const useFetchPaymentWidget = ({ widgetClientKey, customerKey }) => {
-  const [paymentWidget, setPaymentWidget] = useState(null);
+export const usePaymentWidget = ({ widgetClientKey, customerKey }) => {
+  const [paymentWidget, setPaymentWidget] = useState(undefined);
 
   useEffect(() => {
-    const fetchPaymentWidget = async () => {
+    (async () => {
+      console.log(widgetClientKey, ",", customerKey);
+      if (!widgetClientKey || !customerKey) return;
       try {
         const loadedWidget = await loadPaymentWidget(
           widgetClientKey,
@@ -15,8 +17,7 @@ export const useFetchPaymentWidget = ({ widgetClientKey, customerKey }) => {
       } catch (error) {
         console.error("Error fetching payment widget:", error);
       }
-    };
-    fetchPaymentWidget();
+    })();
   }, [widgetClientKey, customerKey]);
 
   return [paymentWidget];

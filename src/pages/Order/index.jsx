@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   PageUI,
   ListWrapperUI,
@@ -12,23 +12,22 @@ import CartProduct from "./CartProduct";
 import { useCartQuery } from "../../queries/cart";
 import Header from "../../shared/Header";
 import Shipping from "./Shipping";
-import { useFetchPaymentWidget } from "../../hooks/usePaymentWidget";
-import { ANONYMOUS } from "@tosspayments/payment-widget-sdk";
-import PaymentsWidget from "./PaymentsWidget";
+import { usePaymentWidget } from "../../hooks/usePaymentWidget";
+// import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
 import Submit from "./Submit";
 
 function OrderPage() {
   const createOrderMutation = useCreateOrderMutation();
-
   const { data: cartData } = useCartQuery();
   const [shipping, setShipping] = useState(null);
+  const [generatedOrder, setGeneratedOrder] = useState(null);
 
-  const [paymentWidget] = useFetchPaymentWidget({
+  const [paymentWidget] = usePaymentWidget({
+    customerKey: cartData?.id,
     widgetClientKey: process.env["REACT_APP_TOSS_WIDGET_KEY"],
-    customerKey: cartData?.id ?? ANONYMOUS,
   });
-
-  const [order, setOrder] = useState(null);
+  const paymentMethodsRef = useRef();
+  const paymentAgreementRef = useRef();
 
   const productPrice = useMemo(() => {
     if (!cartData) return 0;
@@ -38,6 +37,7 @@ function OrderPage() {
     });
     return productPrice;
   }, [cartData?.cartProducts]);
+
   const totalPrice = productPrice + cartData?.shippingPrice;
 
   const submitHandler = async () => {
@@ -53,7 +53,18 @@ function OrderPage() {
       alert("배송정보를 입력해야해요!");
       return;
     }
-    if (!order) {
+    if (
+      !paymentAgreementRef.current?.getAgreementStatus().agreedRequiredTerms
+    ) {
+      alert("필수 약관에 동의해주세요!");
+      return;
+    }
+    // if (!paymentMethodsRef.current?.getSelectedPaymentMethod()) {
+    //   alert("결제방식을 선택해주세요!");
+    //   return;
+    // }
+
+    if (!generatedOrder) {
       await createOrderMutation.mutateAsync(
         {
           cartId: cartData?.id,
@@ -70,17 +81,40 @@ function OrderPage() {
               orderId: orderData?.id,
               orderName: `루키즈`,
               successUrl: `${originForToss}/paySuccess`,
-              failUrl: `${originForToss}/order`,
+              failUrl: `${originForToss}/generatedOrder`,
             };
-            setOrder(obj);
+            setGeneratedOrder(obj);
             paymentWidget.requestPayment(obj);
           },
         }
       );
     } else {
-      paymentWidget.requestPayment(order);
+      paymentWidget.requestPayment(generatedOrder);
     }
   };
+
+  useEffect(() => {
+    if (!paymentWidget) return;
+    const paymentMethods = paymentWidget.renderPaymentMethods(
+      "#payment-widget",
+      { value: totalPrice ?? 0 },
+      { variantKey: "DEFAULT" }
+    );
+    paymentMethodsRef.current = paymentMethods;
+  }, [paymentWidget]);
+
+  useEffect(() => {
+    if (!paymentWidget) return;
+    const paymentAgreement = paymentWidget.renderAgreement("#agreement", {
+      variantKey: "AGREEMENT",
+    });
+    paymentAgreementRef.current = paymentAgreement;
+  }, [paymentWidget]);
+
+  useEffect(() => {
+    if (!paymentMethodsRef.current) return;
+    paymentMethodsRef.current.updateAmount(totalPrice);
+  }, [paymentMethodsRef.current, totalPrice]);
 
   return (
     <PageUI>
@@ -111,12 +145,18 @@ function OrderPage() {
         <PageTopSectionUI>
           <PageDescriptionTextUI>결제수단</PageDescriptionTextUI>
         </PageTopSectionUI>
-        {paymentWidget && (
-          <PaymentsWidget
-            paymentWidget={paymentWidget}
-            totalPrice={totalPrice}
-          />
-        )}
+        <div
+          style={{
+            width: "100%",
+          }}
+          id="payment-widget"
+        />
+        <div
+          style={{
+            width: "100%",
+          }}
+          id="agreement"
+        />
       </FlexWrapperUI>
       <Submit onClick={submitHandler} totalPrice={totalPrice} />
     </PageUI>
