@@ -57,12 +57,13 @@ function OrderPage() {
         },
         {
           onSuccess: async (orderData) => {
-            console.log("data", orderData);
+            const origin =
+              "https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app";
             const obj = {
               orderId: orderData?.id,
               orderName: `루키즈`,
-              successUrl: `https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app/paySuccess`,
-              failUrl: `https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app/order/fail`,
+              successUrl: `${origin}/paySuccess`,
+              failUrl: `${origin}/order`,
             };
             setOrder(obj);
             paymentWidget.requestPayment(obj);

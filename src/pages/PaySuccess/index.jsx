@@ -10,6 +10,7 @@ const PaySuccessPage = () => {
   const [searchParams] = useSearchParams();
   const orderId = searchParams.get("orderId");
   const paymentKey = searchParams.get("paymentKey");
+  //
   useEffect(() => {
     if (!orderId || !paymentKey) return;
     (async () => {
@@ -23,8 +24,9 @@ const PaySuccessPage = () => {
             window.location.href = `/orderDetail/${orderId}`;
           },
           onError: (e) => {
-            alert(e?.response?.data?.message ?? "결제에 실패했습니다");
             window.location.href = `/list`;
+            console.log(e, "에러가 왜 안뜰까??? 미치겠네..");
+            alert(e?.response?.data?.message ?? "결제에 실패했습니다");
           },
         }
       );
