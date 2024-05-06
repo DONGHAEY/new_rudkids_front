@@ -1,18 +1,14 @@
 import { QueryClient } from "react-query";
-import { useNavigate } from "react-router-dom";
+import queryKey from "./key";
 
 const useRudkidsQueryClient = () => {
-  const navigate = useNavigate();
-
   const onError = (e) => {
     const { response } = e;
     switch (response?.status) {
       case 401:
-        if (!window.location.href.includes("list")) {
-          queryClient.cancelQueries();
-          queryClient.cancelMutations();
-          navigate("list");
-        }
+        queryClient.cancelQueries([queryKey.user, "me"]);
+        queryClient.cancelMutations(queryKey.user);
+        queryClient.setQueryData([queryKey.user, "me"], null);
         break;
       default:
         break;

@@ -1,9 +1,9 @@
 import { createRef, useEffect } from "react";
 import { PageUI } from "./styles";
 import BoxList from "./BoxList";
-import LoginModal from "../../shared/Login";
 import Header from "../../shared/Header";
 import { useProductListQuery } from "../../queries/product";
+import AuthHoc from "../../shared/HOC/AuthHoc";
 
 const colorList = ["#FFE818", "#26A4FF", "#FF3BA5", "green"];
 
@@ -32,13 +32,10 @@ const MainPage = () => {
   }));
 
   return (
-    <>
-      <PageUI ref={pageRef}>
-        <Header />
-        <BoxList listData={listData} />
-      </PageUI>
-      <LoginModal />
-    </>
+    <PageUI ref={pageRef}>
+      <Header />
+      <BoxList listData={listData} />
+    </PageUI>
   );
 };
 

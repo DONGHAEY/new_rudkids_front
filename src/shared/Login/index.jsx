@@ -39,9 +39,8 @@ const LoginModal = () => {
     openStateUpdate();
   }, [isFetched]);
 
-  const stepRenderer = <StepsRenderer stepComponentSrcList={[Step1, Step2]} />;
   if (!isOpen) return null;
-  return stepRenderer;
+  return <StepsRenderer stepComponentSrcList={[Step1, Step2]} />;
 };
 
 export default LoginModal;

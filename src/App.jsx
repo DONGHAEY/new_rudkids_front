@@ -20,24 +20,21 @@ function App() {
     }
   }, []);
 
-  const routesChildren = Object.keys(routes)?.map((routeKey) => {
-    const route = routes[routeKey];
-    return (
-      <Route
-        key={route.path}
-        path={route.path}
-        element={<route.element routeInfo={route} />}
-      />
-    );
-  });
-
   if (!originChecked) {
     return null;
   }
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Routes children={routesChildren} />
+      <Routes
+        children={Object.values(routes)?.map((route) => (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={<route.element routeInfo={route} />}
+          />
+        ))}
+      />
     </QueryClientProvider>
   );
 }

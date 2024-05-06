@@ -22,7 +22,7 @@ const VideoPage = () => {
 
   /** 영상페이지(건너뛰기) */
   const goNextPage = () => {
-    navigate("list");
+    navigate("/");
   };
 
   const playVideo = () => {
