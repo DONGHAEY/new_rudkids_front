@@ -35,7 +35,7 @@ const CartProduct = ({ cartProduct }) => {
 
   return (
     <CartProductUI>
-      <img height="100%" src={cartProduct.product.imageUrl} />
+      <img height="80px" src={cartProduct.product.imageUrl} />
       <WrapperUI>
         <InfoTextWrapperUI>
           <CartProductNameUI>{cartProduct.product.name}</CartProductNameUI>

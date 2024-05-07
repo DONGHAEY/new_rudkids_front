@@ -175,7 +175,7 @@ export const Scene = ({ productList }) => {
       .to(productRefList[idx].current.position, {
         y: -20,
         duration: 2,
-        delay: 3,
+        delay: 1.8,
         onStart: () => {
           sounds.slide.play();
           sounds.scare.play();
@@ -187,7 +187,7 @@ export const Scene = ({ productList }) => {
           x: handHidePosX,
           y: three.camera.position.y + 0.8,
           z: handHidePosZ,
-          duration: 7.5,
+          duration: 3.5,
           ease: "power1.in",
           onComplete: () => {
             sounds.slide.play();
