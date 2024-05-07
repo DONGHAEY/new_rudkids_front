@@ -5,12 +5,9 @@ export const CartProductUI = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  // padding-left: 35px;
-  // padding-right: 32px;
-  // padding-block: 20px;
   padding: 20px;
   gap: 30px;
-  height: 80px;
+  min-height: 80px;
   background-color: rgba(255, 255, 255, 0.9);
   border: solid 2px;
   border-color: #e7e7e7;
@@ -23,14 +20,13 @@ export const WrapperUI = styled.div`
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  height: 90%;
 `;
 
 export const InfoTextWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 10px;
-  gap: 10px;
+  gap: 5px;
 `;
 
 export const QuantityGroupUI = styled.div`
@@ -63,13 +59,13 @@ export const QuantityButtonUI = styled.div`
 
 export const CartProductNameUI = styled.p`
   font-size: 15px;
-  line-height: 15px;
+  line-height: 20px;
   font-family: Poppins-Bold;
 `;
 
 export const CartProductPriceUI = styled.p`
   font-size: 15px;
-  line-height: 15px;
+  line-height: 20px;
   font-family: Poppins-Bold;
 `;
 

@@ -9,7 +9,7 @@ import {
 
 import { FaRegPlayCircle } from "react-icons/fa";
 import { FaRegCirclePause } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GuideLabel from "./GuideLabel";
 import { useGLTF } from "@react-three/drei";
 

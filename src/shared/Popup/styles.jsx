@@ -12,6 +12,7 @@ export const PopupUI = styled(Modal)`
   height: 100%;
   background-color: none;
   border: none;
+  background: none;
 `;
 
 export const Center = styled.div`

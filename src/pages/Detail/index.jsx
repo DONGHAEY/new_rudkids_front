@@ -71,7 +71,6 @@ const DetailPage = ({ routeInfo }) => {
           })}
         </ComponentListUI>
         <ModelDescriptionUI>
-          {/* <ModelDescriptionTextUI>설명</ModelDescriptionTextUI> */}
           <ModelDescriptionTextUI>
             Tmi : {productComponents[selectedModelIdx]?.description}
           </ModelDescriptionTextUI>
