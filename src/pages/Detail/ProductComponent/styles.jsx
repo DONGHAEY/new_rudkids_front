@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const ProductComponentUI = styled.div`
   margin: 6px;
   display: flex;
-  height: 150px;
+  min-height: 150px;
   flex-direction: column;
   gap: 8px;
 `;
 
 export const NameTextUI = styled.p`
-  font-size: 14px;
+  font-size: 12px;
   font-family: Poppins-Bold;
 `;
 

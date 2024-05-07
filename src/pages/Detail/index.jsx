@@ -9,6 +9,7 @@ import {
   FlexWrapperUI,
   ComponentListUI,
   ModelDescriptionUI,
+  ModelDescriptionTextUI,
 } from "./styles";
 import { useParams } from "react-router-dom";
 import { useProductQuery } from "../../queries/product";
@@ -30,7 +31,7 @@ const DetailPage = ({ routeInfo }) => {
   const productPrice = productData?.price?.toLocaleString("ko-KR");
   const productComponents = [
     {
-      name: productData.name,
+      name: productData.components?.length === 0 ? productData.name : "package",
       description: productData.description,
       imageUrl: productData.imageUrl,
       modelUrl: productData.modelUrl,
@@ -54,9 +55,6 @@ const DetailPage = ({ routeInfo }) => {
         />
         <ContentSectionUI>
           <ProductNameTextUI>{productName}</ProductNameTextUI>
-          <ModelDescriptionUI>
-            {productComponents[selectedModelIdx]?.description}
-          </ModelDescriptionUI>
           <ProductPriceTextUI>₩ {productPrice}</ProductPriceTextUI>
         </ContentSectionUI>
         <ComponentListUI>
@@ -72,6 +70,12 @@ const DetailPage = ({ routeInfo }) => {
             );
           })}
         </ComponentListUI>
+        <ModelDescriptionUI>
+          {/* <ModelDescriptionTextUI>설명</ModelDescriptionTextUI> */}
+          <ModelDescriptionTextUI>
+            Tmi : {productComponents[selectedModelIdx]?.description}
+          </ModelDescriptionTextUI>
+        </ModelDescriptionUI>
       </FlexWrapperUI>
       <ActionBar productId={productData?.id} />
     </PageUI>
