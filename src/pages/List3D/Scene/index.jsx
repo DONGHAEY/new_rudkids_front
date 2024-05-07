@@ -20,6 +20,7 @@ export const Scene = ({ productList }) => {
       z: distance * Math.sin(angleRad),
     };
   };
+
   const sounds = {
     hit: new Audio(hitSoundSrc),
     slide: new Audio(slideSoundSrc),
@@ -58,7 +59,7 @@ export const Scene = ({ productList }) => {
     );
   }, [three.camera]);
 
-  const productDistance = 4;
+  const productDistance = 5;
   const cameraSelectDistance = 25;
 
   useEffect(() => {

@@ -30,7 +30,11 @@ export const ProductModel = ({ data, isWatching, selected }) => {
         children={<primitive scale={2.8} object={scene.clone()} />}
       />
       {!isWatching && selected && (
-        <ProductTag name={data.name} content={data.content} position-y={5} />
+        <ProductTag
+          name={data.name}
+          content={data.description}
+          position-y={5}
+        />
       )}
     </>
   );
