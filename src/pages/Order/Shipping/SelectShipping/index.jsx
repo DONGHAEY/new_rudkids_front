@@ -9,16 +9,20 @@ import {
 import { useShippingListQuery } from "../../../../queries/shipping";
 import Shipping from "./Shipping";
 import Popup from "../../../../shared/Popup";
-import { useState } from "react";
 import AddEditShipping from "../AddEditShipping";
+import { usePopup } from "../../../../hooks/usePopup";
 
 const SelectShipping = ({ shipping, setShipping }) => {
   const { data: shippingListData } = useShippingListQuery();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [popupNavigate, popupBack] = usePopup();
 
   const addBtnClickHandler = () => {
-    setIsOpen(true);
+    popupNavigate("📮 Shipping Add");
+  };
+
+  const setShippingDataHandler = (shippingData) => {
+    popupBack();
   };
 
   return (
@@ -41,8 +45,11 @@ const SelectShipping = ({ shipping, setShipping }) => {
           ))}
         </FlexWrapperUI>
       </ShippingListUI>
-      <Popup isOpen={isOpen} setIsOpen={setIsOpen} popupName="📮 Shipping Add">
-        <AddEditShipping onAction={() => setIsOpen(false)} />
+      <Popup popupName="📮 Shipping Add">
+        <AddEditShipping
+          shippingData={null}
+          setShippingData={setShippingDataHandler}
+        />
       </Popup>
     </ShippingListWrapperUI>
   );

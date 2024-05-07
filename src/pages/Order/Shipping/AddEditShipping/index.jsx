@@ -9,13 +9,15 @@ import ColField from "../../../../shared/Field/ColField";
 import RowField from "../../../../shared/Field/RowField";
 import Popup from "../../../../shared/Popup";
 import SearchAddress from "./SearchAddress";
-import { useState } from "react";
 import {
   useAddShippingMutation,
   useEditShippingMutation,
 } from "../../../../queries/shipping";
+import { usePopup } from "../../../../hooks/usePopup";
 
-const AddEditShipping = ({ shippingData = null, onAction }) => {
+const AddEditShipping = ({ shippingData = null, setShippingData }) => {
+  const [popupNavigate, popupBack] = usePopup();
+
   const { register, handleSubmit, watch, setValue } = useForm({
     defaultValues: shippingData,
   });
@@ -27,27 +29,16 @@ const AddEditShipping = ({ shippingData = null, onAction }) => {
     if (shippingData?.id) {
       await editShippingMutation.mutateAsync(data, {
         onSettled: () => {
-          onAction();
+          setShippingData(data);
         },
       });
     } else {
       await addShippingMutation.mutateAsync(data, {
         onSettled: () => {
-          onAction();
+          setShippingData(data);
         },
       });
     }
-  };
-
-  const [popupIsOpen, setPopupIsOpen] = useState({
-    searchAddress: false,
-  });
-
-  const popupSetIsOpen = (key, value) => {
-    setPopupIsOpen({
-      ...popupIsOpen,
-      [key]: value,
-    });
   };
 
   return (
@@ -77,12 +68,7 @@ const AddEditShipping = ({ shippingData = null, onAction }) => {
               }).ref
             }
             value={watch("address")}
-            onClick={() =>
-              setPopupIsOpen({
-                ...popupIsOpen,
-                searchAddress: true,
-              })
-            }
+            onClick={() => popupNavigate("🔎 주소 검색")}
             placeholder="건물, 지번 또는 도로명 검색"
           />
           <TextInputUI
@@ -116,16 +102,12 @@ const AddEditShipping = ({ shippingData = null, onAction }) => {
         <RowField name="기본배송지로 설정">
           <input {...register("isDefault")} type="checkbox" />
         </RowField>
-        <Popup
-          isOpen={popupIsOpen.searchAddress}
-          setIsOpen={(isOpen) => popupSetIsOpen("searchAddress", isOpen)}
-          popupName="🔎 주소 검색"
-        >
+        <Popup popupName="🔎 주소 검색">
           <SearchAddress
             address={watch("address")}
             setAddress={(address) => {
               if (!address) return;
-              popupSetIsOpen("searchAddress", false);
+              popupBack();
               setValue("address", address);
             }}
           />

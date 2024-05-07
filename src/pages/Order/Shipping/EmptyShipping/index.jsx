@@ -5,21 +5,20 @@ import {
   AddButtonUI,
   AddBtnTextUI,
 } from "./styles";
+import { usePopup } from "../../../../hooks/usePopup";
 import Popup from "../../../../shared/Popup";
-import SelectShipping from "../SelectShipping";
-import { useState } from "react";
+import AddEditShipping from "../AddEditShipping";
 
-const EmptyShipping = ({ setValue }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const EmptyShipping = ({ onChange }) => {
+  const [popupNavigate, navigateBack] = usePopup();
 
   const addBtnClickHandler = () => {
-    setIsOpen(true);
+    popupNavigate("📮 Shipping Add");
   };
 
-  const setShippingHandler = (shippingData) => {
-    setIsOpen(false);
-    if (typeof setValue !== "function") return;
-    setValue(shippingData);
+  const setShippingDataHandler = (shippingData) => {
+    onChange(shippingData);
+    navigateBack();
   };
 
   return (
@@ -29,8 +28,11 @@ const EmptyShipping = ({ setValue }) => {
         <IoMdAdd fontSize="18px" />
         <AddBtnTextUI onClick={addBtnClickHandler}>등록하기</AddBtnTextUI>
       </AddButtonUI>
-      <Popup isOpen={isOpen}>
-        <SelectShipping setShipping={setShippingHandler} />
+      <Popup popupName="📮 Shipping Add">
+        <AddEditShipping
+          shippingData={null}
+          setShippingData={setShippingDataHandler}
+        />
       </Popup>
     </EmptyShippingUI>
   );

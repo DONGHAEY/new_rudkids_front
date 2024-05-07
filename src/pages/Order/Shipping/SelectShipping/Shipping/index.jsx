@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { usePopup } from "../../../../../hooks/usePopup";
 import { useDeleteShippingMutation } from "../../../../../queries/shipping";
 import Popup from "../../../../../shared/Popup";
+import AddEditShipping from "../../AddEditShipping";
 import {
-  ShippingUI,
-  ShippingWrapperUI,
-  RowWrapperUI,
-  CurrentSignUI,
-  ShippingNameTextUI,
+  ActionButtonUI,
+  AddressTextUI,
   ChooseButtonUI,
   ColWrapperUI,
+  CurrentSignUI,
   RecieverNameTextUI,
   RecieverPhoneTextUI,
-  AddressTextUI,
-  ActionButtonUI,
+  RowWrapperUI,
+  ShippingNameTextUI,
+  ShippingUI,
+  ShippingWrapperUI,
 } from "./styles";
-import AddEditShipping from "../../AddEditShipping";
 
 const Shipping = ({ shippingData, isSelected = false, onSelect }) => {
   const deleteShippingMutation = useDeleteShippingMutation(shippingData.id);
@@ -29,10 +29,10 @@ const Shipping = ({ shippingData, isSelected = false, onSelect }) => {
     await deleteShippingMutation.mutateAsync();
   };
 
-  const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
+  const [popupNavigate, popupBack] = usePopup();
 
   const editBtnClickHandler = async () => {
-    setIsEditPopupOpen(true);
+    popupNavigate("📮 Shipping Edit");
   };
 
   return (
@@ -69,21 +69,19 @@ const Shipping = ({ shippingData, isSelected = false, onSelect }) => {
         <ChooseButtonUI
           onClick={() => {
             if (typeof onSelect !== "function") return;
-            onSelect();
+            onSelect(shippingData);
           }}
           isSelected={isSelected}
         >
           선택
         </ChooseButtonUI>
       </ShippingUI>
-      <Popup
-        isOpen={isEditPopupOpen}
-        setIsOpen={setIsEditPopupOpen}
-        popupName="📮 Shipping Edit"
-      >
+      <Popup popupName="📮 Shipping Edit">
         <AddEditShipping
           shippingData={shippingData}
-          onAction={() => setIsEditPopupOpen(false)}
+          setShippingData={(shippingData) => {
+            popupBack();
+          }}
         />
       </Popup>
     </ShippingWrapperUI>

@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-import Popup from "../../../shared/Popup";
-import SelectShipping from "./SelectShipping";
+import { useEffect } from "react";
 import {
   AddressTextUI,
   ColWrapperUI,
@@ -16,10 +14,13 @@ import {
 import editIconSrc from "./assets/edit_icon.png";
 import EmptyShipping from "./EmptyShipping";
 import { useShippingListQuery } from "../../../queries/shipping";
+import { usePopup } from "../../../hooks/usePopup";
+import SelectShipping from "./SelectShipping";
+import Popup from "../../../shared/Popup";
 
 const Shipping = ({ value, setValue }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const { data: shippingListData } = useShippingListQuery();
+  const [popupNavigate, popupBack] = usePopup();
 
   useEffect(() => {
     if (!shippingListData?.length) return;
@@ -37,8 +38,12 @@ const Shipping = ({ value, setValue }) => {
     "그렇게해주세요",
   ];
 
+  const editBtnClickHandler = () => {
+    popupNavigate("배송지 목록");
+  };
+
   if (!value) {
-    return <EmptyShipping setValue={setValue} />;
+    return <EmptyShipping onChange={setValue} />;
   }
 
   return (
@@ -78,19 +83,18 @@ const Shipping = ({ value, setValue }) => {
         <EditIconImgUI
           src={editIconSrc}
           alt="edit"
-          onClick={() => setIsOpen(true)}
+          onClick={editBtnClickHandler}
         />
-        <Popup isOpen={isOpen} setIsOpen={setIsOpen} popupName="배송지 목록">
-          <SelectShipping
-            shipping={value}
-            setShipping={(shipipngData) => {
-              setIsOpen(false);
-              if (typeof setValue !== "function") return;
-              setValue({ ...shipipngData, requestMemo: "" });
-            }}
-          />
-        </Popup>
       </ShippingUI>
+      <Popup popupName="배송지 목록">
+        <SelectShipping
+          shipping={value}
+          setShipping={(shipipngData) => {
+            setValue({ ...shipipngData, requestMemo: "" });
+            popupBack();
+          }}
+        />
+      </Popup>
     </ShippingWrapperUI>
   );
 };
