@@ -3,7 +3,6 @@ import { PageUI } from "./styles";
 import BoxList from "./BoxList";
 import Header from "../../shared/Header";
 import { useProductListQuery } from "../../queries/product";
-import AuthHoc from "../../shared/HOC/AuthHoc";
 
 const colorList = ["#FFE818", "#26A4FF", "#FF3BA5", "green"];
 
@@ -33,8 +32,14 @@ const MainPage = () => {
 
   return (
     <PageUI ref={pageRef}>
-      <Header />
-      <BoxList listData={listData} />
+      <Header isFixed={false} />
+      <div
+        style={{
+          height: "90%",
+        }}
+      >
+        <BoxList listData={listData} />
+      </div>
     </PageUI>
   );
 };

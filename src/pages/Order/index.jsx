@@ -117,7 +117,7 @@ function OrderPage() {
 
   return (
     <PageUI>
-      <Header isFixed={true} $backgroundColor="#f3f3f3" />
+      <Header isFixed={false} $backgroundColor="#f3f3f3" />
       <FlexWrapperUI>
         <PageTopSectionUI>
           <PageDescriptionTextUI>Order Products</PageDescriptionTextUI>

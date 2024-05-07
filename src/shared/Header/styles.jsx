@@ -10,6 +10,7 @@ export const LogoWrapperUI = styled.div`
 
 export const HeaderWrapperUI = styled.div`
   position: ${({ position }) => position};
+  top: 0;
   display: flex;
   z-index: 100;
   align-items: center;

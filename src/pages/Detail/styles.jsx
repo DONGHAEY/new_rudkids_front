@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const PageUI = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
-  overflow-y: scroll;
+  min-height: 100%;
   background-color: white;
 `;
 
@@ -12,7 +13,7 @@ export const FlexWrapperUI = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 `;
 
 export const ContentSectionUI = styled.div`

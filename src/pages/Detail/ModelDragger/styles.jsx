@@ -2,7 +2,6 @@ import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
 
 export const ModelDraggerBackgroundUI = styled.div`
-  margin-top: 10px;
   position: relative;
   width: 80%;
   aspect-ratio: 1/1;

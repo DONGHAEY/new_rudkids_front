@@ -2,14 +2,12 @@ import backgroundImgSrc from "./assets/background.png";
 import styled from "styled-components";
 
 export const PageUI = styled.div`
-  background-color: white;
   width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  background-image: url(${backgroundImgSrc});
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url(${backgroundImgSrc});
   background-size: cover;
   background-repeat: none;
 `;

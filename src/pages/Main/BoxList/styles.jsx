@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
 export const ListUI = styled.div`
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
-  overflow-bottom: hidden;
-  justify-content: center;
 `;
 
 export const BoxWrapperUI = styled.div`

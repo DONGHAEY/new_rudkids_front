@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 export const PageUI = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-color: #f3f3f3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
 `;
 
 export const FlexWrapperUI = styled.div`

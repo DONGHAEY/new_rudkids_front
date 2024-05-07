@@ -1,10 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import { routes } from "./routes";
 import { QueryClientProvider } from "react-query";
 import useRudkidsQueryClient from "./queries/rudkidsQueryClient";
 import { useEffect, useState } from "react";
-
+import GlobalStyle from "../src/styles";
 function App() {
   const [queryClient] = useRudkidsQueryClient();
 
@@ -25,17 +24,20 @@ function App() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Routes
-        children={Object.values(routes)?.map((route) => (
-          <Route
-            key={route.path}
-            path={route.path}
-            element={<route.element routeInfo={route} />}
-          />
-        ))}
-      />
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <Routes
+          children={Object.values(routes)?.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={<route.element routeInfo={route} />}
+            />
+          ))}
+        />
+        <GlobalStyle />
+      </QueryClientProvider>
+    </>
   );
 }
 

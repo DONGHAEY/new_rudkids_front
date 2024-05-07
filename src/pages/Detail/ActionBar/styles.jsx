@@ -5,9 +5,9 @@ export const SpacerUI = styled.div`
 `;
 
 export const ActionBarWrapperUI = styled.div`
-  position: absolute;
+  position: fixed;
   height: 70px;
-  max-width: 100%;
+  max-width: 430px;
   width: 100%;
   bottom: 0;
   display: flex;
@@ -19,6 +19,7 @@ export const ActionBarWrapperUI = styled.div`
   background-color: rgba(255, 255, 255 0.3);
   -webkit-backdrop-filter: blur(50px);
   backdrop-filter: blur(50px);
+  pointer-events: none;
 `;
 
 export const ActionBarUI = styled.div`
@@ -37,6 +38,7 @@ export const ActionButtonUI = styled.button`
   border: none;
   border-radius: 30px;
   font-family: Poppins-Bold;
+  pointer-events: all;
   color: white;
   font-size: 15px;
   padding-inline: 15px;
