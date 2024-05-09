@@ -1,6 +1,6 @@
 import VideoPage from "./pages/Video";
 import MainPage from "./pages/Main";
-import DetailPage from "./pages/Detail";
+import ProductPage from "./pages/Product";
 import List3dPage from "./pages/List3D";
 import HandPage from "./pages/Hand";
 import LoginCallback from "./pages/LoginCallback";
@@ -27,7 +27,7 @@ export const routes = {
   ["product"]: {
     path: "product/:product_name",
     paramKeys: ["product_name"],
-    element: AuthHoc(DetailPage),
+    element: AuthHoc(ProductPage),
   },
   ["story"]: {
     path: "product/:product_name/story",

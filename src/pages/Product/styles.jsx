@@ -3,8 +3,10 @@ import styled from "styled-components";
 export const PageUI = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  min-height: 100%;
+  // padding: 30px;
   background-color: white;
 `;
 
@@ -12,31 +14,59 @@ export const FlexWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  padding-bottom: 20px;
+  width: 85%;
+  padding-top: 42px;
+  padding-bottom: 104px;
 `;
 
 export const ContentSectionUI = styled.div`
-  padding-block: 15px;
+  padding-block: 29px;
   display: flex;
+  width: 100%;
   flex-direction: column;
-  gap: 5px;
-  width: 80%;
+`;
+
+export const HelpMessageTextUI = styled.p`
+  font-family: Poppins-SemiBold;
+  color: #707070;
+  letter-spacing: -1px;
+`;
+
+export const PackageExplainUI = styled.div`
+  background-color: #e4e4e4;
+  color: #6e6e6e;
+  padding-block: 2px;
+  padding-inline: 6px;
+  font-size: 16px;
+  font-family: Poppins-SemiBold;
+  letter-spacing: -1px;
+  word-spacing: -3px;
+  border-radius: 6px;
+`;
+
+export const InfoRowUI = styled.div`
+  display: flex;
+  gap: 15px;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const ProductNameTextUI = styled.h1`
   font-family: Poppins-Bold;
   font-size: 28px;
-  line-height: 38px;
+  line-height: auto;
+  letter-spacing: -1px;
+  word-spacing: -3px;
 `;
 
 export const ProductPriceTextUI = styled.h3`
-  font-family: Poppins-Medium;
+  font-family: Poppins-Bold;
   font-size: 20px;
+  line-height: auto;
+  letter-spacing: -1px;
 `;
 
 export const ModelDescriptionUI = styled.div`
-  width: 80%;
   display: flex;
   flex-direction: column;
   margin-top: 15px;
@@ -52,8 +82,9 @@ export const ModelDescriptionTextUI = styled.p`
 
 export const ComponentListUI = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row;
   align-items: end;
-  width: 80%;
   overflow-x: scroll;
+  margin-top: 24px;
 `;

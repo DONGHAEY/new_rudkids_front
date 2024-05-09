@@ -64,7 +64,7 @@ export const ModalUI = styled.div`
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   -webkit-backdrop-filter: blur(10px);

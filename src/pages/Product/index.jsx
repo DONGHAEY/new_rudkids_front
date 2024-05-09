@@ -10,13 +10,17 @@ import {
   ComponentListUI,
   ModelDescriptionUI,
   ModelDescriptionTextUI,
+  HelpMessageTextUI,
+  PackageExplainUI,
+  InfoRowUI,
 } from "./styles";
 import { useParams } from "react-router-dom";
 import { useProductQuery } from "../../queries/product";
 import { useState } from "react";
 import ProductComponent from "./ProductComponent";
+import { CgArrowDown } from "react-icons/cg";
 
-const DetailPage = ({ routeInfo }) => {
+const ProductPage = ({ routeInfo }) => {
   const params = useParams();
   const productName = params[routeInfo.paramKeys[0]];
   const [selectedModelIdx, setSelectedModelIdx] = useState(0);
@@ -54,9 +58,17 @@ const DetailPage = ({ routeInfo }) => {
           modelIdx={selectedModelIdx}
         />
         <ContentSectionUI>
-          <ProductNameTextUI>{productName}</ProductNameTextUI>
+          <InfoRowUI>
+            <ProductNameTextUI>{productName}</ProductNameTextUI>
+            {productData?.isPackage && (
+              <PackageExplainUI>‼️ Package</PackageExplainUI>
+            )}
+          </InfoRowUI>
           <ProductPriceTextUI>₩ {productPrice}</ProductPriceTextUI>
         </ContentSectionUI>
+        <HelpMessageTextUI>
+          <CgArrowDown /> Click on the object! <CgArrowDown />
+        </HelpMessageTextUI>
         <ComponentListUI>
           {productComponents?.map((_, idx) => {
             return (
@@ -70,15 +82,15 @@ const DetailPage = ({ routeInfo }) => {
             );
           })}
         </ComponentListUI>
-        <ModelDescriptionUI>
+        {/* <ModelDescriptionUI>
           <ModelDescriptionTextUI>
             Tmi : {productComponents[selectedModelIdx]?.description}
           </ModelDescriptionTextUI>
-        </ModelDescriptionUI>
+        </ModelDescriptionUI> */}
       </FlexWrapperUI>
       <ActionBar productId={productData?.id} />
     </PageUI>
   );
 };
 
-export default DetailPage;
+export default ProductPage;

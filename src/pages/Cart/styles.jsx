@@ -31,6 +31,7 @@ export const PageDescriptionUI = styled.h2`
   font-family: Poppins-SemiBold;
   font-size: 20px;
   margin-bottom: 20px;
+  letter-spacing: 0px;
   text-align: left;
 `;
 

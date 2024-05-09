@@ -49,11 +49,15 @@ export const QuantityButtonUI = styled.div`
   font-size: 8px;
   border-radius: 100%;
   cursor: pointer;
+  position: relative;
+  z-index: 10;
 `;
 
 export const CartProductNameUI = styled.p`
   font-size: 14px;
   font-family: Poppins-Bold;
+  letter-spacing: -0.3px;
+  word-spacing: 0px;
 `;
 
 export const CartProductPriceUI = styled.p`

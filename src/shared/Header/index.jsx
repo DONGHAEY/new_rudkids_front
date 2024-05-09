@@ -9,7 +9,7 @@ import {
   CartCntTextUI,
 } from "./styles";
 import { useCartCntQuery } from "../../queries/cart";
-import rudkidsLogoSrc from "./assets/rudkids_logo.png";
+import rudkidsLogoSrc from "./assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ $backgroundColor = "none", isFixed = true }) => {

@@ -20,6 +20,9 @@ export const ShareStatusTextUI = styled.p`
 export const CircleImgWrapperUI = styled.div`
   height: 90%;
   cursor: ${({ $active }) => ($active ? "pointer" : "")};
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   border-radius: 100%;
   @keyframes motion {
     0% {

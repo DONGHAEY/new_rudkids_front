@@ -16,6 +16,7 @@ import {
   useCartProductDeleteMutation,
   useCartProductQuantityMutation,
 } from "../../../queries/cart";
+import { useNavigate } from "react-router-dom";
 
 const CartProduct = ({ cartProduct }) => {
   const quantityMutation = useCartProductQuantityMutation(
@@ -24,17 +25,30 @@ const CartProduct = ({ cartProduct }) => {
 
   const deleteMutation = useCartProductDeleteMutation(cartProduct?.product.id);
 
-  const quantityClickHandler = async (quantity) => {
-    await quantityMutation.mutateAsync(quantity);
+  const quantityPlusClickHandler = async (e) => {
+    e.stopPropagation();
+    await quantityMutation.mutateAsync(cartProduct.quantity + 1);
   };
-  const deleteClickHandler = async () => {
+  const quantityMinusClickHandler = async (e) => {
+    e.stopPropagation();
+    await quantityMutation.mutateAsync(cartProduct.quantity - 1);
+  };
+
+  const deleteClickHandler = async (e) => {
+    e.stopPropagation();
     if (window.confirm("정말로 삭제하시겠습니까?")) {
       await deleteMutation.mutateAsync();
     }
   };
 
+  const navigate = useNavigate();
+
+  const productClickHandler = () => {
+    navigate(`/product/${cartProduct.product.name}`);
+  };
+
   return (
-    <CartProductUI>
+    <CartProductUI onClick={productClickHandler}>
       <img height="80px" src={cartProduct.product.imageUrl} />
       <WrapperUI>
         <InfoTextWrapperUI>
@@ -44,15 +58,11 @@ const CartProduct = ({ cartProduct }) => {
           </CartProductPriceUI>
         </InfoTextWrapperUI>
         <QuantityGroupUI>
-          <QuantityButtonUI
-            onClick={() => quantityClickHandler(cartProduct.quantity - 1)}
-          >
+          <QuantityButtonUI onClick={quantityMinusClickHandler}>
             <FaMinus />
           </QuantityButtonUI>
           <QuantityTextUI>{cartProduct.quantity}</QuantityTextUI>
-          <QuantityButtonUI
-            onClick={() => quantityClickHandler(cartProduct.quantity + 1)}
-          >
+          <QuantityButtonUI onClick={quantityPlusClickHandler}>
             <FaPlus />
           </QuantityButtonUI>
         </QuantityGroupUI>

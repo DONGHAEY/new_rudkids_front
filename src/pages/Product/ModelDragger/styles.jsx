@@ -3,14 +3,16 @@ import styled from "styled-components";
 
 export const ModelDraggerBackgroundUI = styled.div`
   position: relative;
-  width: 80%;
+  width: 100%;
   aspect-ratio: 1/1;
-  background-color: gainsboro;
-  border-radius: 3%;
+  background-color: #ededed;
+  border-radius: 13.5px;
 `;
 
 export const CanvasUI = styled(Canvas)`
   position: absolute;
+  width: 100%;
+  border-radius: 13.5px;
 `;
 
 export const PlayingControllerUI = styled.div`

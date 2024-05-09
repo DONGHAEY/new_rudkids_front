@@ -7,14 +7,27 @@ import {
   PageDescriptionUI,
 } from "./styles";
 import CartProduct from "./CartProduct";
-import OrderBar from "./OrderBar";
+import CheckoutBar from "./CheckoutBar";
+import { useMemo } from "react";
 
 const CartPage = () => {
   const { data: myCartData } = useCartQuery();
 
+  const productPrice = useMemo(() => {
+    if (!myCartData) return 0;
+    let productPrice = 0;
+    myCartData.cartProducts?.forEach((cartProduct) => {
+      productPrice += cartProduct.product.price * cartProduct.quantity;
+    });
+    return productPrice;
+  }, [myCartData?.cartProducts]);
+
+  const shippingPrice = myCartData?.shippingPrice;
+  const totalPrice = productPrice + shippingPrice;
+
   return (
     <PageUI>
-      <Header isFixed={false} />
+      <Header />
       <FlexWrapperUI>
         <PageDescriptionUI>My Cart</PageDescriptionUI>
         <ListWrapperUI>
@@ -25,7 +38,7 @@ const CartPage = () => {
           })}
         </ListWrapperUI>
       </FlexWrapperUI>
-      <OrderBar cartData={myCartData} />
+      <CheckoutBar cartData={myCartData} />
     </PageUI>
   );
 };

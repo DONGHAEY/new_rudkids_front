@@ -1,17 +1,20 @@
 import styled from "styled-components";
 
 export const SpacerUI = styled.div`
-  margin-top: 244px;
+  margin-top: 154px;
 `;
 
 export const OrderBarWrapperUI = styled.div`
   position: fixed;
-  max-width: 430px;
   bottom: 0;
   width: 100%;
-  height: 244px;
   pointer-events: none;
+  max-width: 430px;
   display: flex;
+`;
+
+export const PaymentsImgUI = styled.img`
+  height: 24px;
 `;
 
 export const OrderBarUI = styled.div`
@@ -24,6 +27,7 @@ export const OrderBarUI = styled.div`
   padding-top: 30px;
   padding-inline: 30px;
   flex-direction: column;
+  gap: 16px;
   justify-content: space-between;
 `;
 

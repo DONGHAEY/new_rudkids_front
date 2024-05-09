@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ModalUI = styled.div`
   -webkit-backdrop-filter: blur(7px);
   backdrop-filter: blur(7px);
-  position: relative;
+  position: fixed;
   overflow: scroll;
   width: 100%;
   height: 100%;

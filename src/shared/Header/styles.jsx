@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LogoWrapperUI = styled.div`
   object-fit: cover;
-  height: 60%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,30 +11,29 @@ export const LogoWrapperUI = styled.div`
 export const HeaderWrapperUI = styled.div`
   position: ${({ position }) => position};
   top: 0;
+  max-width: 430px;
   display: flex;
   z-index: 100;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 430px;
   width: 100%;
-  height: 80px;
   font-size: 25px;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
 `;
 
 export const HeaderUI = styled.div`
   width: 100%;
-  height: 100%;
+  height: 43px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 30px;
+  padding-inline: 40px;
+  padding-block: 13px;
 `;
 
 export const IconWrapperUI = styled.div`
   position: relative;
   cursor: pointer;
+  font-size: 25px;
 `;
 
 export const CartCntTextUI = styled.p`
@@ -57,5 +56,5 @@ export const CartCntTextUI = styled.p`
 `;
 
 export const SpacerUI = styled.div`
-  margin-top: 80px;
+  margin-top: 70px;
 `;

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { RiDragMoveFill } from "react-icons/ri";
-import { GuideLabelUI } from "./styles";
+import { GuideLabelUI, HandImgUI } from "./styles";
+import handPicSrc from "./assets/hand.png";
 import gsap from "gsap";
 
 const GuideLabel = () => {
@@ -15,13 +16,13 @@ const GuideLabel = () => {
         guideLabelRef.current.style,
         {
           opacity: 1,
-          "-webkit-backdrop-filter": "blur(6px)",
-          "backdrop-filter": "blur(6px)",
+          "-webkit-backdrop-filter": "blur(3px)",
+          "backdrop-filter": "blur(3px)",
         },
         {
-          "-webkit-backdrop-filter": "blur(1px)",
-          "backdrop-filter": "blur(1px)",
-          duration: 2.5,
+          "-webkit-backdrop-filter": "blur(0.5px)",
+          "backdrop-filter": "blur(0.5px)",
+          duration: 1.5,
           repeat: -1,
           yoyo: true,
         }
@@ -29,7 +30,7 @@ const GuideLabel = () => {
     } else {
       gsap.to(guideLabelRef.current, {
         opacity: 0,
-        duration: 1.5,
+        duration: 0.3,
         onComplete: () => {
           guideLabelRef.current.style.display = "none";
         },
@@ -44,7 +45,8 @@ const GuideLabel = () => {
       onClick={() => setOpen(false)}
     >
       <RiDragMoveFill fontSize={"50px"} />
-      <p>You can drag here</p>
+      <p>You Can Drag Here!</p>
+      <HandImgUI src={handPicSrc} />
     </GuideLabelUI>
   );
 };
