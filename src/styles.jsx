@@ -18,7 +18,6 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
     width: 100%;
     height: 100%;
-    background-color:black;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-use-select: none;

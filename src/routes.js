@@ -2,7 +2,7 @@ import VideoPage from "./pages/Video";
 import MainPage from "./pages/Main";
 import ProductPage from "./pages/Product";
 import List3dPage from "./pages/List3D";
-import HandPage from "./pages/Hand";
+import RudCameraPage from "./pages/RudCamera";
 import LoginCallback from "./pages/LoginCallback";
 import InvitationPage from "./pages/Invitation";
 import SchoolInvitationPage from "./pages/SchoolInvitation";
@@ -64,10 +64,10 @@ export const routes = {
     paramKeys: ["school_name"],
     element: SchoolInvitationPage,
   },
-  ["hand"]: {
-    path: "hand",
+  ["rud-camera"]: {
+    path: "rud-camera",
     paramKeys: [],
-    element: HandPage,
+    element: RudCameraPage,
   },
   ["loginCallback"]: {
     path: "callback",

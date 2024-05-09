@@ -11,6 +11,8 @@ import {
 import { useCartCntQuery } from "../../queries/cart";
 import rudkidsLogoSrc from "./assets/logo.png";
 import { useNavigate } from "react-router-dom";
+import MenuBar from "./MenuBar";
+import { useState } from "react";
 
 const Header = ({ $backgroundColor = "none", isFixed = true }) => {
   const navigate = useNavigate();
@@ -24,8 +26,10 @@ const Header = ({ $backgroundColor = "none", isFixed = true }) => {
     navigate("/cart");
   };
 
+  const [menuBarOpen, setMenuBarOpen] = useState(false);
+
   const listBtnClickHandler = () => {
-    //
+    setMenuBarOpen(true);
   };
 
   return (
@@ -47,6 +51,7 @@ const Header = ({ $backgroundColor = "none", isFixed = true }) => {
           </IconWrapperUI>
         </HeaderUI>
       </HeaderWrapperUI>
+      <MenuBar open={menuBarOpen} setOpen={(d) => setMenuBarOpen(d)} />
       {isFixed && <SpacerUI />}
     </>
   );

@@ -19,7 +19,7 @@ import cameraIconImgSrc from "./assets/camera.webp";
 import gsap from "gsap";
 import RudkidsWebcam from "./RudkidsWebcam";
 
-const HandPage = () => {
+const RudCameraPage = () => {
   const canvasRef = useRef(null);
   const windowSize = useWindowSize();
   const screenshotSectionRef = useRef(null);
@@ -123,4 +123,4 @@ const HandPage = () => {
   );
 };
 
-export default HandPage;
+export default RudCameraPage;

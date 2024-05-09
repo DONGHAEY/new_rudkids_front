@@ -23,7 +23,7 @@ export const ContentSectionUI = styled.div`
   padding-block: 29px;
   display: flex;
   width: 100%;
-  gap: 10px;
+  gap: 12px;
   flex-direction: column;
 `;
 
