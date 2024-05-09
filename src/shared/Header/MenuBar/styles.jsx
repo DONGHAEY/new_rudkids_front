@@ -46,6 +46,7 @@ export const MenuBtnUI = styled.button`
   background: ${({ background }) => background ?? "none"};
   border: none;
   border-radius: 22px;
+  color: black;
   cursor: pointer;
 `;
 
