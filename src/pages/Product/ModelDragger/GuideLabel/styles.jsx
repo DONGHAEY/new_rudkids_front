@@ -11,7 +11,6 @@ export const GuideLabelUI = styled.div`
   width: 100%;
   height: 100%;
   gap: 10px;
-  z-index: 4;
   border-radius: 11.6px;
   letter-spacing: -1px;
   font-family: Poppins-Medium;

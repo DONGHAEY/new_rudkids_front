@@ -11,7 +11,7 @@ import { FaRegPlayCircle } from "react-icons/fa";
 import { FaRegCirclePause } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import GuideLabel from "./GuideLabel";
-import { useGLTF } from "@react-three/drei";
+import { Html, useGLTF } from "@react-three/drei";
 
 const ModelDragger = ({ modelUrls = [], modelIdx = 0, modelName = "" }) => {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -27,7 +27,6 @@ const ModelDragger = ({ modelUrls = [], modelIdx = 0, modelName = "" }) => {
       <PlayingControllerUI onClick={() => setIsPlaying(!isPlaying)}>
         {isPlaying ? <FaRegCirclePause /> : <FaRegPlayCircle />}
       </PlayingControllerUI>
-      <GuideLabel />
       <CanvasUI
         gl={{ antialias: true }}
         camera={{
@@ -38,6 +37,9 @@ const ModelDragger = ({ modelUrls = [], modelIdx = 0, modelName = "" }) => {
         }}
       >
         {gltf && <Scene gltf={gltf} autoRotate={isPlaying} />}
+        <Html fullscreen={true}>
+          <GuideLabel />
+        </Html>
       </CanvasUI>
     </ModelDraggerBackgroundUI>
   );

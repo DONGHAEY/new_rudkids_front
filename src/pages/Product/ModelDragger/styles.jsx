@@ -7,6 +7,7 @@ export const ModelDraggerBackgroundUI = styled.div`
   aspect-ratio: 1/1;
   background-color: #ededed;
   border-radius: 13.5px;
+  z-index: 0;
 `;
 
 export const CanvasUI = styled(Canvas)`

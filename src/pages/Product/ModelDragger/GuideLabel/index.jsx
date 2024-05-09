@@ -42,7 +42,7 @@ const GuideLabel = () => {
     <GuideLabelUI
       ref={guideLabelRef}
       onTouchStart={() => setOpen(false)}
-      onClick={() => setOpen(false)}
+      onMouseDown={() => setOpen(false)}
     >
       <RiDragMoveFill fontSize={"50px"} />
       <p>You Can Drag Here!</p>
