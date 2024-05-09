@@ -9,7 +9,9 @@ let timelineOption = {
 };
 
 const Scene = ({ offset, moveDuration = 2 }) => {
-  const gltf = useGLTF("/Models/Nothing.glb");
+  const gltf = useGLTF(
+    "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/Items/nothing/package.glb?t=2024-05-07T04%3A56%3A32.798Z"
+  );
   const itemModelRef = createRef();
 
   useFrame(() => {

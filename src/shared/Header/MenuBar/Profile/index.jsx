@@ -16,7 +16,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const onClick = () => {
-    // navigate("/profile");
+    navigate("/profile");
   };
 
   return (

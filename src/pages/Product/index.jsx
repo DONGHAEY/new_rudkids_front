@@ -88,7 +88,7 @@ const ProductPage = ({ routeInfo }) => {
           </ModelDescriptionTextUI>
         </ModelDescriptionUI> */}
       </FlexWrapperUI>
-      <ActionBar productId={productData?.id} />
+      <ActionBar productData={productData} />
     </PageUI>
   );
 };

@@ -7,15 +7,23 @@ import {
   SpacerUI,
 } from "./styles";
 import { useCartProductMutation } from "../../../queries/cart";
+import { useNavigate } from "react-router-dom";
 
-const ActionBar = ({ productId }) => {
+const ActionBar = ({ productData }) => {
+  const navigate = useNavigate();
   const putCartProductMutation = useCartProductMutation();
 
   const cartButtonClickHandler = async () => {
-    if (productId) {
+    if (productData) {
       try {
-        await putCartProductMutation.mutateAsync(productId);
+        await putCartProductMutation.mutateAsync(productData.id);
       } catch (e) {}
+    }
+  };
+
+  const moreButtonClickHandler = async () => {
+    if (productData) {
+      navigate(`/product/${productData?.id}/story`);
     }
   };
 
@@ -23,7 +31,10 @@ const ActionBar = ({ productId }) => {
     <>
       <ActionBarWrapperUI>
         <ActionBarUI>
-          <ActionButtonUI $backgroundColor={"#001100"}>
+          <ActionButtonUI
+            $backgroundColor={"#001100"}
+            onClick={moreButtonClickHandler}
+          >
             <MdRemoveRedEye fontSize="20px" />
             <p>More</p>
           </ActionButtonUI>
