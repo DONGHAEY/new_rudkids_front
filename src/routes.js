@@ -12,12 +12,18 @@ import OrderPage from "./pages/Order";
 import OrderDetailPage from "./pages/OrderDetail";
 import PaySuccess from "./pages/PaySuccess";
 import AuthHoc from "./shared/HOC/AuthHoc";
+import ProfilePage from "./pages/Profile ";
 
 export const routes = {
   ["main"]: {
     path: "",
     paramKeys: [],
     element: AuthHoc(MainPage),
+  },
+  ["profile"]: {
+    path: "profile",
+    paramKeys: [],
+    element: AuthHoc(ProfilePage),
   },
   ["list3d"]: {
     path: "list-3d",

@@ -23,7 +23,7 @@ const ActionBar = ({ productData }) => {
 
   const moreButtonClickHandler = async () => {
     if (productData) {
-      navigate(`/product/${productData?.id}/story`);
+      navigate(`/product/${productData?.name}/story`);
     }
   };
 
