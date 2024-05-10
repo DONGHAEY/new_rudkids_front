@@ -6,6 +6,8 @@ import {
   PageDescriptionTextUI,
   ProductLengthTextUI,
   PageTopSectionUI,
+  ShippingAddressSectionUI,
+  PaySectionUI,
 } from "./styles";
 import { useCreateOrderMutation } from "../../queries/order";
 import CartProduct from "./CartProduct";
@@ -14,6 +16,7 @@ import Header from "../../shared/Header";
 import Shipping from "./Shipping";
 import { usePaymentWidget } from "../../hooks/usePaymentWidget";
 import OrderBar from "./OrderBar";
+import Price from "../../shared/Price";
 
 function OrderPage() {
   const createOrderMutation = useCreateOrderMutation();
@@ -28,16 +31,18 @@ function OrderPage() {
   const paymentMethodsRef = useRef();
   const paymentAgreementRef = useRef();
 
-  const productPrice = useMemo(() => {
+  const totalProductsPrice = useMemo(() => {
     if (!cartData) return 0;
-    let productPrice = 0;
+    let totalProductsPrice = 0;
     cartData.cartProducts?.forEach((cartProduct) => {
-      productPrice += cartProduct.product.price * cartProduct.quantity;
+      totalProductsPrice += cartProduct.product.price * cartProduct.quantity;
     });
-    return productPrice;
+    return totalProductsPrice;
   }, [cartData?.cartProducts]);
 
-  const totalPrice = productPrice + cartData?.shippingPrice;
+  const totalShippingPrice = cartData?.shippingPrice;
+
+  const totalPrice = totalProductsPrice + totalShippingPrice;
 
   const submitHandler = async () => {
     if (!cartData?.id) {
@@ -117,7 +122,7 @@ function OrderPage() {
 
   return (
     <PageUI>
-      <Header isFixed={false} $backgroundColor="#f3f3f3" />
+      <Header isFixed={true} $backgroundColor="none" />
       <FlexWrapperUI>
         <PageTopSectionUI>
           <PageDescriptionTextUI>Order Products</PageDescriptionTextUI>
@@ -134,13 +139,13 @@ function OrderPage() {
           ))}
         </ListWrapperUI>
       </FlexWrapperUI>
-      <FlexWrapperUI>
+      <ShippingAddressSectionUI>
         <PageTopSectionUI>
           <PageDescriptionTextUI>📮 Shipping Address</PageDescriptionTextUI>
         </PageTopSectionUI>
         <Shipping value={shipping} setValue={setShipping} />
-      </FlexWrapperUI>
-      <FlexWrapperUI>
+      </ShippingAddressSectionUI>
+      <PaySectionUI>
         <PageTopSectionUI>
           <PageDescriptionTextUI>결제수단</PageDescriptionTextUI>
         </PageTopSectionUI>
@@ -150,13 +155,25 @@ function OrderPage() {
           }}
           id="payment-widget"
         />
+
         <div
           style={{
             width: "100%",
           }}
           id="agreement"
         />
-      </FlexWrapperUI>
+        <div
+          style={{
+            width: "100%",
+            marginTop: "22px",
+          }}
+        >
+          <Price
+            totalProductsPrice={totalProductsPrice}
+            totalShippingPrice={totalShippingPrice}
+          />
+        </div>
+      </PaySectionUI>
       <OrderBar onClick={submitHandler} totalPrice={totalPrice} />
     </PageUI>
   );

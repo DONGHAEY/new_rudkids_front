@@ -10,8 +10,23 @@ export const PageUI = styled.div`
 `;
 
 export const FlexWrapperUI = styled.div`
-  padding-block: 10px;
-  padding-bottom: 20px;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+`;
+
+export const ShippingAddressSectionUI = styled.div`
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+`;
+
+export const PaySectionUI = styled.div`
+  padding-top: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;

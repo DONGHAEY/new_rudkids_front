@@ -41,3 +41,8 @@ export const ListWrapperUI = styled.div`
   width: 100%;
   gap: 14px;
 `;
+
+export const PriceWrapperUI = styled.div`
+  width: 100%;
+  margin-top: 60px;
+`;

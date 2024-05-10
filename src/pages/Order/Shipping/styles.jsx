@@ -25,17 +25,23 @@ export const ShippingNameTextUI = styled.p`
 export const RecieverNameTextUI = styled.p`
   font-family: Pretendard-Bold;
   font-size: 15px;
+  letter-spacing: -0.3px;
+  word-spacing: 0px;
 `;
 
 export const RecieverPhoneNumberTextUI = styled.p`
   font-family: Pretendard-SemiBold;
   font-size: 13px;
   color: #898989;
+  letter-spacing: -0.3px;
+  word-spacing: 0px;
 `;
 
 export const AddressTextUI = styled.p`
   font-family: Pretendard-SemiBold;
   font-size: 15px;
+  letter-spacing: -0.3px;
+  word-spacing: 0px;
 `;
 
 export const SelectUI = styled.select`

@@ -1,29 +1,19 @@
 import styled from "styled-components";
 
-export const SubmitSectionUI = styled.div`
-  background-color: white;
+export const OrderBarUI = styled.div`
   display: flex;
   width: 100%;
-  position: fixed;
   pointer-events: none;
-  max-width: 430px;
   bottom: 0;
 `;
 
 export const SubmitUI = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 16px;
   padding: 30px;
   padding-bottom: 24px;
   width: 100%;
-`;
-
-export const TotalPriceWrapperUI = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
 `;
 
 export const BuyNowButtonUI = styled.button`
@@ -41,21 +31,4 @@ export const BuyNowButtonUI = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-`;
-
-export const TotalTextUI = styled.p`
-  font-family: Poppins-Bold;
-  font-size: 14px;
-  color: #989898;
-`;
-
-export const TotalPriceTextUI = styled.p`
-  font-family: Poppins-Bold;
-  font-size: 22px;
-  line-height: 22px;
-  color: black;
-`;
-
-export const Spacer = styled.div`
-  margin-top: 168px;
 `;

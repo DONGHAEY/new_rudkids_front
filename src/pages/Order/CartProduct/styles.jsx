@@ -61,12 +61,16 @@ export const CartProductNameUI = styled.p`
   font-size: 15px;
   line-height: 20px;
   font-family: Poppins-Bold;
+  letter-spacing: -0.3px;
+  word-spacing: 0px;
 `;
 
 export const CartProductPriceUI = styled.p`
   font-size: 15px;
   line-height: 20px;
   font-family: Poppins-Bold;
+  letter-spacing: -0.3px;
+  word-spacing: 0px;
 `;
 
 export const CloseIconWrapperUI = styled.div`

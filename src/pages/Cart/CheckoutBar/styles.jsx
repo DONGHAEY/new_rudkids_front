@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SpacerUI = styled.div`
-  margin-top: 154px;
+  margin-top: 133px;
 `;
 
 export const OrderBarWrapperUI = styled.div`
