@@ -77,6 +77,9 @@ const ProfilePage = ({}) => {
         </ButtonSection>
       </FlexUI>
       <InviteButtonUI>친구초대하기</InviteButtonUI>
+      <br />
+      <br />
+      <br />
     </PageUI>
   );
 };

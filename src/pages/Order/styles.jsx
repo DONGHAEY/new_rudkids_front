@@ -10,7 +10,7 @@ export const PageUI = styled.div`
 `;
 
 export const FlexWrapperUI = styled.div`
-  padding-top: 50px;
+  padding-top: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;

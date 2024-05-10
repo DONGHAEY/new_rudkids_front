@@ -14,6 +14,7 @@ export const PageUI = styled.div`
 
 export const FlexWrapperUI = styled.div`
   padding-block: 10px;
+  padding-top: 45px;
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;

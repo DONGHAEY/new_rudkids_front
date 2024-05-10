@@ -2,7 +2,6 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { IoMdCart } from "react-icons/io";
 import {
   LogoWrapperUI,
-  HeaderWrapperUI,
   SpacerUI,
   HeaderUI,
   IconWrapperUI,
@@ -35,27 +34,22 @@ const Header = ({ $backgroundColor = "none", isFixed = true }) => {
 
   return (
     <>
-      <HeaderWrapperUI
-        position={isFixed ? "fixed" : "relative"}
-        $backgroundColor={$backgroundColor}
-      >
-        <HeaderUI>
-          <IconWrapperUI onClick={listBtnClickHandler}>
-            <AiOutlineMenu />
-          </IconWrapperUI>
-          <LogoWrapperUI onClick={logoClickHandler}>
-            <img height="100%" src={rudkidsLogoSrc} />
-          </LogoWrapperUI>
-          <IconWrapperUI onClick={cartBtnClickHandler}>
-            <IoMdCart />
-            <CartCntTextUI>{cartCntData}</CartCntTextUI>
-          </IconWrapperUI>
-        </HeaderUI>
-      </HeaderWrapperUI>
+      <HeaderUI position={isFixed ? "fixed" : "relative"}>
+        <IconWrapperUI onClick={listBtnClickHandler}>
+          <AiOutlineMenu />
+        </IconWrapperUI>
+        <LogoWrapperUI onClick={logoClickHandler}>
+          <img height="100%" src={rudkidsLogoSrc} />
+        </LogoWrapperUI>
+        <IconWrapperUI onClick={cartBtnClickHandler}>
+          <IoMdCart />
+          <CartCntTextUI>{cartCntData}</CartCntTextUI>
+        </IconWrapperUI>
+      </HeaderUI>
+      {isFixed && <SpacerUI />}
       <MenuBarModalUI open={menuBarOpen} hideBackdrop disableAutoFocus>
         <MenuBar onClosed={(d) => setMenuBarOpen(false)} />
       </MenuBarModalUI>
-      {isFixed && <SpacerUI />}
     </>
   );
 };

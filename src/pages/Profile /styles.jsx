@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const PageUI = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  min-height: 120%;
   align-items: center;
   background: linear-gradient(
     180deg,
@@ -68,8 +66,9 @@ export const TextAreaUI = styled.textarea`
   border-radius: 15px;
   border: solid rgba(255, 255, 255, 0.72) 1.4px;
   color: white;
-  min-height: 82px;
-  padding: 20px;
+  height: 42px;
+  padding-block: 20px;
+  padding-inline: 24px;
   font-family: Pretendard-SemiBold;
   margin-top: 15px;
   background-color: rgba(243, 243, 243, 0.25);

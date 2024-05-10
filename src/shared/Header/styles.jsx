@@ -19,32 +19,35 @@ export const LogoWrapperUI = styled.div`
   justify-content: center;
 `;
 
-export const HeaderWrapperUI = styled.div`
-  position: ${({ position }) => position};
-  top: 0;
-  max-width: 430px;
-  display: flex;
-  z-index: 100;
-  width: 100%;
-  font-size: 25px;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-`;
-
 export const HeaderUI = styled.div`
-  width: 100%;
+  top: 0;
+  display: flex;
+  z-index: 555;
+  position: ${({ position }) => position};
+  width: 85%;
+  max-width: 300px;
   height: 43px;
+  padding-top: 5px;
+  margin: auto;
   display: flex;
   flex-direction: row;
+  font-size: 25px;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 40px;
-  padding-block: 13px;
 `;
 
 export const IconWrapperUI = styled.div`
   position: relative;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 25px;
+  text-align: center;
+`;
+
+export const SpacerUI = styled.div`
+  margin-top: 43px;
+  padding-top: 5px;
 `;
 
 export const CartCntTextUI = styled.p`
@@ -64,8 +67,4 @@ export const CartCntTextUI = styled.p`
   border-radius: 100%;
   z-index: -1;
   padding: 3px;
-`;
-
-export const SpacerUI = styled.div`
-  margin-top: 70px;
 `;
