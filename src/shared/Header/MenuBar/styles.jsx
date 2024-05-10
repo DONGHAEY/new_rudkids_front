@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const DimmUI = styled.div`
   position: absolute;
-  height: 180%;
-  width: 190%;
+  height: 100%;
+  width: 100%;
   z-index: -1;
+  pointer-events: none;
 `;
 
 export const MenuBarUI = styled.div`
