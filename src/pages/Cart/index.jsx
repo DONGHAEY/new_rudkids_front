@@ -11,6 +11,7 @@ import CartProduct from "./CartProduct";
 import CheckoutBar from "./CheckoutBar";
 import Price from "../../shared/Price";
 import smileSellerSrc from "./assets/smlile_seller.png";
+import eventCouponImgSrc from "./assets/coupon_1.png";
 import { useMemo } from "react";
 
 const CartPage = () => {
@@ -45,6 +46,9 @@ const CartPage = () => {
             totalShippingPrice={totalShippingPrice}
           />
         </PriceWrapperUI>
+        <div>
+          <img src={eventCouponImgSrc} width="100%" />
+        </div>
         <div>
           <img src={smileSellerSrc} height="153px" />
         </div>
