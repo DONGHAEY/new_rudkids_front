@@ -5,7 +5,6 @@ export const DimmUI = styled.div`
   height: 100%;
   width: 100%;
   z-index: -1;
-  pointer-events: none;
 `;
 
 export const MenuBarUI = styled.div`
