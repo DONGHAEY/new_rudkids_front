@@ -22,7 +22,7 @@ const Price = ({ totalProductsPrice, totalShippingPrice }) => {
           </SpaceBetweenUI>
           <SpaceBetweenUI>
             <ColumnTextUI>배송비</ColumnTextUI>
-            <ColumnValueTextUI color="red">
+            <ColumnValueTextUI color={!totalShippingPrice ? "wheat" : "red"}>
               ₩ {Number(totalShippingPrice).toLocaleString("ko-kr")}
             </ColumnValueTextUI>
           </SpaceBetweenUI>
