@@ -39,7 +39,7 @@ const Shipping = ({ value, setValue }) => {
   ];
 
   const editBtnClickHandler = () => {
-    popupNavigate("배송지 목록");
+    popupNavigate("shipping-list");
   };
 
   if (!value) {
@@ -86,7 +86,7 @@ const Shipping = ({ value, setValue }) => {
           onClick={editBtnClickHandler}
         />
       </ShippingUI>
-      <Popup popupName="배송지 목록">
+      <Popup popupName="shipping-list" popupTitle="배송지 목록">
         <SelectShipping
           shipping={value}
           setShipping={(shipipngData) => {

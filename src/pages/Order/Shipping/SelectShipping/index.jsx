@@ -18,7 +18,7 @@ const SelectShipping = ({ shipping, setShipping }) => {
   const [popupNavigate, popupBack] = usePopup();
 
   const addBtnClickHandler = () => {
-    popupNavigate("📮 Shipping Add");
+    popupNavigate("shipping-add");
   };
 
   const setShippingDataHandler = (shippingData) => {
@@ -45,7 +45,7 @@ const SelectShipping = ({ shipping, setShipping }) => {
           ))}
         </FlexWrapperUI>
       </ShippingListUI>
-      <Popup popupName="📮 Shipping Add">
+      <Popup popupName="shipping-add" popupTitle="📮 Shipping Add">
         <AddEditShipping
           shippingData={null}
           setShippingData={setShippingDataHandler}

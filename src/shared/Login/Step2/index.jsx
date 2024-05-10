@@ -10,12 +10,13 @@ import {
   ProgressBarGoalImgUI,
   ProgressBarSectionUI,
   ModalUI,
-  BottomBoxWrapper,
+  ScrollerUI,
+  CenterUI,
 } from "./styles";
 import { ProgressBar } from "./ProgressBar";
 import { SharedStatus } from "./SharedStatus";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Alert } from "../../Alert";
 import { VscInfo } from "react-icons/vsc";
@@ -30,7 +31,7 @@ const Step2 = ({ next, isRender }) => {
   const [alertOpen, setAlertOpen] = useState(false);
   const { data: userData } = useUserQuery();
 
-  const modalRef = useRef(null);
+  const scrollerRef = useRef(null);
   const bottomBoxRef = useRef(null);
 
   const [isopen, setIsopen] = useState(false);
@@ -58,12 +59,12 @@ const Step2 = ({ next, isRender }) => {
 
   const arrowButtonClickHandler = () => {
     if (isopen === true) {
-      modalRef.current.scrollTo({
+      scrollerRef.current.scrollTo({
         top: 0,
         behavior: "smooth",
       });
     } else {
-      modalRef.current.scrollTo({
+      scrollerRef.current.scrollTo({
         top: 1000,
         behavior: "smooth",
       });
@@ -78,7 +79,7 @@ const Step2 = ({ next, isRender }) => {
   };
 
   const scrollHandler = () => {
-    if (modalRef.current.scrollTop >= 270) {
+    if (scrollerRef.current.scrollTop >= 270) {
       setIsopen(true);
     } else {
       setIsopen(false);
@@ -86,9 +87,9 @@ const Step2 = ({ next, isRender }) => {
   };
 
   return (
-    <>
-      <ModalUI onScroll={scrollHandler} ref={modalRef}>
-        <BottomBoxWrapper>
+    <ModalUI open={isRender}>
+      <>
+        <ScrollerUI ref={scrollerRef} onScroll={scrollHandler}>
           <BottomBoxUI ref={bottomBoxRef}>
             <ArrowButtonUI
               onClick={arrowButtonClickHandler}
@@ -134,17 +135,17 @@ const Step2 = ({ next, isRender }) => {
               Why {maxSharedCnt} Friends?
             </AskSectionUI>
           </BottomBoxUI>
-        </BottomBoxWrapper>
-      </ModalUI>
-      <Alert
-        open={alertOpen}
-        imageUrl={quietFaceIconSrc}
-        title={"Rudkids is<br />Not for everyone 👑"}
-        content={"Rudkids is a place where only<br />lucky guys can come in."}
-        buttonContent={"Yeeeaaah!"}
-        onChecked={alertCheckedHandler}
-      />
-    </>
+        </ScrollerUI>
+        <Alert
+          open={alertOpen}
+          imageUrl={quietFaceIconSrc}
+          title={"Rudkids is<br />Not for everyone 👑"}
+          content={"Rudkids is a place where only<br />lucky guys can come in."}
+          buttonContent={"Yeeeaaah!"}
+          onChecked={alertCheckedHandler}
+        />
+      </>
+    </ModalUI>
   );
 };
 

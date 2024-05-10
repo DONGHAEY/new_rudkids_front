@@ -5,47 +5,52 @@ import { memo, useEffect, useMemo, useRef, useState } from "react";
 import qs from "qs";
 import gsap from "gsap";
 
-const Popup = ({ children, popupName = "" }) => {
-  //
+const Popup = ({ children, popupName = "", popupTitle = "" }) => {
   const location = useLocation();
   const search = location.search;
 
   const isOpen = useMemo(() => {
     const query = qs.parse(search.replace("?", ""));
-    let value = false;
     if (query.popup) {
       const findPopupName = query.popup.find(
         (popupName_) => popupName_ === popupName
       );
-      value = findPopupName ? true : false;
+      return findPopupName ? true : false;
     }
-    return value;
+    return false;
   }, [search]);
 
   return (
-    <PopupUI open={isOpen}>
-      <Content children={children} popupName={popupName} />
+    <PopupUI open={isOpen} hideBackdrop={true} disableAutoFocus={true}>
+      <Content children={children} popupTitle={popupTitle} />
     </PopupUI>
   );
 };
 
-const Content = ({ children, popupName = "" }) => {
+const Content = ({ children, popupTitle = "" }) => {
   const contentRef = useRef(null);
   const navigate = useNavigate();
 
+  const duration = 1;
+
   const backIconClickHandler = () => {
+    // gsap.fromTo(
+    //   contentRef.current,
+    //   { opacity: 1 },
+    //   {
+    //     opacity: 0,
+    //     duration: duration,
+    //     onComplete: () => {
+    //       navigate(-1);
+    //     },
+    //   }
+    // );
+
     navigate(-1);
   };
 
   // useEffect(() => {
-  //   gsap.set(contentRef.current, {
-  //     opacity: 0,
-  //   });
-  // }, [contentRef.current]);
-
-  // useEffect(() => {
   //   if (!contentRef.current) return;
-  //   const duration = 1;
   //   gsap.fromTo(
   //     contentRef.current,
   //     { opacity: 0 },
@@ -60,7 +65,7 @@ const Content = ({ children, popupName = "" }) => {
     <Center ref={contentRef}>
       <PopupHeaderUI>
         <IoMdArrowBack onClick={backIconClickHandler} />
-        <TitleUI>{popupName}</TitleUI>
+        <TitleUI>{popupTitle}</TitleUI>
         <div />
       </PopupHeaderUI>
       {children}

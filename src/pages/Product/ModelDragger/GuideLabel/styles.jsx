@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const GuideLabelUI = styled.div`
   position: absolute;
-  background-color: rgba(67, 67, 67, 0.83);
+  background-color: rgba(67, 67, 67, 0.33);
   color: white;
   display: flex;
   flex-direction: column;

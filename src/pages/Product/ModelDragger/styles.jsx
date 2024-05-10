@@ -7,13 +7,13 @@ export const ModelDraggerBackgroundUI = styled.div`
   aspect-ratio: 1/1;
   background-color: #ededed;
   border-radius: 13.5px;
-  z-index: 0;
 `;
 
 export const CanvasUI = styled(Canvas)`
   position: absolute;
   width: 100%;
   border-radius: 13.5px;
+  z-index: 0;
 `;
 
 export const PlayingControllerUI = styled.div`
@@ -21,7 +21,7 @@ export const PlayingControllerUI = styled.div`
   bottom: 0;
   right: 0;
   padding: 10px;
-  z-index: 2;
+  z-index: 10;
 `;
 
 export const ModelTextWrapperUI = styled.div`

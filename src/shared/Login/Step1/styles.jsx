@@ -59,12 +59,12 @@ export const BoxBottomUI = styled.div`
 `;
 
 export const ModalUI = styled.div`
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
-  position: fixed;
   top: 0;
   left: 0;
   -webkit-backdrop-filter: blur(10px);

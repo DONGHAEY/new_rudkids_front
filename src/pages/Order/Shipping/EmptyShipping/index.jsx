@@ -13,7 +13,7 @@ const EmptyShipping = ({ onChange }) => {
   const [popupNavigate, navigateBack] = usePopup();
 
   const addBtnClickHandler = () => {
-    popupNavigate("📮 Shipping Add");
+    popupNavigate("shipping-add");
   };
 
   const setShippingDataHandler = (shippingData) => {
@@ -28,7 +28,7 @@ const EmptyShipping = ({ onChange }) => {
         <IoMdAdd fontSize="18px" />
         <AddBtnTextUI onClick={addBtnClickHandler}>등록하기</AddBtnTextUI>
       </AddButtonUI>
-      <Popup popupName="📮 Shipping Add">
+      <Popup popupName="shipping-add" popupTitle="📮 Shipping Add">
         <AddEditShipping
           shippingData={null}
           setShippingData={setShippingDataHandler}

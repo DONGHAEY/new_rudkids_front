@@ -68,7 +68,7 @@ const AddEditShipping = ({ shippingData = null, setShippingData }) => {
               }).ref
             }
             value={watch("address")}
-            onClick={() => popupNavigate("🔎 주소 검색")}
+            onClick={() => popupNavigate(`search-address`)}
             placeholder="건물, 지번 또는 도로명 검색"
           />
           <TextInputUI
@@ -102,7 +102,7 @@ const AddEditShipping = ({ shippingData = null, setShippingData }) => {
         <RowField name="기본배송지로 설정">
           <input {...register("isDefault")} type="checkbox" />
         </RowField>
-        <Popup popupName="🔎 주소 검색">
+        <Popup popupName={`search-address`} popupTitle="🔎 주소 검색">
           <SearchAddress
             address={watch("address")}
             setAddress={(address) => {

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const ModalUI = styled.div`
-  -webkit-backdrop-filter: blur(7px);
-  backdrop-filter: blur(7px);
-  position: fixed;
-  overflow: scroll;
+  position: relative;
+  bottom: 0;
   width: 100%;
+  max-width: 430px;
   height: 100%;
+  margin: auto;
 `;
 
 export const FriendGroupImgWrapperUI = styled.div`
@@ -87,9 +87,10 @@ export const ArrowButtonUI = styled.div`
   cursor: pointer;
 `;
 
-export const BottomBoxWrapper = styled.div`
+export const ScrollerUI = styled.div`
   width: 100%;
   height: 100%;
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -118,7 +119,6 @@ export const FriendListUI = styled.div`
   max-width: 300px;
   width: 75%;
   min-width: 220px;
-  max-gap: 10px;
   gap: 5px;
   height: 75px;
   margin-top: 30px;

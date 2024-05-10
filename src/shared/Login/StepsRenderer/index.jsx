@@ -9,7 +9,7 @@ import React, {
 import gsap from "gsap";
 import { StepCompWrapperUI, WrapperUI } from "./styles";
 
-const StepsRenderer = ({ stepComponentSrcList }) => {
+const StepsRenderer = ({ stepComponentSrcList, onComplete }) => {
   const totalStepCount = stepComponentSrcList.length;
   const [step, setStep] = useState(0);
 
@@ -22,6 +22,7 @@ const StepsRenderer = ({ stepComponentSrcList }) => {
     if (!wrapperRef.current) return;
     if (step === totalStepCount) {
       wrapperRef.current.style.display = "none";
+      onComplete();
     } else {
       wrapperRef.current.style.display = "block";
     }

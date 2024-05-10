@@ -32,7 +32,7 @@ const Shipping = ({ shippingData, isSelected = false, onSelect }) => {
   const [popupNavigate, popupBack] = usePopup();
 
   const editBtnClickHandler = async () => {
-    popupNavigate("📮 Shipping Edit");
+    popupNavigate(`shipping-edit-${shippingData.id}`);
   };
 
   return (
@@ -76,7 +76,10 @@ const Shipping = ({ shippingData, isSelected = false, onSelect }) => {
           선택
         </ChooseButtonUI>
       </ShippingUI>
-      <Popup popupName="📮 Shipping Edit">
+      <Popup
+        popupName={`shipping-edit-${shippingData.id}`}
+        popupTitle="📮 Shipping Edit"
+      >
         <AddEditShipping
           shippingData={shippingData}
           setShippingData={(shippingData) => {

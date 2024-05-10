@@ -7,6 +7,7 @@ import {
   useUserQuery,
 } from "../../queries/user";
 import { useEffect, useState } from "react";
+import { Modal } from "@mui/material";
 
 const LoginModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,8 +40,16 @@ const LoginModal = () => {
     openStateUpdate();
   }, [isFetched]);
 
-  if (!isOpen) return null;
-  return <StepsRenderer stepComponentSrcList={[Step1, Step2]} />;
+  return (
+    <Modal open={isOpen} hideBackdrop={true} disableAutoFocus={true}>
+      <StepsRenderer
+        stepComponentSrcList={[Step1, Step2]}
+        onComplete={() => {
+          setIsOpen(false);
+        }}
+      />
+    </Modal>
+  );
 };
 
 export default LoginModal;
