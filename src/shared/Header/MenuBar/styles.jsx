@@ -1,35 +1,30 @@
+import { Modal } from "@mui/material";
 import styled from "styled-components";
 
-export const MenuBarWrapperUI = styled.div`
-  position: fixed;
+export const MenuBarWrapperUI = styled(Modal)`
+  position: fixed, relative;
   top: 0;
   width: 100%;
   height: 100%;
   max-width: 430px;
+  margin: auto;
   overflow: scroll;
   z-index: 999;
-  pointer-events: none;
 `;
 
 export const MenuBarUI = styled.div`
   background-color: #e1e1e1;
   width: 100%;
-  max-width: 310px;
+  max-width: 260px;
   height: 100%;
   display: flex;
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
   pointer-events: all;
-`;
-
-export const FlexWrapperUI = styled.div`
-  display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 40px;
-  height: 100%;
-  width: 100%;
   padding-inline: 22px;
+  gap: 40px;
 `;
 
 export const MenuBtnListUI = styled.div`
@@ -55,4 +50,13 @@ export const MenuBtnTextUI = styled.p`
   font-size: 16px;
   line-height: 18px;
   white-space: pre-wrap;
+`;
+
+export const DimmedUI = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  z-index: -1;
 `;

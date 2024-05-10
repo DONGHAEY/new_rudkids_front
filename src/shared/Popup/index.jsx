@@ -1,11 +1,15 @@
 import { IoMdArrowBack } from "react-icons/io";
 import { Center, PopupHeaderUI, PopupUI, TitleUI } from "./styles";
 import { useLocation, useNavigate } from "react-router-dom";
-import { memo, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useMemo, useRef, useState } from "react";
 import qs from "qs";
-import gsap from "gsap";
 
-const Popup = ({ children, popupName = "", popupTitle = "" }) => {
+const Popup = ({
+  children,
+  popupName = "",
+  popupTitle = "",
+  showHeader = true,
+}) => {
   const location = useLocation();
   const search = location.search;
 
@@ -22,12 +26,16 @@ const Popup = ({ children, popupName = "", popupTitle = "" }) => {
 
   return (
     <PopupUI open={isOpen} hideBackdrop={true} disableAutoFocus={true}>
-      <Content children={children} popupTitle={popupTitle} />
+      <Content
+        children={children}
+        popupTitle={popupTitle}
+        showHeader={showHeader}
+      />
     </PopupUI>
   );
 };
 
-const Content = ({ children, popupTitle = "" }) => {
+const Content = ({ children, popupTitle = "", showHeader }) => {
   const contentRef = useRef(null);
   const navigate = useNavigate();
 
@@ -63,11 +71,13 @@ const Content = ({ children, popupTitle = "" }) => {
 
   return (
     <Center ref={contentRef}>
-      <PopupHeaderUI>
-        <IoMdArrowBack onClick={backIconClickHandler} />
-        <TitleUI>{popupTitle}</TitleUI>
-        <div />
-      </PopupHeaderUI>
+      {showHeader && (
+        <PopupHeaderUI>
+          <IoMdArrowBack onClick={backIconClickHandler} />
+          <TitleUI>{popupTitle}</TitleUI>
+          <div />
+        </PopupHeaderUI>
+      )}
       {children}
     </Center>
   );

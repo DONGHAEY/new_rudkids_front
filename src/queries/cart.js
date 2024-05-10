@@ -5,6 +5,7 @@ import { getCartCnt } from "../apis/cart/getCartCnt";
 import { addCartProduct } from "../apis/cart/addCartProduct";
 import { editCartProductQuantity } from "../apis/cart/editCartProductQuantity";
 import { deleteCartProduct } from "../apis/cart/deleteCartProduct";
+import { setShippingPriceToZero } from "../apis/cart/patchShippingPrice";
 
 export const useCartQuery = () => {
   return useQuery({
@@ -17,6 +18,20 @@ export const useCartCntQuery = () => {
   return useQuery({
     queryKey: [queryKey.cart, "cnt"],
     queryFn: getCartCnt,
+  });
+};
+
+export const useSetShippingPriceToZeroMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async () => {
+      await setShippingPriceToZero();
+    },
+    onSuccess: async () => {
+      const cart = await queryClient.getQueryData([queryKey.cart]);
+      cart.shippingPrice = 0;
+      queryClient.setQueryData([queryKey.cart], cart);
+    },
   });
 };
 

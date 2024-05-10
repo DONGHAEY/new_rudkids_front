@@ -13,8 +13,12 @@ import Price from "../../shared/Price";
 import smileSellerSrc from "./assets/smlile_seller.png";
 import eventCouponImgSrc from "./assets/coupon_1.png";
 import { useMemo } from "react";
+import { usePopup } from "../../hooks/usePopup";
+import Popup from "../../shared/Popup";
+import ShippingEvent from "./ShippingEvent";
 
 const CartPage = () => {
+  const [popupNavigate, poupPop] = usePopup();
   const { data: myCartData } = useCartQuery();
 
   const totalProductsPrice = useMemo(() => {
@@ -47,12 +51,21 @@ const CartPage = () => {
           />
         </PriceWrapperUI>
         <div>
-          <img src={eventCouponImgSrc} width="100%" />
+          <img
+            onClick={() => {
+              popupNavigate("shipping_price_none_event");
+            }}
+            src={eventCouponImgSrc}
+            width="100%"
+          />
         </div>
         <div>
           <img src={smileSellerSrc} height="153px" />
         </div>
       </FlexWrapperUI>
+      <Popup popupName="shipping_price_none_event" showHeader={false}>
+        <ShippingEvent />
+      </Popup>
       <CheckoutBar cartData={myCartData} />
     </PageUI>
   );

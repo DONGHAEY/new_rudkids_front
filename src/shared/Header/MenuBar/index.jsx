@@ -1,5 +1,5 @@
 import {
-  FlexWrapperUI,
+  DimmedUI,
   MenuBarUI,
   MenuBarWrapperUI,
   MenuBtnListUI,
@@ -7,8 +7,6 @@ import {
   MenuBtnUI,
 } from "./styles";
 import Profile from "./Profile";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
 
 import HomeImgSrc from "./assets/Home.png";
 import AboutImgSrc from "./assets/About.png";
@@ -57,57 +55,33 @@ const menuButtonDtList = [
 
 const MenuBar = ({ open, setOpen }) => {
   const navigate = useNavigate();
-  const menuBarRef = useRef();
-  useEffect(() => {
-    console.log(menuBarRef.current.clientWidth);
-    if (open) {
-      gsap.to(menuBarRef.current, {
-        marginLeft: `0px`,
-        duration: 0.5,
-      });
-    } else {
-      gsap.to(menuBarRef.current, {
-        marginLeft: `-${menuBarRef.current.clientWidth}px`,
-        duration: 0.5,
-      });
-    }
-  }, [open, menuBarRef.current]);
-
-  useEffect(() => {
-    gsap.set(menuBarRef.current, {
-      marginLeft: `-${menuBarRef.current.clientWidth}px`,
-    });
-  }, [menuBarRef.current]);
-
   return (
-    <MenuBarWrapperUI>
-      <MenuBarUI
-        ref={menuBarRef}
-        onTouchMove={() => {
-          setOpen(false);
-        }}
-        onMouseDown={() => {
-          setOpen(false);
-        }}
-      >
-        <FlexWrapperUI>
-          <Profile />
-          <MenuBtnListUI>
-            {menuButtonDtList?.map((menuButtonDt) => {
-              return (
-                <MenuBtnUI
-                  onClick={() => {
-                    navigate(menuButtonDt.path);
-                  }}
-                  background={menuButtonDt.background}
-                >
-                  <img src={menuButtonDt.iconSrc} height="40%" />
-                  <MenuBtnTextUI>{menuButtonDt.name}</MenuBtnTextUI>
-                </MenuBtnUI>
-              );
-            })}
-          </MenuBtnListUI>
-        </FlexWrapperUI>
+    <MenuBarWrapperUI open={open} hideBackdrop={true} disableAutoFocus={true}>
+      <MenuBarUI onClick={(e) => e.stopPropagation()}>
+        <Profile />
+        <MenuBtnListUI>
+          {menuButtonDtList?.map((menuButtonDt) => {
+            return (
+              <MenuBtnUI
+                onClick={(e) => {
+                  navigate(menuButtonDt.path);
+                }}
+                background={menuButtonDt.background}
+              >
+                <img src={menuButtonDt.iconSrc} height="40%" />
+                <MenuBtnTextUI>{menuButtonDt.name}</MenuBtnTextUI>
+              </MenuBtnUI>
+            );
+          })}
+        </MenuBtnListUI>
+        <DimmedUI
+          onTouchMove={() => {
+            setOpen(false);
+          }}
+          onMouseDown={() => {
+            setOpen(false);
+          }}
+        />
       </MenuBarUI>
     </MenuBarWrapperUI>
   );
