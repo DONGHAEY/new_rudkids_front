@@ -1,10 +1,9 @@
 import {
-  DimmedUI,
   MenuBarUI,
-  MenuBarWrapperUI,
   MenuBtnListUI,
   MenuBtnTextUI,
   MenuBtnUI,
+  DimmUI,
 } from "./styles";
 import Profile from "./Profile";
 
@@ -14,6 +13,8 @@ import RecruitImgSrc from "./assets/Recruit.png";
 import ShopImgSrc from "./assets/Shop.png";
 import RudeCameraImgSrc from "./assets/RudeCamera.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 const menuButtonDtList = [
   {
@@ -53,18 +54,68 @@ const menuButtonDtList = [
   },
 ];
 
-const MenuBar = ({ open, setOpen }) => {
+const MenuBar = ({ onClosed }) => {
   const navigate = useNavigate();
+
+  const ref = useRef();
+  const dimmRef = useRef();
+
+  useEffect(() => {
+    if (!ref.current || !dimmRef.current) return;
+    const timeline = gsap.timeline();
+    timeline
+      .fromTo(
+        ref.current,
+        {
+          left: `-${ref.current.clientWidth}px`,
+        },
+        {
+          left: 0,
+        }
+      )
+      .fromTo(
+        dimmRef.current,
+        {
+          backgroundColor: "rgba(0,0,0,0)",
+        },
+        {
+          backgroundColor: "rgba(0,0,0,0.5)",
+        },
+        "<"
+      );
+  }, [ref.current, dimmRef.current]);
+
+  const close = (callback) => {
+    const timeline = gsap.timeline();
+    timeline
+      .to(ref.current, {
+        left: `-${ref.current.clientWidth}px`,
+        onComplete: () => {
+          if (typeof callback === "function") {
+            callback();
+          }
+          onClosed();
+        },
+      })
+      .to(
+        dimmRef.current,
+        {
+          backgroundColor: "rgba(0,0,0,0)",
+        },
+        "<"
+      );
+  };
+
   return (
-    <MenuBarWrapperUI open={open} hideBackdrop={true} disableAutoFocus={true}>
-      <MenuBarUI onClick={(e) => e.stopPropagation()}>
+    <>
+      <MenuBarUI ref={ref}>
         <Profile />
         <MenuBtnListUI>
           {menuButtonDtList?.map((menuButtonDt) => {
             return (
               <MenuBtnUI
                 onClick={(e) => {
-                  navigate(menuButtonDt.path);
+                  close(() => navigate(menuButtonDt.path));
                 }}
                 background={menuButtonDt.background}
               >
@@ -74,16 +125,17 @@ const MenuBar = ({ open, setOpen }) => {
             );
           })}
         </MenuBtnListUI>
-        <DimmedUI
-          onTouchMove={() => {
-            setOpen(false);
-          }}
-          onMouseDown={() => {
-            setOpen(false);
-          }}
-        />
       </MenuBarUI>
-    </MenuBarWrapperUI>
+      <DimmUI
+        ref={dimmRef}
+        onMouseDown={(e) => {
+          close();
+        }}
+        onTouchStart={(e) => {
+          close();
+        }}
+      />
+    </>
   );
 };
 

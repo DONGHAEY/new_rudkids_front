@@ -1,15 +1,10 @@
-import { Modal } from "@mui/material";
 import styled from "styled-components";
 
-export const MenuBarWrapperUI = styled(Modal)`
-  position: fixed, relative;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  max-width: 430px;
-  margin: auto;
-  overflow: scroll;
-  z-index: 999;
+export const DimmUI = styled.div`
+  position: absolute;
+  height: 180%;
+  width: 190%;
+  z-index: -1;
 `;
 
 export const MenuBarUI = styled.div`
@@ -20,10 +15,10 @@ export const MenuBarUI = styled.div`
   display: flex;
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
-  pointer-events: all;
   flex-direction: column;
   justify-content: center;
   padding-inline: 22px;
+  position: absolute;
   gap: 40px;
 `;
 
@@ -50,13 +45,4 @@ export const MenuBtnTextUI = styled.p`
   font-size: 16px;
   line-height: 18px;
   white-space: pre-wrap;
-`;
-
-export const DimmedUI = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  top: 0;
-  z-index: -1;
 `;

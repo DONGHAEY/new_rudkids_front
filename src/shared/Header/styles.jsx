@@ -1,4 +1,15 @@
+import { Modal } from "@mui/material";
 import styled from "styled-components";
+
+export const MenuBarModalUI = styled(Modal)`
+  top: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 430px;
+  margin: auto;
+  overflow: scroll;
+  z-index: 999;
+`;
 
 export const LogoWrapperUI = styled.div`
   object-fit: cover;

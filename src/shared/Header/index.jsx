@@ -13,6 +13,7 @@ import rudkidsLogoSrc from "./assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import MenuBar from "./MenuBar";
 import { useState } from "react";
+import { MenuBarModalUI } from "./styles";
 
 const Header = ({ $backgroundColor = "none", isFixed = true }) => {
   const navigate = useNavigate();
@@ -51,7 +52,9 @@ const Header = ({ $backgroundColor = "none", isFixed = true }) => {
           </IconWrapperUI>
         </HeaderUI>
       </HeaderWrapperUI>
-      <MenuBar open={menuBarOpen} setOpen={(d) => setMenuBarOpen(d)} />
+      <MenuBarModalUI open={menuBarOpen} hideBackdrop disableAutoFocus>
+        <MenuBar onClosed={(d) => setMenuBarOpen(false)} />
+      </MenuBarModalUI>
       {isFixed && <SpacerUI />}
     </>
   );

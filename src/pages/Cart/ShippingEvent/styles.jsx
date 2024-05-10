@@ -4,9 +4,10 @@ export const ShippingEventUI = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100%;
+  overflow: scroll;
 `;
 
 export const CenterUI = styled.div`

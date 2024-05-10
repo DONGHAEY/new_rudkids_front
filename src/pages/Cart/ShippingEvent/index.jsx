@@ -24,7 +24,7 @@ const ShippingEvent = () => {
   return (
     <ShippingEventUI onClick={() => closePopup()}>
       <CenterUI>
-        <img src={popupImgSrc} width={"70%"} />
+        <img src={popupImgSrc} width={"85%"} />
         <ButtonUI
           disabled={isUsed}
           onClick={clickHandler}
