@@ -27,29 +27,9 @@ import { FiShare } from "react-icons/fi";
 import ProfileLink from "./ProfileLink";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import RudkidCard from "./RudkidCard";
 
 const ProfilePage = ({}) => {
-  const cardRef = useRef();
-
-  const [isCardFlip, setIsCardFlip] = useState(false);
-
-  useEffect(() => {
-    // if (!cardRef.current) return;
-    if (isCardFlip) {
-      gsap.to(cardRef.current, {
-        transform: `rotateY(${180}deg)`,
-        transformStyle: "preserve-3d",
-        duration: 0.5,
-      });
-    } else {
-      gsap.to(cardRef.current, {
-        transform: `rotateY(${0}deg)`,
-        transformStyle: "preserve-3d",
-        duration: 0.5,
-      });
-    }
-  }, [cardRef.current, isCardFlip]);
-
   return (
     <PageUI>
       <Header isFixed={true} />
@@ -69,19 +49,7 @@ const ProfilePage = ({}) => {
         </ViewWrapperUI>
       </FlexUI>
       <FlexUI>
-        <CardCameraUI
-          onTouchStart={() => {
-            setIsCardFlip(!isCardFlip);
-          }}
-          onMouseDown={() => {
-            setIsCardFlip(!isCardFlip);
-          }}
-        >
-          <CardUI ref={cardRef}>
-            <CardFrontUI src={licenceCardSrc} />
-            <CardBackUI src={licenceCardSrc} />
-          </CardUI>
-        </CardCameraUI>
+        <RudkidCard frontImgSrc={licenceCardSrc} backImgSrc={licenceCardSrc} />
       </FlexUI>
       <FlexUI gap="15px">
         <TextAreaUI

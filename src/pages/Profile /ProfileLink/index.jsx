@@ -38,6 +38,10 @@ const platforms = [
 const ProfileLink = ({ link = "" }) => {
   const platform = platforms.find((platform) => link.includes(platform.domain));
 
+  const onClick = () => {
+    window.open(link);
+  };
+
   const nme = useMemo(() => {
     if (!platform) return "link";
     let link_ = link.replace("https://", "");
@@ -48,7 +52,7 @@ const ProfileLink = ({ link = "" }) => {
   }, [platform]);
 
   return (
-    <LinkBoxUI>
+    <LinkBoxUI onClick={onClick}>
       {platform?.iconSrc ? (
         <img src={platform?.iconSrc} height="14px" />
       ) : (
