@@ -103,8 +103,9 @@ export const ButtonUI = styled.button`
 `;
 
 export const ButtonTxtUI = styled.p`
-  font-family: Poppins-SemiBold;
+  font-family: Pretendard-SemiBold;
   font-size: 15px;
   line-height: 100%;
   letter-spacing: -5%;
+  color: white;
 `;

@@ -1,4 +1,3 @@
-import { AiOutlineMenu } from "react-icons/ai";
 import { IoMdCart } from "react-icons/io";
 import {
   LogoWrapperUI,
@@ -6,9 +5,11 @@ import {
   HeaderUI,
   IconWrapperUI,
   CartCntTextUI,
+  CartTxtUI,
 } from "./styles";
 import { useCartCntQuery } from "../../queries/cart";
 import rudkidsLogoSrc from "./assets/logo.png";
+import pompomiImgSrc from "./assets/pompomi.png";
 import { useNavigate } from "react-router-dom";
 import MenuBar from "./MenuBar";
 import { useState } from "react";
@@ -36,13 +37,13 @@ const Header = ({ $backgroundColor = "none", isFixed = true }) => {
     <>
       <HeaderUI position={isFixed ? "fixed" : "relative"}>
         <IconWrapperUI onClick={listBtnClickHandler}>
-          <AiOutlineMenu />
+          <img height="27px" src={pompomiImgSrc} />
         </IconWrapperUI>
         <LogoWrapperUI onClick={logoClickHandler}>
           <img height="100%" src={rudkidsLogoSrc} />
         </LogoWrapperUI>
         <IconWrapperUI onClick={cartBtnClickHandler}>
-          <IoMdCart />
+          <CartTxtUI>cart</CartTxtUI>
           <CartCntTextUI>{cartCntData}</CartCntTextUI>
         </IconWrapperUI>
       </HeaderUI>

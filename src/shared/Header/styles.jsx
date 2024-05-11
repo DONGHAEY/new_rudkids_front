@@ -50,6 +50,13 @@ export const SpacerUI = styled.div`
   padding-top: 5px;
 `;
 
+export const CartTxtUI = styled.a`
+  font-family: Poppins-Bold;
+  font-size: 19px;
+  letter-spacing: 0px;
+  text-decoration: none;
+`;
+
 export const CartCntTextUI = styled.p`
   position: absolute;
   font-size: 14px;

@@ -12,8 +12,8 @@ import {
   WhiteWrapperUI,
   DescriptionTxtUI,
   ButtonUI,
+  ButtonTxtUI,
 } from "./styles";
-import { ButtonTxtUI } from "../styles";
 import { FiShare } from "react-icons/fi";
 
 const max = 3;
