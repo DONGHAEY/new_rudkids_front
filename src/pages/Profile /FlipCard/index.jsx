@@ -25,26 +25,31 @@ const FlipCard = ({ frontImgSrc, backImgSrc }) => {
     }
   }, [cardRef.current, isCardFlip]);
 
+  const [height, setHeight] = useState(false);
+
   useEffect(() => {
-    const frontHeight = frontRef.current.clientHeight;
-    const backHeight = backRef.current.clientHeight;
     gsap.set(cardRef.current, {
-      height: frontHeight < backHeight ? backHeight : frontHeight,
+      height,
     });
-  }, [frontRef.current, backRef.current, cardRef.current]);
+  }, [cardRef.current, height]);
+
+  const loadHandler = () => {
+    const frontCardHeight = frontRef.current.clientHeight;
+    const backCardHeight = backRef.current.clientHeight;
+    setHeight(
+      frontCardHeight < backCardHeight ? backCardHeight : frontCardHeight
+    );
+  };
 
   return (
     <CardCameraUI
-      onTouchStart={() => {
-        setIsCardFlip(!isCardFlip);
-      }}
       onMouseDown={() => {
         setIsCardFlip(!isCardFlip);
       }}
     >
       <CardUI ref={cardRef}>
-        <CardFrontUI ref={frontRef} src={frontImgSrc} />
-        <CardBackUI ref={backRef} src={backImgSrc} />
+        <CardFrontUI ref={frontRef} src={frontImgSrc} onLoad={loadHandler} />
+        <CardBackUI ref={backRef} src={backImgSrc} onLoad={loadHandler} />
       </CardUI>
     </CardCameraUI>
   );
