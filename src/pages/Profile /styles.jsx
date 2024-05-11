@@ -14,8 +14,6 @@ export const PageUI = styled.div`
 export const FlexUI = styled.div`
   display: flex;
   flex-direction: column;
-
-  /* background-color: gray; */
   gap: ${({ gap }) => gap ?? "0px"};
   width: 90%;
 `;
@@ -63,28 +61,6 @@ export const ViewCntTextUI = styled.p`
   font-size: 15.85px;
 `;
 
-export const TextAreaUI = styled.textarea`
-  border-radius: 15px;
-  border: solid rgba(255, 255, 255, 0.72) 1.4px;
-  height: 42px;
-  padding-block: 20px;
-  padding-inline: 24px;
-  font-family: Pretendard-SemiBold;
-  margin-top: 15px;
-  background-color: rgba(243, 243, 243, 0.25);
-  color: white;
-  ::placeholder {
-    color: white;
-  }
-  ::-ms-input-placeholder {
-    color: white;
-  }
-  ::-webkit-input-placeholder {
-    color: white;
-  }
-  resize: none;
-`;
-
 export const LinkWrapperUI = styled.div`
   background-color: rgba(162, 214, 249, 1);
   display: inline;
@@ -110,6 +86,7 @@ export const ButtonUI = styled.button`
   align-items: center;
   justify-content: center;
   gap: 10px;
+  color: black;
   border: none;
   border-radius: 16px;
 `;

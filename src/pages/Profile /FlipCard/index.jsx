@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { CardBackUI, CardCameraUI, CardFrontUI, CardUI } from "./styles";
 
-const RudkidCard = ({ frontImgSrc, backImgSrc }) => {
+const FlipCard = ({ frontImgSrc, backImgSrc }) => {
   const cardRef = useRef();
   const frontRef = useRef();
   const backRef = useRef();
@@ -50,4 +50,4 @@ const RudkidCard = ({ frontImgSrc, backImgSrc }) => {
   );
 };
 
-export default RudkidCard;
+export default FlipCard;

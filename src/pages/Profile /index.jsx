@@ -4,16 +4,11 @@ import {
   ButtonSection,
   ButtonTxtUI,
   ButtonUI,
-  CardBackUI,
-  CardCameraUI,
-  CardFrontUI,
-  CardUI,
   FlexUI,
   InviteButtonSpacerUI,
   InviteButtonUI,
   LinkWrapperUI,
   PageUI,
-  TextAreaUI,
   ViewCntTextUI,
   ViewIconBoxUI,
   ViewNameTextUI,
@@ -25,11 +20,10 @@ import licenceCardSrc from "./assets/license_card.png";
 import { FaRankingStar } from "react-icons/fa6";
 import { FiShare } from "react-icons/fi";
 import ProfileLink from "./ProfileLink";
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import RudkidCard from "./RudkidCard";
+import FlipCard from "./FlipCard";
+import Message from "./Message";
 
-const ProfilePage = ({}) => {
+const ProfilePage = ({ routeInfo }) => {
   return (
     <PageUI>
       <Header isFixed={true} />
@@ -49,13 +43,10 @@ const ProfilePage = ({}) => {
         </ViewWrapperUI>
       </FlexUI>
       <FlexUI>
-        <RudkidCard frontImgSrc={licenceCardSrc} backImgSrc={licenceCardSrc} />
+        <FlipCard frontImgSrc={licenceCardSrc} backImgSrc={licenceCardSrc} />
       </FlexUI>
       <FlexUI gap="15px">
-        <TextAreaUI
-          type="text"
-          placeholder="당신이 왜 루키즈인지 적어보세요!"
-        />
+        <Message />
         <LinkWrapperUI>
           <ProfileLink link="https://www.youtube.com/@president_yoon" />
           <ProfileLink link="https://www.instagram.com/sukyeol.yoon/" />

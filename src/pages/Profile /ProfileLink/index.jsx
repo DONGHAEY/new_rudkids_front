@@ -6,6 +6,8 @@ import youtubeIconSrc from "./assets/youtube.png";
 import InstagramIconSrc from "./assets/instagram.png";
 import { LinkBoxUI, LinkNmTextUI } from "./styles";
 import { useMemo } from "react";
+import Popup from "../../../shared/Popup";
+import { usePopup } from "../../../hooks/usePopup";
 
 const platforms = [
   {
@@ -36,10 +38,11 @@ const platforms = [
 ];
 
 const ProfileLink = ({ link = "" }) => {
+  // const [navigatePopup] = usePopup();
   const platform = platforms.find((platform) => link.includes(platform.domain));
-
   const onClick = () => {
-    window.open(link);
+    // navigatePopup(`webview=${link}`);
+    window.open(link, "other_platform");
   };
 
   const nme = useMemo(() => {
@@ -59,6 +62,15 @@ const ProfileLink = ({ link = "" }) => {
         <CgLink />
       )}
       <LinkNmTextUI>{nme ?? "link"}</LinkNmTextUI>
+      {/* <Popup popupName={`webview=${link}`}>
+        <iframe
+          sandbox="allow-scripts allow-same-origin"
+          src={link}
+          width={"100%"}
+          height={"100%"}
+          allowfullscreen
+        ></iframe>
+      </Popup> */}
     </LinkBoxUI>
   );
 };
