@@ -14,9 +14,46 @@ export const PageUI = styled.div`
 export const FlexUI = styled.div`
   display: flex;
   flex-direction: column;
+
   /* background-color: gray; */
   gap: ${({ gap }) => gap ?? "0px"};
   width: 90%;
+`;
+
+export const CardCameraUI = styled.div`
+  perspective: 500px;
+  transform-style: preserve-3d;
+  width: 100%;
+  height: 250px;
+`;
+
+export const CardUI = styled.div`
+  width: 100%;
+  height: auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+  pointer-events: none;
+`;
+
+export const CardFrontUI = styled.img`
+  position: absolute;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 60px;
+  border-radius: 5px;
+  backface-visibility: hidden;
+`;
+
+export const CardBackUI = styled.img`
+  position: absolute;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 60px;
+  border-radius: 5px;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
 `;
 
 export const ViewWrapperUI = styled.div`
@@ -65,13 +102,23 @@ export const ViewCntTextUI = styled.p`
 export const TextAreaUI = styled.textarea`
   border-radius: 15px;
   border: solid rgba(255, 255, 255, 0.72) 1.4px;
-  color: white;
   height: 42px;
   padding-block: 20px;
   padding-inline: 24px;
   font-family: Pretendard-SemiBold;
   margin-top: 15px;
   background-color: rgba(243, 243, 243, 0.25);
+  color: white;
+  ::placeholder {
+    color: white;
+  }
+  ::-ms-input-placeholder {
+    color: white;
+  }
+  ::-webkit-input-placeholder {
+    color: white;
+  }
+  resize: none;
 `;
 
 export const LinkWrapperUI = styled.div`
@@ -80,25 +127,6 @@ export const LinkWrapperUI = styled.div`
   padding-inline: 12px;
   padding-block: 16px;
   border-radius: 16px;
-`;
-
-export const LinkBoxUI = styled.div`
-  padding: 17px;
-  padding-block: 7px;
-  background-color: rgba(235, 235, 235, 0.85);
-  border-radius: 53px;
-  gap: 5px;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  margin-inline: 6px;
-  margin-block: 5px;
-`;
-
-export const LinkNmTextUI = styled.p`
-  color: black;
-  font-family: Poppins-SemiBold;
-  font-size: 14px;
 `;
 
 export const ButtonSection = styled.div`
@@ -129,6 +157,10 @@ export const ButtonTxtUI = styled.p`
   color: black;
 `;
 
+export const InviteButtonSpacerUI = styled.div`
+  margin-top: 100px;
+`;
+
 export const InviteButtonUI = styled.button`
   border: none;
   color: white;
@@ -136,7 +168,10 @@ export const InviteButtonUI = styled.button`
   padding-block: 20px;
   font-family: Pretendard-SemiBold;
   font-size: 16px;
+  max-width: 360px;
   width: 90%;
+  position: fixed;
+  bottom: 10px;
   margin-top: 13px;
   border-radius: 13px;
   background: linear-gradient(
