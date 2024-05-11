@@ -8,7 +8,7 @@ import InvitationPage from "./pages/Invitation";
 import SchoolInvitationPage from "./pages/SchoolInvitation";
 import StoryPage from "./pages/Story";
 import CartPage from "./pages/Cart";
-import OrderPage from "./pages/Order";
+import CreateOrder from "./pages/CreateOrder";
 import OrderDetailPage from "./pages/OrderDetail";
 import PaySuccess from "./pages/PaySuccess";
 import AuthHoc from "./shared/HOC/AuthHoc";
@@ -50,10 +50,10 @@ export const routes = {
     paramKeys: [],
     element: AuthHoc(CartPage),
   },
-  ["order"]: {
-    path: "order",
+  ["createOrder"]: {
+    path: "create-order",
     paramKeys: [],
-    element: AuthHoc(OrderPage),
+    element: AuthHoc(CreateOrder),
   },
   ["orderDetail"]: {
     path: "/order/:order_id",
@@ -61,7 +61,7 @@ export const routes = {
     element: AuthHoc(OrderDetailPage),
   },
   ["paySuccess"]: {
-    path: "/paySuccess",
+    path: "/pay-success",
     paramKeys: [],
     element: PaySuccess,
   },
@@ -75,7 +75,7 @@ export const routes = {
     paramKeys: ["school_name"],
     element: SchoolInvitationPage,
   },
-  ["rud-camera"]: {
+  ["rudCamera"]: {
     path: "rud-camera",
     paramKeys: [],
     element: RudCameraPage,

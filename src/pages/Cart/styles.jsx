@@ -21,14 +21,7 @@ export const FlexWrapperUI = styled.div`
   width: 90%;
 `;
 
-export const PageDescriptionTextUI = styled.h2`
-  font-family: Poppins-SemiBold;
-  margin-bottom: 10px;
-  font-size: 20px;
-  text-align: left;
-`;
-
-export const PageDescriptionUI = styled.h2`
+export const SectionDscrptTxtUI = styled.h2`
   font-family: Poppins-SemiBold;
   font-size: 20px;
   margin-bottom: 20px;
@@ -36,7 +29,7 @@ export const PageDescriptionUI = styled.h2`
   text-align: left;
 `;
 
-export const ListWrapperUI = styled.div`
+export const CartProductListUI = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

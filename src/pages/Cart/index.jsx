@@ -2,9 +2,9 @@ import Header from "../../shared/Header";
 import { useCartQuery } from "../../queries/cart";
 import {
   FlexWrapperUI,
-  ListWrapperUI,
+  CartProductListUI,
   PageUI,
-  PageDescriptionUI,
+  SectionDscrptTxtUI,
   PriceWrapperUI,
 } from "./styles";
 import CartProduct from "./CartProduct";
@@ -36,14 +36,14 @@ const CartPage = () => {
     <PageUI>
       <Header />
       <FlexWrapperUI>
-        <PageDescriptionUI>My Cart</PageDescriptionUI>
-        <ListWrapperUI>
+        <SectionDscrptTxtUI>My Cart</SectionDscrptTxtUI>
+        <CartProductListUI>
           {myCartData?.cartProducts?.map((cartProduct) => {
             return (
               <CartProduct key={cartProduct?.id} cartProduct={cartProduct} />
             );
           })}
-        </ListWrapperUI>
+        </CartProductListUI>
         <PriceWrapperUI>
           <Price
             totalProductsPrice={totalProductsPrice}

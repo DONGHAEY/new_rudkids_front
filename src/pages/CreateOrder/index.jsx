@@ -3,9 +3,9 @@ import {
   PageUI,
   ListWrapperUI,
   FlexWrapperUI,
-  PageDescriptionTextUI,
+  SectionDscrptTxtUI,
   ProductLengthTextUI,
-  PageTopSectionUI,
+  SectionDescriptionUI,
   ShippingAddressSectionUI,
   PaySectionUI,
 } from "./styles";
@@ -18,7 +18,7 @@ import { usePaymentWidget } from "../../hooks/usePaymentWidget";
 import OrderBar from "./OrderBar";
 import Price from "../../shared/Price";
 
-function OrderPage() {
+function CreateOrderPage() {
   const createOrderMutation = useCreateOrderMutation();
   const { data: cartData } = useCartQuery();
   const [shipping, setShipping] = useState(null);
@@ -84,7 +84,7 @@ function OrderPage() {
             const obj = {
               orderId: orderData?.id,
               orderName: `루키즈`,
-              successUrl: `${originForToss}/paySuccess`,
+              successUrl: `${originForToss}/pay-success`,
               failUrl: `${originForToss}/generatedOrder`,
             };
             setGeneratedOrder(obj);
@@ -124,12 +124,12 @@ function OrderPage() {
     <PageUI>
       <Header isFixed={true} $backgroundColor="none" />
       <FlexWrapperUI>
-        <PageTopSectionUI>
-          <PageDescriptionTextUI>Order Products</PageDescriptionTextUI>
+        <SectionDescriptionUI>
+          <SectionDscrptTxtUI>Order Products</SectionDscrptTxtUI>
           <ProductLengthTextUI>
             {cartData?.cartProducts?.length}개
           </ProductLengthTextUI>
-        </PageTopSectionUI>
+        </SectionDescriptionUI>
         <ListWrapperUI>
           {cartData?.cartProducts?.map((cartProductData) => (
             <CartProduct
@@ -140,15 +140,15 @@ function OrderPage() {
         </ListWrapperUI>
       </FlexWrapperUI>
       <ShippingAddressSectionUI>
-        <PageTopSectionUI>
-          <PageDescriptionTextUI>📮 Shipping Address</PageDescriptionTextUI>
-        </PageTopSectionUI>
+        <SectionDescriptionUI>
+          <SectionDscrptTxtUI>📮 Shipping Address</SectionDscrptTxtUI>
+        </SectionDescriptionUI>
         <Shipping value={shipping} setValue={setShipping} />
       </ShippingAddressSectionUI>
       <PaySectionUI>
-        <PageTopSectionUI>
-          <PageDescriptionTextUI>결제수단</PageDescriptionTextUI>
-        </PageTopSectionUI>
+        <SectionDescriptionUI>
+          <SectionDscrptTxtUI>결제수단</SectionDscrptTxtUI>
+        </SectionDescriptionUI>
         <div
           style={{
             width: "100%",
@@ -179,4 +179,4 @@ function OrderPage() {
   );
 }
 
-export default OrderPage;
+export default CreateOrderPage;

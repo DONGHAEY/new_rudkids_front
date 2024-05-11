@@ -39,7 +39,7 @@ export const ProductLengthTextUI = styled.h2`
   text-align: left;
 `;
 
-export const PageTopSectionUI = styled.div`
+export const SectionDescriptionUI = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -47,7 +47,7 @@ export const PageTopSectionUI = styled.div`
   margin-bottom: 15px;
 `;
 
-export const PageDescriptionTextUI = styled.h2`
+export const SectionDscrptTxtUI = styled.h2`
   font-family: Pretendard-SemiBold;
   font-size: 20px;
   text-align: left;

@@ -19,6 +19,15 @@ export const FlexWrapperUI = styled.div`
   padding-bottom: 104px;
 `;
 
+export const SectionDscrptTxtUI = styled.h2`
+  font-family: Poppins-SemiBold;
+  font-size: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 0px;
+  width: 100%;
+  text-align: left;
+`;
+
 export const ContentSectionUI = styled.div`
   padding-block: 29px;
   display: flex;

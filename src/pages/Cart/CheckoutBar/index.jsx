@@ -23,7 +23,7 @@ const CheckoutBar = () => {
   const cartMutating = useIsMutating([queryKey.cart]);
 
   const buyButtonClickHandler = async () => {
-    navigate(`/order`);
+    navigate(`/create-order`);
   };
 
   return (

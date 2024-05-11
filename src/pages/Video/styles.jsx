@@ -5,9 +5,8 @@ export const PageUI = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: white;
 `;
 
 export const TabToPlayWrapperUI = styled.div`

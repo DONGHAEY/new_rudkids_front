@@ -1,4 +1,3 @@
-import { IoMdCart } from "react-icons/io";
 import {
   LogoWrapperUI,
   SpacerUI,
