@@ -22,8 +22,12 @@ import { FiShare } from "react-icons/fi";
 import ProfileLink from "./ProfileLink";
 import FlipCard from "./FlipCard";
 import Message from "./Message";
+import Popup from "../../shared/Popup";
+import Invitation from "./Invitation";
+import { usePopup } from "../../hooks/usePopup";
 
 const ProfilePage = ({ routeInfo }) => {
+  const [navigatePopup, closePopup] = usePopup();
   return (
     <PageUI>
       <Header isFixed={true} />
@@ -65,7 +69,16 @@ const ProfilePage = ({ routeInfo }) => {
         </ButtonSection>
       </FlexUI>
       <InviteButtonSpacerUI />
-      <InviteButtonUI>친구초대하기</InviteButtonUI>
+      <InviteButtonUI onClick={() => navigatePopup("create-invitation")}>
+        친구초대하기
+      </InviteButtonUI>
+      <Popup popupName="create-invitation" showHeader={false}>
+        <Invitation
+          onShared={() => {
+            closePopup();
+          }}
+        />
+      </Popup>
     </PageUI>
   );
 };

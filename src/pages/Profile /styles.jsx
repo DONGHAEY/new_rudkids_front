@@ -61,6 +61,20 @@ export const ViewCntTextUI = styled.p`
   font-size: 15.85px;
 `;
 
+export const TextAreaUI = styled.textarea`
+  border-radius: 15px;
+  border: solid rgba(255, 255, 255, 0.72) 1.4px;
+  height: 42px;
+  padding-block: 20px;
+  padding-inline: 24px;
+  font-family: Pretendard-SemiBold;
+  font-size: 14px;
+  background-color: rgba(243, 243, 243, 0.25);
+  color: white;
+  resize: none;
+  width: 100%;
+`;
+
 export const LinkWrapperUI = styled.div`
   background-color: rgba(162, 214, 249, 1);
   display: inline;
