@@ -5,8 +5,8 @@ import {
   AddButtonUI,
   AddBtnTextUI,
 } from "./styles";
-import { usePopup } from "../../../../hooks/usePopup";
-import Popup from "../../../../shared/Popup";
+import { usePopup } from "../../../hooks/usePopup";
+import Popup from "../../Popup";
 import AddEditShipping from "../AddEditShipping";
 
 const EmptyShipping = ({ onChange }) => {

@@ -1,6 +1,6 @@
-import { usePopup } from "../../../../../hooks/usePopup";
-import { useDeleteShippingMutation } from "../../../../../queries/shipping";
-import Popup from "../../../../../shared/Popup";
+import { usePopup } from "../../../../hooks/usePopup";
+import { useDeleteShippingMutation } from "../../../../queries/shipping";
+import Popup from "../../../Popup";
 import AddEditShipping from "../../AddEditShipping";
 import {
   ActionButtonUI,

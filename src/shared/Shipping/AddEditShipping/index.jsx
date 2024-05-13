@@ -5,15 +5,15 @@ import {
   TextInputUI,
 } from "./styles";
 import BottomButton from "./BottomButton";
-import ColField from "../../../../shared/Field/ColField";
-import RowField from "../../../../shared/Field/RowField";
-import Popup from "../../../../shared/Popup";
+import ColField from "../../Field/ColField";
+import RowField from "../../Field/RowField";
+import Popup from "../../Popup";
 import SearchAddress from "./SearchAddress";
 import {
   useAddShippingMutation,
   useEditShippingMutation,
-} from "../../../../queries/shipping";
-import { usePopup } from "../../../../hooks/usePopup";
+} from "../../../queries/shipping";
+import { usePopup } from "../../../hooks/usePopup";
 
 const AddEditShipping = ({ shippingData = null, setShippingData }) => {
   const [popupNavigate, popupBack] = usePopup();

@@ -6,11 +6,11 @@ import {
   FlexWrapperUI,
   AddBtnTextUI,
 } from "./styles";
-import { useShippingListQuery } from "../../../../queries/shipping";
+import { useShippingListQuery } from "../../../queries/shipping";
 import Shipping from "./Shipping";
-import Popup from "../../../../shared/Popup";
+import Popup from "../../Popup";
 import AddEditShipping from "../AddEditShipping";
-import { usePopup } from "../../../../hooks/usePopup";
+import { usePopup } from "../../../hooks/usePopup";
 
 const SelectShipping = ({ shipping, setShipping }) => {
   const { data: shippingListData } = useShippingListQuery();

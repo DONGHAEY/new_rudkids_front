@@ -10,21 +10,15 @@ export const PageUI = styled.div`
 `;
 
 export const FlexWrapperUI = styled.div`
-  padding-top: 45px;
+  padding-block: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90%;
+  gap: 24px;
 `;
 
 export const ListWrapperUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 14px;
-`;
-
-export const OrderProductListUI = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

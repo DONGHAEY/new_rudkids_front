@@ -27,7 +27,7 @@ const OrderProduct = ({ orderProduct }) => {
           <QuantityTextUI>{orderProduct.quantity}개</QuantityTextUI>
           <GoProductUI
             onClick={() => {
-              navigate(`/detail/${orderProduct.productId}`);
+              navigate(`/product/${orderProduct.name}`);
             }}
           >
             <p>상품 보기</p>

@@ -13,16 +13,19 @@ import {
 } from "./styles";
 import editIconSrc from "./assets/edit_icon.png";
 import EmptyShipping from "./EmptyShipping";
-import { useShippingListQuery } from "../../../queries/shipping";
-import { usePopup } from "../../../hooks/usePopup";
+import { useShippingListQuery } from "../../queries/shipping";
+import { usePopup } from "../../hooks/usePopup";
 import SelectShipping from "./SelectShipping";
-import Popup from "../../../shared/Popup";
+import Popup from "../Popup";
 
-const Shipping = ({ value, setValue }) => {
+const Shipping = ({ value, setValue, canEdit = true }) => {
   const { data: shippingListData } = useShippingListQuery();
   const [popupNavigate, popupBack] = usePopup();
 
   useEffect(() => {
+    if (value) {
+      return;
+    }
     if (!shippingListData?.length) return;
     const defaultShippingData = shippingListData?.find(
       (shippingData) => shippingData.isDefault === true
@@ -30,7 +33,7 @@ const Shipping = ({ value, setValue }) => {
     if (defaultShippingData) {
       setValue(defaultShippingData);
     }
-  }, [shippingListData]);
+  }, [shippingListData, value]);
 
   const requesetMemoContents = [
     "문앞에 놓아주세요",
@@ -62,39 +65,45 @@ const Shipping = ({ value, setValue }) => {
           <AddressTextUI>{value.address}</AddressTextUI>
           <AddressTextUI>{value.detailAddress}</AddressTextUI>
         </ColWrapperUI>
-        <SelectUI
-          value={value?.requestMemo ?? ""}
-          onChange={(e) => {
-            setValue({
-              ...value,
-              requestMemo: e.target.value,
-            });
-          }}
-        >
-          <option key={-1} value={""}>
-            배송메모를 선택해주세요
-          </option>
-          {requesetMemoContents?.map((requestMemo, idx) => (
-            <option key={idx} value={requestMemo}>
-              {requestMemo}
+        {canEdit && (
+          <SelectUI
+            value={value?.requestMemo ?? ""}
+            onChange={(e) => {
+              setValue({
+                ...value,
+                requestMemo: e.target.value,
+              });
+            }}
+          >
+            <option key={-1} value={""}>
+              배송메모를 선택해주세요
             </option>
-          ))}
-        </SelectUI>
-        <EditIconImgUI
-          src={editIconSrc}
-          alt="edit"
-          onClick={editBtnClickHandler}
-        />
+            {requesetMemoContents?.map((requestMemo, idx) => (
+              <option key={idx} value={requestMemo}>
+                {requestMemo}
+              </option>
+            ))}
+          </SelectUI>
+        )}
+        {canEdit && (
+          <EditIconImgUI
+            src={editIconSrc}
+            alt="edit"
+            onClick={editBtnClickHandler}
+          />
+        )}
       </ShippingUI>
-      <Popup popupName="shipping-list" popupTitle="배송지 목록">
-        <SelectShipping
-          shipping={value}
-          setShipping={(shipipngData) => {
-            setValue({ ...shipipngData, requestMemo: "" });
-            popupBack();
-          }}
-        />
-      </Popup>
+      {canEdit && (
+        <Popup popupName="shipping-list" popupTitle="배송지 목록">
+          <SelectShipping
+            shipping={value}
+            setShipping={(shipipngData) => {
+              setValue({ ...shipipngData, requestMemo: "" });
+              popupBack();
+            }}
+          />
+        </Popup>
+      )}
     </ShippingWrapperUI>
   );
 };

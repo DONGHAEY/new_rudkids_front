@@ -13,7 +13,7 @@ import { useCreateOrderMutation } from "../../queries/order";
 import CartProduct from "./CartProduct";
 import { useCartQuery } from "../../queries/cart";
 import Header from "../../shared/Header";
-import Shipping from "./Shipping";
+import Shipping from "../../shared/Shipping";
 import { usePaymentWidget } from "../../hooks/usePaymentWidget";
 import OrderBar from "./OrderBar";
 import Price from "../../shared/Price";

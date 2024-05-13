@@ -4,8 +4,8 @@ import {
   SearchAddressWrapperUI,
   SearchSectionUI,
 } from "./styles";
-import ColField from "../../../../../shared/Field/ColField";
-import { useSearchAddressQuery } from "../../../../../queries/shipping";
+import ColField from "../../../Field/ColField";
+import { useSearchAddressQuery } from "../../../../queries/shipping";
 import { TextInputUI } from "../styles";
 import Address from "./Address";
 import { useState } from "react";
