@@ -25,14 +25,15 @@ const OrderProductList = ({ orderProducts }) => {
         );
       })}
       <SpreadBtnWrapperUI>
-        <SpreadButtonUI onClick={() => setIsSperead(!isSpread)}>
-          {!isSpread && (
-            <ButtonTxtUI fontSize="14px">
-              총 {orderProducts?.length}건
-            </ButtonTxtUI>
-          )}
+        <SpreadButtonUI
+          $isSpread={isSpread}
+          onClick={() => setIsSperead(!isSpread)}
+        >
+          <ButtonTxtUI fontSize="14px">
+            총 {orderProducts?.length}건
+          </ButtonTxtUI>
           <ButtonTxt2UI fontSize="13px">
-            {isSpread ? "접기" : "주문 펼쳐보기"}
+            {isSpread ? "주문 접기" : "주문 펼쳐보기"}
           </ButtonTxt2UI>
           {isSpread ? <FaChevronUp /> : <FaChevronDown />}
         </SpreadButtonUI>

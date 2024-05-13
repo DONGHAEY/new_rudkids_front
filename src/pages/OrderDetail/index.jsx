@@ -8,13 +8,14 @@ import {
 import OrderProductList from "./OrderProductList";
 import OrderPrice from "./OrderPrice";
 import Shipping from "../../shared/Shipping";
+import PaymentStatus from "./PaymentStatus";
 
 const OrderDetailPage = ({ routeInfo }) => {
   const params = useParams();
   const orderId = params[routeInfo.paramKeys[0]];
 
-  const { data: orderDetail } = useOrderQuery(orderId);
-  const productsCnt = orderDetail?.orderProducts?.length;
+  const { data: orderData } = useOrderQuery(orderId);
+  const productsCnt = orderData?.orderProducts?.length;
 
   const editOrderShippingMutation = useEditOrderShippingMutation(orderId);
 
@@ -22,17 +23,18 @@ const OrderDetailPage = ({ routeInfo }) => {
     <PageUI>
       <Header isFixed />
       <FlexWrapperUI>
+        <PaymentStatus status={orderData?.payment?.status} />
         <SectionDscrptTxtUI>결제상품 {productsCnt}개</SectionDscrptTxtUI>
-        <OrderProductList orderProducts={orderDetail?.orderProducts} />
+        <OrderProductList orderProducts={orderData?.orderProducts} />
         <OrderPrice
-          orderProductsPrice={orderDetail?.price.orderProducts}
-          shippingPrice={orderDetail?.price.shipping}
-          orderPrice={orderDetail?.totalPrice}
+          orderProductsPrice={orderData?.price.orderProducts}
+          shippingPrice={orderData?.price.shipping}
+          orderPrice={orderData?.totalPrice}
         />
-        {orderDetail?.shipping && (
+        {orderData?.shipping && (
           <Shipping
-            canEdit={orderDetail.shipping.trackingNumber ? false : true}
-            value={orderDetail.shipping}
+            canEdit={orderData.shipping.trackingNumber ? false : true}
+            value={orderData.shipping}
             setValue={(shipping) => {
               editOrderShippingMutation.mutateAsync(shipping);
             }}

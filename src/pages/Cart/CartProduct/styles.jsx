@@ -50,7 +50,6 @@ export const QuantityButtonUI = styled.div`
   border-radius: 100%;
   cursor: pointer;
   position: relative;
-  z-index: 10;
 `;
 
 export const CartProductNameUI = styled.p`

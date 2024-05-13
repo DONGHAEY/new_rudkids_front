@@ -21,8 +21,9 @@ export const SpreadButtonUI = styled.button`
   gap: 9px;
   padding-inline: 51px;
   padding-block: 14px;
-  background: white;
-  color: black;
+  background-color: ${({ $isSpread }) => ($isSpread ? "white" : "black")};
+  color: ${({ $isSpread }) => ($isSpread ? "black" : "white")};
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.2);
   border: none;
   border-radius: 55px;
 `;
