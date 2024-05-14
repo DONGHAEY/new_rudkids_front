@@ -11,11 +11,16 @@ const PagesRenderer = ({ componentSrcList, page, moveDuration = 2 }) => {
 
   useEffect(() => {
     if (!pagesScrollerRef.current) return;
-
     const currentScrollTop = gsap.getProperty(
       pagesScrollerRef.current,
       "scrollTop"
     );
+
+    let targetSceneScrollTop = 0;
+    pageRefList.forEach((pageRef, idx) => {
+      if (idx >= page) return;
+      targetSceneScrollTop += pageRef.current?.scrollHeight;
+    });
 
     gsap.fromTo(
       pagesScrollerRef.current,
@@ -23,9 +28,7 @@ const PagesRenderer = ({ componentSrcList, page, moveDuration = 2 }) => {
         scrollTop: currentScrollTop,
       },
       {
-        scrollTop:
-          (pagesScrollerRef.current.scrollHeight / componentSrcList.length) *
-          page,
+        scrollTop: targetSceneScrollTop,
         duration: moveDuration,
         ease: "power3.inOut",
       }

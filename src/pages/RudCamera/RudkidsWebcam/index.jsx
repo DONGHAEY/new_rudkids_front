@@ -25,7 +25,7 @@ const RudkidsWebcam = ({ canvasRef, canvasSize }) => {
       // canvasCtx.scale(-1, 1);
       drawCameraScene(canvasCtx, image, canvasWidth, canvasHeight);
       await hands.send({ image });
-      await face.send({ image });
+      // await face.send({ image });
       canvasCtx.restore();
     }
   };
@@ -36,11 +36,11 @@ const RudkidsWebcam = ({ canvasRef, canvasSize }) => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
       },
     });
-    const face = new FaceMesh({
-      locateFile: (file) => {
-        return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
-      },
-    });
+    // const face = new FaceMesh({
+    //   locateFile: (file) => {
+    //     return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
+    //   },
+    // });
 
     hands.setOptions({
       maxNumHands: 2,
@@ -48,19 +48,19 @@ const RudkidsWebcam = ({ canvasRef, canvasSize }) => {
       minDetectionConfidence: 0.5,
       minTrackingConfidence: 0.5,
     });
-    face.setOptions({
-      maxNumFaces: 2,
-      selfieMode: false,
-    });
+    // face.setOptions({
+    //   maxNumFaces: 2,
+    //   selfieMode: false,
+    // });
 
     if (webcamRef.current) {
       const camera = new Camera(webcamRef.current.video ?? null, {
-        onFrame: () => onFrameHandler({ hands, face }),
+        onFrame: () => onFrameHandler({ hands, face: null }),
         width: canvasSize.width,
         height: canvasSize.height,
       });
       hands.onResults((results) => onHandResults(canvasRef, results));
-      face.onResults((results) => onFaceResults(canvasRef, results));
+      // face.onResults((results) => onFaceResults(canvasRef, results));
       camera.start();
     }
   }, [webcamRef.current]);

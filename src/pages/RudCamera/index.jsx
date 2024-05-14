@@ -18,6 +18,7 @@ import { useScreenshot } from "use-react-screenshot";
 import cameraIconImgSrc from "./assets/camera.webp";
 import gsap from "gsap";
 import RudkidsWebcam from "./RudkidsWebcam";
+// import { ShareToInstagramStories } from "@koodos/share-to-insta-stories";
 
 const RudCameraPage = () => {
   const canvasRef = useRef(null);
@@ -37,10 +38,11 @@ const RudCameraPage = () => {
     const filename = "rudkids_standard.png";
     const metadata = { type: `image/png` };
     const imageFile = new File([blob], filename, metadata);
+    alert(imageFile);
     const data = {
       files: [imageFile],
     };
-    if (!window.navigator.canShare(data)) {
+    if (!document.window.navigator.canShare()) {
       alert("해당 기기에서는 지원하지 않습니다");
       return;
     }
@@ -111,7 +113,22 @@ const RudCameraPage = () => {
           <ScreenshotPreviewWraperUI ref={resultScreenshotRef}>
             <ScreenshotPreviewImgUI src={previewImgSrc} />
             <ShareTabUI>
-              <div onClick={share} children="공유" />
+              <a
+                // href={`instagram-stories://share?source_application=923709539760180&backgroundUrl=${encodeURIComponent(
+                //   "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/Items/my_pet_fly/5.png?t=2024-05-07T10%3A43%3A36.838Z"
+                // )}`}
+                // onClick={async (e) => {
+                //   const data = await ShareToInstagramStories.shareToInstagram({
+                //     appId: "923709539760180",
+                //     base64Image: encodeURIComponent(
+                //       "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/Items/my_pet_fly/5.png?t=2024-05-07T10%3A43%3A36.838Z"
+                //     ),
+                //   });
+                //   alert(data);
+                // }}
+                onClick={share}
+                children="공유"
+              />
               <div onClick={closeScreenshotPreview} children="닫기" />
             </ShareTabUI>
           </ScreenshotPreviewWraperUI>

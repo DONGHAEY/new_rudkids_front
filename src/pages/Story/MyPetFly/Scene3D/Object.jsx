@@ -8,9 +8,9 @@ let timelineOption = {
   offset: 0,
 };
 
-const Scene = ({ offset, moveDuration = 2 }) => {
+const Object = ({ offset, moveDuration = 2 }) => {
   const gltf = useGLTF(
-    "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/Items/nothing/package.glb?t=2024-05-07T04%3A56%3A32.798Z"
+    "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/Items/my_pet_fly/2.glb?t=2024-05-07T05%3A00%3A25.793Z"
   );
   const itemModelRef = createRef();
 
@@ -23,16 +23,37 @@ const Scene = ({ offset, moveDuration = 2 }) => {
     if (!itemModelRef.current) return;
     if (timeline.duration() !== 0) return;
     timeline
-      .to(itemModelRef.current.rotation, {
-        x: Math.PI * 3,
-        y: Math.PI / 2,
-        duration: 2,
+      .from(itemModelRef.current.rotation, {
+        z: -(Math.PI / 24),
       })
+      .from(
+        itemModelRef.current.position,
+        {
+          x: -0.15,
+        },
+        "<"
+      )
       .to(itemModelRef.current.rotation, {
-        x: Math.PI * 6,
-        y: Math.PI / 4,
-        duration: 3,
-      });
+        z: -(Math.PI / 52),
+        duration: 1,
+      })
+      .to(
+        itemModelRef.current.position,
+        {
+          x: -0.8,
+          y: -1.5,
+        },
+        "<"
+      )
+      .to(
+        itemModelRef.current.scale,
+        {
+          x: 0.5,
+          y: 0.5,
+          z: 0.5,
+        },
+        "<"
+      );
   }, [itemModelRef.current]);
 
   useEffect(() => {
@@ -61,4 +82,4 @@ const Scene = ({ offset, moveDuration = 2 }) => {
   );
 };
 
-export default Scene;
+export default Object;

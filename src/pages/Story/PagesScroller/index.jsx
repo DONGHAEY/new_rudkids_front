@@ -12,6 +12,9 @@ const PagesScroller = ({
   maxPage,
   children,
 }) => {
+  //
+  const pagesScrollerRef = useRef();
+
   const wheelHandler = (e) => {
     e.preventDefault();
     if (!scrolling) {
@@ -69,22 +72,42 @@ const PagesScroller = ({
   };
 
   useEffect(() => {
+    if (!pagesScrollerRef.current) return;
     const options = {
       passive: false,
     };
-    window.addEventListener("touchstart", touchStartHandler, options);
-    window.addEventListener("touchmove", touchMoveHandler, options);
-    window.addEventListener("touchend", touchEndHandler, options);
-    window.addEventListener("wheel", wheelHandler, options);
+    pagesScrollerRef.current.addEventListener(
+      "touchstart",
+      touchStartHandler,
+      options
+    );
+    pagesScrollerRef.current.addEventListener(
+      "touchmove",
+      touchMoveHandler,
+      options
+    );
+    pagesScrollerRef.current.addEventListener(
+      "touchend",
+      touchEndHandler,
+      options
+    );
+    pagesScrollerRef.current.addEventListener("wheel", wheelHandler, options);
     return () => {
-      window.removeEventListener("touchstart", touchStartHandler);
-      window.removeEventListener("touchmove", touchMoveHandler);
-      window.removeEventListener("touchend", touchEndHandler);
-      window.removeEventListener("wheel", wheelHandler);
+      if (!pagesScrollerRef.current) return;
+      pagesScrollerRef.current.removeEventListener(
+        "touchstart",
+        touchStartHandler
+      );
+      pagesScrollerRef.current.removeEventListener(
+        "touchmove",
+        touchMoveHandler
+      );
+      pagesScrollerRef.current.removeEventListener("touchend", touchEndHandler);
+      pagesScrollerRef.current.removeEventListener("wheel", wheelHandler);
     };
-  }, [page]);
+  }, [pagesScrollerRef.current, page]);
 
-  return <PagesScrollerUI>{children}</PagesScrollerUI>;
+  return <PagesScrollerUI ref={pagesScrollerRef}>{children}</PagesScrollerUI>;
 };
 
 export default PagesScroller;

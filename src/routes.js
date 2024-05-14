@@ -43,7 +43,7 @@ export const routes = {
   ["story"]: {
     path: "product/:product_name/story",
     paramKeys: ["product_name"],
-    element: AuthHoc(StoryPage),
+    element: StoryPage,
   },
   ["cart"]: {
     path: "cart",

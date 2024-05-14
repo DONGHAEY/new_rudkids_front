@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import GlobalStyle from "../src/styles";
 function App() {
   const [queryClient] = useRudkidsQueryClient();
-  const [originChecked, setOriginChecked] = useState(false);
+  const [originChecked, setOriginChecked] = useState(true);
   useEffect(() => {
+    if (originChecked) return;
     if (window.location.origin !== process.env.REACT_APP_FE_URL) {
       window.location.href =
         process.env.REACT_APP_FE_URL +
