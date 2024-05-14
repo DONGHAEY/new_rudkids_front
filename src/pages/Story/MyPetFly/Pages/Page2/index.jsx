@@ -1,11 +1,9 @@
-import background1Src from "../assets/background1.png";
 import bottomSrc from "../assets/bottom.png";
 import urlSrc from "../assets/url.png";
-import grassSrc from "../assets/grass.png";
-import girlSrc from "./assets/girl.png";
 import img1Src from "./assets/1.png";
 import img2Src from "./assets/2.png";
 import img3Src from "./assets/3.png";
+import img4Src from "./assets/4.png";
 
 const Page1 = ({ isRender }) => {
   return (
@@ -14,15 +12,26 @@ const Page1 = ({ isRender }) => {
         width: "100%",
         height: "100%",
         display: "flex",
+        flexDirection: "column",
       }}
     >
-      <img
+      <div
         style={{
+          position: "absolute",
           width: "100%",
           height: "100%",
-          zIndex: -2,
+          zIndex: -4,
+          backgroundColor: "#FFF2FF",
         }}
-        src={background1Src}
+      />
+      <img
+        src={img2Src}
+        style={{
+          width: "80%",
+          marginInline: "auto",
+          marginTop: "20%",
+          zIndex: 2,
+        }}
       />
       <div
         style={{
@@ -30,62 +39,39 @@ const Page1 = ({ isRender }) => {
           textAlign: "center",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
+          justifyContent: "space-between",
           height: "100%",
           width: "100%",
         }}
       >
         <img
           src={urlSrc}
-          width="100%"
           style={{
             zIndex: -1,
-          }}
-        />
-        <img
-          src={img1Src}
-          style={{
-            width: "80%",
-            marginTop: "5%",
-            zIndex: -1,
+            width: "100%",
           }}
         />
         <div
           style={{
-            position: "relative",
             display: "flex",
-            justifyContent: "center",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            position: "relative",
           }}
         >
           <img
-            src={img2Src}
             style={{
-              width: "60%",
-              zIndex: -1,
-            }}
-          />
-          <div
-            style={{
-              width: "50%",
+              left: 0,
               position: "absolute",
+              height: "100%",
               zIndex: -1,
-              height: "18%",
-              backgroundColor: "gray",
-              overflow: "hidden",
-              bottom: "7%",
             }}
-          >
-            <img
-              src={img3Src}
-              style={{
-                height: "100%",
-              }}
-            />
-          </div>
+            src={img1Src}
+          />
         </div>
         <div
           style={{
-            position: "absolute",
             display: "flex",
             flexDirection: "column",
             bottom: 0,
@@ -94,37 +80,37 @@ const Page1 = ({ isRender }) => {
         >
           <div
             style={{
-              width: "100%",
-              height: "80px",
-              display: "flex",
-              flexDirection: "column",
               position: "relative",
-              marginBottom: "-10px",
+              backgroundColor: "#FFC6F6",
+              marginBottom: "-7px",
+              height: "63px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <img
-              src={girlSrc}
               style={{
-                width: "80%",
                 position: "absolute",
-                bottom: "4px",
-                right: 0,
+                width: "70%",
+                zIndex: 1,
+                bottom: "55px",
+              }}
+              src={img3Src}
+            ></img>
+            <img
+              src={img4Src}
+              style={{
+                position: "absolute",
+                height: "100%",
+                top: "-10px",
                 zIndex: 1,
               }}
-            />
-            <img
-              style={{
-                position: "absolute",
-                bottom: 0,
-                width: "100%",
-                zIndex: -1,
-              }}
-              src={grassSrc}
             />
           </div>
           <img
             style={{
-              zIndex: -1,
+              zIndex: -2,
             }}
             src={bottomSrc}
           />

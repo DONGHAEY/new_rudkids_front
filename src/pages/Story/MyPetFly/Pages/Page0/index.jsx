@@ -31,25 +31,21 @@ const Page0 = ({ isRender }) => {
         width: "100%",
         height: "100%",
         display: "flex",
-        flexDirection: "column",
-        position: "relative",
       }}
     >
       <img
         style={{
           width: "100%",
           height: "100%",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          zIndex: -1,
+          zIndex: -2,
         }}
         src={background1Src}
       />
       <div
         style={{
           position: "absolute",
-          zIndex: -1,
           width: "100%",
+          zIndex: -1,
           bottom: 0,
           display: "flex",
           flexDirection: "column",
@@ -58,7 +54,6 @@ const Page0 = ({ isRender }) => {
         <img
           src={grassSrc}
           style={{
-            zIndex: -2,
             marginBottom: "-6px",
             width: "100%",
           }}
@@ -98,7 +93,7 @@ const Page0 = ({ isRender }) => {
           src={urlSrc}
           width="100%"
           style={{
-            zIndex: 1,
+            zIndex: -1,
           }}
         ></img>
         <img

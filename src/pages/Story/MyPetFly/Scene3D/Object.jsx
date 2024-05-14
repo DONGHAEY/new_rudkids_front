@@ -53,7 +53,24 @@ const Object = ({ offset, moveDuration = 2 }) => {
           z: 0.5,
         },
         "<"
-      );
+      )
+      .to(itemModelRef.current.position, {
+        x: 0,
+        y: 0,
+        z: 0,
+      })
+      .to(
+        itemModelRef.current.rotation,
+        {
+          z: Math.PI / 32,
+        },
+        "<"
+      )
+      .to(itemModelRef.current.scale, {
+        x: 0.8,
+        y: 0.8,
+        z: 0.8,
+      });
   }, [itemModelRef.current]);
 
   useEffect(() => {
