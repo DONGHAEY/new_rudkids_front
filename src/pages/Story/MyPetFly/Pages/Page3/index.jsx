@@ -30,6 +30,8 @@ const Page3 = () => {
           width: "100%",
           height: "100%",
           position: "relative",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <img
@@ -41,27 +43,15 @@ const Page3 = () => {
             zIndex: -2,
           }}
         />
-        {/*  */}
-        <div
+
+        <img
+          src={comareSrc}
           style={{
-            display: "flex",
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-            // overflow: "hidden",
+            position: "absolute",
+            height: "90%",
+            zIndex: -2,
           }}
-        >
-          <img
-            src={comareSrc}
-            style={{
-              //   position: "absolute",
-              width: "80%",
-              zIndex: -2,
-            }}
-          />
-        </div>
+        />
       </div>
       <img
         style={{

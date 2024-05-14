@@ -1,12 +1,12 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import React, { useEffect, createRef } from "react";
+import React, { useEffect, createRef, useMemo } from "react";
 import gsap from "gsap";
 
-let timeline = gsap.timeline();
 let timelineOption = {
   offset: 0,
 };
+const timeline = gsap.timeline();
 
 const Object = ({ offset, moveDuration = 2 }) => {
   const gltf = useGLTF(
@@ -14,30 +14,21 @@ const Object = ({ offset, moveDuration = 2 }) => {
   );
   const itemModelRef = createRef();
 
-  useFrame(() => {
-    // scroll.offset// 페이지 전체중 0~1까지의 range로 표현됨.
-    timeline.seek(timelineOption.offset * timeline.duration());
-  });
-
   useEffect(() => {
     if (!itemModelRef.current) return;
-    if (timeline.duration() !== 0) return;
+    if (timeline && timeline?.duration() !== 0) return;
+
     timeline
-      .from(itemModelRef.current.rotation, {
-        z: -(Math.PI / 24),
-        duration: 1,
-      })
-      .from(
-        itemModelRef.current.position,
+      .fromTo(
+        itemModelRef.current.rotation,
         {
-          x: -0.15,
+          z: -(Math.PI / 24),
+          duration: 0,
         },
-        "<"
+        {
+          z: -(Math.PI / 52),
+        }
       )
-      .to(itemModelRef.current.rotation, {
-        z: -(Math.PI / 52),
-        duration: 1,
-      })
       .to(
         itemModelRef.current.position,
         {
@@ -52,6 +43,7 @@ const Object = ({ offset, moveDuration = 2 }) => {
           x: 0.5,
           y: 0.5,
           z: 0.5,
+          duration: 1,
         },
         "<"
       )
@@ -59,7 +51,6 @@ const Object = ({ offset, moveDuration = 2 }) => {
         x: 0,
         y: 0,
         z: 0,
-        duration: 1,
       })
       .to(
         itemModelRef.current.rotation,
@@ -74,24 +65,49 @@ const Object = ({ offset, moveDuration = 2 }) => {
           x: 0.8,
           y: 0.8,
           z: 0.8,
+          duration: 1,
         },
         "<"
       )
-      .to(itemModelRef.current, {
-        opacity: 0,
+      .to(itemModelRef.current.scale, {
+        x: 0,
+        y: 0,
+        z: 0,
         duration: 1,
       })
+      .to(itemModelRef.current.scale, {
+        x: 0.8,
+        y: 0.8,
+        z: 0.8,
+      })
       .to(
-        itemModelRef.current.scale,
+        itemModelRef.current.rotation,
         {
-          x: 0,
-          y: 0,
-          z: 0,
-          delay: 0.4,
+          z: Math.PI / 18,
+        },
+        "<"
+      )
+      .to(
+        itemModelRef.current.position,
+        {
+          y: -0.7,
+          duration: 1,
         },
         "<"
       );
-  }, [itemModelRef.current]);
+    timeline.seek(0);
+    return () => {
+      if (timeline) {
+        timeline?.remove();
+      }
+    };
+  }, []);
+
+  useFrame(() => {
+    // scroll.offset// 페이지 전체중 0~1까지의 range로 표현됨.
+    console.log(timelineOption.offset * timeline.totalDuration());
+    timeline.seek(timelineOption.offset * timeline.totalDuration());
+  });
 
   useEffect(() => {
     gsap.to(timelineOption, {
@@ -100,11 +116,11 @@ const Object = ({ offset, moveDuration = 2 }) => {
     });
   }, [offset]);
 
-  useEffect(() => {
-    gsap.set(timelineOption, {
-      offset: 0,
-    });
-  }, [itemModelRef.current]);
+  // useEffect(() => {
+  //   gsap.set(timelineOption, {
+  //     offset: 0,
+  //   });
+  // }, []);
 
   return (
     <>
@@ -112,7 +128,7 @@ const Object = ({ offset, moveDuration = 2 }) => {
       <primitive
         ref={itemModelRef}
         object={gltf.scene}
-        scale={0.8}
+        scale={0.7}
         position={[0, 0, 0]}
       />
     </>
