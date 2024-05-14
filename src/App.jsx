@@ -6,10 +6,14 @@ import { useEffect, useState } from "react";
 import GlobalStyle from "../src/styles";
 function App() {
   const [queryClient] = useRudkidsQueryClient();
-  const [originChecked, setOriginChecked] = useState(true);
+  const [originChecked, setOriginChecked] = useState(false);
   useEffect(() => {
     if (originChecked) return;
-    if (window.location.origin !== process.env.REACT_APP_FE_URL) {
+    const allowOrigins = [
+      process.env.REACT_APP_FE_URL,
+      "http://192.168.0.7:3001",
+    ];
+    if (!allowOrigins.includes(window.location.origin)) {
       window.location.href =
         process.env.REACT_APP_FE_URL +
         window.location.pathname +

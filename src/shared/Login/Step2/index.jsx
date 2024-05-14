@@ -10,13 +10,12 @@ import {
   ProgressBarGoalImgUI,
   ProgressBarSectionUI,
   ModalUI,
-  ScrollerUI,
-  CenterUI,
+  BottomBoxWrapperUI,
 } from "./styles";
 import { ProgressBar } from "./ProgressBar";
 import { SharedStatus } from "./SharedStatus";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Alert } from "../../Alert";
 import { VscInfo } from "react-icons/vsc";
@@ -32,7 +31,6 @@ const Step2 = ({ next, isRender }) => {
   const { data: userData } = useUserQuery();
 
   const scrollerRef = useRef(null);
-  const bottomBoxRef = useRef(null);
 
   const [isopen, setIsopen] = useState(false);
 
@@ -87,64 +85,62 @@ const Step2 = ({ next, isRender }) => {
   };
 
   return (
-    <ModalUI open={isRender}>
-      <>
-        <ScrollerUI ref={scrollerRef} onScroll={scrollHandler}>
-          <BottomBoxUI ref={bottomBoxRef}>
-            <ArrowButtonUI
-              onClick={arrowButtonClickHandler}
-              children={
-                isopen ? (
-                  <FaArrowDown color="white" width="60%" />
-                ) : (
-                  <FaArrowUp color="white" width="60%" />
-                )
-              }
+    <ModalUI open={isRender} ref={scrollerRef} onScroll={scrollHandler}>
+      <BottomBoxWrapperUI>
+        <BottomBoxUI>
+          <ArrowButtonUI
+            onClick={arrowButtonClickHandler}
+            children={
+              isopen ? (
+                <FaArrowDown color="white" width="60%" />
+              ) : (
+                <FaArrowUp color="white" width="60%" />
+              )
+            }
+          />
+          <FriendGroupImgWrapperUI>
+            <FriendGroupImgUI alt="friendGroup" src={friendGroupIconSrc} />
+          </FriendGroupImgWrapperUI>
+          <BoxTitleWrapperUI>
+            <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
+            <PopinPUI fontSize={"35px"}>Invited Only</PopinPUI>
+          </BoxTitleWrapperUI>
+          <FriendListUI>
+            {new Array(maxSharedCnt).fill(null).map((_, idx) => {
+              const isShared = idx < friendSharedCnt;
+              return (
+                <SharedStatus
+                  key={idx}
+                  isShared={isShared}
+                  idx={idx}
+                  active={friendSharedCnt === idx}
+                  onClick={shareHandler}
+                />
+              );
+            })}
+          </FriendListUI>
+          <ProgressBarSectionUI>
+            <ProgressBar
+              length={maxSharedCnt}
+              cnt={friendSharedCnt}
+              onGetIn={getInClickHandler}
             />
-            <FriendGroupImgWrapperUI>
-              <FriendGroupImgUI alt="friendGroup" src={friendGroupIconSrc} />
-            </FriendGroupImgWrapperUI>
-            <BoxTitleWrapperUI>
-              <PopinPUI fontSize={"25px"}>Rudkids is</PopinPUI>
-              <PopinPUI fontSize={"35px"}>Invited Only</PopinPUI>
-            </BoxTitleWrapperUI>
-            <FriendListUI>
-              {new Array(maxSharedCnt).fill(null).map((_, idx) => {
-                const isShared = idx < friendSharedCnt;
-                return (
-                  <SharedStatus
-                    key={idx}
-                    isShared={isShared}
-                    idx={idx}
-                    active={friendSharedCnt === idx}
-                    onClick={shareHandler}
-                  />
-                );
-              })}
-            </FriendListUI>
-            <ProgressBarSectionUI>
-              <ProgressBar
-                length={maxSharedCnt}
-                cnt={friendSharedCnt}
-                onGetIn={getInClickHandler}
-              />
-              <ProgressBarGoalImgUI src={goalKeyIconSrc} />
-            </ProgressBarSectionUI>
-            <AskSectionUI onClick={askSectionClickHandler}>
-              <VscInfo width="15px" />
-              Why {maxSharedCnt} Friends?
-            </AskSectionUI>
-          </BottomBoxUI>
-        </ScrollerUI>
-        <Alert
-          open={alertOpen}
-          imageUrl={quietFaceIconSrc}
-          title={"Rudkids is<br />Not for everyone 👑"}
-          content={"Rudkids is a place where only<br />lucky guys can come in."}
-          buttonContent={"Yeeeaaah!"}
-          onChecked={alertCheckedHandler}
-        />
-      </>
+            <ProgressBarGoalImgUI src={goalKeyIconSrc} />
+          </ProgressBarSectionUI>
+          <AskSectionUI onClick={askSectionClickHandler}>
+            <VscInfo width="15px" />
+            Why {maxSharedCnt} Friends?
+          </AskSectionUI>
+        </BottomBoxUI>
+      </BottomBoxWrapperUI>
+      <Alert
+        open={alertOpen}
+        imageUrl={quietFaceIconSrc}
+        title={"Rudkids is<br />Not for everyone 👑"}
+        content={"Rudkids is a place where only<br />lucky guys can come in."}
+        buttonContent={"Yeeeaaah!"}
+        onChecked={alertCheckedHandler}
+      />
     </ModalUI>
   );
 };

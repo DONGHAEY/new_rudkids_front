@@ -25,6 +25,7 @@ const Object = ({ offset, moveDuration = 2 }) => {
     timeline
       .from(itemModelRef.current.rotation, {
         z: -(Math.PI / 24),
+        duration: 1,
       })
       .from(
         itemModelRef.current.position,
@@ -58,6 +59,7 @@ const Object = ({ offset, moveDuration = 2 }) => {
         x: 0,
         y: 0,
         z: 0,
+        duration: 1,
       })
       .to(
         itemModelRef.current.rotation,
@@ -66,11 +68,29 @@ const Object = ({ offset, moveDuration = 2 }) => {
         },
         "<"
       )
-      .to(itemModelRef.current.scale, {
-        x: 0.8,
-        y: 0.8,
-        z: 0.8,
-      });
+      .to(
+        itemModelRef.current.scale,
+        {
+          x: 0.8,
+          y: 0.8,
+          z: 0.8,
+        },
+        "<"
+      )
+      .to(itemModelRef.current, {
+        opacity: 0,
+        duration: 1,
+      })
+      .to(
+        itemModelRef.current.scale,
+        {
+          x: 0,
+          y: 0,
+          z: 0,
+          delay: 0.4,
+        },
+        "<"
+      );
   }, [itemModelRef.current]);
 
   useEffect(() => {
