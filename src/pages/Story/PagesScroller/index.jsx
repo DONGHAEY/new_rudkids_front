@@ -34,6 +34,7 @@ const PagesScroller = ({
   };
 
   const touchStartHandler = (e) => {
+    console.log(e);
     e.preventDefault();
     if (!scrolling) {
       startTouchEvent = e;
@@ -49,6 +50,7 @@ const PagesScroller = ({
 
   const touchEndHandler = (e) => {
     e.preventDefault();
+    // console.log(e.target);
     if (!scrolling) {
       if (!startTouchEvent || !endTouchEvent) return;
       const st = startTouchEvent.touches?.[0]?.screenY;

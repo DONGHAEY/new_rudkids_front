@@ -1,8 +1,9 @@
+import { Html } from "@react-three/drei";
 import { useWindowSize } from "../../../../hooks/useWindowSize";
 import Object from "./Object";
 import { CanvasUI } from "./styles";
 
-const Scene3D = ({ moveDuration = 2, offset }) => {
+const Scene3D = ({ moveDuration = 2, offset, scroller }) => {
   const { width: windowWidth, height: windowHeight } = useWindowSize();
 
   return (
@@ -15,6 +16,7 @@ const Scene3D = ({ moveDuration = 2, offset }) => {
         far: 100,
       }}
     >
+      <Html fullscreen={true}>{scroller}</Html>
       <Object moveDuration={moveDuration} offset={offset} />
     </CanvasUI>
   );

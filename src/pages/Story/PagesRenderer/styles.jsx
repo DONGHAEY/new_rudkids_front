@@ -7,7 +7,7 @@ export const ComponentWrapperUI = styled.div`
 
 export const PagesRendererUI = styled.div`
   position: absolute;
-  overflow: scroll;
+  overflow: hidden;
   width: 100%;
   height: 100%;
 `;

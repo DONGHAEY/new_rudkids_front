@@ -31,6 +31,7 @@ const Page0 = ({ isRender }) => {
         width: "100%",
         height: "100%",
         display: "flex",
+        position: "relative",
       }}
     >
       <img

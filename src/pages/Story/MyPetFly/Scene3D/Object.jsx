@@ -84,21 +84,18 @@ const Object = ({ offset, moveDuration = 2 }) => {
         itemModelRef.current.rotation,
         {
           z: Math.PI / 18,
-        },
-        "<"
-      )
-      .to(
-        itemModelRef.current.position,
-        {
-          y: -0.7,
           duration: 1,
         },
         "<"
-      );
+      )
+      .to(itemModelRef.current.position, {
+        y: -0.3,
+        duration: 1,
+      });
     timeline.seek(0);
     return () => {
       if (timeline) {
-        timeline?.remove();
+        // timeline?.remove();
       }
     };
   }, []);

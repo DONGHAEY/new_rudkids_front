@@ -6,14 +6,45 @@ import girlSrc from "./assets/girl.png";
 import img1Src from "./assets/1.png";
 import img2Src from "./assets/2.png";
 import img3Src from "./assets/3.png";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+
+const timeline = gsap.timeline();
 
 const Page1 = ({ isRender }) => {
+  const scrollerRef = useRef();
+
+  useEffect(() => {
+    if (!isRender) return;
+    if (!scrollerRef.current) return;
+    const maxScrollLeft =
+      scrollerRef.current.scrollWidth - scrollerRef.current.clientHeight;
+    timeline
+      .fromTo(
+        scrollerRef.current,
+        { scrollLeft: 0 },
+        {
+          scrollLeft: maxScrollLeft,
+          duration: 10,
+        }
+      )
+      .to(scrollerRef.current, {
+        scrollLeft: 0,
+        duration: 10,
+        ease: "bounce.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+    timeline.play(0);
+  }, [isRender, scrollerRef.current]);
+
   return (
     <div
       style={{
         width: "100%",
         height: "100%",
         display: "flex",
+        position: "relative",
       }}
     >
       <img
@@ -55,6 +86,7 @@ const Page1 = ({ isRender }) => {
             position: "relative",
             display: "flex",
             justifyContent: "center",
+            overflow: "scroll",
           }}
         >
           <img
@@ -65,14 +97,16 @@ const Page1 = ({ isRender }) => {
             }}
           />
           <div
+            ref={scrollerRef}
             style={{
               width: "50%",
               position: "absolute",
               zIndex: -1,
               height: "18%",
-              backgroundColor: "gray",
-              overflow: "hidden",
+              overflow: "scroll",
               bottom: "7%",
+              display: "flex",
+              flexDirection: "row",
             }}
           >
             <img
