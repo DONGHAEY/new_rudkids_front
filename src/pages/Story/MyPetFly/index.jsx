@@ -9,34 +9,19 @@ export const MyPetFly = () => {
   const [page, setPage] = useState(0);
   const moveDuration = 1.8;
 
-  const scroller = (
+  return (
     <PagesScroller
       page={page}
       maxPage={maxPage}
       setPage={setPage}
       moveDuration={moveDuration}
-    />
-  );
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "100%",
-        position: "relative",
-      }}
     >
-      <Scene3D
-        offset={page / maxPage}
-        moveDuration={moveDuration}
-        scroller={scroller}
-      />
+      <Scene3D offset={page / maxPage} moveDuration={moveDuration} />
       <PagesRenderer
         page={page}
         componentSrcList={componentSrcList}
         moveDuration={moveDuration}
       />
-    </div>
+    </PagesScroller>
   );
 };

@@ -27,6 +27,7 @@ const Object = ({ offset, moveDuration = 2 }) => {
         },
         {
           z: -(Math.PI / 52),
+          duration: 0.5,
         }
       )
       .to(
@@ -34,6 +35,7 @@ const Object = ({ offset, moveDuration = 2 }) => {
         {
           x: -0.8,
           y: -1.5,
+          duration: 1,
         },
         "<"
       )
@@ -47,15 +49,26 @@ const Object = ({ offset, moveDuration = 2 }) => {
         },
         "<"
       )
+      .to(
+        itemModelRef.current.rotation,
+        {
+          x: -Math.PI * 2,
+          duration: 0.7,
+          ease: "power1.in",
+        },
+        "+0.3"
+      )
       .to(itemModelRef.current.position, {
         x: 0,
         y: 0,
         z: 0,
+        duration: 1,
       })
       .to(
         itemModelRef.current.rotation,
         {
           z: Math.PI / 32,
+          duration: 1,
         },
         "<"
       )
@@ -69,21 +82,49 @@ const Object = ({ offset, moveDuration = 2 }) => {
         },
         "<"
       )
+      .to(
+        itemModelRef.current.rotation,
+        {
+          y: Math.PI * 2,
+          ease: "back.inOut",
+          duration: 1,
+        },
+        "<"
+      )
       .to(itemModelRef.current.scale, {
         x: 0,
         y: 0,
         z: 0,
         duration: 1,
       })
+      .to(
+        itemModelRef.current.rotation,
+        {
+          y: Math.PI * 2,
+          x: Math.PI * 1.5,
+          duration: 0.7,
+        },
+        "<"
+      )
       .to(itemModelRef.current.scale, {
         x: 0.8,
         y: 0.8,
         z: 0.8,
+        duration: 1,
       })
       .to(
         itemModelRef.current.rotation,
         {
           z: Math.PI / 18,
+          duration: 1,
+        },
+        "<"
+      )
+      .to(
+        itemModelRef.current.rotation,
+        {
+          y: -(Math.PI * 2),
+          x: -(Math.PI * 2),
           duration: 1,
         },
         "<"

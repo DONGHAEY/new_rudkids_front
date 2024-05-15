@@ -12,6 +12,7 @@ function App() {
     const allowOrigins = [
       process.env.REACT_APP_FE_URL,
       "http://192.168.0.7:3001",
+      "http://172.30.1.30:3001",
     ];
     if (!allowOrigins.includes(window.location.origin)) {
       window.location.href =

@@ -48,7 +48,8 @@ const Page3 = () => {
           src={comareSrc}
           style={{
             position: "absolute",
-            height: "90%",
+            height: "95%",
+            width: "80%",
             zIndex: -2,
           }}
         />
