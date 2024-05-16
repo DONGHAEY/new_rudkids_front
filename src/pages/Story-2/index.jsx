@@ -1,12 +1,10 @@
 import { useParams } from "react-router-dom";
-import { Nothing } from "./Nothing";
 import { MyPetFly } from "./MyPetFly";
 
 const Story2Page = ({ routeInfo }) => {
   const params = useParams();
 
   const componts = {
-    ["Nothing"]: <Nothing />,
     ["My Pet Fly"]: <MyPetFly />,
   };
 
