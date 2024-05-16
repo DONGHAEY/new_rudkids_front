@@ -35,19 +35,11 @@ const Step2 = ({ next, isRender }) => {
   const [isopen, setIsopen] = useState(false);
 
   const shareHandler = async () => {
-    const weburl = `https://www.rud.kids/invitation/${userData.id}`;
-    if (!isMobile) {
-      alert("모바일로 접속해주세요!");
-      if (friendSharedCnt + 1 <= maxSharedCnt) {
-        setFriendSharedCnt(friendSharedCnt + 1);
-      }
-      return;
-    }
     try {
       await window.navigator.share({
         title: "일상속의 작은 재미의 상점 - Rudkids",
         text: "이곳에서 일상속의 재미 프로젝트들을 만나보세요!",
-        url: weburl,
+        url: `https://www.rud.kids/invitation/${userData.id}`,
       });
       if (friendSharedCnt + 1 <= maxSharedCnt) {
         setFriendSharedCnt(friendSharedCnt + 1);

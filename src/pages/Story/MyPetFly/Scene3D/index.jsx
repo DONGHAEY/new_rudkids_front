@@ -1,8 +1,14 @@
+import { useEffect, useState } from "react";
 import { useWindowSize } from "../../../../hooks/useWindowSize";
 import Object from "./Object";
 import { CanvasUI } from "./styles";
+import gsap from "gsap";
 
-const Scene3D = ({ moveDuration = 2, offset }) => {
+const obj = {
+  filteredOffset: 0,
+};
+
+const Scene3D = ({ moveDuration = 2, page, maxPage }) => {
   const { width: windowWidth, height: windowHeight } = useWindowSize();
 
   return (
@@ -15,7 +21,7 @@ const Scene3D = ({ moveDuration = 2, offset }) => {
         far: 100,
       }}
     >
-      <Object moveDuration={moveDuration} offset={offset} />
+      <Object page={page} maxPage={maxPage} moveDuration={moveDuration} />
     </CanvasUI>
   );
 };

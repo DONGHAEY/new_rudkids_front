@@ -3,12 +3,12 @@ import { useFrame } from "@react-three/fiber";
 import React, { useEffect, createRef, useMemo } from "react";
 import gsap from "gsap";
 
+const timeline = gsap.timeline();
 let timelineOption = {
   offset: 0,
 };
-const timeline = gsap.timeline();
 
-const Object = ({ offset, moveDuration = 2 }) => {
+const Object = ({ page, maxPage, moveDuration }) => {
   const gltf = useGLTF(
     "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/Items/my_pet_fly/2.glb?t=2024-05-07T05%3A00%3A25.793Z"
   );
@@ -143,22 +143,16 @@ const Object = ({ offset, moveDuration = 2 }) => {
 
   useFrame(() => {
     // scroll.offset// 페이지 전체중 0~1까지의 range로 표현됨.
-    console.log(timelineOption.offset * timeline.totalDuration());
+    // console.log(offset * timeline.totalDuration());
     timeline.seek(timelineOption.offset * timeline.totalDuration());
   });
 
   useEffect(() => {
     gsap.to(timelineOption, {
-      offset,
+      offset: page / maxPage,
       duration: moveDuration,
     });
-  }, [offset]);
-
-  // useEffect(() => {
-  //   gsap.set(timelineOption, {
-  //     offset: 0,
-  //   });
-  // }, []);
+  }, [page]);
 
   return (
     <>

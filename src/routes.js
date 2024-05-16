@@ -13,6 +13,8 @@ import OrderDetailPage from "./pages/OrderDetail";
 import PaySuccess from "./pages/PaySuccess";
 import AuthHoc from "./shared/HOC/AuthHoc";
 import ProfilePage from "./pages/Profile ";
+import Story2Page from "./pages/Story-2";
+import RudGatePage from "./pages/RudGate";
 
 export const routes = {
   ["main"]: {
@@ -43,7 +45,12 @@ export const routes = {
   ["story"]: {
     path: "product/:product_name/story",
     paramKeys: ["product_name"],
-    element: StoryPage,
+    element: AuthHoc(StoryPage),
+  },
+  ["story-2"]: {
+    path: "product/:product_name/story-2",
+    paramKeys: ["product_name"],
+    element: Story2Page,
   },
   ["cart"]: {
     path: "cart",
@@ -60,6 +67,11 @@ export const routes = {
     paramKeys: ["order_id"],
     element: AuthHoc(OrderDetailPage),
   },
+  ["rudCamera"]: {
+    path: "rud-camera",
+    paramKeys: [],
+    element: AuthHoc(RudCameraPage),
+  },
   ["paySuccess"]: {
     path: "/pay-success",
     paramKeys: [],
@@ -75,10 +87,10 @@ export const routes = {
     paramKeys: ["school_name"],
     element: SchoolInvitationPage,
   },
-  ["rudCamera"]: {
-    path: "rud-camera",
+  ["rudGate"]: {
+    path: "rud-gate",
     paramKeys: [],
-    element: RudCameraPage,
+    element: RudGatePage,
   },
   ["loginCallback"]: {
     path: "callback",

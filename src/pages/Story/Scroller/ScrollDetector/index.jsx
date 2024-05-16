@@ -1,22 +1,13 @@
 import { useEffect, useRef } from "react";
-import { PagesScrollerUI } from "./styles";
 
 let startTouchEvent = undefined;
 let endTouchEvent = undefined;
 let scrolling = undefined;
 
-const PagesScroller = ({
-  moveDuration = 2,
-  setPage,
-  page,
-  maxPage,
-  children,
-}) => {
-  //
-  const pagesScrollerRef = useRef();
+const ScrollDetector = ({ moveDuration = 2, setPage, page, maxPage }) => {
+  const touchDetectorRef = useRef();
 
   const wheelHandler = (e) => {
-    e.preventDefault();
     if (!scrolling) {
       if (e.deltaY > 0) {
         if (page + 1 <= maxPage) {
@@ -34,8 +25,6 @@ const PagesScroller = ({
   };
 
   const touchStartHandler = (e) => {
-    console.log(e);
-    e.preventDefault();
     if (!scrolling) {
       startTouchEvent = e;
     }
@@ -74,42 +63,53 @@ const PagesScroller = ({
   };
 
   useEffect(() => {
-    if (!pagesScrollerRef.current) return;
+    if (!touchDetectorRef.current) return;
     const options = {
       passive: false,
     };
-    pagesScrollerRef.current.addEventListener(
+    touchDetectorRef.current.addEventListener(
       "touchstart",
       touchStartHandler,
       options
     );
-    pagesScrollerRef.current.addEventListener(
+    touchDetectorRef.current.addEventListener(
       "touchmove",
       touchMoveHandler,
       options
     );
-    pagesScrollerRef.current.addEventListener(
+    touchDetectorRef.current.addEventListener(
       "touchend",
       touchEndHandler,
       options
     );
-    pagesScrollerRef.current.addEventListener("wheel", wheelHandler, options);
+    touchDetectorRef.current.addEventListener("wheel", wheelHandler, options);
     return () => {
-      if (!pagesScrollerRef.current) return;
-      pagesScrollerRef.current.removeEventListener(
+      if (!touchDetectorRef.current) return;
+      touchDetectorRef.current.removeEventListener(
         "touchstart",
         touchStartHandler
       );
-      pagesScrollerRef.current.removeEventListener(
+      touchDetectorRef.current.removeEventListener(
         "touchmove",
         touchMoveHandler
       );
-      pagesScrollerRef.current.removeEventListener("touchend", touchEndHandler);
-      pagesScrollerRef.current.removeEventListener("wheel", wheelHandler);
+      touchDetectorRef.current.removeEventListener("touchend", touchEndHandler);
+      touchDetectorRef.current.removeEventListener("wheel", wheelHandler);
     };
-  }, [pagesScrollerRef.current, page]);
+  }, [touchDetectorRef.current, page]);
 
-  return <PagesScrollerUI ref={pagesScrollerRef}>{children}</PagesScrollerUI>;
+  return (
+    <div
+      style={{
+        display: "flex",
+        position: "fixed",
+        width: "100%",
+        height: "100%",
+        zIndex: 9999,
+      }}
+      ref={touchDetectorRef}
+    />
+  );
 };
 
-export default PagesScroller;
+export default ScrollDetector;

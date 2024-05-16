@@ -34,7 +34,7 @@ const SchoolInvitationPage = ({ routeInfo }) => {
   const onEnterBtnClickHandler = () => {
     if (schoolData) {
       localStorage.setItem("school_name", schoolData.name);
-      navigate(`/list`);
+      navigate(`/rud-gate`);
     }
   };
 

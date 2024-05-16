@@ -1,5 +1,8 @@
 import Header from "../../shared/Header";
-import { useCartQuery } from "../../queries/cart";
+import {
+  useCartQuery,
+  useSetShippingPriceToZeroMutation,
+} from "../../queries/cart";
 import {
   FlexWrapperUI,
   CartProductListUI,
@@ -12,7 +15,7 @@ import CheckoutBar from "./CheckoutBar";
 import Price from "../../shared/Price";
 import smileSellerSrc from "./assets/smlile_seller.png";
 import eventCouponImgSrc from "./assets/coupon_1.png";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { usePopup } from "../../hooks/usePopup";
 import Popup from "../../shared/Popup";
 import ShippingEvent from "./ShippingEvent";
@@ -20,6 +23,7 @@ import ShippingEvent from "./ShippingEvent";
 const CartPage = () => {
   const [popupNavigate, poupPop] = usePopup();
   const { data: myCartData } = useCartQuery();
+  const setShippingPriceZeroMutation = useSetShippingPriceToZeroMutation();
 
   const totalProductsPrice = useMemo(() => {
     if (!myCartData) return 0;
@@ -31,6 +35,18 @@ const CartPage = () => {
   }, [myCartData?.cartProducts]);
 
   const totalShippingPrice = myCartData?.shippingPrice;
+
+  useEffect(() => {
+    if (!myCartData) return;
+    (async () => {
+      const shippingFreeJoin = localStorage.getItem("shipping_event_join");
+      if (!shippingFreeJoin) return;
+      await setShippingPriceZeroMutation.mutateAsync();
+      localStorage.setItem("shipping_event_joined", true);
+      alert("친구초대 수락으로, 배송비 0원을 적용했어요!");
+      localStorage.removeItem("shipping_event_join");
+    })();
+  }, [myCartData]);
 
   return (
     <PageUI>

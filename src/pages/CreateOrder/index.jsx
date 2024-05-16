@@ -85,7 +85,7 @@ function CreateOrderPage() {
               orderId: orderData?.id,
               orderName: `루키즈`,
               successUrl: `${originForToss}/pay-success`,
-              failUrl: `${originForToss}/generatedOrder`,
+              failUrl: `${originForToss}/order/${orderData?.id}`,
             };
             setGeneratedOrder(obj);
             paymentWidget.requestPayment(obj);

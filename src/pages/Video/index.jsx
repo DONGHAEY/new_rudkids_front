@@ -22,7 +22,7 @@ const VideoPage = () => {
 
   /** 영상페이지(건너뛰기) */
   const goNextPage = () => {
-    navigate("/");
+    navigate("/rud-gate");
   };
 
   const playVideo = () => {

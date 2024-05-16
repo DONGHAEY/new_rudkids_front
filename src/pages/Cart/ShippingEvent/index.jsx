@@ -1,5 +1,6 @@
 import { usePopup } from "../../../hooks/usePopup";
 import { useSetShippingPriceToZeroMutation } from "../../../queries/cart";
+import { useUserQuery } from "../../../queries/user";
 import popupImgSrc from "./assets/popup_message.png";
 import { ButtonUI, CenterUI, ShippingEventUI } from "./styles";
 
@@ -8,10 +9,16 @@ const ShippingEvent = () => {
 
   const setShippingPriceZeroMutation = useSetShippingPriceToZeroMutation();
   const isUsed = localStorage.getItem("shipping_event_joined");
+  const { data: userData } = useUserQuery();
 
   const clickHandler = async (e) => {
     e.stopPropagation();
     try {
+      await window.navigator.share({
+        title: "일상속의 작은 재미의 상점 - Rudkids",
+        text: "이곳에서 일상속의 재미 프로젝트들을 만나보세요! 지금 가입하면 배송비무료?!",
+        url: `https://www.rud.kids/invitation/${userData.id}?shipping_event_join=1`,
+      });
       await setShippingPriceZeroMutation.mutateAsync();
       alert("쿠폰적용 할인 성공");
       localStorage.setItem("shipping_event_joined", true);

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import {
   BottomSectionUI,
   EnterButtonUI,
@@ -19,6 +19,7 @@ import { useInvitedUsersQuery, useOtherUserQuery } from "../../queries/user";
 import prizeIconSrc from "./assets/prize.png";
 import { IoEnterOutline } from "react-icons/io5";
 import { IoIosAdd } from "react-icons/io";
+import qs from "qs";
 
 const InvitationPage = ({ routeInfo }) => {
   const params = useParams();
@@ -34,7 +35,15 @@ const InvitationPage = ({ routeInfo }) => {
   const onEnterBtnClickHandler = () => {
     if (inviterData) {
       localStorage.setItem("inviter_user_id", inviterData.id);
-      navigate(`/list`);
+      const searchStr = window.location.search?.replace("?", "");
+      const searchObj = qs.parse(searchStr);
+      const allow_params = ["shipping_event_join"];
+      allow_params?.map((allowParam) => {
+        if (searchObj[allowParam]) {
+          localStorage.setItem("shipping_event_join", searchObj[allowParam]);
+        }
+      });
+      navigate(`/rud-gate`);
     }
   };
 
