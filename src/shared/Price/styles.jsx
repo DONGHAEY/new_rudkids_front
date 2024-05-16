@@ -11,7 +11,7 @@ export const PriceUI = styled.div`
 
 export const SpaceBetweenUI = styled.div`
   display: flex;
-  flex-direction: ${({ flexDirection }) => flexDirection ?? "row"};
+  flex-direction: ${({ $flexDirection }) => $flexDirection ?? "row"};
   justify-content: space-between;
   align-items: center;
   gap: ${({ gap }) => gap ?? "0px"};

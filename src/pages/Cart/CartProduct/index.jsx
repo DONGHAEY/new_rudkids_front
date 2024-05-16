@@ -22,7 +22,6 @@ const CartProduct = ({ cartProduct }) => {
   const quantityMutation = useCartProductQuantityMutation(
     cartProduct?.product.id
   );
-
   const deleteMutation = useCartProductDeleteMutation(cartProduct?.product.id);
 
   const quantityPlusClickHandler = async (e) => {

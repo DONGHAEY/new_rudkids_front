@@ -28,7 +28,7 @@ const CartPage = () => {
   const totalProductsPrice = useMemo(() => {
     if (!myCartData) return 0;
     let totalProductsPrice = 0;
-    myCartData.cartProducts?.forEach((cartProduct) => {
+    myCartData.cartProducts?.map((cartProduct) => {
       totalProductsPrice += cartProduct.product.price * cartProduct.quantity;
     });
     return totalProductsPrice;

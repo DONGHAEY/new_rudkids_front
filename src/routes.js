@@ -15,8 +15,14 @@ import AuthHoc from "./shared/HOC/AuthHoc";
 import ProfilePage from "./pages/Profile ";
 import Story2Page from "./pages/Story-2";
 import RudGatePage from "./pages/RudGate";
+import AboutPage from "./pages/About";
 
 export const routes = {
+  ["about"]: {
+    path: "about",
+    paramKeys: [],
+    element: AboutPage,
+  },
   ["main"]: {
     path: "",
     paramKeys: [],
@@ -47,7 +53,7 @@ export const routes = {
     paramKeys: ["product_name"],
     element: AuthHoc(StoryPage),
   },
-  ["story-2"]: {
+  ["story2"]: {
     path: "product/:product_name/story-2",
     paramKeys: ["product_name"],
     element: Story2Page,
@@ -90,7 +96,7 @@ export const routes = {
   ["rudGate"]: {
     path: "rud-gate",
     paramKeys: [],
-    element: RudGatePage,
+    element: AuthHoc(RudGatePage),
   },
   ["loginCallback"]: {
     path: "callback",

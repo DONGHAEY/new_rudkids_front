@@ -4,6 +4,28 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { memo, useMemo, useRef, useState } from "react";
 import qs from "qs";
 
+const Content = ({ children, popupTitle = "", showHeader }) => {
+  const contentRef = useRef(null);
+  const navigate = useNavigate();
+
+  const backIconClickHandler = () => {
+    navigate(-1);
+  };
+
+  return (
+    <Center ref={contentRef}>
+      {showHeader && (
+        <PopupHeaderUI>
+          <IoMdArrowBack onClick={backIconClickHandler} />
+          <TitleUI>{popupTitle}</TitleUI>
+          <div />
+        </PopupHeaderUI>
+      )}
+      {children}
+    </Center>
+  );
+};
+
 const Popup = ({
   children,
   popupName = "",
@@ -26,60 +48,10 @@ const Popup = ({
 
   return (
     <PopupUI open={isOpen} hideBackdrop={true} disableAutoFocus={true}>
-      <Content
-        children={children}
-        popupTitle={popupTitle}
-        showHeader={showHeader}
-      />
+      <Content popupTitle={popupTitle} showHeader={showHeader}>
+        {children}
+      </Content>
     </PopupUI>
-  );
-};
-
-const Content = ({ children, popupTitle = "", showHeader }) => {
-  const contentRef = useRef(null);
-  const navigate = useNavigate();
-
-  const duration = 1;
-
-  const backIconClickHandler = () => {
-    // gsap.fromTo(
-    //   contentRef.current,
-    //   { opacity: 1 },
-    //   {
-    //     opacity: 0,
-    //     duration: duration,
-    //     onComplete: () => {
-    //       navigate(-1);
-    //     },
-    //   }
-    // );
-
-    navigate(-1);
-  };
-
-  // useEffect(() => {
-  //   if (!contentRef.current) return;
-  //   gsap.fromTo(
-  //     contentRef.current,
-  //     { opacity: 0 },
-  //     {
-  //       opacity: 1,
-  //       duration: duration,
-  //     }
-  //   );
-  // }, [contentRef.current]);
-
-  return (
-    <Center ref={contentRef}>
-      {showHeader && (
-        <PopupHeaderUI>
-          <IoMdArrowBack onClick={backIconClickHandler} />
-          <TitleUI>{popupTitle}</TitleUI>
-          <div />
-        </PopupHeaderUI>
-      )}
-      {children}
-    </Center>
   );
 };
 

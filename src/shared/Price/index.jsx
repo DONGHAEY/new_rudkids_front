@@ -12,8 +12,8 @@ const Price = ({ totalProductsPrice, totalShippingPrice }) => {
 
   return (
     <PriceUI>
-      <SpaceBetweenUI flexDirection="column" gap="26px">
-        <SpaceBetweenUI flexDirection="column" gap="10px">
+      <SpaceBetweenUI $flexDirection="column" gap="26px">
+        <SpaceBetweenUI $flexDirection="column" gap="10px">
           <SpaceBetweenUI>
             <ColumnTextUI>총 상품금액</ColumnTextUI>
             <ColumnValueTextUI>

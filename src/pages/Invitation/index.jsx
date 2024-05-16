@@ -39,7 +39,7 @@ const InvitationPage = ({ routeInfo }) => {
       const searchObj = qs.parse(searchStr);
       const allow_params = ["shipping_event_join"];
       allow_params?.map((allowParam) => {
-        if (searchObj[allowParam]) {
+        if (searchObj?.[allowParam]) {
           localStorage.setItem("shipping_event_join", searchObj[allowParam]);
         }
       });
