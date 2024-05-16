@@ -5,24 +5,59 @@ import Scene from "./Scene";
 const AboutPage = () => {
   return (
     <PageUI>
-      <Scene />
       <Header />
-      <PageContentUI>
-        <FlexColUI>
-          <h1>About</h1>
-          <h1>What is Rudkids</h1>
-          <h2>Rudkids Is Club</h2>
-          <h2>For World Makers</h2>
-          <br />
-          <div>
-            <p>This text can be changed</p>
-            <p>This text can be changed</p>
-            <p>This text can be changed</p>
-            <p>This text can be changed</p>
-            <p>This text can be changed</p>
-          </div>
-        </FlexColUI>
-      </PageContentUI>
+      <Scene />
+      <FlexColUI>
+        <p>asdf</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>asdf</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>asdf</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>asdf</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>asdf</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>asdf</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>asdf</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </FlexColUI>
     </PageUI>
   );
 };

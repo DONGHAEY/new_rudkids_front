@@ -1,12 +1,12 @@
-import { useGLTF } from "@react-three/drei";
-import { Suspense } from "react";
+import { Html, useGLTF } from "@react-three/drei";
+import { Suspense, useEffect, useRef } from "react";
 import { Physics } from "@react-three/cannon";
 import { Phompomi } from "./Phompomi";
-import { Mouse } from "./Mouse";
+import { PointerDrag } from "./PointerDrag";
 import { BoundaryPlanes } from "./BoundaryPlanes";
 import { CanvasUI } from "./styles";
 
-const colors = ["#FFE639", "#ED2424", "#2F70B7"];
+const colors = [0xfee639, 0xed2424, 0x2f70b7];
 
 const Scene = () => {
   const gltf = useGLTF("./Models/pompom4.glb");
@@ -42,13 +42,24 @@ const Scene = () => {
           defaultContactMaterial={{ restitution: 0.5 }}
         >
           <group position={[0, 0, -10]}>
-            {colors.map((color) => (
-              <Phompomi gltf={gltf} color={color} count={15} />
-            ))}
-            <BoundaryPlanes />
-            <Mouse />
+            {colors.map((color, idx) => {
+              return (
+                <Phompomi key={color} gltf={gltf} color={color} count={35} />
+              );
+            })}
           </group>
+          <BoundaryPlanes />
+          <PointerDrag />
         </Physics>
+        {/* <Html
+          occlude={"blending"}
+          style={{
+            backgroundColor: "skyblue",
+            overflow: "scroll",
+          }}
+          position={[0, 0, -10]}
+          fullscreen
+        /> */}
       </Suspense>
     </CanvasUI>
   );

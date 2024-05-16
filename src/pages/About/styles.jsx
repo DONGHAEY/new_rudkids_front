@@ -7,6 +7,8 @@ export const PageUI = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  /* overflow: scroll; */
+  /* background-color: skyblue; */
 `;
 
 export const PageContentUI = styled.div`
@@ -24,10 +26,13 @@ export const PageContentUI = styled.div`
 
 export const FlexColUI = styled.div`
   display: flex;
+  position: absolute;
   padding-block: 100px;
+  z-index: -1;
   width: 90%;
-  min-height: 100%;
+  max-height: 100%;
   flex-direction: column;
   color: whitesmoke;
+  overflow: scroll;
   font-family: Poppins-Bold;
 `;

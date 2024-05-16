@@ -5,5 +5,6 @@ export const CanvasUI = styled(Canvas)`
   height: 100%;
   width: 100%;
   position: absolute;
-  /* z-index: 0; */
+  z-index: 0;
+  touch-action: none;
 `;
