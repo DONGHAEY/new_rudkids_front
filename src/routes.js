@@ -16,6 +16,7 @@ import ProfilePage from "./pages/Profile ";
 import Story2Page from "./pages/Story-2";
 import RudGatePage from "./pages/RudGate";
 import AboutPage from "./pages/About";
+import MainV2Page from "./pages/Main_v2";
 
 export const routes = {
   ["about"]: {
@@ -26,7 +27,7 @@ export const routes = {
   ["main"]: {
     path: "",
     paramKeys: [],
-    element: AuthHoc(MainPage),
+    element: AuthHoc(MainV2Page),
   },
   ["profile"]: {
     path: "profile",
