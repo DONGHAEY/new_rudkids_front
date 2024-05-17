@@ -10,7 +10,7 @@ let timelineOption = {
 
 const Object = ({ page, maxPage, moveDuration }) => {
   const gltf = useGLTF(
-    "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/Items/my_pet_fly/2.glb?t=2024-05-07T05%3A00%3A25.793Z"
+    "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/Items/my_pet_fly/toy.glb?t=2024-05-17T08%3A21%3A49.792Z"
   );
   const itemModelRef = createRef();
 
@@ -160,7 +160,7 @@ const Object = ({ page, maxPage, moveDuration }) => {
       <primitive
         ref={itemModelRef}
         object={gltf.scene}
-        scale={0.7}
+        scale={0.4}
         position={[0, 0, 0]}
       />
     </>

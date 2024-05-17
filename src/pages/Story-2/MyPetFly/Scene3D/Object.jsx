@@ -7,7 +7,7 @@ const timeline = gsap.timeline();
 
 const Object = ({ offset }) => {
   const gltf = useGLTF(
-    "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/Items/my_pet_fly/2.glb?t=2024-05-07T05%3A00%3A25.793Z"
+    "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/Items/my_pet_fly/toy.glb?t=2024-05-17T08%3A21%3A49.792Z"
   );
   const itemModelRef = createRef();
 
