@@ -2,8 +2,9 @@ import { Route, Routes } from "react-router-dom";
 import { routes } from "./routes";
 import { QueryClientProvider } from "react-query";
 import useRudkidsQueryClient from "./queries/rudkidsQueryClient";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import GlobalStyle from "../src/styles";
+import Loader from "./shared/Loader";
 function App() {
   const [queryClient] = useRudkidsQueryClient();
   const [originChecked, setOriginChecked] = useState(false);
@@ -32,15 +33,17 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Routes
-          children={Object.values(routes)?.map((route) => (
-            <Route
-              key={route.path}
-              path={route.path}
-              element={<route.element routeInfo={route} />}
-            />
-          ))}
-        />
+        <Suspense fallback={<Loader />}>
+          <Routes
+            children={Object.values(routes)?.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={<route.element routeInfo={route} />}
+              />
+            ))}
+          />
+        </Suspense>
         <GlobalStyle />
       </QueryClientProvider>
     </>
