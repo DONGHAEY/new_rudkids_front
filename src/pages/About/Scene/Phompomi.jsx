@@ -13,8 +13,8 @@ export const Phompomi = ({ count, gltf, color }) => {
     <instancedMesh
       ref={ref}
       args={[null, null, count]}
-      geometry={gltf.nodes["pompom4"].geometry}
-      material={gltf.materials[""]}
+      geometry={gltf?.nodes["pompom4"].geometry}
+      material={gltf?.materials[""]}
       castShadow
       receiveShadow
     >
