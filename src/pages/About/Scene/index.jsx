@@ -1,16 +1,15 @@
 import { Html, useGLTF } from "@react-three/drei";
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Physics } from "@react-three/cannon";
 import { Phompomi } from "./Phompomi";
-import { PointerDrag } from "./PointerDrag";
+import { PointerCollider } from "./PointerCollider";
 import { BoundaryPlanes } from "./BoundaryPlanes";
-import { CanvasUI } from "./styles";
+import { CanvasUI, CleanBtnUI } from "./styles";
+import { Blackhole } from "./Blackhole";
 
 const colors = [0xfee639, 0xed2424, 0x2f70b7];
 
-const Scene = () => {
-  const gltf = useGLTF("./Models/pompom4.glb");
-
+const Canvas = ({ children }) => {
   return (
     <CanvasUI
       shadows
@@ -22,8 +21,18 @@ const Scene = () => {
         far: 40,
       }}
     >
-      {/* <fog attach="fog" args={["#EC0000", 25, 35]} /> */}
-      {/* <color attach="background" args={["t"]} /> */}
+      {children}
+    </CanvasUI>
+  );
+};
+
+const Scene = () => {
+  const pompomGltf = useGLTF("./Models/pompom4.glb");
+  const [gravity, setGravity] = useState([0, -100.8, 0]);
+  const [blackholeActive, setBlackholeActive] = useState(false);
+
+  return (
+    <Canvas>
       <ambientLight intensity={1.5} />
       <directionalLight position={[-10, -10, -5]} intensity={0.5} />
       <directionalLight
@@ -38,30 +47,44 @@ const Scene = () => {
       />
       <Suspense fallback={null}>
         <Physics
-          gravity={[0, -100.8, 0]}
+          gravity={gravity}
           defaultContactMaterial={{ restitution: 0.5 }}
         >
+          <Blackhole isActive={blackholeActive} setGravity={setGravity} />
+          {!blackholeActive && <PointerCollider />}
           <group position={[0, 0, -10]}>
             {colors.map((color, idx) => {
               return (
-                <Phompomi key={color} gltf={gltf} color={color} count={35} />
+                <Phompomi
+                  key={color + idx}
+                  gltf={pompomGltf}
+                  color={color}
+                  count={35}
+                />
               );
             })}
           </group>
           <BoundaryPlanes />
-          <PointerDrag />
+          {!blackholeActive && (
+            <BlackholeButton onClick={() => setBlackholeActive(true)} />
+          )}
         </Physics>
-        {/* <Html
-          occlude={"blending"}
-          style={{
-            backgroundColor: "skyblue",
-            overflow: "scroll",
-          }}
-          position={[0, 0, -10]}
-          fullscreen
-        /> */}
       </Suspense>
-    </CanvasUI>
+    </Canvas>
+  );
+};
+
+const BlackholeButton = ({ onClick }) => {
+  return (
+    <Html fullscreen position={[0, 0, 10]}>
+      <CleanBtnUI onClick={onClick}>
+        <img
+          src={"https://cdn-icons-png.flaticon.com/512/616/616659.png"}
+          height="30px"
+          width="30px"
+        />
+      </CleanBtnUI>
+    </Html>
   );
 };
 

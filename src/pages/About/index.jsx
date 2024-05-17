@@ -7,57 +7,6 @@ const AboutPage = () => {
     <PageUI>
       <Header />
       <Scene />
-      <FlexColUI>
-        <p>asdf</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>asdf</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>asdf</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>asdf</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>asdf</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>asdf</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>asdf</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      </FlexColUI>
     </PageUI>
   );
 };

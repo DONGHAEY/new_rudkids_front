@@ -3,19 +3,21 @@ import { DragControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 
-export function PointerDrag() {
+export function PointerCollider() {
   const { viewport, pointer } = useThree();
 
   const [, api] = useSphere(() => ({ type: "Kinematic", args: [5] }));
+
+  const leavePointer = () => {
+    pointer.setX(999);
+    pointer.setY(999);
+  };
+
   useEffect(() => {
-    const leaveTouchBall = () => {
-      pointer.setX(999);
-      pointer.setY(999);
-    };
-    window.addEventListener("pointerout", leaveTouchBall);
-    leaveTouchBall();
+    window.addEventListener("pointerout", leavePointer);
+    leavePointer();
     return () => {
-      window.removeEventListener("pointerout", leaveTouchBall);
+      window.removeEventListener("pointerout", leavePointer);
     };
   }, []);
 
