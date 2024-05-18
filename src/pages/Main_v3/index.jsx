@@ -1,12 +1,11 @@
 import { useProductListQuery } from "../../queries/product";
 import Header from "../../shared/Header";
-import { ListUI, PageUI } from "./styles";
-import Product from "./Product";
+import { ListUI, PageUI, WrapperUI } from "./styles";
 import { createRef, useEffect, useRef, useState } from "react";
-import ActionBar from "./ActionBar";
 import gsap from "gsap";
+import Product from "../Main_v2/Product";
 
-const MainV2Page = () => {
+const MainV3Page = () => {
   const { data: productsData } = useProductListQuery();
   const [selectedIdx, setSelectedIdx] = useState(null);
 
@@ -47,18 +46,18 @@ const MainV2Page = () => {
       <ListUI>
         {productsData?.map((productData, idx) => {
           return (
-            <div key={idx} ref={productRefList[idx]}>
+            <WrapperUI ref={productRefList[idx]} key={idx}>
               <Product
+                index={idx + 1}
                 productData={productData}
                 selected={idx === selectedIdx}
               />
-            </div>
+            </WrapperUI>
           );
         })}
       </ListUI>
-      <ActionBar productData={selectedProduct} idx={selectedIdx} />
     </PageUI>
   );
 };
 
-export default MainV2Page;
+export default MainV3Page;

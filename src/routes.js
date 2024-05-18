@@ -1,5 +1,4 @@
 import VideoPage from "./pages/Video";
-import MainPage from "./pages/Main";
 import ProductPage from "./pages/Product";
 import List3dPage from "./pages/List3D";
 import RudCameraPage from "./pages/RudCamera";
@@ -16,7 +15,9 @@ import ProfilePage from "./pages/Profile ";
 import Story2Page from "./pages/Story-2";
 import RudGatePage from "./pages/RudGate";
 import AboutPage from "./pages/About";
+import MainPage from "./pages/Main";
 import MainV2Page from "./pages/Main_v2";
+import MainV3Page from "./pages/Main_v3";
 
 export const routes = {
   ["about"]: {
@@ -27,7 +28,17 @@ export const routes = {
   ["main"]: {
     path: "",
     paramKeys: [],
+    element: MainV3Page,
+  },
+  ["main2"]: {
+    path: "2",
+    paramKeys: [],
     element: MainV2Page,
+  },
+  ["main3"]: {
+    path: "3",
+    paramKeys: [],
+    element: MainPage,
   },
   ["profile"]: {
     path: "profile",

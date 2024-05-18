@@ -4,70 +4,42 @@ export const ProductUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 15px;
-  position: relative;
-`;
-
-export const ProductTagUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 23px;
   background-color: white;
-  text-align: center;
-  min-height: 52px;
-  padding-block: 5px;
-  font-family: Poppins-Bold;
-  letter-spacing: -0.51px;
-  padding-inline: 20px;
-  z-index: 2;
-  box-shadow: 3px 3px 8px rgba(0, 0.3, 0.3, 0.2);
-  border: ${({ $selected }) =>
-    $selected ? "solid #FFE639 5px" : "solid rgba(255, 255, 255, 0) 5px"};
+  border: solid black 1px;
+  padding: 17px;
+  border-radius: 14px;
 `;
-
-export const ProductTagString = styled.div`
-  width: 7.9px;
-  height: 63px;
-  background-color: #aea7a7;
-  transform: rotateZ(16.27deg);
-  top: 48px;
-  position: absolute;
-  z-index: 1;
-  margin-left: 8px;
-`;
-
-export const ProductHangedString = styled.div`
-  width: 23px;
-  height: 7.29px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  background-color: #aea7a7;
-  z-index: 3;
-  position: absolute;
-  top: 100px;
-  margin: auto;
-  margin-right: 30px;
-  transform: rotateZ(190deg);
-`;
-
-export const ProductImgWrapperUI = styled.div`
-  aspect-ratio: 1/1;
-  /* background-color: white; */
+export const RowBetweenUI = styled.div`
   display: flex;
+  width: 100%;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  height: 250px;
-  border-radius: 20px;
-  margin-right: 20px;
-  object-fit: cover;
-  z-index: 1;
-  position: relative;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-export const ProductImgUI = styled.img`
-  /* box-shadow: 3px 3px 8px rgba(0, 0.3, 0.3, 0.2); */
-  height: 100%;
-  z-index: -1;
+export const ProductNameTxtUI = styled.p`
+  font-family: Poppins-Bold;
+  letter-spacing: -1px;
+  font-size: 19px;
+  line-height: 100%;
+  color: ${({ $selected }) => ($selected ? "white" : "black")};
+  border-radius: 13px;
+  background-color: ${({ $selected }) => ($selected ? "black" : "none")};
+  padding-block: 5px;
+  padding-inline: 14px;
+`;
+
+export const IndexTxtUI = styled.p`
+  font-family: Poppins-Bold;
+  font-size: 14px;
+  letter-spacing: 0px;
+`;
+
+export const DescriptTxtUI = styled.p`
+  font-family: Poppins-Bold;
+  font-size: 14px;
+  letter-spacing: -1px;
 `;

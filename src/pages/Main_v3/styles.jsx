@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import backgroundImgSrc from "./assets/background.png";
 
 export const PageUI = styled.div`
-  background-image: url(${backgroundImgSrc});
-  background-size: cover;
-  background-repeat: none;
+  background-color: #3bb8ff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,5 +18,10 @@ export const ListUI = styled.div`
   align-items: center;
   justify-content: center;
   width: 90%;
-  gap: 41px;
+  max-width: 340px;
+  gap: 42px;
+`;
+
+export const WrapperUI = styled.div`
+  width: 100%;
 `;
