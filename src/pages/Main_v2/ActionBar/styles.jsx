@@ -8,6 +8,7 @@ export const ButtonSection = styled.div`
   position: fixed;
   bottom: 0;
   max-width: 430px;
+  margin-inline: auto;
   overflow: hidden;
   z-index: 9;
   height: 150px;

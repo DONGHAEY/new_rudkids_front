@@ -20,10 +20,12 @@ const Product = ({ productData, selected }) => {
       tl.to(ref.current, {
         rotateZ: `${repeat * 10}deg`,
         transformOrigin: "center top",
+        ease: "power2.inOut",
         duration: 0.25,
       }).to(ref.current, {
         rotateZ: `-${repeat * 5}deg`,
         transformOrigin: "center top",
+        ease: "power2.inOut",
         duration: 0.25,
         onComplete: () => {
           setRepeat((r) => r - 1);
@@ -31,7 +33,7 @@ const Product = ({ productData, selected }) => {
             rotateZ: "0deg",
             transformOrigin: "center top",
             duration: 0.25,
-            ease: "elastic.inOut",
+            ease: "power2.out",
           });
         },
       });

@@ -27,7 +27,7 @@ export const routes = {
   ["main"]: {
     path: "",
     paramKeys: [],
-    element: AuthHoc(MainV2Page),
+    element: MainV2Page,
   },
   ["profile"]: {
     path: "profile",
