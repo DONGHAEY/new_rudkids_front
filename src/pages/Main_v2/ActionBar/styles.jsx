@@ -33,8 +33,8 @@ export const MoreButtonUI = styled(ButtonUI)`
   z-index: -1;
   background: none;
   border: none;
-  left: -25px;
-  bottom: -25px;
+  left: -15px;
+  bottom: -15px;
   color: black;
 `;
 

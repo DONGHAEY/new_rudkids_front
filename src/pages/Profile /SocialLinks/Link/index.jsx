@@ -1,13 +1,10 @@
-import { CgLink } from "react-icons/cg";
 import facebookIconSrc from "./assets/facebook.png";
 import tiktokIconSrc from "./assets/tiktok.png";
 import xIconSrc from "./assets/x.png";
 import youtubeIconSrc from "./assets/youtube.png";
 import InstagramIconSrc from "./assets/instagram.png";
-import { LinkBoxUI, LinkNmTextUI } from "./styles";
-import { useMemo } from "react";
-import Popup from "../../../shared/Popup";
-import { usePopup } from "../../../hooks/usePopup";
+import { CgLink } from "react-icons/cg";
+import { LinkBoxUI, LinkNmTextUI } from "./Link/styles";
 
 const platforms = [
   {
@@ -37,7 +34,7 @@ const platforms = [
   },
 ];
 
-const ProfileLink = ({ link = "" }) => {
+const Link = ({ link = "" }) => {
   // const [navigatePopup] = usePopup();
   const platform = platforms.find((platform) => link.includes(platform.domain));
   const onClick = () => {
@@ -75,4 +72,4 @@ const ProfileLink = ({ link = "" }) => {
   );
 };
 
-export default ProfileLink;
+export default Link;

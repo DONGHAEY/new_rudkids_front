@@ -75,14 +75,6 @@ export const TextAreaUI = styled.textarea`
   width: 100%;
 `;
 
-export const LinkWrapperUI = styled.div`
-  background-color: rgba(162, 214, 249, 1);
-  display: inline;
-  padding-inline: 12px;
-  padding-block: 16px;
-  border-radius: 16px;
-`;
-
 export const ButtonSection = styled.div`
   display: flex;
   flex-direction: row;

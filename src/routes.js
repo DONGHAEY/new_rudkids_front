@@ -45,6 +45,11 @@ export const routes = {
     paramKeys: [],
     element: AuthHoc(ProfilePage),
   },
+  ["other_profile"]: {
+    path: "/profile/:profile_name",
+    paramKeys: ["profile_name"],
+    element: ProfilePage,
+  },
   ["profile/:id"]: {
     path: "profile/:profile_id",
     paramKeys: ["profile_id"],

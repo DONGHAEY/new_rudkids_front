@@ -31,7 +31,7 @@ const ActionBar = ({ productData, idx }) => {
     <ButtonSection>
       <MoreButtonUI ref={moreButtonRef} onClick={moreButtonClickHandler}>
         <MoreButtonTxtUI>{productData?.name}</MoreButtonTxtUI>
-        <img src={pompomiSrc} height="130%" />
+        <img src={pompomiSrc} height="100%" />
       </MoreButtonUI>
       <ButtonUI>
         <img src={addToCartSrc} height="100%" />

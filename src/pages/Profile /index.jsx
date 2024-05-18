@@ -6,7 +6,6 @@ import {
   FlexUI,
   InviteButtonSpacerUI,
   InviteButtonUI,
-  LinkWrapperUI,
   PageUI,
   ViewCntTextUI,
   ViewIconBoxUI,
@@ -18,15 +17,26 @@ import { TbEyeFilled } from "react-icons/tb";
 import licenceCardSrc from "./assets/license_card.png";
 import { FaRankingStar } from "react-icons/fa6";
 import { FiShare } from "react-icons/fi";
-import ProfileLink from "./ProfileLink";
+import SocialLinks from "./SocialLinks";
 import FlipCard from "./FlipCard";
 import Message from "./Message";
 import Popup from "../../shared/Popup";
 import Invitation from "./Invitation";
 import { usePopup } from "../../hooks/usePopup";
+import { useProfileQuery } from "../../queries/profile";
+import { useParams } from "react-router-dom";
 
 const ProfilePage = ({ routeInfo }) => {
+  //
+  const params = useParams();
+  const profileId = routeInfo?.paramKeys?.[0]
+    ? params[routeInfo.paramKeys[0]]
+    : null;
+
+  const { data: myProfileData } = useProfileQuery(profileId ?? null);
+  //
   const [navigatePopup, closePopup] = usePopup();
+
   return (
     <PageUI>
       <Header isFixed={true} />
@@ -37,11 +47,11 @@ const ProfilePage = ({ routeInfo }) => {
           </ViewIconBoxUI>
           <ViewTextBoxUI>
             <ViewNameTextUI>Today</ViewNameTextUI>
-            <ViewCntTextUI>326</ViewCntTextUI>
+            <ViewCntTextUI>{myProfileData?.viewOfToday}</ViewCntTextUI>
           </ViewTextBoxUI>
           <ViewTextBoxUI>
             <ViewNameTextUI>All</ViewNameTextUI>
-            <ViewCntTextUI>32,315</ViewCntTextUI>
+            <ViewCntTextUI>{myProfileData?.viewOfTotal}</ViewCntTextUI>
           </ViewTextBoxUI>
         </ViewWrapperUI>
       </FlexUI>
@@ -49,13 +59,8 @@ const ProfilePage = ({ routeInfo }) => {
         <FlipCard frontImgSrc={licenceCardSrc} backImgSrc={licenceCardSrc} />
       </FlexUI>
       <FlexUI gap="15px">
-        <Message />
-        <LinkWrapperUI>
-          <ProfileLink link="https://www.youtube.com/@president_yoon" />
-          <ProfileLink link="https://www.instagram.com/sukyeol.yoon/" />
-          <ProfileLink link="https://www.instagram.com/rudkidss/" />
-          <ProfileLink link="https://twitter.com/President_KR" />
-        </LinkWrapperUI>
+        <Message value={myProfileData?.description} />
+        <SocialLinks value={myProfileData?.socialLinks} />
         <ButtonSection>
           <ButtonUI>
             <FaRankingStar fontSize="24px" />

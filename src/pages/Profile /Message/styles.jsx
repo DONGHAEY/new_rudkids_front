@@ -6,6 +6,7 @@ export const TextAreaUI = styled.textarea`
   height: 42px;
   padding-block: 20px;
   padding-inline: 24px;
+  padding-right: 70px;
   font-family: Pretendard-SemiBold;
   font-size: 14px;
   background-color: rgba(243, 243, 243, 0.25);
@@ -36,4 +37,19 @@ export const LengthTxtUI = styled.p`
   font-size: 10px;
   color: gray;
   position: absolute;
+`;
+
+export const SaveBtnUI = styled.button`
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Pretendard-Bold;
+  right: 10px;
+  top: 10px;
+  border: none;
 `;
