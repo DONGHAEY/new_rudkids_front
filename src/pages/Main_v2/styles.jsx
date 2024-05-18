@@ -23,3 +23,7 @@ export const ListUI = styled.div`
   width: 90%;
   gap: 41px;
 `;
+
+export const WrapperUI = styled.div`
+  width: 100%;
+`;

@@ -1,6 +1,6 @@
 import { useProductListQuery } from "../../queries/product";
 import Header from "../../shared/Header";
-import { ListUI, PageUI } from "./styles";
+import { ListUI, PageUI, WrapperUI } from "./styles";
 import Product from "./Product";
 import { createRef, useEffect, useRef, useState } from "react";
 import ActionBar from "./ActionBar";
@@ -47,12 +47,12 @@ const MainV2Page = () => {
       <ListUI>
         {productsData?.map((productData, idx) => {
           return (
-            <div key={idx} ref={productRefList[idx]}>
+            <WrapperUI key={idx} ref={productRefList[idx]}>
               <Product
                 productData={productData}
                 selected={idx === selectedIdx}
               />
-            </div>
+            </WrapperUI>
           );
         })}
       </ListUI>
