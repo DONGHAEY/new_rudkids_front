@@ -5,7 +5,7 @@ export const ProductUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   position: relative;
 `;
 
@@ -21,19 +21,21 @@ export const ProductTagUI = styled.div`
   font-family: Poppins-Bold;
   letter-spacing: -0.51px;
   padding-inline: 20px;
-  z-index: 1;
+  z-index: 2;
   box-shadow: 3px 3px 8px rgba(0, 0.3, 0.3, 0.2);
-  border: ${({ $selected }) => ($selected ? "solid #FFE639 5px" : "none")};
+  border: ${({ $selected }) =>
+    $selected ? "solid #FFE639 5px" : "solid rgba(255, 255, 255, 0) 5px"};
 `;
 
 export const ProductTagString = styled.div`
-  position: absolute;
   width: 7.9px;
   height: 63px;
   background-color: #aea7a7;
-  transform: rotateZ(16deg);
-  top: 43px;
-  z-index: 0;
+  transform: rotateZ(16.27deg);
+  top: 48px;
+  position: absolute;
+  z-index: 1;
+  margin-left: 8px;
 `;
 
 export const ProductHangedString = styled.div`
@@ -42,22 +44,30 @@ export const ProductHangedString = styled.div`
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   background-color: #aea7a7;
+  z-index: 3;
   position: absolute;
-  top: 13px;
-  margin-right: 35px;
-  transform: rotateZ(20deg);
+  top: 100px;
+  margin: auto;
+  margin-right: 30px;
+  transform: rotateZ(190deg);
 `;
 
 export const ProductImgWrapperUI = styled.div`
-  border: ${({ $selected }) => ($selected ? "solid #FFE639 5px" : "none")};
   aspect-ratio: 1/1;
-  background-color: white;
+  /* background-color: white; */
   display: flex;
   align-items: center;
   justify-content: center;
   height: 250px;
   border-radius: 20px;
+  margin-right: 20px;
+  object-fit: cover;
   z-index: 1;
   position: relative;
-  box-shadow: 3px 3px 8px rgba(0, 0.3, 0.3, 0.2);
+`;
+
+export const ProductImgUI = styled.img`
+  /* box-shadow: 3px 3px 8px rgba(0, 0.3, 0.3, 0.2); */
+  height: 100%;
+  z-index: -1;
 `;
