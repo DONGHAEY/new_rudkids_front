@@ -43,7 +43,7 @@ const Product = ({ productData, selected }) => {
   }, [repeat]);
 
   useEffect(() => {
-    if (selected) {
+    if (selected && repeat === 0) {
       setRepeat(4);
     }
   }, [selected]);
