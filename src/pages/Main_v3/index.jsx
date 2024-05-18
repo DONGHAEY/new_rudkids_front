@@ -3,7 +3,7 @@ import Header from "../../shared/Header";
 import { ListUI, PageUI, WrapperUI } from "./styles";
 import { createRef, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import Product from "../Main_v2/Product";
+import Product from "./Product";
 
 const MainV3Page = () => {
   const { data: productsData } = useProductListQuery();
