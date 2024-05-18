@@ -18,7 +18,7 @@ const Product = ({ productData, selected }) => {
     const tl = gsap.timeline();
     if (repeat >= 1) {
       tl.to(ref.current, {
-        rotateZ: `${repeat * 10}deg`,
+        rotateZ: `${repeat * 7}deg`,
         transformOrigin: "center top",
         ease: "power2.inOut",
         duration: 0.25,
@@ -29,17 +29,16 @@ const Product = ({ productData, selected }) => {
         duration: 0.25,
         onComplete: () => {
           setRepeat((r) => r - 1);
-          gsap.to(ref.current, {
-            rotateZ: "0deg",
-            transformOrigin: "center top",
-            duration: 0.25,
-            ease: "power2.out",
-          });
         },
       });
       tl.play();
     } else {
-      tl.pause();
+      gsap.to(ref.current, {
+        rotateZ: "0deg",
+        transformOrigin: "center top",
+        duration: 0.25,
+        ease: "power2.out",
+      });
     }
   }, [repeat]);
 
@@ -50,7 +49,11 @@ const Product = ({ productData, selected }) => {
   }, [selected]);
 
   return (
-    <ProductUI>
+    <ProductUI
+      onClick={() => {
+        setRepeat(4);
+      }}
+    >
       <ProductTagUI $selected={selected}>
         <p>{productData?.name}</p>
         <img src={BarcodeImgSrc} width="76px" height="19px" />

@@ -4,6 +4,7 @@ import { ListUI, PageUI } from "./styles";
 import Product from "./Product";
 import { createRef, useEffect, useRef, useState } from "react";
 import ActionBar from "./ActionBar";
+import gsap from "gsap";
 
 const MainV2Page = () => {
   const pageRef = useRef();
@@ -17,11 +18,14 @@ const MainV2Page = () => {
   const selectedProduct = productsData?.[selectedIdx];
 
   const scrollHandler = () => {
-    const { clientHeight, scrollTop } = pageRef.current;
+    const scrollTop = gsap.getProperty("html", "scrollTop");
+    const clientHeight = gsap.getProperty("html", "clientHeight");
+    // const listOffsetTop = pageRef.current.offsetTop;
     const scrollMiddle = clientHeight / 2 + scrollTop;
     productRefList?.map((productRef, idx) => {
       const offsetTop = productRef?.current?.offsetTop;
       const height = productRef?.current?.clientHeight;
+      // console.log(offsetTop, idx, "-");
       if (scrollMiddle >= offsetTop && scrollMiddle <= offsetTop + height) {
         setSelectedIdx(idx);
       }
@@ -30,10 +34,17 @@ const MainV2Page = () => {
 
   useEffect(() => {
     scrollHandler();
+  }, [pageRef]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
   }, [productRefList, pageRef]);
 
   return (
-    <PageUI ref={pageRef} onScroll={scrollHandler}>
+    <PageUI ref={pageRef}>
       <Header isFixed />
       <ListUI>
         {productsData?.map((productData, idx) => {

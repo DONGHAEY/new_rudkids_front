@@ -9,8 +9,7 @@ export const PageUI = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  height: 100%;
-  overflow: scroll;
+  overflow: hidden;
 `;
 
 export const ListUI = styled.div`

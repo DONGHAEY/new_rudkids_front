@@ -4,6 +4,7 @@ export const ButtonSection = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  align-items: center;
   justify-content: space-between;
   position: fixed;
   bottom: 0;
@@ -12,20 +13,20 @@ export const ButtonSection = styled.div`
   overflow: hidden;
   z-index: 9;
   height: 150px;
+  pointer-events: none;
 `;
 
 export const ButtonUI = styled.button`
-  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100%;
   z-index: -1;
   background: none;
   border: none;
+  position: relative;
+  pointer-events: all;
 `;
 
 export const MoreButtonUI = styled(ButtonUI)`
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,6 +35,7 @@ export const MoreButtonUI = styled(ButtonUI)`
   border: none;
   left: -25px;
   bottom: -25px;
+  color: black;
 `;
 
 export const MoreButtonTxtUI = styled.div`
