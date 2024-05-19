@@ -31,9 +31,6 @@ const MainV3Page = () => {
 
   useEffect(() => {
     scrollHandler();
-  }, []);
-
-  useEffect(() => {
     window.addEventListener("scroll", scrollHandler);
     return () => {
       window.removeEventListener("scroll", scrollHandler);

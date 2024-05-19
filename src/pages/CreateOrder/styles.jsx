@@ -46,6 +46,18 @@ export const SectionDescriptionUI = styled.div`
   gap: 13px;
   margin-bottom: 15px;
 `;
+export const PaymentWidgetUI = styled.div`
+  width: 100%;
+`;
+
+export const AgreementUI = styled.div`
+  width: 100%;
+`;
+
+export const PriceWrapperUI = styled.div`
+  width: 100%;
+  margin-top: 22px;
+`;
 
 export const SectionDscrptTxtUI = styled.h2`
   font-family: Pretendard-SemiBold;

@@ -8,6 +8,9 @@ import {
   SectionDescriptionUI,
   ShippingAddressSectionUI,
   PaySectionUI,
+  PaymentWidgetUI,
+  AgreementUI,
+  PriceWrapperUI,
 } from "./styles";
 import { useCreateOrderMutation } from "../../queries/order";
 import CartProduct from "./CartProduct";
@@ -19,17 +22,19 @@ import OrderBar from "./OrderBar";
 import Price from "../../shared/Price";
 
 function CreateOrderPage() {
-  const createOrderMutation = useCreateOrderMutation();
+  const paymentMethodsRef = useRef();
+  const paymentAgreementRef = useRef();
+
   const { data: cartData } = useCartQuery();
+  const createOrderMutation = useCreateOrderMutation();
+
   const [shipping, setShipping] = useState(null);
   const [generatedOrder, setGeneratedOrder] = useState(null);
 
   const [paymentWidget] = usePaymentWidget({
-    customerKey: cartData?.id,
+    customerKey: cartData.id,
     widgetClientKey: process.env["REACT_APP_TOSS_WIDGET_KEY"],
   });
-  const paymentMethodsRef = useRef();
-  const paymentAgreementRef = useRef();
 
   const totalProductsPrice = useMemo(() => {
     if (!cartData) return 0;
@@ -38,18 +43,18 @@ function CreateOrderPage() {
       totalProductsPrice += cartProduct.product.price * cartProduct.quantity;
     });
     return totalProductsPrice;
-  }, [cartData?.cartProducts]);
+  }, [cartData.cartProducts]);
 
-  const totalShippingPrice = cartData?.shippingPrice;
+  const totalShippingPrice = cartData.shippingPrice;
 
   const totalPrice = totalProductsPrice + totalShippingPrice;
 
   const submitHandler = async () => {
-    if (!cartData?.id) {
+    if (!cartData.id) {
       alert("카트 정보가 없습니다!");
       return;
     }
-    if (cartData?.cartProducts?.length <= 0) {
+    if (cartData.cartProducts?.length <= 0) {
       alert("카트가 비어있습니다.");
       return;
     }
@@ -71,7 +76,7 @@ function CreateOrderPage() {
     if (!generatedOrder) {
       await createOrderMutation.mutateAsync(
         {
-          cartId: cartData?.id,
+          cartId: cartData.id,
           shipping,
         },
         {
@@ -127,11 +132,11 @@ function CreateOrderPage() {
         <SectionDescriptionUI>
           <SectionDscrptTxtUI>Order Products</SectionDscrptTxtUI>
           <ProductLengthTextUI>
-            {cartData?.cartProducts?.length}개
+            {cartData.cartProducts?.length}개
           </ProductLengthTextUI>
         </SectionDescriptionUI>
         <ListWrapperUI>
-          {cartData?.cartProducts?.map((cartProductData) => (
+          {cartData.cartProducts?.map((cartProductData) => (
             <CartProduct
               key={cartProductData.id}
               cartProduct={cartProductData}
@@ -149,30 +154,14 @@ function CreateOrderPage() {
         <SectionDescriptionUI>
           <SectionDscrptTxtUI>결제수단</SectionDscrptTxtUI>
         </SectionDescriptionUI>
-        <div
-          style={{
-            width: "100%",
-          }}
-          id="payment-widget"
-        />
-
-        <div
-          style={{
-            width: "100%",
-          }}
-          id="agreement"
-        />
-        <div
-          style={{
-            width: "100%",
-            marginTop: "22px",
-          }}
-        >
+        <PaymentWidgetUI id="payment-widget" />
+        <AgreementUI id="agreement" />
+        <PriceWrapperUI>
           <Price
             totalProductsPrice={totalProductsPrice}
             totalShippingPrice={totalShippingPrice}
           />
-        </div>
+        </PriceWrapperUI>
       </PaySectionUI>
       <OrderBar onClick={submitHandler} totalPrice={totalPrice} />
     </PageUI>

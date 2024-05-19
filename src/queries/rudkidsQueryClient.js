@@ -21,6 +21,7 @@ const useRudkidsQueryClient = () => {
       queries: {
         refetchOnWindowFocus: false,
         retry: 0,
+        suspense: true,
         onError: onError,
       },
       mutations: {

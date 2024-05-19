@@ -84,5 +84,6 @@ export const useSearchAddressQuery = (query) => {
   return useQuery({
     queryKey: ["address", query],
     queryFn: () => searchAddress(query),
+    suspense: false,
   });
 };
