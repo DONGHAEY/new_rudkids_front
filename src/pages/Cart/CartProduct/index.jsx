@@ -12,25 +12,23 @@ import {
   QuantityTextUI,
   WrapperUI,
 } from "./styles";
-import {
-  useCartProductDeleteMutation,
-  useCartProductQuantityMutation,
-} from "../../../queries/cart";
 import { useNavigate } from "react-router-dom";
+import useEditCartProductQuantityMutation from "../../../mutations/cart/useEditCartProductQuantityMutation";
+import useDeleteCartProductMutation from "../../../mutations/cart/useDeleteCartProductMutation";
 
 const CartProduct = ({ cartProduct }) => {
-  const quantityMutation = useCartProductQuantityMutation(
+  const editQuantityMutation = useEditCartProductQuantityMutation(
     cartProduct?.product.id
   );
-  const deleteMutation = useCartProductDeleteMutation(cartProduct?.product.id);
+  const deleteMutation = useDeleteCartProductMutation(cartProduct?.product.id);
 
   const quantityPlusClickHandler = async (e) => {
     e.stopPropagation();
-    await quantityMutation.mutateAsync(cartProduct.quantity + 1);
+    await editQuantityMutation.mutateAsync(cartProduct.quantity + 1);
   };
   const quantityMinusClickHandler = async (e) => {
     e.stopPropagation();
-    await quantityMutation.mutateAsync(cartProduct.quantity - 1);
+    await editQuantityMutation.mutateAsync(cartProduct.quantity - 1);
   };
 
   const deleteClickHandler = async (e) => {

@@ -1,4 +1,4 @@
-const queryKey = {
+const mutationKey = {
   auth: "auth",
   user: "user",
   school: "school",
@@ -7,6 +7,7 @@ const queryKey = {
   order: "order",
   shipping: "shipping",
   profile: "profile",
+  payment: "payment",
 };
 
-export default queryKey;
+export default mutationKey;

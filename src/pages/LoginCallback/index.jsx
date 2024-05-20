@@ -1,22 +1,17 @@
 import { useEffect } from "react";
 import qs from "qs";
-import { instagramLogin } from "../../apis/auth/login";
+import useInstagramLoginMutation from "../../mutations/auth/useInstagramLoginMutation";
 
-const PlatformTypes = ["instagram"];
 const LoginCallbackPage = () => {
-  // const params = useParams();
-  // const platform = params.platform;
+  const instagramLoginMutation = useInstagramLoginMutation();
 
   useEffect(() => {
     (async () => {
-      // if (PlatformTypes.includes(platform)) {
       const searchParams = qs.parse(window.location.search.slice(1));
       const loginCallbackUrl = localStorage.getItem("login_callback_url");
-      // console.log("?1");
-      await instagramLogin(searchParams);
+      await instagramLoginMutation.mutateAsync(searchParams);
       //아 모르겠다 저장되겠지...
       window.location.href = loginCallbackUrl ?? "/";
-      // }
     })();
   }, []);
 

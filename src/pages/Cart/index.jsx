@@ -1,8 +1,4 @@
-import Header from "../../shared/Header";
-import {
-  useCartQuery,
-  useSetShippingPriceToZeroMutation,
-} from "../../queries/cart";
+import Header from "../../shared_components/Header";
 import {
   FlexWrapperUI,
   CartProductListUI,
@@ -12,18 +8,20 @@ import {
 } from "./styles";
 import CartProduct from "./CartProduct";
 import CheckoutBar from "./CheckoutBar";
-import Price from "../../shared/Price";
+import Price from "../../shared_components/Price";
 import smileSellerSrc from "./assets/smlile_seller.png";
 import eventCouponImgSrc from "./assets/coupon_1.png";
 import { useEffect, useMemo } from "react";
 import { usePopup } from "../../hooks/usePopup";
-import Popup from "../../shared/Popup";
+import Popup from "../../shared_components/Popup";
 import ShippingEvent from "./ShippingEvent";
+import useCartQuery from "../../queries/cart/useCartQuery";
+import useEditShippingPriceToZeroMutation from "../../mutations/cart/useEditShippingPriceToZeroMutation";
 
 const CartPage = () => {
   const [popupNavigate, poupPop] = usePopup();
   const { data: myCartData } = useCartQuery();
-  const setShippingPriceZeroMutation = useSetShippingPriceToZeroMutation();
+  const editShippingPriceToZeroMutation = useEditShippingPriceToZeroMutation();
 
   const totalProductsPrice = useMemo(() => {
     if (!myCartData) return 0;
@@ -41,7 +39,7 @@ const CartPage = () => {
     (async () => {
       const shippingFreeJoin = localStorage.getItem("shipping_event_join");
       if (!shippingFreeJoin) return;
-      await setShippingPriceZeroMutation.mutateAsync();
+      await editShippingPriceToZeroMutation.mutateAsync();
       localStorage.setItem("shipping_event_joined", true);
       alert("친구초대 수락으로, 배송비 0원을 적용했어요!");
       localStorage.removeItem("shipping_event_join");

@@ -1,8 +1,8 @@
 import { createRef, useEffect } from "react";
 import { PageUI } from "./styles";
 import BoxList from "./BoxList";
-import Header from "../../shared/Header";
-import { useProductListQuery } from "../../queries/product";
+import Header from "../../shared_components/Header";
+import useProductListQuery from "../../queries/product/useProductListQuery";
 
 const colorList = ["#FFE818", "#26A4FF", "#FF3BA5", "green"];
 

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useCreatePaymentMutation } from "../../queries/payment";
+import useCreatePaymentMutation from "../../mutations/payment/useCreatePaymentMutation";
 
 const PaySuccessPage = () => {
   const createPaymentMutation = useCreatePaymentMutation();

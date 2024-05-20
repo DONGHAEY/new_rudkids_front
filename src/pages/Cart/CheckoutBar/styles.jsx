@@ -31,48 +31,6 @@ export const OrderBarUI = styled.div`
   justify-content: space-between;
 `;
 
-export const TotalTextUI = styled.p`
-  color: #989898;
-  font-size: 14px;
-  font-family: Poppins-SemiBold;
-  line-height: 14px;
-`;
-
-export const ColWrapperUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-`;
-
-export const PriceNameTextUI = styled.div`
-  font-family: Pretendard-SemiBold;
-  font-size: 13px;
-  line-height: 13px;
-  color: #818181;
-`;
-
-export const RowBeetwenUI = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-export const TotalPriceTextUI = styled.p`
-  color: black;
-  font-size: 20px;
-  font-family: Poppins-Bold;
-`;
-
-export const PriceTextUI = styled.p`
-  color: #818181;
-  font-size: 16px;
-  line-height: 16px;
-  font-family: Poppins-SemiBold;
-`;
-
 export const BuyButtonUI = styled.button`
   background-color: ${({ disabled }) => (disabled ? "gray" : "#ec0000")};
   color: white;

@@ -1,20 +1,18 @@
 import { useParams } from "react-router-dom";
-import Header from "../../shared/Header";
+import Header from "../../shared_components/Header";
 import { PageUI, FlexWrapperUI, SectionDscrptTxtUI } from "./styles";
-import {
-  useEditOrderShippingMutation,
-  useOrderQuery,
-} from "../../queries/order";
 import OrderProductList from "./OrderProductList";
 import OrderPrice from "./OrderPrice";
-import Shipping from "../../shared/Shipping";
+import Shipping from "../../shared_components/Shipping";
 import PaymentStatus from "./PaymentStatus";
+import useOrderDetailQuery from "../../queries/order/useOrderDetailQuery";
+import useEditOrderShippingMutation from "../../mutations/order/useEditOrderShippingMutation";
 
 const OrderDetailPage = ({ routeInfo }) => {
   const params = useParams();
   const orderId = params[routeInfo.paramKeys[0]];
 
-  const { data: orderData } = useOrderQuery(orderId);
+  const { data: orderData } = useOrderDetailQuery(orderId);
   const productsCnt = orderData?.orderProducts?.length;
 
   const editOrderShippingMutation = useEditOrderShippingMutation(orderId);

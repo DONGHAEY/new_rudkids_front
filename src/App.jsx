@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import { routes } from "./routes";
 import { QueryClientProvider } from "react-query";
-import useRudkidsQueryClient from "./queries/rudkidsQueryClient";
+import useRudkidsQueryClient from "./rudkidsQueryClient";
 import { Suspense, useEffect, useState } from "react";
 import GlobalStyle from "../src/styles";
-import Loader from "./shared/Loader";
+import Loader from "./shared_components/Loader";
 function App() {
   const [queryClient] = useRudkidsQueryClient();
   const [originChecked, setOriginChecked] = useState(false);

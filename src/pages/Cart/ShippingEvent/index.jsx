@@ -1,13 +1,13 @@
 import { usePopup } from "../../../hooks/usePopup";
-import { useSetShippingPriceToZeroMutation } from "../../../queries/cart";
-import { useUserQuery } from "../../../queries/user";
+import useEditShippingPriceToZeroMutation from "../../../mutations/cart/useEditShippingPriceToZeroMutation";
+import useUserQuery from "../../../queries/user/useUserQuery";
 import popupImgSrc from "./assets/popup_message.png";
 import { ButtonUI, CenterUI, ShippingEventUI } from "./styles";
 
 const ShippingEvent = () => {
   const [_, closePopup] = usePopup();
 
-  const setShippingPriceZeroMutation = useSetShippingPriceToZeroMutation();
+  const setShippingPriceZeroMutation = useEditShippingPriceToZeroMutation();
   const isUsed = localStorage.getItem("shipping_event_joined");
   const { data: userData } = useUserQuery();
 
