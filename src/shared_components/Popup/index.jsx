@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { memo, useMemo, useRef, useState } from "react";
 import qs from "qs";
 
-const Content = ({ children, popupTitle = "", showHeader }) => {
+export const Content = ({ children, popupTitle = "", showHeader }) => {
   const contentRef = useRef(null);
   const navigate = useNavigate();
 

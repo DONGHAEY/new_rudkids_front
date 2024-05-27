@@ -13,7 +13,7 @@ const getProductList = async () => {
 const useProductListQuery = () => {
   return useQuery({
     queryKey: KEY,
-    queryFn: getProductList,
+    queryFn: async () => await getProductList(),
   });
 };
 

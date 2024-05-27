@@ -16,7 +16,8 @@ const createOrder = async ({ cartId, shipping }) => {
 const useCreateOrderMutation = () => {
   return useMutation({
     mutationKey: KEY,
-    mutationFn: ({ cartId, shipping }) => createOrder({ cartId, shipping }),
+    mutationFn: async ({ cartId, shipping }) =>
+      await createOrder({ cartId, shipping }),
   });
 };
 

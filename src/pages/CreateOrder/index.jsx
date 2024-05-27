@@ -89,7 +89,7 @@ function CreateOrderPage() {
             const obj = {
               orderId: orderData?.id,
               orderName: `루키즈`,
-              successUrl: `${originForToss}/pay-success`,
+              successUrl: `${originForToss}/pay`,
               failUrl: `${originForToss}/order/${orderData?.id}`,
             };
             setGeneratedOrder(obj);

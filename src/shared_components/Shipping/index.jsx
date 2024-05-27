@@ -6,7 +6,6 @@ import {
   RecieverNameTextUI,
   RecieverPhoneNumberTextUI,
   RowWrapperUI,
-  SelectUI,
   ShippingNameTextUI,
   ShippingUI,
   ShippingWrapperUI,
@@ -20,7 +19,7 @@ import useShippingListQuery from "../../queries/shipping/useShippingListQuery";
 
 const Shipping = ({ value, setValue, canEdit = true }) => {
   const { data: shippingListData } = useShippingListQuery();
-  const [popupNavigate, popupBack] = usePopup();
+  const [popupNavigate] = usePopup();
 
   useEffect(() => {
     if (value) {
@@ -34,12 +33,6 @@ const Shipping = ({ value, setValue, canEdit = true }) => {
       setValue(defaultShippingData);
     }
   }, [shippingListData, value]);
-
-  const requesetMemoContents = [
-    "문앞에 놓아주세요",
-    "경비실 앞에 놓아주세요",
-    "그렇게해주세요",
-  ];
 
   const editBtnClickHandler = () => {
     popupNavigate("shipping-list");
@@ -66,26 +59,6 @@ const Shipping = ({ value, setValue, canEdit = true }) => {
           <AddressTextUI>{value.detailAddress}</AddressTextUI>
         </ColWrapperUI>
         {canEdit && (
-          <SelectUI
-            value={value?.requestMemo ?? ""}
-            onChange={(e) => {
-              setValue({
-                ...value,
-                requestMemo: e.target.value,
-              });
-            }}
-          >
-            <option key={-1} value={""}>
-              배송메모를 선택해주세요
-            </option>
-            {requesetMemoContents?.map((requestMemo, idx) => (
-              <option key={idx} value={requestMemo}>
-                {requestMemo}
-              </option>
-            ))}
-          </SelectUI>
-        )}
-        {canEdit && (
           <EditIconImgUI
             src={editIconSrc}
             alt="edit"
@@ -97,10 +70,7 @@ const Shipping = ({ value, setValue, canEdit = true }) => {
         <Popup popupName="shipping-list" popupTitle="배송지 목록">
           <SelectShipping
             shipping={value}
-            setShipping={(shipipngData) => {
-              setValue({ ...shipipngData, requestMemo: "" });
-              popupBack();
-            }}
+            setShipping={(shipipngData) => setValue(shipipngData)}
           />
         </Popup>
       )}

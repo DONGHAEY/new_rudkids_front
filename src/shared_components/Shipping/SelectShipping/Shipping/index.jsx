@@ -1,3 +1,4 @@
+import SelectShipping from "..";
 import { usePopup } from "../../../../hooks/usePopup";
 import useDeleteShippingMutation from "../../../../mutations/shipping/useDeleteShippingMutation";
 import Popup from "../../../Popup";
@@ -16,7 +17,7 @@ import {
   ShippingWrapperUI,
 } from "./styles";
 
-const Shipping = ({ shippingData, isSelected = false, onSelect }) => {
+const Shipping = ({ shippingData, isSelected = false, onSelect, onEdit }) => {
   const deleteShippingMutation = useDeleteShippingMutation(shippingData.id);
 
   const deleteBtnClickHandler = async () => {
@@ -83,6 +84,7 @@ const Shipping = ({ shippingData, isSelected = false, onSelect }) => {
         <AddEditShipping
           shippingData={shippingData}
           setShippingData={(shippingData) => {
+            onEdit(shippingData);
             popupBack();
           }}
         />

@@ -1,11 +1,17 @@
 import MainPage from "./pages/Main";
 import ProductDetailPage from "./pages/ProductDetail";
-import LoginCallback from "./pages/LoginCallback";
+import LoginCallbackPage from "./pages/LoginCallback";
 import CartPage from "./pages/Cart";
 import CreateOrder from "./pages/CreateOrder";
 import OrderDetailPage from "./pages/OrderDetail";
-import PaySuccess from "./pages/PaySuccess";
+import Pay from "./pages/Pay";
 import AuthHoc from "./shared_components/HOC/AuthHoc";
+import LoginPage from "./pages/Login";
+import InstaInfoPage from "./pages/InstaInfo";
+import InvitePage from "./pages/Invite";
+import InvitationPage from "./pages/Invitation";
+import ProfilePage from "./pages/Profile";
+import ProfileEditPage from "./pages/ProfileEdit";
 
 export const routes = {
   ["main"]: {
@@ -33,14 +39,49 @@ export const routes = {
     paramKeys: ["order_id"],
     element: AuthHoc(OrderDetailPage),
   },
-  ["paySuccess"]: {
-    path: "/pay-success",
+  ["pay"]: {
+    path: "/pay",
     paramKeys: [],
-    element: PaySuccess,
+    element: Pay,
+  },
+  ["login"]: {
+    path: "login",
+    paramKeys: [],
+    element: LoginPage,
   },
   ["loginCallback"]: {
-    path: "callback",
+    path: "login-callback/:platform",
+    paramKeys: ["platform"],
+    element: LoginCallbackPage,
+  },
+  ["instaInfo"]: {
+    path: "/insta-info",
     paramKeys: [],
-    element: LoginCallback,
+    element: InstaInfoPage,
+  },
+  ["invite"]: {
+    path: "/invite",
+    paramKeys: [],
+    element: InvitePage,
+  },
+  ["invitation"]: {
+    path: "/invitation/:invitation_id",
+    paramKeys: ["invitation_id"],
+    element: InvitationPage,
+  },
+  ["my-profile"]: {
+    path: "/profile",
+    paramKeys: [],
+    element: ProfilePage,
+  },
+  ["profile"]: {
+    path: "/profile/:nickname",
+    paramKeys: ["nickname"],
+    element: ProfilePage,
+  },
+  ["profile_edit"]: {
+    path: "/profile/edit",
+    paramKeys: ["nickname"],
+    element: ProfileEditPage,
   },
 };

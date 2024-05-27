@@ -4,29 +4,29 @@ import Step2 from "./Step2";
 import { useEffect, useState } from "react";
 import { Modal } from "@mui/material";
 import useUserQuery from "../../queries/user/useUserQuery";
-import useSetMyInviterMutation from "../../mutations/user/useSetMyInviterMutation";
-import useSetMySchoolMutation from "../../mutations/user/useSetMySchoolMutation";
+// import useSetMyInviterMutation from "../../mutations/user/useSetMyInviterMutation";
+// import useSetMySchoolMutation from "../../mutations/user/useSetMySchoolMutation";
 
 const LoginModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: userData, isFetched } = useUserQuery();
 
-  const setMySchoolMutation = useSetMySchoolMutation();
-  const setMyInviterMutation = useSetMyInviterMutation();
+  // const setMySchoolMutation = useSetMySchoolMutation();
+  // const setMyInviterMutation = useSetMyInviterMutation();
 
-  useEffect(() => {
-    if (!userData) return;
-    const schoolName = localStorage.getItem("school_name");
-    const inviterUserId = localStorage.getItem("inviter_user_id");
-    (async () => {
-      if (schoolName) {
-        await setMySchoolMutation.mutateAsync(schoolName);
-      }
-      if (inviterUserId) {
-        await setMyInviterMutation.mutateAsync(inviterUserId);
-      }
-    })();
-  }, [userData]);
+  // useEffect(() => {
+  //   if (!userData) return;
+  //   const schoolName = localStorage.getItem("school_name");
+  //   const inviterUserId = localStorage.getItem("inviter_user_id");
+  //   (async () => {
+  //     if (schoolName) {
+  //       await setMySchoolMutation.mutateAsync(schoolName);
+  //     }
+  //     if (inviterUserId) {
+  //       await setMyInviterMutation.mutateAsync(inviterUserId);
+  //     }
+  //   })();
+  // }, [userData]);
 
   const openStateUpdate = () => {
     const isLoggedin = userData ? true : false;

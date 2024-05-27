@@ -44,22 +44,6 @@ export const AddressTextUI = styled.p`
   word-spacing: 0px;
 `;
 
-export const SelectUI = styled.select`
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  display: flex;
-  position: relative;
-  font-family: Pretendard-Medium;
-  font-size: 14px;
-  border: solid 1.4px #e3e3e3;
-  background-color: #ffffff;
-  color: black;
-  border-radius: 17px;
-  padding-block: 14px;
-  padding-inline: 25px;
-`;
-
 export const EditIconImgUI = styled.img`
   width: 27px;
   position: absolute;

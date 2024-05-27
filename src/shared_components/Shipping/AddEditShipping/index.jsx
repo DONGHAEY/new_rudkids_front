@@ -3,6 +3,7 @@ import {
   AddEditShippingUI,
   AddEditShippingWrapperUI,
   TextInputUI,
+  SelectUI,
 } from "./styles";
 import BottomButton from "./BottomButton";
 import ColField from "../../Field/ColField";
@@ -12,12 +13,20 @@ import SearchAddress from "./SearchAddress";
 import { usePopup } from "../../../hooks/usePopup";
 import useAddShippingMutation from "../../../mutations/shipping/useAddShippingMutation";
 import useEditShippingMutation from "../../../mutations/shipping/useEditShippingMutation";
+import { useMemo } from "react";
+
+const requesetMemoContents = [
+  "문앞에 놓아주세요",
+  "경비실 앞에 놓아주세요",
+  "그렇게해주세요",
+];
 
 const AddEditShipping = ({ shippingData = null, setShippingData }) => {
   const [popupNavigate, popupBack] = usePopup();
 
-  const { register, handleSubmit, watch, setValue } = useForm({
+  const { register, handleSubmit, watch, setValue, formState } = useForm({
     defaultValues: shippingData,
+    mode: "onChange",
   });
 
   const addShippingMutation = useAddShippingMutation();
@@ -26,18 +35,25 @@ const AddEditShipping = ({ shippingData = null, setShippingData }) => {
   const submitHandler = async (data) => {
     if (shippingData?.id) {
       await editShippingMutation.mutateAsync(data, {
-        onSettled: () => {
+        onSuccess: () => {
           setShippingData(data);
         },
       });
     } else {
       await addShippingMutation.mutateAsync(data, {
-        onSettled: () => {
-          setShippingData(data);
+        onSuccess: (addedShipping) => {
+          setShippingData(addedShipping);
         },
       });
     }
   };
+
+  const canSubmit = useMemo(() => {
+    console.log(formState.errors, "_-");
+    return Object.keys(formState.errors)?.length === 0;
+  }, [formState]);
+
+  const searchAddressPopupName = `search-address-${shippingData?.name ?? ""}`;
 
   return (
     <AddEditShippingWrapperUI>
@@ -66,9 +82,19 @@ const AddEditShipping = ({ shippingData = null, setShippingData }) => {
               }).ref
             }
             value={watch("address")}
-            onClick={() => popupNavigate(`search-address`)}
+            onClick={() => popupNavigate(searchAddressPopupName)}
             placeholder="건물, 지번 또는 도로명 검색"
           />
+          <Popup popupName={searchAddressPopupName} popupTitle="🔎 주소 검색">
+            <SearchAddress
+              address={watch("address")}
+              setAddress={(address) => {
+                if (!address) return;
+                popupBack();
+                setValue("address", address);
+              }}
+            />
+          </Popup>
           <TextInputUI
             {...register("detailAddress", {
               required: false,
@@ -96,23 +122,29 @@ const AddEditShipping = ({ shippingData = null, setShippingData }) => {
             placeholder="'-'없이 숫자만 입력하세요"
           />
         </ColField>
+        <ColField name="배송시 요청사항">
+          <SelectUI
+            {...register("requestMemo", {
+              required: false,
+            })}
+          >
+            <option key={-1} value={""}>
+              배송메모를 선택해주세요
+            </option>
+            {requesetMemoContents?.map((requestMemo, idx) => (
+              <option key={idx} value={requestMemo}>
+                {requestMemo}
+              </option>
+            ))}
+          </SelectUI>
+        </ColField>
         {/* 기본배송지로 설정 컬럼 필요 */}
         <RowField name="기본배송지로 설정">
           <input {...register("isDefault")} type="checkbox" />
         </RowField>
-        <Popup popupName={`search-address`} popupTitle="🔎 주소 검색">
-          <SearchAddress
-            address={watch("address")}
-            setAddress={(address) => {
-              if (!address) return;
-              popupBack();
-              setValue("address", address);
-            }}
-          />
-        </Popup>
       </AddEditShippingUI>
       <BottomButton
-        disable={addShippingMutation.isLoading}
+        disable={addShippingMutation.isLoading || !canSubmit}
         onClick={handleSubmit(submitHandler)}
       >
         Done

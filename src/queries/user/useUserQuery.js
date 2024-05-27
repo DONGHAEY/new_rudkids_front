@@ -10,20 +10,20 @@ const getMeUser = async () => {
     .then((response) => response.data);
 };
 
-const getOtherUser = async (userId) => {
+const getOtherUser = async (userNickname) => {
   return await axiosInstance
-    .get(`/api/user/${userId}`)
+    .get(`/api/user/${userNickname}`)
     .then((response) => response.data);
 };
 
-const useUserQuery = (userId = null) => {
+const useUserQuery = (userNickname = null) => {
   return useQuery({
-    queryKey: KEY(userId),
-    queryFn: () => {
-      if (userId) {
-        return getOtherUser(userId);
+    queryKey: KEY(userNickname),
+    queryFn: async () => {
+      if (userNickname) {
+        return await getOtherUser(userNickname);
       }
-      return getMeUser();
+      return await getMeUser();
     },
   });
 };

@@ -1,6 +1,7 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import mutationKey from "../key";
 import axiosInstance from "../../axiosInstance";
+import queryKey from "../../queries/key";
 
 export const KEY = [mutationKey.payment, "create"];
 
@@ -11,14 +12,18 @@ const createPayment = async ({ orderId, paymentKey, amount }) => {
 };
 
 const useCreatePaymentMutation = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: ({ orderId, paymentKey, amount }) =>
-      createPayment({
+    mutationFn: async ({ orderId, paymentKey, amount }) =>
+      await createPayment({
         orderId,
         paymentKey,
         amount,
       }),
+    onSuccess: (paymentData) => {
+      queryClient.invalidateQueries(queryKey.order);
+    },
   });
 };
 

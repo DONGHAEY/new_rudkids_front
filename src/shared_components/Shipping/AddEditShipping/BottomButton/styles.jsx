@@ -6,7 +6,7 @@ export const ButtonUI = styled.button`
   align-items: center;
   justify-content: center;
   padding-block: 18px;
-  background-color: #ec0000;
+  background-color: ${({ $disable }) => ($disable ? "#C7C7C7" : "#EC0000")};
   line-height: 20px;
   font-family: Poppins-Bold;
   font-size: 20px;

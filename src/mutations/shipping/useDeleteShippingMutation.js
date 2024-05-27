@@ -15,13 +15,13 @@ const useDeleteShippingMutation = (shippingId) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: () => {
+    mutationFn: async () => {
       const shippingList = queryClient.getQueryData(ShippingListKey);
       queryClient.setQueriesData(
         ShippingListKey,
         shippingList.filter((shippingData) => shippingData?.id !== shippingId)
       );
-      deleteShippping(shippingId);
+      await deleteShippping(shippingId);
     },
   });
 };

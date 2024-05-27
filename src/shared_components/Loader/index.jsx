@@ -3,7 +3,7 @@ import LoadCircle from "./assets/Load.png";
 import { LoaderUI } from "./styles";
 import gsap from "gsap";
 
-const Loader = () => {
+const Loader = ({ message, color }) => {
   const ref = useRef();
 
   const messages = [
@@ -38,7 +38,9 @@ const Loader = () => {
   return (
     <LoaderUI>
       <img ref={ref} src={LoadCircle} height="150px" />
-      <p>{messages[messageIdx]}</p>
+      <p style={{ color: color ?? "gray" }}>
+        {message ?? messages[messageIdx]}
+      </p>
     </LoaderUI>
   );
 };

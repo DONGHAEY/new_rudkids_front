@@ -1,0 +1,29 @@
+import styled from "styled-components";
+
+export const RowWrapperUI = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto;
+  width: 90%;
+  max-width: 325.33px;
+  gap: 15.28px;
+  margin-top: 26px;
+`;
+
+export const InfoBoxUI = styled.button`
+  width: 100%;
+  max-width: 98.25px;
+  border: none;
+  background-color: white;
+  padding-block: 22.93px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  border-radius: 15px;
+  font-size: 15px;
+  font-family: Poppins-SemiBold;
+  position: relative;
+`;

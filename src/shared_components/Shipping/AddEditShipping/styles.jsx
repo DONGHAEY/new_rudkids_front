@@ -40,3 +40,20 @@ export const TextInputUI = styled.input`
     color: #a1a1a1;
   }
 `;
+
+export const SelectUI = styled.select`
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  display: flex;
+  position: relative;
+  font-family: Pretendard-SemiBold;
+  font-size: 14px;
+  border: solid 1.4px #e3e3e3;
+  background-color: #ffffff;
+  color: #a1a1a1;
+  min-height: 64px;
+  border-radius: 17px;
+  padding-block: 14px;
+  padding-inline: 25px;
+`;

@@ -6,6 +6,7 @@ const mutationKey = {
   cart: "cart",
   order: "order",
   shipping: "shipping",
+  invitation: "invitation",
   profile: "profile",
   payment: "payment",
 };

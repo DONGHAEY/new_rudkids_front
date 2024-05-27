@@ -7,7 +7,15 @@ export const KEY = [mutationKey.shipping, "edit"];
 
 const editShippping = async (
   shippingId,
-  { name, address, detailAddress, recieverName, recieverPhoneNumber, isDefault }
+  {
+    name,
+    address,
+    detailAddress,
+    recieverName,
+    recieverPhoneNumber,
+    requestMemo,
+    isDefault,
+  }
 ) => {
   return await axiosInstance
     .put(`/api/shipping/${shippingId}`, {
@@ -16,6 +24,7 @@ const editShippping = async (
       detailAddress,
       recieverName,
       recieverPhoneNumber,
+      requestMemo,
       isDefault,
     })
     .then((response) => response.data);
@@ -25,22 +34,8 @@ const useEditShippingMutation = (shippingId) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: ({
-      name,
-      address,
-      detailAddress,
-      recieverName,
-      recieverPhoneNumber,
-      isDefault,
-    }) =>
-      editShippping(shippingId, {
-        name,
-        address,
-        detailAddress,
-        recieverName,
-        recieverPhoneNumber,
-        isDefault,
-      }),
+    mutationFn: async (editShippingData) =>
+      await editShippping(shippingId, editShippingData),
     onSettled: () => queryClient.invalidateQueries(ShippingListKey),
   });
 };

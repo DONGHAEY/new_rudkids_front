@@ -2,7 +2,7 @@ import { Modal } from "@mui/material";
 import styled from "styled-components";
 
 export const TitleUI = styled.p`
-  font-family: Pretendard-SemiBold;
+  font-family: Pretendard-Bold;
   font-size: 20px;
 `;
 

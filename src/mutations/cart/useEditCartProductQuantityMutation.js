@@ -21,7 +21,7 @@ const useEditCartProductQuantityMutation = (productId) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: (quantity) => {
+    mutationFn: async (quantity) => {
       if (quantity <= 0) return null;
       const cartData = queryClient.getQueryData(CART_KEY);
       if (cartData?.cartProducts?.length) {

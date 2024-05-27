@@ -15,10 +15,10 @@ import {
   InfoRowUI,
 } from "./styles";
 import { useParams } from "react-router-dom";
+import useProductDetailQuery from "../../queries/product/useProductDetailQuery";
 import { useState } from "react";
 import ProductComponent from "./ProductComponent";
 import { CgArrowDown } from "react-icons/cg";
-import useProductDetailQuery from "../../queries/product/useProductDetailQuery";
 
 const ProductDetailPage = ({ routeInfo }) => {
   const params = useParams();

@@ -11,6 +11,7 @@ const addShippping = async ({
   detailAddress,
   recieverName,
   recieverPhoneNumber,
+  requestMemo,
   isDefault,
 }) => {
   return await axiosInstance
@@ -20,6 +21,7 @@ const addShippping = async ({
       detailAddress,
       recieverName,
       recieverPhoneNumber,
+      requestMemo,
       isDefault,
     })
     .then((response) => response.data);
@@ -29,22 +31,7 @@ const useAddShippingMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: ({
-      name,
-      address,
-      detailAddress,
-      recieverName,
-      recieverPhoneNumber,
-      isDefault,
-    }) =>
-      addShippping({
-        name,
-        address,
-        detailAddress,
-        recieverName,
-        recieverPhoneNumber,
-        isDefault,
-      }),
+    mutationFn: async (addShippingData) => await addShippping(addShippingData),
     onSettled: () => queryClient.invalidateQueries(shippingListKey),
   });
 };

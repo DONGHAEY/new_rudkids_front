@@ -13,7 +13,8 @@ const getOrder = async (orderId) => {
 const useOrderDetailQuery = (orderId) => {
   return useQuery({
     queryKey: KEY(orderId),
-    queryFn: () => getOrder(orderId),
+    queryFn: async () => await getOrder(orderId),
+    suspense: true,
   });
 };
 

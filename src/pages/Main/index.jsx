@@ -1,45 +1,61 @@
-import { createRef, useEffect } from "react";
-import { PageUI } from "./styles";
-import BoxList from "./BoxList";
 import Header from "../../shared_components/Header";
+import { ListUI, PageUI, WrapperUI } from "./styles";
+import Product from "./Product";
+import { createRef, useEffect, useState } from "react";
+import ActionBar from "./ActionBar";
+import gsap from "gsap";
 import useProductListQuery from "../../queries/product/useProductListQuery";
 
-const colorList = ["#FFE818", "#26A4FF", "#FF3BA5", "green"];
-
 const MainPage = () => {
-  const pageRef = createRef(null);
+  const { data: productsData } = useProductListQuery();
+  const [selectedIdx, setSelectedIdx] = useState(null);
 
-  const { data: productListData } = useProductListQuery();
+  const productRefList = new Array(productsData?.length)
+    .fill(null)
+    .map((_, idx) => createRef());
+
+  console.log(productsData, "--");
+
+  const selectedProduct = productsData?.[selectedIdx];
+
+  const scrollHandler = () => {
+    const scrollTop = gsap.getProperty("html", "scrollTop");
+    const clientHeight = gsap.getProperty("html", "clientHeight");
+    const scrollMiddle = clientHeight / 2 + scrollTop;
+    productRefList?.map((productRef, idx) => {
+      const offsetTop = productRef?.current?.offsetTop;
+      const height = productRef?.current?.clientHeight;
+      // console.log(offsetTop, idx, "-");
+      if (scrollMiddle >= offsetTop && scrollMiddle <= offsetTop + height) {
+        setSelectedIdx(idx);
+      }
+    });
+  };
 
   useEffect(() => {
-    const eventPreventHandler = (e) => {
-      e.preventDefault();
+    scrollHandler();
+    window.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
     };
-    if (!pageRef.current) return;
-    pageRef.current.addEventListener("wheel", eventPreventHandler, {
-      passive: false,
-    });
-    pageRef.current.addEventListener("touchmove", eventPreventHandler, {
-      passive: false,
-    });
-  }, [pageRef.current]);
-
-  const listData = productListData?.map((productData, idx) => ({
-    name: productData.name,
-    imageSrc: productData.imageUrl,
-    color: colorList[idx],
-  }));
+  }, [productRefList]);
 
   return (
-    <PageUI ref={pageRef}>
-      <Header isFixed={false} />
-      <div
-        style={{
-          height: "90%",
-        }}
-      >
-        <BoxList listData={listData} />
-      </div>
+    <PageUI>
+      <Header isFixed />
+      <ListUI>
+        {productsData?.map((productData, idx) => {
+          return (
+            <WrapperUI key={idx} ref={productRefList[idx]}>
+              <Product
+                productData={productData}
+                selected={idx === selectedIdx}
+              />
+            </WrapperUI>
+          );
+        })}
+      </ListUI>
+      <ActionBar productData={selectedProduct} idx={selectedIdx} />
     </PageUI>
   );
 };

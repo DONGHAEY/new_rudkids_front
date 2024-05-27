@@ -6,17 +6,17 @@ import {
   ActionButtonUI,
   SpacerUI,
 } from "./styles";
-import { useNavigate } from "react-router-dom";
 import useAddCartProductMutation from "../../../mutations/cart/useAddCartProductMutation";
+import { useNavigate } from "react-router-dom";
 
 const ActionBar = ({ productData }) => {
   const navigate = useNavigate();
-  const addCartProductMutation = useAddCartProductMutation();
+  const putCartProductMutation = useAddCartProductMutation();
 
   const cartButtonClickHandler = async () => {
     if (productData) {
       try {
-        await addCartProductMutation.mutateAsync(productData.id);
+        await putCartProductMutation.mutateAsync(productData.id);
       } catch (e) {}
     }
   };

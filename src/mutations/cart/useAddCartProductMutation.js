@@ -17,8 +17,8 @@ const useAddCartProductMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: (productId) => {
-      addCartProduct(productId);
+    mutationFn: async (productId) => {
+      await addCartProduct(productId);
     },
     onSuccess: async () => {
       const cartProdsCntData = await queryClient.getQueryData(cartProdsCntKey);

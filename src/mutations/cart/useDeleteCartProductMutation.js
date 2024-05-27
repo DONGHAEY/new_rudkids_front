@@ -16,7 +16,7 @@ const useDeleteCartProductMutation = (productId) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: () => deleteCartProduct(productId),
+    mutationFn: async () => await deleteCartProduct(productId),
     onSuccess: async () => {
       const cartData = queryClient.getQueryData(cartKey);
       cartData.cartProducts = cartData?.cartProducts?.filter(

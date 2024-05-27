@@ -14,7 +14,7 @@ import { useState } from "react";
 import { MenuBarModalUI } from "./styles";
 import useCartProdsCntQuery from "../../queries/cart/useCartProdsCntQuery";
 
-const Header = ({ $backgroundColor = "none", isFixed = true }) => {
+const Header = ({ isFixed = true }) => {
   const navigate = useNavigate();
   const { data: cartCntData = 0 } = useCartProdsCntQuery();
 

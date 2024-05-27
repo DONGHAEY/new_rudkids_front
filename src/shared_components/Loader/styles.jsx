@@ -8,7 +8,8 @@ export const LoaderUI = styled.div`
   justify-content: center;
   background-color: transparent;
   flex-direction: column;
+  background-color: transparent;
   gap: 30px;
-  font-family: Poppins-Medium;
+  font-family: Pretendard-Bold;
   color: gray;
 `;

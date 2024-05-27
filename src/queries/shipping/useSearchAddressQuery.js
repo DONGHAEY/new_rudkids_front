@@ -13,7 +13,7 @@ const searchAddress = async (query) => {
 const useSearchAddressQuery = (query) => {
   return useQuery({
     queryKey: KEY(query),
-    queryFn: () => searchAddress(query),
+    queryFn: async () => await searchAddress(query),
     suspense: false,
   });
 };

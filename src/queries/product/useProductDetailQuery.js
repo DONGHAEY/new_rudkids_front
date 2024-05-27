@@ -13,7 +13,7 @@ const getProductDetail = async (productName) => {
 const useProductDetailQuery = (productName) => {
   return useQuery({
     queryKey: KEY(productName),
-    queryFn: () => getProductDetail(productName),
+    queryFn: async () => await getProductDetail(productName),
   });
 };
 

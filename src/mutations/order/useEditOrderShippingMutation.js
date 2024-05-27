@@ -15,8 +15,8 @@ const useEditOrderShippingMutation = (orderId) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: (shipping) =>
-      editOrderShipping({
+    mutationFn: async (shipping) =>
+      await editOrderShipping({
         orderId,
         shipping,
       }),
