@@ -16,6 +16,7 @@ export const InfoBoxUI = styled.button`
   max-width: 98.25px;
   border: none;
   background-color: white;
+  color: black;
   padding-block: 22.93px;
   display: flex;
   flex-direction: column;
