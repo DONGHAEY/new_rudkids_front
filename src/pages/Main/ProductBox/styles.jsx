@@ -1,37 +1,18 @@
 import styled from "styled-components";
 
-export const PageUI = styled.div`
-  background-color: #1a94d9;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  min-height: 100%;
-`;
-
-export const ListUI = styled.div`
-  margin-bottom: 100px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: 100%;
-  grid-gap: 16px;
-  width: 95%;
-`;
-
-export const WrapperUI = styled.div`
-  width: 100%;
-`;
-
 export const ProductBoxUI = styled.div`
   display: flex;
   flex-direction: column;
   gap: 11px;
+  margin-bottom: 16px;
 `;
 
 export const ProductImgWrapperUI = styled.div`
   padding: 10px;
   background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 14px;
 `;
 

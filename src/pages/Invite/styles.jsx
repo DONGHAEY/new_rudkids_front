@@ -93,14 +93,14 @@ export const InviteBtnUI = styled.button`
   color: white;
   font-size: 24px;
   border: none;
-  font-family: Poppins-Bold;
+  font-family: Pretendard-Bold;
   height: 77px;
   margin-top: 49px;
 `;
 
 export const CompleteBtnUI = styled(InviteBtnUI)`
   background-color: #00dd31;
-  color: #000000;
+  color: white;
   font-family: Pretendard-Bold;
 `;
 
@@ -110,4 +110,15 @@ export const InviteProgressSectionUI = styled.div`
   display: flex;
   flex-direction: column;
   gap: 13px;
+`;
+
+export const LottieWrapperUI = styled.div`
+  display: flex;
+  position: fixed;
+  top: 0;
+  margin: auto;
+  width: 100%;
+  max-width: 430px;
+  z-index: 5;
+  pointer-events: none;
 `;

@@ -13,12 +13,14 @@ import {
   HelpMessageTextUI,
   PackageExplainUI,
   InfoRowUI,
+  DetailImgListUI,
 } from "./styles";
 import { useParams } from "react-router-dom";
 import useProductDetailQuery from "../../queries/product/useProductDetailQuery";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ProductComponent from "./ProductComponent";
 import { CgArrowDown } from "react-icons/cg";
+import Loader from "../../shared_components/Loader";
 
 const ProductDetailPage = ({ routeInfo }) => {
   const params = useParams();
@@ -28,32 +30,26 @@ const ProductDetailPage = ({ routeInfo }) => {
   const { data: productData, isLoading: productDataLoading } =
     useProductDetailQuery(productName);
 
-  if (productDataLoading || !productData) {
-    return null;
-  }
-
   const productPrice = productData?.price?.toLocaleString("ko-KR");
-  const productComponents = [
-    {
-      name: productData.components?.length === 0 ? productData.name : "package",
-      description: productData.description,
-      imageUrl: productData.imageUrl,
-      modelUrl: productData.modelUrl,
-    },
-    ...productData?.components.map((_) => ({
-      name: _.name,
-      description: _.description,
-      imageUrl: _.imageUrl,
-      modelUrl: _.modelUrl,
-    })),
-  ];
+  const detailImageUrls = useMemo(() => {
+    if (productData?.detailIimageUrls) {
+      return JSON.parse(productData?.detailImageUrls);
+    }
+    return [];
+  }, [productData]);
+
+  const productComponents = productData?.components;
+
+  if (productDataLoading) {
+    return <Loader />;
+  }
 
   return (
     <PageUI>
       <Header $backgroundColor="none" />
       <FlexWrapperUI>
         <ModelDragger
-          modelName={productComponents[selectedModelIdx]?.name}
+          modelName={productComponents?.[selectedModelIdx]?.name}
           modelUrls={productComponents?.map((_) => _.modelUrl)}
           modelIdx={selectedModelIdx}
         />
@@ -82,11 +78,11 @@ const ProductDetailPage = ({ routeInfo }) => {
             );
           })}
         </ComponentListUI>
-        {/* <ModelDescriptionUI>
-          <ModelDescriptionTextUI>
-            Tmi : {productComponents[selectedModelIdx]?.description}
-          </ModelDescriptionTextUI>
-        </ModelDescriptionUI> */}
+        <DetailImgListUI>
+          {detailImageUrls?.map((detailIimageUrl, key) => {
+            return <img key={key} width="100%" src={detailIimageUrl} />;
+          })}
+        </DetailImgListUI>
       </FlexWrapperUI>
       <ActionBar productData={productData} />
     </PageUI>

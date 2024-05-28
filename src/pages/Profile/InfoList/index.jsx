@@ -1,7 +1,7 @@
 import { FaEye, FaHeart, FaMedal } from "react-icons/fa";
 import { InfoBoxUI, RowWrapperUI } from "./styles";
 
-const InfoList = ({ rank, totalView, followerCnt, isFlower }) => {
+const InfoList = ({ rank, totalView, followerCnt, isFollower }) => {
   return (
     <RowWrapperUI>
       {/*  */}
@@ -14,7 +14,7 @@ const InfoList = ({ rank, totalView, followerCnt, isFlower }) => {
         {totalView?.toLocaleString("ko-kr")}
       </InfoBoxUI>
       <InfoBoxUI>
-        <FaHeart color={isFlower ? "red" : "black"} fontSize="28px" />
+        <FaHeart color={isFollower ? "red" : "black"} fontSize="28px" />
         {followerCnt?.toLocaleString("ko-kr")}
       </InfoBoxUI>
       {/*  */}

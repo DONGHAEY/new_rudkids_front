@@ -16,11 +16,11 @@ const Letter = ({ fromImageUrl, fromName }) => {
 
   useEffect(() => {
     gsap.to(ref.current, {
-      bottom: "50px",
-      duration: 1,
+      transform: "rotateZ(-6deg)",
+      bottom: "40px",
+      duration: 0.5,
       yoyo: true,
       repeat: -1,
-      ease: "power2.in",
     });
   }, []);
 

@@ -1,12 +1,21 @@
+import Marquee from "react-fast-marquee";
 import styled from "styled-components";
+
+export const ScrollMarqueeUI = styled(Marquee)`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 430px;
+  margin-top: 20px;
+`;
 
 export const InvitedUserImgWrapperUI = styled.div`
   position: relative;
-  height: 85%;
+  height: 47px;
   border: 3px solid transparent;
   border-radius: 50%;
 
-  margin-left: 15px;
+  margin-left: 20px;
   background-origin: border-box;
   background-clip: content-box, border-box;
   background-color: #fff;
@@ -24,18 +33,6 @@ export const InvitedUserImgWrapperUI = styled.div`
 export const InvitedUserImgUI = styled.img`
   height: 100%;
   border-radius: 100%;
-`;
-
-export const InvitedUsersScrollUI = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  margin-top: 11px;
-  overflow: scroll;
-  ::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
 `;
 
 export const RandomOnlineSignUI = styled.div`

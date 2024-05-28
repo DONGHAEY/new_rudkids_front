@@ -1,6 +1,13 @@
 import { useParams } from "react-router-dom";
 import useInvitationQuery from "../../queries/invitation/useInvitationQuery";
-import { PageUI, SubTitleTxtUI, TitleTxtUI } from "./styles";
+import {
+  FixedBototmSectionUI,
+  MiddleSectionUI,
+  PageUI,
+  SubTitleTxtUI,
+  TitleTxtUI,
+  DescriptSectionUI,
+} from "./styles";
 import Letter from "./Letter";
 import TimerButton from "./TimerButton";
 import { useEffect, useState } from "react";
@@ -27,15 +34,25 @@ const InvitationPage = ({ routeInfo }) => {
 
   return (
     <PageUI>
-      <InvitedUsers invitedUsers={new Array(30).fill("")} />
-      <TitleTxtUI>초대장이 도착했어요!</TitleTxtUI>
-      <SubTitleTxtUI>당신, 루키즈가 되고싶어?</SubTitleTxtUI>
-      <Letter
-        fromImageUrl={invitationData?.fromImageUrl}
-        fromName={invitationData?.fromName}
+      <InvitedUsers
+        invitedUsers={new Array(30).fill(
+          "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/profile/7x3kaki-instagram.png"
+        )}
       />
-      <TimerButton timerOffset={remainSecond / totalSecond} />
-      <NumTimer remainSecond={remainSecond} />
+      <MiddleSectionUI>
+        <DescriptSectionUI>
+          <TitleTxtUI>초대장이 도착했어요!</TitleTxtUI>
+          <SubTitleTxtUI>당신, 루키즈가 되고싶어?</SubTitleTxtUI>
+        </DescriptSectionUI>
+        <Letter
+          fromImageUrl={invitationData?.fromImageUrl}
+          fromName={invitationData?.fromName}
+        />
+      </MiddleSectionUI>
+      <FixedBototmSectionUI>
+        <TimerButton timerOffset={remainSecond / totalSecond} />
+        <NumTimer remainSecond={remainSecond} />
+      </FixedBototmSectionUI>
     </PageUI>
   );
 };

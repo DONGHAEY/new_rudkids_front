@@ -15,6 +15,7 @@ import { usePopup } from "../../hooks/usePopup";
 import BioEdit from "./BioEdit";
 import LinksEdit from "./LinksEdit";
 import useUserQuery from "../../queries/user/useUserQuery";
+import NicknameEdit from "./NicknameEdit";
 
 const ProfileEditPage = () => {
   const [navigatePopup] = usePopup();
@@ -29,6 +30,15 @@ const ProfileEditPage = () => {
           <CardEmptyBtnUI>회원증정보 입력하기</CardEmptyBtnUI>
         </CardWrapperUI>
         <ListUI>
+          <ColumnUI
+            onClick={() => {
+              navigatePopup("Nickname Edit");
+            }}
+          >
+            <ColumnNmTxtUI>Nickname</ColumnNmTxtUI>
+            <ColumnContentTxtUI>닉네임수정</ColumnContentTxtUI>
+            <BiRightArrow />
+          </ColumnUI>
           <ColumnUI
             onClick={() => {
               navigatePopup("Bio");
@@ -54,6 +64,9 @@ const ProfileEditPage = () => {
       </Popup>
       <Popup popupTitle="Bio" popupName="Bio">
         <BioEdit userBio={userData?.introduce} />
+      </Popup>
+      <Popup popupTitle="Nickname Edit" popupName="Nickname Edit">
+        <NicknameEdit nickname={userData?.nickname} />
       </Popup>
     </Content>
   );

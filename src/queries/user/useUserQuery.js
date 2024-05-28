@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import axiosInstance from "../../axiosInstance";
 import queryKey from "../key";
 
-export const KEY = (user_id = null) => [queryKey.user, user_id ?? "my"];
+export const KEY = (nickname = null) => [queryKey.user, nickname ?? "my"];
 
 const getMeUser = async () => {
   return await axiosInstance

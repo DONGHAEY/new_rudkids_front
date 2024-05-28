@@ -17,41 +17,55 @@ import {
   UserImgUI,
   UserNickNameTxtUI,
 } from "./styles";
-import { BsEyeFill } from "react-icons/bs";
+import { BsEyeFill, BsHeartFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
 import Links from "./Links";
 import { FiShare } from "react-icons/fi";
 import InfoList from "./InfoList";
 import FlipCard from "./FlipCard";
-import cardUrl from "./assets/card.png";
+import cardFrontUrl from "./assets/licenseCard_F.png";
+import cardBackUrl from "./assets/licenseCard_B.svg";
 import useUserQuery from "../../queries/user/useUserQuery";
 import { BiHeart } from "react-icons/bi";
-
-const url =
-  "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/profile/john__16.33-instagram.png";
+import useFollowMutation from "../../mutations/user/follow/useFollowMutation";
+import useUnFollowMutation from "../../mutations/user/follow/useUnFollowMutation";
+import { useEffect } from "react";
+import useUpdateTodayViewMutation from "../../mutations/user/follow/useUpdateTodayView";
 
 export const ProfilePage = ({ routeInfo }) => {
   const params = useParams();
   const nickname = params[routeInfo.paramKeys[0]];
   const { data: userData } = useUserQuery(nickname);
 
+  const followMutation = useFollowMutation();
+  const unFollowMutation = useUnFollowMutation();
+  const updateTodayViewMutation = useUpdateTodayViewMutation();
+  //
   const isMyProfile = nickname ? false : true;
 
   const navigate = useNavigate();
-
   const settingBtnClickHandler = () => {
     navigate("/profile/edit");
   };
-
   const followBtnClickHandler = () => {
-    //
+    if (userData?.isFollower) {
+      unFollowMutation.mutateAsync(nickname);
+    } else {
+      followMutation.mutateAsync(nickname);
+    }
   };
+
+  useEffect(() => {
+    if (nickname) {
+      updateTodayViewMutation.mutateAsync(nickname);
+    }
+  }, [nickname]);
 
   return (
     <PageUI>
       <Header />
       <br />
-      <FlipCard frontImgSrc={cardUrl} backImgSrc={cardUrl} />
+      <FlipCard frontImgSrc={cardFrontUrl} backImgSrc={cardBackUrl} />
       <br />
       <BoxSectionUI>
         <UserImgUI src={userData?.imageUrl} />
@@ -70,10 +84,10 @@ export const ProfilePage = ({ routeInfo }) => {
         <UserNickNameTxtUI>{nickname ?? userData?.nickname}</UserNickNameTxtUI>
         <DescriptTxtUI>{userData?.introduce}</DescriptTxtUI>
         <InfoList
-          rank={"1st"}
+          rank={userData?.rank}
           followerCnt={userData?.followerCnt}
           totalView={userData?.view?.totalCnt}
-          isFlower={true}
+          isFollower={userData?.isFollower}
         />
         <LinksSectionUI>
           <LinksUI>
@@ -85,7 +99,11 @@ export const ProfilePage = ({ routeInfo }) => {
           {isMyProfile && <InviteBtnUI>친구 초대하기</InviteBtnUI>}
           {!isMyProfile && (
             <FollowBtnUI onClick={followBtnClickHandler}>
-              <BiHeart fontSize="30px" />
+              {!userData?.isFollower ? (
+                <BiHeart fontSize="30px" />
+              ) : (
+                <BsHeartFill fontSize="30px" />
+              )}
               <p>{userData?.followerCnt}</p>
             </FollowBtnUI>
           )}

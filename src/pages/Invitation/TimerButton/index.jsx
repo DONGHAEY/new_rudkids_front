@@ -22,16 +22,30 @@ const TimerButton = ({ timerOffset, onClick }) => {
     const timeline = gsap.timeline();
     timeline
       .to(buttonRef.current, {
-        scale: 0.6,
-        duration: 1,
+        scale: 0.9,
+        duration: 0.25,
       })
       .to(buttonRef.current, {
         scale: 1,
-        duration: 1,
+        duration: 0.25,
         yoyo: true,
         repeat: -1,
       });
     timeline.play();
+    // gsap.fromTo(
+    //   buttonRef.current,
+    //   {
+    //     background:
+    //       "linear-gradient(0deg,rgba(232, 0, 0, 1) 0%,rgba(255, 104, 104, 0.5) 100%)",
+    //   },
+    //   {
+    //     background:
+    //       "linear-gradient(360deg,rgba(232, 0, 0, 1) 0%,rgba(255, 104, 104, 0.5) 100%)",
+    //     duration: 5,
+    //     yoyo: true,
+    //     repeat: -1,
+    //   }
+    // );
   }, []);
 
   return (

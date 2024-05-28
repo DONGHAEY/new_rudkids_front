@@ -6,6 +6,7 @@ import {
   HandImgWrapperUI,
   InviteBtnUI,
   InviteProgressSectionUI,
+  LottieWrapperUI,
   MiddleSectionUI,
   PageUI,
   SubTitleTxtUI,
@@ -21,6 +22,8 @@ import ProgressBar from "./ProgressBar";
 import { useState } from "react";
 import PicProgressBar from "./PicProgressBar";
 import useCreateInvitationMutation from "../../mutations/invitation/useCreateInvitationMutation";
+import congraturation from "./assets/congraturation.json";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 const isInviteFinished = () => {
   const first_invite_completed = localStorage.getItem("first_invite_completed");
@@ -39,8 +42,6 @@ const InvitePage = () => {
 
   const goalInviterCnt = 3;
   const [inviterCnt, setInviterCnt] = useState(0);
-
-  const isInviteFinished = goalInviterCnt === inviterCnt;
 
   const inviteHandler = async () => {
     const invitationId = await createInvitationMutation.mutateAsync();
@@ -82,16 +83,21 @@ const InvitePage = () => {
             <PicProgressBar cnt={inviterCnt} total={goalInviterCnt} />
             <ProgressBar offset={inviterCnt / goalInviterCnt} />
           </InviteProgressSectionUI>
-          {!isInviteFinished ? (
+          {goalInviterCnt !== inviterCnt ? (
             <InviteBtnUI onClick={inviteHandler}>
               <RiShareBoxFill />
-              Invite
+              초대하기
             </InviteBtnUI>
           ) : (
             <CompleteBtnUI onClick={completeHandler}>다음</CompleteBtnUI>
           )}
         </BottomBoxUI>
       </FlexColUI>
+      <LottieWrapperUI>
+        {goalInviterCnt === inviterCnt && (
+          <Player controls={true} src={congraturation} autoplay />
+        )}
+      </LottieWrapperUI>
       <Friends />
     </PageUI>
   );

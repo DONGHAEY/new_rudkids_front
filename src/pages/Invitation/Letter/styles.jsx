@@ -5,9 +5,8 @@ export const LetterUI = styled.div`
   align-items: center;
   justify-content: center;
   height: auto;
-  width: 80%;
+  width: 78%;
   position: relative;
-  top: 16px;
 `;
 
 export const LetterBackImgUI = styled.img`
@@ -16,9 +15,9 @@ export const LetterBackImgUI = styled.img`
 `;
 
 export const LetterContentUI = styled.div`
-  position: absolute;
   width: 90%;
-  height: 60%;
+  height: 50%;
+  position: absolute;
   background-color: white;
   bottom: 10px;
   z-index: 1;
@@ -34,7 +33,7 @@ export const LetterFrontImgUI = styled.img`
 export const FromImgUI = styled.img`
   position: absolute;
   border-radius: 100%;
-  max-width: 95px;
+  max-width: 90px;
   top: -55px;
   left: 0px;
   border: solid 8px white;
@@ -44,9 +43,9 @@ export const FromImgUI = styled.img`
 export const FromNmTxtUI = styled.div`
   width: 60%;
   position: absolute;
-  top: 20px;
+  top: 10px;
   font-family: Poppins-Bold;
-  font-size: 24px;
+  font-size: 20px;
   z-index: 1;
   right: 0;
   overflow: scroll;

@@ -101,3 +101,10 @@ export const ComponentListUI = styled.div`
   overflow-x: scroll;
   margin-top: 24px;
 `;
+
+export const DetailImgListUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+`;

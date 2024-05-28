@@ -9,7 +9,6 @@ export const NumerTimerUI = styled.div`
   align-items: center;
   gap: 9px;
   border-radius: 44.04px;
-  margin-top: 15px;
 `;
 
 export const TimeTxtUI = styled.p`
