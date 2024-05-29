@@ -13,22 +13,22 @@ import DescriptionInput from "./DescriptionInput";
 import useUserQuery from "../../../queries/user/useUserQuery";
 import { useRef, useState } from "react";
 import * as htmlToImage from "html-to-image";
-import { createFileName } from "use-react-screenshot";
 import useEditCardImgUrlMutation from "../../../mutations/user/useEditCardImgUrlMutation";
 import Loader from "../../../shared_components/Loader";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "@mui/material";
 import WarningAlert from "./WarningAlert";
+import ImageInput from "./ImageInput";
 
 const RudcardAdd = () => {
   const cardRef = useRef();
 
   const navigate = useNavigate();
-  const { data: userData } = useUserQuery();
 
+  const { data: userData } = useUserQuery();
   const editCardImgUrl = useEditCardImgUrlMutation();
 
-  const { register, watch, handleSubmit } = useForm({
+  const { register, watch, handleSubmit, setValue } = useForm({
     defaultValues: {
       name: userData?.nickname,
       description: userData?.introduce,
@@ -37,6 +37,7 @@ const RudcardAdd = () => {
         month: null,
         date: null,
       },
+      profileImgUrl: userData?.imageUrl,
     },
   });
 
@@ -89,7 +90,7 @@ const RudcardAdd = () => {
         ref={cardRef}
       >
         <CardTemplate
-          profileImgUrl={userData?.imageUrl}
+          profileImgUrl={watch("profileImgUrl")}
           name={watch("name")}
           birth={watch("birth")}
           description={watch("description")}
@@ -98,6 +99,11 @@ const RudcardAdd = () => {
         />
       </div>
       <InputListUI>
+        <ImageInput
+          setValue={(imageUrl) => {
+            setValue("profileImgUrl", imageUrl);
+          }}
+        />
         <NameInput register={register} />
         <BirthInput
           yearRegister={register("birth.year", {

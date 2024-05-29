@@ -6,7 +6,7 @@ export const PageUI = styled.form`
   align-items: center;
   background-color: white;
   padding-inline: 10px;
-  height: 100%;
+  padding-block: 10px;
   background-color: white;
 `;
 

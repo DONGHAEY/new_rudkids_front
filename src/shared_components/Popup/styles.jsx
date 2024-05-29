@@ -10,6 +10,7 @@ export const PopupUI = styled(Modal)`
   display: flex;
   width: 100%;
   height: 100%;
+  overflow: scroll;
   background-color: none;
   border: none;
   background: none;
