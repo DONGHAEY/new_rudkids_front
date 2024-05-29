@@ -11,12 +11,14 @@ import NameInput from "./NameInput";
 import BirthInput from "./BirthInput";
 import DescriptionInput from "./DescriptionInput";
 import useUserQuery from "../../../queries/user/useUserQuery";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import * as htmlToImage from "html-to-image";
 import { createFileName } from "use-react-screenshot";
 import useEditCardImgUrlMutation from "../../../mutations/user/useEditCardImgUrlMutation";
 import Loader from "../../../shared_components/Loader";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "@mui/material";
+import WarningAlert from "./WarningAlert";
 
 const RudcardAdd = () => {
   const cardRef = useRef();
@@ -38,28 +40,33 @@ const RudcardAdd = () => {
     },
   });
 
-  const download = (image, { name = "img", extension = "svg" } = {}) => {
-    const a = document.createElement("a");
-    a.href = image;
-    a.download = createFileName(extension, name);
-    a.click();
+  // const download = (image, { name = "img", extension = "svg" } = {}) => {
+  //   const a = document.createElement("a");
+  //   a.href = image;
+  //   a.download = createFileName(extension, name);
+  //   a.click();
+  // };
+
+  const [isAlert, setIsAlert] = useState(false);
+
+  const submitHandler = () => {
+    setIsAlert(true);
   };
 
-  const submitHandler = async (data) => {
-    // e.preventDefault();
+  const submit = async (data) => {
     const dataURI = await htmlToImage.toPng(cardRef.current);
     fetch(dataURI)
       .then((res) => res.blob())
       .then(async (blob) => {
         const formData = new FormData();
-        const fileName = "file";
+        const fileName = `${userData.id}-card.svg`;
         const convertedFile = new File([blob], fileName, {
           type: "image/svg",
         });
         formData.append("file", convertedFile);
         await editCardImgUrl.mutateAsync(formData, {
           onSuccess: () => {
-            alert("카드등록에 성공함.");
+            navigate("카드등록에 성공함.");
             navigate(-1);
           },
         });
@@ -114,6 +121,17 @@ const RudcardAdd = () => {
       <SaveBtnSectionUI>
         <SaveBtnUI type="submit">만들기</SaveBtnUI>
       </SaveBtnSectionUI>
+      <Modal open={isAlert}>
+        <WarningAlert
+          onConfirm={() => {
+            submit();
+            setIsAlert(false);
+          }}
+          onCancel={() => {
+            setIsAlert(false);
+          }}
+        />
+      </Modal>
     </PageUI>
   );
 };

@@ -17,6 +17,7 @@ import LinksEdit from "./LinksEdit";
 import useUserQuery from "../../queries/user/useUserQuery";
 import NicknameEdit from "./NicknameEdit";
 import RudcardAdd from "./RudcardAdd";
+import { Modal } from "@mui/material";
 
 const ProfileEditPage = () => {
   const [navigatePopup] = usePopup();
