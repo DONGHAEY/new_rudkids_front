@@ -7,7 +7,7 @@ const NameInput = ({ register }) => {
       <InputUI
         placeholder="이름을 입력하세요"
         {...register("name", {
-          require: true,
+          required: true,
           minLength: 2,
         })}
       />

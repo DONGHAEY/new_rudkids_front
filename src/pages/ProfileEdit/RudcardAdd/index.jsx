@@ -26,10 +26,15 @@ const RudcardAdd = () => {
 
   const editCardImgUrl = useEditCardImgUrlMutation();
 
-  const { register, watch } = useForm({
+  const { register, watch, handleSubmit } = useForm({
     defaultValues: {
       name: userData?.nickname,
       description: userData?.introduce,
+      birth: {
+        year: null,
+        month: null,
+        date: null,
+      },
     },
   });
 
@@ -40,8 +45,8 @@ const RudcardAdd = () => {
     a.click();
   };
 
-  const downloadScreenshot = async (e) => {
-    e.preventDefault();
+  const submitHandler = async (data) => {
+    // e.preventDefault();
     const dataURI = await htmlToImage.toPng(cardRef.current);
     fetch(dataURI)
       .then((res) => res.blob())
@@ -66,7 +71,7 @@ const RudcardAdd = () => {
   }
 
   return (
-    <PageUI>
+    <PageUI onSubmit={handleSubmit(submitHandler)}>
       <PageDescriptionUI>당신에 대해 알려주세요 카피라이팅</PageDescriptionUI>
       <div
         style={{
@@ -87,11 +92,27 @@ const RudcardAdd = () => {
       </div>
       <InputListUI>
         <NameInput register={register} />
-        <BirthInput register={register} />
+        <BirthInput
+          yearRegister={register("birth.year", {
+            required: "년도 입력은 필수",
+            minLength: 4,
+            maxLength: 4,
+          })}
+          monthRegister={register("birth.month", {
+            required: "달 입력은 필수",
+            minLength: 2,
+            maxLength: 2,
+          })}
+          dateRegister={register("birth.date", {
+            required: "날짜 입력은 필수",
+            maxLength: 2,
+            minLength: 2,
+          })}
+        />
         <DescriptionInput register={register} />
       </InputListUI>
       <SaveBtnSectionUI>
-        <SaveBtnUI onClick={downloadScreenshot}>만들기</SaveBtnUI>
+        <SaveBtnUI type="submit">만들기</SaveBtnUI>
       </SaveBtnSectionUI>
     </PageUI>
   );
