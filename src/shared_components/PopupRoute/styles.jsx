@@ -7,7 +7,7 @@ export const PopupRouteUI = styled(Modal)`
   height: 100%;
   max-width: 430px;
   margin: 0 auto;
-  overflow: scroll;
+  overflow-y: scroll;
   background-color: none;
   border: none;
   background: none;

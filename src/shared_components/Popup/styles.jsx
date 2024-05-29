@@ -10,6 +10,7 @@ export const TitleUI = styled.p`
 export const CenterUI = styled.div`
   width: 100%;
   display: flex;
+  min-height: 100%;
   flex-direction: column;
   min-height: 100%;
   position: relative;
@@ -17,6 +18,9 @@ export const CenterUI = styled.div`
 `;
 
 export const HeaderUI = styled.div`
+  position: absolute;
+  top: 0;
+  /*  absolute 속성으로 변경 Test */
   display: flex;
   padding-inline: 25px;
   padding-block: 10px;

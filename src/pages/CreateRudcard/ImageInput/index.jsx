@@ -10,10 +10,8 @@ const ImageInput = ({ setValue }) => {
       <InputUI
         ref={ref}
         type="file"
-        accept="image/*,.txt"
-        multiple
+        accept="image/*"
         required
-        capture="user"
         onChange={(e) => {
           const file = ref.current.files[0];
           const reader = new FileReader();
