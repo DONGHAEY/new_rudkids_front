@@ -10,6 +10,12 @@ export const LinkIconWrapUI = styled.div`
   padding-left: 20px;
 `;
 
+export const UrlTxtUI = styled.p`
+  font-family: Pretendard-Medium;
+  font-size: 14px;
+  letter-spacing: 0;
+`;
+
 export const UrlUI = styled.div`
   width: 100%;
   display: flex;
@@ -17,7 +23,7 @@ export const UrlUI = styled.div`
   align-items: center;
   justify-content: space-between;
   border-radius: 46px;
-  background-color: #f2f2f2;
+  background-color: ${({ $locked }) => ($locked ? "none" : "#f2f2f2")};
   padding-block: 16px;
   text-overflow: ellipsis;
 `;

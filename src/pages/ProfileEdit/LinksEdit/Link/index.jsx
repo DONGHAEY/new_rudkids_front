@@ -3,7 +3,7 @@ import tiktokIconSrc from "./assets/tiktok.png";
 import xIconSrc from "./assets/x.png";
 import youtubeIconSrc from "./assets/youtube.png";
 import InstagramIconSrc from "./assets/instagram.png";
-import { LinkIconWrapUI, UrlUI } from "./styles";
+import { LinkIconWrapUI, UrlTxtUI, UrlUI } from "./styles";
 import { MdLink } from "react-icons/md";
 
 import lockerSrc from "./assets/locker.svg";
@@ -40,10 +40,10 @@ const platforms = [
 const Link = ({ isLocked, link, onDeleteClick }) => {
   const platform = platforms.find((platform) => link.includes(platform.domain));
   return (
-    <UrlUI>
+    <UrlUI $locked={isLocked}>
       <LinkIconWrapUI>
         {platform ? <img width="30px" src={platform?.iconSrc} /> : <MdLink />}
-        <p>{link}</p>
+        <UrlTxtUI>{link}</UrlTxtUI>
       </LinkIconWrapUI>
       <div
         style={{
