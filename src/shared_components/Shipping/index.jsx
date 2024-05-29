@@ -14,7 +14,7 @@ import editIconSrc from "./assets/edit_icon.png";
 import EmptyShipping from "./EmptyShipping";
 import { usePopup } from "../../hooks/usePopup";
 import SelectShipping from "./SelectShipping";
-import Popup from "../Popup";
+import PopupRoute from "../../shared_components/PopupRoute";
 import useShippingListQuery from "../../queries/shipping/useShippingListQuery";
 
 const Shipping = ({ value, setValue, canEdit = true }) => {
@@ -67,12 +67,12 @@ const Shipping = ({ value, setValue, canEdit = true }) => {
         )}
       </ShippingUI>
       {canEdit && (
-        <Popup popupName="shipping-list" popupTitle="배송지 목록">
+        <PopupRoute name="shipping-list">
           <SelectShipping
             shipping={value}
             setShipping={(shipipngData) => setValue(shipipngData)}
           />
-        </Popup>
+        </PopupRoute>
       )}
     </ShippingWrapperUI>
   );

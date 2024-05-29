@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   LengthTxtUI,
-  PageDescriptionUI,
   PageUI,
   SaveBtnSectionUI,
   SaveBtnUI,
@@ -10,6 +9,7 @@ import {
 } from "./styles";
 import useEditIntroduceMutation from "../../../mutations/user/useEditIntroduceMutation";
 import { usePopup } from "../../../hooks/usePopup";
+import Popup from "../../../shared_components/Popup";
 
 const BioEdit = ({ userBio = "" }) => {
   const [_, popupBack] = usePopup();
@@ -31,24 +31,29 @@ const BioEdit = ({ userBio = "" }) => {
   };
 
   return (
-    <PageUI>
-      <PageDescriptionUI>당신에 대해 알려주세요 카피라이팅</PageDescriptionUI>
-      <TextAreaWrapperUI>
-        <TextAreaUI
-          placeholder="당신이 왜 루키즈인지 적어보세요"
-          value={bio}
-          onChange={(e) => {
-            if (maxLength - e.target?.value.length >= 0) {
-              setBio(e.target.value);
-            }
-          }}
-        />
-        <LengthTxtUI>{maxLength - bio.length}</LengthTxtUI>
-      </TextAreaWrapperUI>
-      <SaveBtnSectionUI>
-        <SaveBtnUI onClick={saveBtnClickHandler}>저장</SaveBtnUI>
-      </SaveBtnSectionUI>
-    </PageUI>
+    <Popup
+      title="Bio"
+      description="당신에 대해 알려주세요 카피라이팅"
+      showHeader
+    >
+      <PageUI>
+        <TextAreaWrapperUI>
+          <TextAreaUI
+            placeholder="당신이 왜 루키즈인지 적어보세요"
+            value={bio}
+            onChange={(e) => {
+              if (maxLength - e.target?.value.length >= 0) {
+                setBio(e.target.value);
+              }
+            }}
+          />
+          <LengthTxtUI>{maxLength - bio.length}</LengthTxtUI>
+        </TextAreaWrapperUI>
+        <SaveBtnSectionUI>
+          <SaveBtnUI onClick={saveBtnClickHandler}>저장</SaveBtnUI>
+        </SaveBtnSectionUI>
+      </PageUI>
+    </Popup>
   );
 };
 

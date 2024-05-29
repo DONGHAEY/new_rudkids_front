@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SearchAddressWrapperUI = styled.div`
+export const PageUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +46,7 @@ export const TextInputUI = styled.input`
   color: black;
   font-family: Pretendard-SemiBold;
   font-size: 16px;
-  ::-ms-input-placeholder: {
+  ::-ms-input-placeholder {
     color: #a1a1a1;
     font-size: 100px;
   }

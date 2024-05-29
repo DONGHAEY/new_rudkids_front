@@ -6,7 +6,7 @@ import {
   AddBtnTextUI,
 } from "./styles";
 import { usePopup } from "../../../hooks/usePopup";
-import Popup from "../../Popup";
+import PopupRoute from "../../PopupRoute";
 import AddEditShipping from "../AddEditShipping";
 
 const EmptyShipping = ({ onChange }) => {
@@ -28,12 +28,12 @@ const EmptyShipping = ({ onChange }) => {
         <IoMdAdd fontSize="18px" />
         <AddBtnTextUI onClick={addBtnClickHandler}>등록하기</AddBtnTextUI>
       </AddButtonUI>
-      <Popup popupName="shipping-add" popupTitle="📮 Shipping Add">
+      <PopupRoute name="shipping-add">
         <AddEditShipping
           shippingData={null}
           setShippingData={setShippingDataHandler}
         />
-      </Popup>
+      </PopupRoute>
     </EmptyShippingUI>
   );
 };

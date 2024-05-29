@@ -9,14 +9,6 @@ export const PageUI = styled.div`
   height: 100%;
 `;
 
-export const PageDescriptionUI = styled.p`
-  font-size: 14px;
-  font-family: Pretendard-SemiBold;
-  color: #7e7e7e;
-  letter-spacing: -0.5px;
-  margin-top: -5px;
-`;
-
 export const TextAreaWrapperUI = styled.div`
   position: relative;
   margin-top: 37px;

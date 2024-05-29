@@ -13,7 +13,7 @@ import smileSellerSrc from "./assets/smlile_seller.png";
 import eventCouponImgSrc from "./assets/coupon_1.png";
 import { useEffect, useMemo } from "react";
 import { usePopup } from "../../hooks/usePopup";
-import Popup from "../../shared_components/Popup";
+import PopupRoute from "../../shared_components/PopupRoute";
 import ShippingEvent from "./ShippingEvent";
 import useCartQuery from "../../queries/cart/useCartQuery";
 import useEditShippingPriceToZeroMutation from "../../mutations/cart/useEditShippingPriceToZeroMutation";
@@ -77,9 +77,9 @@ const CartPage = () => {
           <img src={smileSellerSrc} height="153px" />
         </div>
       </FlexWrapperUI>
-      <Popup popupName="shipping_price_none_event" showHeader={false}>
+      <PopupRoute name="shipping_price_none_event">
         <ShippingEvent />
-      </Popup>
+      </PopupRoute>
       <CheckoutBar cartData={myCartData} />
     </PageUI>
   );

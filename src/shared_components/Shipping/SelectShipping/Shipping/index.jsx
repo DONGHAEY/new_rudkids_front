@@ -1,7 +1,7 @@
 import SelectShipping from "..";
 import { usePopup } from "../../../../hooks/usePopup";
 import useDeleteShippingMutation from "../../../../mutations/shipping/useDeleteShippingMutation";
-import Popup from "../../../Popup";
+import PopupRoute from "../../../PopupRoute";
 import AddEditShipping from "../../AddEditShipping";
 import {
   ActionButtonUI,
@@ -77,10 +77,7 @@ const Shipping = ({ shippingData, isSelected = false, onSelect, onEdit }) => {
           선택
         </ChooseButtonUI>
       </ShippingUI>
-      <Popup
-        popupName={`shipping-edit-${shippingData.id}`}
-        popupTitle="📮 Shipping Edit"
-      >
+      <PopupRoute name={`shipping-edit-${shippingData.id}`}>
         <AddEditShipping
           shippingData={shippingData}
           setShippingData={(shippingData) => {
@@ -88,7 +85,7 @@ const Shipping = ({ shippingData, isSelected = false, onSelect, onEdit }) => {
             popupBack();
           }}
         />
-      </Popup>
+      </PopupRoute>
     </ShippingWrapperUI>
   );
 };

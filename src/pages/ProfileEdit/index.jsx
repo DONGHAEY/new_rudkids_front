@@ -1,85 +1,80 @@
-import Popup, { Content } from "../../shared_components/Popup";
+import PopupRoute from "../../shared_components/PopupRoute";
 import {
-  CardEmptyBtnUI,
-  CardImgUI,
-  CardWrapperUI,
   ColumnContentTxtUI,
   ColumnNmTxtUI,
-  ColumnUI,
+  LinkUI,
   ListUI,
   PageUI,
 } from "./styles";
-import cardSrc from "./assets/card.png";
-import { BiRightArrow } from "react-icons/bi";
 import { usePopup } from "../../hooks/usePopup";
 import BioEdit from "./BioEdit";
 import LinksEdit from "./LinksEdit";
 import useUserQuery from "../../queries/user/useUserQuery";
 import NicknameEdit from "./NicknameEdit";
-import RudcardAdd from "./RudcardAdd";
-import { Modal } from "@mui/material";
+import rightIconSrc from "./assets/right.svg";
+import { useNavigate } from "react-router-dom";
+import Popup from "../../shared_components/Popup";
 
 const ProfileEditPage = () => {
   const [navigatePopup] = usePopup();
+  const navigate = useNavigate();
 
   const { data: userData } = useUserQuery();
 
   return (
-    <Content popupTitle="프로필 수정" showHeader={true}>
+    <Popup title="프로필 수정">
       <PageUI>
-        <CardWrapperUI>
-          <CardImgUI src={cardSrc} />
-          <CardEmptyBtnUI
-            onClick={() => {
-              navigatePopup("Rudcard Add");
-            }}
-          >
-            회원증정보 입력하기
-          </CardEmptyBtnUI>
-        </CardWrapperUI>
         <ListUI>
-          <ColumnUI
+          <Link
+            name="Nickname"
+            description="닉네임"
             onClick={() => {
               navigatePopup("Nickname Edit");
             }}
-          >
-            <ColumnNmTxtUI>Nickname</ColumnNmTxtUI>
-            <ColumnContentTxtUI>닉네임수정</ColumnContentTxtUI>
-            <BiRightArrow />
-          </ColumnUI>
-          <ColumnUI
+          />
+          <Link
+            name="Bio"
+            description="소개글"
             onClick={() => {
-              navigatePopup("Bio");
+              navigatePopup("Bio Edit");
             }}
-          >
-            <ColumnNmTxtUI>BIO</ColumnNmTxtUI>
-            <ColumnContentTxtUI>소개글 추가/수정</ColumnContentTxtUI>
-            <BiRightArrow />
-          </ColumnUI>
-          <ColumnUI
+          />
+          <Link
+            name="Links"
+            description="링크들"
             onClick={() => {
-              navigatePopup("Add Link");
+              navigatePopup("Links Edit");
             }}
-          >
-            <ColumnNmTxtUI>Links</ColumnNmTxtUI>
-            <ColumnContentTxtUI>링크 추가</ColumnContentTxtUI>
-            <BiRightArrow />
-          </ColumnUI>
+          />
+          <Link
+            name="Instagram"
+            description="인스타"
+            onClick={() => {
+              navigate(`/insta-info?callback=${window.location.href}`);
+            }}
+          />
         </ListUI>
+        <PopupRoute name="Links Edit">
+          <LinksEdit links={userData?.links} />
+        </PopupRoute>
+        <PopupRoute name="Bio Edit">
+          <BioEdit userBio={userData?.introduce} />
+        </PopupRoute>
+        <PopupRoute name="Nickname Edit">
+          <NicknameEdit nickname={userData?.nickname} />
+        </PopupRoute>
       </PageUI>
-      <Popup popupTitle="Add Link" popupName="Add Link">
-        <LinksEdit links={userData?.links} />
-      </Popup>
-      <Popup popupTitle="Bio" popupName="Bio">
-        <BioEdit userBio={userData?.introduce} />
-      </Popup>
-      <Popup popupTitle="Nickname Edit" popupName="Nickname Edit">
-        <NicknameEdit nickname={userData?.nickname} />
-      </Popup>
-      <Popup popupTitle="루키즈 회원증" popupName="Rudcard Add">
-        <RudcardAdd />
-      </Popup>
-    </Content>
+    </Popup>
+  );
+};
+
+const Link = ({ name, description, onClick }) => {
+  return (
+    <LinkUI onClick={onClick}>
+      <ColumnNmTxtUI>{name}</ColumnNmTxtUI>
+      <ColumnContentTxtUI>{description}</ColumnContentTxtUI>
+      <img src={rightIconSrc} height="50%" />
+    </LinkUI>
   );
 };
 

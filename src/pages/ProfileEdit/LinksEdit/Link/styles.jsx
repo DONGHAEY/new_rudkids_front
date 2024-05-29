@@ -19,4 +19,5 @@ export const UrlUI = styled.div`
   border-radius: 46px;
   background-color: #f2f2f2;
   padding-block: 16px;
+  text-overflow: ellipsis;
 `;

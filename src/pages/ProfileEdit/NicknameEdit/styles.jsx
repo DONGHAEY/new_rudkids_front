@@ -6,6 +6,7 @@ export const PageUI = styled.form`
   align-items: center;
   background-color: white;
   padding-inline: 30px;
+  overflow: scroll;
   height: 100%;
 `;
 
@@ -23,7 +24,7 @@ export const InputUI = styled.textarea`
   padding: 20px;
   resize: none;
   font-family: Pretendard-SemiBold;
-  font-size: 20px;
+  font-size: 16px;
   background-color: #f1f1f1;
   ::placeholder {
     color: #c1c1c1;

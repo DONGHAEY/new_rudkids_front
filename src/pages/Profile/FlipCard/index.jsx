@@ -1,8 +1,17 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
-import { CardBackUI, CardCameraUI, CardFrontUI, CardUI } from "./styles";
+import {
+  CardBackUI,
+  CardCameraUI,
+  CardFrontUI,
+  CardUI,
+  NoInfoDimmedUI,
+  NoInfoQuestionUI,
+  RegisterBtnUI,
+} from "./styles";
+import cardDefaultImgSrc from "./assets/licenseCard_B.svg";
 
-const FlipCard = ({ frontImgSrc, backImgSrc }) => {
+const FlipCard = ({ cardImgSrc, isMe }) => {
   const cardRef = useRef();
   const frontRef = useRef();
   const backRef = useRef();
@@ -25,31 +34,29 @@ const FlipCard = ({ frontImgSrc, backImgSrc }) => {
     }
   }, [cardRef.current, isCardFlip]);
 
-  const [height, setHeight] = useState(false);
-
-  useEffect(() => {
-    gsap.set(cardRef.current, {
-      height,
-    });
-  }, [cardRef.current, height]);
-
-  const loadHandler = () => {
-    const frontCardHeight = frontRef.current.clientHeight;
-    const backCardHeight = backRef.current.clientHeight;
-    setHeight(
-      frontCardHeight < backCardHeight ? backCardHeight : frontCardHeight
-    );
-  };
-
   return (
     <CardCameraUI
       onMouseDown={() => {
+        if (!cardImgSrc) return;
         setIsCardFlip(!isCardFlip);
       }}
     >
+      {!cardImgSrc && (
+        <NoInfoDimmedUI>
+          <NoInfoQuestionUI>?</NoInfoQuestionUI>
+          {isMe && <RegisterBtnUI to="/create-rudcard">등록하기</RegisterBtnUI>}
+        </NoInfoDimmedUI>
+      )}
       <CardUI ref={cardRef}>
-        <CardFrontUI ref={frontRef} src={frontImgSrc} onLoad={loadHandler} />
-        <CardBackUI ref={backRef} src={backImgSrc} onLoad={loadHandler} />
+        <CardFrontUI ref={frontRef} src={cardImgSrc || cardDefaultImgSrc} />
+        <CardBackUI ref={backRef} src={cardDefaultImgSrc} />
+        <img
+          src={cardDefaultImgSrc}
+          width={"100%"}
+          style={{
+            opacity: 0,
+          }}
+        />
       </CardUI>
     </CardCameraUI>
   );

@@ -18,7 +18,7 @@ import useEditOrderShippingMutation from "../../mutations/order/useEditOrderShip
 import Shipping from "../../shared_components/Shipping";
 import OrderPrice from "../../shared_components/OrderPrice";
 import Header from "../../shared_components/Header";
-import OrderProductList from "../../shared_components/OrderProductList";
+import OrderProductList from "../OrderDetail/OrderProductList";
 import PaymentStatus from "./PaymentStatus";
 
 const PaySuccessPage = () => {

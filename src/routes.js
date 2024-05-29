@@ -12,6 +12,7 @@ import InvitePage from "./pages/Invite";
 import InvitationPage from "./pages/Invitation";
 import ProfilePage from "./pages/Profile";
 import ProfileEditPage from "./pages/ProfileEdit";
+import CreateRudcardPage from "./pages/CreateRudcard";
 
 export const routes = {
   ["main"]: {
@@ -78,6 +79,11 @@ export const routes = {
     path: "/profile/:user_id",
     paramKeys: ["user_id"],
     element: ProfilePage,
+  },
+  ["createRudcard"]: {
+    path: "/create-rudcard",
+    paramKeys: [],
+    element: CreateRudcardPage,
   },
   ["profile_edit"]: {
     path: "/profile/edit",

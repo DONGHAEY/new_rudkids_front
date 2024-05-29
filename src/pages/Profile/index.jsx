@@ -23,7 +23,6 @@ import Links from "./Links";
 import { FiShare } from "react-icons/fi";
 import InfoList from "./InfoList";
 import FlipCard from "./FlipCard";
-import cardBackUrl from "./assets/licenseCard_B.svg";
 import useUserQuery from "../../queries/user/useUserQuery";
 import { BiHeart } from "react-icons/bi";
 import useFollowMutation from "../../mutations/user/follow/useFollowMutation";
@@ -61,13 +60,11 @@ export const ProfilePage = ({ routeInfo }) => {
     }
   }, [searchUserId]);
 
-  console.log(userData);
-
   return (
     <PageUI>
       <Header />
       <br />
-      <FlipCard frontImgSrc={userData?.cardImgUrl} backImgSrc={cardBackUrl} />
+      <FlipCard cardImgSrc={userData?.cardImgUrl} isMe={isMyProfile} />
       <br />
       <BoxSectionUI>
         <UserImgUI src={userData?.imageUrl} />

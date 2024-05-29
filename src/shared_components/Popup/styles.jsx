@@ -4,36 +4,46 @@ import styled from "styled-components";
 export const TitleUI = styled.p`
   font-family: Pretendard-Bold;
   font-size: 20px;
+  line-height: -1px;
 `;
 
-export const PopupUI = styled(Modal)`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  overflow: scroll;
-  background-color: none;
-  border: none;
-  background: none;
-`;
-
-export const Center = styled.div`
+export const CenterUI = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-width: 430px;
   min-height: 100%;
   position: relative;
-  margin: 0 auto;
   padding: 0;
 `;
 
-export const PopupHeaderUI = styled.div`
+export const HeaderUI = styled.div`
   display: flex;
   padding-inline: 25px;
+  padding-block: 10px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  min-height: 60px;
+  max-height: 80px;
   font-size: 20px;
+`;
+
+export const TextWrapperUI = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-overflow: ellipsis;
+  height: 100%;
+`;
+
+export const DescriptionUI = styled.p`
+  font-family: Pretendard-SemiBold;
+  font-size: 13px;
+  color: #7e7e7e;
+  letter-spacing: -5%;
+  text-align: center;
+  text-overflow: ellipsis;
 `;

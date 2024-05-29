@@ -4,8 +4,10 @@ import xIconSrc from "./assets/x.png";
 import youtubeIconSrc from "./assets/youtube.png";
 import InstagramIconSrc from "./assets/instagram.png";
 import { LinkIconWrapUI, UrlUI } from "./styles";
-import { AiFillLock } from "react-icons/ai";
-import { MdDelete, MdLink } from "react-icons/md";
+import { MdLink } from "react-icons/md";
+
+import lockerSrc from "./assets/locker.svg";
+import deleteSrc from "./assets/delete.svg";
 
 const platforms = [
   {
@@ -48,8 +50,10 @@ const Link = ({ isLocked, link, onDeleteClick }) => {
           paddingRight: "10px",
         }}
       >
-        {isLocked && <AiFillLock />}
-        {!isLocked && <MdDelete onClick={onDeleteClick} />}
+        {isLocked && <img src={lockerSrc} height="100%" />}
+        {!isLocked && (
+          <img src={deleteSrc} height="100%" onClick={onDeleteClick} />
+        )}
       </div>
     </UrlUI>
   );

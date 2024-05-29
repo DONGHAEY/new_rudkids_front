@@ -5,6 +5,8 @@ export const PageUI = styled.div`
   flex-direction: column;
   align-items: center;
   padding-inline: 25px;
+  height: 100%;
+  overflow: scroll;
 `;
 
 export const ListUI = styled.div`
@@ -16,9 +18,9 @@ export const ListUI = styled.div`
   justify-content: center;
 `;
 
-export const ColumnUI = styled.div`
+export const LinkUI = styled.div`
   width: 100%;
-  padding-block: 21px;
+  padding-block: 18px;
   /* padding-inline: 30px; */
   display: flex;
   justify-content: space-between;

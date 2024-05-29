@@ -10,6 +10,7 @@ import Shipping from "./Shipping";
 import Popup from "../../Popup";
 import AddEditShipping from "../AddEditShipping";
 import { usePopup } from "../../../hooks/usePopup";
+import PopupRoute from "../../../shared_components/PopupRoute";
 import useShippingListQuery from "../../../queries/shipping/useShippingListQuery";
 
 const SelectShipping = ({ shipping, setShipping }) => {
@@ -26,40 +27,42 @@ const SelectShipping = ({ shipping, setShipping }) => {
   };
 
   return (
-    <ShippingListWrapperUI>
-      <ShippingListUI>
-        <AddButtonUI onClick={addBtnClickHandler}>
-          <IoMdAdd fontSize="20px" />
-          <AddBtnTextUI>새 배송지 등록</AddBtnTextUI>
-        </AddButtonUI>
-        <FlexWrapperUI>
-          {shippingListData?.map((shipping_, idx) => {
-            const isSelected = shipping?.id === shipping_.id;
-            return (
-              <Shipping
-                key={idx}
-                shippingData={shipping_}
-                isSelected={isSelected}
-                onSelect={() => {
-                  setShipping(shipping_);
-                }}
-                onEdit={(editedShippingData) => {
-                  if (isSelected) {
-                    setShipping(editedShippingData);
-                  }
-                }}
-              />
-            );
-          })}
-        </FlexWrapperUI>
-      </ShippingListUI>
-      <Popup popupName="shipping-add" popupTitle="📮 Shipping Add">
-        <AddEditShipping
-          shippingData={null}
-          setShippingData={setShippingDataHandler}
-        />
-      </Popup>
-    </ShippingListWrapperUI>
+    <Popup title="배송지 목록">
+      <ShippingListWrapperUI>
+        <ShippingListUI>
+          <AddButtonUI onClick={addBtnClickHandler}>
+            <IoMdAdd fontSize="20px" />
+            <AddBtnTextUI>새 배송지 등록</AddBtnTextUI>
+          </AddButtonUI>
+          <FlexWrapperUI>
+            {shippingListData?.map((shipping_, idx) => {
+              const isSelected = shipping?.id === shipping_.id;
+              return (
+                <Shipping
+                  key={idx}
+                  shippingData={shipping_}
+                  isSelected={isSelected}
+                  onSelect={() => {
+                    setShipping(shipping_);
+                  }}
+                  onEdit={(editedShippingData) => {
+                    if (isSelected) {
+                      setShipping(editedShippingData);
+                    }
+                  }}
+                />
+              );
+            })}
+          </FlexWrapperUI>
+        </ShippingListUI>
+        <PopupRoute name="shipping-add">
+          <AddEditShipping
+            shippingData={null}
+            setShippingData={setShippingDataHandler}
+          />
+        </PopupRoute>
+      </ShippingListWrapperUI>
+    </Popup>
   );
 };
 

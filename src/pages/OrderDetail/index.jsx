@@ -14,7 +14,7 @@ import useEditOrderShippingMutation from "../../mutations/order/useEditOrderShip
 import TrackingInfo from "../../shared_components/TrackingInfo";
 import Shipping from "../../shared_components/Shipping";
 import OrderPrice from "../../shared_components/OrderPrice";
-import OrderProductList from "../../shared_components/OrderProductList";
+import OrderProductList from "./OrderProductList";
 
 const OrderDetailPage = ({ routeInfo }) => {
   const params = useParams();

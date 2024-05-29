@@ -1,11 +1,14 @@
-import { IoMdArrowBack } from "react-icons/io";
-import { Center, PopupHeaderUI, PopupUI, TitleUI } from "./styles";
-import { useLocation, useNavigate } from "react-router-dom";
-import { memo, useMemo, useRef, useState } from "react";
-import qs from "qs";
+import {
+  DescriptionUI,
+  HeaderUI,
+  TextWrapperUI,
+  TitleUI,
+  CenterUI,
+} from "./styles";
+import { useNavigate } from "react-router-dom";
+import backIconSrc from "./assets/back-icon.svg";
 
-export const Content = ({ children, popupTitle = "", showHeader }) => {
-  const contentRef = useRef(null);
+export const Popup = ({ children, title = "", description = "" }) => {
   const navigate = useNavigate();
 
   const backIconClickHandler = () => {
@@ -13,46 +16,23 @@ export const Content = ({ children, popupTitle = "", showHeader }) => {
   };
 
   return (
-    <Center ref={contentRef}>
-      {showHeader && (
-        <PopupHeaderUI>
-          <IoMdArrowBack onClick={backIconClickHandler} />
-          <TitleUI>{popupTitle}</TitleUI>
-          <div />
-        </PopupHeaderUI>
-      )}
+    <CenterUI>
+      <HeaderUI>
+        <img src={backIconSrc} onClick={backIconClickHandler} />
+        <TextWrapperUI>
+          <TitleUI>{title}</TitleUI>
+          {description && <DescriptionUI>{description}</DescriptionUI>}
+        </TextWrapperUI>
+        <img
+          style={{
+            opacity: 0,
+          }}
+          src={backIconSrc}
+        />
+      </HeaderUI>
       {children}
-    </Center>
+    </CenterUI>
   );
 };
 
-const Popup = ({
-  children,
-  popupName = "",
-  popupTitle = "",
-  showHeader = true,
-}) => {
-  const location = useLocation();
-  const search = location.search;
-
-  const isOpen = useMemo(() => {
-    const query = qs.parse(search.replace("?", ""));
-    if (query.popup) {
-      const findPopupName = query.popup.find(
-        (popupName_) => popupName_ === popupName
-      );
-      return findPopupName ? true : false;
-    }
-    return false;
-  }, [search]);
-
-  return (
-    <PopupUI open={isOpen} hideBackdrop={true} disableAutoFocus={true}>
-      <Content popupTitle={popupTitle} showHeader={showHeader}>
-        {children}
-      </Content>
-    </PopupUI>
-  );
-};
-
-export default memo(Popup);
+export default Popup;

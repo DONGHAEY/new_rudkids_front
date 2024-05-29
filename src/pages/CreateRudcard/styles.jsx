@@ -6,16 +6,10 @@ export const PageUI = styled.form`
   align-items: center;
   background-color: white;
   padding-inline: 10px;
-  padding-block: 10px;
+  /* padding-block: 10px; */
+  overflow: scroll;
+  height: 100%;
   background-color: white;
-`;
-
-export const PageDescriptionUI = styled.p`
-  font-size: 14px;
-  font-family: Pretendard-SemiBold;
-  color: #7e7e7e;
-  letter-spacing: -0.5px;
-  margin-top: -5px;
 `;
 
 export const InputListUI = styled.div`

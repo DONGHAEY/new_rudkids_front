@@ -6,15 +6,8 @@ export const PageUI = styled.div`
   align-items: center;
   padding-inline: 25px;
   background-color: white;
+  overflow: scroll;
   height: 100%;
-`;
-
-export const PageDescriptionUI = styled.p`
-  font-size: 14px;
-  font-family: Pretendard-SemiBold;
-  color: #7e7e7e;
-  letter-spacing: -0.5px;
-  margin-top: -5px;
 `;
 
 export const UrlSectionUI = styled.div`
@@ -56,7 +49,7 @@ export const UrlListUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 90%;
+  width: 100%;
   gap: 9px;
   /* max-width: 297px; */
 `;

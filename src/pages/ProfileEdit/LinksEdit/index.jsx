@@ -1,9 +1,8 @@
-import { MdAdd, MdDelete, MdLink } from "react-icons/md";
+import { MdAdd } from "react-icons/md";
 import {
   AddBtnUI,
   InputTitleTxtUI,
   InputUI,
-  PageDescriptionUI,
   PageUI,
   SaveBtnSectionUI,
   SaveBtnUI,
@@ -15,6 +14,7 @@ import Link from "./Link";
 import useEditLinksMutation from "../../../mutations/user/useEditLinksMutation";
 import { useEffect, useRef, useState } from "react";
 import { usePopup } from "../../../hooks/usePopup";
+import Popup from "../../../shared_components/Popup";
 
 const LinksEdit = ({ links }) => {
   const [_, popupBack] = usePopup();
@@ -45,35 +45,38 @@ const LinksEdit = ({ links }) => {
   }, [links]);
 
   return (
-    <PageUI>
-      <PageDescriptionUI>
-        당신이 얼마나 멋진 사람인지 자랑해보세요 🥳
-      </PageDescriptionUI>
-      <UrlSectionUI>
-        <InputTitleTxtUI>url</InputTitleTxtUI>
-        <InputUI ref={linkInputRef} />
-        <AddBtnUI onClick={onAddBtnClickHandler}>
-          <MdAdd />
-        </AddBtnUI>
-      </UrlSectionUI>
-      <UrlListUI>
-        {_links?.map((link_, idx) => {
-          return (
-            <Link
-              link={link_}
-              key={idx}
-              isLocked={idx === 0}
-              onDeleteClick={() => {
-                _setLinks(_links?.filter((_link) => _link !== link_));
-              }}
-            />
-          );
-        })}
-      </UrlListUI>
-      <SaveBtnSectionUI>
-        <SaveBtnUI onClick={saveBtnClickHandler}>저장</SaveBtnUI>
-      </SaveBtnSectionUI>
-    </PageUI>
+    <Popup
+      title="Links"
+      showHeader
+      description="당신이 얼마나 멋진 사람인지 자랑해보세요 🥳"
+    >
+      <PageUI>
+        <UrlSectionUI>
+          <InputTitleTxtUI>url</InputTitleTxtUI>
+          <InputUI ref={linkInputRef} />
+          <AddBtnUI onClick={onAddBtnClickHandler}>
+            <MdAdd />
+          </AddBtnUI>
+        </UrlSectionUI>
+        <UrlListUI>
+          {_links?.map((link_, idx) => {
+            return (
+              <Link
+                link={link_}
+                key={idx}
+                isLocked={idx === 0}
+                onDeleteClick={() => {
+                  _setLinks(_links?.filter((_link) => _link !== link_));
+                }}
+              />
+            );
+          })}
+        </UrlListUI>
+        <SaveBtnSectionUI>
+          <SaveBtnUI onClick={saveBtnClickHandler}>저장</SaveBtnUI>
+        </SaveBtnSectionUI>
+      </PageUI>
+    </Popup>
   );
 };
 

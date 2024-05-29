@@ -4,6 +4,7 @@ import { SaveBtnSectionUI, SaveBtnUI } from "../LinksEdit/styles";
 import useEditNicknameMutation from "../../../mutations/user/userEditNicknameMutation";
 import { usePopup } from "../../../hooks/usePopup";
 import { useForm } from "react-hook-form";
+import Popup from "../../../shared_components/Popup";
 
 const NicknameEdit = ({ nickname: beforeNickname }) => {
   //
@@ -38,28 +39,30 @@ const NicknameEdit = ({ nickname: beforeNickname }) => {
   };
 
   return (
-    <PageUI onSubmit={handleSubmit(onsubmit)}>
-      <InputWrapperUI>
-        <InputUI
-          {...register("nickname", {
-            value: nickname,
-            maxLength: {
-              value: 8,
-              message: "8글자 이하로 입력해야함",
-            },
-            minLength: {
-              value: 2,
-              message: "2글자 이상 입력해야함",
-            },
-          })}
-          placeholder="닉네임을 입력하여 수정"
-        />
-      </InputWrapperUI>
-      <MessageTxtUI>{errors.nickname?.message}</MessageTxtUI>
-      <SaveBtnSectionUI>
-        <SaveBtnUI>수정</SaveBtnUI>
-      </SaveBtnSectionUI>
-    </PageUI>
+    <Popup title="닉네임 수정">
+      <PageUI onSubmit={handleSubmit(onsubmit)}>
+        <InputWrapperUI>
+          <InputUI
+            {...register("nickname", {
+              value: nickname,
+              maxLength: {
+                value: 8,
+                message: "8글자 이하로 입력해야함",
+              },
+              minLength: {
+                value: 2,
+                message: "2글자 이상 입력해야함",
+              },
+            })}
+            placeholder="닉네임을 입력하여 수정"
+          />
+        </InputWrapperUI>
+        <MessageTxtUI>{errors.nickname?.message}</MessageTxtUI>
+        <SaveBtnSectionUI>
+          <SaveBtnUI>수정</SaveBtnUI>
+        </SaveBtnSectionUI>
+      </PageUI>
+    </Popup>
   );
 };
 
