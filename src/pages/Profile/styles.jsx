@@ -10,7 +10,7 @@ export const PageUI = styled.div`
   width: 100%;
   min-height: 100%;
   background: linear-gradient(
-    180deg,
+    0deg,
     rgba(18, 150, 240, 1) 0%,
     rgba(189, 226, 251, 1) 100%
   );
@@ -59,8 +59,9 @@ export const DescriptTxtUI = styled.div`
   display: flex;
   flex-direction: column;
   width: 70%;
+  line-height: 140%;
   height: auto;
-  margin-top: 19px;
+  margin-top: 17px;
   text-align: center;
   font-family: Pretendard-SemiBold;
   /* overflow: scroll; */
@@ -104,7 +105,7 @@ export const LinksUI = styled.div`
   display: flex;
   flex-direction: column;
   padding-block: 25px;
-  padding-inline: 20px;
+  padding-inline: 25px;
   gap: 10px;
   overflow: hidden;
 `;
@@ -132,6 +133,7 @@ export const InviteBtnUI = styled.div`
   color: white;
   padding-block: 20px;
   border-radius: 16px;
+  font-size: 16px;
   font-family: Pretendard-Bold;
   border: none;
   width: 85%;

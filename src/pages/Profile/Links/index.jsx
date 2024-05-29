@@ -46,11 +46,10 @@ const Links = ({ links }) => {
 
 const Link = ({ link }) => {
   const platform = platforms.find((platform) => link.includes(platform.domain));
-
   return (
     <LinkUI href={link}>
       {platform?.iconSrc ? (
-        <img src={platform.iconSrc} height="40%" />
+        <img src={platform.iconSrc} width="60%" />
       ) : (
         <BsLink fontSize={"20px"} color="black" />
       )}

@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const PageUI = styled.div`
   background-color: #1a94d9;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   overflow: hidden;
   min-height: 100%;
 `;
@@ -14,9 +14,8 @@ export const ListUI = styled.div`
   margin-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: 100%;
   grid-gap: 16px;
-  width: 95%;
+  width: 90%;
 `;
 
 export const WrapperUI = styled.div`

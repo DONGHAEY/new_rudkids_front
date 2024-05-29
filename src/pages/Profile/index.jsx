@@ -17,7 +17,7 @@ import {
   UserImgUI,
   UserNickNameTxtUI,
 } from "./styles";
-import { BsEyeFill, BsHeartFill } from "react-icons/bs";
+import { BsHeartFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
 import Links from "./Links";
 import { FiShare } from "react-icons/fi";
@@ -31,6 +31,7 @@ import useFollowMutation from "../../mutations/user/follow/useFollowMutation";
 import useUnFollowMutation from "../../mutations/user/follow/useUnFollowMutation";
 import { useEffect } from "react";
 import useUpdateTodayViewMutation from "../../mutations/user/follow/useUpdateTodayView";
+import eyeSrc from "./assets/eye.svg";
 
 export const ProfilePage = ({ routeInfo }) => {
   const params = useParams();
@@ -61,17 +62,19 @@ export const ProfilePage = ({ routeInfo }) => {
     }
   }, [nickname]);
 
+  console.log(userData);
+
   return (
     <PageUI>
       <Header />
       <br />
-      <FlipCard frontImgSrc={cardFrontUrl} backImgSrc={cardBackUrl} />
+      <FlipCard frontImgSrc={userData?.cardImgUrl} backImgSrc={cardBackUrl} />
       <br />
       <BoxSectionUI>
         <UserImgUI src={userData?.imageUrl} />
         <TopSectionUI>
           <TodayViewUI>
-            <BsEyeFill />
+            <img src={eyeSrc} height="17px" />
             {userData?.view?.todayCnt}
           </TodayViewUI>
           {isMyProfile && (

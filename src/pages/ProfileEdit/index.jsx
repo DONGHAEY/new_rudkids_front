@@ -16,6 +16,7 @@ import BioEdit from "./BioEdit";
 import LinksEdit from "./LinksEdit";
 import useUserQuery from "../../queries/user/useUserQuery";
 import NicknameEdit from "./NicknameEdit";
+import RudcardAdd from "./RudcardAdd";
 
 const ProfileEditPage = () => {
   const [navigatePopup] = usePopup();
@@ -27,7 +28,13 @@ const ProfileEditPage = () => {
       <PageUI>
         <CardWrapperUI>
           <CardImgUI src={cardSrc} />
-          <CardEmptyBtnUI>회원증정보 입력하기</CardEmptyBtnUI>
+          <CardEmptyBtnUI
+            onClick={() => {
+              navigatePopup("Rudcard Add");
+            }}
+          >
+            회원증정보 입력하기
+          </CardEmptyBtnUI>
         </CardWrapperUI>
         <ListUI>
           <ColumnUI
@@ -67,6 +74,9 @@ const ProfileEditPage = () => {
       </Popup>
       <Popup popupTitle="Nickname Edit" popupName="Nickname Edit">
         <NicknameEdit nickname={userData?.nickname} />
+      </Popup>
+      <Popup popupTitle="루키즈 회원증" popupName="Rudcard Add">
+        <RudcardAdd />
       </Popup>
     </Content>
   );

@@ -14,10 +14,11 @@ export const RowWrapperUI = styled.div`
 export const InfoBoxUI = styled.button`
   width: 100%;
   max-width: 98.25px;
+  aspect-ratio: 1/1;
   border: none;
   background-color: white;
   color: black;
-  padding-block: 22.93px;
+  /* padding-block: 23px; */
   display: flex;
   flex-direction: column;
   align-items: center;

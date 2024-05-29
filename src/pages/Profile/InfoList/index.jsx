@@ -1,7 +1,13 @@
 import { FaEye, FaHeart, FaMedal } from "react-icons/fa";
 import { InfoBoxUI, RowWrapperUI } from "./styles";
+import eyeSrc from "../assets/eye.svg";
+import useFollowMutation from "../../../mutations/user/follow/useFollowMutation";
+import useUnFollowMutation from "../../../mutations/user/follow/useUnFollowMutation";
 
 const InfoList = ({ rank, totalView, followerCnt, isFollower }) => {
+  // const followMutation = useFollowMutation();
+  // const unFollowMutation = useUnFollowMutation();
+
   return (
     <RowWrapperUI>
       {/*  */}
@@ -10,7 +16,13 @@ const InfoList = ({ rank, totalView, followerCnt, isFollower }) => {
         {rank}
       </InfoBoxUI>
       <InfoBoxUI>
-        <FaEye fontSize="28px" />
+        {/* <FaEye fontSize="28px" /> */}
+        <img
+          src={eyeSrc}
+          style={{
+            width: "34px",
+          }}
+        />
         {totalView?.toLocaleString("ko-kr")}
       </InfoBoxUI>
       <InfoBoxUI>

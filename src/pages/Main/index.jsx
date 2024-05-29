@@ -11,7 +11,6 @@ const MainPage = () => {
   return (
     <PageUI>
       <Header isFixed={false} />
-
       <TypeList typeCategory={typeCategory} setTypeCategory={setTypeCategory} />
       <ListUI>
         <ProductBox

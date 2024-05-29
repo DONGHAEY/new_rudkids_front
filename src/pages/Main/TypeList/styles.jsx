@@ -6,10 +6,14 @@ export const ScrollUI = styled.div`
   margin-block: 30px;
 `;
 
+export const SpacerUI = styled.div`
+  margin-left: 5%;
+  background: black;
+`;
+
 export const TypeBtnListUI = styled.div`
   display: flex;
-  margin-left: 10px;
-  margin-right: 40px;
+  margin-left: 5%;
   gap: 10px;
 `;
 

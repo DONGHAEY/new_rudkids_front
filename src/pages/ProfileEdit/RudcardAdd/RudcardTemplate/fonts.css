@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "CardNameFont";
+  src: url("./assets/fonts/Automali.ttf") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CardDate";
+  src: url("./assets/fonts/ArchivoBlack-Regular.ttf") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CardDescription";
+  src: url("./assets/fonts/ELEGANT\ TYPEWRITER\ Bold.ttf") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CardOrder";
+  src: url("./assets/fonts/RetroBeach.otf");
+  font-display: swap;
+}
