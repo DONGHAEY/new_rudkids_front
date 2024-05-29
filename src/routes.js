@@ -75,8 +75,8 @@ export const routes = {
     element: ProfilePage,
   },
   ["profile"]: {
-    path: "/profile/:nickname",
-    paramKeys: ["nickname"],
+    path: "/profile/:user_id",
+    paramKeys: ["user_id"],
     element: ProfilePage,
   },
   ["profile_edit"]: {

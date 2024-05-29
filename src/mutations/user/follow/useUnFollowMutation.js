@@ -5,9 +5,9 @@ import queryKey from "../../../queries/key";
 
 export const KEY = [mutationKey.user, "unfollow"];
 
-const unFollowUser = (targetNickname) => {
+const unFollowUser = (targetUserId) => {
   return axiosInstance
-    .delete(`/api/user/${targetNickname}/follow`)
+    .delete(`/api/user/${targetUserId}/follow`)
     .then((res) => res.data);
 };
 
@@ -15,8 +15,8 @@ const useUnFollowMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: async (targetNickname) => {
-      await unFollowUser(targetNickname);
+    mutationFn: async (targetUserId) => {
+      await unFollowUser(targetUserId);
     },
     onSuccess: async (data) => {
       queryClient.invalidateQueries(queryKey.user);

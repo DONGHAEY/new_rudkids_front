@@ -23,7 +23,6 @@ import Links from "./Links";
 import { FiShare } from "react-icons/fi";
 import InfoList from "./InfoList";
 import FlipCard from "./FlipCard";
-import cardFrontUrl from "./assets/licenseCard_F.png";
 import cardBackUrl from "./assets/licenseCard_B.svg";
 import useUserQuery from "../../queries/user/useUserQuery";
 import { BiHeart } from "react-icons/bi";
@@ -35,14 +34,14 @@ import eyeSrc from "./assets/eye.svg";
 
 export const ProfilePage = ({ routeInfo }) => {
   const params = useParams();
-  const nickname = params[routeInfo.paramKeys[0]];
-  const { data: userData } = useUserQuery(nickname);
+  const searchUserId = params[routeInfo.paramKeys[0]];
+  const { data: userData } = useUserQuery(searchUserId);
 
   const followMutation = useFollowMutation();
   const unFollowMutation = useUnFollowMutation();
   const updateTodayViewMutation = useUpdateTodayViewMutation();
   //
-  const isMyProfile = nickname ? false : true;
+  const isMyProfile = searchUserId ? false : true;
 
   const navigate = useNavigate();
   const settingBtnClickHandler = () => {
@@ -50,17 +49,17 @@ export const ProfilePage = ({ routeInfo }) => {
   };
   const followBtnClickHandler = () => {
     if (userData?.isFollower) {
-      unFollowMutation.mutateAsync(nickname);
+      unFollowMutation.mutateAsync(searchUserId);
     } else {
-      followMutation.mutateAsync(nickname);
+      followMutation.mutateAsync(searchUserId);
     }
   };
 
   useEffect(() => {
-    if (nickname) {
-      updateTodayViewMutation.mutateAsync(nickname);
+    if (searchUserId) {
+      updateTodayViewMutation.mutateAsync(searchUserId);
     }
-  }, [nickname]);
+  }, [searchUserId]);
 
   console.log(userData);
 
@@ -84,7 +83,7 @@ export const ProfilePage = ({ routeInfo }) => {
             />
           )}
         </TopSectionUI>
-        <UserNickNameTxtUI>{nickname ?? userData?.nickname}</UserNickNameTxtUI>
+        <UserNickNameTxtUI>{userData?.nickname}</UserNickNameTxtUI>
         <DescriptTxtUI>{userData?.introduce}</DescriptTxtUI>
         <InfoList
           rank={userData?.rank}

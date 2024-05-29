@@ -4,16 +4,16 @@ import mutationKey from "../../key";
 
 export const KEY = [mutationKey.user, "view", "today", "edit"];
 
-const updateTodayView = (nickname) => {
+const updateTodayView = (targetUserId) => {
   return axiosInstance
-    .post(`/api/user/${nickname}/today_view_up`)
+    .post(`/api/user/${targetUserId}/today_view_up`)
     .then((res) => res.data);
 };
 
 const useUpdateTodayViewMutation = () => {
   return useMutation({
     mutationKey: KEY,
-    mutationFn: async (nickname) => await updateTodayView(nickname),
+    mutationFn: async (targetUserId) => await updateTodayView(targetUserId),
   });
 };
 

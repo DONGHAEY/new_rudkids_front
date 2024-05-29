@@ -86,7 +86,7 @@ const RudcardAdd = () => {
           name={watch("name")}
           birth={watch("birth")}
           description={watch("description")}
-          qrImgUrl={`https://api.qrserver.com/v1/create-qr-code/?data=https://www.rud.kids/profile/${userData?.nickname}&amp;size=100x100`}
+          qrImgUrl={`https://api.qrserver.com/v1/create-qr-code/?data=https://www.rud.kids/profile/${userData?.id}&amp;size=100x100`}
           order={333}
         />
       </div>
