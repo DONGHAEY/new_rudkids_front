@@ -13,15 +13,18 @@ import { Modal } from "@mui/material";
 import WarningAlert from "./WarningAlert";
 import ImageInput from "./ImageInput";
 import Popup from "../../shared_components/Popup";
+import * as htmlToImage from "html-to-image";
 
 const CreateRudcardPage = () => {
   const navigate = useNavigate();
   const [isAlert, setIsAlert] = useState(false);
   const { data: userData } = useUserQuery();
+  const [cardFetchLoading, setCardFetchLoading] = useState(false);
   const editCardImgUrl = useEditCardImgUrlMutation();
+
   const cardRef = useRef();
 
-  const { watch, handleSubmit, setValue, control, formState } = useForm({
+  const { watch, handleSubmit, setValue, control } = useForm({
     defaultValues: {
       name: userData?.nickname,
       description: userData?.introduce,
@@ -39,12 +42,27 @@ const CreateRudcardPage = () => {
   };
 
   const submit = async () => {
-    await editCardImgUrl.mutateAsync(cardRef.current, {
-      onSuccess: () => {
-        alert("카드등록에 성공함.");
-        navigate(-1);
-      },
-    });
+    const dataURI = await htmlToImage.toPng(cardRef.current);
+    setCardFetchLoading(true);
+    fetch(dataURI)
+      .then((res) => res.blob())
+      .then(async (blob) => {
+        const formData = new FormData();
+        const fileName = `card.svg`;
+        const convertedFile = new File([blob], fileName, {
+          type: "image/svg",
+        });
+        formData.append("file", convertedFile);
+        await editCardImgUrl.mutateAsync(formData, {
+          onSuccess: () => {
+            alert("카드등록에 성공함.");
+            navigate(-1);
+          },
+          onSettled: () => {
+            setCardFetchLoading(false);
+          },
+        });
+      });
   };
 
   const nameInput = useController({
@@ -127,7 +145,7 @@ const CreateRudcardPage = () => {
     },
   });
 
-  if (editCardImgUrl.isLoading) {
+  if (editCardImgUrl.isLoading || cardFetchLoading) {
     return (
       <PageUI>
         <Loader />

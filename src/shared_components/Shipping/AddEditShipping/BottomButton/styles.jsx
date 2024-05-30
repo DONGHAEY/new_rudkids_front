@@ -17,11 +17,13 @@ export const ButtonUI = styled.button`
 `;
 
 export const ButtonWrapperUI = styled.div`
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
   bottom: 20px;
 `;
 export const SpacerUI = styled.div`

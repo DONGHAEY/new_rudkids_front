@@ -11,7 +11,7 @@ import {
 const CartProduct = ({ cartProduct }) => {
   return (
     <CartProductUI>
-      <img height="80px" src={cartProduct.product.imageUrl} />
+      <img height="80px" src={cartProduct.product.thumnail} />
       <WrapperUI>
         <InfoTextWrapperUI>
           <CartProductNameUI>{cartProduct.product.name}</CartProductNameUI>
