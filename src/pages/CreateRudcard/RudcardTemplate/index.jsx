@@ -6,6 +6,7 @@ import {
   Order1UI,
   Order2UI,
   ProfileImgUI,
+  ProfileImgWrapperUI,
   QrImgUI,
   TextBox,
   TextBox2,
@@ -32,7 +33,9 @@ const RudcardTemplate = ({
         }}
         src={cardSrc}
       />
-      <ProfileImgUI src={profileImgUrl} />
+      <ProfileImgWrapperUI>
+        <ProfileImgUI src={profileImgUrl} />
+      </ProfileImgWrapperUI>
       <QrImgUI src={qrImgUrl} />
       <TextBox>{name}</TextBox>
       <TextBox2>

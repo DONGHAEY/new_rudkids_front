@@ -31,11 +31,7 @@ const BioEdit = ({ userBio = "" }) => {
   };
 
   return (
-    <Popup
-      title="Bio"
-      description="당신에 대해 알려주세요 카피라이팅"
-      showHeader
-    >
+    <Popup title="Bio" description="당신에 대해 알려주세요 카피라이팅">
       <PageUI>
         <TextAreaWrapperUI>
           <TextAreaUI

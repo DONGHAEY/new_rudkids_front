@@ -76,7 +76,6 @@ const CreateRudcardPage = () => {
   return (
     <Popup title="루키즈 카드">
       <PageUI onSubmit={handleSubmit(submitHandler)}>
-        {/* <PageDescriptionUI>당신에 대해 알려주세요 카피라이팅</PageDescriptionUI> */}
         <div
           style={{
             width: "95%",

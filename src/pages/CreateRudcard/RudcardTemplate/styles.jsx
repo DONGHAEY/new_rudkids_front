@@ -36,12 +36,21 @@ export const TextBox2 = styled.p`
   }
 `;
 
-export const ProfileImgUI = styled.img`
+export const ProfileImgWrapperUI = styled.div`
   position: absolute;
   top: 18%;
   left: 10%;
   height: 47.5%;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  background-color: white;
   z-index: 1;
+`;
+export const ProfileImgUI = styled.img`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 `;
 
 export const QrImgUI = styled.img`

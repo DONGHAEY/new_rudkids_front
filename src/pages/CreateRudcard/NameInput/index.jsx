@@ -1,4 +1,5 @@
 import { InputUI, NameInputNmTxtUI, NameInputUI } from "./styles";
+import cancelIconSrc from "./assets/cancel.svg";
 
 const NameInput = ({ register }) => {
   return (
@@ -10,6 +11,13 @@ const NameInput = ({ register }) => {
           required: true,
           minLength: 2,
         })}
+      />
+      <img
+        style={{
+          position: "absolute",
+          right: "40px",
+        }}
+        src={cancelIconSrc}
       />
     </NameInputUI>
   );
