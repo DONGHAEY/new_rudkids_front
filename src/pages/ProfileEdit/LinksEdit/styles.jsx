@@ -6,13 +6,11 @@ export const PageUI = styled.div`
   align-items: center;
   padding-inline: 25px;
   background-color: white;
-  overflow: scroll;
-  height: 100%;
+  min-height: 100%;
 `;
 
 export const UrlSectionUI = styled.div`
   width: 90%;
-  /* max-width: 297px; */
   display: flex;
   position: relative;
   flex-direction: row;

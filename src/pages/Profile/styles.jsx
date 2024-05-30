@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { exp } from "three/examples/jsm/nodes/Nodes.js";
 
 export const PageUI = styled.div`
   display: flex;

@@ -5,6 +5,7 @@ export const NameInputUI = styled.div`
   flex-direction: row;
   align-items: center;
   width: 100%;
+  position: relative;
 `;
 
 export const NameInputNmTxtUI = styled.p`

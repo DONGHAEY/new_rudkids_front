@@ -17,7 +17,7 @@ const DescriptionInput = ({ register }) => {
         <TextAreaUI
           {...register("description", {
             required: "루키즈 설명글을 입력하세용",
-            maxLength,
+            maxLength: maxLength,
             minLength: 5,
           })}
           placeholder="당신이 왜 루키즈인지 적어보세요"

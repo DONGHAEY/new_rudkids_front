@@ -13,6 +13,7 @@ import InvitationPage from "./pages/Invitation";
 import ProfilePage from "./pages/Profile";
 import ProfileEditPage from "./pages/ProfileEdit";
 import CreateRudcardPage from "./pages/CreateRudcard";
+import RankPage from "./pages/Rank";
 
 export const routes = {
   ["main"]: {
@@ -89,5 +90,10 @@ export const routes = {
     path: "/profile/edit",
     paramKeys: ["nickname"],
     element: ProfileEditPage,
+  },
+  ["rank"]: {
+    path: "/rank",
+    paramKeys: [],
+    element: RankPage,
   },
 };
