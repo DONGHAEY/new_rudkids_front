@@ -6,15 +6,32 @@ import {
   InputListUI,
 } from "./styles";
 
-const BirthInput = ({ yearRegister, monthRegister, dateRegister }) => {
+const BirthInput = ({ year, month, date, errorMessage }) => {
   return (
     <BirthInputUI>
       <NameInputNmTxtUI>생일</NameInputNmTxtUI>
       <InputListUI>
-        <YearInputUI placeholder="yyyy" {...yearRegister} type="number" />
-        <InputUI placeholder="mm" {...monthRegister} type="number" />
-        <InputUI placeholder="dd" {...dateRegister} type="number" />
+        <YearInputUI
+          type="number"
+          placeholder="yyyy"
+          maxLength={4}
+          {...year?.field}
+        />
+
+        <InputUI
+          placeholder="mm"
+          {...month?.field}
+          maxLength={2}
+          type="number"
+        />
+        <InputUI
+          placeholder="dd"
+          {...date?.field}
+          maxLength={2}
+          type="number"
+        />
       </InputListUI>
+      {errorMessage && <p>{errorMessage}</p>}
     </BirthInputUI>
   );
 };

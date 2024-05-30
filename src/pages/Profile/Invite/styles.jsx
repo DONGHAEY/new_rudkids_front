@@ -1,16 +1,8 @@
 import styled from "styled-components";
 
-export const BackgroundWrapperUI = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const WhiteWrapperUI = styled.div`
   width: 90%;
+  margin: 0 auto;
   max-width: 327px;
   height: auto;
   background-color: white;

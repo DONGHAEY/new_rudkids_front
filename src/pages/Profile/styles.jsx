@@ -1,3 +1,4 @@
+import { Modal } from "@mui/material";
 import styled from "styled-components";
 
 export const PageUI = styled.div`
@@ -161,4 +162,12 @@ export const ShareBtnUI = styled.div`
   background-color: white;
   color: black;
   border-radius: 16px;
+`;
+
+export const InviteModalUI = styled(Modal)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 `;

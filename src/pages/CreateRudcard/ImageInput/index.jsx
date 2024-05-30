@@ -1,9 +1,24 @@
 import { useRef } from "react";
-import { NameInputNmTxtUI, NameInputUI, SelectBtnUI } from "./styles";
+import {
+  HiddenInput,
+  NameInputNmTxtUI,
+  NameInputUI,
+  SelectBtnUI,
+} from "./styles";
 import uploadIconSrc from "./assets/upload.svg";
 
 const ImageInput = ({ setValue }) => {
   const ref = useRef();
+
+  const changeHandler = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const result = reader.result;
+      setValue(result);
+    };
+    reader.readAsDataURL(file);
+  };
 
   return (
     <NameInputUI>
@@ -16,23 +31,11 @@ const ImageInput = ({ setValue }) => {
         <img height="70%" src={uploadIconSrc} />
         이미지 선택
       </SelectBtnUI>
-      <input
-        style={{
-          display: "none",
-        }}
+      <HiddenInput
         ref={ref}
         type="file"
         accept="image/*"
-        required
-        onChange={() => {
-          const file = ref.current.files[0];
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            const result = reader.result;
-            setValue(result);
-          };
-          reader.readAsDataURL(file);
-        }}
+        onChange={changeHandler}
       />
     </NameInputUI>
   );

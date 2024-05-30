@@ -1,18 +1,11 @@
-import {
-  InputListUI,
-  PageDescriptionUI,
-  PageUI,
-  SaveBtnSectionUI,
-  SaveBtnUI,
-} from "./styles";
+import { InputListUI, PageUI, SaveBtnSectionUI, SaveBtnUI } from "./styles";
 import CardTemplate from "./RudcardTemplate";
-import { useForm } from "react-hook-form";
+import { useController, useForm } from "react-hook-form";
 import NameInput from "./NameInput";
 import BirthInput from "./BirthInput";
 import DescriptionInput from "./DescriptionInput";
 import useUserQuery from "../../queries/user/useUserQuery";
 import { useRef, useState } from "react";
-import * as htmlToImage from "html-to-image";
 import useEditCardImgUrlMutation from "../../mutations/user/useEditCardImgUrlMutation";
 import Loader from "../../shared_components/Loader";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +21,7 @@ const CreateRudcardPage = () => {
   const editCardImgUrl = useEditCardImgUrlMutation();
   const cardRef = useRef();
 
-  const { register, watch, handleSubmit, setValue } = useForm({
+  const { watch, handleSubmit, setValue, control, formState } = useForm({
     defaultValues: {
       name: userData?.nickname,
       description: userData?.introduce,
@@ -46,24 +39,93 @@ const CreateRudcardPage = () => {
   };
 
   const submit = async () => {
-    const dataURI = await htmlToImage.toPng(cardRef.current);
-    fetch(dataURI)
-      .then((res) => res.blob())
-      .then(async (blob) => {
-        const formData = new FormData();
-        const fileName = `${userData.id}-card.svg`;
-        const convertedFile = new File([blob], fileName, {
-          type: "image/svg",
-        });
-        formData.append("file", convertedFile);
-        await editCardImgUrl.mutateAsync(formData, {
-          onSuccess: () => {
-            navigate("카드등록에 성공함.");
-            navigate(-1);
-          },
-        });
-      });
+    await editCardImgUrl.mutateAsync(cardRef.current, {
+      onSuccess: () => {
+        alert("카드등록에 성공함.");
+        navigate(-1);
+      },
+    });
   };
+
+  const nameInput = useController({
+    name: "name",
+    control,
+    rules: {
+      required: "이름 입력은 필수입니다",
+      minLength: {
+        value: 2,
+        message: "2글자 이상으로 작성해주세요",
+      },
+      maxLength: {
+        value: 8,
+        message: "8글자 아래로 작성해주세요",
+      },
+    },
+  });
+
+  const descriptionInput = useController({
+    name: "description",
+    control,
+    rules: {
+      required: "글 입력은 필수입니다",
+      minLength: {
+        value: 4,
+        message: "4글자 이상으로 작성해주세요",
+      },
+      maxLength: {
+        value: 40,
+        message: "40글자 아래로 작성해주세요",
+      },
+    },
+  });
+
+  const birthYearInput = useController({
+    name: "birth.year",
+    control,
+    rules: {
+      required: "년도 입력은 필수입니다",
+      minLength: {
+        value: 4,
+        message: "년도 4글자 이상",
+      },
+      maxLength: {
+        value: 4,
+        message: "년도 4글자 이하",
+      },
+    },
+  });
+
+  const birthMonthInput = useController({
+    name: "birth.month",
+    control,
+    rules: {
+      required: "달 입력은 필수입니다",
+      minLength: {
+        value: 2,
+        message: "달 2글자 이상",
+      },
+      maxLength: {
+        value: 2,
+        message: "달 2글자 이하",
+      },
+    },
+  });
+
+  const birthDateInput = useController({
+    name: "birth.date",
+    control,
+    rules: {
+      required: "일 입력은 필수입니다",
+      minLength: {
+        value: 2,
+        message: "일 2글자 이상",
+      },
+      maxLength: {
+        value: 2,
+        message: "일 2글자 이하",
+      },
+    },
+  });
 
   if (editCardImgUrl.isLoading) {
     return (
@@ -99,25 +161,13 @@ const CreateRudcardPage = () => {
               setValue("profileImgUrl", imageUrl);
             }}
           />
-          <NameInput register={register} />
+          <NameInput {...nameInput} />
           <BirthInput
-            yearRegister={register("birth.year", {
-              required: "년도 입력은 필수",
-              minLength: 4,
-              maxLength: 4,
-            })}
-            monthRegister={register("birth.month", {
-              required: "달 입력은 필수",
-              minLength: 2,
-              maxLength: 2,
-            })}
-            dateRegister={register("birth.date", {
-              required: "날짜 입력은 필수",
-              maxLength: 2,
-              minLength: 2,
-            })}
+            year={birthYearInput}
+            month={birthMonthInput}
+            date={birthDateInput}
           />
-          <DescriptionInput register={register} />
+          <DescriptionInput {...descriptionInput} />
         </InputListUI>
         <SaveBtnSectionUI>
           <SaveBtnUI type="submit">만들기</SaveBtnUI>

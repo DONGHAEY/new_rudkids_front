@@ -30,3 +30,9 @@ export const SelectBtnUI = styled.button`
   line-height: auto;
   letter-spacing: -5%;
 `;
+
+export const HiddenInput = styled.input`
+  width: 0px;
+  height: 0px;
+  border: none;
+`;

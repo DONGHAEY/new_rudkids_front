@@ -6,6 +6,7 @@ import {
   DescriptTxtUI,
   FollowBtnUI,
   InviteBtnUI,
+  InviteModalUI,
   LinksSectionUI,
   LinksUI,
   PageUI,
@@ -27,9 +28,12 @@ import useUserQuery from "../../queries/user/useUserQuery";
 import { BiHeart } from "react-icons/bi";
 import useFollowMutation from "../../mutations/user/follow/useFollowMutation";
 import useUnFollowMutation from "../../mutations/user/follow/useUnFollowMutation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useUpdateTodayViewMutation from "../../mutations/user/follow/useUpdateTodayView";
 import eyeSrc from "./assets/eye.svg";
+import Invite from "./Invite";
+import { usePopup } from "../../hooks/usePopup";
+import { Modal } from "@mui/material";
 
 export const ProfilePage = ({ routeInfo }) => {
   const params = useParams();
@@ -39,6 +43,8 @@ export const ProfilePage = ({ routeInfo }) => {
   const followMutation = useFollowMutation();
   const unFollowMutation = useUnFollowMutation();
   const updateTodayViewMutation = useUpdateTodayViewMutation();
+
+  const [invitePopup, setInvitePopup] = useState(false);
   //
   const isMyProfile = searchUserId ? false : true;
 
@@ -95,7 +101,15 @@ export const ProfilePage = ({ routeInfo }) => {
           </LinksUI>
         </LinksSectionUI>
         <BottomBarUI>
-          {isMyProfile && <InviteBtnUI>친구 초대하기</InviteBtnUI>}
+          {isMyProfile && (
+            <InviteBtnUI
+              onClick={() => {
+                setInvitePopup(true);
+              }}
+            >
+              친구 초대하기
+            </InviteBtnUI>
+          )}
           {!isMyProfile && (
             <FollowBtnUI onClick={followBtnClickHandler}>
               {!userData?.isFollower ? (
@@ -111,6 +125,9 @@ export const ProfilePage = ({ routeInfo }) => {
           </ShareBtnUI>
         </BottomBarUI>
       </BoxSectionUI>
+      <InviteModalUI open={invitePopup} onClose={() => setInvitePopup(false)}>
+        <Invite close={() => setInvitePopup(false)} />
+      </InviteModalUI>
     </PageUI>
   );
 };

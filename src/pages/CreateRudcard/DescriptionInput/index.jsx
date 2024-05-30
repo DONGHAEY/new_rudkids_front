@@ -1,4 +1,3 @@
-// import { useRef } from "react";
 import {
   DescriptionInputUI,
   InputNmTxtUI,
@@ -6,24 +5,19 @@ import {
   TextAreaUI,
   TextAreaWrapperUI,
 } from "./styles";
+import ErrorMsg from "../ErrorMsg";
 
-const DescriptionInput = ({ register }) => {
-  const maxLength = 20;
+const DescriptionInput = ({ field, fieldState, formState }) => {
+  const maxLength = 40;
 
   return (
     <DescriptionInputUI>
       <InputNmTxtUI>당신이 루키즈인 이유</InputNmTxtUI>
       <TextAreaWrapperUI>
-        <TextAreaUI
-          {...register("description", {
-            required: "루키즈 설명글을 입력하세용",
-            maxLength: maxLength,
-            minLength: 5,
-          })}
-          placeholder="당신이 왜 루키즈인지 적어보세요"
-        />
-        <LengthTxtUI>11</LengthTxtUI>
+        <TextAreaUI {...field} placeholder="당신이 왜 루키즈인지 적어보세요" />
+        <LengthTxtUI>{maxLength - field.value?.length}</LengthTxtUI>
       </TextAreaWrapperUI>
+      <ErrorMsg>{fieldState.error && fieldState?.error?.message}</ErrorMsg>
     </DescriptionInputUI>
   );
 };
