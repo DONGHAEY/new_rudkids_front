@@ -16,10 +16,11 @@ const useCreateInvitationMutation = () => {
   return useMutation({
     mutationKey: KEY,
     mutationFn: createInvitation,
-    onSuccess: () => {
-      const me = queryClient.getQueryData(userQueryKey("my"));
+    onSuccess: async () => {
+      const me = await queryClient.getQueryData(userQueryKey("my"));
+      // console.log(me);
       me.invitateCnt++;
-      queryClient.setQueryData(userQueryKey("my"), me);
+      await queryClient.setQueryData(userQueryKey("my"), me);
     },
   });
 };
