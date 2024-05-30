@@ -43,6 +43,7 @@ const CreateRudcardPage = () => {
 
   const submit = async () => {
     const dataURI = await htmlToImage.toPng(cardRef.current);
+    console.log(dataURI);
     setCardFetchLoading(true);
     fetch(dataURI)
       .then((res) => res.blob())

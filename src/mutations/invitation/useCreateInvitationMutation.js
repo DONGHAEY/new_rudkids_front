@@ -1,6 +1,7 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import mutationKey from "../../mutations/key";
 import axiosInstance from "../../axiosInstance";
+import { KEY as userQueryKey } from "../../queries/user/useUserQuery";
 
 export const KEY = [mutationKey.invitation, "create"];
 
@@ -11,9 +12,15 @@ const createInvitation = async () => {
 };
 
 const useCreateInvitationMutation = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
     mutationFn: createInvitation,
+    onSuccess: () => {
+      const me = queryClient.getQueryData(userQueryKey("my"));
+      me.invitateCnt++;
+      queryClient.setQueryData(userQueryKey("my"), me);
+    },
   });
 };
 

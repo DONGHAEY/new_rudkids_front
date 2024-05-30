@@ -21,6 +21,7 @@ const max = 3;
 const Invite = ({ close }) => {
   const createInvitationMutation = useCreateInvitationMutation();
   const { data: userData } = useUserQuery();
+
   const inviteCnt = userData?.invitateCnt;
 
   const inviteHandler = async () => {
