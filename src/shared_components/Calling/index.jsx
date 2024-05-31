@@ -75,7 +75,7 @@ const CallingModal = () => {
   const onFinished = () => {
     gsap.to(callBoxRef.current, {
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
       onComplete: () => {
         setOpen(false);
       },

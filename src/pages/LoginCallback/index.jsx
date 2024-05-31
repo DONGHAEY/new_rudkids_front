@@ -32,7 +32,7 @@ const LoginCallbackPage = ({ routeInfo }) => {
       await oauthLoginMutation.mutateAsync(searchParams, {
         onError: (e) => {
           alert("알 수 없는 에러가 발생했어요!");
-          window.location.href = "/login";
+          navigate("/login");
         },
         onSuccess: async () => {
           await queryClient.prefetchQuery([queryKey.user, "my"]);

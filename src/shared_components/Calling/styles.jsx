@@ -7,9 +7,10 @@ export const ModalUI = styled(Modal)`
   max-width: 430px;
   margin-inline: auto;
   display: flex;
+  overflow: scroll;
   /* padding-top: 30px; */
   /* padding-block: 30px; */
-  overflow: scroll;
+  /* overflow: scroll; */
 `;
 
 export const CallBox = styled.div`
@@ -18,13 +19,12 @@ export const CallBox = styled.div`
   align-items: center;
   justify-content: center;
   min-width: 280px;
-  height: 80%;
+  height: 100%;
   min-height: 500.05px;
   width: 80%;
-  padding: 15px;
+  height: 80%;
   position: relative;
   z-index: 0;
-  /* background-color: skyblue; */
   border-radius: 30.95px;
   margin-inline: auto;
   margin-top: auto;
@@ -39,7 +39,7 @@ export const ViedeoImgUI = styled.img`
 
 export const CallFromInfoUI = styled.div`
   width: 100%;
-  margin-top: -10%;
+  margin-top: -40%;
   aspect-ratio: 1/1;
   display: flex;
   flex-direction: column;
@@ -74,7 +74,7 @@ export const CallBtnUI = styled.div`
 export const CallOffImgBtnUI = styled.img`
   width: 74.71px;
   position: absolute;
-  bottom: 13%;
+  bottom: 10%;
 `;
 
 export const CallInfoUI = styled.div`
