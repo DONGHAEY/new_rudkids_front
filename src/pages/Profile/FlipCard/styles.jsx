@@ -19,8 +19,9 @@ export const CardUI = styled.div`
 
 export const CardFrontUI = styled.img`
   position: absolute;
-  width: 100%;
-  /* height: auto; */
+  /* width: 100%; */
+  object-fit: cover;
+  height: 100%;
   text-align: center;
   font-size: 60px;
   border-radius: 5px;

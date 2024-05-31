@@ -34,6 +34,8 @@ const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
       <SetInstaUI>
         <CheckWrapperUI>
           <Lottie
+            width="100%"
+            height="100%"
             options={{
               loop: true,
               autoplay: true,
@@ -48,11 +50,6 @@ const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
         <InstaIdTxtUI>@{instaId}</InstaIdTxtUI>
         <CompleteBtnUI onClick={clickHandler}>완료</CompleteBtnUI>
       </SetInstaUI>
-      <div
-        style={{
-          height: "100%",
-        }}
-      ></div>
     </PageUI>
   );
 };

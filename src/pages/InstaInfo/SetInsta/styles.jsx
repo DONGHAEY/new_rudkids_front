@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import backgroundImgUrl from "./assets/background.png";
+import Lottie from "react-lottie";
 
 export const PageUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-between; */
   width: 100%;
   min-height: 100%;
   background-image: url(${backgroundImgUrl});
@@ -55,6 +55,6 @@ export const CompleteBtnUI = styled.button`
 
 export const CheckWrapperUI = styled.div`
   height: 180px;
-  transform: scale(1.3);
+  /* transform: scale(1.3); */
   margin-bottom: -30px;
 `;
