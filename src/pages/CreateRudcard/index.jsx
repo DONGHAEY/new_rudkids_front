@@ -14,6 +14,8 @@ import WarningAlert from "./WarningAlert";
 import ImageInput from "./ImageInput";
 import Popup from "../../shared_components/Popup";
 import * as htmlToImage from "html-to-image";
+
+//
 const CreateRudcardPage = () => {
   const navigate = useNavigate();
   const [isAlert, setIsAlert] = useState(false);
@@ -23,10 +25,10 @@ const CreateRudcardPage = () => {
 
   const cardRef = useRef();
 
-  const { watch, handleSubmit, setValue, control } = useForm({
+  const { watch, handleSubmit, setValue, control, formState } = useForm({
     defaultValues: {
       name: userData?.nickname,
-      description: userData?.introduce,
+      description: "",
       birth: {
         year: null,
         month: null,
@@ -75,10 +77,6 @@ const CreateRudcardPage = () => {
         value: 2,
         message: "2글자 이상으로 작성해주세요",
       },
-      maxLength: {
-        value: 8,
-        message: "8글자 아래로 작성해주세요",
-      },
     },
   });
 
@@ -90,10 +88,6 @@ const CreateRudcardPage = () => {
       minLength: {
         value: 4,
         message: "4글자 이상으로 작성해주세요",
-      },
-      maxLength: {
-        value: 40,
-        message: "40글자 아래로 작성해주세요",
       },
     },
   });
@@ -111,6 +105,10 @@ const CreateRudcardPage = () => {
         value: 4,
         message: "년도 4글자 이하",
       },
+      pattern: {
+        value: /^[0-9]/,
+        message: "숫자로만 입력해주세요",
+      },
     },
   });
 
@@ -127,6 +125,10 @@ const CreateRudcardPage = () => {
         value: 2,
         message: "달 2글자 이하",
       },
+      pattern: {
+        value: /^[0-9]/,
+        message: "숫자로만 입력해주세요",
+      },
     },
   });
 
@@ -142,6 +144,10 @@ const CreateRudcardPage = () => {
       maxLength: {
         value: 2,
         message: "일 2글자 이하",
+      },
+      pattern: {
+        value: /^[0-9]/,
+        message: "숫자로만 입력해주세요",
       },
     },
   });
@@ -185,6 +191,12 @@ const CreateRudcardPage = () => {
             year={birthYearInput}
             month={birthMonthInput}
             date={birthDateInput}
+            errorMessage={
+              formState.errors.birth?.year?.message ??
+              formState.errors.birth?.month?.message ??
+              formState.errors.birth?.date?.message ??
+              ""
+            }
           />
           <DescriptionInput {...descriptionInput} />
         </InputListUI>

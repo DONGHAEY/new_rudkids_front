@@ -9,14 +9,12 @@ export const NameInputUI = styled.div`
 `;
 
 export const NameInputNmTxtUI = styled.p`
-  /* width: 70px; */
   font-family: Pretendard-Bold;
   font-size: 16px;
 `;
 
-export const SelectBtnUI = styled.button`
+export const SelectBtnUI = styled.div`
   border: solid rgba(241, 241, 241, 1) 2px;
-  // borderColor: "",
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,6 +26,7 @@ export const SelectBtnUI = styled.button`
   font-family: Pretendard-Bold;
   background: white;
   line-height: auto;
+  font-size: 13px;
   letter-spacing: -5%;
 `;
 
@@ -35,4 +34,5 @@ export const HiddenInput = styled.input`
   width: 0px;
   height: 0px;
   border: none;
+  display: none;
 `;

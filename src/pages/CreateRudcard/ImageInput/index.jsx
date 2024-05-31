@@ -11,6 +11,7 @@ const ImageInput = ({ setValue }) => {
   const ref = useRef();
 
   const changeHandler = (e) => {
+    e.preventDefault();
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onloadend = () => {
