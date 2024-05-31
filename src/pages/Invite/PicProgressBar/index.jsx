@@ -6,8 +6,8 @@ const PicProgressBar = ({ cnt, total }) => {
   return (
     <PicProgressBarUI>
       {new Array(total).fill(null).map((_, idx) => {
-        if (cnt <= idx) return <img src={addedSrc} />;
-        return <img src={addSrc} />;
+        if (cnt <= idx) return <img key={idx} src={addedSrc} />;
+        return <img key={idx} src={addSrc} />;
       })}
     </PicProgressBarUI>
   );

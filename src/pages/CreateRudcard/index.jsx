@@ -14,7 +14,6 @@ import WarningAlert from "./WarningAlert";
 import ImageInput from "./ImageInput";
 import Popup from "../../shared_components/Popup";
 import * as htmlToImage from "html-to-image";
-
 const CreateRudcardPage = () => {
   const navigate = useNavigate();
   const [isAlert, setIsAlert] = useState(false);
@@ -42,7 +41,7 @@ const CreateRudcardPage = () => {
   };
 
   const submit = async () => {
-    const dataURI = await htmlToImage.toPng(cardRef.current);
+    const dataURI = await htmlToImage.toSvg(cardRef.current);
     console.log(dataURI);
     setCardFetchLoading(true);
     fetch(dataURI)
@@ -50,8 +49,9 @@ const CreateRudcardPage = () => {
       .then(async (blob) => {
         const formData = new FormData();
         const fileName = `card.svg`;
+        alert(blob.type);
         const convertedFile = new File([blob], fileName, {
-          type: "image/svg",
+          type: blob.type,
         });
         formData.append("file", convertedFile);
         await editCardImgUrl.mutateAsync(formData, {

@@ -5,6 +5,8 @@ import ProductBox from "./ProductBox";
 import { useState } from "react";
 import TypeList from "./TypeList";
 
+import testSvg from "./test.svg";
+
 const MainPage = () => {
   const [typeCategory, setTypeCategory] = useState("");
 
@@ -39,6 +41,7 @@ const MainPage = () => {
           thumnail={tShirtSrc}
         />
       </ListUI>
+      <img src={testSvg} />
     </PageUI>
   );
 };

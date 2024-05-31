@@ -24,6 +24,7 @@ import PicProgressBar from "./PicProgressBar";
 import useCreateInvitationMutation from "../../mutations/invitation/useCreateInvitationMutation";
 import congraturation from "./assets/congraturation.json";
 import { Player } from "@lottiefiles/react-lottie-player";
+import CallingModal from "../../shared_components/Calling";
 
 const isInviteFinished = () => {
   const first_invite_completed = localStorage.getItem("first_invite_completed");
@@ -99,6 +100,7 @@ const InvitePage = () => {
         )}
       </LottieWrapperUI>
       <Friends />
+      <CallingModal />
     </PageUI>
   );
 };
