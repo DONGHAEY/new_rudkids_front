@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import {
   ProductBoxUI,
+  ProductImgUI,
   ProductImgWrapperUI,
   ProductInfoWrapperUI,
   ProductNameTxtUI,
@@ -8,15 +8,10 @@ import {
 } from "./styles";
 
 const ProductBox = ({ thumnail, name, price }) => {
-  const navigate = useNavigate();
   return (
-    <ProductBoxUI
-      onClick={() => {
-        navigate(`/product/${name}`);
-      }}
-    >
+    <ProductBoxUI to={`/product/${name}`}>
       <ProductImgWrapperUI>
-        <img src={thumnail} width="100%" />
+        <ProductImgUI src={thumnail} />
       </ProductImgWrapperUI>
       <ProductInfoWrapperUI>
         <ProductNameTxtUI>{name}</ProductNameTxtUI>

@@ -11,7 +11,7 @@ export const RowWrapperUI = styled.div`
   margin-top: 26px;
 `;
 
-export const InfoBoxUI = styled.button`
+export const InfoBoxUI = styled.div`
   width: 100%;
   max-width: 98.25px;
   aspect-ratio: 1/1;

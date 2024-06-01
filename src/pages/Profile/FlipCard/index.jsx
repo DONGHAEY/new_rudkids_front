@@ -47,7 +47,7 @@ const FlipCard = ({ cardImgSrc, isMe }) => {
       )}
       <CardUI ref={cardRef}>
         <CardFrontUI>
-          <img src={cardImgSrc} width={"100%"} />
+          <img src={cardImgSrc || cardDefaultImgSrc} width={"100%"} />
         </CardFrontUI>
         <CardBackUI>
           <img src={cardDefaultImgSrc} />

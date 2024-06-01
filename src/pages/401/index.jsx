@@ -20,7 +20,7 @@ import Lottie from "react-lottie";
 import congraturation from "./assets/congraturation.json";
 
 let tl = null;
-const _404Page = () => {
+const _401Page = () => {
   const [getinClicked, setGetinClicked] = useState(false);
   const 머핀Ref = useRef();
   const fuckRef = useRef();
@@ -102,4 +102,4 @@ const _404Page = () => {
   );
 };
 
-export default _404Page;
+export default _401Page;

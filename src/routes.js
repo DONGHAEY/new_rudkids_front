@@ -14,13 +14,13 @@ import ProfilePage from "./pages/Profile";
 import ProfileEditPage from "./pages/ProfileEdit";
 import CreateRudcardPage from "./pages/CreateRudcard";
 import RankPage from "./pages/Rank";
-import _404Page from "./pages/404";
+import _401Page from "./pages/401";
 
 export const routes = {
   ["404"]: {
-    path: "404",
+    path: "401",
     paramKeys: [],
-    element: _404Page,
+    element: _401Page,
   },
   ["main"]: {
     path: "",
@@ -65,7 +65,7 @@ export const routes = {
   ["instaInfo"]: {
     path: "/insta-info",
     paramKeys: [],
-    element: AuthHoc(InstaInfoPage),
+    element: InstaInfoPage,
   },
   ["invite"]: {
     path: "/invite",

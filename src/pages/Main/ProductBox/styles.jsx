@@ -1,19 +1,28 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const ProductBoxUI = styled.div`
+export const ProductBoxUI = styled(Link)`
   display: flex;
   flex-direction: column;
   gap: 11px;
   margin-bottom: 16px;
+  text-decoration: none;
 `;
 
 export const ProductImgWrapperUI = styled.div`
-  padding: 10px;
   background-color: white;
+  width: 100%;
+  aspect-ratio: 1/1;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 14px;
+`;
+
+export const ProductImgUI = styled.img`
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
 `;
 
 export const ProductInfoWrapperUI = styled.div`

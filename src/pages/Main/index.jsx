@@ -4,11 +4,13 @@ import ProductBox from "./ProductBox";
 import { useState } from "react";
 import TypeList from "./TypeList";
 import useProductListQuery from "../../queries/product/useProductListQuery";
+import Loader from "../../shared_components/Loader";
 
 const MainPage = () => {
+  //
   const [typeCategory, setTypeCategory] = useState("");
 
-  const { data: productList } = useProductListQuery({
+  const { data: productList, isLoading } = useProductListQuery({
     type: typeCategory === "All" ? null : typeCategory,
   });
 
@@ -20,6 +22,7 @@ const MainPage = () => {
         {productList?.map((product) => {
           return (
             <ProductBox
+              key={product?.name}
               price={product?.price}
               name={product?.name}
               thumnail={product?.thumnail}
@@ -27,6 +30,7 @@ const MainPage = () => {
           );
         })}
       </ListUI>
+      {isLoading && <Loader />}
     </PageUI>
   );
 };

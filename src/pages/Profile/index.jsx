@@ -1,12 +1,12 @@
-import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../shared_components/Header";
+import { useParams } from "react-router-dom";
 import {
   BottomBarUI,
   BoxSectionUI,
   DescriptTxtUI,
   FollowBtnUI,
   InviteBtnUI,
-  InviteModalUI,
+  CenterModalUI,
   LinksSectionUI,
   LinksUI,
   PageUI,
@@ -32,6 +32,7 @@ import { useEffect, useState } from "react";
 import useUpdateTodayViewMutation from "../../mutations/user/follow/useUpdateTodayView";
 import eyeSrc from "./assets/eye.svg";
 import Invite from "./Invite";
+import CopyShare from "./CopyShare";
 
 export const ProfilePage = ({ routeInfo }) => {
   const params = useParams();
@@ -43,13 +44,10 @@ export const ProfilePage = ({ routeInfo }) => {
   const updateTodayViewMutation = useUpdateTodayViewMutation();
 
   const [invitePopup, setInvitePopup] = useState(false);
+  const [shareCopyPopup, setShareCopyPopup] = useState(false);
   //
   const isMyProfile = searchUserId ? false : true;
 
-  const navigate = useNavigate();
-  const settingBtnClickHandler = () => {
-    navigate("/profile/edit");
-  };
   const followBtnClickHandler = () => {
     if (userData?.isFollower) {
       unFollowMutation.mutateAsync(searchUserId);
@@ -57,6 +55,13 @@ export const ProfilePage = ({ routeInfo }) => {
       followMutation.mutateAsync(searchUserId);
     }
   };
+
+  const inviteBtnClickHandler = () => setInvitePopup(true);
+  const shareBtnClickHandler = () => setShareCopyPopup(true);
+  const onInviteCloseHandler = () => setShareCopyPopup(false);
+  const onShareCloseHandler = () => setShareCopyPopup(false);
+
+  const userProfilePageLink = `${window.location.host}/profile/${userData?.id}`;
 
   useEffect(() => {
     if (searchUserId) {
@@ -78,10 +83,7 @@ export const ProfilePage = ({ routeInfo }) => {
             {userData?.view?.todayCnt}
           </TodayViewUI>
           {isMyProfile && (
-            <SettingBtnUI
-              onClick={settingBtnClickHandler}
-              children={<IoSettings />}
-            />
+            <SettingBtnUI to={"/profile/edit"} children={<IoSettings />} />
           )}
         </TopSectionUI>
         <UserNickNameTxtUI>{userData?.nickname}</UserNickNameTxtUI>
@@ -100,11 +102,7 @@ export const ProfilePage = ({ routeInfo }) => {
         </LinksSectionUI>
         <BottomBarUI>
           {isMyProfile && (
-            <InviteBtnUI
-              onClick={() => {
-                setInvitePopup(true);
-              }}
-            >
+            <InviteBtnUI onClick={inviteBtnClickHandler}>
               친구 초대하기
             </InviteBtnUI>
           )}
@@ -118,14 +116,21 @@ export const ProfilePage = ({ routeInfo }) => {
               <p>{userData?.followerCnt}</p>
             </FollowBtnUI>
           )}
-          <ShareBtnUI>
-            <FiShare fontSize="25px" />
-          </ShareBtnUI>
+          <ShareBtnUI
+            children={<FiShare fontSize="25px" />}
+            onClick={shareBtnClickHandler}
+          />
         </BottomBarUI>
       </BoxSectionUI>
-      <InviteModalUI open={invitePopup} onClose={() => setInvitePopup(false)}>
-        <Invite close={() => setInvitePopup(false)} />
-      </InviteModalUI>
+      <CenterModalUI open={invitePopup} onClose={onInviteCloseHandler}>
+        <Invite close={onInviteCloseHandler} />
+      </CenterModalUI>
+      <CenterModalUI open={shareCopyPopup}>
+        <CopyShare
+          copyLink={userProfilePageLink}
+          onClose={onShareCloseHandler}
+        />
+      </CenterModalUI>
     </PageUI>
   );
 };

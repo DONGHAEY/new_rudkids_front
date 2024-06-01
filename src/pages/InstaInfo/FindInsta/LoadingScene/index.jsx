@@ -75,7 +75,11 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
           <BoundaryPlanes />
           {!blackholeActive && (
             <Html fullscreen position={[0, 0, 10]}>
-              <Loader message="인스타 프로필을 찾는중.." color="black" />
+              <Loader
+                position={"block"}
+                message="인스타 프로필을 찾는중.."
+                color="black"
+              />
             </Html>
           )}
         </Physics>

@@ -21,7 +21,7 @@ export const SetInstaUI = styled.div`
   justify-content: end;
   background-color: white;
   border-radius: 23px;
-  min-width: 80%;
+  width: 85%;
   padding-bottom: 51px;
 `;
 

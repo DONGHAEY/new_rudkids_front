@@ -1,8 +1,6 @@
-import { FaEye, FaHeart, FaMedal } from "react-icons/fa";
+import { FaHeart, FaMedal } from "react-icons/fa";
 import { InfoBoxUI, RowWrapperUI } from "./styles";
 import eyeSrc from "../assets/eye.svg";
-import useFollowMutation from "../../../mutations/user/follow/useFollowMutation";
-import useUnFollowMutation from "../../../mutations/user/follow/useUnFollowMutation";
 
 const InfoList = ({ rank, totalView, followerCnt, isFollower }) => {
   // const followMutation = useFollowMutation();

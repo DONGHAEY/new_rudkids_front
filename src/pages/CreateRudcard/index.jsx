@@ -18,12 +18,13 @@ import * as htmlToImage from "html-to-image";
 //
 const CreateRudcardPage = () => {
   const navigate = useNavigate();
+  //
   const [isAlert, setIsAlert] = useState(false);
-  const { data: userData } = useUserQuery();
-  const [cardFetchLoading, setCardFetchLoading] = useState(false);
-  const editCardImgUrl = useEditCardImgUrlMutation();
-
+  const [cardCreating, setCardCreating] = useState(false);
   const [cardRef, setCardRef] = useState(null);
+  //
+  const { data: userData } = useUserQuery();
+  const editCardImgUrlMutation = useEditCardImgUrlMutation();
 
   const { watch, handleSubmit, setValue, control, formState } = useForm({
     defaultValues: {
@@ -44,6 +45,7 @@ const CreateRudcardPage = () => {
 
   const submit = async () => {
     if (!cardRef.current) alert("카드로드안됨");
+    setCardCreating(true);
     console.log({
       width: cardRef.current.clientWidth,
       height: cardRef.current.clientHeight,
@@ -52,7 +54,6 @@ const CreateRudcardPage = () => {
       width: cardRef.current.clientWidth,
       height: cardRef.current.clientHeight,
     });
-    setCardFetchLoading(true);
     fetch(dataURI)
       .then((res) => res.blob())
       .then(async (blob) => {
@@ -62,13 +63,13 @@ const CreateRudcardPage = () => {
           type: blob.type,
         });
         formData.append("file", convertedFile);
-        await editCardImgUrl.mutateAsync(formData, {
+        await editCardImgUrlMutation.mutateAsync(formData, {
           onSuccess: () => {
             alert("카드등록에 성공함.");
             navigate(-1);
           },
           onSettled: () => {
-            setCardFetchLoading(false);
+            setCardCreating(false);
           },
         });
       });
@@ -158,14 +159,6 @@ const CreateRudcardPage = () => {
     },
   });
 
-  if (editCardImgUrl.isLoading || cardFetchLoading) {
-    return (
-      <PageUI>
-        <Loader />
-      </PageUI>
-    );
-  }
-
   return (
     <Popup title="루키즈 카드">
       <PageUI onSubmit={handleSubmit(submitHandler)}>
@@ -222,6 +215,7 @@ const CreateRudcardPage = () => {
           />
         </Modal>
       </PageUI>
+      {(editCardImgUrlMutation.isLoading || cardCreating) && <Loader />}
     </Popup>
   );
 };

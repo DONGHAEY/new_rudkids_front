@@ -1,4 +1,5 @@
 import { Modal } from "@mui/material";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const PageUI = styled.div`
@@ -82,8 +83,9 @@ export const TodayViewUI = styled.div`
   border-radius: 25px;
 `;
 
-export const SettingBtnUI = styled.div`
+export const SettingBtnUI = styled(Link)`
   padding: 9px;
+  text-decoration: none;
   line-height: 0%;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 100%;
@@ -164,10 +166,12 @@ export const ShareBtnUI = styled.div`
   border-radius: 16px;
 `;
 
-export const InviteModalUI = styled(Modal)`
+export const CenterModalUI = styled(Modal)`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
+  max-width: 480px;
+  margin: 0 auto;
 `;

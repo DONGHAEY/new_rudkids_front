@@ -27,15 +27,15 @@ const AuthHoc = (Page) => {
       if (!userData?.isInvited) {
         const invitationId = getInvitationId();
         if (!invitationId) {
-          alert("초대권을 제대로 수락해야합니다!");
+          alert("초대권을 받은 사람만 활동 가능합니다!!");
           navigate(`/404`);
           return;
         }
         (async () => {
           await acceptInvitationMutation.mutateAsync(invitationId, {
             onError: () => {
-              alert("초대권을 제대로 수락해야합니다!");
-              navigate(`/404`);
+              alert("유효하지 않은 초대권을 받은 것 같아요!");
+              navigate(`/401`);
             },
           });
         })();
@@ -45,7 +45,6 @@ const AuthHoc = (Page) => {
         return;
       }
 
-      //
       setIsLoggedInChecked(true);
     }, [userData]);
 
