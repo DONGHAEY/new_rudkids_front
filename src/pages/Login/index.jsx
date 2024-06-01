@@ -16,6 +16,7 @@ import { PageUI } from "./styles";
 import Lock from "../../shared_components/Lock";
 import StepIndicator from "../../shared_components/StepIndicator";
 import { setLoginCallbackUrl } from "../LoginCallback";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const platforms = [
   {
@@ -35,8 +36,12 @@ const platforms = [
 ];
 
 const LoginPage = () => {
+  const [searchParams] = useSearchParams();
+
+  const callback = searchParams.get("callback") ?? "/";
+
   const clickHandler = (platformName) => {
-    setLoginCallbackUrl("/insta-info");
+    setLoginCallbackUrl(callback);
     const loginUrl = `${process.env.REACT_APP_SERVER_URL}/api/auth/${platformName}`;
     window.location.href = loginUrl;
   };

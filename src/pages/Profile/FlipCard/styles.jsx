@@ -15,26 +15,20 @@ export const CardUI = styled.div`
   position: relative;
   pointer-events: none;
   border-radius: 20px;
+  /* background-color: green; */
+  /* padding: 30px; */
 `;
 
-export const CardFrontUI = styled.img`
-  position: absolute;
-  /* width: 100%; */
-  object-fit: cover;
-  height: 100%;
-  text-align: center;
-  font-size: 60px;
-  border-radius: 5px;
-  backface-visibility: hidden;
-`;
-
-export const CardBackUI = styled.img`
+export const CardFrontUI = styled.div`
   position: absolute;
   width: 100%;
   text-align: center;
   font-size: 60px;
   border-radius: 5px;
   backface-visibility: hidden;
+`;
+
+export const CardBackUI = styled(CardFrontUI)`
   transform: rotateY(180deg);
 `;
 

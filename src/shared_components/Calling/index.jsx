@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   CallBox,
   ModalUI,
@@ -20,7 +20,6 @@ import facetimeSignSrc from "./assets/facetime_sign.svg";
 import callingLottie from "./assets/calling.json";
 import { Player } from "@lottiefiles/react-lottie-player";
 import callOffSrc from "./assets/call_off.svg";
-// import thumnailSrc from "./assets/thumnail.png";
 import engageVideoSrc from "./assets/video.mp4";
 import gsap from "gsap";
 

@@ -23,7 +23,7 @@ const CreateRudcardPage = () => {
   const [cardFetchLoading, setCardFetchLoading] = useState(false);
   const editCardImgUrl = useEditCardImgUrlMutation();
 
-  const cardRef = useRef();
+  const [cardRef, setCardRef] = useState(null);
 
   const { watch, handleSubmit, setValue, control, formState } = useForm({
     defaultValues: {
@@ -43,15 +43,21 @@ const CreateRudcardPage = () => {
   };
 
   const submit = async () => {
-    const dataURI = await htmlToImage.toSvg(cardRef.current);
-    console.log(dataURI);
+    if (!cardRef.current) alert("카드로드안됨");
+    console.log({
+      width: cardRef.current.clientWidth,
+      height: cardRef.current.clientHeight,
+    });
+    const dataURI = await htmlToImage.toSvg(cardRef.current, {
+      width: cardRef.current.clientWidth,
+      height: cardRef.current.clientHeight,
+    });
     setCardFetchLoading(true);
     fetch(dataURI)
       .then((res) => res.blob())
       .then(async (blob) => {
         const formData = new FormData();
         const fileName = `card.svg`;
-        alert(blob.type);
         const convertedFile = new File([blob], fileName, {
           type: blob.type,
         });
@@ -165,11 +171,9 @@ const CreateRudcardPage = () => {
       <PageUI onSubmit={handleSubmit(submitHandler)}>
         <div
           style={{
-            width: "95%",
+            width: "90%",
             position: "relative",
-            backgroundColor: "transparent",
           }}
-          ref={cardRef}
         >
           <CardTemplate
             profileImgUrl={watch("profileImgUrl")}
@@ -178,6 +182,9 @@ const CreateRudcardPage = () => {
             description={watch("description")}
             qrImgUrl={`https://api.qrserver.com/v1/create-qr-code/?data=https://www.rud.kids/profile/${userData?.id}&amp;size=100x100`}
             order={333}
+            onLoaded={(ref) => {
+              setCardRef(ref);
+            }}
           />
         </div>
         <InputListUI>

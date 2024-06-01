@@ -13,8 +13,6 @@ import cardDefaultImgSrc from "./assets/licenseCard_B.svg";
 
 const FlipCard = ({ cardImgSrc, isMe }) => {
   const cardRef = useRef();
-  const frontRef = useRef();
-  const backRef = useRef();
 
   const [isCardFlip, setIsCardFlip] = useState(false);
 
@@ -48,8 +46,12 @@ const FlipCard = ({ cardImgSrc, isMe }) => {
         </NoInfoDimmedUI>
       )}
       <CardUI ref={cardRef}>
-        <CardFrontUI ref={frontRef} src={cardImgSrc || cardDefaultImgSrc} />
-        <CardBackUI ref={backRef} src={cardDefaultImgSrc} />
+        <CardFrontUI>
+          <img src={cardImgSrc} width={"100%"} />
+        </CardFrontUI>
+        <CardBackUI>
+          <img src={cardDefaultImgSrc} />
+        </CardBackUI>
         <img
           src={cardDefaultImgSrc}
           width={"100%"}

@@ -18,7 +18,7 @@ const RankedList = ({ rankedList }) => {
     <RankListUI>
       {rankedList?.map((rankedUser, idx) => {
         return (
-          <RankUI>
+          <RankUI key={idx}>
             <UserInfoUI>
               <RankNumUI>
                 <Icon

@@ -2,11 +2,14 @@ import FindInsta from "./FindInsta";
 import { useState } from "react";
 import FindedInsta from "./FindedInsta";
 import SetInsta from "./SetInsta";
+import { useSearchParams } from "react-router-dom";
 
 const InstaInfoPage = () => {
-  //
   const [findedInstaInfo, setFindedInstaInfo] = useState(null);
   const [isSetting, setIsSetting] = useState(false);
+  const [searchParams] = useSearchParams();
+
+  const callback = searchParams.get("callback") ?? "/";
 
   if (isSetting) {
     return (
@@ -14,7 +17,7 @@ const InstaInfoPage = () => {
         instaId={findedInstaInfo.instaId}
         instaImgUrl={findedInstaInfo.instaImgUrl}
         onComplete={() => {
-          window.location.href = "/";
+          window.location.href = callback;
         }}
       />
     );

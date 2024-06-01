@@ -15,6 +15,7 @@ function App() {
       "http://localhost:3000",
       "http://172.30.1.33:3001",
       "http://172.16.101.157:3001",
+      "http://192.168.0.3:3001",
     ];
     if (!allowOrigins.includes(window.location.origin)) {
       window.location.href =

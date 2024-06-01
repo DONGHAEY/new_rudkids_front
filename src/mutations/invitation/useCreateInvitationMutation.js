@@ -20,7 +20,7 @@ const useCreateInvitationMutation = () => {
       const me = await queryClient.getQueryData(userQueryKey("my"));
       // console.log(me);
       me.invitateCnt++;
-      await queryClient.setQueryData(userQueryKey("my"), me);
+      await queryClient.setQueryData(userQueryKey("my"));
     },
   });
 };

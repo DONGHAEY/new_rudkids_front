@@ -32,8 +32,6 @@ import { useEffect, useState } from "react";
 import useUpdateTodayViewMutation from "../../mutations/user/follow/useUpdateTodayView";
 import eyeSrc from "./assets/eye.svg";
 import Invite from "./Invite";
-import { usePopup } from "../../hooks/usePopup";
-import { Modal } from "@mui/material";
 
 export const ProfilePage = ({ routeInfo }) => {
   const params = useParams();

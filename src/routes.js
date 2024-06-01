@@ -14,8 +14,14 @@ import ProfilePage from "./pages/Profile";
 import ProfileEditPage from "./pages/ProfileEdit";
 import CreateRudcardPage from "./pages/CreateRudcard";
 import RankPage from "./pages/Rank";
+import _404Page from "./pages/404";
 
 export const routes = {
+  ["404"]: {
+    path: "404",
+    paramKeys: [],
+    element: _404Page,
+  },
   ["main"]: {
     path: "",
     paramKeys: [],
@@ -59,12 +65,12 @@ export const routes = {
   ["instaInfo"]: {
     path: "/insta-info",
     paramKeys: [],
-    element: InstaInfoPage,
+    element: AuthHoc(InstaInfoPage),
   },
   ["invite"]: {
     path: "/invite",
     paramKeys: [],
-    element: InvitePage,
+    element: AuthHoc(InvitePage),
   },
   ["invitation"]: {
     path: "/invitation/:invitation_id",
@@ -74,7 +80,7 @@ export const routes = {
   ["my-profile"]: {
     path: "/profile",
     paramKeys: [],
-    element: ProfilePage,
+    element: AuthHoc(ProfilePage),
   },
   ["profile"]: {
     path: "/profile/:user_id",
@@ -84,16 +90,16 @@ export const routes = {
   ["createRudcard"]: {
     path: "/create-rudcard",
     paramKeys: [],
-    element: CreateRudcardPage,
+    element: AuthHoc(CreateRudcardPage),
   },
   ["profile_edit"]: {
     path: "/profile/edit",
     paramKeys: ["nickname"],
-    element: ProfileEditPage,
+    element: AuthHoc(ProfileEditPage),
   },
   ["rank"]: {
     path: "/rank",
     paramKeys: [],
-    element: RankPage,
+    element: AuthHoc(RankPage),
   },
 };

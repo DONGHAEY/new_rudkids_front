@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useInvitationQuery from "../../queries/invitation/useInvitationQuery";
 import {
   FixedBototmSectionUI,
@@ -13,14 +13,25 @@ import TimerButton from "./TimerButton";
 import { useEffect, useState } from "react";
 import NumTimer from "./NumTimer";
 import InvitedUsers from "./InvitedUsers";
+import StorageKey from "../../storageKey";
+
+export const setInvitationId = (invitationId) => {
+  localStorage.setItem(StorageKey.invitation_id, invitationId);
+};
+export const removeInvitationId = () => {
+  localStorage.removeItem(StorageKey.invitation_id);
+};
+export const getInvitationId = () => {
+  return localStorage.getItem(StorageKey.invitation_id) ?? null;
+};
 
 const InvitationPage = ({ routeInfo }) => {
   const totalSecond = 60;
   const [remainSecond, setRemainSecond] = useState(totalSecond);
-
   const params = useParams();
   const invitationId = params[routeInfo?.paramKeys[0]];
   const { data: invitationData } = useInvitationQuery(invitationId);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (remainSecond <= 0) return;
@@ -31,6 +42,11 @@ const InvitationPage = ({ routeInfo }) => {
       clearTimeout(timeout);
     };
   }, [remainSecond]);
+
+  const clickHandler = () => {
+    setInvitationId(invitationId);
+    navigate("/login");
+  };
 
   return (
     <PageUI>
@@ -50,7 +66,10 @@ const InvitationPage = ({ routeInfo }) => {
         />
       </MiddleSectionUI>
       <FixedBototmSectionUI>
-        <TimerButton timerOffset={remainSecond / totalSecond} />
+        <TimerButton
+          onClick={clickHandler}
+          timerOffset={remainSecond / totalSecond}
+        />
         <NumTimer remainSecond={remainSecond} />
       </FixedBototmSectionUI>
     </PageUI>
