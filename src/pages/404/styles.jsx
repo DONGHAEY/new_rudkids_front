@@ -70,7 +70,7 @@ export const 머핀ImgUI = styled.img`
   width: 90%;
   position: absolute;
   top: -41%;
-  z-index: 0;
+  z-index: 2;
   right: -28%;
 `;
 
@@ -87,4 +87,15 @@ export const AskLinkUI = styled(Link)`
   font-family: Pretendard-Bold;
   font-size: 15px;
   color: black;
+`;
+
+export const LottieWrapperUI = styled.div`
+  display: flex;
+  position: fixed;
+  top: 0;
+  margin: auto;
+  width: 100%;
+  max-width: 430px;
+  z-index: 5;
+  pointer-events: none;
 `;

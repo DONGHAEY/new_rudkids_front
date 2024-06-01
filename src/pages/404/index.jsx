@@ -3,6 +3,7 @@ import {
   ButtonFixedUI,
   FuckImgUI,
   GetInButtonUI,
+  LottieWrapperUI,
   PageUI,
   TopTxtSectionUI,
   Txt1UI,
@@ -13,16 +14,19 @@ import {
 import cakeImgSrc from "./assets/cake.svg";
 import fuckSrc from "./assets/fuck.svg";
 import waiterImgSrc from "./assets/waiter.svg";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import Lottie from "react-lottie";
+import congraturation from "./assets/congraturation.json";
 
+let tl = null;
 const _404Page = () => {
   const [getinClicked, setGetinClicked] = useState(false);
   const 머핀Ref = useRef();
   const fuckRef = useRef();
 
-  const getInClickHandler = () => {
-    const tl = gsap.timeline();
+  useEffect(() => {
+    tl = gsap.timeline();
     tl.to(머핀Ref.current, {
       transformOrigin: "center bottom",
       transform: "rotateZ(80deg)",
@@ -32,23 +36,39 @@ const _404Page = () => {
       {
         opacity: 1,
         duration: 0.5,
-        onComplete: () => {
-          setGetinClicked(true);
-        },
       },
       "<"
     );
+    tl.pause();
+  }, []);
+
+  const getInClickHandler = () => {
+    if (getinClicked) {
+      setGetinClicked(false);
+      tl.reverse();
+    } else {
+      setGetinClicked(true);
+      tl.play();
+    }
   };
 
   return (
     <PageUI>
       <TopTxtSectionUI>
-        <Txt1UI>Welcome to Rudkids! 🥳</Txt1UI>
-        <Txt2UI>
-          루키즈에 오신 것을
-          <br />
-          환영합니다!
-        </Txt2UI>
+        <Txt1UI>{!getinClicked ? "For You 🥳" : "Fuck You 🖕"}</Txt1UI>
+        {!getinClicked ? (
+          <Txt2UI>
+            루키즈에 오신 것을
+            <br />
+            환영합니다!
+          </Txt2UI>
+        ) : (
+          <Txt2UI>
+            초대 받은 사람만
+            <br />
+            들어올 수 있어요
+          </Txt2UI>
+        )}
       </TopTxtSectionUI>
       {/*  */}
       <ButtonFixedUI>
@@ -67,7 +87,17 @@ const _404Page = () => {
           이미 회원가입을 했나요?
         </AskLinkUI>
       </ButtonFixedUI>
-      {/*  */}
+      <LottieWrapperUI>
+        {!getinClicked && (
+          <Lottie
+            options={{
+              animationData: congraturation,
+              autoplay: true,
+              loop: true,
+            }}
+          />
+        )}
+      </LottieWrapperUI>
     </PageUI>
   );
 };
