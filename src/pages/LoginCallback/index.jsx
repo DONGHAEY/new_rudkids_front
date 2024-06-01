@@ -6,7 +6,6 @@ import { useQueryClient } from "react-query";
 import StorageKey from "../../storageKey";
 import Loader from "../../shared_components/Loader";
 import { KEY as userQueryKey } from "../../queries/user/useUserQuery";
-import { getInvitationId } from "../Invitation";
 
 export const setLoginCallbackUrl = (callbackUrl) => {
   localStorage.setItem(StorageKey.login_callback_url, callbackUrl);

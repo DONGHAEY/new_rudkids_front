@@ -1,47 +1,32 @@
 import Header from "../../shared_components/Header";
-import { ListUI, PageUI, SearchSectionUI } from "./styles";
-import tShirtSrc from "./assets/t-shirt.png";
+import { ListUI, PageUI } from "./styles";
 import ProductBox from "./ProductBox";
 import { useState } from "react";
 import TypeList from "./TypeList";
-
-import testSvg from "./test.svg";
+import useProductListQuery from "../../queries/product/useProductListQuery";
 
 const MainPage = () => {
   const [typeCategory, setTypeCategory] = useState("");
 
+  const { data: productList } = useProductListQuery({
+    type: typeCategory === "All" ? null : typeCategory,
+  });
+
   return (
     <PageUI>
-      <Header isFixed={false} />
+      <Header isFixed={true} />
       <TypeList typeCategory={typeCategory} setTypeCategory={setTypeCategory} />
       <ListUI>
-        <ProductBox
-          price={"129,000"}
-          name={"Rudkids T-shirts"}
-          thumnail={tShirtSrc}
-        />
-        <ProductBox
-          price={"129,000"}
-          name={"Rudkids T-shirts"}
-          thumnail={tShirtSrc}
-        />
-        <ProductBox
-          price={"129,000"}
-          name={"Rudkids T-shirts"}
-          thumnail={tShirtSrc}
-        />
-        <ProductBox
-          price={"129,000"}
-          name={"Rudkids T-shirts"}
-          thumnail={tShirtSrc}
-        />
-        <ProductBox
-          price={"129,000"}
-          name={"Rudkids T-shirts"}
-          thumnail={tShirtSrc}
-        />
+        {productList?.map((product) => {
+          return (
+            <ProductBox
+              price={product?.price}
+              name={product?.name}
+              thumnail={product?.thumnail}
+            />
+          );
+        })}
       </ListUI>
-      <img src={testSvg} />
     </PageUI>
   );
 };
