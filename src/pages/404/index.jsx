@@ -10,9 +10,9 @@ import {
   WainterWrapperUI,
   머핀ImgUI,
 } from "./styles";
-import 머핀Src from "./assets/머핀.svg";
+import cakeImgSrc from "./assets/cake.svg";
 import fuckSrc from "./assets/fuck.svg";
-import 웨이터Src from "./assets/웨이터.svg";
+import waiterImgSrc from "./assets/waiter.svg";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 
@@ -53,8 +53,8 @@ const _404Page = () => {
       {/*  */}
       <ButtonFixedUI>
         <WainterWrapperUI>
-          <img src={웨이터Src} width="100%" />
-          <머핀ImgUI ref={머핀Ref} src={머핀Src} />
+          <img src={waiterImgSrc} width="100%" />
+          <머핀ImgUI ref={머핀Ref} src={cakeImgSrc} />
           <FuckImgUI ref={fuckRef} src={fuckSrc} />
         </WainterWrapperUI>
         <GetInButtonUI onClick={getInClickHandler}>Get in</GetInButtonUI>
