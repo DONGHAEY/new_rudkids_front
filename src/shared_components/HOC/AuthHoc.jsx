@@ -20,33 +20,33 @@ const AuthHoc = (Page) => {
         navigate(`/login?callback=${callback}`);
         return;
       }
-      setIsLoggedInChecked(true);
     }, [userData, isLoading]);
 
     useEffect(() => {
       if (!userData) return;
-      if (userData?.isInvited) {
-        if (!userData?.instagramId && !callback?.includes("insta-info")) {
-          navigate(`/insta-info?callback=${callback}`);
+      if (!userData?.isInvited) {
+        const invitationId = getInvitationId();
+        if (!invitationId) {
+          alert("초대권을 제대로 수락해야합니다!");
+          navigate(`/404`);
           return;
         }
-        //
+        (async () => {
+          await acceptInvitationMutation.mutateAsync(invitationId, {
+            onError: () => {
+              alert("초대권을 제대로 수락해야합니다!");
+              navigate(`/404`);
+            },
+          });
+        })();
+      }
+      if (!userData?.instagramId && !callback?.includes("insta-info")) {
+        navigate(`/insta-info?callback=${callback}`);
         return;
       }
-      const invitationId = getInvitationId();
-      if (!invitationId) {
-        alert("초대권을 제대로 수락해야합니다!");
-        navigate(`/404`);
-        return;
-      }
-      (async () => {
-        await acceptInvitationMutation.mutateAsync(invitationId, {
-          onError: () => {
-            alert("초대권을 제대로 수락해야합니다!");
-            navigate(`/404`);
-          },
-        });
-      })();
+
+      //
+      setIsLoggedInChecked(true);
     }, [userData]);
 
     if (!isLoggedInChecked) return <Loader />;
