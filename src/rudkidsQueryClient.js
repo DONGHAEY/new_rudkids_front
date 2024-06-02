@@ -1,9 +1,11 @@
 import { QueryClient } from "react-query";
 import queryKey from "./queries/key";
 import { useNavigate } from "react-router-dom";
+import { useMemo } from "react";
 
 const useRudkidsQueryClient = () => {
   const navigate = useNavigate();
+
   const onError = (e) => {
     const { response } = e;
     switch (response?.status) {
@@ -20,18 +22,20 @@ const useRudkidsQueryClient = () => {
     return e;
   };
 
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-        retry: 0,
-        onError: onError,
+  const queryClient = useMemo(() => {
+    return new QueryClient({
+      defaultOptions: {
+        queries: {
+          refetchOnWindowFocus: false,
+          retry: 0,
+          onError: onError,
+        },
+        mutations: {
+          onError: onError,
+        },
       },
-      mutations: {
-        onError: onError,
-      },
-    },
-  });
+    });
+  }, []);
 
   return [queryClient];
 };

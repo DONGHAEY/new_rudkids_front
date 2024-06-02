@@ -3,8 +3,9 @@ import LoadCircle from "./assets/Load.png";
 import { LoaderUI } from "./styles";
 import gsap from "gsap";
 
-const Loader = ({ message, color, position = "fixed" }) => {
+const Loader = ({ message, color, position = "fixed", delayMs = 0 }) => {
   const ref = useRef();
+  const [show, setShow] = useState(false);
 
   const messages = [
     "루키즈는 굴러가는중...",
@@ -37,6 +38,17 @@ const Loader = ({ message, color, position = "fixed" }) => {
       clearTimeout(timeout);
     };
   }, [messageIdx]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShow(true);
+    }, delayMs);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [delayMs]);
+
+  if (!show) return null;
 
   return (
     <LoaderUI position={position}>

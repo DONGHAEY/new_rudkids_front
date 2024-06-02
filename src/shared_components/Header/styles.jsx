@@ -1,4 +1,5 @@
 import { Modal } from "@mui/material";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const MenuBarModalUI = styled(Modal)`
@@ -11,12 +12,13 @@ export const MenuBarModalUI = styled(Modal)`
   z-index: 999;
 `;
 
-export const LogoWrapperUI = styled.div`
+export const LogoIconUI = styled(Link)`
   object-fit: cover;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 `;
 
 export const HeaderUI = styled.div`
@@ -36,13 +38,14 @@ export const HeaderUI = styled.div`
   justify-content: space-between;
 `;
 
-export const IconWrapperUI = styled.div`
+export const IconLinkUI = styled(Link)`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 25px;
   text-align: center;
+  text-decoration: none;
 `;
 
 export const SpacerUI = styled.div`
@@ -55,6 +58,7 @@ export const CartTxtUI = styled.a`
   font-size: 19px;
   letter-spacing: 0px;
   text-decoration: none;
+  color: black;
 `;
 
 export const CartCntTextUI = styled.p`

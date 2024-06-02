@@ -12,10 +12,12 @@ export const PageUI = styled.div`
 export const AddEditShippingUI = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 35px;
   padding-top: 15px;
   padding-bottom: 30px;
-  width: 90%;
+  width: 100%;
 `;
 
 export const DescriptionTextUI = styled.p`
@@ -49,7 +51,7 @@ export const SelectUI = styled.select`
   font-family: Pretendard-SemiBold;
   font-size: 14px;
   border: solid 1.4px #e3e3e3;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   color: #a1a1a1;
   min-height: 64px;
   border-radius: 17px;

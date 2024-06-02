@@ -40,10 +40,6 @@ const ProductDetailPage = ({ routeInfo }) => {
 
   const productComponents = productData?.components;
 
-  if (productDataLoading) {
-    return <Loader />;
-  }
-
   return (
     <PageUI>
       <Header $backgroundColor="none" />
@@ -85,6 +81,7 @@ const ProductDetailPage = ({ routeInfo }) => {
         </DetailImgListUI>
       </FlexWrapperUI>
       <ActionBar productData={productData} />
+      {productDataLoading && <Loader delayMs={500} />}
     </PageUI>
   );
 };

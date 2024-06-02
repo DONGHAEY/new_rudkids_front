@@ -6,6 +6,8 @@ import {
   SectionDscrptTxtUI,
   PriceWrapperUI,
 } from "./styles";
+
+//
 import CartProduct from "./CartProduct";
 import CheckoutBar from "./CheckoutBar";
 import Price from "../../shared_components/Price";

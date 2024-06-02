@@ -1,8 +1,8 @@
 import {
-  LogoWrapperUI,
+  LogoIconUI,
   SpacerUI,
   HeaderUI,
-  IconWrapperUI,
+  IconLinkUI,
   CartCntTextUI,
   CartTxtUI,
 } from "./styles";
@@ -13,18 +13,11 @@ import MenuBar from "./MenuBar";
 import { useState } from "react";
 import { MenuBarModalUI } from "./styles";
 import useCartProdsCntQuery from "../../queries/cart/useCartProdsCntQuery";
+import Loader from "../../shared_components/Loader";
 
 const Header = ({ isFixed = true }) => {
   const navigate = useNavigate();
-  const { data: cartCntData = 0 } = useCartProdsCntQuery();
-
-  const logoClickHandler = () => {
-    navigate("/");
-  };
-
-  const cartBtnClickHandler = () => {
-    navigate("/cart");
-  };
+  const { data: cartCntData = 0, isLoading } = useCartProdsCntQuery();
 
   const [menuBarOpen, setMenuBarOpen] = useState(false);
 
@@ -35,21 +28,22 @@ const Header = ({ isFixed = true }) => {
   return (
     <>
       <HeaderUI position={isFixed ? "fixed" : "relative"}>
-        <IconWrapperUI onClick={listBtnClickHandler}>
+        <IconLinkUI onClick={listBtnClickHandler}>
           <img height="27px" src={pompomiImgSrc} />
-        </IconWrapperUI>
-        <LogoWrapperUI onClick={logoClickHandler}>
+        </IconLinkUI>
+        <LogoIconUI to="/">
           <img height="100%" src={rudkidsLogoSrc} />
-        </LogoWrapperUI>
-        <IconWrapperUI onClick={cartBtnClickHandler}>
+        </LogoIconUI>
+        <IconLinkUI to="/cart">
           <CartTxtUI>cart</CartTxtUI>
           <CartCntTextUI>{cartCntData}</CartCntTextUI>
-        </IconWrapperUI>
+        </IconLinkUI>
       </HeaderUI>
       {isFixed && <SpacerUI />}
       <MenuBarModalUI open={menuBarOpen} hideBackdrop disableAutoFocus>
         <MenuBar onClosed={(d) => setMenuBarOpen(false)} />
       </MenuBarModalUI>
+      {isLoading && <Loader delayMs={500} />}
     </>
   );
 };

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ColFieldUI = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
   gap: 10px;
 `;
 

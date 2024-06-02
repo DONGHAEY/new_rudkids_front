@@ -53,100 +53,98 @@ const AddEditShipping = ({ shippingData = null, setShippingData }) => {
 
   return (
     <Popup title={`📮 Shipping ${shippingData === null ? "Add" : "Edit"}`}>
-      <PageUI>
-        <AddEditShippingUI>
-          <ColField name="배송지 이름">
-            <TextInputUI
-              {...register("name", {
+      <AddEditShippingUI>
+        <ColField name="배송지 이름">
+          <TextInputUI
+            {...register("name", {
+              required: true,
+            })}
+            placeholder="배송지 이름"
+          />
+        </ColField>
+        <ColField name="받는 분">
+          <TextInputUI
+            {...register("recieverName", {
+              required: true,
+            })}
+            placeholder="받는 분"
+          />
+        </ColField>
+        <ColField name="배송지">
+          <TextInputUI
+            ref={
+              register("address", {
                 required: true,
-              })}
-              placeholder="배송지 이름"
+              }).ref
+            }
+            value={watch("address")}
+            onClick={() => popupNavigate(searchAddressPopupName)}
+            placeholder="건물, 지번 또는 도로명 검색"
+          />
+          <PopupRoute name={searchAddressPopupName}>
+            <SearchAddress
+              address={watch("address")}
+              setAddress={(address) => {
+                if (!address) return;
+                popupBack();
+                setValue("address", address);
+              }}
             />
-          </ColField>
-          <ColField name="받는 분">
-            <TextInputUI
-              {...register("recieverName", {
-                required: true,
-              })}
-              placeholder="받는 분"
-            />
-          </ColField>
-          <ColField name="배송지">
-            <TextInputUI
-              ref={
-                register("address", {
-                  required: true,
-                }).ref
-              }
-              value={watch("address")}
-              onClick={() => popupNavigate(searchAddressPopupName)}
-              placeholder="건물, 지번 또는 도로명 검색"
-            />
-            <PopupRoute name={searchAddressPopupName}>
-              <SearchAddress
-                address={watch("address")}
-                setAddress={(address) => {
-                  if (!address) return;
-                  popupBack();
-                  setValue("address", address);
-                }}
-              />
-            </PopupRoute>
-            <TextInputUI
-              {...register("detailAddress", {
-                required: false,
-              })}
-              placeholder="상세주소"
-            />
-          </ColField>
-          <ColField name="휴대전화번호">
-            <TextInputUI
-              {...register("recieverPhoneNumber", {
-                required: "필수",
-                minLength: {
-                  value: 3,
-                  message: "전화번호 7자 이상입력해야해요!",
-                },
-                onChange: (e) => {
-                  e.target.value = e.target.value
-                    .replace(/[^0-9]/g, "")
-                    .replace(
-                      /(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g,
-                      "$1-$2-$3"
-                    );
-                },
-              })}
-              placeholder="'-'없이 숫자만 입력하세요"
-            />
-          </ColField>
-          <ColField name="배송시 요청사항">
-            <SelectUI
-              {...register("requestMemo", {
-                required: false,
-              })}
-            >
-              <option key={-1} value={""}>
-                배송메모를 선택해주세요
+          </PopupRoute>
+          <TextInputUI
+            {...register("detailAddress", {
+              required: false,
+            })}
+            placeholder="상세주소"
+          />
+        </ColField>
+        <ColField name="휴대전화번호">
+          <TextInputUI
+            {...register("recieverPhoneNumber", {
+              required: "필수",
+              minLength: {
+                value: 3,
+                message: "전화번호 7자 이상입력해야해요!",
+              },
+              onChange: (e) => {
+                e.target.value = e.target.value
+                  .replace(/[^0-9]/g, "")
+                  .replace(
+                    /(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g,
+                    "$1-$2-$3"
+                  );
+              },
+            })}
+            placeholder="'-'없이 숫자만 입력하세요"
+          />
+        </ColField>
+        <ColField name="배송시 요청사항">
+          <SelectUI
+            {...register("requestMemo", {
+              required: false,
+            })}
+          >
+            <option key={-1} value={""}>
+              배송메모를 선택해주세요
+            </option>
+            {requesetMemoContents?.map((requestMemo, idx) => (
+              <option key={idx} value={requestMemo}>
+                {requestMemo}
               </option>
-              {requesetMemoContents?.map((requestMemo, idx) => (
-                <option key={idx} value={requestMemo}>
-                  {requestMemo}
-                </option>
-              ))}
-            </SelectUI>
-          </ColField>
-          {/* 기본배송지로 설정 컬럼 필요 */}
-          <RowField name="기본배송지로 설정">
-            <input {...register("isDefault")} type="checkbox" />
-          </RowField>
-        </AddEditShippingUI>
+            ))}
+          </SelectUI>
+        </ColField>
+        {/* 기본배송지로 설정 컬럼 필요 */}
+        <RowField name="기본배송지로 설정">
+          <input {...register("isDefault")} type="checkbox" />
+        </RowField>
         <BottomButton
           disable={addShippingMutation.isLoading || !canSubmit}
           onClick={handleSubmit(submitHandler)}
         >
           Done
         </BottomButton>
-      </PageUI>
+      </AddEditShippingUI>
     </Popup>
   );
 };

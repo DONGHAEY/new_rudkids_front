@@ -30,7 +30,7 @@ const MainPage = () => {
           );
         })}
       </ListUI>
-      {isLoading && <Loader />}
+      {isLoading && <Loader delayMs={500} />}
     </PageUI>
   );
 };
