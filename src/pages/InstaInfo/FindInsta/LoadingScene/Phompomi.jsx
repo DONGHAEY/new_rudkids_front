@@ -6,7 +6,7 @@ export const Phompomi = ({ count, gltf, color }) => {
   const [ref] = useSphere((index) => ({
     mass: 0.5,
     position: [4 - Math.random() * 8, viewport.height, 0, 0],
-    args: [1.2],
+    args: [1],
   }));
 
   return (

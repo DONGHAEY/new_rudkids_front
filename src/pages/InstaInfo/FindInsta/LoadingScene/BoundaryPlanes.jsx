@@ -17,13 +17,13 @@ export const BoundaryPlanes = () => {
         position={[viewport.width / 2 + 1, 0, 0]}
         rotation={[0, -Math.PI / 2, 0]}
       />
-      <Plane position={[0, 0, 1]} rotation={[0, 0, 0]} />
-      <Plane position={[0, 0, 12]} rotation={[0, -Math.PI, 0]} />
+      <Plane position={[0, 0, 0]} rotation={[0, 0, 0]} />
+      <Plane position={[0, 0, 8]} rotation={[0, -Math.PI, 0]} />
     </>
   );
 };
 
-const Plane = ({ color, ...props }) => {
+const Plane = (props) => {
   usePlane(() => ({ ...props }));
   return null;
 };
