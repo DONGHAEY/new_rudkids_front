@@ -11,15 +11,14 @@ export const ScrollMarqueeUI = styled(Marquee)`
 
 export const InvitedUserImgWrapperUI = styled.div`
   position: relative;
+  aspect-ratio: 1/1;
   height: 47px;
   border: 3px solid transparent;
   border-radius: 50%;
-
   margin-left: 20px;
   background-origin: border-box;
   background-clip: content-box, border-box;
   background-color: #fff;
-
   background-image: linear-gradient(#fff, #fff),
     linear-gradient(
       50deg,
@@ -32,6 +31,8 @@ export const InvitedUserImgWrapperUI = styled.div`
 
 export const InvitedUserImgUI = styled.img`
   height: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
   border-radius: 100%;
 `;
 

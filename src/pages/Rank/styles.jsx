@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const PageUI = styled.div`
@@ -36,7 +37,7 @@ export const RankStageWrapperUI = styled.div`
   position: relative;
 `;
 
-export const SecondStage = styled.div`
+export const SecondStage = styled(Link)`
   position: absolute;
   width: 28%;
   left: 0;
@@ -45,9 +46,10 @@ export const SecondStage = styled.div`
   align-items: center;
   gap: 10px;
   top: 10%;
+  text-decoration: none;
 `;
 
-export const FirstStage = styled.div`
+export const FirstStage = styled(Link)`
   position: absolute;
   width: 30%;
   margin: 0 auto;
@@ -56,8 +58,9 @@ export const FirstStage = styled.div`
   align-items: center;
   gap: 10px;
   top: 0%;
+  text-decoration: none;
 `;
-export const ThirdStage = styled.div`
+export const ThirdStage = styled(Link)`
   position: absolute;
   width: 28%;
   right: 0;
@@ -66,16 +69,23 @@ export const ThirdStage = styled.div`
   align-items: center;
   gap: 10px;
   top: 10%;
+  text-decoration: none;
 `;
 
 export const RankerImgWrapperUI = styled.div`
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   aspect-ratio: 1/1;
+  background-color: white;
   position: relative;
+  border-radius: 100%;
 `;
 
 export const RankerImgUI = styled.img`
   width: 100%;
+  height: 100%;
   /* height: 100%; */
   object-fit: cover;
   border-radius: 100%;
@@ -97,6 +107,7 @@ export const RankBallUI = styled.div`
   font-family: Poppins-Bold;
   bottom: 5%;
   right: 0%;
+  color: black;
 `;
 
 export const RankerNameUI = styled.p`
@@ -111,4 +122,5 @@ export const RankerNameUI = styled.p`
   word-break: break-all;
   font-family: Poppins-Bold;
   font-size: 12.5px;
+  color: black;
 `;

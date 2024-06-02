@@ -4,37 +4,37 @@ import {
   RankNumUI,
   RankUI,
   UserImgUI,
-  UserInfoUI,
+  UserImgWrapperUI,
   UserNmTxtUI,
   UserViewCntUI,
 } from "./styles";
 import { Icon } from "@iconify/react";
 
 const RankedList = ({ rankedList }) => {
-  //
   const colors = ["#FFF500", "#FF0000", "#6ED4FF"];
 
   return (
     <RankListUI>
       {rankedList?.map((rankedUser, idx) => {
+        if (!rankedUser?.imageUrl) return;
         return (
-          <RankUI key={idx}>
-            <UserInfoUI>
-              <RankNumUI>
-                <Icon
-                  width="30px"
-                  fill={idx < 3 ? "#FFF500" : "none"}
-                  color={idx < 3 ? "#FFF500" : "transparent"}
-                  icon="material-symbols-light:award-star-rounded"
-                />
-                <RankNumTxtUI>{idx + 1}</RankNumTxtUI>
-              </RankNumUI>
+          <RankUI key={idx} to={`/profile/${rankedUser?.id}`}>
+            <RankNumUI>
+              <Icon
+                width="30px"
+                fill={idx < 3 ? "#FFF500" : "none"}
+                color={idx < 3 ? "#FFF500" : "transparent"}
+                icon="material-symbols-light:award-star-rounded"
+              />
+              <RankNumTxtUI>{idx + 1}</RankNumTxtUI>
+            </RankNumUI>
+            <UserImgWrapperUI>
               <UserImgUI
                 borderColor={colors[idx] ?? "none"}
                 src={rankedUser?.imageUrl}
               />
-              <UserNmTxtUI>{rankedUser?.nickname}</UserNmTxtUI>
-            </UserInfoUI>
+            </UserImgWrapperUI>
+            <UserNmTxtUI>{rankedUser?.nickname}</UserNmTxtUI>
             <UserViewCntUI>
               <Icon icon="ph:eye-fill" color="black" />
               {Number(

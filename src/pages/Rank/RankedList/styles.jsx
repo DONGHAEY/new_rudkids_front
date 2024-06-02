@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const RankListUI = styled.div`
@@ -14,21 +15,14 @@ export const RankListUI = styled.div`
   gap: 21px;
 `;
 
-export const RankUI = styled.div`
+export const RankUI = styled(Link)`
+  text-decoration: none;
   height: 63px;
   width: 90%;
   display: flex;
   flex-direction: row;
   align-items: center;
-`;
-
-export const UserInfoUI = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  width: 100%;
-  height: 100%;
-  align-items: center;
+  justify-content: center;
 `;
 
 export const UserViewCntUI = styled.p`
@@ -45,6 +39,7 @@ export const UserViewCntUI = styled.p`
   letter-spacing: -0.61px;
   line-height: 100%;
   gap: 6px;
+  color: black;
 `;
 
 export const RankNumUI = styled.div`
@@ -58,10 +53,21 @@ export const RankNumTxtUI = styled.p`
   position: absolute;
   font-family: Poppins-Bold;
   font-size: 16px;
+  color: black;
+`;
+
+export const UserImgWrapperUI = styled.div`
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: white;
+  margin-left: 16px;
+  border-radius: 100%;
 `;
 
 export const UserImgUI = styled.img`
   height: 100%;
+  width: 100%;
+  object-fit: cover;
   border-radius: 100%;
   border: solid 5px ${({ borderColor }) => borderColor ?? "none"};
   box-sizing: border-box;
@@ -73,13 +79,13 @@ export const UserNmTxtUI = styled.div`
   font-family: Pretendard-Bold;
   font-size: 16px;
   text-align: start;
-  width: 80%;
+  width: 100%;
+  margin-left: 16px;
   padding: 5px;
   border-radius: 8px;
-  /* background-color: rgba(255, 255, 255, 0.7); */
   overflow: hidden;
-  /* text-align: center; */
   white-space: nowrap;
   text-overflow: ellipsis;
   word-break: break-all;
+  color: black;
 `;

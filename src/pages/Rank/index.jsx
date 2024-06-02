@@ -28,7 +28,7 @@ const RankPage = () => {
       <Header isFixed={true} />
       <RankStageWrapperUI>
         <RankStageImgUI src={rankStageSrc} />
-        <SecondStage>
+        <SecondStage to={`/profile/${rankedList?.[1]?.id}`}>
           <RankerImgWrapperUI>
             <RankerImgUI
               src={rankedList?.[1]?.imageUrl}
@@ -38,7 +38,7 @@ const RankPage = () => {
           </RankerImgWrapperUI>
           <RankerNameUI>{rankedList?.[1]?.nickname ?? "?"}</RankerNameUI>
         </SecondStage>
-        <FirstStage>
+        <FirstStage to={`/profile/${rankedList?.[0]?.id}`}>
           <RankerImgWrapperUI>
             <RankerImgUI
               src={rankedList?.[0]?.imageUrl}
@@ -48,7 +48,7 @@ const RankPage = () => {
           </RankerImgWrapperUI>
           <RankerNameUI>{rankedList?.[0]?.nickname ?? "?"}</RankerNameUI>
         </FirstStage>
-        <ThirdStage>
+        <ThirdStage to={`/profile/${rankedList?.[2]?.id}`}>
           <RankerImgWrapperUI>
             <RankerImgUI
               src={rankedList?.[2]?.imageUrl}
@@ -59,9 +59,9 @@ const RankPage = () => {
           <RankerNameUI>{rankedList?.[2]?.nickname ?? "?"}</RankerNameUI>
         </ThirdStage>
       </RankStageWrapperUI>
-      <BottomSectionUI>
-        <RankedList rankedList={[...rankedList]} />
-      </BottomSectionUI>
+      {/* <BottomSectionUI> */}
+      <RankedList rankedList={[...rankedList]} />
+      {/* </BottomSectionUI> */}
     </PageUI>
   );
 };

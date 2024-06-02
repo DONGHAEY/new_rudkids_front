@@ -26,6 +26,7 @@ const AuthHoc = (Page) => {
       if (!userData) return;
       if (!userData?.isInvited) {
         const invitationId = getInvitationId();
+
         if (!invitationId) {
           alert("초대권을 받은 사람만 활동 가능합니다!!");
           navigate(`/404`);
