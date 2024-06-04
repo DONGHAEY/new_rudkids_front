@@ -6,7 +6,7 @@ export const usePaymentWidget = ({ widgetClientKey, customerKey }) => {
 
   useEffect(() => {
     (async () => {
-      console.log(widgetClientKey, ",", customerKey);
+      console.log(widgetClientKey, ",", customerKey, "-------");
       if (!widgetClientKey || !customerKey) return;
       try {
         const loadedWidget = await loadPaymentWidget(

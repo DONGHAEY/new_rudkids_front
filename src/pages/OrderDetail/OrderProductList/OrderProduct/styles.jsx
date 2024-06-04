@@ -17,7 +17,7 @@ export const OrderProductUI = styled.div`
 export const WrapperUI = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 `;
 
@@ -90,4 +90,14 @@ export const CloseIconWrapperUI = styled.div`
   padding: 10px;
   font-size: 22px;
   cursor: pointer;
+`;
+
+export const OptionsSectionUI = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  line-height: 120%;
+  font-family: Pretendard-Medium;
+  font-size: 12px;
+  color: #898989;
 `;

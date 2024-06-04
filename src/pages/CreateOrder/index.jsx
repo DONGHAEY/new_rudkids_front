@@ -40,7 +40,7 @@ function CreateOrderPage() {
     if (!cartData) return 0;
     let totalProductsPrice = 0;
     cartData?.cartProducts?.forEach((cartProduct) => {
-      totalProductsPrice += cartProduct.product.price * cartProduct.quantity;
+      totalProductsPrice += cartProduct?.price * cartProduct.quantity;
     });
     return totalProductsPrice;
   }, [cartData?.cartProducts]);

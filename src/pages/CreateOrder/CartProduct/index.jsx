@@ -1,28 +1,33 @@
+import { useMemo } from "react";
 import {
   CartProductNameUI,
   CartProductPriceUI,
   CartProductUI,
   InfoTextWrapperUI,
-  QuantityGroupUI,
+  OptionsSectionUI,
   QuantityTextUI,
-  WrapperUI,
 } from "./styles";
 
 const CartProduct = ({ cartProduct }) => {
+  //
+
   return (
     <CartProductUI>
-      <img height="80px" src={cartProduct.product.thumnail} />
-      <WrapperUI>
-        <InfoTextWrapperUI>
-          <CartProductNameUI>{cartProduct.product.name}</CartProductNameUI>
-          <CartProductPriceUI>
-            ₩ {cartProduct.product.price.toLocaleString("ko-KR")}
-          </CartProductPriceUI>
-        </InfoTextWrapperUI>
-        <QuantityGroupUI>
-          <QuantityTextUI>{cartProduct.quantity}개</QuantityTextUI>
-        </QuantityGroupUI>
-      </WrapperUI>
+      <img height="70px" src={cartProduct.thumnail} />
+      <InfoTextWrapperUI>
+        <CartProductNameUI>{cartProduct.name}</CartProductNameUI>
+        <CartProductPriceUI>
+          ₩ {cartProduct.price.toLocaleString("ko-KR")}
+        </CartProductPriceUI>
+        <OptionsSectionUI>
+          {cartProduct?.selectedOptions?.map((option) => (
+            <p key={option?.id}>
+              {option?.groupName}: {option?.optionName}
+            </p>
+          ))}
+        </OptionsSectionUI>
+        <QuantityTextUI>{cartProduct.quantity}개</QuantityTextUI>
+      </InfoTextWrapperUI>
     </CartProductUI>
   );
 };

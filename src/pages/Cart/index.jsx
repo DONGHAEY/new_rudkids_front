@@ -7,7 +7,6 @@ import {
   PriceWrapperUI,
 } from "./styles";
 
-//
 import CartProduct from "./CartProduct";
 import CheckoutBar from "./CheckoutBar";
 import Price from "../../shared_components/Price";
@@ -29,7 +28,7 @@ const CartPage = () => {
     if (!myCartData) return 0;
     let totalProductsPrice = 0;
     myCartData.cartProducts?.map((cartProduct) => {
-      totalProductsPrice += cartProduct.product.price * cartProduct.quantity;
+      totalProductsPrice += cartProduct.price * cartProduct.quantity;
     });
     return totalProductsPrice;
   }, [myCartData?.cartProducts]);
@@ -56,7 +55,7 @@ const CartPage = () => {
         <CartProductListUI>
           {myCartData?.cartProducts?.map((cartProduct) => {
             return (
-              <CartProduct key={cartProduct?.id} cartProduct={cartProduct} />
+              <CartProduct key={cartProduct.id} cartProduct={cartProduct} />
             );
           })}
         </CartProductListUI>

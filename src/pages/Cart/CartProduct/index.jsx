@@ -7,6 +7,7 @@ import {
   CartProductUI,
   CloseIconWrapperUI,
   InfoTextWrapperUI,
+  OptionsSectionUI,
   QuantityButtonUI,
   QuantityGroupUI,
   QuantityTextUI,
@@ -18,9 +19,9 @@ import useDeleteCartProductMutation from "../../../mutations/cart/useDeleteCartP
 
 const CartProduct = ({ cartProduct }) => {
   const editQuantityMutation = useEditCartProductQuantityMutation(
-    cartProduct?.product.id
+    cartProduct?.productId
   );
-  const deleteMutation = useDeleteCartProductMutation(cartProduct?.product.id);
+  const deleteMutation = useDeleteCartProductMutation(cartProduct?.productId);
 
   const quantityPlusClickHandler = async (e) => {
     e.stopPropagation();
@@ -41,18 +42,29 @@ const CartProduct = ({ cartProduct }) => {
   const navigate = useNavigate();
 
   const productClickHandler = () => {
-    navigate(`/product/${cartProduct.product.name}`);
+    navigate(`/product/${cartProduct.name}`);
   };
 
   return (
     <CartProductUI onClick={productClickHandler}>
-      <img height="80px" src={cartProduct.product.thumnail} />
+      <img height="80px" src={cartProduct.thumnail} />
       <WrapperUI>
         <InfoTextWrapperUI>
-          <CartProductNameUI>{cartProduct.product.name}</CartProductNameUI>
+          <CartProductNameUI>{cartProduct.name}</CartProductNameUI>
           <CartProductPriceUI>
-            ₩ {cartProduct.product.price.toLocaleString("ko-KR")}
+            ₩ {cartProduct?.price?.toLocaleString("ko-KR")}
           </CartProductPriceUI>
+          {cartProduct?.selectedOptions?.length !== 0 && (
+            <OptionsSectionUI>
+              {cartProduct?.selectedOptions?.map((option) => {
+                return (
+                  <p key={option?.id}>
+                    {option.groupName} : {option.optionName}
+                  </p>
+                );
+              })}
+            </OptionsSectionUI>
+          )}
         </InfoTextWrapperUI>
         <QuantityGroupUI>
           <QuantityButtonUI onClick={quantityMinusClickHandler}>

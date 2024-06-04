@@ -74,6 +74,11 @@ const ProductDetailPage = ({ routeInfo }) => {
             );
           })}
         </ComponentListUI>
+        <ModelDescriptionUI>
+          <ModelDescriptionTextUI>
+            {productData?.description}
+          </ModelDescriptionTextUI>
+        </ModelDescriptionUI>
         <DetailImgListUI>
           {detailImageUrls?.map((detailIimageUrl, key) => {
             return <img key={key} width="100%" src={detailIimageUrl} />;

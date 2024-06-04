@@ -26,7 +26,7 @@ const useEditCartProductQuantityMutation = (productId) => {
       const cartData = queryClient.getQueryData(CART_KEY);
       if (cartData?.cartProducts?.length) {
         cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
-          if (cartProduct?.product?.id === productId) {
+          if (cartProduct?.productId === productId) {
             return {
               ...cartProduct,
               quantity,
@@ -61,20 +61,21 @@ const useEditCartProductQuantityMutation = (productId) => {
       });
     },
     onSuccess: async (data) => {
-      if (!data) return null;
-      const cartData = queryClient.getQueryData(CART_KEY);
-      cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
-        if (cartProduct?.product?.id === productId) {
-          return data;
-        }
-        return cartProduct;
-      });
-      await queryClient.setQueryData(CART_KEY, cartData);
+      // if (!data) return null;
+      // const cartData = queryClient.getQueryData(CART_KEY);
+      // cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
+      //   if (cartProduct?.productId === productId) {
+      //     return data;
+      //   }
+      //   return cartProduct;
+      // });
+      // await queryClient.setQueryData(CART_KEY, cartData);
     },
     onError: async (e) => {
-      if (e?.response?.data?.statusCode === 404) {
-        await queryClient.invalidateQueries(CART_KEY);
-      }
+      await queryClient.invalidateQueries(CART_KEY);
+      // if (e?.response?.data?.statusCode === 404) {
+      //   await queryClient.invalidateQueries(CART_KEY);
+      // }
     },
   });
 };

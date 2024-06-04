@@ -15,13 +15,13 @@ export const WrapperUI = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 25px;
-  gap: 10px;
+  gap: 12px;
 `;
 
 export const InfoTextWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 0px;
 `;
 
 export const QuantityGroupUI = styled.div`
@@ -62,6 +62,19 @@ export const CartProductNameUI = styled.p`
 export const CartProductPriceUI = styled.p`
   font-size: 15px;
   font-family: Poppins-Bold;
+`;
+
+export const OptionsSectionUI = styled.div`
+  font-family: Pretendard-Medium;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 100%;
+  font-size: 12px;
+  margin-top: 6px;
+  letter-spacing: -0.5px;
+  color: #6f6f6f;
+  gap: 5px;
 `;
 
 export const CloseIconWrapperUI = styled.div`

@@ -6,7 +6,6 @@ export const PageUI = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  // padding: 30px;
   background-color: white;
 `;
 
@@ -83,8 +82,8 @@ export const ModelDescriptionUI = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 15px;
-  padding: 10px;
-  background-color: #ededed;
+  padding: 19px;
+  background-color: #f7f7f7;
   border-radius: 10px;
 `;
 

@@ -7,6 +7,7 @@ import {
   QuantityTextUI,
   WrapperUI,
   GoProductUI,
+  OptionsSectionUI,
 } from "./styles";
 import { FaChevronRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +24,13 @@ const OrderProduct = ({ orderProduct }) => {
             ₩ {orderProduct.price.toLocaleString("ko-KR")}
           </CartProductPriceUI>
         </InfoTextWrapperUI>
+        <OptionsSectionUI>
+          {orderProduct?.options?.map((option) => (
+            <p key={option?.id}>
+              {option?.groupName}: {option?.name}
+            </p>
+          ))}
+        </OptionsSectionUI>
         <QuantityGroupUI>
           <QuantityTextUI>{orderProduct.quantity}개</QuantityTextUI>
           <GoProductUI

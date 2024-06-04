@@ -5,7 +5,7 @@ export const CartProductUI = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 20px;
+  padding: 26px;
   gap: 30px;
   min-height: 80px;
   background-color: rgba(255, 255, 255, 0.9);
@@ -14,34 +14,25 @@ export const CartProductUI = styled.div`
   border-radius: 20px;
 `;
 
-export const WrapperUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 12px;
-  width: 100%;
-`;
-
 export const InfoTextWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
-  gap: 5px;
-`;
-
-export const QuantityGroupUI = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   gap: 5px;
 `;
 
 export const QuantityTextUI = styled.p`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
   font-family: Pretendard-ExtraBold;
   min-width: 15px;
   text-align: center;
   color: #6f6f6f;
   font-size: 12px;
+  line-height: 120%;
 `;
 
 export const QuantityButtonUI = styled.div`
@@ -63,6 +54,7 @@ export const CartProductNameUI = styled.p`
   font-family: Poppins-Bold;
   letter-spacing: -0.3px;
   word-spacing: 0px;
+  line-height: 120%;
 `;
 
 export const CartProductPriceUI = styled.p`
@@ -71,6 +63,17 @@ export const CartProductPriceUI = styled.p`
   font-family: Poppins-Bold;
   letter-spacing: -0.3px;
   word-spacing: 0px;
+  line-height: 120%;
+`;
+
+export const OptionsSectionUI = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  line-height: 120%;
+  font-family: Pretendard-Medium;
+  font-size: 12px;
+  color: #898989;
 `;
 
 export const CloseIconWrapperUI = styled.div`

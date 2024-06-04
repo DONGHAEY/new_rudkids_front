@@ -8,16 +8,22 @@ import {
 } from "./styles";
 import useAddCartProductMutation from "../../../mutations/cart/useAddCartProductMutation";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import SelectModal from "./SelectModal";
 
 const ActionBar = ({ productData }) => {
   const navigate = useNavigate();
+  const [selectOptionModal, setSelectOptionModal] = useState(false);
   const putCartProductMutation = useAddCartProductMutation();
 
   const cartButtonClickHandler = async () => {
-    if (productData) {
+    if (productData?.optionGroups?.length === 0) {
       try {
-        await putCartProductMutation.mutateAsync(productData.id);
+        await putCartProductMutation.mutateAsync({ productId: productData.id });
       } catch (e) {}
+      return;
+    } else {
+      setSelectOptionModal(true);
     }
   };
 
@@ -44,6 +50,17 @@ const ActionBar = ({ productData }) => {
           </ActionButtonUI>
         </ActionBarUI>
       </ActionBarWrapperUI>
+      <SelectModal
+        open={selectOptionModal}
+        onClose={() => setSelectOptionModal(false)}
+        optionGroups={productData?.optionGroups}
+        onSelected={async (optionIds) => {
+          await putCartProductMutation.mutateAsync({
+            productId: productData.id,
+            optionIds,
+          });
+        }}
+      />
       <SpacerUI />
     </>
   );

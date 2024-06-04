@@ -5,10 +5,11 @@ import mutationKey from "../key";
 
 export const KEY = [mutationKey.cart, "cart_product", "add"];
 
-export const addCartProduct = async (productId) => {
+export const addCartProduct = async (productId, optionIds = []) => {
   return await axiosInstance
     .post(`/api/cart/cart_product`, {
       productId,
+      optionIds,
     })
     .then((response) => response.data);
 };
@@ -17,8 +18,8 @@ const useAddCartProductMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: async (productId) => {
-      await addCartProduct(productId);
+    mutationFn: async ({ productId, optionIds = [] }) => {
+      await addCartProduct(productId, optionIds);
     },
     onSuccess: async () => {
       const cartProdsCntData = await queryClient.getQueryData(cartProdsCntKey);
