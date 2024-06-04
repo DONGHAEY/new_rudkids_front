@@ -4,12 +4,12 @@ export const AddEditShippingUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 35px;
-  padding-top: 15px;
+  padding-top: 10px;
   padding-bottom: 30px;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  overflow: scroll;
   background-color: white;
 `;
 
