@@ -5,10 +5,9 @@ export const PopupRouteUI = styled(Modal)`
   display: flex;
   width: 100%;
   min-height: 100%;
+  overflow: scroll;
   max-width: 430px;
   margin: 0 auto;
-  overflow: scroll;
   border: none;
   background: none;
-  background-color: white;
 `;

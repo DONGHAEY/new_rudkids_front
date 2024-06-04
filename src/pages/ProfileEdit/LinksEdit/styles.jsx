@@ -6,7 +6,8 @@ export const PageUI = styled.div`
   align-items: center;
   padding-inline: 25px;
   background-color: white;
-  min-height: 100%;
+  height: 100%;
+  overflow: scroll;
 `;
 
 export const UrlSectionUI = styled.div`
@@ -55,6 +56,7 @@ export const UrlListUI = styled.div`
 export const SaveBtnSectionUI = styled.div`
   width: 100%;
   margin-top: 17px;
+  margin-bottom: 17px;
   display: flex;
   flex-direction: row;
   justify-content: end;

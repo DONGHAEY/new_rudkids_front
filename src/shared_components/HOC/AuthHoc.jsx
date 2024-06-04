@@ -16,6 +16,7 @@ const AuthHoc = (Page) => {
 
     useEffect(() => {
       if (isLoading) return;
+      console.log("userLoading--", userData);
       if (!userData) {
         navigate(`/login?callback=${callback}`);
         return;

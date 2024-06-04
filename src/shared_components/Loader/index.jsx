@@ -23,21 +23,23 @@ const Loader = ({ message, color, position = "fixed", delayMs = 0 }) => {
   const [messageIdx, setMessageIdx] = useState(0);
 
   useEffect(() => {
+    if (!show) return;
     gsap.to(ref.current, {
       rotateZ: "360deg",
       repeat: -1,
       duration: 1,
     });
-  }, [ref.current]);
+  }, [ref.current, show]);
 
   useEffect(() => {
+    if (!show) return;
     const timeout = setTimeout(() => {
       setMessageIdx((messageIdx + 1) % messages.length);
-    }, 2000);
+    }, 1000);
     return () => {
       clearTimeout(timeout);
     };
-  }, [messageIdx]);
+  }, [messageIdx, show]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {

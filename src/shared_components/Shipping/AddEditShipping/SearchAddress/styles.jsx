@@ -1,26 +1,13 @@
 import styled from "styled-components";
 
-export const PageUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  overflow: scroll;
-  gap: 27px;
-`;
-
 export const SearchAddressUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding-block: 30px;
   width: 100%;
-  width: 100%;
-
-  overflow: scroll;
+  height: 100%;
+  background: white;
   gap: 27px;
 `;
 

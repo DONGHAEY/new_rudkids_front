@@ -1,21 +1,14 @@
 import styled from "styled-components";
 
-export const ShippingListWrapperUI = styled.div`
-  background-color: rgba(255, 255, 255, 1);
-  min-height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 export const ShippingListUI = styled.div`
   padding-block: 20px;
   display: flex;
-  width: 90%;
+  padding-inline: 5%;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  height: 100%;
+  overflow: scroll;
+  background: white;
   gap: 21px;
 `;
 
@@ -23,7 +16,7 @@ export const AddButtonUI = styled.button`
   border: solid 2px #e7e7e7;
   width: 100%;
   border-radius: 12px;
-  height: 55px;
+  min-height: 55px;
   display: flex;
   flex-direction: row;
   align-items: center;

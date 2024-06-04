@@ -7,6 +7,7 @@ export const PageUI = styled.div`
   padding-inline: 25px;
   background-color: white;
   height: 100%;
+  overflow: scroll;
 `;
 
 export const TextAreaWrapperUI = styled.div`
@@ -42,6 +43,7 @@ export const LengthTxtUI = styled.p`
 export const SaveBtnSectionUI = styled.div`
   width: 100%;
   margin-top: 17px;
+  margin-bottom: 17px;
   display: flex;
   flex-direction: row;
   justify-content: end;

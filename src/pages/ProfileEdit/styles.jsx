@@ -5,17 +5,13 @@ export const PageUI = styled.div`
   flex-direction: column;
   align-items: center;
   padding-inline: 25px;
-  height: 100%;
-  overflow: scroll;
 `;
 
 export const ListUI = styled.div`
   width: 100%;
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 `;
 
 export const LinkUI = styled.div`

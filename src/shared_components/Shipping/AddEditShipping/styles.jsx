@@ -1,14 +1,5 @@
 import styled from "styled-components";
 
-export const PageUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 100%;
-  background-color: white;
-`;
-
 export const AddEditShippingUI = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,6 +9,8 @@ export const AddEditShippingUI = styled.div`
   padding-top: 15px;
   padding-bottom: 30px;
   width: 100%;
+  min-height: 100%;
+  background-color: white;
 `;
 
 export const DescriptionTextUI = styled.p`

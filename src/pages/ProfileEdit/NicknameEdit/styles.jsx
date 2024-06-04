@@ -6,8 +6,8 @@ export const PageUI = styled.form`
   align-items: center;
   background-color: white;
   padding-inline: 30px;
-  overflow: scroll;
   height: 100%;
+  overflow: scroll;
 `;
 
 export const InputWrapperUI = styled.div`

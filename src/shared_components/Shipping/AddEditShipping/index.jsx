@@ -133,11 +133,11 @@ const AddEditShipping = ({ shippingData = null, setShippingData }) => {
               </option>
             ))}
           </SelectUI>
+          <RowField name="기본배송지로 설정">
+            <input {...register("isDefault")} type="checkbox" />
+          </RowField>
         </ColField>
         {/* 기본배송지로 설정 컬럼 필요 */}
-        <RowField name="기본배송지로 설정">
-          <input {...register("isDefault")} type="checkbox" />
-        </RowField>
         <BottomButton
           disable={addShippingMutation.isLoading || !canSubmit}
           onClick={handleSubmit(submitHandler)}

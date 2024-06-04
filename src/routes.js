@@ -95,7 +95,7 @@ export const routes = {
   ["profile_edit"]: {
     path: "/profile/edit",
     paramKeys: ["nickname"],
-    element: AuthHoc(ProfileEditPage),
+    element: ProfileEditPage,
   },
   ["rank"]: {
     path: "/rank",

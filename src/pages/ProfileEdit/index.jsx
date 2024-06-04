@@ -24,36 +24,34 @@ const ProfileEditPage = () => {
   return (
     <Popup title="프로필 수정">
       <PageUI>
-        <ListUI>
-          <Link
-            name="Nickname"
-            description="닉네임"
-            onClick={() => {
-              navigatePopup("Nickname Edit");
-            }}
-          />
-          <Link
-            name="Bio"
-            description="소개글"
-            onClick={() => {
-              navigatePopup("Bio Edit");
-            }}
-          />
-          <Link
-            name="Links"
-            description="링크들"
-            onClick={() => {
-              navigatePopup("Links Edit");
-            }}
-          />
-          <Link
-            name="Instagram"
-            description="인스타"
-            onClick={() => {
-              navigate(`/insta-info?callback=${window.location.href}`);
-            }}
-          />
-        </ListUI>
+        <Link
+          name="Nickname"
+          description="닉네임"
+          onClick={() => {
+            navigatePopup("Nickname Edit");
+          }}
+        />
+        <Link
+          name="Bio"
+          description="소개글"
+          onClick={() => {
+            navigatePopup("Bio Edit");
+          }}
+        />
+        <Link
+          name="Links"
+          description="링크들"
+          onClick={() => {
+            navigatePopup("Links Edit");
+          }}
+        />
+        <Link
+          name="Instagram"
+          description="인스타"
+          onClick={() => {
+            navigate(`/insta-info?callback=${window.location.href}`);
+          }}
+        />
         <PopupRoute name="Links Edit">
           <LinksEdit links={userData?.links} />
         </PopupRoute>

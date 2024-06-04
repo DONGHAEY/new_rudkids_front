@@ -7,7 +7,6 @@ export const TitleUI = styled.p`
 `;
 
 export const HeaderUI = styled.div`
-  position: fixed;
   top: 0;
   z-index: 999;
   background-color: white;
@@ -23,7 +22,9 @@ export const BetweenUI = styled.div`
   justify-content: space-between;
   display: flex;
   width: 100%;
-  height: 50px;
+  height: 100%;
+  min-height: 50px;
+  max-height: 90px;
   font-size: 20px;
 `;
 
@@ -34,9 +35,6 @@ export const TextWrapperUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* gap: 8px; */
-  /* text-overflow: ellipsis; */
-  /* height: 100%; */
 `;
 
 export const DescriptionUI = styled.p`
