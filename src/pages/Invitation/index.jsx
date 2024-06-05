@@ -10,11 +10,16 @@ import {
 } from "./styles";
 import Letter from "./Letter";
 import TimerButton from "./TimerButton";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import NumTimer from "./NumTimer";
 import InvitedUsers from "./InvitedUsers";
 import StorageKey from "../../storageKey";
+import Loader from "../../shared_components/Loader";
 
+const tempUserImgSrc =
+  "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/profile/7x3kaki-instagram.png";
+
+//
 export const setInvitationId = (invitationId) => {
   localStorage.setItem(StorageKey.invitation_id, invitationId);
 };
@@ -30,11 +35,28 @@ const InvitationPage = ({ routeInfo }) => {
   const [remainSecond, setRemainSecond] = useState(totalSecond);
   const params = useParams();
   const invitationId = params[routeInfo?.paramKeys[0]];
-  const { data: invitationData } = useInvitationQuery(invitationId);
+  const { data: invitationData, isLoading } = useInvitationQuery(invitationId);
   const navigate = useNavigate();
 
+  const clickHandler = () => {
+    setInvitationId(invitationId);
+    navigate("/login");
+  };
+
+  const invitedUsers = useMemo(() => {
+    if (!invitationData) return [];
+    const friendsImgUrls = invitationData?.friends?.map((d) => d.imageUrl);
+    return [
+      ...friendsImgUrls,
+      ...new Array(15 - friendsImgUrls.length).fill(tempUserImgSrc),
+    ].sort(() => Math.random() - 0.5);
+  }, [invitationData]);
+
   useEffect(() => {
-    if (remainSecond <= 0) return;
+    if (remainSecond <= 0) {
+      clickHandler();
+      return;
+    }
     const timeout = setTimeout(() => {
       setRemainSecond(remainSecond - 1);
     }, 1000);
@@ -43,18 +65,20 @@ const InvitationPage = ({ routeInfo }) => {
     };
   }, [remainSecond]);
 
-  const clickHandler = () => {
-    setInvitationId(invitationId);
-    navigate("/login");
-  };
+  useEffect(() => {
+    if (!isLoading && !invitationData) {
+      navigate("/401");
+      alert("없는 초대장입니다.");
+    }
+  }, [isLoading, invitationData]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <PageUI>
-      <InvitedUsers
-        invitedUsers={new Array(30).fill(
-          "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/profile/7x3kaki-instagram.png"
-        )}
-      />
+      <InvitedUsers invitedUsers={invitedUsers} />
       <MiddleSectionUI>
         <DescriptSectionUI>
           <TitleTxtUI>초대장이 도착했어요!</TitleTxtUI>
