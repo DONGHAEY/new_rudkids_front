@@ -33,17 +33,21 @@ const ActionBar = ({ productData }) => {
     }
   };
 
+  const hasStoryPage = productData?.type === "toy";
+
   return (
     <>
       <ActionBarWrapperUI>
         <ActionBarUI>
-          <ActionButtonUI
-            $backgroundColor={"#001100"}
-            onClick={moreButtonClickHandler}
-          >
-            <MdRemoveRedEye fontSize="20px" />
-            <p>More</p>
-          </ActionButtonUI>
+          {hasStoryPage && (
+            <ActionButtonUI
+              $backgroundColor={"#001100"}
+              onClick={moreButtonClickHandler}
+            >
+              <MdRemoveRedEye fontSize="20px" />
+              <p>Story</p>
+            </ActionButtonUI>
+          )}
           <ActionButtonUI onClick={cartButtonClickHandler}>
             <BsCartPlusFill fontSize="20px" />
             <p>Cart</p>

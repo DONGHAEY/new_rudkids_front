@@ -1,4 +1,4 @@
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Plane } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import React, { createRef, useEffect } from "react";
 
@@ -22,18 +22,18 @@ const Scene = ({ autoRotate = false, gltf }) => {
 
   return (
     <>
-      <ambientLight intensity={1.5} />
+      <ambientLight intensity={2.0} />
       <directionalLight
-        intensity={1.5}
         position={[0, 5, 3]}
         lookAt={[0, 0, 0]}
-        color={"white"}
+        intensity={1.2}
+        color="white"
       />
       <directionalLight
-        intensity={1.5}
         position={[0, 5, -3]}
         lookAt={[0, 0, 0]}
-        color={"white"}
+        intensity={1.2}
+        color="white"
       />
       <primitive
         ref={itemModelRef}
@@ -41,6 +41,16 @@ const Scene = ({ autoRotate = false, gltf }) => {
         scale={1}
         position={[0, 0.1, 0]}
       />
+      <Plane
+        receiveShadow
+        castShadow
+        args={[50, 50]}
+        rotation-x={-Math.PI / 2}
+        position-y={-3}
+      >
+        <circleGeometry />
+        <meshStandardMaterial color="white" />
+      </Plane>
       <OrbitControls
         minDistance={distance}
         maxDistance={distance}

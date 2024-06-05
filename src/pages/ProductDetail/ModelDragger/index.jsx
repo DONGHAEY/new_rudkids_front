@@ -13,6 +13,7 @@ import { useState } from "react";
 import GuideLabel from "./GuideLabel";
 import { Html, useGLTF } from "@react-three/drei";
 import IndexChanger from "./IndexChanger";
+import * as THREE from "three";
 
 const ModelDragger = ({
   modelUrls = [],
@@ -40,6 +41,7 @@ const ModelDragger = ({
           near: 0.5,
           far: 100,
         }}
+        shadows={"soft"}
       >
         {gltf && <Scene gltf={gltf} autoRotate={isPlaying} />}
         <Html fullscreen={true}>
