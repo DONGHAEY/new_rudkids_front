@@ -16,20 +16,21 @@ import { PageUI } from "./styles";
 import Lock from "../../shared_components/Lock";
 import StepIndicator from "../../shared_components/StepIndicator";
 import { setLoginCallbackUrl } from "../LoginCallback";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import headSrc from "./assets/head.svg";
 
 const platforms = [
   {
     how: "카카오톡으로",
     logoImgSrc: KakaoSvg,
-    backgroundColor: "#F9E000",
+    background: "linear-gradient(180deg, #fff279 0%, #f3da00 100%)",
     textColor: "black",
     name: "kakao",
   },
   {
     how: "네이버로",
     logoImgSrc: NaverSvg,
-    backgroundColor: "#1CC000",
+    background: "linear-gradient(180deg, #23F100 0%, #1DC900 100%)",
     textColor: "white",
     name: "naver",
   },
@@ -48,9 +49,9 @@ const LoginPage = () => {
 
   return (
     <PageUI>
+      <Lock />
       <LoginWrapperUI>
-        <Lock />
-        <TitleTxtUI>Login</TitleTxtUI>
+        <img src={headSrc} />
         <LoginUI>
           <LoginCommentUI>
             <LoginCommentTxtUI>3초만에 간편로그인</LoginCommentTxtUI>
@@ -60,7 +61,7 @@ const LoginPage = () => {
             {platforms?.map((platform, idx) => (
               <LoginBtnUI
                 key={idx}
-                backgroundColor={platform.backgroundColor}
+                background={platform.background}
                 onClick={() => clickHandler(platform.name)}
               >
                 <LoginBtnImgUI src={platform.logoImgSrc} />

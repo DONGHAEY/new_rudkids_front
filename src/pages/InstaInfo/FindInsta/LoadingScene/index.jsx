@@ -7,6 +7,7 @@ import { BoundaryPlanes } from "./BoundaryPlanes";
 import { CanvasUI } from "./styles";
 import { Blackhole } from "./Blackhole";
 import Loader from "../../../../shared_components/Loader";
+import Lock from "../../../../shared_components/Lock";
 
 const colors = [0xfee639, 0xed2424, 0x2f70b7];
 
@@ -74,9 +75,19 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
           </group>
           <BoundaryPlanes />
           {!blackholeActive && (
-            <Html fullscreen position={[0, 0, 10]}>
+            <Html
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              fullscreen
+              position={[0, 0, 10]}
+            >
+              <br style={{ marginTop: "10px" }} />
+              <Lock position="block" />
               <Loader
-                position={"block"}
+                position="block"
                 message="인스타 프로필을 찾는중.."
                 color="black"
               />

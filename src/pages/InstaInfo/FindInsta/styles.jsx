@@ -1,18 +1,5 @@
 import styled from "styled-components";
-import backgroundImgUrl from "./assets/background.png";
-
-export const PageUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 100%;
-  background-image: url(${backgroundImgUrl});
-  background-position: 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
+import backgroundImgUrl from "../assets/background.png";
 
 export const TitleTxtUI = styled.div`
   color: black;
@@ -20,22 +7,7 @@ export const TitleTxtUI = styled.div`
   font-size: 34px;
   line-height: 110%;
   letter-spacing: 0%;
-  margin-top: 36px;
-  margin-bottom: 39px;
-`;
-
-export const LoginWrapperUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: end;
-  background-color: white;
-  border-radius: 23px;
-  padding-top: 48px;
-  margin-top: 20px;
-  min-width: 90%;
-  padding-bottom: 51px;
-  margin-bottom: 48px;
+  margin-bottom: 37px;
 `;
 
 export const InstagramIdInputWrapperUI = styled.div`
@@ -68,13 +40,12 @@ export const InstagramIdInputUI = styled.input`
   }
 `;
 
-export const CompleteBtnUI = styled.button`
-  background-color: ${({ disabled }) => (disabled ? "gray" : "black")};
-  color: white;
-  padding-inline: 59px;
-  padding-block: 22px;
-  border: none;
-  border-radius: 20px;
-  font-size: 18px;
-  font-family: Pretendard-Bold;
+export const LoadingSceneWrapperUI = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url(${backgroundImgUrl});
+  background-position: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;

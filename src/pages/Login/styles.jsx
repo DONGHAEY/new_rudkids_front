@@ -28,13 +28,15 @@ export const LoginWrapperUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: end;
-  background-color: white;
   border-radius: 23px;
-  padding-top: 48px;
   min-width: 80%;
-  gap: 39px;
+  gap: 33px;
+  max-height: 419.12px;
   padding-bottom: 51px;
-  margin-bottom: 48px;
+  margin-bottom: 18px;
+  background-color: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 `;
 
 export const LoginUI = styled.div`
@@ -43,7 +45,6 @@ export const LoginUI = styled.div`
   align-items: center;
   justify-content: center;
   width: 90%;
-  gap: 10px;
 `;
 
 export const LoginBtnListUI = styled.div`
@@ -61,15 +62,15 @@ export const LoginBtnUI = styled.button`
   align-items: center;
   justify-content: center;
   gap: 11px;
-  background-color: ${({ backgroundColor }) => backgroundColor ?? "black"};
+  background: ${({ background }) => background ?? "black"};
   padding-block: 16px;
   width: 100%;
   border: none;
-  border-radius: 18px;
+  border-radius: 64.78px;
 `;
 
 export const LoginBtnTxtUI = styled.p`
-  font-size: 13px;
+  font-size: 17.21px;
   font-family: Pretendard-SemiBold;
   letter-spacing: -5%;
   text-align: center;
@@ -92,7 +93,7 @@ export const LoginCommentTxtUI = styled.div`
   padding-inline: 30px;
   z-index: 1;
   border-radius: 62px;
-  background-color: rgba(207, 207, 207, 0.3);
+  background-color: #f0f0f0;
   font-family: Pretendard-Bold;
   font-size: 13px;
   color: black;
@@ -101,7 +102,7 @@ export const LoginCommentTxtUI = styled.div`
 export const LoginCommentArrowUI = styled.div`
   width: 0px;
   height: 0px;
-  border-top: 16px solid rgba(207, 207, 207, 0.3);
+  border-top: 16px solid #f0f0f0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-bottom: 10px solid transparent;

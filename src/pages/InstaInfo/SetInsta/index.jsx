@@ -1,18 +1,10 @@
-import {
-  SetInstaUI,
-  PageUI,
-  ImageUI,
-  InstaIdTxtUI,
-  CompleteBtnUI,
-  CheckWrapperUI,
-} from "./styles";
+import { ImageUI, InstaIdTxtUI, CheckWrapperUI } from "./styles";
 import useUpdateImageUrlMutation from "../../../mutations/user/useUpdateImageUrlMutation";
 import useUpdateInstaIdMutation from "../../../mutations/user/userUpdateInstaIdMutation";
 import Lottie from "react-lottie";
 import checkLottie from "./assets/check_lottie.json";
 import Lock from "../../../shared_components/Lock";
-import { TopLockedSection } from "../FindedInsta/styles";
-
+import { CompleteBtnUI, PageUI, WrapperUI } from "../shared_styles";
 const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
   const updateImageUrlMutation = useUpdateImageUrlMutation();
   const updateInstaIdMutation = useUpdateInstaIdMutation();
@@ -28,14 +20,11 @@ const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
 
   return (
     <PageUI>
-      <TopLockedSection>
-        <Lock />
-      </TopLockedSection>
-      <SetInstaUI>
+      <Lock />
+      <WrapperUI>
         <CheckWrapperUI>
           <Lottie
             width="100%"
-            height="100%"
             options={{
               loop: true,
               autoplay: true,
@@ -48,8 +37,16 @@ const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
         </CheckWrapperUI>
         <ImageUI src={instaImgUrl} />
         <InstaIdTxtUI>@{instaId}</InstaIdTxtUI>
-        <CompleteBtnUI onClick={clickHandler}>완료</CompleteBtnUI>
-      </SetInstaUI>
+        <CompleteBtnUI
+          style={{
+            width: "70%",
+            marginTop: "15px",
+          }}
+          onClick={clickHandler}
+        >
+          완료
+        </CompleteBtnUI>
+      </WrapperUI>
     </PageUI>
   );
 };

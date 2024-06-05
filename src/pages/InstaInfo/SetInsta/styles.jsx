@@ -1,18 +1,4 @@
 import styled from "styled-components";
-import backgroundImgUrl from "./assets/background.png";
-import Lottie from "react-lottie";
-
-export const PageUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 100%;
-  background-image: url(${backgroundImgUrl});
-  background-position: 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
 
 export const SetInstaUI = styled.div`
   display: flex;
@@ -41,20 +27,8 @@ export const InstaIdTxtUI = styled.p`
   margin-top: 13px;
 `;
 
-export const CompleteBtnUI = styled.button`
-  margin-top: 35px;
-  background-color: #00ce59;
-  border: none;
-  color: white;
-  padding-block: 22px;
-  width: 80%;
-  border-radius: 20px;
-  font-family: Pretendard-Bold;
-  font-size: 20px;
-`;
-
 export const CheckWrapperUI = styled.div`
-  height: 180px;
-  /* transform: scale(1.3); */
-  margin-bottom: -30px;
+  height: 100px;
+  transform: scale(2);
+  margin-bottom: 0px;
 `;

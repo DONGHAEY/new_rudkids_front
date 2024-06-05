@@ -1,11 +1,9 @@
 import {
-  CompleteBtnUI,
   InstagramIdFormUI,
   InstagramIdInputUI,
-  LoginWrapperUI,
   TitleTxtUI,
-  PageUI,
   InstagramIdInputWrapperUI,
+  LoadingSceneWrapperUI,
 } from "./styles";
 import InstagramProfile from "./assets/InstagramProfile.svg";
 import Lock from "../../../shared_components/Lock";
@@ -13,6 +11,7 @@ import StepIndicator from "../../../shared_components/StepIndicator";
 import { useEffect, useState } from "react";
 import useGetImgUrlMutation from "../../../mutations/instagram-profile/useGetImgUrl";
 import LoadingScene from "./LoadingScene";
+import { CompleteBtnUI, PageUI, WrapperUI } from "../shared_styles";
 
 const FindInsta = ({ setFindedInstaInfo }) => {
   const [instagramId, setInstagramId] = useState("");
@@ -46,26 +45,34 @@ const FindInsta = ({ setFindedInstaInfo }) => {
 
   if (showLoading) {
     return (
-      <LoadingScene
-        blackholeActive={!getInstagramInfoMutation.isLoading}
-        onComplete={() => {
-          setShowLoading(false);
-        }}
-      />
+      <LoadingSceneWrapperUI>
+        <LoadingScene
+          blackholeActive={!getInstagramInfoMutation.isLoading}
+          onComplete={() => {
+            setShowLoading(false);
+          }}
+        />
+      </LoadingSceneWrapperUI>
     );
   }
 
   return (
     <PageUI>
-      <LoginWrapperUI>
-        <Lock />
+      <Lock />
+      <WrapperUI>
         <TitleTxtUI>
           Tell me Your
           <br />
           Instagram ID
         </TitleTxtUI>
         <InstagramIdFormUI>
-          <img src={InstagramProfile} />
+          <img
+            style={{
+              maxHeight: "95px",
+            }}
+            width={"70%"}
+            src={InstagramProfile}
+          />
           <InstagramIdInputWrapperUI>
             <InstagramIdInputUI
               value={instagramId}
@@ -80,7 +87,7 @@ const FindInsta = ({ setFindedInstaInfo }) => {
             완료
           </CompleteBtnUI>
         </InstagramIdFormUI>
-      </LoginWrapperUI>
+      </WrapperUI>
       <StepIndicator totalStep={2} stepCnt={1} />
     </PageUI>
   );
