@@ -31,6 +31,7 @@ const ProductDetailPage = ({ routeInfo }) => {
   const productPrice = productData?.price?.toLocaleString("ko-KR");
 
   const detailImageUrls = useMemo(() => {
+    if (!productData?.detailImageUrls) return [];
     return JSON.parse(productData?.detailImageUrls ?? []);
   }, [productData]);
 
