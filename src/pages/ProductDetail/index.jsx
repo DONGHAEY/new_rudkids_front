@@ -21,6 +21,7 @@ import { useMemo, useState } from "react";
 import ProductComponent from "./ProductComponent";
 import { CgArrowDown } from "react-icons/cg";
 import Loader from "../../shared_components/Loader";
+import Footer from "../../shared_components/Footer";
 
 const ProductDetailPage = ({ routeInfo }) => {
   const params = useParams();

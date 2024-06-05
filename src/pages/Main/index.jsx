@@ -5,6 +5,7 @@ import { useState } from "react";
 import TypeList from "./TypeList";
 import useProductListQuery from "../../queries/product/useProductListQuery";
 import Loader from "../../shared_components/Loader";
+import Footer from "../../shared_components/Footer";
 
 const MainPage = () => {
   //
@@ -15,23 +16,29 @@ const MainPage = () => {
   });
 
   return (
-    <PageUI>
-      <Header isFixed={true} />
-      <TypeList typeCategory={typeCategory} setTypeCategory={setTypeCategory} />
-      <ListUI>
-        {productList?.map((product) => {
-          return (
-            <ProductBox
-              key={product?.name}
-              price={product?.price}
-              name={product?.name}
-              thumnail={product?.thumnail}
-            />
-          );
-        })}
-      </ListUI>
+    <>
+      <PageUI>
+        <Header isFixed={true} />
+        <TypeList
+          typeCategory={typeCategory}
+          setTypeCategory={setTypeCategory}
+        />
+        <ListUI>
+          {productList?.map((product) => {
+            return (
+              <ProductBox
+                key={product?.name}
+                price={product?.price}
+                name={product?.name}
+                thumnail={product?.thumnail}
+              />
+            );
+          })}
+        </ListUI>
+      </PageUI>
       {isLoading && <Loader delayMs={500} />}
-    </PageUI>
+      <Footer />
+    </>
   );
 };
 

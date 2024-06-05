@@ -82,6 +82,7 @@ export const ModelDescriptionUI = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 15px;
+  width: 90%;
   padding: 19px;
   background-color: #f7f7f7;
   border-radius: 10px;

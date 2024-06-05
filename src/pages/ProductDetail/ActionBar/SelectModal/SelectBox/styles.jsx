@@ -33,11 +33,13 @@ export const OptionListUI = styled.div`
 `;
 
 export const OptionUI = styled.div`
-  padding-block: 22px;
+  padding-block: 13px;
   line-height: 100%;
   font-family: Poppins-Bold;
   line-height: 100%;
   display: flex;
+  gap: 22px;
+  align-items: center;
   padding-inline: 20px;
   background-color: #f1f1f1;
   border-bottom: #dedede 1px solid;

@@ -6,7 +6,8 @@ import {
   OptionUI,
   SelectBoxUI,
 } from "./styles";
-import { useState } from "react";
+import size1Src from "./assets/size-1.svg";
+import size2Src from "./assets/size-2.svg";
 
 const SelectBox = ({
   name,
@@ -20,14 +21,23 @@ const SelectBox = ({
     setValue(option);
   };
 
+  const imgObj = {
+    ["Size-1"]: size1Src,
+    ["Size-2"]: size2Src,
+  };
+
   return (
     <ColUI>
       {isFocus && (
         <OptionListUI>
           {options?.map((option) => {
+            const imgUrl = imgObj[`${name}-${option?.name}`];
             return (
               <OptionUI onClick={() => optionClickHandler(option)}>
-                {name} : {option?.name}
+                {imgUrl && <img height="55px" src={imgUrl} />}
+                <p>
+                  {name} : {option?.name}
+                </p>
               </OptionUI>
             );
           })}
