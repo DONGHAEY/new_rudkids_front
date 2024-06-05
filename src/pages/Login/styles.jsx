@@ -106,3 +106,9 @@ export const JoinUsIconUI = styled.img`
   right: 5%;
   z-index: 0;
 `;
+
+export const TossTesterLoginUI = styled.p`
+  font-size: 20px;
+  color: #0064ff;
+  cursor: pointer;
+`;

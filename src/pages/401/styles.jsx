@@ -40,6 +40,8 @@ export const TopTxtSectionUI = styled.div`
   text-align: center;
   gap: 15px;
   margin-top: 10%;
+  min-height: 130px;
+  height: 30%;
   z-index: 10;
 `;
 
@@ -58,10 +60,8 @@ export const Txt2UI = styled.p`
 `;
 
 export const WainterWrapperUI = styled.div`
-  position: relative;
-  width: 80%;
   position: absolute;
-  bottom: 90%;
+  bottom: 100%;
   left: -10%;
   z-index: 3;
 `;

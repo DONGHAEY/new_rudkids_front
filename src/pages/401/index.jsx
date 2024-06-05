@@ -73,7 +73,7 @@ const _401Page = () => {
       {/*  */}
       <ButtonFixedUI>
         <WainterWrapperUI>
-          <img src={waiterImgSrc} width="100%" />
+          <img src={waiterImgSrc} />
           <머핀ImgUI ref={머핀Ref} src={cakeImgSrc} />
           <FuckImgUI ref={fuckRef} src={fuckSrc} />
         </WainterWrapperUI>

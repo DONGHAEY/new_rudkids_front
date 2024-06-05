@@ -9,7 +9,7 @@ import {
   LoginCommentUI,
   LoginUI,
   LoginWrapperUI,
-  TitleTxtUI,
+  TossTesterLoginUI,
 } from "./styles";
 import NaverSvg from "./assets/naver.svg";
 import KakaoSvg from "./assets/kakao.svg";
@@ -20,6 +20,7 @@ import { setLoginCallbackUrl } from "../LoginCallback";
 import { useSearchParams } from "react-router-dom";
 import headSrc from "./assets/head.svg";
 import joinUsSrc from "./assets/joinUs.svg";
+import useTossTesterLoginMutation from "../../mutations/auth/useTossTesterLoginMutation";
 
 const platforms = [
   {
@@ -49,6 +50,8 @@ const LoginPage = () => {
     window.location.href = loginUrl;
   };
 
+  const tossTesterLoginMutation = useTossTesterLoginMutation();
+
   return (
     <PageUI>
       <Lock />
@@ -72,6 +75,13 @@ const LoginPage = () => {
                 </LoginBtnTxtUI>
               </LoginBtnUI>
             ))}
+            <TossTesterLoginUI
+              onClick={async () => {
+                await tossTesterLoginMutation.mutateAsync();
+              }}
+            >
+              tossPaments 테스터용
+            </TossTesterLoginUI>
           </LoginBtnListUI>
         </LoginUI>
       </LoginWrapperUI>
