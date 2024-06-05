@@ -8,15 +8,14 @@ export const IndexChangerUI = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* touch-action: none; */
-  /* pointer-events: none; */
 `;
 
 export const IndexChangeBtnUI = styled.button`
-  margin-inline: 10px;
+  margin-inline: 3%;
   padding: 5px;
   border-radius: 100%;
   background-color: white;
+  font-size: 20px;
   line-height: 0%;
   border: none;
 `;

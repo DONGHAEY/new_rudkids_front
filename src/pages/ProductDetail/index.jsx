@@ -29,11 +29,9 @@ const ProductDetailPage = ({ routeInfo }) => {
     useProductDetailQuery(productName);
 
   const productPrice = productData?.price?.toLocaleString("ko-KR");
+
   const detailImageUrls = useMemo(() => {
-    if (productData?.detailIimageUrls) {
-      return JSON.parse(productData?.detailImageUrls);
-    }
-    return [];
+    return JSON.parse(productData?.detailImageUrls ?? []);
   }, [productData]);
 
   const productComponents = productData?.components;

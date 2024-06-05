@@ -7,20 +7,20 @@ const IndexChanger = ({ setIndex, index, maxIndex }) => {
   };
 
   const prev = () => {
-    if ((index - 1) % maxIndex < 0) {
+    if (index === 0) {
       setIndex(maxIndex);
       return;
     }
-    setIndex((index - 1) % (maxIndex + 1));
+    setIndex(index - 1);
   };
 
   return (
     <IndexChangerUI>
       <IndexChangeBtnUI onClick={prev}>
-        <Icon icon="mingcute:left-fill" />
+        <Icon color="black" icon="mingcute:left-fill" />
       </IndexChangeBtnUI>
       <IndexChangeBtnUI onClick={next}>
-        <Icon icon="mingcute:right-fill" />
+        <Icon color="black" icon="mingcute:right-fill" />
       </IndexChangeBtnUI>
     </IndexChangerUI>
   );
