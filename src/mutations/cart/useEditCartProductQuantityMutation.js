@@ -5,9 +5,9 @@ import axiosInstance from "../../axiosInstance";
 
 export const KEY = [mutationKey.cart, "cart_product", "qunatity", "edit"];
 
-const editCartProductQuantity = async (productId, quantity = 1) => {
+const editCartProductQuantity = async (id, quantity = 1) => {
   return await axiosInstance
-    .patch(`/api/cart/cart_product/${productId}/quantity`, {
+    .patch(`/api/cart/cart_product/${id}/quantity`, {
       quantity,
     })
     .then((response) => response.data);
@@ -17,7 +17,7 @@ let quantityMutationPromise = {};
 let quantityMutationTimeout = {};
 
 //
-const useEditCartProductQuantityMutation = (productId) => {
+const useEditCartProductQuantityMutation = (id) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
@@ -26,7 +26,7 @@ const useEditCartProductQuantityMutation = (productId) => {
       const cartData = queryClient.getQueryData(CART_KEY);
       if (cartData?.cartProducts?.length) {
         cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
-          if (cartProduct?.productId === productId) {
+          if (cartProduct?.id === id) {
             return {
               ...cartProduct,
               quantity,
@@ -36,35 +36,35 @@ const useEditCartProductQuantityMutation = (productId) => {
         });
       }
       queryClient.setQueryData(CART_KEY, cartData);
-      if (quantityMutationTimeout[productId]) {
-        clearTimeout(quantityMutationTimeout[productId]);
-        quantityMutationTimeout[productId] = null;
+      if (quantityMutationTimeout[id]) {
+        clearTimeout(quantityMutationTimeout[id]);
+        quantityMutationTimeout[id] = null;
       }
-      if (quantityMutationPromise[productId]) {
-        quantityMutationPromise[productId][0](null);
-        quantityMutationPromise[productId] = null;
+      if (quantityMutationPromise[id]) {
+        quantityMutationPromise[id][0](null);
+        quantityMutationPromise[id] = null;
       }
       return new Promise((resolve, reject) => {
         const timeout = setTimeout(async () => {
           let res = null;
           try {
-            res = await editCartProductQuantity(productId, quantity);
+            res = await editCartProductQuantity(id, quantity);
           } catch (e) {
             reject(e);
           }
           resolve(res);
-          quantityMutationTimeout[productId] = null;
-          quantityMutationPromise[productId] = null;
+          quantityMutationTimeout[id] = null;
+          quantityMutationPromise[id] = null;
         }, 350);
-        quantityMutationTimeout[productId] = timeout;
-        quantityMutationPromise[productId] = [resolve, reject];
+        quantityMutationTimeout[id] = timeout;
+        quantityMutationPromise[id] = [resolve, reject];
       });
     },
     onSuccess: async (data) => {
       // if (!data) return null;
       // const cartData = queryClient.getQueryData(CART_KEY);
       // cartData.cartProducts = cartData?.cartProducts?.map((cartProduct) => {
-      //   if (cartProduct?.productId === productId) {
+      //   if (cartProduct?.id === id) {
       //     return data;
       //   }
       //   return cartProduct;

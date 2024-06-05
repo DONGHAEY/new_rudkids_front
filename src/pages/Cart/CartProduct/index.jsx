@@ -19,9 +19,9 @@ import useDeleteCartProductMutation from "../../../mutations/cart/useDeleteCartP
 
 const CartProduct = ({ cartProduct }) => {
   const editQuantityMutation = useEditCartProductQuantityMutation(
-    cartProduct?.productId
+    cartProduct?.id
   );
-  const deleteMutation = useDeleteCartProductMutation(cartProduct?.productId);
+  const deleteMutation = useDeleteCartProductMutation(cartProduct?.id);
 
   const quantityPlusClickHandler = async (e) => {
     e.stopPropagation();

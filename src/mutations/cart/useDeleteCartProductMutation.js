@@ -6,21 +6,21 @@ import axiosInstance from "../../axiosInstance";
 
 export const KEY = [mutationKey.cart, "cart_product", "delete"];
 
-const deleteCartProduct = async (productId) => {
+const deleteCartProduct = async (id) => {
   return await axiosInstance
-    .delete(`/api/cart/cart_product/${productId}`)
+    .delete(`/api/cart/cart_product/${id}`)
     .then((response) => response.data);
 };
 
-const useDeleteCartProductMutation = (productId) => {
+const useDeleteCartProductMutation = (id) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: async () => await deleteCartProduct(productId),
+    mutationFn: async () => await deleteCartProduct(id),
     onSuccess: async () => {
       const cartData = queryClient.getQueryData(cartKey);
       cartData.cartProducts = cartData?.cartProducts?.filter(
-        (cartProduct) => cartProduct?.productId !== productId
+        (cartProduct) => cartProduct?.id !== id
       );
       await queryClient.setQueryData(cartKey, cartData);
       const cartProdsCntData = await queryClient.getQueryData(cartProdsCntKey);
