@@ -6,13 +6,13 @@ export const TitleTxtUI = styled.div`
   font-size: 34px;
   line-height: 110%;
   letter-spacing: 0%;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 `;
 
 export const AskTxtUI = styled.p`
   font-family: Pretendard-SemiBold;
   font-size: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 `;
 
 export const InstagramImgWrapperUI = styled.div`
@@ -44,14 +44,7 @@ export const ButtonListUI = styled.div`
   justify-content: space-around;
   gap: 7px;
   width: 80%;
-  margin-top: 20px;
-`;
-
-export const TopLockedSection = styled.div`
-  display: flex;
-  height: 10%;
-  padding-block: 30px;
-  padding-bottom: 54px;
+  margin-top: 30px;
 `;
 
 export const ButtonUI = styled.button`

@@ -1,5 +1,4 @@
 import {
-  LoginWrapperUI,
   TitleTxtUI,
   AskTxtUI,
   InstagramImgWrapperUI,
@@ -8,7 +7,6 @@ import {
   CautionImgUI,
   ButtonListUI,
   ButtonUI,
-  TopLockedSection,
 } from "./styles";
 import InstagramProfile from "./assets/InstagramProfile.svg";
 import Lock from "../../../shared_components/Lock";

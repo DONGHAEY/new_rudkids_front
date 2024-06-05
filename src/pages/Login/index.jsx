@@ -1,4 +1,5 @@
 import {
+  JoinUsIconUI,
   LoginBtnImgUI,
   LoginBtnListUI,
   LoginBtnTxtUI,
@@ -18,6 +19,7 @@ import StepIndicator from "../../shared_components/StepIndicator";
 import { setLoginCallbackUrl } from "../LoginCallback";
 import { useSearchParams } from "react-router-dom";
 import headSrc from "./assets/head.svg";
+import joinUsSrc from "./assets/joinUs.svg";
 
 const platforms = [
   {
@@ -51,7 +53,7 @@ const LoginPage = () => {
     <PageUI>
       <Lock />
       <LoginWrapperUI>
-        <img src={headSrc} />
+        <img width={"100%"} src={headSrc} />
         <LoginUI>
           <LoginCommentUI>
             <LoginCommentTxtUI>3초만에 간편로그인</LoginCommentTxtUI>
@@ -74,6 +76,7 @@ const LoginPage = () => {
         </LoginUI>
       </LoginWrapperUI>
       <StepIndicator totalStep={2} stepCnt={0} />
+      <JoinUsIconUI src={joinUsSrc} />
     </PageUI>
   );
 };

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import backgroundImgUrl from "./assets/background.png";
+import backgroundImgUrl from "./assets/background.svg";
 
 export const PageUI = styled.div`
   display: flex;
@@ -12,15 +12,6 @@ export const PageUI = styled.div`
   background-position: 0;
   background-repeat: no-repeat;
   background-size: cover;
-`;
-
-export const TitleTxtUI = styled.div`
-  font-size: 14px;
-  color: black;
-  font-family: Poppins-Bold;
-  font-size: 44px;
-  line-height: 110%;
-  letter-spacing: 0%;
 `;
 
 export const LoginWrapperUI = styled.div`
@@ -106,4 +97,12 @@ export const LoginCommentArrowUI = styled.div`
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-bottom: 10px solid transparent;
+`;
+
+export const JoinUsIconUI = styled.img`
+  height: 10%;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  z-index: 0;
 `;

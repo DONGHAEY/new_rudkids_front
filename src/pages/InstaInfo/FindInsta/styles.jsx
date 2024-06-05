@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import backgroundImgUrl from "../assets/background.png";
+import backgroundImgUrl from "../assets/background.svg";
 
 export const TitleTxtUI = styled.div`
   color: black;
@@ -31,13 +31,11 @@ export const InstagramIdInputUI = styled.input`
   background-color: #eeeeee;
   height: 59px;
   border-radius: 46px;
+  font-size: 16px;
   color: #737373;
   border: none;
   font-family: Pretendard-Bold;
   padding-inline: 30px;
-  ::placeholder {
-    /* margin-inline: 30px; */
-  }
 `;
 
 export const LoadingSceneWrapperUI = styled.div`

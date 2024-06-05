@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import backgroundImgUrl from "./assets/background.png";
+import backgroundImgUrl from "./assets/background.svg";
 
 export const PageUI = styled.div`
   position: relative;
@@ -27,8 +27,8 @@ export const WrapperUI = styled.div`
   padding-bottom: 40px;
   margin-bottom: 18px;
   background-color: rgba(255, 255, 255, 0.6);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
 `;
 
 export const CompleteBtnUI = styled.button`
