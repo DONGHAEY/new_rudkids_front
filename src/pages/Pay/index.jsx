@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import useCreatePaymentMutation from "../../mutations/payment/useCreatePaymentMutation";
-import useOrderDetailQuery, {
-  KEY as OrderDetailKey,
-} from "../../queries/order/useOrderDetailQuery";
+import useOrderDetailQuery from "../../queries/order/useOrderDetailQuery";
 import {
   PageUI,
   FlexWrapperUI,
@@ -58,7 +56,7 @@ const PaySuccessPage = () => {
     <PageUI>
       <Header isFixed />
       <FlexWrapperUI>
-        <PaymentStatus key={orderData?.payment?.paymentKey} />
+        <PaymentStatus status={orderData?.payment?.status} />
         <ColUI gap="40px">
           <ColUI gap="14px">
             <RowUI gap="22px">

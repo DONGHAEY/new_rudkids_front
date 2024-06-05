@@ -11,6 +11,9 @@ import { useState } from "react";
 
 const OrderProductList = ({ orderProducts }) => {
   const [isSpread, setIsSperead] = useState(false);
+
+  const isSpreadBtn = orderProducts?.length > 1;
+
   return (
     <OrderProductListUI>
       {orderProducts?.map((orderProduct, idx) => {
@@ -24,20 +27,22 @@ const OrderProductList = ({ orderProducts }) => {
           />
         );
       })}
-      <SpreadBtnWrapperUI>
-        <SpreadButtonUI
-          $isSpread={isSpread}
-          onClick={() => setIsSperead(!isSpread)}
-        >
-          <ButtonTxtUI fontSize="14px">
-            총 {orderProducts?.length}건
-          </ButtonTxtUI>
-          <ButtonTxt2UI fontSize="13px">
-            {isSpread ? "주문 접기" : "주문 펼쳐보기"}
-          </ButtonTxt2UI>
-          {isSpread ? <FaChevronUp /> : <FaChevronDown />}
-        </SpreadButtonUI>
-      </SpreadBtnWrapperUI>
+      {isSpreadBtn && (
+        <SpreadBtnWrapperUI>
+          <SpreadButtonUI
+            $isSpread={isSpread}
+            onClick={() => setIsSperead(!isSpread)}
+          >
+            <ButtonTxtUI fontSize="14px">
+              총 {orderProducts?.length}건
+            </ButtonTxtUI>
+            <ButtonTxt2UI fontSize="13px">
+              {isSpread ? "주문 접기" : "주문 펼쳐보기"}
+            </ButtonTxt2UI>
+            {isSpread ? <FaChevronUp /> : <FaChevronDown />}
+          </SpreadButtonUI>
+        </SpreadBtnWrapperUI>
+      )}
     </OrderProductListUI>
   );
 };

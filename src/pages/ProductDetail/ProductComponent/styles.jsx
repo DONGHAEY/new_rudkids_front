@@ -23,8 +23,8 @@ export const ProductComponentImgWrapperUI = styled.div`
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  border: ${({ $selected }) => ($selected ? "solid #E9E9E9 3.2px " : "none")};
-  background-color: ${({ $selected }) => ($selected ? "white" : "#EDEDED")};
+  border: ${({ $selected }) => (!$selected ? "solid #E9E9E9 3.2px " : "none")};
+  background-color: ${({ $selected }) => (!$selected ? "white" : "#EDEDED")};
   border-radius: 13.5px;
 `;
 

@@ -42,6 +42,10 @@ const Loader = ({ message, color, position = "fixed", delayMs = 0 }) => {
   }, [messageIdx, show]);
 
   useEffect(() => {
+    if (delayMs === 0) {
+      setShow(true);
+      return;
+    }
     const timeout = setTimeout(() => {
       setShow(true);
     }, delayMs);

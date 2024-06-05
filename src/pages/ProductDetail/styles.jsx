@@ -14,8 +14,7 @@ export const FlexWrapperUI = styled.div`
   flex-direction: column;
   align-items: center;
   width: 85%;
-  padding-top: 42px;
-  padding-bottom: 104px;
+  padding-top: 32px;
 `;
 
 export const SectionDscrptTxtUI = styled.h2`
@@ -33,12 +32,6 @@ export const ContentSectionUI = styled.div`
   width: 100%;
   gap: 12px;
   flex-direction: column;
-`;
-
-export const HelpMessageTextUI = styled.p`
-  font-family: Poppins-SemiBold;
-  color: #707070;
-  letter-spacing: -1px;
 `;
 
 export const PackageExplainUI = styled.div`
@@ -64,18 +57,19 @@ export const InfoRowUI = styled.div`
 
 export const ProductNameTextUI = styled.h1`
   font-family: Poppins-Bold;
-  font-size: 28px;
-  line-height: 28px;
-  letter-spacing: -1px;
-  word-spacing: -3px;
+  font-size: 24px;
+  line-height: 24px;
+  /* letter-spacing: -1px; */
+  word-spacing: -5%;
 `;
 
 export const ProductPriceTextUI = styled.h3`
   font-family: Poppins-Bold;
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 18px;
+  line-height: 18px;
   line-height: auto;
-  letter-spacing: -1px;
+  /* letter-spacing: -1px; */
+  word-spacing: -5%;
 `;
 
 export const ModelDescriptionUI = styled.div`
@@ -99,7 +93,7 @@ export const ComponentListUI = styled.div`
   flex-direction: row;
   align-items: end;
   overflow-x: scroll;
-  margin-top: 24px;
+  /* margin-top: 24px; */
 `;
 
 export const DetailImgListUI = styled.div`

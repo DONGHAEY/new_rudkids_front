@@ -10,7 +10,6 @@ import {
   ComponentListUI,
   ModelDescriptionUI,
   ModelDescriptionTextUI,
-  HelpMessageTextUI,
   PackageExplainUI,
   InfoRowUI,
   DetailImgListUI,
@@ -19,9 +18,7 @@ import { useParams } from "react-router-dom";
 import useProductDetailQuery from "../../queries/product/useProductDetailQuery";
 import { useMemo, useState } from "react";
 import ProductComponent from "./ProductComponent";
-import { CgArrowDown } from "react-icons/cg";
 import Loader from "../../shared_components/Loader";
-import Footer from "../../shared_components/Footer";
 
 const ProductDetailPage = ({ routeInfo }) => {
   const params = useParams();
@@ -49,6 +46,7 @@ const ProductDetailPage = ({ routeInfo }) => {
           modelName={productComponents?.[selectedModelIdx]?.name}
           modelUrls={productComponents?.map((_) => _.modelUrl)}
           modelIdx={selectedModelIdx}
+          setModelIdx={setSelectedModelIdx}
         />
         <ContentSectionUI>
           <InfoRowUI>
@@ -59,9 +57,6 @@ const ProductDetailPage = ({ routeInfo }) => {
           </InfoRowUI>
           <ProductPriceTextUI>₩ {productPrice}</ProductPriceTextUI>
         </ContentSectionUI>
-        <HelpMessageTextUI>
-          <CgArrowDown /> Click on the object! <CgArrowDown />
-        </HelpMessageTextUI>
         <ComponentListUI>
           {productComponents?.map((_, idx) => {
             return (
@@ -87,7 +82,7 @@ const ProductDetailPage = ({ routeInfo }) => {
         </DetailImgListUI>
       </FlexWrapperUI>
       <ActionBar productData={productData} />
-      {productDataLoading && <Loader delayMs={500} />}
+      {productDataLoading && <Loader />}
     </PageUI>
   );
 };
