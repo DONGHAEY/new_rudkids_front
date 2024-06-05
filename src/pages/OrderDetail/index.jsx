@@ -15,6 +15,7 @@ import TrackingInfo from "../../shared_components/TrackingInfo";
 import Shipping from "../../shared_components/Shipping";
 import OrderPrice from "../../shared_components/OrderPrice";
 import OrderProductList from "./OrderProductList";
+import Footer from "../../shared_components/Footer";
 
 const OrderDetailPage = ({ routeInfo }) => {
   const params = useParams();
@@ -70,6 +71,7 @@ const OrderDetailPage = ({ routeInfo }) => {
           </ColUI>
         </ColUI>
       </FlexWrapperUI>
+      <Footer />
     </PageUI>
   );
 };

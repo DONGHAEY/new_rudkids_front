@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const WhiteWrapperUI = styled.div`
   width: 90%;
-  margin: 0 auto;
   max-width: 327px;
   height: auto;
   background-color: white;

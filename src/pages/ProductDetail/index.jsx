@@ -19,6 +19,11 @@ import useProductDetailQuery from "../../queries/product/useProductDetailQuery";
 import { useMemo, useState } from "react";
 import ProductComponent from "./ProductComponent";
 import Loader from "../../shared_components/Loader";
+/** */
+import glb1Src from "./assets/1.glb";
+import glb2Src from "./assets/2.glb";
+import img1Src from "./assets/1.jpg";
+import img2Src from "./assets/2.jpg";
 
 const ProductDetailPage = ({ routeInfo }) => {
   const params = useParams();
@@ -35,7 +40,28 @@ const ProductDetailPage = ({ routeInfo }) => {
     return JSON.parse(productData?.detailImageUrls ?? []);
   }, [productData]);
 
-  const productComponents = productData?.components;
+  const productComponents = useMemo(() => {
+    if (!productData) return [];
+    return [
+      ...productData?.components,
+      {
+        name: "License",
+        description: "",
+        imageUrl: img1Src,
+        modelUrl: glb1Src,
+      },
+      {
+        name: "Tickes",
+        description: "",
+        imageUrl: img2Src,
+        modelUrl: glb2Src,
+      },
+    ];
+  }, [productData]);
+
+  if (productDataLoading) {
+    return <Loader />;
+  }
 
   return (
     <PageUI>
@@ -74,14 +100,13 @@ const ProductDetailPage = ({ routeInfo }) => {
             {productData?.description}
           </ModelDescriptionTextUI>
         </ModelDescriptionUI>
-        <DetailImgListUI>
-          {detailImageUrls?.map((detailIimageUrl, key) => {
-            return <img key={key} width="100%" src={detailIimageUrl} />;
-          })}
-        </DetailImgListUI>
       </FlexWrapperUI>
+      <DetailImgListUI>
+        {detailImageUrls?.map((detailIimageUrl, key) => {
+          return <img key={key} width="100%" src={detailIimageUrl} />;
+        })}
+      </DetailImgListUI>
       <ActionBar productData={productData} />
-      {productDataLoading && <Loader />}
     </PageUI>
   );
 };

@@ -9,7 +9,7 @@ const ProductComponent = ({ imageUrl, name, selected, onClick }) => {
   return (
     <ProductComponentUI>
       <ProductComponentImgWrapperUI onClick={onClick} $selected={selected}>
-        <ProductComponentImgUI src={imageUrl} />
+        <ProductComponentImgUI width="100%" src={imageUrl} />
       </ProductComponentImgWrapperUI>
       <NameTextUI>{name}</NameTextUI>
     </ProductComponentUI>

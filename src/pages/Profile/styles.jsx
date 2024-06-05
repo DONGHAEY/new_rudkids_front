@@ -172,6 +172,6 @@ export const CenterModalUI = styled(Modal)`
   justify-content: center;
   width: 100%;
   height: 100%;
-  max-width: 480px;
+  max-width: 430px;
   margin: 0 auto;
 `;

@@ -18,6 +18,7 @@ import OrderPrice from "../../shared_components/OrderPrice";
 import Header from "../../shared_components/Header";
 import OrderProductList from "../OrderDetail/OrderProductList";
 import PaymentStatus from "./PaymentStatus";
+import Footer from "../../shared_components/Footer";
 
 const PaySuccessPage = () => {
   const createPaymentMutation = useCreatePaymentMutation();
@@ -92,6 +93,7 @@ const PaySuccessPage = () => {
           </ColUI>
         </ColUI>
       </FlexWrapperUI>
+      <Footer />
     </PageUI>
   );
 };

@@ -55,8 +55,9 @@ const Shipping = ({ value, setValue, canEdit = true }) => {
           </RowWrapperUI>
         </ColWrapperUI>
         <ColWrapperUI gap="6px">
-          <AddressTextUI>{value.address}</AddressTextUI>
-          <AddressTextUI>{value.detailAddress}</AddressTextUI>
+          <AddressTextUI>
+            {value.address + " " + value.detailAddress}
+          </AddressTextUI>
         </ColWrapperUI>
         {canEdit && (
           <EditIconImgUI

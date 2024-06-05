@@ -47,9 +47,9 @@ export const MiddleSectionUI = styled.div`
 `;
 
 export const TicketImgUI = styled.img`
-  margin-top: 30px;
+  margin-top: -50px;
   z-index: 4;
-  width: 60%;
+  width: 100%;
 `;
 
 export const HandImgWrapperUI = styled.div`
@@ -57,7 +57,7 @@ export const HandImgWrapperUI = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: end;
-  margin-top: -30px;
+  margin-top: -100px;
   z-index: 3;
 `;
 

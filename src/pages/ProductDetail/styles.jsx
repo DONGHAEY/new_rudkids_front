@@ -98,6 +98,7 @@ export const ComponentListUI = styled.div`
 
 export const DetailImgListUI = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   margin-top: 30px;

@@ -58,7 +58,7 @@ export const ProfilePage = ({ routeInfo }) => {
 
   const inviteBtnClickHandler = () => setInvitePopup(true);
   const shareBtnClickHandler = () => setShareCopyPopup(true);
-  const onInviteCloseHandler = () => setShareCopyPopup(false);
+  const onInviteCloseHandler = () => setInvitePopup(false);
   const onShareCloseHandler = () => setShareCopyPopup(false);
 
   const userProfilePageLink = `${window.location.host}/profile/${userData?.id}`;

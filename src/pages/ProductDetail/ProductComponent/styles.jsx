@@ -23,12 +23,14 @@ export const ProductComponentImgWrapperUI = styled.div`
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  border: ${({ $selected }) => (!$selected ? "solid #E9E9E9 3.2px " : "none")};
-  background-color: ${({ $selected }) => (!$selected ? "white" : "#EDEDED")};
+  border: ${({ $selected }) =>
+    !$selected ? "solid #E9E9E9 3px" : "solid #A9A9A9 3px"};
+  background-color: white;
   border-radius: 13.5px;
 `;
 
 export const ProductComponentImgUI = styled.img`
-  position: absolute;
-  height: 80%;
+  /* position: absolute; */
+  width: 90%;
+  object-fit: cover;
 `;

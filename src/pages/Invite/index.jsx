@@ -14,7 +14,7 @@ import {
   TitleTxtUI,
 } from "./styles";
 import Friends from "./Friends";
-import ticketsSrc from "./assets/tickets.png";
+import ticketsSrc from "./assets/tickets.gif";
 import handSrc from "./assets/hand.png";
 import boxSrc from "./assets/box.png";
 import { RiShareBoxFill } from "react-icons/ri";
@@ -75,7 +75,7 @@ const InvitePage = () => {
         <MiddleSectionUI>
           <TicketImgUI src={ticketsSrc} />
           <HandImgWrapperUI>
-            <img height="100%" src={handSrc} />
+            <img width="50%" src={handSrc} />
           </HandImgWrapperUI>
         </MiddleSectionUI>
         <BottomBoxUI>
