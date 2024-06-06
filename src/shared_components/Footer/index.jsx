@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FooterUI } from "./styles";
 
 const Footer = () => {
@@ -9,6 +10,14 @@ const Footer = () => {
       기장읍 차성로441번길 7, 2동 1209호(태영아파트) Tel: 0507-1485-5602 /
       Email: rudkidss@gmail.com
       {/* </p> */}
+      <Link
+        style={{
+          color: "black",
+        }}
+        to="/legal"
+      >
+        Legal|법률
+      </Link>
     </FooterUI>
   );
 };

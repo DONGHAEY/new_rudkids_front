@@ -15,6 +15,7 @@ import ProfileEditPage from "./pages/ProfileEdit";
 import CreateRudcardPage from "./pages/CreateRudcard";
 import RankPage from "./pages/Rank";
 import _401Page from "./pages/401";
+import LeagalPage from "./pages/Legal";
 
 export const routes = {
   ["404"]: {
@@ -101,5 +102,10 @@ export const routes = {
     path: "/rank",
     paramKeys: [],
     element: AuthHoc(RankPage),
+  },
+  ["legal"]: {
+    path: "/legal",
+    paramKeys: [],
+    element: LeagalPage,
   },
 };

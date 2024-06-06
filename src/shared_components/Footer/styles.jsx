@@ -11,4 +11,5 @@ export const FooterUI = styled.div`
   padding-inline: 30px;
   font-size: 10px;
   gap: 10px;
+  text-decoration: none;
 `;

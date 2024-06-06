@@ -17,6 +17,7 @@ export const InfoBoxUI = styled.div`
   aspect-ratio: 1/1;
   border: none;
   background-color: white;
+
   color: black;
   /* padding-block: 23px; */
   display: flex;
