@@ -30,7 +30,7 @@ export const HeaderUI = styled.div`
   max-width: 300px;
   height: 43px;
   padding-top: 5px;
-  margin: auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   font-size: 25px;

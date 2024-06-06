@@ -1,24 +1,24 @@
-import { useEffect } from "react";
-import { ScrollUI, SpacerUI, TypeBtnListUI, TypeButtonUI } from "./styles";
+import { ScrollUI, TypeBtnListUI, TypeButtonUI } from "./styles";
 
 const TypeList = ({ setTypeCategory, typeCategory }) => {
-  const typeCategories = ["All", "Toy", "Colthes", "Stationery"];
-
-  useEffect(() => {
-    setTypeCategory(typeCategories[0]);
-  }, [setTypeCategory]);
+  //
+  const typeCategories = {
+    All: "" || null || undefined,
+    Toy: "Toy",
+    Colothes: "Colthes",
+    Stationery: "Stationery",
+  };
 
   return (
     <ScrollUI>
       <TypeBtnListUI>
-        {/* <SpacerUI /> */}
-        {typeCategories?.map((typeCategory_) => (
+        {Object.keys(typeCategories)?.map((key) => (
           <TypeButtonUI
-            key={typeCategory_}
-            onClick={() => setTypeCategory(typeCategory_)}
-            $selected={typeCategory_ === typeCategory}
+            key={key}
+            onClick={() => setTypeCategory(typeCategories[key])}
+            $selected={typeCategories[key] === typeCategory}
           >
-            {typeCategory_}
+            {key}
           </TypeButtonUI>
         ))}
       </TypeBtnListUI>

@@ -61,7 +61,9 @@ export const onHandResults = (canvasRef, results) => {
   for (const landmarks of results?.multiHandLandmarks) {
     let color = "#ffffff";
     if (isSignaturePose(landmarks)) {
+      alert("통과됨");
       color = "green";
+      return;
     } //
     else if (isFuckyouPose(landmarks)) {
       color = "hotpink";

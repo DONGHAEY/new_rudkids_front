@@ -42,7 +42,6 @@ const templates = [
 
 const RudCameraPage = () => {
   const cameraRef = useRef(null);
-  const canvasRef = useRef(null);
   const [selectedIdx, setSelectedIdx] = useState(0);
   const templateImgUrl = templates[selectedIdx].imgUrl;
 
@@ -60,38 +59,15 @@ const RudCameraPage = () => {
     //
     hands.onResults((results) => {
       for (const landmarks of results?.multiHandLandmarks) {
-        let color = "#ffffff";
         if (isSignaturePose(landmarks)) {
-          color = "green";
           alert("pass");
           return;
-        } //
-        else if (isFuckyouPose(landmarks)) {
-          color = "hotpink";
         }
       }
       alert("not-passed");
     });
     const image = cameraRef.current?.video;
     await hands.send({ image });
-  };
-
-  const onCapture = () => {
-    const canvasCtx = canvasRef.current?.getContext("2d");
-    const canvasWidth = canvasCtx.canvas.width;
-    const canvasHeight = canvasCtx.canvas.height;
-    // canvasCtx.clearRect(0, 0, canvasWidth, canvasHeight);
-    // canvasCtx.restore();
-    // canvasCtx.translate(canvasWidth, 0);
-    canvasCtx.scale(-1, 1);
-    canvasCtx.drawImage(
-      cameraRef.current?.video,
-      0,
-      0,
-      canvasWidth,
-      canvasHeight
-    );
-    canvasCtx.save();
   };
 
   useEffect(() => {
@@ -112,6 +88,7 @@ const RudCameraPage = () => {
             height: "100%",
             objectFit: "cover",
           }}
+          mirrored
           screenshotFormat="image/jpeg"
           screenshotQuality={1}
           videoConstraints={{
