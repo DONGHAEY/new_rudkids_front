@@ -14,6 +14,8 @@ import ProfilePage from "./pages/Profile";
 import ProfileEditPage from "./pages/ProfileEdit";
 import CreateRudcardPage from "./pages/CreateRudcard";
 import RankPage from "./pages/Rank";
+import RudGatePage from "./pages/RudGate";
+import RudCameraPage from "./pages/RudCamera";
 import _401Page from "./pages/401";
 import LeagalPage from "./pages/Legal";
 
@@ -82,6 +84,16 @@ export const routes = {
     path: "/profile",
     paramKeys: [],
     element: AuthHoc(ProfilePage),
+  },
+  ["rudGate"]: {
+    path: "/rud-gate",
+    paramKeys: [],
+    element: RudGatePage,
+  },
+  ["rudCamera"]: {
+    path: "/rud-camera",
+    paramKeys: [],
+    element: RudCameraPage,
   },
   ["profile"]: {
     path: "/profile/:user_id",

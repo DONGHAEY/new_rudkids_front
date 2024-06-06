@@ -3,6 +3,7 @@ import { useThree } from "@react-three/fiber";
 import React, { createRef, useEffect } from "react";
 
 const Scene = ({ autoRotate = false, gltf }) => {
+  //
   const distance = 5.5;
   const itemModelRef = createRef();
 
