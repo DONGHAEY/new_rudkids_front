@@ -1,5 +1,5 @@
-import backgroundImgSrc from "./assets/background.png";
 import styled from "styled-components";
+import PublicBizAssets from "../../global/public-biz-assets";
 
 export const PageUI = styled.div`
   width: 100%;
@@ -7,7 +7,7 @@ export const PageUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url(${backgroundImgSrc});
+  background-image: url(${PublicBizAssets.background});
   background-size: cover;
   background-repeat: none;
 `;

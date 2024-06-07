@@ -13,6 +13,7 @@ import { useState } from "react";
 import { MenuBarModalUI } from "./styles";
 import useCartProdsCntQuery from "../../queries/cart/useCartProdsCntQuery";
 import Loader from "../../shared_components/Loader";
+import PublicBizAssets from "../../global/public-biz-assets";
 
 const Header = ({ isFixed = true }) => {
   const { data: cartCntData = 0, isLoading } = useCartProdsCntQuery();
@@ -23,6 +24,10 @@ const Header = ({ isFixed = true }) => {
     setMenuBarOpen(true);
   };
 
+  if (isLoading) {
+    return <Loader delayMs={250} />;
+  }
+
   return (
     <>
       <HeaderUI position={isFixed ? "fixed" : "relative"}>
@@ -30,7 +35,7 @@ const Header = ({ isFixed = true }) => {
           <img height="27px" src={pompomiImgSrc} />
         </IconLinkUI>
         <LogoIconUI to="/">
-          <img height="100%" src={"/Images/logo.png"} />
+          <img height="100%" src={PublicBizAssets.logo} />
         </LogoIconUI>
         <IconLinkUI to="/cart">
           <CartTxtUI>cart</CartTxtUI>
@@ -41,7 +46,6 @@ const Header = ({ isFixed = true }) => {
       <MenuBarModalUI open={menuBarOpen} hideBackdrop disableAutoFocus>
         <MenuBar onClosed={(d) => setMenuBarOpen(false)} />
       </MenuBarModalUI>
-      {isLoading && <Loader delayMs={500} />}
     </>
   );
 };

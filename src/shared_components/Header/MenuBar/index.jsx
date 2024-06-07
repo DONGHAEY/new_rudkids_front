@@ -8,7 +8,7 @@ import {
 import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import { RudkidsGradients } from "../../../global";
+import SignatureGradients from "../../../global/signature-gradients";
 import gsap from "gsap";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
@@ -108,7 +108,9 @@ const MenuBar = ({ onClosed }) => {
                 onClick={(e) => {
                   close(() => navigate(menuButtonDt.path));
                 }}
-                background={RudkidsGradients[idx % RudkidsGradients?.length]}
+                background={
+                  SignatureGradients[idx % SignatureGradients?.length]
+                }
               >
                 <Icon icon={menuButtonDt.iconNm} height="37%" />
                 <MenuBtnTextUI>{menuButtonDt.name}</MenuBtnTextUI>

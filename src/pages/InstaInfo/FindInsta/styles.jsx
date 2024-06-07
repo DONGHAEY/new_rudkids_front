@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PublicBizAssets from "../../../global/public-biz-assets";
 
 export const TitleTxtUI = styled.div`
   color: black;
@@ -41,7 +42,7 @@ export const LoadingSceneWrapperUI = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: url("/Images/background.jpeg");
+  background-image: url(${PublicBizAssets.background});
   background-position: 0;
   background-repeat: no-repeat;
   background-size: cover;

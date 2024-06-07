@@ -4,7 +4,6 @@ export const CartProductUI = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  // align-items: center;
   padding: 20px;
   min-height: 80px;
   background-color: rgba(255, 255, 255, 0.9);

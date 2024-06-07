@@ -29,6 +29,6 @@ export const InstaIdTxtUI = styled.p`
 
 export const CheckWrapperUI = styled.div`
   height: 100px;
-  transform: scale(2);
+  transform: scale(1);
   margin-bottom: 0px;
 `;

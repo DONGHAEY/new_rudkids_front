@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PublicBizAssets from "../../global/public-biz-assets";
 
 export const PageUI = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const PageUI = styled.div`
   justify-content: center;
   width: 100%;
   min-height: 100%;
-  background-image: url("/Images/background.jpeg");
+  background-image: url(${PublicBizAssets.background});
   background-position: 0;
   background-repeat: no-repeat;
   background-size: cover;

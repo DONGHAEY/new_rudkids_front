@@ -5,6 +5,7 @@ import useRudkidsQueryClient from "./rudkidsQueryClient";
 import { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import GlobalStyle from "../src/styles";
 import Loader from "./shared_components/Loader";
+import PublicBizAssets from "./global/public-biz-assets";
 function App() {
   const [queryClient] = useRudkidsQueryClient();
   const [originChecked, setOriginChecked] = useState(false);
@@ -24,14 +25,12 @@ function App() {
     }
   }, []);
 
-  const imgPreload = (src) => {
-    let img = new Image();
-    img.src = src;
-  };
-
-  const businessImgs = ["Images/logo.png", "/Images/background.png"];
   useLayoutEffect(() => {
-    businessImgs?.forEach((imgSrc) => {
+    const imgPreload = (src) => {
+      let img = new Image();
+      img.src = src;
+    };
+    Object.values(PublicBizAssets)?.forEach((imgSrc) => {
       imgPreload(imgSrc);
     });
   }, []);
