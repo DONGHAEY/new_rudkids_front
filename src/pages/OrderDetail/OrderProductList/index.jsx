@@ -12,22 +12,21 @@ import { useState } from "react";
 const OrderProductList = ({ orderProducts }) => {
   const [isSpread, setIsSperead] = useState(false);
 
-  const isSpreadBtn = orderProducts?.length > 1;
+  const showBtn = orderProducts?.length > 1;
+
+  const d = orderProducts.map((orderProduct, idx) => {
+    if (!isSpread) {
+      if (idx >= 1) {
+        return null;
+      }
+    }
+    return <OrderProduct key={idx} orderProduct={orderProduct} />;
+  });
 
   return (
     <OrderProductListUI>
-      {orderProducts?.map((orderProduct, idx) => {
-        if (!isSpread && idx >= 1) {
-          return null;
-        }
-        return (
-          <OrderProduct
-            key={orderProduct.productId}
-            orderProduct={orderProduct}
-          />
-        );
-      })}
-      {isSpreadBtn && (
+      {d}
+      {showBtn && (
         <SpreadBtnWrapperUI>
           <SpreadButtonUI
             $isSpread={isSpread}

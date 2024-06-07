@@ -41,7 +41,6 @@ const RudkidsWebcam = ({ canvasRef, canvasSize }) => {
       minDetectionConfidence: 0.5,
       minTrackingConfidence: 0.5,
     });
-
     await hands.send({ image });
   };
 

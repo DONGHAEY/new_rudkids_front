@@ -9,10 +9,11 @@ export const TitleUI = styled.p`
 export const HeaderUI = styled.div`
   top: 0;
   z-index: 999;
-  background-color: white;
+  background-color: ${({ backgroundColor }) => backgroundColor ?? "white"};
   width: 100%;
   max-width: 430px;
   display: flex;
+  position: fixed;
 `;
 
 export const BetweenUI = styled.div`

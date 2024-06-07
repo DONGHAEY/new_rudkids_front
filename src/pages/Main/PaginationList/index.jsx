@@ -16,6 +16,7 @@ const PaginationList = ({ meta, onChange }) => {
         if (l > lastPage) return null;
         return (
           <PageBtnUI
+            key={l}
             selected={page === l}
             onClick={(e) => {
               e.preventDefault();

@@ -18,6 +18,7 @@ import RudGatePage from "./pages/RudGate";
 import RudCameraPage from "./pages/RudCamera";
 import _401Page from "./pages/401";
 import LeagalPage from "./pages/Legal";
+import OrderListPage from "./pages/OrderList";
 
 export const routes = {
   ["404"]: {
@@ -44,6 +45,11 @@ export const routes = {
     path: "create-order",
     paramKeys: [],
     element: AuthHoc(CreateOrder),
+  },
+  ["orderList"]: {
+    path: "/order-list",
+    paramKeys: [],
+    element: AuthHoc(OrderListPage),
   },
   ["orderDetail"]: {
     path: "/order/:order_id",

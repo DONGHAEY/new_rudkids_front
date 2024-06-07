@@ -10,7 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import DynamicSpacer from "../../DynamicSpacer";
 
-const Header = ({ title, description }) => {
+const Header = ({ title, description, backgroundColor }) => {
   const headerRef = useRef();
   const navigate = useNavigate();
 
@@ -19,22 +19,29 @@ const Header = ({ title, description }) => {
   };
 
   return (
-    <HeaderUI>
-      <BetweenUI ref={headerRef}>
-        <img src={backIconSrc} width="33.46px" onClick={backIconClickHandler} />
-        <TextWrapperUI>
-          <TitleUI>{title}</TitleUI>
-          {description && <DescriptionUI>{description}</DescriptionUI>}
-        </TextWrapperUI>
-        <img
-          width="33.46px"
-          style={{
-            opacity: 0,
-          }}
-          src={backIconSrc}
-        />
-      </BetweenUI>
-    </HeaderUI>
+    <>
+      <HeaderUI backgroundColor={backgroundColor}>
+        <BetweenUI ref={headerRef}>
+          <img
+            src={backIconSrc}
+            width="33.46px"
+            onClick={backIconClickHandler}
+          />
+          <TextWrapperUI>
+            <TitleUI>{title}</TitleUI>
+            {description && <DescriptionUI>{description}</DescriptionUI>}
+          </TextWrapperUI>
+          <img
+            width="33.46px"
+            style={{
+              opacity: 0,
+            }}
+            src={backIconSrc}
+          />
+        </BetweenUI>
+      </HeaderUI>
+      <DynamicSpacer refCurrent={headerRef.current} />
+    </>
   );
 };
 

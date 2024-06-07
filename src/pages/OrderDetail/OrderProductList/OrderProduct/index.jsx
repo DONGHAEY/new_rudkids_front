@@ -16,7 +16,7 @@ const OrderProduct = ({ orderProduct }) => {
   const navigate = useNavigate();
   return (
     <OrderProductUI>
-      <img height="80px" src={orderProduct.previewImageUrl} />
+      <img height="80px" src={orderProduct.thumnail} />
       <WrapperUI>
         <InfoTextWrapperUI>
           <CartProductNameUI>{orderProduct.name}</CartProductNameUI>
