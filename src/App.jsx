@@ -8,13 +8,10 @@ import Loader from "./shared_components/Loader";
 import PublicBizAssets from "./global/public-biz-assets";
 function App() {
   const [queryClient] = useRudkidsQueryClient();
-  const [originChecked, setOriginChecked] = useState(true);
+  const [originChecked, setOriginChecked] = useState(false);
   useEffect(() => {
     if (originChecked) return;
-    const allowOrigins = [
-      process.env.REACT_APP_FE_URL,
-      "http://172.30.1.80:3001",
-    ];
+    const allowOrigins = [process.env.REACT_APP_FE_URL];
     if (!allowOrigins.includes(window.location.origin)) {
       window.location.href =
         process.env.REACT_APP_FE_URL +
