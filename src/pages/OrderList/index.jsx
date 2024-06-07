@@ -64,13 +64,15 @@ const OrderListPage = () => {
             </ListOfOrderUI>
           );
         })}
-        <div
-          onClick={() => {
-            fetchNextPage();
+        <button
+          style={{
+            width: "100%",
+            padding: "10px",
           }}
+          onClick={fetchNextPage}
         >
-          다음꺼로딩
-        </div>
+          다음페이지
+        </button>
       </OrderListUI>
     </Popup>
   );
