@@ -13,6 +13,7 @@ import Lock from "../../../shared_components/Lock";
 import StepIndicator from "../../../shared_components/StepIndicator";
 import cautionImgSrc from "./assets/caution.png";
 import { PageUI, WrapperUI } from "../shared_styles";
+import Background from "../../../shared_components/Background";
 
 const FindedInsta = ({ instaImgUrl, instaId, onCancel, onSelect }) => {
   return (
@@ -45,6 +46,7 @@ const FindedInsta = ({ instaImgUrl, instaId, onCancel, onSelect }) => {
         </ButtonListUI>
       </WrapperUI>
       <StepIndicator totalStep={2} stepCnt={1} />
+      <Background />
     </PageUI>
   );
 };

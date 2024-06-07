@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PublicBizAssets from "../../global/public-biz-assets";
 
 export const PageUI = styled.div`
   position: relative;
@@ -9,10 +8,6 @@ export const PageUI = styled.div`
   justify-content: center;
   width: 100%;
   min-height: 100%;
-  background-image: url(${PublicBizAssets.background});
-  background-position: 0;
-  background-repeat: no-repeat;
-  background-size: cover;
 `;
 
 export const WrapperUI = styled.div`

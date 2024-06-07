@@ -7,7 +7,6 @@ import {
   CartTxtUI,
 } from "./styles";
 import pompomiImgSrc from "./assets/pompomi.png";
-import { useNavigate } from "react-router-dom";
 import MenuBar from "./MenuBar";
 import { useState } from "react";
 import { MenuBarModalUI } from "./styles";

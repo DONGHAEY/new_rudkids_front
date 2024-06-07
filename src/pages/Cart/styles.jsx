@@ -7,9 +7,6 @@ export const PageUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url(${PublicBizAssets.background});
-  background-size: cover;
-  background-repeat: none;
 `;
 
 export const FlexWrapperUI = styled.div`

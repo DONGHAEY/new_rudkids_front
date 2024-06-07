@@ -18,6 +18,7 @@ import PopupRoute from "../../shared_components/PopupRoute";
 import ShippingEvent from "./ShippingEvent";
 import useCartQuery from "../../queries/cart/useCartQuery";
 import useEditShippingPriceToZeroMutation from "../../mutations/cart/useEditShippingPriceToZeroMutation";
+import Background from "../../shared_components/Background";
 
 const CartPage = () => {
   const [popupNavigate, poupPop] = usePopup();
@@ -78,10 +79,12 @@ const CartPage = () => {
           <img src={smileSellerSrc} height="153px" />
         </div>
       </FlexWrapperUI>
+
       <PopupRoute name="shipping_price_none_event">
         <ShippingEvent />
       </PopupRoute>
       <CheckoutBar cartData={myCartData} />
+      <Background />
     </PageUI>
   );
 };

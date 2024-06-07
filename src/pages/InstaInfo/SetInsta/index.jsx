@@ -5,6 +5,8 @@ import Lottie from "react-lottie";
 import checkLottie from "./assets/check_lottie.json";
 import Lock from "../../../shared_components/Lock";
 import { CompleteBtnUI, PageUI, WrapperUI } from "../shared_styles";
+import Background from "../../../shared_components/Background";
+import Loader from "../../../shared_components/Loader";
 const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
   const updateImageUrlMutation = useUpdateImageUrlMutation();
   const updateInstaIdMutation = useUpdateInstaIdMutation();
@@ -47,6 +49,9 @@ const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
           완료
         </CompleteBtnUI>
       </WrapperUI>
+      {(updateInstaIdMutation?.isLoading ||
+        updateImageUrlMutation?.isLoading) && <Loader />}
+      <Background />
     </PageUI>
   );
 };

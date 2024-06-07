@@ -8,6 +8,7 @@ import Footer from "../../shared_components/Footer";
 import { useNavigate } from "react-router-dom";
 import * as qs from "qs";
 import PaginationList from "./PaginationList";
+import { useBodyBackground } from "../../hooks/useBodyBackground";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -22,6 +23,8 @@ const MainPage = () => {
     searchObj[key] = value;
     navigate(`?${qs.stringify(searchObj)}`);
   };
+
+  useBodyBackground("#1a94d9");
 
   return (
     <>

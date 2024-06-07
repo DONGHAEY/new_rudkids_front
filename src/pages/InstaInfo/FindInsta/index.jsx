@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import useGetImgUrlMutation from "../../../mutations/instagram-profile/useGetImgUrl";
 import LoadingScene from "./LoadingScene";
 import { CompleteBtnUI, PageUI, WrapperUI } from "../shared_styles";
+import Background from "../../../shared_components/Background";
 
 const FindInsta = ({ setFindedInstaInfo }) => {
   const [instagramId, setInstagramId] = useState("");
@@ -89,6 +90,7 @@ const FindInsta = ({ setFindedInstaInfo }) => {
         </InstagramIdFormUI>
       </WrapperUI>
       <StepIndicator totalStep={2} stepCnt={1} />
+      <Background />
     </PageUI>
   );
 };

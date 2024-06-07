@@ -9,7 +9,7 @@ import {
   LoginCommentUI,
   LoginUI,
   LoginWrapperUI,
-  TossTesterLoginUI,
+  // TossTesterLoginUI,
 } from "./styles";
 import NaverSvg from "./assets/naver.svg";
 import KakaoSvg from "./assets/kakao.svg";
@@ -20,7 +20,8 @@ import { setLoginCallbackUrl } from "../LoginCallback";
 import { useSearchParams } from "react-router-dom";
 import headSrc from "./assets/head.svg";
 import joinUsSrc from "./assets/joinUs.svg";
-import useTossTesterLoginMutation from "../../mutations/auth/useTossTesterLoginMutation";
+// import useTossTesterLoginMutation from "../../mutations/auth/useTossTesterLoginMutation";
+import Background from "../../shared_components/Background";
 
 const platforms = [
   {
@@ -78,6 +79,7 @@ const LoginPage = () => {
       </LoginWrapperUI>
       <StepIndicator totalStep={2} stepCnt={0} />
       <JoinUsIconUI src={joinUsSrc} />
+      <Background />
     </PageUI>
   );
 };
