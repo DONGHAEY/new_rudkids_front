@@ -19,6 +19,7 @@ import RudCameraPage from "./pages/RudCamera";
 import _401Page from "./pages/401";
 import LeagalPage from "./pages/Legal";
 import OrderListPage from "./pages/OrderList";
+import CollectionPage from "./pages/Collection";
 
 export const routes = {
   ["404"]: {
@@ -50,6 +51,11 @@ export const routes = {
     path: "/order-list",
     paramKeys: [],
     element: AuthHoc(OrderListPage),
+  },
+  ["collection"]: {
+    path: "/collection/:user_id",
+    paramKey: ["user_id"],
+    element: CollectionPage,
   },
   ["orderDetail"]: {
     path: "/order/:order_id",

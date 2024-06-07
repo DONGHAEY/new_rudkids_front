@@ -6,6 +6,7 @@ import {
   HeadUI,
   ListOfOrderUI,
   MoreTxtUI,
+  NextBtnUI,
   OrderListUI,
   ProductImgUI,
   ProductImgWrapperUI,
@@ -64,15 +65,7 @@ const OrderListPage = () => {
             </ListOfOrderUI>
           );
         })}
-        <button
-          style={{
-            width: "100%",
-            padding: "10px",
-          }}
-          onClick={fetchNextPage}
-        >
-          다음페이지
-        </button>
+        <NextBtnUI onClick={fetchNextPage}>Next</NextBtnUI>
       </OrderListUI>
     </Popup>
   );

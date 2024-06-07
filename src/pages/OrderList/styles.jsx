@@ -9,6 +9,16 @@ export const OrderListUI = styled.div`
   background-color: #f3f3f3;
 `;
 
+export const NextBtnUI = styled.button`
+  width: 100%;
+  padding: 30px;
+  color: white;
+  background-color: gray;
+  border: none;
+  font-family: Pretendard-Bold;
+  font-size: 20px;
+`;
+
 export const ListOfOrderUI = styled.div`
   background: white;
   display: flex;

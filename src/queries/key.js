@@ -8,6 +8,7 @@ const queryKey = {
   shipping: "shipping",
   profile: "profile",
   invitation: "invitation",
+  collection: "collection",
 };
 
 export default queryKey;
