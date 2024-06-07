@@ -10,37 +10,41 @@ import {
   TitleTxtUI,
   TitleWrapperUI,
 } from "./styles";
-import LogoSrc from "./assets/logo.png";
-import QuestionSrc from "./assets/questionMark.svg";
 import stampSrc from "./assets/stamp.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import useCollectionQuery from "../../queries/collection/userCollectionQuery";
 import { RudkidsGradients } from "../../global";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import useUserQuery from "../../queries/user/useUserQuery";
+import Header from "../../shared_components/Header";
 
 const CollectionPage = () => {
   const { data: userData } = useUserQuery();
   const params = useParams();
   const userId = params["user_id"];
 
-  const { data = [] } = useCollectionQuery(userId);
+  const navigate = useNavigate();
+
+  const { data: collectionData } = useCollectionQuery(userId);
+
+  const collectedProducts = collectionData?.collectedProducts ?? [];
+  const collectorName = collectionData?.collectorName ?? "";
 
   const min표시개수 = 10;
   const blank표시개수 =
-    min표시개수 - data?.length < 0 ? 0 : min표시개수 - data?.length;
-
-  const navigate = useNavigate();
+    min표시개수 - collectedProducts?.length < 0
+      ? 0
+      : min표시개수 - collectedProducts?.length ?? 0;
 
   return (
     <PageUI>
-      <LogoImgUI src={LogoSrc} />
+      <Header isFixed />
       <TitleWrapperUI>
-        <TitleTxtUI>NickName's</TitleTxtUI>
+        <TitleTxtUI>{collectorName}'s</TitleTxtUI>
         <TitleTxtUI>Collection</TitleTxtUI>
       </TitleWrapperUI>
       <ListUI>
-        {data?.map((orderProduct, idx) => {
+        {collectionData?.collectedProducts?.map((orderProduct, idx) => {
           const randomTop = Math.floor(Math.random() * 60);
           const randomLeft = Math.floor(Math.random() * 60);
           const randomAngle = Math.floor(Math.random() * 360);
@@ -60,14 +64,19 @@ const CollectionPage = () => {
           );
         })}
         {new Array(blank표시개수).fill("").map((_, idx) => (
-          <BlankCollectionBoxUI>
-            <img src={QuestionSrc} width="60%" />
-          </BlankCollectionBoxUI>
+          <BlankCollectionBoxUI>?</BlankCollectionBoxUI>
         ))}
       </ListUI>
-      {userData?.id === userId && (
+      {userData?.id == userId && (
         <GoOrderBtnUI onClick={() => navigate("/order-list")}>
-          <Icon icon="lets-icons:order" /> <p>주문 내역</p>
+          <Icon
+            icon="lets-icons:order"
+            fontSize="18.13px"
+            style={{
+              textShadow: "rgba(0, 0, 0, 0.3) 2px 2px 2px",
+            }}
+          />
+          <p>주문 내역</p>
         </GoOrderBtnUI>
       )}
     </PageUI>

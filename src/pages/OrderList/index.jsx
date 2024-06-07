@@ -19,8 +19,14 @@ const OrderListPage = () => {
   const navigate = useNavigate();
 
   const [cursorId, setCursorId] = useState(null);
-  const { data, isLoading, isError, fetchNextPage, isFetchingNextPage } =
-    useOrderListQuery(cursorId);
+  const {
+    data,
+    isLoading,
+    isError,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useOrderListQuery(cursorId);
 
   const maxProductsLength = 3;
   const notAppeared = data?.data?.length - maxProductsLength;
@@ -65,7 +71,7 @@ const OrderListPage = () => {
             </ListOfOrderUI>
           );
         })}
-        <NextBtnUI onClick={fetchNextPage}>Next</NextBtnUI>
+        {hasNextPage && <NextBtnUI onClick={fetchNextPage}>More</NextBtnUI>}
       </OrderListUI>
     </Popup>
   );
