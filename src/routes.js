@@ -60,7 +60,7 @@ export const routes = {
   ["collection"]: {
     path: "/collection",
     paramKey: [],
-    element: CollectionPage,
+    element: AuthHoc(CollectionPage),
   },
   ["orderDetail"]: {
     path: "/order/:order_id",
@@ -85,7 +85,7 @@ export const routes = {
   ["instaInfo"]: {
     path: "/insta-info",
     paramKeys: [],
-    element: InstaInfoPage,
+    element: AuthHoc(InstaInfoPage),
   },
   ["invite"]: {
     path: "/invite",
@@ -125,7 +125,7 @@ export const routes = {
   ["profile_edit"]: {
     path: "/profile/edit",
     paramKeys: ["nickname"],
-    element: ProfileEditPage,
+    element: AuthHoc(ProfileEditPage),
   },
   ["rank"]: {
     path: "/rank",

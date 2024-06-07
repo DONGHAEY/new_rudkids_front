@@ -7,7 +7,6 @@ export const PageUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  overflow: hidden;
   min-height: 100%;
 `;
 
@@ -16,19 +15,12 @@ export const SectionUI = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-height: 100%;
   position: relative;
 `;
 
-export const ColBetweenerUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-`;
-
 export const ListUI = styled.div`
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 16px;
