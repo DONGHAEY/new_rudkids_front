@@ -50,8 +50,6 @@ const LoginPage = () => {
     window.location.href = loginUrl;
   };
 
-  const tossTesterLoginMutation = useTossTesterLoginMutation();
-
   return (
     <PageUI>
       <Lock />
@@ -75,13 +73,6 @@ const LoginPage = () => {
                 </LoginBtnTxtUI>
               </LoginBtnUI>
             ))}
-            <TossTesterLoginUI
-              onClick={async () => {
-                await tossTesterLoginMutation.mutateAsync();
-              }}
-            >
-              tossPaments 테스터용
-            </TossTesterLoginUI>
           </LoginBtnListUI>
         </LoginUI>
       </LoginWrapperUI>

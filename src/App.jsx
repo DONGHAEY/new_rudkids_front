@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { routes } from "./routes";
 import { QueryClientProvider } from "react-query";
 import useRudkidsQueryClient from "./rudkidsQueryClient";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import GlobalStyle from "../src/styles";
 import Loader from "./shared_components/Loader";
 function App() {
@@ -22,6 +22,18 @@ function App() {
     } else {
       setOriginChecked(true);
     }
+  }, []);
+
+  const imgPreload = (src) => {
+    let img = new Image();
+    img.src = src;
+  };
+
+  const businessImgs = ["Images/logo.png", "/Images/background.png"];
+  useLayoutEffect(() => {
+    businessImgs?.forEach((imgSrc) => {
+      imgPreload(imgSrc);
+    });
   }, []);
 
   if (!originChecked) {

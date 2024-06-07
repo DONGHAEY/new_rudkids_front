@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import backgroundImgUrl from "./assets/background.svg";
 
 export const PageUI = styled.div`
   display: flex;
@@ -8,7 +7,7 @@ export const PageUI = styled.div`
   justify-content: center;
   width: 100%;
   min-height: 100%;
-  background-image: url(${backgroundImgUrl});
+  background-image: url("/Images/background.jpeg");
   background-position: 0;
   background-repeat: no-repeat;
   background-size: cover;

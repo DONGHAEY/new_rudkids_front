@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import backgroundImgUrl from "../assets/background.svg";
 
 export const TitleTxtUI = styled.div`
   color: black;
@@ -42,7 +41,7 @@ export const LoadingSceneWrapperUI = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: url(${backgroundImgUrl});
+  background-image: url("/Images/background.jpeg");
   background-position: 0;
   background-repeat: no-repeat;
   background-size: cover;

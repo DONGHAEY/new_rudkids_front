@@ -8,7 +8,7 @@ export const PageUI = styled.div`
   align-items: center;
   background-color: white;
   text-align: center;
-  background-image: url("/Images/background.svg");
+  background-image: url("/Images/background.jpeg");
   background-repeat: none;
   background-size: cover;
 `;
