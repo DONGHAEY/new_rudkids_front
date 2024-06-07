@@ -4,7 +4,6 @@ import {
   CollectionImgUI,
   GoOrderBtnUI,
   ListUI,
-  LogoImgUI,
   PageUI,
   StampImgUI,
   TitleTxtUI,
@@ -13,19 +12,18 @@ import {
 import stampSrc from "./assets/stamp.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import useCollectionQuery from "../../queries/collection/userCollectionQuery";
-import { RudkidsGradients } from "../../global";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import useUserQuery from "../../queries/user/useUserQuery";
 import Header from "../../shared_components/Header";
+import Loader from "../../shared_components/Loader";
 
 const CollectionPage = () => {
   const { data: userData } = useUserQuery();
   const params = useParams();
-  const userId = params["user_id"];
+  const userId = params["user_id"] ?? userData?.id;
 
   const navigate = useNavigate();
-
-  const { data: collectionData } = useCollectionQuery(userId);
+  const { data: collectionData, isLoading } = useCollectionQuery(userId);
 
   const collectedProducts = collectionData?.collectedProducts ?? [];
   const collectorName = collectionData?.collectorName ?? "";
@@ -35,6 +33,10 @@ const CollectionPage = () => {
     min표시개수 - collectedProducts?.length < 0
       ? 0
       : min표시개수 - collectedProducts?.length ?? 0;
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <PageUI>
@@ -48,10 +50,9 @@ const CollectionPage = () => {
           const randomTop = Math.floor(Math.random() * 60);
           const randomLeft = Math.floor(Math.random() * 60);
           const randomAngle = Math.floor(Math.random() * 360);
-          const background = RudkidsGradients[idx % RudkidsGradients.length];
 
           return (
-            <CollectionBoxUI key={idx} background={background}>
+            <CollectionBoxUI key={idx}>
               <CollectionImgUI src={orderProduct.thumnail} />
               <p>{orderProduct.name}</p>
               <StampImgUI
@@ -67,7 +68,7 @@ const CollectionPage = () => {
           <BlankCollectionBoxUI>?</BlankCollectionBoxUI>
         ))}
       </ListUI>
-      {userData?.id == userId && (
+      {userId === userData?.id && (
         <GoOrderBtnUI onClick={() => navigate("/order-list")}>
           <Icon
             icon="lets-icons:order"

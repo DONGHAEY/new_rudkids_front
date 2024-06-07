@@ -6,51 +6,42 @@ import {
   DimmUI,
 } from "./styles";
 import Profile from "./Profile";
-
-import HomeImgSrc from "./assets/Home.png";
-import AboutImgSrc from "./assets/About.png";
-import RecruitImgSrc from "./assets/Recruit.png";
-import ShopImgSrc from "./assets/Shop.png";
-import RudeCameraImgSrc from "./assets/RudeCamera.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import { RudkidsGradients } from "../../../global";
 import gsap from "gsap";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const menuButtonDtList = [
   {
     name: "Home",
-    iconSrc: HomeImgSrc,
-    background:
-      "linear-gradient(180deg,rgba(255, 242, 128, 1) 0%,rgba(255, 249, 198, 1) 100%)",
+    iconNm: "bxs:home",
     path: "/",
   },
   {
     name: "Shop",
-    iconSrc: ShopImgSrc,
-    background:
-      "linear-gradient(180deg,rgba(168, 255, 127, 1) 0%,rgba(222, 255, 207, 1) 100%)",
+    iconNm: "mdi:shopping",
     path: "/",
   },
   {
     name: "Rude\nCamera",
-    iconSrc: RudeCameraImgSrc,
-    background:
-      "linear-gradient(180deg,rgba(89, 205, 255, 1) 0%,rgba(255, 255, 255, 1) 100%)",
+    iconNm: "ph:camera-fill",
     path: "/rud-camera",
   },
   {
-    name: "About",
-    iconSrc: AboutImgSrc,
-    background:
-      "linear-gradient(180deg,rgba(255, 175, 228, 1) 0%,rgba(255, 229, 246, 1) 100%)",
-    path: "/about",
+    name: "Rank",
+    iconNm: "mdi:prize",
+    path: "/rank",
   },
   {
-    name: "Recruit",
-    iconSrc: RecruitImgSrc,
-    background:
-      "linear-gradient(180deg,rgba(255, 203, 203, 1) 0%,rgba(255, 231, 231, 1) 100%)",
-    path: "/recruit",
+    name: "Collection",
+    iconNm: "ph:heart-fill",
+    path: "/collection",
+  },
+  {
+    name: "About",
+    iconNm: "mdi:information",
+    path: "/about",
   },
 ];
 
@@ -111,15 +102,15 @@ const MenuBar = ({ onClosed }) => {
       <MenuBarUI ref={ref}>
         <Profile />
         <MenuBtnListUI>
-          {menuButtonDtList?.map((menuButtonDt) => {
+          {menuButtonDtList?.map((menuButtonDt, idx) => {
             return (
               <MenuBtnUI
                 onClick={(e) => {
                   close(() => navigate(menuButtonDt.path));
                 }}
-                background={menuButtonDt.background}
+                background={RudkidsGradients[idx % RudkidsGradients?.length]}
               >
-                <img src={menuButtonDt.iconSrc} height="40%" />
+                <Icon icon={menuButtonDt.iconNm} height="37%" />
                 <MenuBtnTextUI>{menuButtonDt.name}</MenuBtnTextUI>
               </MenuBtnUI>
             );

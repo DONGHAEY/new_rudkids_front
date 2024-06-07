@@ -13,11 +13,6 @@ export const PageUI = styled.div`
   background-size: cover;
 `;
 
-export const LogoImgUI = styled.img`
-  width: 43%;
-  margin-top: 10px;
-`;
-
 export const TitleWrapperUI = styled.div`
   margin-top: 40px;
   display: flex;

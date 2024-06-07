@@ -6,7 +6,6 @@ import {
   CartCntTextUI,
   CartTxtUI,
 } from "./styles";
-import rudkidsLogoSrc from "./assets/logo.png";
 import pompomiImgSrc from "./assets/pompomi.png";
 import { useNavigate } from "react-router-dom";
 import MenuBar from "./MenuBar";
@@ -16,7 +15,6 @@ import useCartProdsCntQuery from "../../queries/cart/useCartProdsCntQuery";
 import Loader from "../../shared_components/Loader";
 
 const Header = ({ isFixed = true }) => {
-  const navigate = useNavigate();
   const { data: cartCntData = 0, isLoading } = useCartProdsCntQuery();
 
   const [menuBarOpen, setMenuBarOpen] = useState(false);
@@ -32,7 +30,7 @@ const Header = ({ isFixed = true }) => {
           <img height="27px" src={pompomiImgSrc} />
         </IconLinkUI>
         <LogoIconUI to="/">
-          <img height="100%" src={rudkidsLogoSrc} />
+          <img height="100%" src={"/Images/logo.png"} />
         </LogoIconUI>
         <IconLinkUI to="/cart">
           <CartTxtUI>cart</CartTxtUI>

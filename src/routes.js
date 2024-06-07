@@ -57,6 +57,11 @@ export const routes = {
     paramKey: ["user_id"],
     element: CollectionPage,
   },
+  ["collection"]: {
+    path: "/collection",
+    paramKey: [],
+    element: CollectionPage,
+  },
   ["orderDetail"]: {
     path: "/order/:order_id",
     paramKeys: ["order_id"],

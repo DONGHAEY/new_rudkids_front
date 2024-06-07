@@ -38,6 +38,7 @@ export const MenuBtnUI = styled.button`
   border-radius: 22px;
   color: black;
   cursor: pointer;
+  border: solid 1px #b0b0b0;
 `;
 
 export const MenuBtnTextUI = styled.p`
