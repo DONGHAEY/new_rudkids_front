@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const PaginationListUI = styled.div`
-  position: absolute;
-  bottom: 10px;
+  /* position: absolute; */
+  /* bottom: 10px; */
   display: flex;
   gap: 3px;
   font-family: Poppins-Bold;

@@ -6,8 +6,25 @@ export const PageUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   overflow: hidden;
   min-height: 100%;
+`;
+
+export const SectionUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+`;
+
+export const ColBetweenerUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export const ListUI = styled.div`

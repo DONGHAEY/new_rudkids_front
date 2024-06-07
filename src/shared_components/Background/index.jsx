@@ -1,5 +1,5 @@
 import PublicBizAssets from "../../global/public-biz-assets";
-import { BackgroundColorUI, BackgroundImgUI } from "./styles";
+import { BackgroundImgUI } from "./styles";
 
 const Background = ({ backgroundSrc, zIndex = -1 }) => {
   return (

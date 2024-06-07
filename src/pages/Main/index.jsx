@@ -1,5 +1,5 @@
 import Header from "../../shared_components/Header";
-import { ListUI, PageUI } from "./styles";
+import { ColBetweenerUI, ListUI, PageUI, SectionUI } from "./styles";
 import ProductBox from "./ProductBox";
 import TypeList from "./TypeList";
 import useProductListQuery from "../../queries/product/useProductListQuery";
@@ -27,8 +27,8 @@ const MainPage = () => {
   useBodyBackground("#1a94d9");
 
   return (
-    <>
-      <PageUI>
+    <PageUI>
+      <SectionUI>
         <Header isFixed={true} />
         <TypeList
           typeCategory={searchObj["type"]}
@@ -50,10 +50,10 @@ const MainPage = () => {
           meta={data?.meta}
           onChange={(page) => setSearchProperty("page", page)}
         />
-      </PageUI>
-      {isLoading && <Loader delayMs={500} />}
+      </SectionUI>
       <Footer />
-    </>
+      {isLoading && <Loader delayMs={500} />}
+    </PageUI>
   );
 };
 
