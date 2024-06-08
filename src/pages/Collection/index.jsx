@@ -16,17 +16,16 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import useUserQuery from "../../queries/user/useUserQuery";
 import Header from "../../shared_components/Header";
 import Loader from "../../shared_components/Loader";
+import Background from "../../shared_components/Background";
 
 const CollectionPage = () => {
-  const { data: userData } = useUserQuery();
   const params = useParams();
-  const userId = params["user_id"] ?? userData?.id;
+  const userParamId = params["user_id"] ?? null;
 
   const navigate = useNavigate();
-  const { data: collectionData, isLoading } = useCollectionQuery(userId);
-
-  const collectedProducts = collectionData?.collectedProducts ?? [];
-  const collectorName = collectionData?.collectorName ?? "";
+  const { data: userData, userLoading } = useUserQuery(userParamId);
+  const { data: collectedProducts = [], collectionLoading } =
+    useCollectionQuery(userData?.id ?? null);
 
   const min표시개수 = 10;
   const blank표시개수 =
@@ -34,7 +33,7 @@ const CollectionPage = () => {
       ? 0
       : min표시개수 - collectedProducts?.length ?? 0;
 
-  if (isLoading) {
+  if (collectionLoading || userLoading) {
     return <Loader />;
   }
 
@@ -42,15 +41,14 @@ const CollectionPage = () => {
     <PageUI>
       <Header isFixed />
       <TitleWrapperUI>
-        <TitleTxtUI>{collectorName}'s</TitleTxtUI>
+        <TitleTxtUI>{userData?.nickname}'s</TitleTxtUI>
         <TitleTxtUI>Collection</TitleTxtUI>
       </TitleWrapperUI>
       <ListUI>
-        {collectionData?.collectedProducts?.map((orderProduct, idx) => {
+        {collectedProducts?.map((orderProduct, idx) => {
           const randomTop = Math.floor(Math.random() * 60);
           const randomLeft = Math.floor(Math.random() * 60);
           const randomAngle = Math.floor(Math.random() * 360);
-
           return (
             <CollectionBoxUI key={idx}>
               <CollectionImgUI src={orderProduct.thumnail} />
@@ -68,18 +66,13 @@ const CollectionPage = () => {
           <BlankCollectionBoxUI>?</BlankCollectionBoxUI>
         ))}
       </ListUI>
-      {userId === userData?.id && (
+      {!userParamId && userData && (
         <GoOrderBtnUI onClick={() => navigate("/order-list")}>
-          <Icon
-            icon="lets-icons:order"
-            fontSize="18.13px"
-            style={{
-              textShadow: "rgba(0, 0, 0, 0.3) 2px 2px 2px",
-            }}
-          />
+          <Icon icon="lets-icons:order" />
           <p>주문 내역</p>
         </GoOrderBtnUI>
       )}
+      <Background />
     </PageUI>
   );
 };

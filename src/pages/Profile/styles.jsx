@@ -59,14 +59,12 @@ export const UserNickNameTxtUI = styled.p`
 export const DescriptTxtUI = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 80%;
   line-height: 140%;
   height: auto;
   margin-top: 17px;
   text-align: center;
   font-family: Pretendard-SemiBold;
-  /* overflow: scroll; */
-  /* background-color: black; */
   font-size: 14px;
 `;
 
@@ -76,7 +74,6 @@ export const TodayViewUI = styled.div`
   padding: 7px;
   padding-inline: 18px;
   font-family: Poppins-SemiBold;
-
   gap: 8.82px;
   line-height: 0%;
   background-color: rgba(255, 255, 255, 0.7);
@@ -97,7 +94,6 @@ export const LinksSectionUI = styled.div`
   margin-top: 30px;
   display: flex;
   width: 90%;
-  max-width: 325.33px;
   background-color: white;
   border-radius: 12px;
 `;
@@ -174,4 +170,47 @@ export const CenterModalUI = styled(Modal)`
   height: 100%;
   max-width: 430px;
   margin: 0 auto;
+`;
+
+export const CollectionUI = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 15px;
+  background: white;
+  padding-block: 26px;
+  border-radius: 12px;
+  margin-top: 26px;
+`;
+export const CollectionHeadUI = styled.div`
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  position: relative;
+`;
+
+export const CollectionTitleUI = styled.p`
+  font-family: Poppins-SemiBold;
+  font-size: 20px;
+  line-height: 100%;
+`;
+export const CollectionCntTxtUI = styled.p`
+  background-color: #e9e9e9;
+  color: black;
+  padding: 5px;
+  border-radius: 7px;
+  font-family: Poppins-SemiBold;
+  font-size: 16px;
+  line-height: 100%;
+  padding-block: 3px;
+`;
+
+export const CollectionArrowUI = styled.div`
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 20px;
 `;

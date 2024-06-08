@@ -53,14 +53,14 @@ export const routes = {
     element: AuthHoc(OrderListPage),
   },
   ["collection"]: {
-    path: "/collection/:user_id",
-    paramKey: ["user_id"],
-    element: CollectionPage,
-  },
-  ["collection"]: {
     path: "/collection",
     paramKey: [],
     element: AuthHoc(CollectionPage),
+  },
+  ["collectionOther"]: {
+    path: "/collection/:user_id",
+    paramKey: ["user_id"],
+    element: CollectionPage,
   },
   ["orderDetail"]: {
     path: "/order/:order_id",
@@ -97,10 +97,15 @@ export const routes = {
     paramKeys: ["invitation_id"],
     element: InvitationPage,
   },
-  ["my-profile"]: {
+  ["profile"]: {
     path: "/profile",
     paramKeys: [],
     element: AuthHoc(ProfilePage),
+  },
+  ["profileOther"]: {
+    path: "/profile/:user_id",
+    paramKeys: ["user_id"],
+    element: ProfilePage,
   },
   ["rudGate"]: {
     path: "/rud-gate",
@@ -111,11 +116,6 @@ export const routes = {
     path: "/rud-camera",
     paramKeys: [],
     element: RudCameraPage,
-  },
-  ["profile"]: {
-    path: "/profile/:user_id",
-    paramKeys: ["user_id"],
-    element: ProfilePage,
   },
   ["createRudcard"]: {
     path: "/create-rudcard",

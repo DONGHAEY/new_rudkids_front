@@ -6,11 +6,7 @@ export const PageUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
   text-align: center;
-  background-image: url("/Images/background.jpeg");
-  background-repeat: none;
-  background-size: cover;
 `;
 
 export const TitleWrapperUI = styled.div`

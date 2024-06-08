@@ -9,6 +9,7 @@ import PublicBizAssets from "./global/public-biz-assets";
 function App() {
   const [queryClient] = useRudkidsQueryClient();
   const [originChecked, setOriginChecked] = useState(false);
+
   useEffect(() => {
     if (originChecked) return;
     const allowOrigins = [process.env.REACT_APP_FE_URL];
@@ -37,22 +38,20 @@ function App() {
   }
 
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <Suspense fallback={<Loader />}>
-          <Routes
-            children={Object.values(routes)?.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={<route.element routeInfo={route} />}
-              />
-            ))}
-          />
-        </Suspense>
-        <GlobalStyle />
-      </QueryClientProvider>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Suspense fallback={<Loader />}>
+        <Routes
+          children={Object.values(routes)?.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={<route.element routeInfo={route} />}
+            />
+          ))}
+        />
+      </Suspense>
+      <GlobalStyle />
+    </QueryClientProvider>
   );
 }
 

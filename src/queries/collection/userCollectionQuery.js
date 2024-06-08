@@ -13,7 +13,10 @@ const getCollection = async (userId) => {
 const useCollectionQuery = (userId) => {
   return useQuery({
     queryKey: KEY(userId),
-    queryFn: async () => await getCollection(userId),
+    queryFn: async () => {
+      if (!userId) return [];
+      return await getCollection(userId);
+    },
   });
 };
 

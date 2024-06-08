@@ -3,25 +3,25 @@ import axiosInstance from "../../../axiosInstance";
 import mutationKey from "../../key";
 import queryKey from "../../../queries/key";
 
-export const KEY = [mutationKey.user, "unfollow"];
+export const KEY = [mutationKey.user, "follow", "toggle"];
 
-const unFollowUser = (targetUserId) => {
+const toggleFollowUser = (targetUserId) => {
   return axiosInstance
-    .delete(`/api/user/${targetUserId}/follow`)
+    .post(`/api/user/${targetUserId}/follow/toggle`)
     .then((res) => res.data);
 };
 
-const useUnFollowMutation = () => {
+const useToggleFollowMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
     mutationFn: async (targetUserId) => {
-      await unFollowUser(targetUserId);
+      await toggleFollowUser(targetUserId);
     },
-    onSuccess: async (data) => {
+    onSuccess: async () => {
       queryClient.invalidateQueries(queryKey.user);
     },
   });
 };
 
-export default useUnFollowMutation;
+export default useToggleFollowMutation;

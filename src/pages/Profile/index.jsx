@@ -1,5 +1,5 @@
 import Header from "../../shared_components/Header";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   BottomBarUI,
   BoxSectionUI,
@@ -17,6 +17,11 @@ import {
   TopSectionUI,
   UserImgUI,
   UserNickNameTxtUI,
+  CollectionUI,
+  CollectionHeadUI,
+  CollectionTitleUI,
+  CollectionCntTxtUI,
+  CollectionArrowUI,
 } from "./styles";
 import { BsHeartFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
@@ -26,21 +31,24 @@ import InfoList from "./InfoList";
 import FlipCard from "./FlipCard";
 import useUserQuery from "../../queries/user/useUserQuery";
 import { BiHeart } from "react-icons/bi";
-import useFollowMutation from "../../mutations/user/follow/useFollowMutation";
-import useUnFollowMutation from "../../mutations/user/follow/useUnFollowMutation";
+import useFollowToggleMutation from "../../mutations/user/follow/useFollowToggleMutation";
 import { useEffect, useState } from "react";
 import useUpdateTodayViewMutation from "../../mutations/user/follow/useUpdateTodayView";
 import eyeSrc from "./assets/eye.svg";
 import Invite from "./Invite";
 import CopyShare from "./CopyShare";
+import { GoArrowUpRight } from "react-icons/go";
+import useCollectionQuery from "../../queries/collection/userCollectionQuery";
+import Loader from "../../shared_components/Loader";
 
 export const ProfilePage = ({ routeInfo }) => {
   const params = useParams();
   const searchUserId = params[routeInfo.paramKeys[0]];
-  const { data: userData } = useUserQuery(searchUserId);
+  const { data: userData, isLoading: userLoading } = useUserQuery(searchUserId);
+  const { data: collectedProducts, isLoading: collectionLoading } =
+    useCollectionQuery(userData?.id);
 
-  const followMutation = useFollowMutation();
-  const unFollowMutation = useUnFollowMutation();
+  const followToggleMutation = useFollowToggleMutation();
   const updateTodayViewMutation = useUpdateTodayViewMutation();
 
   const [invitePopup, setInvitePopup] = useState(false);
@@ -49,12 +57,10 @@ export const ProfilePage = ({ routeInfo }) => {
   const isMyProfile = searchUserId ? false : true;
 
   const followBtnClickHandler = () => {
-    if (userData?.isFollower) {
-      unFollowMutation.mutateAsync(searchUserId);
-    } else {
-      followMutation.mutateAsync(searchUserId);
-    }
+    followToggleMutation.mutateAsync(searchUserId);
   };
+
+  const navigate = useNavigate();
 
   const inviteBtnClickHandler = () => setInvitePopup(true);
   const shareBtnClickHandler = () => setShareCopyPopup(true);
@@ -68,6 +74,10 @@ export const ProfilePage = ({ routeInfo }) => {
       updateTodayViewMutation.mutateAsync(searchUserId);
     }
   }, [searchUserId]);
+
+  if (userLoading || collectionLoading) {
+    return <Loader />;
+  }
 
   return (
     <PageUI>
@@ -100,6 +110,21 @@ export const ProfilePage = ({ routeInfo }) => {
             <Links links={userData?.links} />
           </LinksUI>
         </LinksSectionUI>
+        <CollectionUI
+          onClick={() => {
+            navigate(`/collection/${userData?.id}`);
+          }}
+        >
+          <CollectionArrowUI>
+            <GoArrowUpRight fontSize="25px" />
+          </CollectionArrowUI>
+          <CollectionHeadUI>
+            <CollectionTitleUI>Collection</CollectionTitleUI>
+            <CollectionCntTxtUI>
+              {collectedProducts?.length ?? 0}
+            </CollectionCntTxtUI>
+          </CollectionHeadUI>
+        </CollectionUI>
         <BottomBarUI>
           {isMyProfile && (
             <InviteBtnUI onClick={inviteBtnClickHandler}>
