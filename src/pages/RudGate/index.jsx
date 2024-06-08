@@ -24,7 +24,6 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import passedSrc from "./assets/passed.svg";
 import notPassedSrc from "./assets/not_passed.svg";
 import closeIconSrc from "./assets/closeicon.svg";
-//
 import { useScreenshot } from "use-react-screenshot";
 
 const RudGatePage = () => {
@@ -52,8 +51,12 @@ const RudGatePage = () => {
   const [photoUrl, setPhotoUrl] = useState(null);
   const [screenshot, takeScreenshot] = useScreenshot();
 
-  const captureShare = async () => {
-    const response = await fetch(screenshot);
+  const captureShare = async (url) => {
+    if (!url) {
+      alert("일시적인 오류입니다");
+      return;
+    }
+    const response = await fetch(url);
     const blob = await response.blob();
     const filename = `rud-gate.png`;
     const metadata = { type: "image/png" };
@@ -101,7 +104,7 @@ const RudGatePage = () => {
 
   useEffect(() => {
     if (screenshot) {
-      captureShare();
+      captureShare(screenshot);
     }
   }, [screenshot]);
 
@@ -128,7 +131,7 @@ const RudGatePage = () => {
           <ButtonListUI>
             <ShareBtnUI onClick={() => takeScreenshot(shareSceneRef.current)}>
               <Icon icon="bitcoin-icons:share-filled" color="white" />
-              <p>Share</p>
+              Share
             </ShareBtnUI>
             <PassOrBackBtnUI
               onClick={() => {
