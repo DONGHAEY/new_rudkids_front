@@ -20,7 +20,6 @@ import OrderBar from "./OrderBar";
 import Price from "../../shared_components/Price";
 import useCartQuery from "../../queries/cart/useCartQuery";
 import useCreateOrderMutation from "../../mutations/order/useCreateOrderMutation";
-import Footer from "../../shared_components/Footer";
 
 function CreateOrderPage() {
   const paymentMethodsRef = useRef();
@@ -91,7 +90,7 @@ function CreateOrderPage() {
               orderId: orderData?.id,
               orderName: `루키즈`,
               successUrl: `${originForToss}/pay`,
-              failUrl: `${originForToss}/order/${orderData?.id}`,
+              failUrl: `${originForToss}/pay-fail`,
             };
             setGeneratedOrder(obj);
             paymentWidget.requestPayment(obj);

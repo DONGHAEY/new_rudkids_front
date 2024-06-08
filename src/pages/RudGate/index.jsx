@@ -61,12 +61,15 @@ const RudGatePage = () => {
     const data = {
       files: [imageFile],
     };
-    console.log(screenshot);
-    if (!document?.window?.navigator?.canShare()) {
+    if (!document.window.navigator) {
+      alert("지원하지 않는 기기");
+      return;
+    }
+    if (!document.window.navigator.canShare()) {
       alert("해당 기기에서는 지원하지 않습니다");
       return;
     }
-    await document.window.navigator.share(data);
+    await window.navigator.share(data);
   };
 
   const screenshotPhoto = useCallback(async () => {
