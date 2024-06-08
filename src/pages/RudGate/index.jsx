@@ -36,7 +36,7 @@ const RudGatePage = () => {
   };
 
   const [isPassed, setIsPassed] = useState(null);
-  const [photoUrl, setPhotoUrl] = useState("ss");
+  const [photoUrl, setPhotoUrl] = useState("");
   const [screenshot, takeScreenshot] = useScreenshot();
 
   const captureShare = async (url) => {
