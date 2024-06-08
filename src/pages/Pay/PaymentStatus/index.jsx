@@ -1,22 +1,22 @@
-import { ReactComponent as CheckedIcon } from "./assets/checked.svg";
+import { ReactComponent as BlackLogo } from "./assets/black_logo.svg";
 import { PaymentStatusUI, StatusTxtUI } from "./styles";
 
 const statusKR = {
-  completed: "완료됨",
+  completed: "성공",
   canceled: "취소됨",
-  [null]: "미완료",
+  [null]: "실패",
 };
 
 const statusColor = {
   completed: "#038fef",
-  canceled: "#038fef",
-  [null]: "#038fef",
+  canceled: "red",
+  [null]: "black",
 };
 
 const PaymentStatus = ({ status = null }) => {
   return (
     <PaymentStatusUI>
-      <CheckedIcon />
+      <BlackLogo />
       <StatusTxtUI color={statusColor[status]}>
         결제 {statusKR[status]}
       </StatusTxtUI>

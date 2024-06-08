@@ -16,19 +16,23 @@ import Shipping from "../../shared_components/Shipping";
 import OrderPrice from "../../shared_components/OrderPrice";
 import OrderProductList from "./OrderProductList";
 import Footer from "../../shared_components/Footer";
+import RudCardAlert from "./RudCardAlert";
+import { useBodyBackground } from "../../hooks/useBodyBackground";
 
 const OrderDetailPage = ({ routeInfo }) => {
   const params = useParams();
   const orderId = params[routeInfo.paramKeys[0]];
-
   const { data: orderData } = useOrderDetailQuery(orderId);
   const productsCnt = orderData?.orderProducts?.length;
   const editOrderShippingMutation = useEditOrderShippingMutation(orderId);
+
+  useBodyBackground("#f3f3f3");
 
   return (
     <PageUI>
       <Header isFixed />
       <FlexWrapperUI>
+        <RudCardAlert orderData={orderData} />
         <ColUI gap="40px">
           <ColUI gap="36px">
             <ColUI gap="14px">

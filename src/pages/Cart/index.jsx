@@ -11,11 +11,11 @@ import CartProduct from "./CartProduct";
 import CheckoutBar from "./CheckoutBar";
 import Price from "../../shared_components/Price";
 import smileSellerSrc from "./assets/smlile_seller.png";
-import eventCouponImgSrc from "./assets/coupon_1.png";
+// import eventCouponImgSrc from "./assets/coupon_1.png";
 import { useEffect, useMemo } from "react";
 import { usePopup } from "../../hooks/usePopup";
-import PopupRoute from "../../shared_components/PopupRoute";
-import ShippingEvent from "./ShippingEvent";
+// import PopupRoute from "../../shared_components/PopupRoute";
+// import ShippingEvent from "./ShippingEvent";
 import useCartQuery from "../../queries/cart/useCartQuery";
 import useEditShippingPriceToZeroMutation from "../../mutations/cart/useEditShippingPriceToZeroMutation";
 import Background from "../../shared_components/Background";
@@ -66,7 +66,7 @@ const CartPage = () => {
             totalShippingPrice={totalShippingPrice}
           />
         </PriceWrapperUI>
-        <div>
+        {/* <div>
           <img
             onClick={() => {
               popupNavigate("shipping_price_none_event");
@@ -74,15 +74,15 @@ const CartPage = () => {
             src={eventCouponImgSrc}
             width="100%"
           />
-        </div>
+        </div> */}
         <div>
           <img src={smileSellerSrc} height="153px" />
         </div>
       </FlexWrapperUI>
 
-      <PopupRoute name="shipping_price_none_event">
+      {/* <PopupRoute name="shipping_price_none_event">
         <ShippingEvent />
-      </PopupRoute>
+      </PopupRoute> */}
       <CheckoutBar cartData={myCartData} />
       <Background />
     </PageUI>

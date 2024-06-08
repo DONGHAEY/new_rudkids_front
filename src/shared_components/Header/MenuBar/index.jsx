@@ -26,7 +26,7 @@ const menuButtonDtList = [
   {
     name: "Rude\nCamera",
     iconNm: "ph:camera-fill",
-    path: "/rud-camera",
+    path: "/rud-gate",
   },
   {
     name: "Rank",

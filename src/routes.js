@@ -4,7 +4,7 @@ import LoginCallbackPage from "./pages/LoginCallback";
 import CartPage from "./pages/Cart";
 import CreateOrder from "./pages/CreateOrder";
 import OrderDetailPage from "./pages/OrderDetail";
-import Pay from "./pages/Pay";
+import PayPage from "./pages/Pay";
 import AuthHoc from "./shared_components/HOC/AuthHoc";
 import LoginPage from "./pages/Login";
 import InstaInfoPage from "./pages/InstaInfo";
@@ -15,11 +15,11 @@ import ProfileEditPage from "./pages/ProfileEdit";
 import CreateRudcardPage from "./pages/CreateRudcard";
 import RankPage from "./pages/Rank";
 import RudGatePage from "./pages/RudGate";
-import RudCameraPage from "./pages/RudCamera";
 import _401Page from "./pages/401";
 import LeagalPage from "./pages/Legal";
 import OrderListPage from "./pages/OrderList";
 import CollectionPage from "./pages/Collection";
+import PayFailPage from "./pages/PayFail";
 
 export const routes = {
   ["404"]: {
@@ -70,7 +70,12 @@ export const routes = {
   ["pay"]: {
     path: "/pay",
     paramKeys: [],
-    element: Pay,
+    element: PayPage,
+  },
+  ["payFail"]: {
+    path: "pay-fail",
+    paramKey: [],
+    element: PayFailPage,
   },
   ["login"]: {
     path: "login",
@@ -111,11 +116,6 @@ export const routes = {
     path: "/rud-gate",
     paramKeys: [],
     element: RudGatePage,
-  },
-  ["rudCamera"]: {
-    path: "/rud-camera",
-    paramKeys: [],
-    element: RudCameraPage,
   },
   ["createRudcard"]: {
     path: "/create-rudcard",

@@ -1,8 +1,0 @@
-{
-  "color": "#FFE818",
-  "name": "My Pet Fly",
-  "price": 139000,
-  "imageSrc": "/Items/my-pet-fly/my_pet_fly.png",
-  "modelSrc": "/Items/my-pet-fly/my_pet_fly.glb",
-  "components": []
-}

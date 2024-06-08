@@ -42,7 +42,7 @@ export const OrderPrice = ({ orderProductsPrice, shippingPrice, payment }) => {
         <TotalPriceTxtUI color={payment ? "#0075FF" : "#FF0000"}>
           {payment
             ? `₩ ${Number(payment.amount).toLocaleString("ko-KR")}`
-            : "결제 실패"}
+            : "결제 안됨"}
         </TotalPriceTxtUI>
       </PriceRowUI>
     </OrderPriceUI>

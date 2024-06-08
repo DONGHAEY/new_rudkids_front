@@ -1,9 +1,0 @@
-{
-  "color": "green",
-  "name": "shirt",
-  "price": 139000,
-
-  "imageSrc": "/Items/shirt/shirt.png",
-  "modelSrc": "/Items/shirt/shirt.glb",
-  "components": []
-}

@@ -1,15 +1,30 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const PageUI = styled.div`
   width: 100%;
-  min-height: 100%;
+  background-color: #f3f3f3;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100%;
+`;
+export const ManImgUI = styled.img`
+  position: absolute;
+  top: -40%;
+  height: 140%;
+  z-index: -1;
+  left: 0;
+`;
+
+export const TopInfoUI = styled.div`
+  position: relative;
+  width: 100%;
+  z-index: 0;
 `;
 
 export const FlexWrapperUI = styled.div`
-  padding-top: 33.5px;
+  padding-top: 67px;
   padding-bottom: 67px;
   display: flex;
   flex-direction: column;
@@ -47,18 +62,23 @@ export const SectionDscrptTxtUI = styled.h2`
   text-align: left;
 `;
 
-export const DateTxtUI = styled.div`
-  font-family: Poppins-SemiBold;
-  font-size: 13px;
-  line-height: 120%;
-  letter-spacing: 0%;
-  color: #6f6f6f;
+export const ActionBtnUI = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0075ff;
+  border: none;
+  padding-block: 18px;
+  border-radius: 24px;
+  font-family: Pretendard-Bold;
+  font-size: 20px;
+  color: #ffffff;
 `;
 
-export const CntTxtUI = styled.div`
-  font-family: Pretendard-Bold;
+export const BackLinkUI = styled(Link)`
+  font-family: Pretendard-SemiBold;
   font-size: 14px;
-  line-height: 120%;
-  letter-spacing: 0%;
-  color: #6f6f6f;
+  color: gray;
+  text-decoration: none;
+  text-align: center;
 `;

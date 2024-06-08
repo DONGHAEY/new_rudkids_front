@@ -1,66 +1,159 @@
-import { Camera } from "@mediapipe/camera_utils";
-import { Hands } from "@mediapipe/hands";
-import React, { useEffect, useRef } from "react";
-import Webcam from "react-webcam";
-import { useWindowSize } from "../../hooks/useWindowSize";
 import {
-  isSignaturePose,
-  onHandResults,
-} from "../RudCamera/RudkidsWebcam/utils/onResults";
-import { CanvasUI, PageUI } from "./styles";
-// import { ShareToInstagramStories } from "@koodos/share-to-insta-stories";
+  PageUI,
+  WecamSectionUI,
+  WebcamTemplateUI,
+  BottomSectionUI,
+  AbsoluteCenterUI,
+  TakeBtnUI,
+  ResultImgUI,
+  ButtonListUI,
+  PassOrBackBtnUI,
+  ShareBtnUI,
+  TakeBtnImgUI,
+  PassStatImgUI,
+  CloseImgUI,
+} from "./styles";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import template1 from "./assets/template1.svg";
+import templatePreview1 from "./assets/template-preview.svg";
+import { Hands } from "@mediapipe/hands";
+import { isSignaturePose } from "./utils/onResults";
+import Webcam from "react-webcam";
+import "./styles.css";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import passedSrc from "./assets/passed.svg";
+import notPassedSrc from "./assets/not_passed.svg";
+import closeIconSrc from "./assets/closeicon.svg";
+//
+import { useScreenshot } from "use-react-screenshot";
 
 const RudGatePage = () => {
-  const webcamRef = useRef(null);
-  const canvasRef = useRef(null);
+  const shareSceneRef = useRef();
+  const cameraRef = useRef();
 
-  const onTake = async () => {
-    const hands = new Hands({
-      locateFile: (file) => {
-        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-      },
-    });
-    hands.onResults((results) => {
-      for (const landmarks of results?.multiHandLandmarks) {
-        if (isSignaturePose(landmarks)) {
-          alert("통과됨");
-          return;
-        } //
-        alert("통과안됨");
-      }
-    });
-    const image = webcamRef.current?.video;
-    hands.setOptions({
-      maxNumHands: 2,
-      modelComplexity: 1,
-      minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5,
-    });
-    await hands.send({ image });
+  const template = {
+    imgUrl: template1,
+    previewImgUrl: templatePreview1,
   };
 
+  const webCamProps = {
+    ref: cameraRef,
+    className: "webcam",
+    audio: false,
+    mirrored: true,
+    screenshotFormat: "image/webp",
+    screenshotQuality: 1,
+    videoConstraints: {
+      facingMode: "user",
+    },
+  };
+
+  const [isPassed, setIsPassed] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState(null);
+  const [screenshot, takeScreenshot] = useScreenshot();
+
+  const captureShare = async () => {
+    const response = await fetch(screenshot);
+    const blob = await response.blob();
+    const filename = `rud-gate.png`;
+    const metadata = { type: "image/png" };
+    const imageFile = new File([blob], filename, metadata);
+    const data = {
+      files: [imageFile],
+    };
+    console.log(screenshot);
+    if (!document?.window?.navigator?.canShare()) {
+      alert("해당 기기에서는 지원하지 않습니다");
+      return;
+    }
+    await document.window.navigator.share(data);
+  };
+
+  const screenshotPhoto = useCallback(async () => {
+    const imageSrc = cameraRef.current.getScreenshot();
+    setPhotoUrl(imageSrc);
+  }, [cameraRef.current]);
+
+  const closePhoto = () => setPhotoUrl("");
+
+  useEffect(() => {
+    (async () => {
+      if (!photoUrl) {
+        setIsPassed(null);
+        return;
+      }
+      hands.onResults((results) => {
+        for (const landmarks of results?.multiHandLandmarks) {
+          if (isSignaturePose(landmarks)) {
+            setIsPassed(true);
+            return;
+          }
+        }
+        setIsPassed(false);
+      });
+      const image = cameraRef.current?.video;
+      await hands.send({ image });
+    })();
+  }, [cameraRef, photoUrl]);
+
+  useEffect(() => {
+    if (screenshot) {
+      captureShare();
+    }
+  }, [screenshot]);
+
   return (
-    <PageUI>
-      <Webcam
-        onClick={onTake}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
-        audio={false}
-        mirrored
-        ref={webcamRef}
-        width="100%"
-        height="100%"
-        screenshotFormat="image/jpeg"
-        screenshotQuality={1}
-        videoConstraints={{
-          facingMode: "user",
-        }}
-      />
+    <PageUI ref={shareSceneRef}>
+      <WecamSectionUI>
+        <Webcam {...webCamProps} />
+        {photoUrl && <ResultImgUI src={photoUrl} />}
+        {isPassed === null && <WebcamTemplateUI src={template.imgUrl} />}
+        {isPassed !== null && (
+          <CloseImgUI onClick={closePhoto} src={closeIconSrc} />
+        )}
+        {isPassed === true && <PassStatImgUI src={passedSrc} />}
+        {isPassed === false && <PassStatImgUI src={notPassedSrc} />}
+      </WecamSectionUI>
+      <BottomSectionUI>
+        {!photoUrl ? (
+          <AbsoluteCenterUI>
+            <TakeBtnUI onClick={screenshotPhoto}>
+              <TakeBtnImgUI src={template.previewImgUrl} />
+            </TakeBtnUI>
+          </AbsoluteCenterUI>
+        ) : (
+          <ButtonListUI>
+            <ShareBtnUI onClick={() => takeScreenshot(shareSceneRef.current)}>
+              <Icon icon="bitcoin-icons:share-filled" color="white" />
+              <p>Share</p>
+            </ShareBtnUI>
+            <PassOrBackBtnUI
+              onClick={() => {
+                if (!isPassed) {
+                  closePhoto();
+                } else {
+                  window.location = "/";
+                }
+              }}
+            >
+              <Icon icon={isPassed ? "bxs:log-in" : "lets-icons:refund-back"} />
+              {isPassed ? "Pass" : "Back"}
+            </PassOrBackBtnUI>
+          </ButtonListUI>
+        )}
+      </BottomSectionUI>
     </PageUI>
   );
 };
+
+const hands = new Hands({
+  locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
+});
+hands.setOptions({
+  maxNumHands: 2,
+  modelComplexity: 1,
+  minDetectionConfidence: 0.5,
+  minTrackingConfidence: 0.5,
+});
 
 export default RudGatePage;

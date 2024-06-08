@@ -46,10 +46,6 @@ const CreateRudcardPage = () => {
   const submit = async () => {
     if (!cardRef.current) alert("카드로드안됨");
     setCardCreating(true);
-    console.log({
-      width: cardRef.current.clientWidth,
-      height: cardRef.current.clientHeight,
-    });
     const dataURI = await htmlToImage.toSvg(cardRef.current, {
       width: cardRef.current.clientWidth,
       height: cardRef.current.clientHeight,
