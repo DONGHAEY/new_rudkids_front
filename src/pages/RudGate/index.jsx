@@ -36,7 +36,7 @@ const RudGatePage = () => {
   };
 
   const [isPassed, setIsPassed] = useState(null);
-  const [photoUrl, setPhotoUrl] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState("ss");
   const [screenshot, takeScreenshot] = useScreenshot();
 
   const captureShare = async (url) => {
@@ -47,16 +47,16 @@ const RudGatePage = () => {
     const response = await fetch(url);
     const blob = await response.blob();
     const filename = `rud-gate.png`;
-    const metadata = { type: "image/png" };
-    const imageFile = new File([blob], filename, metadata);
-    const data = {
-      files: [imageFile],
-    };
-    if (!window.navigator.canShare()) {
-      alert("해당 기기에서는 지원하지 않습니다");
-      return;
+    const imageFile = new File([blob], filename, {
+      type: blob.type,
+    });
+    try {
+      await window.navigator.share({
+        files: [imageFile],
+      });
+    } catch (e) {
+      alert(e);
     }
-    await window.navigator.share(data);
   };
 
   const screenshotPhoto = useCallback(async () => {
