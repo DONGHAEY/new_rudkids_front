@@ -35,18 +35,6 @@ const RudGatePage = () => {
     previewImgUrl: templatePreview1,
   };
 
-  const webCamProps = {
-    ref: cameraRef,
-    className: "webcam",
-    audio: false,
-    mirrored: true,
-    screenshotFormat: "image/webp",
-    screenshotQuality: 1,
-    videoConstraints: {
-      facingMode: "user",
-    },
-  };
-
   const [isPassed, setIsPassed] = useState(null);
   const [photoUrl, setPhotoUrl] = useState(null);
   const [screenshot, takeScreenshot] = useScreenshot();
@@ -64,11 +52,7 @@ const RudGatePage = () => {
     const data = {
       files: [imageFile],
     };
-    if (!document.window.navigator) {
-      alert("지원하지 않는 기기");
-      return;
-    }
-    if (!document.window.navigator.canShare()) {
+    if (!window.navigator.canShare()) {
       alert("해당 기기에서는 지원하지 않습니다");
       return;
     }
@@ -107,6 +91,17 @@ const RudGatePage = () => {
       captureShare(screenshot);
     }
   }, [screenshot]);
+
+  const webCamProps = {
+    ref: cameraRef,
+    audio: false,
+    mirrored: true,
+    screenshotFormat: "image/webp",
+    screenshotQuality: 1,
+    videoConstraints: {
+      facingMode: "user",
+    },
+  };
 
   return (
     <PageUI ref={shareSceneRef}>

@@ -127,13 +127,14 @@ export const WecamSectionUI = styled.div`
   width: 100%;
   height: 100%;
   min-height: 300px;
+  object-fit: cover;
   z-index: 0;
 `;
 
 export const ResultImgUI = styled.img`
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
   position: absolute;
   z-index: 1;
 `;
