@@ -15,17 +15,21 @@ export const isSignaturePose = (landmarks) => {
     console.log("4");
     return false;
   }
-  if (landmarks[8].x >= landmarks[4].x) {
-    if (landmarks[4].x <= landmarks[20].x) {
-      console.log("5");
+  if (landmarks[4].x <= landmarks[20].x) {
+    console.log("오른손");
+    // return false;
+    if (landmarks[5].x >= landmarks[4].x) {
+      // console.log("왼손--");
       return false;
     }
   }
-  if (landmarks[8].x <= landmarks[4].x) {
-    if (landmarks[4].x >= landmarks[20].x) {
-      console.log("6");
+  if (landmarks[4].x >= landmarks[20].x) {
+    console.log("왼손");
+    if (landmarks[5].x <= landmarks[4].x) {
+      // console.log("오른손--");
       return false;
     }
+    // return false;
   }
   return true;
 };
