@@ -234,5 +234,5 @@ export const CloseImgUI = styled.img`
   width: 30px;
   height: 30px;
   left: 30px;
-  z-index: 3;
+  z-index: 100;
 `;

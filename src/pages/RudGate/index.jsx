@@ -25,8 +25,22 @@ import passedSrc from "./assets/passed.svg";
 import notPassedSrc from "./assets/not_passed.svg";
 import closeIconSrc from "./assets/closeicon.svg";
 import { useScreenshot } from "use-react-screenshot";
+import StorageKey from "../../storageKey";
+import { useNavigate } from "react-router-dom";
+
+export const setPassedStat = (passStat) => {
+  localStorage.setItem(StorageKey.rud_gate_passed, passStat);
+};
+export const removePassedStat = () => {
+  localStorage.removeItem(StorageKey.rud_gate_passed);
+};
+export const getPassedStat = () => {
+  return localStorage.getItem(StorageKey.rud_gate_passed) ?? false;
+};
 
 const RudGatePage = () => {
+  const navigate = useNavigate();
+
   const shareSceneRef = useRef();
   const cameraRef = useRef();
 
@@ -133,7 +147,8 @@ const RudGatePage = () => {
                 if (!isPassed) {
                   closePhoto();
                 } else {
-                  window.location = "/";
+                  setPassedStat(true);
+                  navigate("/login");
                 }
               }}
             >

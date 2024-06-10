@@ -13,7 +13,7 @@ const useRudkidsQueryClient = () => {
         queryClient.cancelQueries([queryKey.user, "my"]);
         queryClient.cancelMutations(queryKey.user);
         queryClient.setQueryData([queryKey.user, "my"], null);
-        // const callback = window.location.pathname + window.location.search;
+
         navigate(`/401`);
         break;
       default:

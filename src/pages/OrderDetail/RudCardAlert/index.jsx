@@ -15,7 +15,7 @@ const RudCardAlert = ({ orderData }) => {
       const t1 = moment(orderData?.createdAt);
       const t2 = moment(new Date());
       const minutes = moment.duration(t1.diff(t2)).asMinutes();
-      if (minutes <= -180) {
+      if (minutes <= -60) {
         return false;
       }
     }

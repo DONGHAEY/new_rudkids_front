@@ -8,7 +8,7 @@ import PayPage from "./pages/Pay";
 import AuthHoc from "./shared_components/HOC/AuthHoc";
 import LoginPage from "./pages/Login";
 import InstaInfoPage from "./pages/InstaInfo";
-import InvitePage from "./pages/Invite";
+import FirstInvitePage from "./pages/FirstInvite";
 import InvitationPage from "./pages/Invitation";
 import ProfilePage from "./pages/Profile";
 import ProfileEditPage from "./pages/ProfileEdit";
@@ -92,10 +92,10 @@ export const routes = {
     paramKeys: [],
     element: AuthHoc(InstaInfoPage),
   },
-  ["invite"]: {
-    path: "/invite",
+  ["firstInvite"]: {
+    path: "/first-invite",
     paramKeys: [],
-    element: AuthHoc(InvitePage),
+    element: AuthHoc(FirstInvitePage),
   },
   ["invitation"]: {
     path: "/invitation/:invitation_id",

@@ -11,7 +11,6 @@ import {
   CallInfoUI,
   CallTextInfo,
   VideoUI,
-  ThumnailUI,
   CallFromImgUI,
 } from "./styles";
 import viedeoIconSrc from "./assets/viedeo-icon.png";
@@ -20,10 +19,10 @@ import facetimeSignSrc from "./assets/facetime_sign.svg";
 import callingLottie from "./assets/calling.json";
 import { Player } from "@lottiefiles/react-lottie-player";
 import callOffSrc from "./assets/call_off.svg";
-import engageVideoSrc from "./assets/video.mp4";
 import gsap from "gsap";
+import defaultVideo from "./assets/video.mp4";
 
-const CallingModal = () => {
+const CallingModal = ({ videoSrc = defaultVideo }) => {
   const [open, setOpen] = useState(true);
   const [sceneName, setSceneName] = useState("first");
 
@@ -92,7 +91,7 @@ const CallingModal = () => {
         <ViedeoImgUI src={viedeoIconSrc} ref={callIconRef} />
         {scenes[sceneName]}
         <VideoUI ref={videoRef} playsInline autoPlay onEnded={onFinished}>
-          <source src={engageVideoSrc} type="video/mp4" />
+          <source src={videoSrc} type="video/mp4" />
         </VideoUI>
       </CallBox>
     </ModalUI>

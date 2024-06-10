@@ -16,12 +16,13 @@ import KakaoSvg from "./assets/kakao.svg";
 import { PageUI } from "./styles";
 import Lock from "../../shared_components/Lock";
 import StepIndicator from "../../shared_components/StepIndicator";
-import { setLoginCallbackUrl } from "../LoginCallback";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import headSrc from "./assets/head.svg";
 import joinUsSrc from "./assets/joinUs.svg";
-// import useTossTesterLoginMutation from "../../mutations/auth/useTossTesterLoginMutation";
 import Background from "../../shared_components/Background";
+import StorageKey from "../../storageKey";
+import { useEffect } from "react";
+import { getPassedStat } from "../RudGate";
 
 const platforms = [
   {
@@ -40,16 +41,30 @@ const platforms = [
   },
 ];
 
+export const setLoginCallbackUrl = (callbackUrl) => {
+  localStorage.setItem(StorageKey.login_callback_url, callbackUrl);
+};
+export const removeLoginCallbackUrl = () => {
+  localStorage.removeItem(StorageKey.login_callback_url);
+};
+export const getLoginCallbackUrl = () => {
+  return localStorage.getItem(StorageKey.login_callback_url) ?? "/";
+};
+
 const LoginPage = () => {
-  const [searchParams] = useSearchParams();
-
-  const callback = searchParams.get("callback") ?? "/";
-
+  const navigate = useNavigate();
   const clickHandler = (platformName) => {
-    setLoginCallbackUrl(callback);
     const loginUrl = `${process.env.REACT_APP_SERVER_URL}/api/auth/${platformName}`;
     window.location.href = loginUrl;
   };
+
+  useEffect(() => {
+    const rudgatePassedStat = getPassedStat();
+    if (!rudgatePassedStat) {
+      //루드게이트 통과 전, 로그인 할 수 없음., 이미 회원가입한 사람인 경우에도 휴대폰을 바꿨을 경우 다시 통과해야함.
+      navigate("/rud-gate");
+    }
+  }, []);
 
   return (
     <PageUI>
