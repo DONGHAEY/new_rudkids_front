@@ -40,6 +40,7 @@ import Lottie from "react-lottie";
 import scanAnimation from "./assets/scan_lottie.json";
 import congraturationAnimation from "./assets/congraturation.json";
 import joinUsImgSrc from "./assets/join_us.svg";
+import ImgInstaShareModal from "./ImgShareModal";
 
 export const setPassedStat = (passStat) => {
   localStorage.setItem(StorageKey.rud_gate_passed, passStat);
@@ -63,27 +64,7 @@ const RudGatePage = () => {
   const [screenshot, takeScreenshot] = useScreenshot();
   const [ltCmpltEvnt, setLtCmpltEvnt] = useState(false);
 
-  const captureShare = async (url) => {
-    if (!url) {
-      alert("일시적인 오류입니다");
-      return;
-    }
-    const response = await fetch(url);
-    const blob = await response.blob();
-    const filename = `rud-gate.png`;
-    const imageFile = new File([blob], filename, {
-      type: blob.type,
-    });
-    try {
-      await window.navigator.share({
-        files: [imageFile],
-      });
-    } catch (e) {
-      alert(e);
-    }
-  };
-
-  const screenshotPhoto = useCallback(async () => {
+  const takeAPhoto = useCallback(async () => {
     const imageSrc = cameraRef.current.getScreenshot();
     setPhotoUrl(imageSrc);
   }, [cameraRef.current]);
@@ -123,12 +104,6 @@ const RudGatePage = () => {
       await hands.send({ image });
     })();
   }, [cameraRef, photoUrl]);
-
-  useEffect(() => {
-    if (screenshot) {
-      captureShare(screenshot);
-    }
-  }, [screenshot]);
 
   const webCamProps = {
     ref: cameraRef,
@@ -201,7 +176,7 @@ const RudGatePage = () => {
       <BottomSectionUI>
         {!photoUrl && (
           <AbsoluteCenterUI>
-            <TakeBtnUI onClick={screenshotPhoto}>
+            <TakeBtnUI onClick={takeAPhoto}>
               <TakeBtnImgUI src={templatePreview1} />
             </TakeBtnUI>
           </AbsoluteCenterUI>
@@ -232,6 +207,7 @@ const RudGatePage = () => {
           </ButtonListUI>
         )}
       </BottomSectionUI>
+      <ImgInstaShareModal dataUri={screenshot} />
       <CallingModal />
     </PageUI>
   );

@@ -22,6 +22,5 @@ export const RudAlertHeadUI = styled.div`
 `;
 
 export const ContentUI = styled.div`
-  display: flex;
   background: #dadada;
 `;
