@@ -28,7 +28,6 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import CallingModal from "../../shared_components/Calling";
 import { useSearchParams } from "react-router-dom";
 import videoSrc from "./assets/video.mp4";
-import useUserQuery from "../../queries/user/useUserQuery";
 
 const FirstInvitePage = () => {
   const createInvitationMutation = useCreateInvitationMutation();

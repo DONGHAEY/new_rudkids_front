@@ -7,13 +7,21 @@ import {
   TakeBtnUI,
   ResultImgUI,
   ButtonListUI,
-  PassOrBackBtnUI,
   ShareBtnUI,
   TakeBtnImgUI,
   PassStatImgUI,
   CloseImgUI,
+  BackBtnUI,
+  PassBtnUI,
+  JoinUsImgUI,
 } from "./styles";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import template1 from "./assets/template1.svg";
 import templatePreview1 from "./assets/template-preview.svg";
 import { Hands } from "@mediapipe/hands";
@@ -27,6 +35,11 @@ import closeIconSrc from "./assets/closeicon.svg";
 import { useScreenshot } from "use-react-screenshot";
 import StorageKey from "../../storageKey";
 import { useNavigate } from "react-router-dom";
+import CallingModal from "../../shared_components/Calling";
+import Lottie from "react-lottie";
+import scanAnimation from "./assets/scan_lottie.json";
+import congraturationAnimation from "./assets/congraturation.json";
+import joinUsImgSrc from "./assets/join_us.svg";
 
 export const setPassedStat = (passStat) => {
   localStorage.setItem(StorageKey.rud_gate_passed, passStat);
@@ -43,15 +56,12 @@ const RudGatePage = () => {
 
   const shareSceneRef = useRef();
   const cameraRef = useRef();
-
-  const template = {
-    imgUrl: template1,
-    previewImgUrl: templatePreview1,
-  };
+  const scanLtRef = useRef();
 
   const [isPassed, setIsPassed] = useState(null);
   const [photoUrl, setPhotoUrl] = useState("");
   const [screenshot, takeScreenshot] = useScreenshot();
+  const [ltCmpltEvnt, setLtCmpltEvnt] = useState(false);
 
   const captureShare = async (url) => {
     if (!url) {
@@ -78,7 +88,21 @@ const RudGatePage = () => {
     setPhotoUrl(imageSrc);
   }, [cameraRef.current]);
 
-  const closePhoto = () => setPhotoUrl("");
+  const closePhoto = () => {
+    setPhotoUrl("");
+  };
+
+  const getLtShowStat = useCallback(() => {
+    if (photoUrl && isPassed === null) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [photoUrl, isPassed]);
+
+  const isLtShow = useMemo(() => {
+    return getLtShowStat();
+  }, [ltCmpltEvnt, photoUrl]);
 
   useEffect(() => {
     (async () => {
@@ -122,42 +146,93 @@ const RudGatePage = () => {
       <WecamSectionUI>
         <Webcam {...webCamProps} />
         {photoUrl && <ResultImgUI src={photoUrl} />}
-        {isPassed === null && <WebcamTemplateUI src={template.imgUrl} />}
-        {isPassed !== null && (
-          <CloseImgUI onClick={closePhoto} src={closeIconSrc} />
+        {isPassed === null && <WebcamTemplateUI src={template1} />}
+        {!isLtShow && (
+          <>
+            {isPassed !== null && (
+              <CloseImgUI onClick={closePhoto} src={closeIconSrc} />
+            )}
+            {isPassed === true && <PassStatImgUI src={passedSrc} />}
+            {isPassed === false && <PassStatImgUI src={notPassedSrc} />}
+            {isPassed === true && (
+              <Lottie
+                style={{
+                  maxWidth: "430px",
+                  width: "100%",
+                  height: "100%",
+                  position: "fixed",
+                  margin: "0 auto",
+                  zIndex: 10,
+                }}
+                options={{
+                  animationData: congraturationAnimation,
+                  autoplay: true,
+                  loop: true,
+                }}
+              />
+            )}
+          </>
         )}
-        {isPassed === true && <PassStatImgUI src={passedSrc} />}
-        {isPassed === false && <PassStatImgUI src={notPassedSrc} />}
+        {isLtShow && (
+          <Lottie
+            ref={scanLtRef}
+            style={{
+              width: "300%",
+              height: "100%",
+              position: "absolute",
+              zIndex: 9,
+            }}
+            eventListeners={[
+              {
+                eventName: "loopComplete",
+                callback: () => setLtCmpltEvnt(!ltCmpltEvnt),
+              },
+            ]}
+            rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
+            options={{
+              animationData: scanAnimation,
+              autoplay: true,
+              loop: true,
+            }}
+          />
+        )}
+        <JoinUsImgUI src={joinUsImgSrc} />
       </WecamSectionUI>
       <BottomSectionUI>
-        {!photoUrl ? (
+        {!photoUrl && (
           <AbsoluteCenterUI>
             <TakeBtnUI onClick={screenshotPhoto}>
-              <TakeBtnImgUI src={template.previewImgUrl} />
+              <TakeBtnImgUI src={templatePreview1} />
             </TakeBtnUI>
           </AbsoluteCenterUI>
-        ) : (
+        )}
+        {!isLtShow && photoUrl && (
           <ButtonListUI>
             <ShareBtnUI onClick={() => takeScreenshot(shareSceneRef.current)}>
               <Icon icon="bitcoin-icons:share-filled" color="white" />
               Share
             </ShareBtnUI>
-            <PassOrBackBtnUI
-              onClick={() => {
-                if (!isPassed) {
-                  closePhoto();
-                } else {
+            {!isPassed && (
+              <BackBtnUI onClick={closePhoto}>
+                <Icon icon={"lets-icons:refund-back"} />
+                Back
+              </BackBtnUI>
+            )}
+            {isPassed && (
+              <PassBtnUI
+                onClick={() => {
                   setPassedStat(true);
                   navigate("/login");
-                }
-              }}
-            >
-              <Icon icon={isPassed ? "bxs:log-in" : "lets-icons:refund-back"} />
-              {isPassed ? "Pass" : "Back"}
-            </PassOrBackBtnUI>
+                }}
+              >
+                <Icon icon="bxs:log-in" />
+                Get in
+              </PassBtnUI>
+            )}
           </ButtonListUI>
         )}
       </BottomSectionUI>
+      <CallingModal />
     </PageUI>
   );
 };

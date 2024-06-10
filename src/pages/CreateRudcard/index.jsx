@@ -5,7 +5,7 @@ import NameInput from "./NameInput";
 import BirthInput from "./BirthInput";
 import DescriptionInput from "./DescriptionInput";
 import useUserQuery from "../../queries/user/useUserQuery";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import useEditCardImgUrlMutation from "../../mutations/user/useEditCardImgUrlMutation";
 import Loader from "../../shared_components/Loader";
 import { useNavigate } from "react-router-dom";

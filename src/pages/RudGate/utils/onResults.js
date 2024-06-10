@@ -1,6 +1,3 @@
-import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
-import { HAND_CONNECTIONS } from "@mediapipe/hands";
-
 export const isSignaturePose = (landmarks) => {
   if (landmarks[10].y >= landmarks[12].y) {
     console.log("1");
@@ -53,39 +50,4 @@ export const isFuckyouPose = (landmarks) => {
     }
   }
   return false;
-};
-
-export const onHandResults = (canvasRef, results) => {
-  const canvasCtx = canvasRef.current?.getContext("2d");
-
-  for (const landmarks of results?.multiHandLandmarks) {
-    let color = "#ffffff";
-    if (isSignaturePose(landmarks)) {
-      color = "green";
-    } //
-    else if (isFuckyouPose(landmarks)) {
-      color = "hotpink";
-    }
-
-    drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
-      color,
-      lineWidth: 1,
-    });
-    drawLandmarks(canvasCtx, landmarks, {
-      color: color,
-      lineWidth: 1,
-      radius: 1,
-    });
-  }
-};
-
-export const onFaceResults = (canvasRef, results) => {
-  const canvasCtx = canvasRef.current?.getContext("2d");
-  for (const landmarks of results?.multiFaceLandmarks) {
-    drawLandmarks(canvasCtx, landmarks, {
-      color: "#ffffff",
-      lineWidth: 0.5,
-      radius: 0.5,
-    });
-  }
 };

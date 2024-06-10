@@ -136,7 +136,7 @@ export const ResultImgUI = styled.img`
   height: 100%;
   /* object-fit: cover; */
   position: absolute;
-  z-index: 1;
+  z-index: 9;
 `;
 
 export const WebcamTemplateUI = styled.img`
@@ -144,7 +144,7 @@ export const WebcamTemplateUI = styled.img`
   object-fit: cover;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 10;
 `;
 
 export const BottomSectionUI = styled.div`
@@ -161,8 +161,8 @@ export const BottomSectionUI = styled.div`
 
 export const AbsoluteCenterUI = styled.div`
   width: 100%;
-  height: 100%;
-  bottom: 20%;
+  height: 130%;
+  bottom: 10%;
   position: absolute;
   display: flex;
   align-items: center;
@@ -170,7 +170,7 @@ export const AbsoluteCenterUI = styled.div`
 `;
 
 export const TakeBtnUI = styled.div`
-  height: 90%;
+  height: 100%;
   aspect-ratio: 1/1;
   margin: 0 auto;
   border-radius: 100%;
@@ -207,7 +207,7 @@ export const ShareBtnUI = styled.button`
   letter-spacing: -0.32px;
 `;
 
-export const PassOrBackBtnUI = styled.button`
+export const PassBtnUI = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,6 +218,22 @@ export const PassOrBackBtnUI = styled.button`
   background: linear-gradient(180deg, #ff0000 0%, #db0000 100%);
   border-radius: 64px;
   border: solid 1px #cf0000;
+  font-family: Poppins-SemiBold;
+  font-size: 24px;
+  letter-spacing: -0.32px;
+`;
+
+export const BackBtnUI = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: 10px;
+  width: 100%;
+  border: none;
+  background: linear-gradient(180deg, #e4e4e4 0%, #a7a7a7 100%);
+  border-radius: 64px;
+  border: solid 1px #a9a9a9;
   font-family: Poppins-SemiBold;
   font-size: 24px;
   letter-spacing: -0.32px;
@@ -235,4 +251,12 @@ export const CloseImgUI = styled.img`
   height: 30px;
   left: 30px;
   z-index: 100;
+`;
+
+export const JoinUsImgUI = styled.img`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 60px;
+  z-index: 9;
 `;
