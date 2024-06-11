@@ -10,21 +10,29 @@ import useAddCartProductMutation from "../../../mutations/cart/useAddCartProduct
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SelectModal from "./SelectModal";
+import PutCartSuccessModal from "./PutCartSuccess";
 
 const ActionBar = ({ productData }) => {
   const navigate = useNavigate();
   const [selectOptionModal, setSelectOptionModal] = useState(false);
+  const [putCartSuccessModal, setPutCartSuccessModal] = useState(false);
   const putCartProductMutation = useAddCartProductMutation();
 
-  const cartButtonClickHandler = async () => {
-    if (productData?.optionGroups?.length === 0) {
-      try {
-        await putCartProductMutation.mutateAsync({ productId: productData.id });
-      } catch (e) {}
-      return;
-    } else {
+  const cartButtonClickHandler = async (optionIds = []) => {
+    console.log(productData?.optionGroups?.length, optionIds?.length, "--");
+    if (productData?.optionGroups?.length !== 0 && !optionIds?.length) {
       setSelectOptionModal(true);
+      return;
     }
+    try {
+      await putCartProductMutation.mutateAsync(
+        { productId: productData.id, optionIds },
+        {
+          onSuccess: () => setPutCartSuccessModal(true),
+        }
+      );
+    } catch (e) {}
+    return;
   };
 
   const moreButtonClickHandler = async () => {
@@ -59,12 +67,14 @@ const ActionBar = ({ productData }) => {
         onClose={() => setSelectOptionModal(false)}
         optionGroups={productData?.optionGroups}
         onSelected={async (optionIds) => {
-          await putCartProductMutation.mutateAsync({
-            productId: productData.id,
-            optionIds,
-          });
+          await cartButtonClickHandler(optionIds);
         }}
       />
+      <PutCartSuccessModal
+        productData={productData}
+        isOpen={putCartSuccessModal}
+        onClose={() => setPutCartSuccessModal(false)}
+      ></PutCartSuccessModal>
       <SpacerUI />
     </>
   );
