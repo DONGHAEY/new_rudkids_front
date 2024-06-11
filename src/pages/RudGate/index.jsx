@@ -66,6 +66,7 @@ const RudGatePage = () => {
   const [screenshot, takeScreenshot] = useScreenshot();
   const [ltCmpltEvnt, setLtCmpltEvnt] = useState(false);
   const [videoPermission, setVideoPermission] = useState(null);
+  const [videoStream, setVideoStream] = useState(null);
 
   const takeAPhoto = useCallback(async () => {
     const imageSrc = cameraRef.current.getScreenshot();
@@ -97,11 +98,23 @@ const RudGatePage = () => {
   };
 
   const stopVideoStream = async () => {
-    const webcam = cameraRef.current;
-    if (webcam && webcam.stream) {
-      webcam.stream.getTracks().forEach((track) => track.stop());
-    }
+    // const webcam = cameraRef.current;
+    // if (webcam && webcam.stream) {
+    // webcam.stream.getTracks().forEach((track) => {
+    //   webcam.stream.removeTrack(track);
+    //   track.stop();
+    // });
+    // }
   };
+
+  useEffect(() => {
+    return () => {
+      if (!videoStream) return;
+      videoStream.getTracks().forEach((track) => {
+        track.stop();
+      });
+    };
+  }, [videoStream]);
 
   useEffect(() => {
     (async () => {
@@ -138,7 +151,15 @@ const RudGatePage = () => {
     <PageUI ref={shareSceneRef}>
       <WecamSectionUI>
         <AllowReqImgUI src={allowImgSrc} />
-        {videoPermission && <Webcam {...webCamProps} />}
+        {videoPermission && (
+          <Webcam
+            {...webCamProps}
+            onUserMedia={(stream) => {
+              console.log(stream);
+              setVideoStream(stream);
+            }}
+          />
+        )}
         {videoPermission && <HelpSignModal />}
         {photoUrl && <ResultImgUI src={photoUrl} />}
         {isPassed === null && <WebcamTemplateUI src={template} />}
@@ -213,7 +234,6 @@ const RudGatePage = () => {
             ) : (
               <PassBtnUI
                 onClick={() => {
-                  stopVideoStream();
                   setPassedStat(true);
                   navigate("/login");
                 }}
