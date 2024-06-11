@@ -4,18 +4,18 @@ import {
   WebcamTemplateUI,
   BottomSectionUI,
   AbsoluteCenterUI,
-  TakeBtnUI,
   ResultImgUI,
   ButtonListUI,
   ShareBtnUI,
-  TakeBtnImgUI,
   PassStatImgUI,
   CloseImgUI,
   BackBtnUI,
   PassBtnUI,
   JoinUsImgUI,
   AllowReqImgUI,
+  TakeBtnSectionUI,
 } from "./styles";
+//
 import React, {
   useCallback,
   useEffect,
@@ -23,8 +23,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import template1 from "./assets/template1.svg";
-import templatePreview1 from "./assets/template-preview.svg";
+import rudBottomSrc from "./assets/rud_gate_bottom.svg";
 import { Hands } from "@mediapipe/hands";
 import { isSignaturePose } from "./utils/onResults";
 import Webcam from "react-webcam";
@@ -42,6 +41,7 @@ import scanAnimation from "./assets/scan_lottie.json";
 import congraturationAnimation from "./assets/congraturation.json";
 import joinUsImgSrc from "./assets/join_us.svg";
 import allowImgSrc from "./assets/allow.jpeg";
+import template from "./assets/template.svg";
 import ImgInstaShareModal from "./ImgShareModal";
 import HelpSignModal from "./HelpSignModal";
 
@@ -134,8 +134,9 @@ const RudGatePage = () => {
       <WecamSectionUI>
         <AllowReqImgUI src={allowImgSrc} />
         {videoPermission && <Webcam {...webCamProps} />}
+        {videoPermission && <HelpSignModal />}
         {photoUrl && <ResultImgUI src={photoUrl} />}
-        {isPassed === null && <WebcamTemplateUI src={template1} />}
+        {isPassed === null && <WebcamTemplateUI src={template} />}
         {!isLtShow && (
           <>
             {isPassed !== null && (
@@ -190,9 +191,8 @@ const RudGatePage = () => {
       <BottomSectionUI>
         {!photoUrl && (
           <AbsoluteCenterUI>
-            <TakeBtnUI onClick={takeAPhoto}>
-              <TakeBtnImgUI src={templatePreview1} />
-            </TakeBtnUI>
+            <img style={{ width: "100%" }} src={rudBottomSrc} />
+            <TakeBtnSectionUI onClick={takeAPhoto} />
           </AbsoluteCenterUI>
         )}
         {!isLtShow && photoUrl && (
@@ -201,13 +201,12 @@ const RudGatePage = () => {
               <Icon icon="bitcoin-icons:share-filled" color="white" />
               Share
             </ShareBtnUI>
-            {!isPassed && (
+            {!isPassed ? (
               <BackBtnUI onClick={closePhoto}>
                 <Icon icon={"lets-icons:refund-back"} />
                 Back
               </BackBtnUI>
-            )}
-            {isPassed && (
+            ) : (
               <PassBtnUI
                 onClick={() => {
                   setPassedStat(true);
@@ -221,7 +220,6 @@ const RudGatePage = () => {
           </ButtonListUI>
         )}
       </BottomSectionUI>
-      {requestVideoPermission && <HelpSignModal />}
       <ImgInstaShareModal dataUri={screenshot} />
       <CallingModal onClosed={requestVideoPermission} />
     </PageUI>

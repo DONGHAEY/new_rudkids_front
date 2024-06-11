@@ -169,25 +169,17 @@ export const AbsoluteCenterUI = styled.div`
   width: 100%;
   height: 130%;
   bottom: 10%;
-  position: absolute;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
 `;
 
-export const TakeBtnUI = styled.div`
-  height: 100%;
-  aspect-ratio: 1/1;
-  margin: 0 auto;
-  border-radius: 100%;
-  position: relative;
-  /* border: white 3px solid; */
-`;
-
-export const TakeBtnImgUI = styled.img`
+export const TakeBtnSectionUI = styled.div`
   position: absolute;
   height: 100%;
-  width: 100%;
+  width: 29%;
+  left: 40%;
+  border-radius: 100%;
+  z-index: 100;
 `;
 
 export const ButtonListUI = styled.div`
