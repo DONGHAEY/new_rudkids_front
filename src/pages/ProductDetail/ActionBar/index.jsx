@@ -74,7 +74,7 @@ const ActionBar = ({ productData }) => {
         productData={productData}
         isOpen={putCartSuccessModal}
         onClose={() => setPutCartSuccessModal(false)}
-      ></PutCartSuccessModal>
+      />
       <SpacerUI />
     </>
   );

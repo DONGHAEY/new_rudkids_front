@@ -131,6 +131,12 @@ export const WecamSectionUI = styled.div`
   z-index: 0;
 `;
 
+export const AllowReqImgUI = styled.img`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+`;
+
 export const ResultImgUI = styled.img`
   /* width: 100%; */
   height: 100%;

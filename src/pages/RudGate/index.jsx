@@ -14,6 +14,7 @@ import {
   BackBtnUI,
   PassBtnUI,
   JoinUsImgUI,
+  AllowReqImgUI,
 } from "./styles";
 import React, {
   useCallback,
@@ -40,7 +41,9 @@ import Lottie from "react-lottie";
 import scanAnimation from "./assets/scan_lottie.json";
 import congraturationAnimation from "./assets/congraturation.json";
 import joinUsImgSrc from "./assets/join_us.svg";
+import allowImgSrc from "./assets/allow.jpeg";
 import ImgInstaShareModal from "./ImgShareModal";
+import HelpSignModal from "./HelpSignModal";
 
 export const setPassedStat = (passStat) => {
   localStorage.setItem(StorageKey.rud_gate_passed, passStat);
@@ -63,6 +66,7 @@ const RudGatePage = () => {
   const [photoUrl, setPhotoUrl] = useState("");
   const [screenshot, takeScreenshot] = useScreenshot();
   const [ltCmpltEvnt, setLtCmpltEvnt] = useState(false);
+  const [videoPermission, setVideoPermission] = useState(null);
 
   const takeAPhoto = useCallback(async () => {
     const imageSrc = cameraRef.current.getScreenshot();
@@ -84,6 +88,15 @@ const RudGatePage = () => {
   const isLtShow = useMemo(() => {
     return getLtShowStat();
   }, [ltCmpltEvnt, photoUrl]);
+
+  const requestVideoPermission = async () => {
+    try {
+      await window.navigator.mediaDevices.getUserMedia({ video: true });
+      setVideoPermission(true);
+    } catch (error) {
+      setVideoPermission(false);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -119,7 +132,8 @@ const RudGatePage = () => {
   return (
     <PageUI ref={shareSceneRef}>
       <WecamSectionUI>
-        <Webcam {...webCamProps} />
+        <AllowReqImgUI src={allowImgSrc} />
+        {videoPermission && <Webcam {...webCamProps} />}
         {photoUrl && <ResultImgUI src={photoUrl} />}
         {isPassed === null && <WebcamTemplateUI src={template1} />}
         {!isLtShow && (
@@ -207,8 +221,9 @@ const RudGatePage = () => {
           </ButtonListUI>
         )}
       </BottomSectionUI>
+      {requestVideoPermission && <HelpSignModal />}
       <ImgInstaShareModal dataUri={screenshot} />
-      <CallingModal />
+      <CallingModal onClosed={requestVideoPermission} />
     </PageUI>
   );
 };

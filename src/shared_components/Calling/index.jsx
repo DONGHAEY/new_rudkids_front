@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   CallBox,
   ModalUI,
@@ -22,7 +22,7 @@ import callOffSrc from "./assets/call_off.svg";
 import gsap from "gsap";
 import defaultVideo from "./assets/video.mp4";
 
-const CallingModal = ({ videoSrc = defaultVideo }) => {
+const CallingModal = ({ videoSrc = defaultVideo, onClosed }) => {
   const [open, setOpen] = useState(true);
   const [sceneName, setSceneName] = useState("first");
 
@@ -79,6 +79,11 @@ const CallingModal = ({ videoSrc = defaultVideo }) => {
       },
     });
   };
+  useEffect(() => {
+    if (open === false) {
+      onClosed();
+    }
+  }, [open]);
 
   const scenes = {
     first: <Step1 onAccept={onAccept} />,
