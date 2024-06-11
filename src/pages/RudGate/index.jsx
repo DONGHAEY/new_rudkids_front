@@ -60,7 +60,6 @@ const RudGatePage = () => {
 
   const shareSceneRef = useRef();
   const cameraRef = useRef();
-  const scanLtRef = useRef();
 
   const [isPassed, setIsPassed] = useState(null);
   const [photoUrl, setPhotoUrl] = useState("");
@@ -73,11 +72,9 @@ const RudGatePage = () => {
     setPhotoUrl(imageSrc);
   }, [cameraRef.current]);
 
-  const closePhoto = () => {
-    setPhotoUrl("");
-  };
+  const closePhoto = () => setPhotoUrl("");
 
-  const getLtShowStat = useCallback(() => {
+  const geScantLtShowStat = useCallback(() => {
     if (photoUrl && isPassed === null) {
       return true;
     } else {
@@ -85,8 +82,8 @@ const RudGatePage = () => {
     }
   }, [photoUrl, isPassed]);
 
-  const isLtShow = useMemo(() => {
-    return getLtShowStat();
+  const isScanLtShow = useMemo(() => {
+    return geScantLtShowStat();
   }, [ltCmpltEvnt, photoUrl]);
 
   const requestVideoPermission = async () => {
@@ -96,6 +93,13 @@ const RudGatePage = () => {
     } catch (error) {
       setVideoPermission(false);
       requestVideoPermission();
+    }
+  };
+
+  const stopVideoStream = async () => {
+    const webcam = cameraRef.current;
+    if (webcam && webcam.stream) {
+      webcam.stream.getTracks().forEach((track) => track.stop());
     }
   };
 
@@ -119,15 +123,6 @@ const RudGatePage = () => {
     })();
   }, [cameraRef, photoUrl]);
 
-  useEffect(() => {
-    return () => {
-      const webcam = cameraRef.current;
-      if (webcam && webcam.stream) {
-        webcam.stream.getTracks().forEach((track) => track.stop());
-      }
-    };
-  }, []);
-
   const webCamProps = {
     ref: cameraRef,
     audio: false,
@@ -147,7 +142,7 @@ const RudGatePage = () => {
         {videoPermission && <HelpSignModal />}
         {photoUrl && <ResultImgUI src={photoUrl} />}
         {isPassed === null && <WebcamTemplateUI src={template} />}
-        {!isLtShow && (
+        {!isScanLtShow && (
           <>
             {isPassed !== null && (
               <CloseImgUI onClick={closePhoto} src={closeIconSrc} />
@@ -173,9 +168,8 @@ const RudGatePage = () => {
             )}
           </>
         )}
-        {isLtShow && (
+        {isScanLtShow && (
           <Lottie
-            ref={scanLtRef}
             style={{
               width: "300%",
               height: "100%",
@@ -205,7 +199,7 @@ const RudGatePage = () => {
             <TakeBtnSectionUI onClick={takeAPhoto} />
           </AbsoluteCenterUI>
         )}
-        {!isLtShow && photoUrl && (
+        {!isScanLtShow && photoUrl && (
           <ButtonListUI>
             <ShareBtnUI onClick={() => takeScreenshot(shareSceneRef.current)}>
               <Icon icon="bitcoin-icons:share-filled" color="white" />
@@ -219,6 +213,7 @@ const RudGatePage = () => {
             ) : (
               <PassBtnUI
                 onClick={() => {
+                  stopVideoStream();
                   setPassedStat(true);
                   navigate("/login");
                 }}
