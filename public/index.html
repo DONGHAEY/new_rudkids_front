@@ -71,12 +71,20 @@
 
   <div id="sensitive-content" style="position: fixed; top: 0; left: 0"></div>
   <script>
-    // Observe the sensitive content
-
-    // setTimeout(() => {
-    //   observer.observe(sensitiveContent);
-    // }, 1000);
-    observer.observe(sensitiveContent);
+    let beforeClickTimeout = null;
+    // window.addEventListener("click", function () {
+    //   beforeClickTimeout = setTimeout(() => {
+    //     beforeClickTimeout = null;
+    //   }, 100);
+    // });
+    // window.addEventListener("blur", function () {
+    //   // if (beforeClickTimeout) {
+    //   //   clearTimeout(beforeClickTimeout);
+    //   //   beforeClickTimeout = null;
+    //   //   return;
+    //   // }
+    //   alert("창이 포커스를 잃었습니다. 스크린샷이 찍혔을 수 있습니다.");
+    // });
   </script>
   <link href="/poppins-fonts.css" rel="stylesheet" type="text/css" />
   <link href="/pretendard-fonts.css" rel="stylesheet" type="text/css" />

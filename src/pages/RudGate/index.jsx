@@ -95,6 +95,7 @@ const RudGatePage = () => {
       setVideoPermission(true);
     } catch (error) {
       setVideoPermission(false);
+      requestVideoPermission();
     }
   };
 
@@ -117,6 +118,15 @@ const RudGatePage = () => {
       await hands.send({ image });
     })();
   }, [cameraRef, photoUrl]);
+
+  useEffect(() => {
+    return () => {
+      const webcam = cameraRef.current;
+      if (webcam && webcam.stream) {
+        webcam.stream.getTracks().forEach((track) => track.stop());
+      }
+    };
+  }, []);
 
   const webCamProps = {
     ref: cameraRef,
