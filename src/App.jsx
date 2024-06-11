@@ -33,6 +33,11 @@ function App() {
     });
   }, []);
 
+  useLayoutEffect(() => {
+    const body = document.getElementsByTagName("body");
+    body.scrollTop = 0;
+  }, [window.location.pathname]);
+
   if (!originChecked) {
     return null;
   }
