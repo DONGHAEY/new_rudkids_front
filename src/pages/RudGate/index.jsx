@@ -97,16 +97,6 @@ const RudGatePage = () => {
     }
   };
 
-  const stopVideoStream = async () => {
-    // const webcam = cameraRef.current;
-    // if (webcam && webcam.stream) {
-    // webcam.stream.getTracks().forEach((track) => {
-    //   webcam.stream.removeTrack(track);
-    //   track.stop();
-    // });
-    // }
-  };
-
   useEffect(() => {
     return () => {
       if (!videoStream) return;

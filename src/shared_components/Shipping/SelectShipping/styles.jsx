@@ -1,21 +1,21 @@
 import styled from "styled-components";
 
 export const ShippingListUI = styled.div`
-  padding-block: 20px;
   display: flex;
   padding-inline: 5%;
   flex-direction: column;
   align-items: center;
   height: 100%;
-  overflow: scroll;
   background: white;
   gap: 21px;
+  padding-block: 10px;
 `;
 
 export const AddButtonUI = styled.button`
   border: solid 2px #e7e7e7;
   width: 100%;
   border-radius: 12px;
+  margin-top: 10px;
   min-height: 55px;
   display: flex;
   flex-direction: row;

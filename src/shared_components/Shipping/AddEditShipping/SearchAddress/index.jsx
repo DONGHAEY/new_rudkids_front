@@ -1,9 +1,4 @@
-import {
-  AddressListUI,
-  SearchAddressUI,
-  PageUI,
-  SearchSectionUI,
-} from "./styles";
+import { AddressListUI, SearchAddressUI, SearchSectionUI } from "./styles";
 import ColField from "../../../Field/ColField";
 import { TextInputUI } from "../styles";
 import Address from "./Address";

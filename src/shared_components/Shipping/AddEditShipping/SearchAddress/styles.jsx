@@ -4,7 +4,6 @@ export const SearchAddressUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block: 30px;
   width: 100%;
   height: 100%;
   background: white;
@@ -14,6 +13,7 @@ export const SearchAddressUI = styled.div`
 export const SearchSectionUI = styled.div`
   display: flex;
   width: 90%;
+  margin-top: 30px;
 `;
 
 export const AddressListUI = styled.div`
@@ -21,7 +21,6 @@ export const AddressListUI = styled.div`
   width: 90%;
   flex-direction: column;
   gap: 10px;
-  overflow: scroll;
 `;
 
 export const TextInputUI = styled.input`

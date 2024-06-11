@@ -1,15 +1,25 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useLayoutEffect, useState } from "react";
 import { DynamicSpacerUI } from "./styles";
-import { useWindowSize } from "../../hooks/useWindowSize";
 
-const DynamicSpacer = ({ refCurrent }) => {
-  const { height } = useWindowSize();
+const DynamicSpacer = ({ ref }) => {
   const [spacerHeight, setSpacerHeight] = useState(0);
 
-  useEffect(() => {
-    if (!refCurrent) return;
-    setSpacerHeight(refCurrent.clientHeight);
-  }, [height, refCurrent]);
+  function handleResize() {
+    alert(ref?.current?.clientHeight);
+    setSpacerHeight(ref?.current?.clientHeight);
+  }
+
+  useLayoutEffect(() => {
+    if (!ref?.current) return;
+    ref?.current?.addEventListener("resize", handleResize);
+    return () => ref?.current?.removeEventListener("resize", handleResize);
+  }, [ref?.current]);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     handleResize();
+  //   }, 1000);
+  // }, [refCurrent]);
 
   return (
     <DynamicSpacerUI
@@ -20,4 +30,4 @@ const DynamicSpacer = ({ refCurrent }) => {
   );
 };
 
-export default DynamicSpacer;
+export default memo(DynamicSpacer);

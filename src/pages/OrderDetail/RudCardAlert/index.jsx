@@ -13,13 +13,12 @@ const RudCardAlert = ({ orderData }) => {
     if (orderData.payment?.status !== "completed") return false;
     if (!userData.cardImgUrl) {
       const t1 = moment(orderData?.createdAt);
-      const t2 = moment(new Date());
+      const t2 = moment(new Date()?.toISOString());
       const minutes = moment.duration(t1.diff(t2)).asMinutes();
-      if (minutes <= -60) {
-        return false;
-      }
+      if (minutes >= -60) return true;
+    } else {
+      return false;
     }
-    return true;
   }, [userData, orderData]);
 
   const Children = () => {
@@ -35,16 +34,11 @@ const RudCardAlert = ({ orderData }) => {
           position: "relative",
         }}
       >
-        <img src={CreateRudCardSrc} width="75%" />
-        <div
+        <img
+          src={CreateRudCardSrc}
+          width="75%"
           onClick={() => navigate("/profile")}
-          style={{
-            position: "absolute",
-            width: "75%",
-            height: "12%",
-            bottom: "12%",
-          }}
-        ></div>
+        />
       </div>
     );
   };

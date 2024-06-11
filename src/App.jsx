@@ -8,7 +8,7 @@ import Loader from "./shared_components/Loader";
 import PublicBizAssets from "./global/public-biz-assets";
 function App() {
   const [queryClient] = useRudkidsQueryClient();
-  const [originChecked, setOriginChecked] = useState(true);
+  const [originChecked, setOriginChecked] = useState(false);
 
   useEffect(() => {
     if (originChecked) return;

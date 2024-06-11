@@ -1,7 +1,6 @@
 import { IoMdAdd } from "react-icons/io";
 import {
   ShippingListUI,
-  ShippingListWrapperUI,
   AddButtonUI,
   FlexWrapperUI,
   AddBtnTextUI,

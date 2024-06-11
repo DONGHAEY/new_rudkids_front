@@ -9,7 +9,6 @@ import SearchAddress from "./SearchAddress";
 import { usePopup } from "../../../hooks/usePopup";
 import useAddShippingMutation from "../../../mutations/shipping/useAddShippingMutation";
 import useEditShippingMutation from "../../../mutations/shipping/useEditShippingMutation";
-import { useMemo } from "react";
 
 const requesetMemoContents = [
   "문앞에 놓아주세요",
@@ -20,9 +19,14 @@ const requesetMemoContents = [
 const AddEditShipping = ({ shippingData = null, setShippingData }) => {
   const [popupNavigate, popupBack] = usePopup();
 
-  const { register, handleSubmit, watch, setValue, formState } = useForm({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { isValid },
+  } = useForm({
     defaultValues: shippingData,
-    mode: "onChange",
   });
 
   const addShippingMutation = useAddShippingMutation();
@@ -43,11 +47,6 @@ const AddEditShipping = ({ shippingData = null, setShippingData }) => {
       });
     }
   };
-
-  const canSubmit = useMemo(() => {
-    console.log(formState.errors, "_-");
-    return Object.keys(formState.errors)?.length === 0;
-  }, [formState]);
 
   const searchAddressPopupName = `search-address-${shippingData?.name ?? ""}`;
 
@@ -103,8 +102,8 @@ const AddEditShipping = ({ shippingData = null, setShippingData }) => {
             {...register("recieverPhoneNumber", {
               required: "필수",
               minLength: {
-                value: 3,
-                message: "전화번호 7자 이상입력해야해요!",
+                value: 9,
+                message: "전화번호 9자 이상입력해야해요!",
               },
               onChange: (e) => {
                 e.target.value = e.target.value
@@ -139,7 +138,7 @@ const AddEditShipping = ({ shippingData = null, setShippingData }) => {
         </ColField>
         {/* 기본배송지로 설정 컬럼 필요 */}
         <BottomButton
-          disable={addShippingMutation.isLoading || !canSubmit}
+          disable={addShippingMutation.isLoading || !isValid}
           onClick={handleSubmit(submitHandler)}
         >
           Done

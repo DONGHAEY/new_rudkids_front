@@ -6,10 +6,9 @@ export const AddEditShippingUI = styled.div`
   align-items: center;
   gap: 35px;
   padding-top: 10px;
-  padding-bottom: 30px;
+  padding-bottom: 100px;
   width: 100%;
   height: 100%;
-  overflow: scroll;
   background-color: white;
 `;
 

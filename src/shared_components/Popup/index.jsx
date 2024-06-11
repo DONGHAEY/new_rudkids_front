@@ -1,4 +1,4 @@
-import { CenterUI } from "./styles";
+import { CenterUI, ContentsUI } from "./styles";
 
 import Header from "./Header";
 
@@ -7,6 +7,7 @@ export const Popup = ({
   title = "",
   description = "",
   backgroundColor = "white",
+  backLink = -1,
 }) => {
   return (
     <CenterUI>
@@ -14,8 +15,9 @@ export const Popup = ({
         title={title}
         description={description}
         backgroundColor={backgroundColor}
+        backLink={backLink}
       />
-      {children}
+      <ContentsUI>{children}</ContentsUI>
     </CenterUI>
   );
 };

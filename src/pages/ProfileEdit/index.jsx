@@ -22,7 +22,7 @@ const ProfileEditPage = () => {
   const { data: userData } = useUserQuery();
 
   return (
-    <Popup title="프로필 수정">
+    <Popup title="프로필 수정" backLink="/profile">
       <PageUI>
         <Link
           name="Nickname"

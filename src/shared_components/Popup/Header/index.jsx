@@ -8,40 +8,34 @@ import {
   TitleUI,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
-import DynamicSpacer from "../../DynamicSpacer";
 
-const Header = ({ title, description, backgroundColor }) => {
+const Header = ({ title, description, backgroundColor, backLink = -1 }) => {
   const headerRef = useRef();
   const navigate = useNavigate();
 
   const backIconClickHandler = () => {
-    navigate(-1);
+    navigate(backLink, {
+      replace: backLink !== -1,
+    });
   };
 
   return (
-    <>
-      <HeaderUI backgroundColor={backgroundColor}>
-        <BetweenUI ref={headerRef}>
-          <img
-            src={backIconSrc}
-            width="33.46px"
-            onClick={backIconClickHandler}
-          />
-          <TextWrapperUI>
-            <TitleUI>{title}</TitleUI>
-            {description && <DescriptionUI>{description}</DescriptionUI>}
-          </TextWrapperUI>
-          <img
-            width="33.46px"
-            style={{
-              opacity: 0,
-            }}
-            src={backIconSrc}
-          />
-        </BetweenUI>
-      </HeaderUI>
-      <DynamicSpacer refCurrent={headerRef.current} />
-    </>
+    <HeaderUI backgroundColor={backgroundColor}>
+      <BetweenUI ref={headerRef}>
+        <img src={backIconSrc} width="33.46px" onClick={backIconClickHandler} />
+        <TextWrapperUI>
+          <TitleUI>{title}</TitleUI>
+          {description && <DescriptionUI>{description}</DescriptionUI>}
+        </TextWrapperUI>
+        <img
+          width="33.46px"
+          style={{
+            opacity: 0,
+          }}
+          src={backIconSrc}
+        />
+      </BetweenUI>
+    </HeaderUI>
   );
 };
 

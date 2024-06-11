@@ -13,7 +13,6 @@ export const HeaderUI = styled.div`
   width: 100%;
   max-width: 430px;
   display: flex;
-  position: fixed;
 `;
 
 export const BetweenUI = styled.div`
