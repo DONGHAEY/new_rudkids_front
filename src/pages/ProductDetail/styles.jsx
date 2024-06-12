@@ -87,15 +87,6 @@ export const ModelDescriptionTextUI = styled.p`
   font-size: 14.5px;
 `;
 
-export const ComponentListUI = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: end;
-  overflow-x: scroll;
-  /* margin-top: 24px; */
-`;
-
 export const DetailImgListUI = styled.div`
   display: flex;
   width: 100%;

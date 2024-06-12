@@ -1,6 +1,15 @@
 import styled from "styled-components";
 
-export const ProductComponentUI = styled.div`
+export const ModelSelectUI = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: end;
+  overflow-x: scroll;
+  /* margin-top: 24px; */
+`;
+
+export const ModelUI = styled.div`
   margin: 6px;
   display: flex;
   flex-direction: column;

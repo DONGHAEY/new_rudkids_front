@@ -4,15 +4,14 @@ import {
   HeaderUI,
   IconLinkUI,
   CartCntTextUI,
-  CartTxtUI,
 } from "./styles";
-import pompomiImgSrc from "./assets/pompomi.png";
 import MenuBar from "./MenuBar";
 import { useState } from "react";
 import { MenuBarModalUI } from "./styles";
 import useCartProdsCntQuery from "../../queries/cart/useCartProdsCntQuery";
 import Loader from "../../shared_components/Loader";
 import PublicBizAssets from "../../global/public-biz-assets";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const Header = ({ isFixed = true }) => {
   const { data: cartCntData = 0, isLoading } = useCartProdsCntQuery();
@@ -31,13 +30,15 @@ const Header = ({ isFixed = true }) => {
     <>
       <HeaderUI position={isFixed ? "fixed" : "relative"}>
         <IconLinkUI onClick={listBtnClickHandler}>
-          <img height="27px" src={pompomiImgSrc} />
+          <Icon icon="material-symbols:menu" color="black" />
         </IconLinkUI>
         <LogoIconUI to="/">
-          <img height="100%" src={PublicBizAssets.logo} />
+          <img height="120%" src={PublicBizAssets.logo} />
         </LogoIconUI>
         <IconLinkUI to="/cart">
-          <CartTxtUI>cart</CartTxtUI>
+          {/* <CartTxtUI> */}
+          <Icon icon="mdi:cart" color="black" />
+          {/* </CartTxtUI> */}
           <CartCntTextUI>{cartCntData}</CartCntTextUI>
         </IconLinkUI>
       </HeaderUI>

@@ -37,3 +37,7 @@ export const PriceWrapperUI = styled.div`
   width: 100%;
   margin-top: 60px;
 `;
+
+export const SmileSellerWrapperUI = styled.div`
+  margin-top: 73px;
+`;

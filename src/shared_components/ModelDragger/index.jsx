@@ -6,45 +6,45 @@ import {
   ModelTextWrapperUI,
   PlayingControllerUI,
 } from "./styles";
-
 import { FaRegPlayCircle } from "react-icons/fa";
 import { FaRegCirclePause } from "react-icons/fa6";
 import { useState } from "react";
 import GuideLabel from "./GuideLabel";
 import { Html, useGLTF } from "@react-three/drei";
 import IndexChanger from "./IndexChanger";
-import * as THREE from "three";
 
 const ModelDragger = ({
   modelUrls = [],
   modelIdx = 0,
   setModelIdx,
   modelName = "",
+  background,
 }) => {
   const [isPlaying, setIsPlaying] = useState(true);
-
   const gltfs = useGLTF([...modelUrls]);
   const gltf = gltfs?.[modelIdx];
-
   const maxIndex = modelUrls?.length - 1;
 
+  const canvasProps = {
+    gl: {
+      antialias: true,
+    },
+    camera: {
+      fov: 60,
+      aspect: 1,
+      near: 0.5,
+      far: 100,
+    },
+  };
+
   return (
-    <ModelDraggerBackgroundUI>
+    <ModelDraggerBackgroundUI background={background}>
       <ModelTextWrapperUI>
         <ModelTextUI>{modelName}</ModelTextUI>
       </ModelTextWrapperUI>
-      <CanvasUI
-        gl={{ antialias: true }}
-        camera={{
-          fov: 60,
-          aspect: 1,
-          near: 0.5,
-          far: 100,
-        }}
-        shadows={"soft"}
-      >
+      <CanvasUI {...canvasProps}>
         {gltf && <Scene gltf={gltf} autoRotate={isPlaying} />}
-        <Html fullscreen={true}>
+        <Html fullscreen>
           {maxIndex !== 0 && (
             <IndexChanger
               setIndex={setModelIdx}

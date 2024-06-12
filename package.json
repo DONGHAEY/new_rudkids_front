@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@amplitude/analytics-browser": "^2.8.1",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -39,7 +40,9 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.22.2",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.30.2",
     "react-webcam": "^7.2.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.8",
     "three": "^0.157.0",
     "use-react-screenshot": "^4.0.0"

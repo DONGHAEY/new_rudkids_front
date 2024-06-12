@@ -46,19 +46,12 @@ export const IconLinkUI = styled(Link)`
   font-size: 25px;
   text-align: center;
   text-decoration: none;
+  color: black;
 `;
 
 export const SpacerUI = styled.div`
   margin-top: 43px;
   padding-top: 5px;
-`;
-
-export const CartTxtUI = styled.a`
-  font-family: Poppins-Bold;
-  font-size: 19px;
-  letter-spacing: 0px;
-  text-decoration: none;
-  color: black;
 `;
 
 export const CartCntTextUI = styled.p`

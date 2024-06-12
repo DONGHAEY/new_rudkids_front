@@ -5,7 +5,7 @@ export const ModelDraggerBackgroundUI = styled.div`
   position: relative;
   width: 100%;
   aspect-ratio: 1/1;
-  background-color: #ededed;
+  background: ${({ background }) => background ?? "#ededed"};
   border-radius: 13.5px;
 `;
 

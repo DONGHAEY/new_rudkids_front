@@ -15,22 +15,23 @@ import NumTimer from "./NumTimer";
 import InvitedUsers from "./InvitedUsers";
 import StorageKey from "../../storageKey";
 import Loader from "../../shared_components/Loader";
+import { track } from "@amplitude/analytics-browser";
 
 const tempUserImgSrc =
   "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/profile/7x3kaki-instagram.png";
 
 //
-export const setInvitationId = (invitationId) => {
+export const setTicketId = (invitationId) => {
   localStorage.setItem(StorageKey.invitation_id, invitationId);
 };
-export const removeInvitationId = () => {
+export const removeTicketId = () => {
   localStorage.removeItem(StorageKey.invitation_id);
 };
-export const getInvitationId = () => {
+export const getTicketId = () => {
   return localStorage.getItem(StorageKey.invitation_id) ?? null;
 };
 
-const InvitationPage = ({ routeInfo }) => {
+const TicketPage = ({ routeInfo }) => {
   const totalSecond = 60;
   const [remainSecond, setRemainSecond] = useState(totalSecond);
   const params = useParams();
@@ -39,7 +40,11 @@ const InvitationPage = ({ routeInfo }) => {
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    setInvitationId(invitationId);
+    setTicketId(invitationId);
+    track("click invitation open button", {
+      click_time: totalSecond - remainSecond,
+      invitor_name: invitationData.fromName ?? "?",
+    });
     navigate("/login");
   };
 
@@ -64,6 +69,16 @@ const InvitationPage = ({ routeInfo }) => {
       clearTimeout(timeout);
     };
   }, [remainSecond]);
+
+  useEffect(() => {
+    if (!invitationData) return;
+    const type = invitationData?.type;
+    const invitorName = invitationData?.fromName;
+    track("view invitation", {
+      type,
+      invitor_name: invitorName,
+    });
+  }, [invitationData]);
 
   useEffect(() => {
     if (!isLoading && !invitationData) {
@@ -100,4 +115,4 @@ const InvitationPage = ({ routeInfo }) => {
   );
 };
 
-export default InvitationPage;
+export default TicketPage;

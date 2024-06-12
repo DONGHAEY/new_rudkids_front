@@ -5,12 +5,13 @@ import {
   PageUI,
   SectionDscrptTxtUI,
   PriceWrapperUI,
+  SmileSellerWrapperUI,
 } from "./styles";
 
 import CartProduct from "./CartProduct";
 import CheckoutBar from "./CheckoutBar";
 import Price from "../../shared_components/Price";
-import smileSellerSrc from "./assets/smlile_seller.png";
+import smileSellerSrc from "./assets/smile_kid_man.svg";
 // import eventCouponImgSrc from "./assets/coupon_1.png";
 import { useEffect, useMemo } from "react";
 import { usePopup } from "../../hooks/usePopup";
@@ -75,9 +76,9 @@ const CartPage = () => {
             width="100%"
           />
         </div> */}
-        <div>
+        <SmileSellerWrapperUI>
           <img src={smileSellerSrc} height="153px" />
-        </div>
+        </SmileSellerWrapperUI>
       </FlexWrapperUI>
 
       {/* <PopupRoute name="shipping_price_none_event">

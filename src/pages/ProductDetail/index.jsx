@@ -1,4 +1,5 @@
-import ModelDragger from "./ModelDragger";
+import ModelDragger from "../../shared_components/ModelDragger";
+import ModelSelect from "../../shared_components/ModelSelect";
 import ActionBar from "./ActionBar";
 import Header from "../../shared_components/Header";
 import {
@@ -7,7 +8,6 @@ import {
   ProductNameTextUI,
   ProductPriceTextUI,
   FlexWrapperUI,
-  ComponentListUI,
   ModelDescriptionUI,
   ModelDescriptionTextUI,
   PackageExplainUI,
@@ -17,9 +17,7 @@ import {
 import { useParams } from "react-router-dom";
 import useProductDetailQuery from "../../queries/product/useProductDetailQuery";
 import { useMemo, useState } from "react";
-import ProductComponent from "./ProductComponent";
 import Loader from "../../shared_components/Loader";
-/** */
 import glb1Src from "./assets/1.glb";
 import glb2Src from "./assets/2.glb";
 import img1Src from "./assets/1.jpg";
@@ -28,7 +26,7 @@ import img2Src from "./assets/2.jpg";
 const ProductDetailPage = ({ routeInfo }) => {
   const params = useParams();
   const productName = params[routeInfo.paramKeys[0]];
-  const [selectedModelIdx, setSelectedModelIdx] = useState(0);
+  const [selectedIdx, setSelectedIdx] = useState(0);
 
   const { data: productData, isLoading: productDataLoading } =
     useProductDetailQuery(productName);
@@ -40,7 +38,7 @@ const ProductDetailPage = ({ routeInfo }) => {
     return JSON.parse(productData?.detailImageUrls ?? []);
   }, [productData]);
 
-  const productComponents = useMemo(() => {
+  const models = useMemo(() => {
     if (!productData) return [];
     return [
       ...productData?.components,
@@ -68,10 +66,10 @@ const ProductDetailPage = ({ routeInfo }) => {
       <Header $backgroundColor="none" />
       <FlexWrapperUI>
         <ModelDragger
-          modelName={productComponents?.[selectedModelIdx]?.name}
-          modelUrls={productComponents?.map((_) => _.modelUrl)}
-          modelIdx={selectedModelIdx}
-          setModelIdx={setSelectedModelIdx}
+          modelName={models?.[selectedIdx]?.name}
+          modelUrls={models?.map((_) => _.modelUrl)}
+          modelIdx={selectedIdx}
+          setModelIdx={setSelectedIdx}
         />
         <ContentSectionUI>
           <InfoRowUI>
@@ -82,19 +80,11 @@ const ProductDetailPage = ({ routeInfo }) => {
           </InfoRowUI>
           <ProductPriceTextUI>₩ {productPrice}</ProductPriceTextUI>
         </ContentSectionUI>
-        <ComponentListUI>
-          {productComponents?.map((_, idx) => {
-            return (
-              <ProductComponent
-                key={idx}
-                selected={idx === selectedModelIdx}
-                onClick={() => setSelectedModelIdx(idx)}
-                imageUrl={_.imageUrl}
-                name={_.name}
-              />
-            );
-          })}
-        </ComponentListUI>
+        <ModelSelect
+          models={models}
+          selectedIdx={selectedIdx}
+          setSelectedIdx={setSelectedIdx}
+        />
         <ModelDescriptionUI>
           <ModelDescriptionTextUI>
             {productData?.description}

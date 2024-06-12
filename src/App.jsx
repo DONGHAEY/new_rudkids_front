@@ -6,6 +6,8 @@ import { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import GlobalStyle from "../src/styles";
 import Loader from "./shared_components/Loader";
 import PublicBizAssets from "./global/public-biz-assets";
+import { init, track } from "@amplitude/analytics-browser";
+
 function App() {
   const [queryClient] = useRudkidsQueryClient();
   const [originChecked, setOriginChecked] = useState(false);
@@ -33,10 +35,14 @@ function App() {
     });
   }, []);
 
-  useLayoutEffect(() => {
-    const body = document.getElementsByTagName("body");
-    body.scrollTop = 0;
-  }, [window.location.pathname]);
+  useEffect(() => {
+    if (!originChecked) return;
+    init(process.env["REACT_APP_AMPLITUDE_KEY"], {
+      defaultTracking: {
+        pageViews: false,
+      },
+    });
+  }, [originChecked]);
 
   if (!originChecked) {
     return null;
@@ -45,19 +51,31 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<Loader />}>
-        <Routes
-          children={Object.values(routes)?.map((route) => (
+        <Routes>
+          {Object.values(routes)?.map((route) => (
             <Route
               key={route.path}
               path={route.path}
-              element={<route.element routeInfo={route} />}
+              element={
+                <TrackPageView pageName={route.pageMeta.name}>
+                  <route.element routeInfo={route} />
+                </TrackPageView>
+              }
             />
           ))}
-        />
+        </Routes>
       </Suspense>
       <GlobalStyle />
     </QueryClientProvider>
   );
 }
+
+const TrackPageView = ({ children, pageName }) => {
+  useEffect(() => {
+    if (!pageName) return;
+    track(`view ${pageName} page`);
+  }, [pageName]);
+  return children;
+};
 
 export default App;

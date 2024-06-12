@@ -1,6 +1,6 @@
 const PublicBizAssets = {
   background: "/Images/background.jpeg",
-  logo: "/Images/logo.png",
+  logo: "/Images/logo.svg",
 };
 
 export default PublicBizAssets;

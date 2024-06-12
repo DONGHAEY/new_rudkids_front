@@ -21,7 +21,7 @@ const menuButtonDtList = [
   {
     name: "Shop",
     iconNm: "mdi:shopping",
-    path: "/",
+    path: "/shop",
   },
   {
     name: "Rude\nCamera",

@@ -21,8 +21,9 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import callOffSrc from "./assets/call_off.svg";
 import gsap from "gsap";
 import defaultVideo from "./assets/video.mp4";
+import { track } from "@amplitude/analytics-browser";
 
-const CallingModal = ({ videoSrc = defaultVideo, onClosed }) => {
+const CallingModal = ({ videoSrc = defaultVideo, onClosed, pageFor = "" }) => {
   const [open, setOpen] = useState(true);
   const [sceneName, setSceneName] = useState("first");
 
@@ -31,6 +32,9 @@ const CallingModal = ({ videoSrc = defaultVideo, onClosed }) => {
   const videoRef = useRef();
 
   const onAccept = () => {
+    track("click answer button", {
+      before: pageFor ?? "",
+    });
     const tl = gsap.timeline();
     tl.to(callBoxRef.current, {
       opacity: 0.3,
@@ -79,6 +83,7 @@ const CallingModal = ({ videoSrc = defaultVideo, onClosed }) => {
       },
     });
   };
+
   useEffect(() => {
     if (open === false) {
       onClosed();
@@ -86,8 +91,8 @@ const CallingModal = ({ videoSrc = defaultVideo, onClosed }) => {
   }, [open]);
 
   const scenes = {
-    first: <Step1 onAccept={onAccept} />,
-    calling: <Step2 onFinished={onFinished} />,
+    first: <Step1 onAccept={onAccept} pageFor={pageFor} />,
+    calling: <Step2 onFinished={onFinished} pageFor={pageFor} />,
   };
 
   return (
