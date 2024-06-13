@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "react-query";
 import mutationKey from "../../mutations/key";
 import axiosInstance from "../../axiosInstance";
 import { KEY as userQueryKey } from "../../queries/user/useUserQuery";
+import { track } from "@amplitude/analytics-browser";
 
 export const KEY = [mutationKey.invitation, "create"];
 
@@ -11,7 +12,7 @@ const createInvitation = async () => {
     .then((res) => res.data);
 };
 
-const useCreateInvitationMutation = () => {
+const useCreateInvitationMutation = (page = "onboarding") => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
@@ -19,6 +20,10 @@ const useCreateInvitationMutation = () => {
     onSuccess: async () => {
       const me = await queryClient.getQueryData(userQueryKey("my"));
       me.invitateCnt++;
+      track("send tickets", {
+        times: me.invitateCnt,
+        type: page,
+      });
       await queryClient.setQueryData(userQueryKey("my"), me);
     },
   });

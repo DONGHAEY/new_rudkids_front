@@ -2,6 +2,7 @@ import { useQuery, useQueryClient } from "react-query";
 import axiosInstance from "../../axiosInstance";
 import queryKey from "../key";
 import { KEY as userQueryKey } from "../user/useUserQuery";
+import { Identify, identify } from "@amplitude/analytics-browser";
 
 export const KEY = [queryKey.cart, "cart_products_cnt"];
 const getCartProducsCnt = async () => {
@@ -19,7 +20,12 @@ const useCartProdsCntQuery = () => {
       if (!isLoggedIn) {
         return 0;
       }
-      return await getCartProducsCnt();
+      const productsCnt = await getCartProducsCnt();
+      const identifyObj = new Identify();
+      identifyObj.setOnce("cart quantity", productsCnt);
+      identify(identifyObj);
+
+      return productsCnt;
     },
   });
 };

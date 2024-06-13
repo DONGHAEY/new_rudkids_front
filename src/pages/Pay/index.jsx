@@ -3,6 +3,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import useCreatePaymentMutation from "../../mutations/payment/useCreatePaymentMutation";
 import useOrderDetailQuery from "../../queries/order/useOrderDetailQuery";
 import Loader from "../../shared_components/Loader";
+import { Identify, identify, track } from "@amplitude/analytics-browser";
+import moment from "moment";
 
 const PayPage = () => {
   const navigate = useNavigate();
@@ -35,6 +37,30 @@ const PayPage = () => {
             alert(e?.response?.data?.message ?? "결제에 실패했습니다");
           },
           onSuccess: () => {
+            track("completed purchase", {
+              order_id: orderId,
+              total_price: amount,
+              count: orderData?.orderProducts?.length,
+              products: orderData?.orderProducts?.map((orderProduct) => {
+                const options = {};
+                orderProduct.options?.map((option) => {
+                  options[option.groupName] = option.name;
+                });
+                return {
+                  product_id: orderProduct.productId,
+                  name: orderProduct.name,
+                  price: orderProduct.price,
+                  quantity: orderProduct.quantity,
+                  ...options,
+                };
+              }),
+            });
+            const identifyObj = new Identify();
+            identifyObj.set(
+              "latest purchase date",
+              moment().format("YYYY-MM-DD")
+            );
+            identify(identifyObj);
             navigate(`/order/${orderId}`, {
               replace: true,
             });

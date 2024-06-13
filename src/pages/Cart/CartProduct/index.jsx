@@ -54,12 +54,12 @@ const CartProduct = ({ cartProduct }) => {
           <CartProductPriceUI>
             ₩ {cartProduct?.price?.toLocaleString("ko-KR")}
           </CartProductPriceUI>
-          {cartProduct?.selectedOptions?.length !== 0 && (
+          {cartProduct?.options?.length !== 0 && (
             <OptionsSectionUI>
-              {cartProduct?.selectedOptions?.map((option) => {
+              {cartProduct?.options?.map((option) => {
                 return (
                   <p key={option?.id}>
-                    {option.groupName} : {option.optionName}
+                    {option.groupName} : {option.name}
                   </p>
                 );
               })}

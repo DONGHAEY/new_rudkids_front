@@ -10,7 +10,6 @@ import {
 const CartProduct = ({ cartProduct }) => {
   //
 
-  const selectedOptions = cartProduct?.selectedOptions;
   return (
     <CartProductUI>
       <img height="80px" src={cartProduct.thumnail} />
@@ -21,11 +20,11 @@ const CartProduct = ({ cartProduct }) => {
             ₩ {cartProduct.price.toLocaleString("ko-KR")}
           </CartProductPriceUI>
         </FlexColUI>
-        {selectedOptions?.length !== 0 && (
+        {cartProduct?.options?.length !== 0 && (
           <OptionsSectionUI>
-            {selectedOptions?.map((option) => (
+            {cartProduct?.options?.map((option) => (
               <p key={option?.id}>
-                {option?.groupName}: {option?.optionName}
+                {option?.groupName}: {option?.name}
               </p>
             ))}
           </OptionsSectionUI>

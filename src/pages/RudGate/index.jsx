@@ -44,6 +44,8 @@ import allowImgSrc from "./assets/allow.jpeg";
 import template from "./assets/template.svg";
 import ImgInstaShareModal from "./ImgShareModal";
 import HelpSignModal from "./HelpSignModal";
+import { trackClickButton } from "../../shared_analytics";
+import { track } from "@amplitude/analytics-browser";
 
 export const setPassedStat = (passStat) => {
   localStorage.setItem(StorageKey.rud_gate_passed, passStat);
@@ -68,12 +70,29 @@ const RudGatePage = () => {
   const [videoPermission, setVideoPermission] = useState(null);
   const [videoStream, setVideoStream] = useState(null);
 
-  const takeAPhoto = useCallback(async () => {
+  const takeAPhotoBtnClickHandler = useCallback(async () => {
+    trackClickButton("take picture", { page: "rud gate" });
     const imageSrc = cameraRef.current.getScreenshot();
     setPhotoUrl(imageSrc);
   }, [cameraRef.current]);
 
-  const closePhoto = () => setPhotoUrl("");
+  const closeBtnClickHandler = () => {
+    trackClickButton("back");
+    setPhotoUrl("");
+  };
+
+  const getInBtnClickHandler = () => {
+    trackClickButton("get in");
+    setPassedStat(true);
+    navigate("/login");
+  };
+
+  const shareBtnClickHandler = () => {
+    trackClickButton("share", {
+      page: "rud gate",
+    });
+    takeScreenshot(shareSceneRef.current);
+  };
 
   const geScantLtShowStat = useCallback(() => {
     if (photoUrl && isPassed === null) {
@@ -88,13 +107,20 @@ const RudGatePage = () => {
   }, [ltCmpltEvnt, photoUrl]);
 
   const requestVideoPermission = async () => {
+    let allowStat = false;
     try {
       await window.navigator.mediaDevices.getUserMedia({ video: true });
-      setVideoPermission(true);
+      allowStat = true;
     } catch (error) {
-      setVideoPermission(false);
-      requestVideoPermission();
+      allowStat = false;
+      setTimeout(() => {
+        requestVideoPermission();
+      }, 1000);
     }
+    track("allow camera", {
+      is_allowed: allowStat,
+    });
+    setVideoPermission(allowStat);
   };
 
   useEffect(() => {
@@ -156,7 +182,7 @@ const RudGatePage = () => {
         {!isScanLtShow && (
           <>
             {isPassed !== null && (
-              <CloseImgUI onClick={closePhoto} src={closeIconSrc} />
+              <CloseImgUI onClick={closeBtnClickHandler} src={closeIconSrc} />
             )}
             {isPassed === true && <PassStatImgUI src={passedSrc} />}
             {isPassed === false && <PassStatImgUI src={notPassedSrc} />}
@@ -207,27 +233,22 @@ const RudGatePage = () => {
         {!photoUrl && (
           <AbsoluteCenterUI>
             <img style={{ width: "100%" }} src={rudBottomSrc} />
-            <TakeBtnSectionUI onClick={takeAPhoto} />
+            <TakeBtnSectionUI onClick={takeAPhotoBtnClickHandler} />
           </AbsoluteCenterUI>
         )}
         {!isScanLtShow && photoUrl && (
           <ButtonListUI>
-            <ShareBtnUI onClick={() => takeScreenshot(shareSceneRef.current)}>
+            <ShareBtnUI onClick={shareBtnClickHandler}>
               <Icon icon="bitcoin-icons:share-filled" color="white" />
               Share
             </ShareBtnUI>
             {!isPassed ? (
-              <BackBtnUI onClick={closePhoto}>
+              <BackBtnUI onClick={closeBtnClickHandler}>
                 <Icon icon={"lets-icons:refund-back"} />
                 Back
               </BackBtnUI>
             ) : (
-              <PassBtnUI
-                onClick={() => {
-                  setPassedStat(true);
-                  navigate("/login");
-                }}
-              >
+              <PassBtnUI onClick={getInBtnClickHandler}>
                 <Icon icon="bxs:log-in" />
                 Get in
               </PassBtnUI>
@@ -236,7 +257,7 @@ const RudGatePage = () => {
         )}
       </BottomSectionUI>
       <ImgInstaShareModal dataUri={screenshot} />
-      <CallingModal onClosed={requestVideoPermission} />
+      <CallingModal onClosed={requestVideoPermission} pageFor="rud gate" />
     </PageUI>
   );
 };

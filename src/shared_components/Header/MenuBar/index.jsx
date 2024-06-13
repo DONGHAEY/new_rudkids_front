@@ -11,6 +11,7 @@ import { useEffect, useRef } from "react";
 import SignatureGradients from "../../../global/signature-gradients";
 import gsap from "gsap";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { trackClickButton } from "../../../shared_analytics";
 
 const menuButtonDtList = [
   {
@@ -106,6 +107,9 @@ const MenuBar = ({ onClosed }) => {
             return (
               <MenuBtnUI
                 onClick={(e) => {
+                  trackClickButton("nav bar", {
+                    type: menuButtonDt.name,
+                  });
                   close(() => navigate(menuButtonDt.path));
                 }}
                 background={

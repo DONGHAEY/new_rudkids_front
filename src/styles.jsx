@@ -8,9 +8,9 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     width: 100%;
+    height:100%;
     max-width: 430px;
     min-width: 262px;
-    height: 100%;
     margin: 0 auto;
     padding: 0;
   }
@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
   #root {
     position: relative;
     width:100%;
-    height: 100%;
+    height:100%;
   }
   
 

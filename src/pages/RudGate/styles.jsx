@@ -162,7 +162,7 @@ export const BottomSectionUI = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   z-index: 3;
 `;
 

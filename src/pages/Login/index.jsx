@@ -23,8 +23,9 @@ import Background from "../../shared_components/Background";
 import StorageKey from "../../storageKey";
 import { useEffect } from "react";
 import { getPassedStat } from "../RudGate";
+import { trackClickButton } from "../../shared_analytics";
 
-const platforms = [
+const providers = [
   {
     how: "카카오톡으로",
     logoImgSrc: KakaoSvg,
@@ -53,8 +54,11 @@ export const getLoginCallbackUrl = () => {
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const clickHandler = (platformName) => {
-    const loginUrl = `${process.env.REACT_APP_SERVER_URL}/api/auth/${platformName}`;
+  const clickHandler = (provider) => {
+    trackClickButton("login", {
+      provider: provider,
+    });
+    const loginUrl = `${process.env.REACT_APP_SERVER_URL}/api/auth/${provider}`;
     window.location.href = loginUrl;
   };
 
@@ -77,15 +81,15 @@ const LoginPage = () => {
             <LoginCommentArrowUI />
           </LoginCommentUI>
           <LoginBtnListUI>
-            {platforms?.map((platform, idx) => (
+            {providers?.map((provider, idx) => (
               <LoginBtnUI
                 key={idx}
-                background={platform.background}
-                onClick={() => clickHandler(platform.name)}
+                background={provider.background}
+                onClick={() => clickHandler(provider.name)}
               >
-                <LoginBtnImgUI src={platform.logoImgSrc} />
-                <LoginBtnTxtUI color={platform.textColor}>
-                  {platform.how} 계속하기
+                <LoginBtnImgUI src={provider.logoImgSrc} />
+                <LoginBtnTxtUI color={provider.textColor}>
+                  {provider.how} 계속하기
                 </LoginBtnTxtUI>
               </LoginBtnUI>
             ))}

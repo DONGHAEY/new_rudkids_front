@@ -15,12 +15,12 @@ export const SectionUI = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   position: relative;
 `;
 
 export const ListUI = styled.div`
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 16px;

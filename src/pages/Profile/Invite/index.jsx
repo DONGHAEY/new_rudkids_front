@@ -19,12 +19,12 @@ import useCreateInvitationMutation from "../../../mutations/invitation/useCreate
 
 const max = 3;
 const Invite = ({ close }) => {
-  const createInvitationMutation = useCreateInvitationMutation();
+  const createInvitationMutation = useCreateInvitationMutation("profile");
   const { data: userData } = useUserQuery();
 
   const inviteCnt = userData?.invitateCnt;
 
-  const inviteHandler = async () => {
+  const inviteBtnClickHandler = async () => {
     const invitationId = await createInvitationMutation.mutateAsync();
     try {
       await window.navigator.share({
@@ -62,7 +62,10 @@ const Invite = ({ close }) => {
           </TicketListUI>
         </BlueWrapperUI>
         <DescriptionTxtUI>초대권은 한 달에 단 3개 발급 돼요</DescriptionTxtUI>
-        <ButtonUI onClick={inviteHandler} disabled={max - inviteCnt <= 0}>
+        <ButtonUI
+          onClick={inviteBtnClickHandler}
+          disabled={max - inviteCnt <= 0}
+        >
           <FiShare color="white" />
           <ButtonTxtUI>초대권 보내기</ButtonTxtUI>
         </ButtonUI>

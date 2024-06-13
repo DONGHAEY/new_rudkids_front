@@ -19,6 +19,7 @@ import ScrollKids from "./ScrollKids";
 import { Suspense } from "react";
 import Loader from "../../shared_components/Loader";
 import TShirtIntroduce from "./TShirtIntroduce";
+import { trackClickButton } from "../../shared_analytics";
 
 const LandingPage = () => {
   return (
@@ -34,7 +35,14 @@ const LandingPage = () => {
           <Txt2UI>Rude Kids’ Special Toy!</Txt2UI>
         </TextGrp>
         <ToyIntroduce />
-        <LinkButtonUI to={"/shop?type=Toy"}>
+        <LinkButtonUI
+          to={"/shop?type=Toy"}
+          onClick={() =>
+            trackClickButton("shop", {
+              type: "Toy",
+            })
+          }
+        >
           Toy
           <Icon icon="ep:right" />
         </LinkButtonUI>
@@ -48,7 +56,14 @@ const LandingPage = () => {
           <ScrollKids />
         </MainBannerUI>
         <TShirtIntroduce />
-        <LinkButtonUI to={"/shop?type=Colthes"}>
+        <LinkButtonUI
+          to={"/shop?type=Colthes"}
+          onClick={() =>
+            trackClickButton("shop", {
+              type: "Colthes",
+            })
+          }
+        >
           T-Shirt
           <Icon icon="ep:right" />
         </LinkButtonUI>

@@ -24,193 +24,169 @@ import LandingPage from "./pages/Landing";
 
 export const routes = {
   ["404"]: {
-    pageMeta: {
-      name: "401",
-    },
+    name: "401",
+    viewTrack: true,
     path: "401",
     paramKeys: [],
     element: _401Page,
   },
   ["landing"]: {
-    pageMeta: {
-      name: "landing",
-    },
+    name: "landing",
+    viewTrack: true,
     path: "",
     paramKeys: [],
     element: LandingPage,
   },
   ["shop"]: {
-    pageMeta: {
-      name: "shop",
-    },
+    name: "shop",
+    viewTrack: true,
     path: "/shop",
     paramKeys: [],
     element: AuthHoc(MainPage),
   },
   ["productDetail"]: {
-    pageMeta: {
-      name: "product-detail",
-    },
+    name: "product-detail",
+    viewTrack: false,
     path: "product/:product_name",
     paramKeys: ["product_name"],
     element: AuthHoc(ProductDetailPage),
   },
   ["cart"]: {
-    pageMeta: {
-      name: "cart",
-    },
+    name: "cart",
+    viewTrack: true,
     path: "cart",
     paramKeys: [],
     element: AuthHoc(CartPage),
   },
   ["createOrder"]: {
-    pageMeta: {
-      name: "create-order",
-    },
+    name: "create-order",
+    viewTrack: true,
     path: "create-order",
     paramKeys: [],
     element: AuthHoc(CreateOrder),
   },
   ["orderList"]: {
-    pageMeta: {
-      name: "order-list",
-    },
+    name: "order-list",
+    viewTrack: true,
     path: "/order-list",
     paramKeys: [],
     element: AuthHoc(OrderListPage),
   },
   ["collection"]: {
-    pageMeta: {
-      name: "collection",
-    },
+    name: "collection",
+    viewTrack: true,
     path: "/collection",
     paramKey: [],
     element: AuthHoc(CollectionPage),
   },
   ["collectionOther"]: {
-    pageMeta: {
-      name: "collection-other",
-    },
+    name: "collection-other",
+    viewTrack: true,
     path: "/collection/:user_id",
     paramKey: ["user_id"],
     element: CollectionPage,
   },
   ["orderDetail"]: {
-    pageMeta: {
-      name: "order-detail",
-    },
+    name: "order-detail",
+    viewTrack: true,
     path: "/order/:order_id",
     paramKeys: ["order_id"],
     element: AuthHoc(OrderDetailPage),
   },
   ["pay"]: {
-    pageMeta: {
-      name: "pay",
-    },
+    name: "pay",
+    viewTrack: false,
     path: "/pay",
     paramKeys: [],
     element: PayPage,
   },
   ["payFail"]: {
-    pageMeta: {
-      name: "pay-fail",
-    },
+    name: "pay-fail",
+    viewTrack: true,
     path: "pay-fail",
     paramKey: [],
     element: PayFailPage,
   },
   ["login"]: {
-    pageMeta: {
-      name: "login",
-    },
+    name: "login",
+    viewTrack: true,
     path: "login",
     paramKeys: [],
     element: LoginPage,
   },
   ["loginCallback"]: {
-    pageMeta: {
-      name: "login-callback",
-    },
+    name: "login-callback",
+    viewTrack: false,
     path: "login-callback/:platform",
     paramKeys: ["platform"],
     element: LoginCallbackPage,
   },
   ["instaInfo"]: {
-    pageMeta: {
-      name: "insta-info",
-    },
+    name: "insta-info",
+    viewTrack: true,
     path: "/insta-info",
     paramKeys: [],
     element: AuthHoc(InstaInfoPage),
   },
   ["firstInvite"]: {
-    pageMeta: {
-      name: "first-invite",
-    },
+    name: "first-invite",
+    viewTrack: true,
     path: "/first-invite",
     paramKeys: [],
     element: AuthHoc(FirstInvitePage),
   },
   ["ticket"]: {
-    pageMeta: {
-      name: "ticket",
-    },
+    name: "ticket",
+    viewTrack: false,
     path: "/ticket/:ticket_id",
     paramKeys: ["ticket_id"],
     element: TicketPage,
   },
   ["profile"]: {
-    pageMeta: {
-      name: "profile",
-    },
+    name: "profile",
+    viewTrack: true,
     path: "/profile",
     paramKeys: [],
     element: AuthHoc(ProfilePage),
   },
   ["profileOther"]: {
-    pageMeta: {
-      name: "profile-other",
-    },
+    name: "profile-other",
+    viewTrack: true,
     path: "/profile/:user_id",
     paramKeys: ["user_id"],
     element: ProfilePage,
   },
   ["rudGate"]: {
-    pageMeta: {
-      name: "rud-gate",
-    },
+    name: "rud-gate",
+    viewTrack: true,
     path: "/rud-gate",
     paramKeys: [],
     element: RudGatePage,
   },
   ["createRudcard"]: {
-    pageMeta: {
-      name: "create-rudcard",
-    },
+    name: "create-rudcard",
+    viewTrack: true,
     path: "/create-rudcard",
     paramKeys: [],
     element: AuthHoc(CreateRudcardPage),
   },
   ["profileEdit"]: {
-    pageMeta: {
-      name: "profile-edit",
-    },
+    name: "profile-edit",
+    viewTrack: true,
     path: "/profile/edit",
     paramKeys: ["nickname"],
     element: AuthHoc(ProfileEditPage),
   },
   ["rank"]: {
-    pageMeta: {
-      name: "rank",
-    },
+    name: "rank",
+    viewTrack: true,
     path: "/rank",
     paramKeys: [],
     element: AuthHoc(RankPage),
   },
   ["legal"]: {
-    pageMeta: {
-      name: "legal",
-    },
+    name: "legal",
+    viewTrack: false,
     path: "/legal",
     paramKeys: [],
     element: LeagalPage,

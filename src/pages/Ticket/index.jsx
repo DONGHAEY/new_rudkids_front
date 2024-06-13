@@ -15,12 +15,11 @@ import NumTimer from "./NumTimer";
 import InvitedUsers from "./InvitedUsers";
 import StorageKey from "../../storageKey";
 import Loader from "../../shared_components/Loader";
-import { track } from "@amplitude/analytics-browser";
+import { trackClickButton, trackPageView } from "../../shared_analytics";
 
 const tempUserImgSrc =
   "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/profile/7x3kaki-instagram.png";
 
-//
 export const setTicketId = (invitationId) => {
   localStorage.setItem(StorageKey.invitation_id, invitationId);
 };
@@ -33,18 +32,18 @@ export const getTicketId = () => {
 
 const TicketPage = ({ routeInfo }) => {
   const totalSecond = 60;
+  const navigate = useNavigate();
   const [remainSecond, setRemainSecond] = useState(totalSecond);
   const params = useParams();
   const invitationId = params[routeInfo?.paramKeys[0]];
   const { data: invitationData, isLoading } = useInvitationQuery(invitationId);
-  const navigate = useNavigate();
 
   const clickHandler = () => {
-    setTicketId(invitationId);
-    track("click invitation open button", {
-      click_time: totalSecond - remainSecond,
-      invitor_name: invitationData.fromName ?? "?",
+    trackClickButton("ticket open", {
+      invitorName: invitationData.invitorId,
+      duration: totalSecond - remainSecond,
     });
+    setTicketId(invitationId);
     navigate("/login");
   };
 
@@ -71,21 +70,17 @@ const TicketPage = ({ routeInfo }) => {
   }, [remainSecond]);
 
   useEffect(() => {
-    if (!invitationData) return;
-    const type = invitationData?.type;
-    const invitorName = invitationData?.fromName;
-    track("view invitation", {
-      type,
-      invitor_name: invitorName,
-    });
-  }, [invitationData]);
-
-  useEffect(() => {
-    if (!isLoading && !invitationData) {
-      navigate("/401");
-      alert("없는 초대장입니다.");
+    if (!isLoading) {
+      trackPageView("ticket", {
+        type: invitationData.type ?? "no ticket",
+        invitorName: invitationData.invitorId,
+      });
+      if (!invitationData) {
+        navigate("/401");
+        alert("없는 초대장입니다.");
+      }
     }
-  }, [isLoading, invitationData]);
+  }, [isLoading]);
 
   if (isLoading) {
     return <Loader />;

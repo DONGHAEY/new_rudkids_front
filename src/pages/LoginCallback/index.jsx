@@ -6,6 +6,8 @@ import { useQueryClient } from "react-query";
 import Loader from "../../shared_components/Loader";
 import { KEY as userQueryKey } from "../../queries/user/useUserQuery";
 import { getLoginCallbackUrl, removeLoginCallbackUrl } from "../Login";
+import { Identify, identify } from "@amplitude/analytics-browser";
+import moment from "moment";
 
 const LoginCallbackPage = ({ routeInfo }) => {
   const params = useParams();

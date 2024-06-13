@@ -16,12 +16,13 @@ import {
 } from "./styles";
 import { useParams } from "react-router-dom";
 import useProductDetailQuery from "../../queries/product/useProductDetailQuery";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Loader from "../../shared_components/Loader";
 import glb1Src from "./assets/1.glb";
 import glb2Src from "./assets/2.glb";
 import img1Src from "./assets/1.jpg";
 import img2Src from "./assets/2.jpg";
+import { trackPageView } from "../../shared_analytics";
 
 const ProductDetailPage = ({ routeInfo }) => {
   const params = useParams();
@@ -56,6 +57,18 @@ const ProductDetailPage = ({ routeInfo }) => {
       },
     ];
   }, [productData]);
+
+  useEffect(() => {
+    if (!productDataLoading) {
+      const { name, price, id: product_id, type } = productData;
+      trackPageView("product-detail", {
+        name,
+        product_id,
+        type,
+        price,
+      });
+    }
+  }, [productDataLoading]);
 
   if (productDataLoading) {
     return <Loader />;

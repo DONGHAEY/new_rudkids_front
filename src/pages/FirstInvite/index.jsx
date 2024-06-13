@@ -28,6 +28,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import CallingModal from "../../shared_components/Calling";
 import { useSearchParams } from "react-router-dom";
 import videoSrc from "./assets/video.mp4";
+import { trackClickButton } from "../../shared_analytics";
 
 const FirstInvitePage = () => {
   const createInvitationMutation = useCreateInvitationMutation();
@@ -39,14 +40,16 @@ const FirstInvitePage = () => {
   const [searchParams] = useSearchParams();
   const callback = searchParams.get("callback") ?? "/";
 
-  const inviteHandler = async () => {
+  const inviteClickHandler = async () => {
     const invitationId = await createInvitationMutation.mutateAsync();
+
     try {
       await window.navigator.share({
         title: "일상속의 작은 재미의 상점 - Rudkids",
         text: "이곳에서 일상속의 재미 프로젝트들을 만나보세요!",
         url: `https://www.rud.kids/invitation/${invitationId}`,
       });
+
       if (inviterCnt + 1 <= goalInviterCnt) {
         setInviterCnt(inviterCnt + 1);
       }
@@ -57,8 +60,11 @@ const FirstInvitePage = () => {
   };
 
   const completeHandler = async () => {
-    await setFirstInviteFinisheMutation.mutateAsync();
-    window.location.href = callback;
+    try {
+      await setFirstInviteFinisheMutation.mutateAsync();
+      trackClickButton("complete sending tickets");
+      window.location.href = callback;
+    } catch (e) {}
   };
 
   return (
@@ -80,7 +86,7 @@ const FirstInvitePage = () => {
             <ProgressBar offset={inviterCnt / goalInviterCnt} />
           </InviteProgressSectionUI>
           {goalInviterCnt !== inviterCnt ? (
-            <InviteBtnUI onClick={inviteHandler}>
+            <InviteBtnUI onClick={inviteClickHandler}>
               <RiShareBoxFill />
               초대하기
             </InviteBtnUI>
@@ -95,7 +101,11 @@ const FirstInvitePage = () => {
         )}
       </LottieWrapperUI>
       <Friends />
-      <CallingModal videoSrc={videoSrc} />
+      <CallingModal
+        videoSrc={videoSrc}
+        onClosed={() => {}}
+        pageFor="first invite"
+      />
     </PageUI>
   );
 };

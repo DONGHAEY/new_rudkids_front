@@ -32,9 +32,6 @@ const CallingModal = ({ videoSrc = defaultVideo, onClosed, pageFor = "" }) => {
   const videoRef = useRef();
 
   const onAccept = () => {
-    track("click answer button", {
-      before: pageFor ?? "",
-    });
     const tl = gsap.timeline();
     tl.to(callBoxRef.current, {
       opacity: 0.3,
@@ -75,6 +72,10 @@ const CallingModal = ({ videoSrc = defaultVideo, onClosed, pageFor = "" }) => {
   };
 
   const onFinished = () => {
+    track("hang up", {
+      before: pageFor,
+      duration_time: videoRef.current.currentTime,
+    });
     gsap.to(callBoxRef.current, {
       opacity: 0,
       duration: 0.5,
@@ -91,8 +92,8 @@ const CallingModal = ({ videoSrc = defaultVideo, onClosed, pageFor = "" }) => {
   }, [open]);
 
   const scenes = {
-    first: <Step1 onAccept={onAccept} pageFor={pageFor} />,
-    calling: <Step2 onFinished={onFinished} pageFor={pageFor} />,
+    first: <Step1 onAccept={onAccept} />,
+    calling: <Step2 onFinished={onFinished} />,
   };
 
   return (

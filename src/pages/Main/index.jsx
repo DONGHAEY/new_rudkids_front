@@ -15,6 +15,8 @@ const MainPage = () => {
   const searchObj = qs.parse(window.location.search?.replace("?", ""));
   const { data, isLoading } = useProductListQuery(searchObj);
 
+  useBodyBackground("#1a94d9");
+
   const setSearchProperty = (key, value) => {
     const searchObj = qs.parse(window.location.search?.replace("?", "")) ?? {};
     if (key !== "page" && searchObj["page"]) {
@@ -24,38 +26,34 @@ const MainPage = () => {
     navigate(`?${qs.stringify(searchObj)}`);
   };
 
-  useBodyBackground("#1a94d9");
-
   return (
-    <>
-      <PageUI>
-        <SectionUI>
-          <Header isFixed={true} />
-          <TypeList
-            typeCategory={searchObj["type"]}
-            setTypeCategory={(type) => setSearchProperty("type", type)}
-          />
-          <ListUI>
-            {data?.data?.map((product) => {
-              return (
-                <ProductBox
-                  key={product?.name}
-                  price={product?.price}
-                  name={product?.name}
-                  thumnail={product?.thumnail}
-                />
-              );
-            })}
-          </ListUI>
-          <PaginationList
-            meta={data?.meta}
-            onChange={(page) => setSearchProperty("page", page)}
-          />
-        </SectionUI>
-      </PageUI>
+    <PageUI>
+      <SectionUI>
+        <Header isFixed={true} />
+        <TypeList
+          typeCategory={searchObj["type"]}
+          setTypeCategory={(type) => setSearchProperty("type", type)}
+        />
+        <ListUI>
+          {data?.data?.map((product) => {
+            return (
+              <ProductBox
+                key={product?.name}
+                price={product?.price}
+                name={product?.name}
+                thumnail={product?.thumnail}
+              />
+            );
+          })}
+        </ListUI>
+        <PaginationList
+          meta={data?.meta}
+          onChange={(page) => setSearchProperty("page", page)}
+        />
+      </SectionUI>
       <Footer />
       {isLoading && <Loader delayMs={500} />}
-    </>
+    </PageUI>
   );
 };
 

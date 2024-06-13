@@ -1,12 +1,14 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import { routes } from "./routes";
 import { QueryClientProvider } from "react-query";
 import useRudkidsQueryClient from "./rudkidsQueryClient";
-import { Suspense, useEffect, useLayoutEffect, useState } from "react";
+import { Suspense, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import * as qs from "qs";
 import GlobalStyle from "../src/styles";
 import Loader from "./shared_components/Loader";
 import PublicBizAssets from "./global/public-biz-assets";
-import { init, track } from "@amplitude/analytics-browser";
+import { Identify, identify, init } from "@amplitude/analytics-browser";
+import { trackPageView, useTrackReadPageContents } from "./shared_analytics";
 
 function App() {
   const [queryClient] = useRudkidsQueryClient();
@@ -48,6 +50,9 @@ function App() {
     return null;
   }
 
+  // ;
+  // identify()
+
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<Loader />}>
@@ -57,9 +62,13 @@ function App() {
               key={route.path}
               path={route.path}
               element={
-                <TrackPageView pageName={route.pageMeta.name}>
+                route.viewTrack ? (
+                  <TrackPageView pageName={route.name}>
+                    <route.element routeInfo={route} />
+                  </TrackPageView>
+                ) : (
                   <route.element routeInfo={route} />
-                </TrackPageView>
+                )
               }
             />
           ))}
@@ -71,10 +80,23 @@ function App() {
 }
 
 const TrackPageView = ({ children, pageName }) => {
+  const params = useParams();
+
+  const searchParams = useMemo(() => {
+    const searchParams = qs.parse(window.location.search.replace("?", ""));
+    return searchParams;
+  }, [window.location.search]);
+
+  const options = {
+    ...params,
+    ...searchParams,
+  };
+  useTrackReadPageContents(pageName);
+
   useEffect(() => {
-    if (!pageName) return;
-    track(`view ${pageName} page`);
-  }, [pageName]);
+    trackPageView(pageName, options);
+  }, [pageName, options]);
+
   return children;
 };
 

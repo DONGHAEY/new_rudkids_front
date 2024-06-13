@@ -9,7 +9,7 @@ const SelectModal = ({ open, onClose, optionGroups, onSelected }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
 
   const cartClickHandler = () => {
-    onSelected(Object.values(selectedOptions).map((option) => option?.id));
+    onSelected(Object.values(selectedOptions));
     onClose();
   };
 
@@ -42,7 +42,10 @@ const SelectModal = ({ open, onClose, optionGroups, onSelected }) => {
                 setValue={(option) => {
                   setSelectedOptions({
                     ...selectedOptions,
-                    [optionGroup.id]: option,
+                    [optionGroup.id]: {
+                      ...option,
+                      groupName: optionGroup.name,
+                    },
                   });
                   setFocusingId(null);
                 }}

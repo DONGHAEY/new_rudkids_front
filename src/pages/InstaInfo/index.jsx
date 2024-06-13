@@ -8,7 +8,6 @@ const InstaInfoPage = () => {
   const [findedInstaInfo, setFindedInstaInfo] = useState(null);
   const [isSetting, setIsSetting] = useState(false);
   const [searchParams] = useSearchParams();
-
   const callback = searchParams.get("callback") ?? "/";
 
   if (isSetting) {

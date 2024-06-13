@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { getTicketId } from "../../pages/Ticket";
 import useAcceptInvitationMutation from "../../mutations/invitation/useAcceptInvitationMutation";
 import { setLoginCallbackUrl } from "../../pages/Login";
-import { setUserId } from "@amplitude/analytics-browser";
+import { Identify, identify, setUserId } from "@amplitude/analytics-browser";
+import moment from "moment";
 
 const AuthHoc = (Page) => {
   //
@@ -25,6 +26,12 @@ const AuthHoc = (Page) => {
         return;
       }
       setUserId(userData.id);
+      const identifyObj = new Identify();
+      identifyObj.setOnce(
+        "sign up date",
+        moment(userData?.createdAt).format("YYYY-MM-DD")
+      );
+      identify(identifyObj);
       setIsLoggedInChecked(true);
     }, [userData, isLoading]);
 

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SelectModal from "./SelectModal";
 import PutCartSuccessModal from "./PutCartSuccess";
+import { track } from "@amplitude/analytics-browser";
 
 const ActionBar = ({ productData }) => {
   const navigate = useNavigate();
@@ -18,17 +19,42 @@ const ActionBar = ({ productData }) => {
   const [putCartSuccessModal, setPutCartSuccessModal] = useState(false);
   const putCartProductMutation = useAddCartProductMutation();
 
-  const cartButtonClickHandler = async (optionIds = []) => {
-    console.log(productData?.optionGroups?.length, optionIds?.length, "--");
-    if (productData?.optionGroups?.length !== 0 && !optionIds?.length) {
+  const cartButtonClickHandler = async (options = []) => {
+    //
+    if (productData?.optionGroups?.length !== 0 && !options?.length) {
       setSelectOptionModal(true);
       return;
     }
     try {
       await putCartProductMutation.mutateAsync(
-        { productId: productData.id, optionIds },
         {
-          onSuccess: () => setPutCartSuccessModal(true),
+          productId: productData.id,
+          optionIds: options?.map((option) => option.id),
+        },
+        {
+          onSuccess: () => {
+            let {
+              id: product_id,
+              name: product_name,
+              type,
+              price,
+            } = productData;
+
+            let optionObj = {};
+            options?.map((option) => {
+              price += option.price;
+              optionObj[option.groupName] = option.name;
+            });
+
+            track("add to cart", {
+              product_id,
+              product_name,
+              type,
+              price,
+              ...optionObj,
+            });
+            setPutCartSuccessModal(true);
+          },
         }
       );
     } catch (e) {}
@@ -66,8 +92,8 @@ const ActionBar = ({ productData }) => {
         open={selectOptionModal}
         onClose={() => setSelectOptionModal(false)}
         optionGroups={productData?.optionGroups}
-        onSelected={async (optionIds) => {
-          await cartButtonClickHandler(optionIds);
+        onSelected={async (options) => {
+          await cartButtonClickHandler(options);
         }}
       />
       <PutCartSuccessModal
