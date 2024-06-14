@@ -23,7 +23,7 @@ import React, {
   useState,
 } from "react";
 import rudBottomSrc from "./assets/rud_gate_bottom.svg";
-import { Hands } from "@mediapipe/hands";
+import { HAND_CONNECTIONS, Hands } from "@mediapipe/hands";
 import { isSignaturePose } from "./utils/onResults";
 import Webcam from "react-webcam";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -173,23 +173,24 @@ const RudGatePage = () => {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
       hands.onResults((results) => {
-        let isPassed = true;
+        let isPassed = false;
         for (const landmarks of results?.multiHandLandmarks) {
-          // drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
-          //   color: "red",
-          //   lineWidth: 1,
-          // });
-          // drawLandmarks(ctx, landmarks, {
-          //   color: "red",
-          //   lineWidth: 1,
-          // });
+          isPassed = false;
           if (isSignaturePose(landmarks)) {
             isPassed = true;
           }
+          drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
+            color: isPassed ? "green" : "red",
+            lineWidth: 1,
+          });
+          drawLandmarks(ctx, landmarks, {
+            color: isPassed ? "green" : "red",
+            lineWidth: 1,
+          });
         }
         setIsPassed(isPassed);
       });
-      const image = cameraRef.current?.video;
+      const image = canvasRef.current;
       await hands.send({ image });
     })();
   }, [cameraRef, checkMode]);

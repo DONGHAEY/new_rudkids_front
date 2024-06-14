@@ -1,10 +1,12 @@
-export const isSignaturePose = (landmarks) => {
-  let x = landmarks[5].x * -1;
-  let y = landmarks[5].y * -1;
-  for (let i = 0; i < landmarks.length; i++) {
-    landmarks[i].x += x;
-    landmarks[i].y += y;
-  }
+export const isSignaturePose = (landmarks_) => {
+  const landmarks = landmarks_?.map((landmark) => landmark);
+
+  // let x = landmarks[5].x * -1;
+  // let y = landmarks[5].y * -1;
+  // for (let i = 0; i < landmarks.length; i++) {
+  //   landmarks[i].x += x;
+  //   landmarks[i].y += y;
+  // }
   //
   //
   if (landmarks[10].y >= landmarks[12].y) {

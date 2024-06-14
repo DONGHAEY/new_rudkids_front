@@ -99,7 +99,7 @@ const TrackPageView = ({ children, pageName }) => {
     let c_url = window.location.href + window.location.search;
     const c_url_ = sessionStorage.getItem("c_url");
     if (c_url_ !== c_url) {
-      sessionStorage.setItem("c_url", c_url_);
+      sessionStorage.setItem("c_url", c_url);
       trackPageView(pageName, options);
     }
   }, [pageName, options]);

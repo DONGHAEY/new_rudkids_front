@@ -14,7 +14,6 @@ export const trackPageView = (pageName, options) => {
 export const useTrackReadPageContents = (pageName) => {
   let maxScrollPos = 0;
   let scrollPos = 0;
-
   const scrollHandler = () => {
     const scrollTop = gsap.getProperty("html", "scrollTop");
     const clientHeight = gsap.getProperty("html", "clientHeight");
