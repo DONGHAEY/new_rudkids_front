@@ -20,7 +20,7 @@ const RudcardTemplate = ({
   name,
   birth,
   description,
-  order = 9999,
+  order,
   profileImgUrl,
   qrImgUrl,
   onLoaded,

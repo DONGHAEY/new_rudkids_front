@@ -17,7 +17,6 @@ import {
   RudBottomBackImgUI,
 } from "./styles";
 
-//
 import React, {
   useCallback,
   useEffect,

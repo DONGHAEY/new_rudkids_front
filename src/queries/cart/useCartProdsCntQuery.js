@@ -16,7 +16,7 @@ const useCartProdsCntQuery = () => {
   return useQuery({
     queryKey: KEY,
     queryFn: async () => {
-      const isLoggedIn = queryClient.getQueryCache(userQueryKey("my"));
+      const isLoggedIn = await queryClient.getQueryCache(userQueryKey("my"));
       if (!isLoggedIn) {
         return 0;
       }

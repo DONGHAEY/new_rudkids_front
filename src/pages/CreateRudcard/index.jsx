@@ -10,7 +10,7 @@ import useEditCardImgUrlMutation from "../../mutations/user/useEditCardImgUrlMut
 import Loader from "../../shared_components/Loader";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "@mui/material";
-import WarningAlert from "./WarningAlert";
+import WarningAlert, { CannotAlert } from "./WarningAlert";
 import ImageInput from "./ImageInput";
 import Popup from "../../shared_components/Popup";
 import * as htmlToImage from "html-to-image";
@@ -44,17 +44,27 @@ const CreateRudcardPage = () => {
   };
 
   const submit = async () => {
+    if (cardCreating) return;
     if (!cardRef.current) alert("카드로드안됨");
     setCardCreating(true);
-    const dataURI = await htmlToImage.toSvg(cardRef.current, {
-      width: cardRef.current.clientWidth,
-      height: cardRef.current.clientHeight,
+    // const targetWidth = 1000;
+    const width = cardRef.current.clientWidth;
+    const height = cardRef.current.clientHeight;
+    // const aspect = width / height;
+    // const targetHeight = targetWidth / aspect;
+    // console.log(width, height);
+    // console.log(targetWidth, targetHeight);
+
+    const dataURI = await htmlToImage.toPng(cardRef.current, {
+      width,
+      height,
+      backgroundColor: "none",
     });
     fetch(dataURI)
       .then((res) => res.blob())
       .then(async (blob) => {
         const formData = new FormData();
-        const fileName = `card.svg`;
+        const fileName = `card`;
         const convertedFile = new File([blob], fileName, {
           type: blob.type,
         });
@@ -170,7 +180,7 @@ const CreateRudcardPage = () => {
             birth={watch("birth")}
             description={watch("description")}
             qrImgUrl={`https://api.qrserver.com/v1/create-qr-code/?data=https://www.rud.kids/profile/${userData?.id}&amp;size=100x100`}
-            order={333}
+            order={userData?.firstPaidNum || "?"}
             onLoaded={(ref) => {
               setCardRef(ref);
             }}
@@ -199,19 +209,23 @@ const CreateRudcardPage = () => {
         <SaveBtnSectionUI>
           <SaveBtnUI type="submit">만들기</SaveBtnUI>
         </SaveBtnSectionUI>
-        <Modal open={isAlert}>
-          <WarningAlert
-            onConfirm={() => {
-              submit();
-              setIsAlert(false);
-            }}
-            onCancel={() => {
-              setIsAlert(false);
-            }}
-          />
+        <Modal open={isAlert} onClick={() => setIsAlert(false)}>
+          {userData?.firstPaidNum === 0 ? (
+            <CannotAlert />
+          ) : (
+            <WarningAlert
+              onConfirm={() => {
+                submit();
+                setIsAlert(false);
+              }}
+              onCancel={() => {
+                setIsAlert(false);
+              }}
+            />
+          )}
         </Modal>
+        {(editCardImgUrlMutation.isLoading || cardCreating) && <Loader />}
       </PageUI>
-      {(editCardImgUrlMutation.isLoading || cardCreating) && <Loader />}
     </Popup>
   );
 };

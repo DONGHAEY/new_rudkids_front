@@ -16,7 +16,10 @@ function App() {
 
   useEffect(() => {
     if (originChecked) return;
-    const allowOrigins = [process.env.REACT_APP_FE_URL];
+    const allowOrigins = [
+      process.env.REACT_APP_FE_URL,
+      "http://192.168.0.6:3001",
+    ];
     if (!allowOrigins.includes(window.location.origin)) {
       window.location.href =
         process.env.REACT_APP_FE_URL +

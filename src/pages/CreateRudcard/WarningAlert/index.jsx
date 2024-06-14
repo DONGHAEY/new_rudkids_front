@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   WrapperUI,
   AlertUI,
@@ -19,6 +20,24 @@ const WarningAlert = ({ onConfirm, onCancel }) => {
         <BtnListUI>
           <BackBtnUI onClick={onCancel}>뒤로가기</BackBtnUI>
           <SaveBtnUI onClick={onConfirm}>저장</SaveBtnUI>
+        </BtnListUI>
+      </AlertUI>
+    </WrapperUI>
+  );
+};
+
+export const CannotAlert = () => {
+  const navigate = useNavigate();
+  return (
+    <WrapperUI>
+      <AlertUI>
+        <TitleUI>
+          루키즈 카드는
+          <br />
+          실제로 배송되기에 주문 후 이용해주세요.
+        </TitleUI>
+        <BtnListUI>
+          <BackBtnUI onClick={() => navigate("/shop")}>이동하기</BackBtnUI>
         </BtnListUI>
       </AlertUI>
     </WrapperUI>
