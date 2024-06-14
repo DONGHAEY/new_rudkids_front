@@ -19,7 +19,6 @@ import { usePopup } from "../../hooks/usePopup";
 // import ShippingEvent from "./ShippingEvent";
 import useCartQuery from "../../queries/cart/useCartQuery";
 import useEditShippingPriceToZeroMutation from "../../mutations/cart/useEditShippingPriceToZeroMutation";
-import Background from "../../shared_components/Background";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
 
 const CartPage = () => {

@@ -183,7 +183,7 @@ const RudGatePage = () => {
           }
           drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
             color: "white",
-            lineWidth: 1,
+            lineWidth: 0.5,
           });
           drawLandmarks(ctx, landmarks, {
             color: "white",

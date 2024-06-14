@@ -100,7 +100,7 @@ const MenuBar = ({ onClosed }) => {
 
   return (
     <>
-      <MenuBarUI ref={ref}>
+      <MenuBarUI ref={ref} onClick={() => close()}>
         <div
           style={{
             height: "12%",
@@ -112,6 +112,7 @@ const MenuBar = ({ onClosed }) => {
             return (
               <MenuBtnUI
                 onClick={(e) => {
+                  e.stopPropagation();
                   trackClickButton("nav bar", {
                     type: menuButtonDt.name,
                   });
