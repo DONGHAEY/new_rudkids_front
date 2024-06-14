@@ -74,7 +74,7 @@ const CallingModal = ({ videoSrc = defaultVideo, onClosed, pageFor = "" }) => {
   const onFinished = () => {
     track("hang up", {
       before: pageFor,
-      duration_time: videoRef.current.currentTime,
+      duration_time: Number(videoRef.current.currentTime).toFixed(1),
     });
     gsap.to(callBoxRef.current, {
       opacity: 0,

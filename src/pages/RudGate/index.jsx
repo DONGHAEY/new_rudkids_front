@@ -4,7 +4,6 @@ import {
   RudgateImgUI,
   BottomSectionUI,
   AbsoluteCenterUI,
-  ResultImgUI,
   ButtonListUI,
   ShareBtnUI,
   PassStatImgUI,
@@ -16,7 +15,6 @@ import {
   TakeBtnSectionUI,
   RudBottomBackImgUI,
 } from "./styles";
-
 import React, {
   useCallback,
   useEffect,
@@ -46,6 +44,7 @@ import ImgInstaShareModal from "./ImgShareModal";
 import HelpSignModal from "./HelpSignModal";
 import { trackClickButton } from "../../shared_analytics";
 import { track } from "@amplitude/analytics-browser";
+import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
 
 export const setPassedStat = (passStat) => {
   localStorage.setItem(StorageKey.rud_gate_passed, passStat);
@@ -61,23 +60,23 @@ const RudGatePage = () => {
   const navigate = useNavigate();
 
   const shareSceneRef = useRef();
-  const cameraRef = useRef();
+  const cameraRef = useRef(null);
+  const canvasRef = useRef(null);
 
   const [isPassed, setIsPassed] = useState(null);
-  const [photoUrl, setPhotoUrl] = useState("");
+  const [checkMode, setCheckMode] = useState(false);
   const [screenshot, takeScreenshot] = useScreenshot();
   const [ltCmpltEvnt, setLtCmpltEvnt] = useState(false);
   const [videoPermission, setVideoPermission] = useState(null);
 
   const takeAPhotoBtnClickHandler = useCallback(async () => {
     trackClickButton("take picture", { page: "rud gate" });
-    const imageSrc = cameraRef.current.getScreenshot();
-    setPhotoUrl(imageSrc);
+    setCheckMode(true);
   }, [cameraRef.current]);
 
   const closeBtnClickHandler = () => {
     trackClickButton("back");
-    setPhotoUrl("");
+    setCheckMode(false);
   };
 
   const getInBtnClickHandler = () => {
@@ -94,12 +93,12 @@ const RudGatePage = () => {
   };
 
   const isScanLtShow = useMemo(() => {
-    if (photoUrl && isPassed === null) {
+    if (checkMode && isPassed === null) {
       return true;
     } else {
       return false;
     }
-  }, [ltCmpltEvnt, photoUrl]);
+  }, [ltCmpltEvnt, checkMode]);
 
   const requestVideoPermission = async () => {
     let allowStat = false;
@@ -119,8 +118,45 @@ const RudGatePage = () => {
   };
 
   useEffect(() => {
+    const video = cameraRef.current?.video;
+    const canvas = canvasRef.current;
+    const drawVideo = () => {
+      if (!video) return;
+      if (!canvas) return;
+      if (checkMode) return;
+      const ctx = canvas.getContext("2d");
+      if (video.readyState === 4) {
+        const videoWidth = video.videoWidth;
+        const videoHeight = video.videoHeight;
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        const videoAspect = videoWidth / videoHeight;
+        const canvasAspect = canvasWidth / canvasHeight;
+        let drawWidth, drawHeight, offsetX, offsetY;
+        if (videoAspect > canvasAspect) {
+          drawHeight = canvasHeight;
+          drawWidth = videoWidth * (canvasHeight / videoHeight);
+          offsetX = (canvasWidth - drawWidth) / 2;
+          offsetY = 0;
+        } else {
+          drawWidth = canvasWidth;
+          drawHeight = videoHeight * (canvasWidth / videoWidth);
+          offsetX = 0;
+          offsetY = (canvasHeight - drawHeight) / 2;
+        }
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        ctx.drawImage(video, offsetX, offsetY, drawWidth, drawHeight);
+      }
+    };
+    const interval = setInterval(drawVideo, 1000 / 50); //50fps
+    return () => clearInterval(interval);
+  }, [videoPermission, checkMode]);
+
+  useEffect(() => {
     return () => {
-      const stream = cameraRef.current.video.srcObject;
+      const stream = cameraRef.current?.video.srcObject;
       if (!stream) return;
       const tracks = stream.getTracks();
       tracks.forEach((track) => track.stop());
@@ -130,34 +166,33 @@ const RudGatePage = () => {
 
   useEffect(() => {
     (async () => {
-      if (!photoUrl) {
+      if (!checkMode) {
         setIsPassed(null);
         return;
       }
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
       hands.onResults((results) => {
+        let isPassed = true;
         for (const landmarks of results?.multiHandLandmarks) {
+          // drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
+          //   color: "red",
+          //   lineWidth: 1,
+          // });
+          // drawLandmarks(ctx, landmarks, {
+          //   color: "red",
+          //   lineWidth: 1,
+          // });
           if (isSignaturePose(landmarks)) {
-            setIsPassed(true);
-            return;
+            isPassed = true;
           }
         }
-        setIsPassed(false);
+        setIsPassed(isPassed);
       });
       const image = cameraRef.current?.video;
       await hands.send({ image });
     })();
-  }, [cameraRef, photoUrl]);
-
-  const webCamProps = {
-    ref: cameraRef,
-    audio: false,
-    mirrored: true,
-    screenshotFormat: "image/webp",
-    screenshotQuality: 1,
-    videoConstraints: {
-      facingMode: "user",
-    },
-  };
+  }, [cameraRef, checkMode]);
 
   return (
     <PageUI ref={shareSceneRef}>
@@ -166,14 +201,26 @@ const RudGatePage = () => {
         {videoPermission && <HelpSignModal />}
         {videoPermission && (
           <Webcam
+            ref={cameraRef}
             style={{
+              position: "absolute",
+              opacity: 0,
+              width: "100%",
               height: "100%",
-              zIndex: 0,
             }}
-            {...webCamProps}
           />
         )}
-        {photoUrl && <ResultImgUI src={photoUrl} />}
+        {videoPermission && (
+          <canvas
+            ref={canvasRef}
+            style={{
+              width: "100%",
+              height: "100%",
+              opacity: 1,
+              zIndex: 1,
+            }}
+          />
+        )}
         {isPassed === null && <RudgateImgUI src={template} />}
         {!isScanLtShow && (
           <>
@@ -226,13 +273,13 @@ const RudGatePage = () => {
         <JoinUsImgUI src={joinUsImgSrc} />
       </WecamSectionUI>
       <BottomSectionUI>
-        {!photoUrl && (
+        {!checkMode && (
           <AbsoluteCenterUI>
             <RudBottomBackImgUI src={rudBottomSrc} />
             <TakeBtnSectionUI onClick={takeAPhotoBtnClickHandler} />
           </AbsoluteCenterUI>
         )}
-        {!isScanLtShow && photoUrl && (
+        {!isScanLtShow && checkMode && (
           <ButtonListUI>
             <ShareBtnUI onClick={shareBtnClickHandler}>
               <Icon icon="bitcoin-icons:share-filled" color="white" />

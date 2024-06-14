@@ -73,7 +73,7 @@ const TicketPage = ({ routeInfo }) => {
     if (!isLoading) {
       trackPageView("ticket", {
         type: invitationData.type ?? "no ticket",
-        invitorName: invitationData.invitorId,
+        invitor_name: invitationData.invitorId,
       });
       if (!invitationData) {
         navigate("/401");

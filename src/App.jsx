@@ -20,6 +20,7 @@ function App() {
       process.env.REACT_APP_FE_URL,
       "http://192.168.0.6:3001",
     ];
+
     if (!allowOrigins.includes(window.location.origin)) {
       window.location.href =
         process.env.REACT_APP_FE_URL +
@@ -91,10 +92,16 @@ const TrackPageView = ({ children, pageName }) => {
     ...params,
     ...searchParams,
   };
+
   useTrackReadPageContents(pageName);
 
   useEffect(() => {
-    trackPageView(pageName, options);
+    let c_url = window.location.href + window.location.search;
+    const c_url_ = sessionStorage.getItem("c_url");
+    if (c_url_ !== c_url) {
+      sessionStorage.setItem("c_url", c_url_);
+      trackPageView(pageName, options);
+    }
   }, [pageName, options]);
 
   return children;
