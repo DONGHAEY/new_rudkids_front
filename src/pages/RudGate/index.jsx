@@ -16,6 +16,7 @@ import {
   TakeBtnSectionUI,
   RudBottomBackImgUI,
 } from "./styles";
+
 //
 import React, {
   useCallback,
@@ -120,11 +121,11 @@ const RudGatePage = () => {
 
   useEffect(() => {
     return () => {
-      if (!cameraRef.current.stream) return;
-      console.log(cameraRef.current.stream);
-      cameraRef.current.stream.getTracks().forEach((track) => {
-        track.stop();
-      });
+      const stream = cameraRef.current.video.srcObject;
+      if (!stream) return;
+      const tracks = stream.getTracks();
+      tracks.forEach((track) => track.stop());
+      cameraRef.current.video.srcObject = null;
     };
   }, []);
 
@@ -136,6 +137,7 @@ const RudGatePage = () => {
       }
       hands.onResults((results) => {
         for (const landmarks of results?.multiHandLandmarks) {
+          //
           if (isSignaturePose(landmarks)) {
             setIsPassed(true);
             return;

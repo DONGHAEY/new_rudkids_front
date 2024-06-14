@@ -3,16 +3,17 @@ import {
   InstagramIdInputUI,
   TitleTxtUI,
   InstagramIdInputWrapperUI,
-  LoadingSceneWrapperUI,
+  RudkidsInstaUI,
 } from "./styles";
 import InstagramProfile from "./assets/InstagramProfile.svg";
-import Lock from "../../../shared_components/Lock";
 import StepIndicator from "../../../shared_components/StepIndicator";
 import { useEffect, useState } from "react";
 import useGetImgUrlMutation from "../../../mutations/instagram-profile/useGetImgUrl";
 import LoadingScene from "./LoadingScene";
 import { CompleteBtnUI, PageUI, WrapperUI } from "../shared_styles";
 import Background from "../../../shared_components/Background";
+import instaImgSrc from "./assets/insta.jpg";
+import { FixedPipVideo } from "../../../shared_components/FixedPipVideo";
 
 const FindInsta = ({ setFindedInstaInfo }) => {
   const [instagramId, setInstagramId] = useState("");
@@ -46,20 +47,26 @@ const FindInsta = ({ setFindedInstaInfo }) => {
 
   if (showLoading) {
     return (
-      <LoadingSceneWrapperUI>
-        <LoadingScene
-          blackholeActive={!getInstagramInfoMutation.isLoading}
-          onComplete={() => {
-            setShowLoading(false);
-          }}
-        />
-      </LoadingSceneWrapperUI>
+      <LoadingScene
+        blackholeActive={!getInstagramInfoMutation.isLoading}
+        onComplete={() => {
+          setShowLoading(false);
+        }}
+      />
     );
   }
 
   return (
     <PageUI>
-      <Lock />
+      <FixedPipVideo />
+      <RudkidsInstaUI
+        onClick={() => {
+          window.location.href = "https://www.instagram.com/rudkidss";
+        }}
+      >
+        <img src={instaImgSrc} />
+        Rudkidss
+      </RudkidsInstaUI>
       <WrapperUI>
         <TitleTxtUI>
           Tell me Your

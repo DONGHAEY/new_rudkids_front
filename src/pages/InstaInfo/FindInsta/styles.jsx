@@ -1,6 +1,20 @@
 import styled from "styled-components";
 import PublicBizAssets from "../../../global/public-biz-assets";
 
+export const RudkidsInstaUI = styled.div`
+  padding-inline: 19px;
+  padding-block: 16px;
+  background-color: white;
+  border-radius: 56.98px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 110%;
+  font-family: Poppins-Bold;
+  gap: 10.18px;
+  margin-bottom: 24px;
+`;
+
 export const TitleTxtUI = styled.div`
   color: black;
   font-family: Poppins-Bold;
@@ -36,14 +50,4 @@ export const InstagramIdInputUI = styled.input`
   border: none;
   font-family: Pretendard-Bold;
   padding-inline: 30px;
-`;
-
-export const LoadingSceneWrapperUI = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-image: url(${PublicBizAssets.background});
-  background-position: 0;
-  background-repeat: no-repeat;
-  background-size: cover;
 `;

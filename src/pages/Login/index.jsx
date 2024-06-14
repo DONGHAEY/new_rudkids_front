@@ -14,7 +14,6 @@ import {
 import NaverSvg from "./assets/naver.svg";
 import KakaoSvg from "./assets/kakao.svg";
 import { PageUI } from "./styles";
-import Lock from "../../shared_components/Lock";
 import StepIndicator from "../../shared_components/StepIndicator";
 import { useNavigate } from "react-router-dom";
 import headSrc from "./assets/head.svg";
@@ -23,6 +22,7 @@ import Background from "../../shared_components/Background";
 import StorageKey from "../../storageKey";
 import { useEffect } from "react";
 import { getPassedStat } from "../RudGate";
+import { FixedPipVideo } from "../../shared_components/FixedPipVideo";
 import { trackClickButton } from "../../shared_analytics";
 
 const providers = [
@@ -72,7 +72,7 @@ const LoginPage = () => {
 
   return (
     <PageUI>
-      <Lock />
+      <FixedPipVideo />
       <LoginWrapperUI>
         <img width={"100%"} src={headSrc} />
         <LoginUI>

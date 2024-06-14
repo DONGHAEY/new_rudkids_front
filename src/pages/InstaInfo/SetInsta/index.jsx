@@ -3,7 +3,6 @@ import useUpdateImageUrlMutation from "../../../mutations/user/useUpdateImageUrl
 import useUpdateInstaIdMutation from "../../../mutations/user/userUpdateInstaIdMutation";
 import Lottie from "react-lottie";
 import checkLottie from "./assets/check_lottie.json";
-import Lock from "../../../shared_components/Lock";
 import { CompleteBtnUI, PageUI, WrapperUI } from "../shared_styles";
 import Background from "../../../shared_components/Background";
 import Loader from "../../../shared_components/Loader";
@@ -34,7 +33,6 @@ const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
 
   return (
     <PageUI>
-      <Lock />
       <WrapperUI>
         <CheckWrapperUI>
           <Lottie

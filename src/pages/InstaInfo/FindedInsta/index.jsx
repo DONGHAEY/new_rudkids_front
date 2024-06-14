@@ -9,12 +9,11 @@ import {
   ButtonUI,
 } from "./styles";
 import InstagramProfile from "./assets/InstagramProfile.svg";
-import Lock from "../../../shared_components/Lock";
-import StepIndicator from "../../../shared_components/StepIndicator";
 import cautionImgSrc from "./assets/caution.png";
 import { PageUI, WrapperUI } from "../shared_styles";
 import Background from "../../../shared_components/Background";
 import { trackClickButton } from "../../../shared_analytics";
+import StepIndicator from "../../../shared_components/StepIndicator";
 
 const FindedInsta = ({ instaImgUrl, instaId, onCancel, onSelect }) => {
   const cancelClickHandler = () => {
@@ -33,7 +32,6 @@ const FindedInsta = ({ instaImgUrl, instaId, onCancel, onSelect }) => {
 
   return (
     <PageUI>
-      <Lock />
       <CautionImgUI src={cautionImgSrc} />
       <WrapperUI>
         <TitleTxtUI>You Sure? 🤔</TitleTxtUI>

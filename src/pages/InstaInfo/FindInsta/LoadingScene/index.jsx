@@ -6,8 +6,8 @@ import { PointerCollider } from "./PointerCollider";
 import { BoundaryPlanes } from "./BoundaryPlanes";
 import { CanvasUI } from "./styles";
 import { Blackhole } from "./Blackhole";
-import Loader from "../../../../shared_components/Loader";
-import Lock from "../../../../shared_components/Lock";
+import loadingLottie from "./assets/loading.json";
+import Lottie from "react-lottie";
 
 const colors = [0xfee639, 0xed2424, 0x2f70b7];
 
@@ -80,17 +80,28 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                justifyContent: "center",
               }}
               fullscreen
               position={[0, 0, 10]}
             >
-              <br style={{ marginTop: "10px" }} />
-              <Lock position="block" />
-              <Loader
-                position="block"
-                message="인스타 프로필을 찾는중.."
-                color="black"
+              <Lottie
+                style={{
+                  height: "80px",
+                }}
+                options={{
+                  animationData: loadingLottie,
+                }}
               />
+              <p
+                style={{
+                  fontFamily: "Pretendard-Bold",
+                  fontSize: "16px",
+                  color: "black",
+                }}
+              >
+                내 프로필 찾는 중...
+              </p>
             </Html>
           )}
         </Physics>

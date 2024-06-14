@@ -18,14 +18,8 @@ export const LoginWrapperUI = styled.div`
   align-items: center;
   justify-content: end;
   border-radius: 23px;
-  min-width: 80%;
-  gap: 33px;
-  max-height: 419.12px;
-  padding-bottom: 51px;
-  margin-bottom: 18px;
-  background-color: rgba(255, 255, 255, 0.6);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  width: 90%;
+  gap: 12px;
 `;
 
 export const LoginUI = styled.div`
@@ -33,7 +27,15 @@ export const LoginUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 90%;
+  /* margin-top: 14px; */
+  border-radius: 23.62px;
+  max-height: 419.12px;
+  padding-block: 40px;
+  margin-bottom: 18px;
+  background-color: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  width: 100%;
 `;
 
 export const LoginBtnListUI = styled.div`
@@ -98,7 +100,7 @@ export const LoginCommentArrowUI = styled.div`
 `;
 
 export const JoinUsIconUI = styled.img`
-  height: 10%;
+  height: 13%;
   position: absolute;
   bottom: 5%;
   right: 5%;
