@@ -146,6 +146,8 @@ const RudGatePage = () => {
           offsetX = 0;
           offsetY = (canvasHeight - drawHeight) / 2;
         }
+        // ctx.translate(canvasWidth, 0);
+        // ctx.scale(-1, 1);
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         ctx.drawImage(video, offsetX, offsetY, drawWidth, drawHeight);
       }
@@ -180,11 +182,11 @@ const RudGatePage = () => {
             isPassed = true;
           }
           drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
-            color: isPassed ? "green" : "red",
+            color: "white",
             lineWidth: 1,
           });
           drawLandmarks(ctx, landmarks, {
-            color: isPassed ? "green" : "red",
+            color: "white",
             lineWidth: 1,
           });
         }
@@ -203,6 +205,7 @@ const RudGatePage = () => {
         {videoPermission && (
           <Webcam
             ref={cameraRef}
+            mirrored
             style={{
               position: "absolute",
               opacity: 0,
@@ -219,6 +222,7 @@ const RudGatePage = () => {
               height: "100%",
               opacity: 1,
               zIndex: 1,
+              transform: "scaleX(-1)",
             }}
           />
         )}
