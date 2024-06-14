@@ -75,7 +75,7 @@ export const ProductPriceTextUI = styled.h3`
 export const ModelDescriptionUI = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
+  margin-block: 40px;
   width: 90%;
   padding: 19px;
   background-color: #f7f7f7;

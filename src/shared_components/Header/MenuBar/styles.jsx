@@ -9,14 +9,13 @@ export const DimmUI = styled.div`
 
 export const MenuBarUI = styled.div`
   background-color: #e1e1e1;
-  width: 100%;
-  max-width: 260px;
+  width: 80%;
+  max-width: 230px;
   height: 100%;
   display: flex;
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
   flex-direction: column;
-  justify-content: center;
   padding-inline: 22px;
   position: absolute;
   gap: 40px;

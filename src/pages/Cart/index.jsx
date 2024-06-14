@@ -20,6 +20,7 @@ import { usePopup } from "../../hooks/usePopup";
 import useCartQuery from "../../queries/cart/useCartQuery";
 import useEditShippingPriceToZeroMutation from "../../mutations/cart/useEditShippingPriceToZeroMutation";
 import Background from "../../shared_components/Background";
+import { useBodyBackground } from "../../hooks/useBodyBackground";
 
 const CartPage = () => {
   const [popupNavigate, poupPop] = usePopup();
@@ -36,6 +37,8 @@ const CartPage = () => {
   }, [myCartData?.cartProducts]);
 
   const totalShippingPrice = myCartData?.shippingPrice;
+
+  useBodyBackground("#1a94d9");
 
   useEffect(() => {
     if (!myCartData) return;
@@ -77,7 +80,7 @@ const CartPage = () => {
           />
         </div> */}
         <SmileSellerWrapperUI>
-          <img src={smileSellerSrc} height="153px" />
+          <img src={smileSellerSrc} height="200px" />
         </SmileSellerWrapperUI>
       </FlexWrapperUI>
 
@@ -85,7 +88,6 @@ const CartPage = () => {
         <ShippingEvent />
       </PopupRoute> */}
       <CheckoutBar cartData={myCartData} />
-      <Background />
     </PageUI>
   );
 };

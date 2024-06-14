@@ -28,6 +28,7 @@ export const HeaderUI = styled.div`
   width: 85%;
   max-width: 370px;
   height: 55px;
+  padding-block: 8px;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -48,7 +49,7 @@ export const IconLinkUI = styled(Link)`
 `;
 
 export const SpacerUI = styled.div`
-  margin-top: 55px;
+  margin-top: 63px;
   /* padding-top: 5px; */
 `;
 

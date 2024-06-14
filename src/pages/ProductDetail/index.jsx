@@ -93,6 +93,12 @@ const ProductDetailPage = ({ routeInfo }) => {
           </InfoRowUI>
           <ProductPriceTextUI>₩ {productPrice}</ProductPriceTextUI>
         </ContentSectionUI>
+        <div
+          style={{
+            height: "5%",
+            width: "100%",
+          }}
+        />
         <ModelSelect
           models={models}
           selectedIdx={selectedIdx}

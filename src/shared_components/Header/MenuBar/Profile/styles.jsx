@@ -28,11 +28,11 @@ export const ContentWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const NameTextUI = styled.p`
-  font-size: 20px;
+  font-size: 17px;
   line-height: 25px;
   font-family: Poppins-Bold;
   overflow: hidden;

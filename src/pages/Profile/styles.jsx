@@ -10,11 +10,6 @@ export const PageUI = styled.div`
   align-items: center;
   width: 100%;
   min-height: 100%;
-  background: linear-gradient(
-    0deg,
-    rgba(18, 150, 240, 1) 0%,
-    rgba(189, 226, 251, 1) 100%
-  );
 `;
 
 export const TopSectionUI = styled.div`
@@ -23,7 +18,7 @@ export const TopSectionUI = styled.div`
   top: 15px;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
+  width: 85%;
 `;
 
 export const BoxSectionUI = styled.div`
@@ -41,15 +36,15 @@ export const BoxSectionUI = styled.div`
 export const UserImgUI = styled.img`
   border-radius: 100%;
   object-fit: cover;
-  max-width: 133px;
+  max-width: 113px;
   position: absolute;
   margin-inline: auto;
   top: -40px;
 `;
 
 export const UserNickNameTxtUI = styled.p`
-  margin-top: 22px;
-  font-size: 22px;
+  margin-top: -10px;
+  font-size: 20px;
   font-family: Poppins-Bold;
   letter-spacing: -0.88px;
   line-height: 100%;
@@ -62,7 +57,7 @@ export const DescriptTxtUI = styled.div`
   width: 80%;
   line-height: 140%;
   height: auto;
-  margin-top: 17px;
+  margin-top: 11px;
   text-align: center;
   font-family: Pretendard-SemiBold;
   font-size: 14px;
@@ -93,7 +88,7 @@ export const SettingBtnUI = styled(Link)`
 export const LinksSectionUI = styled.div`
   margin-top: 30px;
   display: flex;
-  width: 90%;
+  width: 80%;
   background-color: white;
   border-radius: 12px;
 `;
@@ -173,7 +168,7 @@ export const CenterModalUI = styled(Modal)`
 `;
 
 export const CollectionUI = styled.div`
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;

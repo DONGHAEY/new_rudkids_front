@@ -24,6 +24,7 @@ export const SectionDscrptTxtUI = styled.h2`
   margin-bottom: 20px;
   letter-spacing: 0px;
   text-align: left;
+  color: white;
 `;
 
 export const CartProductListUI = styled.div`

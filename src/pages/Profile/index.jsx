@@ -40,6 +40,8 @@ import CopyShare from "./CopyShare";
 import { GoArrowUpRight } from "react-icons/go";
 import useCollectionQuery from "../../queries/collection/userCollectionQuery";
 import Loader from "../../shared_components/Loader";
+import { useBodyBackground } from "../../hooks/useBodyBackground";
+// import Background from "../../shared_components/Background";
 
 export const ProfilePage = ({ routeInfo }) => {
   const params = useParams();
@@ -74,6 +76,8 @@ export const ProfilePage = ({ routeInfo }) => {
       updateTodayViewMutation.mutateAsync(searchUserId);
     }
   }, [searchUserId]);
+
+  useBodyBackground("#1a94d9");
 
   if (userLoading || collectionLoading) {
     return <Loader />;

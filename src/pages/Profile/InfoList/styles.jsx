@@ -5,10 +5,10 @@ export const RowWrapperUI = styled.div`
   flex-direction: row;
   justify-content: space-between;
   height: auto;
-  width: 90%;
+  width: 80%;
   max-width: 325.33px;
   gap: 15.28px;
-  margin-top: 26px;
+  margin-top: 36px;
 `;
 
 export const InfoBoxUI = styled.div`

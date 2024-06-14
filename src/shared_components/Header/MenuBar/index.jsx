@@ -101,6 +101,11 @@ const MenuBar = ({ onClosed }) => {
   return (
     <>
       <MenuBarUI ref={ref}>
+        <div
+          style={{
+            height: "12%",
+          }}
+        />
         <Profile />
         <MenuBtnListUI>
           {menuButtonDtList?.map((menuButtonDt, idx) => {

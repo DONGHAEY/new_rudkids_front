@@ -6,7 +6,7 @@ export const CartProductUI = styled.div`
   flex-direction: row;
   padding: 20px;
   min-height: 80px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255);
   border-radius: 20px;
 `;
 
@@ -52,7 +52,7 @@ export const QuantityButtonUI = styled.div`
 `;
 
 export const CartProductNameUI = styled.p`
-  font-size: 14px;
+  font-size: 17px;
   font-family: Poppins-Bold;
   letter-spacing: -0.3px;
   word-spacing: 0px;

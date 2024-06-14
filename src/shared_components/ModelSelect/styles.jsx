@@ -6,6 +6,7 @@ export const ModelSelectUI = styled.div`
   flex-direction: row;
   align-items: end;
   overflow-x: scroll;
+  padding-bottom: 12.5px;
   /* margin-top: 24px; */
 `;
 
@@ -24,7 +25,7 @@ export const NameTextUI = styled.p`
 export const ProductComponentImgWrapperUI = styled.div`
   position: relative;
   object-fit: cover;
-  width: 138.68px;
+  width: 120px;
   aspect-ratio: 1/1;
   display: flex;
   align-items: center;

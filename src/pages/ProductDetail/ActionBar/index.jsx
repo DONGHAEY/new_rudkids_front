@@ -83,7 +83,7 @@ const ActionBar = ({ productData }) => {
             </ActionButtonUI>
           )}
           <ActionButtonUI onClick={cartButtonClickHandler}>
-            <BsCartPlusFill fontSize="20px" />
+            <BsCartPlusFill fontSize="25px" />
             <p>Cart</p>
           </ActionButtonUI>
         </ActionBarUI>
