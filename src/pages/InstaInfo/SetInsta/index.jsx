@@ -7,7 +7,8 @@ import { CompleteBtnUI, PageUI, WrapperUI } from "../shared_styles";
 import Background from "../../../shared_components/Background";
 import Loader from "../../../shared_components/Loader";
 import useUserQuery from "../../../queries/user/useUserQuery";
-import { track } from "@amplitude/analytics-browser";
+import { Identify, identify, track } from "@amplitude/analytics-browser";
+import moment from "moment";
 
 const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
   const { data: userData } = useUserQuery();
@@ -27,6 +28,12 @@ const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
         user_id: userData?.id,
         date: new Date().toISOString().substring(0, 10).replaceAll(".", "-"),
       });
+      const identifyObj = new Identify();
+      identifyObj.setOnce(
+        "sign up date",
+        moment(userData?.createdAt).format("YYYY-MM-DD")
+      );
+      identify(identifyObj);
     }
     onComplete();
   };

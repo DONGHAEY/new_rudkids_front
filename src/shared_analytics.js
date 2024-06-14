@@ -28,7 +28,7 @@ export const useTrackReadPageContents = (pageName) => {
   useEffect(() => {
     window.addEventListener("scroll", scrollHandler);
     return () => window.removeEventListener("scroll", scrollHandler);
-  }, []);
+  }, [pageName]);
 
   useEffect(() => {
     const st = moment();
@@ -42,7 +42,7 @@ export const useTrackReadPageContents = (pageName) => {
         page_name: pageName,
       });
     };
-  }, []);
+  }, [pageName]);
 
   return <></>;
 };
