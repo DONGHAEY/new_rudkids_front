@@ -137,7 +137,6 @@ const RudGatePage = () => {
       }
       hands.onResults((results) => {
         for (const landmarks of results?.multiHandLandmarks) {
-          //
           if (isSignaturePose(landmarks)) {
             setIsPassed(true);
             return;
@@ -170,9 +169,7 @@ const RudGatePage = () => {
           <Webcam
             style={{
               height: "100%",
-              width: "auto",
               zIndex: 0,
-              position: "absolute",
             }}
             {...webCamProps}
           />

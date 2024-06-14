@@ -129,7 +129,6 @@ export const AllowReqImgUI = styled.img`
 
 export const ResultImgUI = styled.img`
   height: 100%;
-  width: auto;
   position: absolute;
   z-index: 1;
 `;

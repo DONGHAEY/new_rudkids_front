@@ -35,6 +35,7 @@ const ImgShareModal = ({ dataUri }) => {
   return (
     <ModalUI open={isOpen} onClose={close}>
       <RudAlertWrapperUI>
+        <img height="10%" src={dataUri} />
         <RudAlert onClose={close}>
           <ContentImgWrapperUI>
             <img src={shareImgSrc} width="80%" onClick={captureShare} />
