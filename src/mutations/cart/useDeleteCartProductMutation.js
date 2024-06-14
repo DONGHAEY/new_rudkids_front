@@ -26,7 +26,7 @@ const useDeleteCartProductMutation = (id) => {
       await queryClient.setQueryData(cartKey, cartData);
       const cartProdsCntData = await queryClient.getQueryData(cartProdsCntKey);
       const identifyObj = new Identify();
-      identifyObj.setOnce("cart quantity", cartProdsCntData + 1);
+      identifyObj.setOnce("cart quantity", cartProdsCntData - 1);
       identify(identifyObj);
       await queryClient.setQueryData(cartProdsCntKey, cartProdsCntData - 1);
     },
