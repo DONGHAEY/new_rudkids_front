@@ -116,7 +116,7 @@ const MenuBar = ({ onClosed }) => {
                   SignatureGradients[idx % SignatureGradients?.length]
                 }
               >
-                <Icon icon={menuButtonDt.iconNm} height="37%" />
+                <Icon icon={menuButtonDt.iconNm} height="30%" />
                 <MenuBtnTextUI>{menuButtonDt.name}</MenuBtnTextUI>
               </MenuBtnUI>
             );

@@ -1,7 +1,7 @@
 import {
   PageUI,
   WecamSectionUI,
-  WebcamTemplateUI,
+  RudgateImgUI,
   BottomSectionUI,
   AbsoluteCenterUI,
   ResultImgUI,
@@ -14,6 +14,7 @@ import {
   JoinUsImgUI,
   AllowReqImgUI,
   TakeBtnSectionUI,
+  RudBottomBackImgUI,
 } from "./styles";
 //
 import React, {
@@ -94,16 +95,12 @@ const RudGatePage = () => {
     takeScreenshot(shareSceneRef.current);
   };
 
-  const geScantLtShowStat = useCallback(() => {
+  const isScanLtShow = useMemo(() => {
     if (photoUrl && isPassed === null) {
       return true;
     } else {
       return false;
     }
-  }, [photoUrl, isPassed]);
-
-  const isScanLtShow = useMemo(() => {
-    return geScantLtShowStat();
   }, [ltCmpltEvnt, photoUrl]);
 
   const requestVideoPermission = async () => {
@@ -169,16 +166,20 @@ const RudGatePage = () => {
         <AllowReqImgUI src={allowImgSrc} />
         {videoPermission && (
           <Webcam
+            style={{
+              height: "100%",
+              zIndex: 0,
+              position: "absolute",
+            }}
             {...webCamProps}
             onUserMedia={(stream) => {
-              console.log(stream);
               setVideoStream(stream);
             }}
           />
         )}
         {videoPermission && <HelpSignModal />}
         {photoUrl && <ResultImgUI src={photoUrl} />}
-        {isPassed === null && <WebcamTemplateUI src={template} />}
+        {isPassed === null && <RudgateImgUI src={template} />}
         {!isScanLtShow && (
           <>
             {isPassed !== null && (
@@ -194,7 +195,7 @@ const RudGatePage = () => {
                   height: "100%",
                   position: "fixed",
                   margin: "0 auto",
-                  zIndex: 10,
+                  zIndex: 1,
                 }}
                 options={{
                   animationData: congraturationAnimation,
@@ -211,7 +212,7 @@ const RudGatePage = () => {
               width: "300%",
               height: "100%",
               position: "absolute",
-              zIndex: 9,
+              zIndex: 1,
             }}
             eventListeners={[
               {
@@ -232,7 +233,7 @@ const RudGatePage = () => {
       <BottomSectionUI>
         {!photoUrl && (
           <AbsoluteCenterUI>
-            <img style={{ width: "100%" }} src={rudBottomSrc} />
+            <RudBottomBackImgUI src={rudBottomSrc} />
             <TakeBtnSectionUI onClick={takeAPhotoBtnClickHandler} />
           </AbsoluteCenterUI>
         )}

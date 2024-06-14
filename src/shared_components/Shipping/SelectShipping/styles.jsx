@@ -5,7 +5,7 @@ export const ShippingListUI = styled.div`
   padding-inline: 5%;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  min-height: 100%;
   background: white;
   gap: 21px;
   padding-block: 10px;

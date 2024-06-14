@@ -5,5 +5,6 @@ export const TShirtIntroduceUI = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 15px;
+  gap: 15px;
   width: 85%;
 `;

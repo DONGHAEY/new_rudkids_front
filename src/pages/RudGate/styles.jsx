@@ -10,16 +10,6 @@ export const PageUI = styled.div`
   justify-content: space-between;
 `;
 
-export const RudgateSignImgUI = styled.img`
-  position: fixed;
-  top: 30px;
-  margin: auto;
-  z-index: 99;
-  width: 60%;
-  max-width: 300px;
-  background: none;
-`;
-
 export const DescriptionUI = styled.p`
   font-size: 14px;
   margin-top: 10px;
@@ -127,7 +117,7 @@ export const WecamSectionUI = styled.div`
   width: 100%;
   height: 100%;
   min-height: 300px;
-  object-fit: cover;
+  overflow: hidden;
   z-index: 0;
 `;
 
@@ -138,19 +128,17 @@ export const AllowReqImgUI = styled.img`
 `;
 
 export const ResultImgUI = styled.img`
-  /* width: 100%; */
   height: 100%;
-  /* object-fit: cover; */
   position: absolute;
-  z-index: 9;
+  z-index: 1;
 `;
 
-export const WebcamTemplateUI = styled.img`
+export const RudgateImgUI = styled.img`
   position: absolute;
   object-fit: cover;
   width: 100%;
   height: 100%;
-  z-index: 10;
+  z-index: 1;
 `;
 
 export const BottomSectionUI = styled.div`
@@ -171,6 +159,11 @@ export const AbsoluteCenterUI = styled.div`
   height: 130%;
   bottom: 10%;
   display: flex;
+  z-index: 3;
+  position: absolute;
+`;
+export const RudBottomBackImgUI = styled.img`
+  width: 100%;
   position: absolute;
 `;
 
@@ -180,7 +173,7 @@ export const TakeBtnSectionUI = styled.div`
   width: 29%;
   left: 40%;
   border-radius: 100%;
-  z-index: 100;
+  z-index: 4;
 `;
 
 export const ButtonListUI = styled.div`
@@ -240,7 +233,7 @@ export const BackBtnUI = styled.button`
 
 export const PassStatImgUI = styled.img`
   position: absolute;
-  z-index: 99;
+  z-index: 2;
 `;
 
 export const CloseImgUI = styled.img`
@@ -249,7 +242,7 @@ export const CloseImgUI = styled.img`
   width: 30px;
   height: 30px;
   left: 30px;
-  z-index: 100;
+  z-index: 3;
 `;
 
 export const JoinUsImgUI = styled.img`
@@ -257,5 +250,5 @@ export const JoinUsImgUI = styled.img`
   bottom: 10px;
   right: 10px;
   width: 60px;
-  z-index: 9;
+  z-index: 1;
 `;

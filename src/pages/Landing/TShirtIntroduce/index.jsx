@@ -37,6 +37,7 @@ const TShirtIntroduce = () => {
         setModelIdx={setSelectedIdx}
         background={signatureGradient[selectedIdx % signatureGradient.length]}
       />
+
       <ModelSelect
         models={models}
         setSelectedIdx={setSelectedIdx}

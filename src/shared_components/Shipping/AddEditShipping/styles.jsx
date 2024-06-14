@@ -8,7 +8,7 @@ export const AddEditShippingUI = styled.div`
   padding-top: 10px;
   padding-bottom: 100px;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-color: white;
 `;
 

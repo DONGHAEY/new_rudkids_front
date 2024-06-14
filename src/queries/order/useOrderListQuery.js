@@ -19,7 +19,6 @@ const useOrderListQuery = () => {
     getNextPageParam: (lastPage) => {
       return lastPage.meta.hasNextData ? lastPage.meta?.cursor : undefined;
     },
-
     select: (data) => {
       return (data.pages ?? []).flatMap((page) => {
         return page?.data;

@@ -7,7 +7,7 @@ import * as qs from "qs";
 import GlobalStyle from "../src/styles";
 import Loader from "./shared_components/Loader";
 import PublicBizAssets from "./global/public-biz-assets";
-import { Identify, identify, init } from "@amplitude/analytics-browser";
+import { init } from "@amplitude/analytics-browser";
 import { trackPageView, useTrackReadPageContents } from "./shared_analytics";
 
 function App() {
@@ -49,9 +49,6 @@ function App() {
   if (!originChecked) {
     return null;
   }
-
-  // ;
-  // identify()
 
   return (
     <QueryClientProvider client={queryClient}>

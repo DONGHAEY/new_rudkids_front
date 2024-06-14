@@ -23,13 +23,11 @@ export const LogoIconUI = styled(Link)`
 
 export const HeaderUI = styled.div`
   top: 0;
-  display: flex;
   z-index: 555;
   position: ${({ position }) => position};
   width: 85%;
-  max-width: 300px;
-  height: 43px;
-  padding-top: 5px;
+  max-width: 370px;
+  height: 55px;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -43,15 +41,15 @@ export const IconLinkUI = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 25px;
+  font-size: 30px;
   text-align: center;
   text-decoration: none;
   color: black;
 `;
 
 export const SpacerUI = styled.div`
-  margin-top: 43px;
-  padding-top: 5px;
+  margin-top: 55px;
+  /* padding-top: 5px; */
 `;
 
 export const CartCntTextUI = styled.p`
@@ -69,6 +67,6 @@ export const CartCntTextUI = styled.p`
   align-items: center;
   justify-content: center;
   border-radius: 100%;
-  z-index: -1;
+  z-index: 1;
   padding: 3px;
 `;

@@ -33,7 +33,7 @@ const Header = ({ isFixed = true }) => {
           <Icon icon="material-symbols:menu" color="black" />
         </IconLinkUI>
         <LogoIconUI to="/">
-          <img height="120%" src={PublicBizAssets.logo} />
+          <img height="100%" src={PublicBizAssets.logo} />
         </LogoIconUI>
         <IconLinkUI to="/cart">
           {/* <CartTxtUI> */}
