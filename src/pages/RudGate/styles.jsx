@@ -129,15 +129,13 @@ export const AllowReqImgUI = styled.img`
 
 export const ResultImgUI = styled.img`
   height: 100%;
+  width: auto;
   position: absolute;
   z-index: 1;
 `;
 
 export const RudgateImgUI = styled.img`
   position: absolute;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
   z-index: 1;
 `;
 

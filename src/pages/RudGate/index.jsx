@@ -28,7 +28,6 @@ import rudBottomSrc from "./assets/rud_gate_bottom.svg";
 import { Hands } from "@mediapipe/hands";
 import { isSignaturePose } from "./utils/onResults";
 import Webcam from "react-webcam";
-import "./styles.css";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import passedSrc from "./assets/passed.svg";
 import notPassedSrc from "./assets/not_passed.svg";
@@ -69,7 +68,6 @@ const RudGatePage = () => {
   const [screenshot, takeScreenshot] = useScreenshot();
   const [ltCmpltEvnt, setLtCmpltEvnt] = useState(false);
   const [videoPermission, setVideoPermission] = useState(null);
-  const [videoStream, setVideoStream] = useState(null);
 
   const takeAPhotoBtnClickHandler = useCallback(async () => {
     trackClickButton("take picture", { page: "rud gate" });
@@ -122,12 +120,13 @@ const RudGatePage = () => {
 
   useEffect(() => {
     return () => {
-      if (!videoStream) return;
-      videoStream.getTracks().forEach((track) => {
+      if (!cameraRef.current.stream) return;
+      console.log(cameraRef.current.stream);
+      cameraRef.current.stream.getTracks().forEach((track) => {
         track.stop();
       });
     };
-  }, [videoStream]);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -164,20 +163,18 @@ const RudGatePage = () => {
     <PageUI ref={shareSceneRef}>
       <WecamSectionUI>
         <AllowReqImgUI src={allowImgSrc} />
+        {videoPermission && <HelpSignModal />}
         {videoPermission && (
           <Webcam
             style={{
               height: "100%",
+              width: "auto",
               zIndex: 0,
               position: "absolute",
             }}
             {...webCamProps}
-            onUserMedia={(stream) => {
-              setVideoStream(stream);
-            }}
           />
         )}
-        {videoPermission && <HelpSignModal />}
         {photoUrl && <ResultImgUI src={photoUrl} />}
         {isPassed === null && <RudgateImgUI src={template} />}
         {!isScanLtShow && (
