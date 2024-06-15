@@ -22,11 +22,11 @@ const Scene = ({ gltf, isPlaying }) => {
   }, [gltf, three.camera]);
 
   useEffect(() => {
+    tl = gsap.timeline();
     gsap.set(itemModelRef.current.rotation, {
       x: -Math.PI * 2,
       y: -Math.PI * 2,
     });
-    tl = gsap.timeline();
     tl.fromTo(
       itemModelRef.current.rotation,
       {
@@ -41,18 +41,19 @@ const Scene = ({ gltf, isPlaying }) => {
         repeat: -1,
       }
     );
-    tl.pause();
-  }, [gltf]);
+    return () => {
+      tl.pause();
+    };
+  }, [itemModelRef, gltf]);
 
   useEffect(() => {
-    console.log(isPlaying);
     if (isPlaying) {
       tl.time(0);
       tl.play();
     } else {
       tl.pause();
     }
-  }, [isPlaying]);
+  }, [isPlaying, gltf]);
 
   return (
     <>
