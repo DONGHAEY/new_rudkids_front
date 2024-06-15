@@ -29,6 +29,7 @@ export const CallBox = styled.div`
   margin-inline: auto;
   margin-top: auto;
   margin-bottom: auto;
+  background-color: gainsboro;
 `;
 
 export const ViedeoImgUI = styled.img`

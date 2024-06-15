@@ -100,8 +100,13 @@ const CallingModal = ({ videoSrc, onClosed, pageFor = "" }) => {
       <CallBox ref={callBoxRef}>
         <ViedeoImgUI src={viedeoIconSrc} ref={callIconRef} />
         {scenes[sceneName]}
-        <VideoUI ref={videoRef} playsInline onEnded={onFinished}>
-          <source src={videoSrc} type="video/mp4" />
+        <VideoUI
+          ref={videoRef}
+          playsInline
+          onEnded={onFinished}
+          preload="metadata"
+        >
+          <source src={videoSrc + "#t=0.1"} type="video/mp4" />
         </VideoUI>
       </CallBox>
     </ModalUI>

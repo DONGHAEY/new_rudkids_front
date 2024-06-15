@@ -7,6 +7,7 @@ export const FixedPipVideoUI = styled.div`
   border: 6px solid white;
   position: fixed;
   top: 34px;
+  background-color: gainsboro;
   right: -10px;
   overflow: hidden;
   z-index: 9;

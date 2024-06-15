@@ -4,7 +4,7 @@ import gsap from "gsap";
 import React, { useEffect, useRef } from "react";
 
 let tl = null;
-const Scene = ({ gltf }) => {
+const Scene = ({ gltf, isPlaying }) => {
   const distance = 8;
   const itemModelRef = useRef();
   const three = useThree();
@@ -41,9 +41,18 @@ const Scene = ({ gltf }) => {
         repeat: -1,
       }
     );
-    tl.time(0);
-    tl.play();
+    tl.pause();
   }, [gltf]);
+
+  useEffect(() => {
+    console.log(isPlaying);
+    if (isPlaying) {
+      tl.time(0);
+      tl.play();
+    } else {
+      tl.pause();
+    }
+  }, [isPlaying]);
 
   return (
     <>

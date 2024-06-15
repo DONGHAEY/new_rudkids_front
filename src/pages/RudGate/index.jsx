@@ -44,6 +44,7 @@ import HelpSignModal from "./HelpSignModal";
 import { trackClickButton } from "../../shared_analytics";
 import { track } from "@amplitude/analytics-browser";
 import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 export const setPassedStat = (passStat) => {
   localStorage.setItem(StorageKey.rud_gate_passed, passStat);
@@ -65,12 +66,12 @@ const RudGatePage = () => {
   const [isPassed, setIsPassed] = useState(null);
   const [checkMode, setCheckMode] = useState(false);
   const [screenshot, takeScreenshot] = useScreenshot();
-  const [ltCmpltEvnt, setLtCmpltEvnt] = useState(false);
   const [videoPermission, setVideoPermission] = useState(null);
 
   const takeAPhotoBtnClickHandler = useCallback(async () => {
     trackClickButton("take picture", { page: "rud gate" });
     setCheckMode(true);
+    setIsScanLtShow(true);
   }, [cameraRef.current]);
 
   const closeBtnClickHandler = () => {
@@ -91,13 +92,13 @@ const RudGatePage = () => {
     takeScreenshot(shareSceneRef.current);
   };
 
-  const isScanLtShow = useMemo(() => {
-    if (checkMode && isPassed === null) {
-      return true;
-    } else {
-      return false;
+  const [isScanLtShow, setIsScanLtShow] = useState(false);
+
+  const scanLtCmplteHandler = () => {
+    if (isPassed !== null) {
+      setIsScanLtShow(false);
     }
-  }, [ltCmpltEvnt, checkMode]);
+  };
 
   const requestVideoPermission = async () => {
     let allowStat = false;
@@ -252,26 +253,25 @@ const RudGatePage = () => {
           </>
         )}
         {isScanLtShow && (
-          <Lottie
+          <div
             style={{
               width: "300%",
               height: "100%",
               position: "absolute",
-              zIndex: 1,
+              zIndex: 2,
             }}
-            eventListeners={[
-              {
-                eventName: "loopComplete",
-                callback: () => setLtCmpltEvnt(!ltCmpltEvnt),
-              },
-            ]}
-            rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
-            options={{
-              animationData: scanAnimation,
-              autoplay: true,
-              loop: true,
-            }}
-          />
+          >
+            <Player
+              onEvent={(e) => {
+                if (e === "loop") {
+                  scanLtCmplteHandler();
+                }
+              }}
+              src={scanAnimation}
+              loop
+              autoplay
+            />
+          </div>
         )}
         <JoinUsImgUI src={joinUsImgSrc} />
       </WecamSectionUI>

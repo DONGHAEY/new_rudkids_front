@@ -36,6 +36,7 @@ export const ToyIntroduce = () => {
   };
   //
 
+  const [animPlaying, setAnimPlaying] = useState(true);
   const slickRef = useRef(null);
   const previous = useCallback(() => slickRef.current.slickPrev(), []);
   const next = useCallback(() => slickRef.current.slickNext(), []);
@@ -76,7 +77,10 @@ export const ToyIntroduce = () => {
         <Slider
           {...settings}
           ref={slickRef}
-          beforeChange={(e, newIndex) => setCurrentIndex(newIndex)}
+          beforeChange={(e, newIndex) => {
+            setAnimPlaying(true);
+            setCurrentIndex(newIndex);
+          }}
         >
           {contents?.map((content) => {
             return <img src={content?.img ?? blankImgSrc} width="100%" />;
@@ -84,9 +88,9 @@ export const ToyIntroduce = () => {
         </Slider>
       </SliderWrapperUI>
       {isCommingSoon && <CommingSoonImgUI src={commingSoonSrc} />}
-      <CanvasWrapperUI>
+      <CanvasWrapperUI onTouchMove={() => setAnimPlaying(false)}>
         <CanvasUI {...canvasProps}>
-          <Scene gltf={gltfs[currentIndex]} />
+          <Scene gltf={gltfs[currentIndex]} isPlaying={animPlaying} />
         </CanvasUI>
       </CanvasWrapperUI>
       <LeftUI onClick={previous}>
