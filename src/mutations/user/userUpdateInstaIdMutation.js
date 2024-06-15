@@ -1,6 +1,9 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import axiosInstance from "../../axiosInstance";
 import mutationKey from "../key";
+import { KEY as userQueryKey } from "../../queries/user/useUserQuery";
+import { Identify, identify, track } from "@amplitude/analytics-browser";
+import moment from "moment";
 
 export const KEY = [mutationKey.user, "instaId", "edit"];
 
@@ -15,7 +18,9 @@ const updateInstaId = async (instagramId) => {
 const useUpdateInstaIdMutation = () => {
   return useMutation({
     mutationKey: KEY,
-    mutationFn: async (instaId) => await updateInstaId(instaId),
+    mutationFn: async (instaId) => {
+      await updateInstaId(instaId);
+    },
   });
 };
 

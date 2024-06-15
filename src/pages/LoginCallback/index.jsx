@@ -34,13 +34,17 @@ const LoginCallbackPage = ({ routeInfo }) => {
               navigate(`/401`);
               return;
             }
-            await acceptInvitationMutation.mutateAsync(ticketId, {
-              onError: () => {
-                alert("유효하지 않은 초대권을 받은 것 같아요!");
-                navigate(`/401`);
-                return;
-              },
-            });
+            try {
+              await acceptInvitationMutation.mutateAsync(ticketId);
+            } catch (e) {
+              alert("유효하지 않은 초대권을 받은 것 같아요!");
+              navigate(`/401`);
+              return;
+            }
+          }
+          if (!me.instaId) {
+            navigate("/insta-info");
+            return;
           }
           navigate(savedLoginCallbackUrl);
         },

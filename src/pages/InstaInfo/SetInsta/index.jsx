@@ -11,31 +11,33 @@ import { Identify, identify, track } from "@amplitude/analytics-browser";
 import moment from "moment";
 
 const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
-  const { data: userData } = useUserQuery();
+  const { data: me } = useUserQuery();
 
   const updateImageUrlMutation = useUpdateImageUrlMutation();
   const updateInstaIdMutation = useUpdateInstaIdMutation();
 
   //
   const clickHandler = async () => {
-    const isRegistering = userData?.instaId ? false : true;
     try {
       await updateInstaIdMutation.mutateAsync(instaId);
       await updateImageUrlMutation.mutateAsync(instaImgUrl);
-    } catch (e) {}
-    if (isRegistering) {
-      track("comeplete sign up", {
-        user_id: userData?.id,
-        date: new Date().toISOString().substring(0, 10).replaceAll(".", "-"),
-      });
-      const identifyObj = new Identify();
-      identifyObj.setOnce(
-        "sign up date",
-        moment(userData?.createdAt).format("YYYY-MM-DD")
-      );
-      identify(identifyObj);
+      const isRegistering = me?.instaId ? false : true;
+      if (isRegistering) {
+        track("comeplete sign up", {
+          user_id: me.id,
+          date: moment(me.createdAt).format("YYYY-MM-DD"),
+        });
+        const identifyObj = new Identify();
+        identifyObj.setOnce(
+          "sign up date",
+          moment(me.createdAt).format("YYYY-MM-DD")
+        );
+        identify(identifyObj);
+      }
+      onComplete();
+    } catch (e) {
+      alert("알 수 없는 에러가 발생했어요 ㅠ");
     }
-    onComplete();
   };
 
   return (

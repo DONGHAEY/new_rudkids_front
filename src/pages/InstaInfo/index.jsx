@@ -2,9 +2,12 @@ import FindInsta from "./FindInsta";
 import { useState } from "react";
 import FindedInsta from "./FindedInsta";
 import SetInsta from "./SetInsta";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import useUserQuery from "../../queries/user/useUserQuery";
 
 const InstaInfoPage = () => {
+  const navigate = useNavigate();
+  const { data: userData } = useUserQuery();
   const [findedInstaInfo, setFindedInstaInfo] = useState(null);
   const [isSetting, setIsSetting] = useState(false);
   const [searchParams] = useSearchParams();
@@ -16,7 +19,11 @@ const InstaInfoPage = () => {
         instaId={findedInstaInfo.instaId}
         instaImgUrl={findedInstaInfo.instaImgUrl}
         onComplete={() => {
-          window.location.href = callback;
+          if (!userData?.isFirstInviteFinished) {
+            navigate("/first-invite");
+          } else {
+            window.location.href = callback;
+          }
         }}
       />
     );
