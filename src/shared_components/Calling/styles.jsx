@@ -75,6 +75,15 @@ export const CallOffImgBtnUI = styled.img`
   width: 74.71px;
   position: absolute;
   bottom: 10%;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  animation: fadeIn 1s ease-in-out forwards;
 `;
 
 export const CallInfoUI = styled.div`

@@ -29,14 +29,15 @@ import CallingModal from "../../shared_components/Calling";
 import { useSearchParams } from "react-router-dom";
 import videoSrc from "./assets/video.mp4";
 import { trackClickButton } from "../../shared_analytics";
+import useUserQuery from "../../queries/user/useUserQuery";
 
 const FirstInvitePage = () => {
+  const { data: userData } = useUserQuery();
   const createInvitationMutation = useCreateInvitationMutation();
   const setFirstInviteFinisheMutation = useSetFirstInviteFinished();
 
   const goalInviterCnt = 3;
   const [inviterCnt, setInviterCnt] = useState(0);
-
   const [searchParams] = useSearchParams();
   const callback = searchParams.get("callback") ?? "/";
 

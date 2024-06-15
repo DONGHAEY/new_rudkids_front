@@ -23,6 +23,7 @@ import StorageKey from "../../storageKey";
 import { useEffect } from "react";
 import { getPassedStat } from "../RudGate";
 import { FixedPipVideo } from "../../shared_components/FixedPipVideo";
+import videoSrc from "./assets/login.mp4";
 import { trackClickButton } from "../../shared_analytics";
 
 const providers = [
@@ -72,7 +73,7 @@ const LoginPage = () => {
 
   return (
     <PageUI>
-      <FixedPipVideo />
+      <FixedPipVideo videoSrc={videoSrc} />
       <LoginWrapperUI>
         <img width={"100%"} src={headSrc} />
         <LoginUI>

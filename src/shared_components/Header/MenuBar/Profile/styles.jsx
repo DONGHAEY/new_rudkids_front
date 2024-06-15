@@ -30,6 +30,13 @@ export const ContentWrapperUI = styled.div`
   height: 100%;
   justify-content: center;
 `;
+export const LoginTextUI = styled.p`
+  font-size: 17px;
+  line-height: 25px;
+  font-family: Pretendard-Bold;
+  overflow: hidden;
+  letter-spacing: -1px;
+`;
 
 export const NameTextUI = styled.p`
   font-size: 17px;

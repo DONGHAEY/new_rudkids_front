@@ -1,8 +1,7 @@
 import { useRef } from "react";
 import { FixedPipVideoUI, VideoUI } from "./styles";
-import asd from "../Calling/assets/video.mp4";
 
-export const FixedPipVideo = () => {
+export const FixedPipVideo = ({ videoSrc }) => {
   //
   const videoRef = useRef();
   //
@@ -14,7 +13,7 @@ export const FixedPipVideo = () => {
         autoPlay
         onClick={() => videoRef.current.play()}
       >
-        <source src={asd} type="video/mp4" />
+        <source src={videoSrc} type="video/mp4" />
       </VideoUI>
     </FixedPipVideoUI>
   );

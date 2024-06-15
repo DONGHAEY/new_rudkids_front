@@ -19,6 +19,7 @@ const useCreateInvitationMutation = (page = "onboarding") => {
     mutationFn: createInvitation,
     onSuccess: async () => {
       const me = await queryClient.getQueryData(userQueryKey("my"));
+      if (!me) return;
       me.invitateCnt++;
       track("send tickets", {
         times: me.invitateCnt,

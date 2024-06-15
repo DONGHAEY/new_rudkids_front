@@ -127,14 +127,14 @@ export const routes = {
     viewTrack: true,
     path: "/insta-info",
     paramKeys: [],
-    element: AuthHoc(InstaInfoPage),
+    element: InstaInfoPage,
   },
   ["firstInvite"]: {
     name: "first-invite",
     viewTrack: true,
     path: "/first-invite",
     paramKeys: [],
-    element: AuthHoc(FirstInvitePage),
+    element: FirstInvitePage,
   },
   ["ticket"]: {
     name: "ticket",

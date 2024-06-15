@@ -20,10 +20,9 @@ import callingLottie from "./assets/calling.json";
 import { Player } from "@lottiefiles/react-lottie-player";
 import callOffSrc from "./assets/call_off.svg";
 import gsap from "gsap";
-import defaultVideo from "./assets/video.mp4";
 import { track } from "@amplitude/analytics-browser";
 
-const CallingModal = ({ videoSrc = defaultVideo, onClosed, pageFor = "" }) => {
+const CallingModal = ({ videoSrc, onClosed, pageFor = "" }) => {
   const [open, setOpen] = useState(true);
   const [sceneName, setSceneName] = useState("first");
 
@@ -101,7 +100,7 @@ const CallingModal = ({ videoSrc = defaultVideo, onClosed, pageFor = "" }) => {
       <CallBox ref={callBoxRef}>
         <ViedeoImgUI src={viedeoIconSrc} ref={callIconRef} />
         {scenes[sceneName]}
-        <VideoUI ref={videoRef} playsInline autoPlay onEnded={onFinished}>
+        <VideoUI ref={videoRef} playsInline onEnded={onFinished}>
           <source src={videoSrc} type="video/mp4" />
         </VideoUI>
       </CallBox>
@@ -125,6 +124,17 @@ export const Step1 = ({ onAccept }) => {
 };
 
 export const Step2 = ({ onFinished }) => {
+  const [sec, setSec] = useState(0);
+
+  useEffect(() => {
+    let timeout = setTimeout(() => {
+      setSec(sec + 1);
+    }, 1000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [sec]);
+
   return (
     <>
       <CallInfoUI>
@@ -134,7 +144,7 @@ export const Step2 = ({ onFinished }) => {
           <img src={facetimeSignSrc} />
         </CallTextInfo>
       </CallInfoUI>
-      <CallOffImgBtnUI onClick={onFinished} src={callOffSrc} />
+      {sec >= 5 && <CallOffImgBtnUI onClick={onFinished} src={callOffSrc} />}
     </>
   );
 };

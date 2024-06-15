@@ -14,6 +14,7 @@ import { CompleteBtnUI, PageUI, WrapperUI } from "../shared_styles";
 import Background from "../../../shared_components/Background";
 import instaImgSrc from "./assets/insta.jpg";
 import { FixedPipVideo } from "../../../shared_components/FixedPipVideo";
+import videoSrc from "./assets/insta.mp4";
 
 const FindInsta = ({ setFindedInstaInfo }) => {
   const [instagramId, setInstagramId] = useState("");
@@ -58,7 +59,7 @@ const FindInsta = ({ setFindedInstaInfo }) => {
 
   return (
     <PageUI>
-      <FixedPipVideo />
+      <FixedPipVideo videoSrc={videoSrc} />
       <RudkidsInstaUI
         onClick={() => {
           window.location.href = "https://www.instagram.com/rudkidss";

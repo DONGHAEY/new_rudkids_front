@@ -20,7 +20,7 @@ const InstaInfoPage = () => {
         instaImgUrl={findedInstaInfo.instaImgUrl}
         onComplete={() => {
           if (!userData?.isFirstInviteFinished) {
-            navigate("/first-invite");
+            navigate(`/first-invite?callback=${callback}`);
           } else {
             window.location.href = callback;
           }

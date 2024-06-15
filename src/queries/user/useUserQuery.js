@@ -23,11 +23,7 @@ const useUserQuery = (userId = null) => {
       if (userId) {
         return await getOtherUser(userId);
       }
-      let me = null;
-      try {
-        me = await getMeUser();
-      } catch (e) {}
-      return me;
+      return await getMeUser();
     },
   });
 };

@@ -11,7 +11,6 @@ import {
   BackBtnUI,
   PassBtnUI,
   JoinUsImgUI,
-  AllowReqImgUI,
   TakeBtnSectionUI,
   RudBottomBackImgUI,
 } from "./styles";
@@ -38,8 +37,8 @@ import Lottie from "react-lottie";
 import scanAnimation from "./assets/scan_lottie.json";
 import congraturationAnimation from "./assets/congraturation.json";
 import joinUsImgSrc from "./assets/join_us.svg";
-import allowImgSrc from "./assets/allow.jpeg";
 import template from "./assets/template.svg";
+import videoSrc from "./assets/video.mp4";
 import ImgInstaShareModal from "./ImgShareModal";
 import HelpSignModal from "./HelpSignModal";
 import { trackClickButton } from "../../shared_analytics";
@@ -200,7 +199,6 @@ const RudGatePage = () => {
   return (
     <PageUI ref={shareSceneRef}>
       <WecamSectionUI>
-        <AllowReqImgUI src={allowImgSrc} />
         {videoPermission && <HelpSignModal />}
         {videoPermission && (
           <Webcam
@@ -305,7 +303,11 @@ const RudGatePage = () => {
         )}
       </BottomSectionUI>
       <ImgInstaShareModal dataUri={screenshot} />
-      <CallingModal onClosed={requestVideoPermission} pageFor="rud gate" />
+      <CallingModal
+        videoSrc={videoSrc}
+        onClosed={requestVideoPermission}
+        pageFor="rud gate"
+      />
     </PageUI>
   );
 };

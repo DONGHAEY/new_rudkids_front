@@ -36,12 +36,10 @@ const AuthHoc = (Page) => {
         navigate("/401");
       }
       if (!userData?.instagramId) {
-        if (currentLocation.includes("insta-info")) return;
         navigate(`/insta-info?callback=${currentLocation}`);
         return;
       }
       if (!userData?.isFirstInviteFinished) {
-        if (currentLocation.includes("first-invite")) return;
         navigate(`/first-invite?callback=${currentLocation}`);
         return;
       }

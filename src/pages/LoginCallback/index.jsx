@@ -43,7 +43,7 @@ const LoginCallbackPage = ({ routeInfo }) => {
             }
           }
           if (!me.instaId) {
-            navigate("/insta-info");
+            navigate(`/insta-info?callback=${savedLoginCallbackUrl}`);
             return;
           }
           navigate(savedLoginCallbackUrl);
