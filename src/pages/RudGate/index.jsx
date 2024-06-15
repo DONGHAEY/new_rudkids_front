@@ -14,13 +14,7 @@ import {
   TakeBtnSectionUI,
   RudBottomBackImgUI,
 } from "./styles";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import rudBottomSrc from "./assets/rud_gate_bottom.svg";
 import { HAND_CONNECTIONS, Hands } from "@mediapipe/hands";
 import { isSignaturePose } from "./utils/onResults";
@@ -66,16 +60,39 @@ const RudGatePage = () => {
   const [isPassed, setIsPassed] = useState(null);
   const [checkMode, setCheckMode] = useState(false);
   const [screenshot, takeScreenshot] = useScreenshot();
-  const [videoPermission, setVideoPermission] = useState(null);
+  const [videoPermission, setVideoPermission] = useState(false);
 
-  const takeAPhotoBtnClickHandler = useCallback(async () => {
+  const takeAPhotoBtnClickHandler = async () => {
     trackClickButton("take picture", { page: "rud gate" });
     setCheckMode(true);
     setIsScanLtShow(true);
-  }, [cameraRef.current]);
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    hands.onResults((results) => {
+      let isPassed = false;
+      for (const landmarks of results?.multiHandLandmarks) {
+        isPassed = false;
+        if (isSignaturePose(landmarks)) {
+          isPassed = true;
+        }
+        drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
+          color: "white",
+          lineWidth: 0.5,
+        });
+        drawLandmarks(ctx, landmarks, {
+          color: "white",
+          lineWidth: 1,
+        });
+      }
+      setIsPassed(isPassed);
+    });
+    const image = canvasRef.current;
+    await hands.send({ image });
+  };
 
   const closeBtnClickHandler = () => {
     trackClickButton("back");
+    setIsPassed(null);
     setCheckMode(false);
   };
 
@@ -157,59 +174,34 @@ const RudGatePage = () => {
   }, [videoPermission, checkMode]);
 
   useEffect(() => {
+    const stream = cameraRef.current?.video.srcObject;
+    if (!stream) return;
+    const tracks = stream.getTracks();
+    tracks.forEach((track) => track.start());
     return () => {
       const stream = cameraRef.current?.video.srcObject;
       if (!stream) return;
       const tracks = stream.getTracks();
       tracks.forEach((track) => track.stop());
-      cameraRef.current.video.srcObject = null;
+      // cameraRef.current.video.srcObject = null;
     };
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      if (!checkMode) {
-        setIsPassed(null);
-        return;
-      }
-      const canvas = canvasRef.current;
-      const ctx = canvas.getContext("2d");
-      hands.onResults((results) => {
-        let isPassed = false;
-        for (const landmarks of results?.multiHandLandmarks) {
-          isPassed = false;
-          if (isSignaturePose(landmarks)) {
-            isPassed = true;
-          }
-          drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
-            color: "white",
-            lineWidth: 0.5,
-          });
-          drawLandmarks(ctx, landmarks, {
-            color: "white",
-            lineWidth: 1,
-          });
-        }
-        setIsPassed(isPassed);
-      });
-      const image = canvasRef.current;
-      await hands.send({ image });
-    })();
-  }, [cameraRef, checkMode]);
-
   return (
-    <PageUI ref={shareSceneRef}>
-      <WecamSectionUI>
+    <PageUI>
+      <WecamSectionUI ref={shareSceneRef}>
         {videoPermission && <HelpSignModal />}
         {videoPermission && (
           <Webcam
             ref={cameraRef}
-            mirrored
+            width={1920}
+            height={720}
+            screenshotQuality={1}
             style={{
               position: "absolute",
               opacity: 0,
-              width: "100%",
-              height: "100%",
+              width: "0%",
+              height: "0%",
             }}
           />
         )}
@@ -219,7 +211,6 @@ const RudGatePage = () => {
             style={{
               width: "100%",
               height: "100%",
-              opacity: 1,
               zIndex: 1,
               transform: "scaleX(-1)",
             }}
