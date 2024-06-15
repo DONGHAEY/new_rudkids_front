@@ -1,5 +1,4 @@
 import { BsCartPlusFill } from "react-icons/bs";
-import { MdRemoveRedEye } from "react-icons/md";
 import {
   ActionBarUI,
   ActionBarWrapperUI,
@@ -7,20 +6,17 @@ import {
   SpacerUI,
 } from "./styles";
 import useAddCartProductMutation from "../../../mutations/cart/useAddCartProductMutation";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SelectModal from "./SelectModal";
 import PutCartSuccessModal from "./PutCartSuccess";
 import { track } from "@amplitude/analytics-browser";
 
 const ActionBar = ({ productData }) => {
-  const navigate = useNavigate();
   const [selectOptionModal, setSelectOptionModal] = useState(false);
   const [putCartSuccessModal, setPutCartSuccessModal] = useState(false);
   const putCartProductMutation = useAddCartProductMutation();
 
   const cartButtonClickHandler = async (options = []) => {
-    //
     if (productData?.optionGroups?.length !== 0 && !options?.length) {
       setSelectOptionModal(true);
       return;
@@ -36,20 +32,18 @@ const ActionBar = ({ productData }) => {
             let {
               id: product_id,
               name: product_name,
-              type,
+              category,
               price,
             } = productData;
-
             let optionObj = {};
             options?.map((option) => {
               price += option.price;
               optionObj[option.groupName] = option.name;
             });
-
             track("add to cart", {
               product_id,
               product_name,
-              type,
+              category,
               price,
               ...optionObj,
             });
@@ -61,27 +55,10 @@ const ActionBar = ({ productData }) => {
     return;
   };
 
-  const moreButtonClickHandler = async () => {
-    if (productData) {
-      navigate(`/product/${productData?.name}/story`);
-    }
-  };
-
-  const hasStoryPage = productData?.type === "toy";
-
   return (
     <>
       <ActionBarWrapperUI>
         <ActionBarUI>
-          {hasStoryPage && (
-            <ActionButtonUI
-              $backgroundColor={"#001100"}
-              onClick={moreButtonClickHandler}
-            >
-              <MdRemoveRedEye fontSize="20px" />
-              <p>Story</p>
-            </ActionButtonUI>
-          )}
           <ActionButtonUI onClick={cartButtonClickHandler}>
             <BsCartPlusFill fontSize="25px" />
             <p>Cart</p>

@@ -39,10 +39,10 @@ const CheckoutBar = () => {
         });
         return {
           product_id: cartProduct.productId,
-          quantity: cartProduct.quantity,
-          name: cartProduct.name,
-          type: cartProduct.type,
+          product_name: cartProduct.name,
           price: cartProduct.price,
+          quantity: cartProduct.quantity,
+          category: cartProduct.category,
           ...options,
         };
       }),

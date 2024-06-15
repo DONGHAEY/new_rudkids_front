@@ -1,11 +1,11 @@
 import { ScrollUI, TypeBtnListUI, TypeButtonUI } from "./styles";
 
-const TypeList = ({ setTypeCategory, typeCategory }) => {
+const CategoryList = ({ setTypeCategory, typeCategory }) => {
   //
   const typeCategories = {
     All: "" || null || undefined,
     Toy: "Toy",
-    Colothes: "Colthes",
+    Clothes: "Clothes",
     Stationery: "Stationery",
   };
 
@@ -26,4 +26,4 @@ const TypeList = ({ setTypeCategory, typeCategory }) => {
   );
 };
 
-export default TypeList;
+export default CategoryList;

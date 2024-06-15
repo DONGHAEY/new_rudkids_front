@@ -1,7 +1,7 @@
 import Header from "../../shared_components/Header";
 import { ListUI, PageUI, SectionUI } from "./styles";
 import ProductBox from "./ProductBox";
-import TypeList from "./TypeList";
+import CategoryList from "./CategoryList";
 import useProductListQuery from "../../queries/product/useProductListQuery";
 import Loader from "../../shared_components/Loader";
 import Footer from "../../shared_components/Footer";
@@ -30,9 +30,9 @@ const MainPage = () => {
     <PageUI>
       <SectionUI>
         <Header isFixed={true} />
-        <TypeList
-          typeCategory={searchObj["type"]}
-          setTypeCategory={(type) => setSearchProperty("type", type)}
+        <CategoryList
+          typeCategory={searchObj["category"]}
+          setTypeCategory={(type) => setSearchProperty("category", type)}
         />
         <ListUI>
           {data?.data?.map((product) => {

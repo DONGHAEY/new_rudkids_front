@@ -3,8 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import useCreatePaymentMutation from "../../mutations/payment/useCreatePaymentMutation";
 import useOrderDetailQuery from "../../queries/order/useOrderDetailQuery";
 import Loader from "../../shared_components/Loader";
-import { Identify, identify, track } from "@amplitude/analytics-browser";
-import moment from "moment";
+import { track } from "@amplitude/analytics-browser";
 
 const PayPage = () => {
   const navigate = useNavigate();
@@ -48,19 +47,13 @@ const PayPage = () => {
                 });
                 return {
                   product_id: orderProduct.productId,
-                  name: orderProduct.name,
+                  product_name: orderProduct.name,
                   price: orderProduct.price,
                   quantity: orderProduct.quantity,
                   ...options,
                 };
               }),
             });
-            const identifyObj = new Identify();
-            identifyObj.set(
-              "latest purchase date",
-              moment().format("YYYY-MM-DD")
-            );
-            identify(identifyObj);
             navigate(`/order/${orderId}`, {
               replace: true,
             });

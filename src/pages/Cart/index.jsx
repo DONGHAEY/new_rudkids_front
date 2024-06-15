@@ -11,9 +11,8 @@ import CartProduct from "./CartProduct";
 import CheckoutBar from "./CheckoutBar";
 import Price from "../../shared_components/Price";
 import smileSellerSrc from "./assets/smile_kid_man.svg";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import useCartQuery from "../../queries/cart/useCartQuery";
-import useEditShippingPriceToZeroMutation from "../../mutations/cart/useEditShippingPriceToZeroMutation";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
 
 const CartPage = () => {
