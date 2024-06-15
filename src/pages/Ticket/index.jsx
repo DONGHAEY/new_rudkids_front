@@ -44,7 +44,7 @@ const TicketPage = ({ routeInfo }) => {
       duration: totalSecond - remainSecond,
     });
     setTicketId(invitationId);
-    navigate("/login");
+    navigate("/");
   };
 
   const invitedUsers = useMemo(() => {
