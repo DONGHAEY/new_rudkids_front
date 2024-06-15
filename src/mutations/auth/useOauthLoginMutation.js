@@ -1,9 +1,12 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import axiosInstance from "../../axiosInstance";
 import mutationKey from "../key";
 import qs from "qs";
-import { Identify, identify } from "@amplitude/analytics-browser";
-import moment, { isMoment } from "moment";
+import {
+  getMeUser,
+  KEY as userQueryKey,
+} from "../../queries/user/useUserQuery";
+import { setUserId } from "@amplitude/analytics-browser";
 
 export const KEY = [mutationKey.auth];
 
@@ -17,9 +20,19 @@ const oauthLogin = async (platformName, searchParams) => {
 };
 
 const useOauthLoginMutation = (platformName) => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationKey: KEY,
-    mutationFn: (searchParams) => oauthLogin(platformName, searchParams),
+    mutationFn: async (searchParams) => {
+      await oauthLogin(platformName, searchParams);
+      const me = await queryClient.fetchQuery({
+        queryKey: userQueryKey("my"),
+        queryFn: getMeUser,
+      });
+      setUserId(me.id);
+      return me;
+    },
   });
 };
 

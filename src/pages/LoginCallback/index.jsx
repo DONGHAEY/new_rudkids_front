@@ -2,18 +2,17 @@ import { useEffect } from "react";
 import qs from "qs";
 import useOauthLoginMutation from "../../mutations/auth/useOauthLoginMutation";
 import { useNavigate, useParams } from "react-router-dom";
-import { useQueryClient } from "react-query";
 import Loader from "../../shared_components/Loader";
-import { KEY as userQueryKey } from "../../queries/user/useUserQuery";
 import { getLoginCallbackUrl, removeLoginCallbackUrl } from "../Login";
-import { Identify, identify } from "@amplitude/analytics-browser";
-import moment from "moment";
+import { getTicketId } from "../Ticket";
+import useAcceptInvitationMutation from "../../mutations/invitation/useAcceptInvitationMutation";
 
 const LoginCallbackPage = ({ routeInfo }) => {
   const params = useParams();
   const platformName = params[routeInfo.paramKeys[0]];
   const oauthLoginMutation = useOauthLoginMutation(platformName);
-  const queryClient = useQueryClient();
+  const acceptInvitationMutation = useAcceptInvitationMutation();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,10 +26,23 @@ const LoginCallbackPage = ({ routeInfo }) => {
           alert("알 수 없는 에러가 발생했어요!");
           navigate(`/login`);
         },
-        onSuccess: async () => {
-          await queryClient.prefetchQuery(userQueryKey("my"));
+        onSuccess: async (me) => {
+          if (!me.isInvited) {
+            const ticketId = getTicketId();
+            if (!ticketId) {
+              alert("초대티켓을 받은 사람만 활동 가능합니다!!");
+              navigate(`/401`);
+              return;
+            }
+            await acceptInvitationMutation.mutateAsync(ticketId, {
+              onError: () => {
+                alert("유효하지 않은 초대권을 받은 것 같아요!");
+                navigate(`/401`);
+                return;
+              },
+            });
+          }
           navigate(savedLoginCallbackUrl);
-          return;
         },
       });
     })();

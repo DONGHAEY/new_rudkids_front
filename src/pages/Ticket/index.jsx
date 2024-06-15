@@ -21,13 +21,13 @@ const tempUserImgSrc =
   "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/profile/7x3kaki-instagram.png";
 
 export const setTicketId = (invitationId) => {
-  localStorage.setItem(StorageKey.invitation_id, invitationId);
+  sessionStorage.setItem(StorageKey.invitation_id, invitationId);
 };
 export const removeTicketId = () => {
-  localStorage.removeItem(StorageKey.invitation_id);
+  sessionStorage.removeItem(StorageKey.invitation_id);
 };
 export const getTicketId = () => {
-  return localStorage.getItem(StorageKey.invitation_id) ?? null;
+  return sessionStorage.getItem(StorageKey.invitation_id) ?? null;
 };
 
 const TicketPage = ({ routeInfo }) => {
