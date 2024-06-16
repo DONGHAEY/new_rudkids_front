@@ -42,8 +42,11 @@ const LoginCallbackPage = ({ routeInfo }) => {
               return;
             }
           }
-          if (!me.instaId) {
+          if (!me.instagramId) {
             navigate(`/insta-info?callback=${savedLoginCallbackUrl}`);
+            return;
+          } else if (!me?.isFirstInviteFinished) {
+            navigate(`/first-invite?callback=${savedLoginCallbackUrl}`);
             return;
           }
           navigate(savedLoginCallbackUrl);

@@ -21,17 +21,15 @@ const oauthLogin = async (platformName, searchParams) => {
 
 const useOauthLoginMutation = (platformName) => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationKey: KEY,
     mutationFn: async (searchParams) => {
       await oauthLogin(platformName, searchParams);
-      const me = await queryClient.fetchQuery({
-        queryKey: userQueryKey("my"),
-        queryFn: getMeUser,
+      return await getMeUser().then((me) => {
+        setUserId(me.id);
+        queryClient.setQueryData(userQueryKey(), me);
+        return me;
       });
-      setUserId(me.id);
-      return me;
     },
   });
 };
