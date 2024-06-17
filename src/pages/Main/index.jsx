@@ -3,7 +3,7 @@ import { PageUI, SectionUI } from "./styles";
 import ProductList from "./ProductList";
 import CategoryList from "./CategoryList";
 import useProductListQuery from "../../queries/product/useProductListQuery";
-import Loader from "../../shared_components/Loader";
+import DefaultTimeLoader from "../../shared_components/DefaultTimeLoader";
 import Footer from "../../shared_components/Footer";
 import { useNavigate } from "react-router-dom";
 import * as qs from "qs";
@@ -33,15 +33,18 @@ const MainPage = () => {
           setTypeCategory={(type) => setSearchProperty("category", type)}
         />
         <ProductList productList={data?.data} />
-        {/* <PaginationList
-          meta={data?.meta}
-          onChange={(page) => setSearchProperty("page", page)}
-        /> */}
       </SectionUI>
       <Footer />
-      {isLoading && <Loader />}
+      <DefaultTimeLoader loading={isLoading} color="black" />
     </PageUI>
   );
 };
+
+{
+  /* <PaginationList
+          meta={data?.meta}
+          onChange={(page) => setSearchProperty("page", page)}
+        /> */
+}
 
 export default MainPage;

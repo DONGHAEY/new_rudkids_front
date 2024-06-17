@@ -33,7 +33,7 @@ import CallingModal from "../../shared_components/Calling";
 import scanAnimation from "./assets/scan_lottie.json";
 import congraturationAnimation from "./assets/congraturation.json";
 import joinUsImgSrc from "./assets/join_us.webp";
-import template from "./assets/template.svg";
+import rudgateImgSrc from "./assets/rudgate.webp";
 import videoSrc from "./assets/video.mp4";
 import ImgInstaShareModal from "./ImgShareModal";
 import HelpSignModal from "./HelpSignModal";
@@ -191,7 +191,7 @@ const RudGatePage = () => {
             }}
           />
         )}
-        {passStat === "none" && <RudgateImgUI src={template} />}
+        {passStat === "none" && <RudgateImgUI src={rudgateImgSrc} />}
         {!scanMode && hasResult && (
           <>
             <CloseImgUI onClick={closeBtnClickHandler} src={closeIconSrc} />

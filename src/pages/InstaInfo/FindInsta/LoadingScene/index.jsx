@@ -4,14 +4,7 @@ import { Physics } from "@react-three/cannon";
 import { Phompomi } from "./Phompomi";
 import { PointerCollider } from "./PointerCollider";
 import { BoundaryPlanes } from "./BoundaryPlanes";
-import {
-  CanvasUI,
-  LoadWrapperUI,
-  ProgressTxtUI,
-  ProgressUI,
-  ProgressBarUI,
-  DescriptTxtUI,
-} from "./styles";
+import { CanvasUI } from "./styles";
 import { Blackhole } from "./Blackhole";
 import Loader from "./Loader";
 
@@ -90,6 +83,11 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
             fullscreen
             position={[0, 0, 10]}
           >
+            <div
+              style={{
+                marginTop: "-35%",
+              }}
+            ></div>
             <Loader isFinished={blackholeActive} />
           </Html>
         </Physics>

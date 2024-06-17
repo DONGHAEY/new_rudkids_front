@@ -139,6 +139,8 @@ export const CanvasUI = styled.canvas`
 
 export const RudgateImgUI = styled.img`
   position: absolute;
+  width: 70%;
+  margin-top: 20px;
   z-index: 1;
 `;
 
@@ -237,6 +239,19 @@ export const PassStatImgUI = styled.img`
   width: 70%;
   margin-top: 20px;
   z-index: 2;
+
+  @keyframes grow {
+    0% {
+      transform: scale(0.5);
+    }
+    30% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  animation: grow 1s;
 `;
 
 export const CongraturationLtUI = styled.div`
@@ -266,8 +281,8 @@ export const CloseImgUI = styled.img`
 
 export const JoinUsImgUI = styled.img`
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 60px;
+  bottom: 20px;
+  right: 20px;
+  width: 80px;
   z-index: 1;
 `;
