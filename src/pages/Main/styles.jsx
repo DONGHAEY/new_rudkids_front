@@ -6,8 +6,8 @@ export const PageUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   min-height: 100%;
+  justify-content: space-between;
 `;
 
 export const SectionUI = styled.div`

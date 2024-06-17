@@ -18,7 +18,7 @@ import backgroundSrc from "./assets/background.svg";
 import ScrollKids from "./ScrollKids";
 import TShirtIntroduce from "./TShirtIntroduce";
 import { trackClickButton } from "../../shared_analytics";
-import DefaultTimeLoader from "../../shared_components/DefaultTimeLoader";
+import SymbolLoader from "../../shared_components/SymbolLoader";
 
 const LandingPage = () => {
   return (
@@ -67,7 +67,7 @@ const LandingPage = () => {
       </LinkButtonUI>
       <SlidingTape />
       <BlankUI />
-      <DefaultTimeLoader loading={false} color="black" />
+      <SymbolLoader color="black" />
     </PageUI>
   );
 };

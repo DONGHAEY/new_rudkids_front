@@ -3,6 +3,7 @@ import ModelDragger from "../../../shared_components/ModelDragger";
 import { TShirtIntroduceUI } from "./styles";
 import ModelSelect from "../../../shared_components/ModelSelect";
 import signatureGradient from "../../../global/signature-gradients";
+import PublicBizAssets from "../../../global/public-biz-assets";
 
 const TShirtIntroduce = () => {
   const [selectedIdx, setSelectedIdx] = useState(0);
@@ -11,19 +12,19 @@ const TShirtIntroduce = () => {
     {
       name: "QuestionCard",
       description: "",
-      imageUrl: "/Images/logo.svg",
+      imageUrl: PublicBizAssets.logo,
       modelUrl: "/Models/question_card.glb",
     },
     {
       name: "QuestionCard",
       description: "",
-      imageUrl: "/Images/logo.svg",
+      imageUrl: PublicBizAssets.logo,
       modelUrl: "/Models/question_card.glb",
     },
     {
       name: "QuestionCard",
       description: "",
-      imageUrl: "/Images/logo.svg",
+      imageUrl: PublicBizAssets.logo,
       modelUrl: "/Models/question_card.glb",
     },
   ];
@@ -37,7 +38,6 @@ const TShirtIntroduce = () => {
         setModelIdx={setSelectedIdx}
         background={signatureGradient[selectedIdx % signatureGradient.length]}
       />
-
       <ModelSelect
         models={models}
         setSelectedIdx={setSelectedIdx}

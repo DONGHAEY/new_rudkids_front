@@ -14,8 +14,10 @@ export const ProductBoxUI = styled(Link)`
   flex-direction: column;
   gap: 11px;
   width: auto;
+  height: auto;
   margin-bottom: 16px;
   text-decoration: none;
+  line-height: 0;
 `;
 
 export const ProductImgWrapperUI = styled.div`

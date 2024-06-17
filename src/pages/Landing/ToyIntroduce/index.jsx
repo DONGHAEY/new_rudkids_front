@@ -90,7 +90,11 @@ export const ToyIntroduce = () => {
       {isCommingSoon && <CommingSoonImgUI src={commingSoonSrc} />}
       <CanvasWrapperUI onTouchMove={() => setAnimPlaying(false)}>
         <CanvasUI {...canvasProps}>
-          <Scene gltf={gltfs[currentIndex]} isPlaying={animPlaying} />
+          <Scene
+            gltf={gltfs[currentIndex]}
+            isPlaying={animPlaying}
+            isBlank={isCommingSoon}
+          />
         </CanvasUI>
       </CanvasWrapperUI>
       <LeftUI onClick={previous}>

@@ -46,8 +46,10 @@ export const CanvasUI = styled(Canvas)`
 
 export const CommingSoonImgUI = styled.img`
   position: absolute;
-  width: 80px;
-  bottom: 10%;
+  width: 105px;
+  bottom: 30%;
   right: 10%;
   z-index: 9;
+  touch-action: none;
+  pointer-events: none;
 `;

@@ -1,4 +1,3 @@
-import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -67,7 +66,7 @@ export const ToyIntroUI = styled.div`
 
 export const TextGrp = styled.div`
   text-align: center;
-  margin-top: 15px;
+  margin-top: 30px;
 `;
 export const Txt1UI = styled.p`
   font-family: Poppins-Bold;
@@ -82,6 +81,7 @@ export const Txt2UI = styled.p`
 export const LinkButtonUI = styled(Link)`
   background: #ed2024;
   border-radius: 47px;
+  margin-bottom: 10px;
   color: white;
   width: 90%;
   text-decoration: none;

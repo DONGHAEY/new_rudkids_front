@@ -4,7 +4,7 @@ import gsap from "gsap";
 import React, { useEffect, useRef } from "react";
 
 let tl = null;
-const Scene = ({ gltf, isPlaying }) => {
+const Scene = ({ gltf, isPlaying, isBlank }) => {
   const distance = 8;
   const itemModelRef = useRef();
   const three = useThree();
@@ -23,20 +23,14 @@ const Scene = ({ gltf, isPlaying }) => {
 
   useEffect(() => {
     tl = gsap.timeline();
-    gsap.set(itemModelRef.current.rotation, {
-      x: -Math.PI * 2,
-      y: -Math.PI * 2,
-    });
     tl.fromTo(
       itemModelRef.current.rotation,
       {
-        x: -Math.PI * 2,
-        y: -Math.PI * 1,
+        y: Math.PI / 4,
       },
       {
-        x: -(Math.PI * 1.7),
-        y: -(Math.PI * 2.3),
-        duration: 1,
+        y: -(Math.PI / 4),
+        duration: 3,
         yoyo: true,
         repeat: -1,
       }
@@ -73,8 +67,8 @@ const Scene = ({ gltf, isPlaying }) => {
       <primitive
         ref={itemModelRef}
         object={gltf.scene}
-        scale={1.3}
-        position={[0, 0.1, 0]}
+        scale={!isBlank ? 1.3 : 2.3}
+        position={[0, !isBlank ? -1 : 0, 0]}
       />
       <OrbitControls
         minDistance={distance}

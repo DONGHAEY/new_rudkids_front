@@ -3,11 +3,11 @@ import { PageUI, SectionUI } from "./styles";
 import ProductList from "./ProductList";
 import CategoryList from "./CategoryList";
 import useProductListQuery from "../../queries/product/useProductListQuery";
-import DefaultTimeLoader from "../../shared_components/DefaultTimeLoader";
 import Footer from "../../shared_components/Footer";
 import { useNavigate } from "react-router-dom";
 import * as qs from "qs";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
+import Loader from "../../shared_components/Loader";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const MainPage = () => {
         <ProductList productList={data?.data} />
       </SectionUI>
       <Footer />
-      <DefaultTimeLoader loading={isLoading} color="black" />
+      {isLoading && <Loader color="white" />}
     </PageUI>
   );
 };

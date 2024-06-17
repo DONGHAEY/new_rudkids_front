@@ -58,13 +58,12 @@ const CreateRudcardPage = () => {
     const dataURI = await htmlToImage.toPng(cardRef.current, {
       width,
       height,
-      backgroundColor: "none",
     });
     fetch(dataURI)
       .then((res) => res.blob())
       .then(async (blob) => {
         const formData = new FormData();
-        const fileName = `card`;
+        const fileName = `card.png`;
         const convertedFile = new File([blob], fileName, {
           type: blob.type,
         });
@@ -210,7 +209,7 @@ const CreateRudcardPage = () => {
           <SaveBtnUI type="submit">만들기</SaveBtnUI>
         </SaveBtnSectionUI>
         <Modal open={isAlert} onClick={() => setIsAlert(false)}>
-          {userData?.firstPaidNum === 0 ? (
+          {!userData?.firstPaidNum ? (
             <CannotAlert />
           ) : (
             <WarningAlert
@@ -224,7 +223,9 @@ const CreateRudcardPage = () => {
             />
           )}
         </Modal>
-        {(editCardImgUrlMutation.isLoading || cardCreating) && <Loader />}
+        {(editCardImgUrlMutation.isLoading || cardCreating) && (
+          <Loader message="카드가 제작되는 중.." />
+        )}
       </PageUI>
     </Popup>
   );

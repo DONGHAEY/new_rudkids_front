@@ -9,12 +9,6 @@ import {
 } from "./styles";
 
 const ProductList = ({ productList }) => {
-  //
-  // const { data: image, isLoading } = useQuery(
-  //   ["product", "list", "image", thumnail],
-  //   () => fetch(thumnail).then((res) => res.blob())
-  // );
-
   return (
     <ListUI>
       {productList?.map(({ thumnail, name, price }) => {
