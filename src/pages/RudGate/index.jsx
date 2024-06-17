@@ -13,6 +13,9 @@ import {
   JoinUsImgUI,
   TakeBtnSectionUI,
   RudBottomBackImgUI,
+  ScanLtUI,
+  CongraturationLtUI,
+  CanvasUI,
 } from "./styles";
 import React, { useEffect, useRef, useState } from "react";
 import rudBottomSrc from "./assets/rud_gate_bottom.svg";
@@ -20,17 +23,16 @@ import { HAND_CONNECTIONS, Hands } from "@mediapipe/hands";
 import { isSignaturePose } from "./utils/onResults";
 import Webcam from "react-webcam";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import passedSrc from "./assets/passed.svg";
-import notPassedSrc from "./assets/not_passed.svg";
+import correctSrc from "./assets/correct.webp";
+import wrongSrc from "./assets/wrong.webp";
 import closeIconSrc from "./assets/closeicon.svg";
 import { useScreenshot } from "use-react-screenshot";
 import StorageKey from "../../storageKey";
 import { useNavigate } from "react-router-dom";
 import CallingModal from "../../shared_components/Calling";
-import Lottie from "react-lottie";
 import scanAnimation from "./assets/scan_lottie.json";
 import congraturationAnimation from "./assets/congraturation.json";
-import joinUsImgSrc from "./assets/join_us.svg";
+import joinUsImgSrc from "./assets/join_us.webp";
 import template from "./assets/template.svg";
 import videoSrc from "./assets/video.mp4";
 import ImgInstaShareModal from "./ImgShareModal";
@@ -39,6 +41,7 @@ import { trackClickButton } from "../../shared_analytics";
 import { track } from "@amplitude/analytics-browser";
 import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
 import { Player } from "@lottiefiles/react-lottie-player";
+import { drawVideoScene } from "./utils/draw";
 
 export const setPassedStat = (passStat) => {
   localStorage.setItem(StorageKey.rud_gate_passed, passStat);
@@ -50,30 +53,32 @@ export const getPassedStat = () => {
   return localStorage.getItem(StorageKey.rud_gate_passed) ?? false;
 };
 
+const maxScanLtShowCnt = 3;
 const RudGatePage = () => {
   const navigate = useNavigate();
-
   const shareSceneRef = useRef();
   const cameraRef = useRef(null);
   const canvasRef = useRef(null);
 
-  const [isPassed, setIsPassed] = useState(null);
-  const [checkMode, setCheckMode] = useState(false);
+  const [passStat, setPassStat] = useState("none");
+  const [scanMode, setScanMode] = useState(false);
   const [screenshot, takeScreenshot] = useScreenshot();
+  const [scanLtShowCnt, setScanLtShowCnt] = useState(0);
   const [videoPermission, setVideoPermission] = useState(false);
+
+  const hasResult = passStat !== "none";
 
   const takeAPhotoBtnClickHandler = async () => {
     trackClickButton("take picture", { page: "rud gate" });
-    setCheckMode(true);
-    setIsScanLtShow(true);
+    setScanMode(true);
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     hands.onResults((results) => {
-      let isPassed = false;
+      let passStat = false;
       for (const landmarks of results?.multiHandLandmarks) {
-        isPassed = false;
+        passStat = false;
         if (isSignaturePose(landmarks)) {
-          isPassed = true;
+          passStat = true;
         }
         drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
           color: "white",
@@ -84,7 +89,7 @@ const RudGatePage = () => {
           lineWidth: 1,
         });
       }
-      setIsPassed(isPassed);
+      setPassStat(passStat);
     });
     const image = canvasRef.current;
     await hands.send({ image });
@@ -92,8 +97,8 @@ const RudGatePage = () => {
 
   const closeBtnClickHandler = () => {
     trackClickButton("back");
-    setIsPassed(null);
-    setCheckMode(false);
+    setPassStat("none");
+    setScanMode(false);
   };
 
   const getInBtnClickHandler = () => {
@@ -109,12 +114,15 @@ const RudGatePage = () => {
     takeScreenshot(shareSceneRef.current);
   };
 
-  const [isScanLtShow, setIsScanLtShow] = useState(false);
-
-  const scanLtCmplteHandler = () => {
-    if (isPassed !== null) {
-      setIsScanLtShow(false);
+  const scanLtCmplteHandler = (e) => {
+    if (e !== "loop") {
+      return;
     }
+    if (passStat !== null || maxScanLtShowCnt >= scanLtShowCnt) {
+      setScanLtShowCnt(0);
+      setScanMode(false);
+    }
+    setScanLtShowCnt(scanLtShowCnt + 1);
   };
 
   const requestVideoPermission = async () => {
@@ -140,38 +148,15 @@ const RudGatePage = () => {
     const drawVideo = () => {
       if (!video) return;
       if (!canvas) return;
-      if (checkMode) return;
-      const ctx = canvas.getContext("2d");
+      if (scanMode) return;
+      if (hasResult) return;
       if (video.readyState === 4) {
-        const videoWidth = video.videoWidth;
-        const videoHeight = video.videoHeight;
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-        const canvasWidth = canvas.width;
-        const canvasHeight = canvas.height;
-        const videoAspect = videoWidth / videoHeight;
-        const canvasAspect = canvasWidth / canvasHeight;
-        let drawWidth, drawHeight, offsetX, offsetY;
-        if (videoAspect > canvasAspect) {
-          drawHeight = canvasHeight;
-          drawWidth = videoWidth * (canvasHeight / videoHeight);
-          offsetX = (canvasWidth - drawWidth) / 2;
-          offsetY = 0;
-        } else {
-          drawWidth = canvasWidth;
-          drawHeight = videoHeight * (canvasWidth / videoWidth);
-          offsetX = 0;
-          offsetY = (canvasHeight - drawHeight) / 2;
-        }
-        // ctx.translate(canvasWidth, 0);
-        // ctx.scale(-1, 1);
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-        ctx.drawImage(video, offsetX, offsetY, drawWidth, drawHeight);
+        drawVideoScene(canvas, video);
       }
     };
     const interval = setInterval(drawVideo, 1000 / 50); //50fps
     return () => clearInterval(interval);
-  }, [videoPermission, checkMode]);
+  }, [videoPermission, scanMode, hasResult]);
 
   useEffect(() => {
     const stream = cameraRef.current?.video.srcObject;
@@ -188,8 +173,9 @@ const RudGatePage = () => {
   }, []);
 
   return (
-    <PageUI>
-      <WecamSectionUI ref={shareSceneRef}>
+    <PageUI ref={shareSceneRef}>
+      <WecamSectionUI>
+        <CanvasUI ref={canvasRef} />
         {videoPermission && <HelpSignModal />}
         {videoPermission && (
           <Webcam
@@ -205,81 +191,44 @@ const RudGatePage = () => {
             }}
           />
         )}
-        {videoPermission && (
-          <canvas
-            ref={canvasRef}
-            style={{
-              width: "100%",
-              height: "100%",
-              zIndex: 1,
-              transform: "scaleX(-1)",
-            }}
-          />
-        )}
-        {isPassed === null && <RudgateImgUI src={template} />}
-        {!isScanLtShow && (
+        {passStat === "none" && <RudgateImgUI src={template} />}
+        {!scanMode && hasResult && (
           <>
-            {isPassed !== null && (
-              <CloseImgUI onClick={closeBtnClickHandler} src={closeIconSrc} />
-            )}
-            {isPassed === true && <PassStatImgUI src={passedSrc} />}
-            {isPassed === false && <PassStatImgUI src={notPassedSrc} />}
-            {isPassed === true && (
-              <Lottie
-                style={{
-                  maxWidth: "430px",
-                  width: "100%",
-                  height: "100%",
-                  position: "fixed",
-                  margin: "0 auto",
-                  zIndex: 1,
-                }}
-                options={{
-                  animationData: congraturationAnimation,
-                  autoplay: true,
-                  loop: true,
-                }}
-              />
+            <CloseImgUI onClick={closeBtnClickHandler} src={closeIconSrc} />
+            <PassStatImgUI src={passStat ? correctSrc : wrongSrc} />
+            {passStat === true && (
+              <CongraturationLtUI>
+                <Player src={congraturationAnimation} loop autoPlay />
+              </CongraturationLtUI>
             )}
           </>
         )}
-        {isScanLtShow && (
-          <div
-            style={{
-              width: "300%",
-              height: "100%",
-              position: "absolute",
-              zIndex: 2,
-            }}
-          >
+        {scanMode && (
+          <ScanLtUI>
             <Player
-              onEvent={(e) => {
-                if (e === "loop") {
-                  scanLtCmplteHandler();
-                }
-              }}
+              onEvent={scanLtCmplteHandler}
               src={scanAnimation}
               loop
               autoplay
             />
-          </div>
+          </ScanLtUI>
         )}
         <JoinUsImgUI src={joinUsImgSrc} />
       </WecamSectionUI>
       <BottomSectionUI>
-        {!checkMode && (
+        {!scanMode && !hasResult && (
           <AbsoluteCenterUI>
             <RudBottomBackImgUI src={rudBottomSrc} />
             <TakeBtnSectionUI onClick={takeAPhotoBtnClickHandler} />
           </AbsoluteCenterUI>
         )}
-        {!isScanLtShow && checkMode && (
+        {!scanMode && hasResult && (
           <ButtonListUI>
             <ShareBtnUI onClick={shareBtnClickHandler}>
               <Icon icon="bitcoin-icons:share-filled" color="white" />
               Share
             </ShareBtnUI>
-            {!isPassed ? (
+            {!passStat ? (
               <BackBtnUI onClick={closeBtnClickHandler}>
                 <Icon icon={"lets-icons:refund-back"} />
                 Back

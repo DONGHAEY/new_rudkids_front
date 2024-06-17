@@ -1,15 +1,41 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const FooterUI = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: gainsboro;
+  background-color: whitesmoke;
   color: black;
   align-items: center;
-  padding-block: 30px;
+  width: 100%;
   font-family: Pretendard-Medium;
-  padding-inline: 30px;
   font-size: 10px;
   gap: 10px;
   text-decoration: none;
+`;
+
+export const InfoBtnUI = styled.button`
+  border: none;
+  background: none;
+  font-family: Pretendard-Bold;
+  font-size: 10px;
+`;
+
+export const FooterLabel = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  font-family: Poppins-Bold;
+  padding-block: 10px;
+`;
+
+export const FooterContentsUI = styled.p`
+  text-align: center;
+  padding-inline: 30px;
+  padding-top: 10px;
+`;
+
+export const LinkUI = styled(Link)`
+  color: black;
+  margin-inline: 3px;
 `;

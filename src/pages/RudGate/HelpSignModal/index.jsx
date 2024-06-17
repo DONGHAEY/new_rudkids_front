@@ -1,7 +1,7 @@
 import RudAlert from "../../../shared_components/RudAlert";
 import { HelpSignModalUI, RudAlertContentsUI } from "./styles";
 import { useState } from "react";
-import helpSignSrc from "./assets/help_sign.svg";
+import helpSignSrc from "./assets/help_sign.png";
 
 const HelpSignModal = () => {
   const [isOpen, setIsOpen] = useState(true);

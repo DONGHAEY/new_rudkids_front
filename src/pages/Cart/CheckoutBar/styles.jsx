@@ -17,6 +17,11 @@ export const PaymentsImgUI = styled.img`
   height: 24px;
 `;
 
+export const PoorManUI = styled.img`
+  position: absolute;
+  top: -70%;
+`;
+
 export const OrderBarUI = styled.div`
   display: flex;
   width: 100%;

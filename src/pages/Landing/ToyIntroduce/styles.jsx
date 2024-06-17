@@ -4,6 +4,8 @@ import styled from "styled-components";
 export const SliderWrapperUI = styled.div`
   width: 100%;
   position: relative;
+  border-radius: 30px;
+  overflow: hidden;
 `;
 
 export const LeftUI = styled.div`

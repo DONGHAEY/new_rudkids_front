@@ -60,10 +60,9 @@ export const ToyIntroUI = styled.div`
   justify-content: center;
   position: relative;
   width: 88%;
-  background: whitesmoke;
   margin-top: 20px;
   position: relative;
-  border-radius: 14px;
+  /* border-radius: 14px; */
 `;
 
 export const TextGrp = styled.div`

@@ -4,6 +4,11 @@ export const ScrollUI = styled.div`
   width: 100%;
   overflow: scroll;
   margin-block: 30px;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none; /* 파이어폭스 */
 `;
 
 export const SpacerUI = styled.div`

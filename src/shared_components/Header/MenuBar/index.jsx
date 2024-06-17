@@ -111,6 +111,7 @@ const MenuBar = ({ onClosed }) => {
           {menuButtonDtList?.map((menuButtonDt, idx) => {
             return (
               <MenuBtnUI
+                key={idx}
                 onClick={(e) => {
                   e.stopPropagation();
                   trackClickButton("nav bar", {

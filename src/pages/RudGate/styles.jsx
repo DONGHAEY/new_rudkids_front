@@ -40,11 +40,6 @@ export const ScreenshotPreviewImgUI = styled.img`
   width: 75%;
 `;
 
-export const CanvasUI = styled.canvas`
-  border-radius: 20px;
-  object-fit: cover;
-`;
-
 export const HandMotionWrapperUI = styled.div`
   width: 100%;
   height: 100%;
@@ -117,6 +112,7 @@ export const WecamSectionUI = styled.div`
   width: 100%;
   height: 100%;
   min-height: 300px;
+  background-color: black;
   overflow: hidden;
   z-index: 0;
 `;
@@ -131,6 +127,14 @@ export const ResultImgUI = styled.img`
   height: 100%;
   position: absolute;
   z-index: 1;
+`;
+
+export const CanvasUI = styled.canvas`
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: black;
+  transform: scaleX(-1);
 `;
 
 export const RudgateImgUI = styled.img`
@@ -229,6 +233,24 @@ export const BackBtnUI = styled.button`
 `;
 
 export const PassStatImgUI = styled.img`
+  position: absolute;
+  width: 70%;
+  margin-top: 20px;
+  z-index: 2;
+`;
+
+export const CongraturationLtUI = styled.div`
+  max-width: 430px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  margin: 0 auto;
+  z-index: 1;
+`;
+
+export const ScanLtUI = styled.div`
+  width: 300%;
+  height: 100%;
   position: absolute;
   z-index: 2;
 `;

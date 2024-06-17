@@ -19,14 +19,6 @@ export const SectionUI = styled.div`
   position: relative;
 `;
 
-export const ListUI = styled.div`
-  margin-bottom: 100px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 16px;
-  width: 90%;
-`;
-
 export const WrapperUI = styled.div`
   width: 100%;
 `;

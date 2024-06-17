@@ -11,8 +11,8 @@ import {
   LoginWrapperUI,
   // TossTesterLoginUI,
 } from "./styles";
-import NaverSvg from "./assets/naver.svg";
-import KakaoSvg from "./assets/kakao.svg";
+import NaverSvg from "./assets/naver_.svg";
+import KakaoSvg from "./assets/kakaotalk_.svg";
 import { PageUI } from "./styles";
 import StepIndicator from "../../shared_components/StepIndicator";
 import { useNavigate } from "react-router-dom";
@@ -25,23 +25,6 @@ import { getPassedStat } from "../RudGate";
 import { FixedPipVideo } from "../../shared_components/FixedPipVideo";
 import videoSrc from "./assets/login.mp4";
 import { trackClickButton } from "../../shared_analytics";
-
-const providers = [
-  {
-    how: "카카오톡으로",
-    logoImgSrc: KakaoSvg,
-    background: "linear-gradient(180deg, #fff279 0%, #f3da00 100%)",
-    textColor: "black",
-    name: "kakao",
-  },
-  {
-    how: "네이버로",
-    logoImgSrc: NaverSvg,
-    background: "linear-gradient(180deg, #23F100 0%, #1DC900 100%)",
-    textColor: "white",
-    name: "naver",
-  },
-];
 
 export const setLoginCallbackUrl = (callbackUrl) => {
   localStorage.setItem(StorageKey.login_callback_url, callbackUrl);
@@ -70,6 +53,23 @@ const LoginPage = () => {
       navigate("/rud-gate");
     }
   }, []);
+
+  const providers = [
+    {
+      how: "카카오톡으로",
+      logoImgSrc: KakaoSvg,
+      background: "linear-gradient(180deg, #fff279 0%, #f3da00 100%)",
+      textColor: "black",
+      name: "kakao",
+    },
+    {
+      how: "네이버로",
+      logoImgSrc: NaverSvg,
+      background: "linear-gradient(180deg, #23F100 0%, #1DC900 100%)",
+      textColor: "white",
+      name: "naver",
+    },
+  ];
 
   return (
     <PageUI>

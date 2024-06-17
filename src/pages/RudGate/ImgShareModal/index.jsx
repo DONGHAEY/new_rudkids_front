@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import RudAlert from "../../../shared_components/RudAlert";
-import shareImgSrc from "./assets/share_way.svg";
+import shareImgSrc from "./assets/share_way.png";
 import { ContentImgWrapperUI, ModalUI, RudAlertWrapperUI } from "./styles";
 
 const ImgShareModal = ({ dataUri }) => {
@@ -21,13 +21,9 @@ const ImgShareModal = ({ dataUri }) => {
     const imageFile = new File([blob], filename, {
       type: blob.type,
     });
-    try {
-      await window.navigator.share({
-        files: [imageFile],
-      });
-    } catch (e) {
-      alert(e);
-    }
+    await window.navigator.share({
+      files: [imageFile],
+    });
   };
 
   const close = () => setIsOpen(false);

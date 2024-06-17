@@ -43,7 +43,7 @@ export const LoginBtnListUI = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  width: 100%;
+  width: 90%;
   max-width: 269px;
 `;
 
@@ -61,7 +61,7 @@ export const LoginBtnUI = styled.button`
 `;
 
 export const LoginBtnTxtUI = styled.p`
-  font-size: 17.21px;
+  font-size: 130%;
   font-family: Pretendard-SemiBold;
   letter-spacing: -5%;
   text-align: center;
@@ -69,7 +69,7 @@ export const LoginBtnTxtUI = styled.p`
 `;
 
 export const LoginBtnImgUI = styled.img`
-  height: 100%;
+  height: 25px;
 `;
 
 export const LoginCommentUI = styled.div`

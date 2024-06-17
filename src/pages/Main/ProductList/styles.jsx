@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+export const ListUI = styled.div`
+  margin-bottom: 100px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 16px;
+  width: 90%;
+`;
+
 export const ProductBoxUI = styled(Link)`
   display: flex;
   flex-direction: column;

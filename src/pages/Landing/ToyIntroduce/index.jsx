@@ -10,22 +10,14 @@ import {
 } from "./styles";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ToyIntroUI } from "../styles";
-import img1 from "./assets/1.svg";
-import blankImgSrc from "./assets/2.svg";
+import myPetFlySrc from "./assets/my_pet_fly.webp";
+import blackSrc from "./assets/black.webp";
 import { useGLTF } from "@react-three/drei";
 import Scene from "./Scene";
-import commingSoonSrc from "./assets/comming_soon.svg";
-
-const contents = [
-  {
-    img: img1,
-    glb: "/Models/my_pet_fly.glb",
-  },
-  null,
-  null,
-];
+import commingSoonSrc from "./assets/comming_soon.webp";
 
 export const ToyIntroduce = () => {
+  //
   const settings = {
     dots: false,
     infinite: true,
@@ -34,7 +26,15 @@ export const ToyIntroduce = () => {
     slidesToScroll: 1,
     arrows: false,
   };
-  //
+
+  const contents = [
+    {
+      img: myPetFlySrc,
+      glb: "/Models/my_pet_fly.glb",
+    },
+    null,
+    null,
+  ];
 
   const [animPlaying, setAnimPlaying] = useState(true);
   const slickRef = useRef(null);
@@ -82,9 +82,9 @@ export const ToyIntroduce = () => {
             setCurrentIndex(newIndex);
           }}
         >
-          {contents?.map((content) => {
-            return <img src={content?.img ?? blankImgSrc} width="100%" />;
-          })}
+          {contents?.map((content, idx) => (
+            <img key={idx} src={content?.img ?? blackSrc} width="100%" />
+          ))}
         </Slider>
       </SliderWrapperUI>
       {isCommingSoon && <CommingSoonImgUI src={commingSoonSrc} />}

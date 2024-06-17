@@ -14,9 +14,14 @@ import smileSellerSrc from "./assets/smile_kid_man.svg";
 import { useMemo } from "react";
 import useCartQuery from "../../queries/cart/useCartQuery";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import GoToShop from "./GoToShop";
 
 const CartPage = () => {
   const { data: myCartData } = useCartQuery();
+
+  const hasProducts = myCartData?.cartProducts?.length !== 0;
+
   const totalProductsPrice = useMemo(() => {
     if (!myCartData) return 0;
     let totalProductsPrice = 0;
@@ -29,28 +34,30 @@ const CartPage = () => {
   const totalShippingPrice = myCartData?.shippingPrice;
 
   useBodyBackground("#1a94d9");
+
   return (
     <PageUI>
       <Header />
-      <FlexWrapperUI>
-        <SectionDscrptTxtUI>My Cart</SectionDscrptTxtUI>
-        <CartProductListUI>
-          {myCartData?.cartProducts?.map((cartProduct) => {
-            return (
+      {hasProducts && (
+        <FlexWrapperUI>
+          <SectionDscrptTxtUI>My Cart</SectionDscrptTxtUI>
+          <CartProductListUI>
+            {myCartData?.cartProducts?.map((cartProduct) => (
               <CartProduct key={cartProduct.id} cartProduct={cartProduct} />
-            );
-          })}
-        </CartProductListUI>
-        <PriceWrapperUI>
-          <Price
-            totalProductsPrice={totalProductsPrice}
-            totalShippingPrice={totalShippingPrice}
-          />
-        </PriceWrapperUI>
-        <SmileSellerWrapperUI>
-          <img src={smileSellerSrc} width="100%" />
-        </SmileSellerWrapperUI>
-      </FlexWrapperUI>
+            ))}
+          </CartProductListUI>
+          <PriceWrapperUI>
+            <Price
+              totalProductsPrice={totalProductsPrice}
+              totalShippingPrice={totalShippingPrice}
+            />
+          </PriceWrapperUI>
+          <SmileSellerWrapperUI>
+            <img src={smileSellerSrc} width="100%" />
+          </SmileSellerWrapperUI>
+        </FlexWrapperUI>
+      )}
+      {!hasProducts && <GoToShop />}
       <CheckoutBar cartData={myCartData} />
     </PageUI>
   );

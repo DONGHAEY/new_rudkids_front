@@ -3,6 +3,7 @@ import {
   OrderBarUI,
   OrderBarWrapperUI,
   PaymentsImgUI,
+  PoorManUI,
   SpacerUI,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +14,7 @@ import mutationKey from "../../../mutations/key";
 import useCartQuery from "../../../queries/cart/useCartQuery";
 import { trackClickButton } from "../../../shared_analytics";
 import { useMemo } from "react";
+import poorManSrc from "./assets/poor_man.png";
 
 const CheckoutBar = () => {
   const navigate = useNavigate();
@@ -56,6 +58,7 @@ const CheckoutBar = () => {
     <>
       <OrderBarWrapperUI>
         <OrderBarUI>
+          {totalPrice === 0 && <PoorManUI src={poorManSrc} />}
           <div>
             <PaymentsImgUI src={paymentsImgSrc} />
           </div>
