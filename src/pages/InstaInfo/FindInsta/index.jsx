@@ -5,14 +5,14 @@ import {
   InstagramIdInputWrapperUI,
   RudkidsInstaUI,
 } from "./styles";
-import InstagramProfile from "./assets/InstagramProfile.svg";
+import instaSrc from "./assets/insta.jpg";
 import StepIndicator from "../../../shared_components/StepIndicator";
 import { useEffect, useState } from "react";
 import useGetImgUrlMutation from "../../../mutations/instagram-profile/useGetImgUrl";
 import LoadingScene from "./LoadingScene";
 import { CompleteBtnUI, PageUI, WrapperUI } from "../shared_styles";
 import Background from "../../../shared_components/Background";
-import instaImgSrc from "./assets/insta.jpg";
+import instaImgSrc from "./assets/instagram.png";
 import { FixedPipVideo } from "../../../shared_components/FixedPipVideo";
 import videoSrc from "./assets/insta.mp4";
 
@@ -65,7 +65,7 @@ const FindInsta = ({ setFindedInstaInfo }) => {
           window.location.href = "https://www.instagram.com/rudkidss";
         }}
       >
-        <img src={instaImgSrc} />
+        <img src={instaSrc} />
         Rudkidss
       </RudkidsInstaUI>
       <WrapperUI>
@@ -75,13 +75,7 @@ const FindInsta = ({ setFindedInstaInfo }) => {
           Instagram ID
         </TitleTxtUI>
         <InstagramIdFormUI>
-          <img
-            style={{
-              maxHeight: "95px",
-            }}
-            width={"70%"}
-            src={InstagramProfile}
-          />
+          <img width={"65%"} src={instaImgSrc} />
           <InstagramIdInputWrapperUI>
             <InstagramIdInputUI
               value={instagramId}

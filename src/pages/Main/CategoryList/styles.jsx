@@ -4,10 +4,10 @@ export const ScrollUI = styled.div`
   width: 100%;
   overflow: scroll;
   margin-block: 30px;
-  -ms-overflow-style: none;
   ::-webkit-scrollbar {
     display: none;
   }
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
   scrollbar-width: none; /* 파이어폭스 */
 `;
 

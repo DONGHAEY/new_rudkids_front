@@ -4,10 +4,16 @@ import { Physics } from "@react-three/cannon";
 import { Phompomi } from "./Phompomi";
 import { PointerCollider } from "./PointerCollider";
 import { BoundaryPlanes } from "./BoundaryPlanes";
-import { CanvasUI } from "./styles";
+import {
+  CanvasUI,
+  LoadWrapperUI,
+  ProgressTxtUI,
+  ProgressUI,
+  ProgressBarUI,
+  DescriptTxtUI,
+} from "./styles";
 import { Blackhole } from "./Blackhole";
-import loadingLottie from "./assets/loading.json";
-import Lottie from "react-lottie";
+import Loader from "./Loader";
 
 const colors = [0xfee639, 0xed2424, 0x2f70b7];
 
@@ -74,36 +80,18 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
             })}
           </group>
           <BoundaryPlanes />
-          {!blackholeActive && (
-            <Html
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              fullscreen
-              position={[0, 0, 10]}
-            >
-              <Lottie
-                style={{
-                  height: "80px",
-                }}
-                options={{
-                  animationData: loadingLottie,
-                }}
-              />
-              <p
-                style={{
-                  fontFamily: "Pretendard-Bold",
-                  fontSize: "16px",
-                  color: "black",
-                }}
-              >
-                내 프로필 찾는 중...
-              </p>
-            </Html>
-          )}
+          <Html
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            fullscreen
+            position={[0, 0, 10]}
+          >
+            <Loader isFinished={blackholeActive} />
+          </Html>
         </Physics>
       </Suspense>
     </Canvas>

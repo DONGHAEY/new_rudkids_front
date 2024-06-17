@@ -8,7 +8,7 @@ import {
   ButtonListUI,
   ButtonUI,
 } from "./styles";
-import InstagramProfile from "./assets/InstagramProfile.svg";
+import InstagramProfile from "./assets/instagram.png";
 import cautionImgSrc from "./assets/caution.png";
 import { PageUI, WrapperUI } from "../shared_styles";
 import Background from "../../../shared_components/Background";
