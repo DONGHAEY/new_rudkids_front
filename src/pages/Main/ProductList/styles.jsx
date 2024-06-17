@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const ListUI = styled.div`
@@ -9,7 +8,7 @@ export const ListUI = styled.div`
   min-height: 100%;
 `;
 
-export const ProductBoxUI = styled(Link)`
+export const ProductBoxUI = styled.div`
   display: flex;
   flex-direction: column;
   gap: 11px;

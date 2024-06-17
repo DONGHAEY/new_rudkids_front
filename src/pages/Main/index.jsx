@@ -15,6 +15,7 @@ const MainPage = () => {
   const { data, isLoading } = useProductListQuery(searchObj);
 
   useBodyBackground("#1a94d9");
+
   const setSearchProperty = (key, value) => {
     const searchObj = qs.parse(window.location.search?.replace("?", "")) ?? {};
     if (key !== "page" && searchObj["page"]) {
