@@ -28,7 +28,7 @@ const MainPage = () => {
   return (
     <PageUI>
       <SectionUI>
-        <Header isFixed={true} />
+        <Header />
         <CategoryList
           typeCategory={searchObj["category"]}
           setTypeCategory={(type) => setSearchProperty("category", type)}

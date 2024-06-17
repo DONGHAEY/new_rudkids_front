@@ -23,12 +23,19 @@ export const ColumnTextUI = styled.p`
   font-size: 15px;
   line-height: 120%;
 `;
+export const OneDPTxtUI = styled.p`
+  font-family: Pretendard-Bold;
+  font-size: 13px;
+  color: #0057ff;
+`;
 
 export const ColumnValueTextUI = styled.p`
   font-family: Pretendard-SemiBold;
   line-height: 120%;
   font-size: 17px;
-  color: ${({ color }) => color ?? "black"};
+  display: flex;
+  gap: 15px;
+  color: black;
 `;
 
 export const TotalTextUI = styled.p`

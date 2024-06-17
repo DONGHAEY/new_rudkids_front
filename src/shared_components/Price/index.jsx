@@ -1,6 +1,7 @@
 import {
   ColumnTextUI,
   ColumnValueTextUI,
+  OneDPTxtUI,
   PriceUI,
   SpaceBetweenUI,
   TotalPriceTextUI,
@@ -22,8 +23,9 @@ const Price = ({ totalProductsPrice, totalShippingPrice }) => {
           </SpaceBetweenUI>
           <SpaceBetweenUI>
             <ColumnTextUI>배송비</ColumnTextUI>
-            <ColumnValueTextUI color={!totalShippingPrice ? "wheat" : "red"}>
+            <ColumnValueTextUI color={"black"}>
               ₩ {Number(totalShippingPrice).toLocaleString("ko-kr")}
+              {totalShippingPrice == "1" && <OneDPTxtUI>1원 배송</OneDPTxtUI>}
             </ColumnValueTextUI>
           </SpaceBetweenUI>
         </SpaceBetweenUI>

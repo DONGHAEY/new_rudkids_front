@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const PageUI = styled.div`
   background-color: #1a94d9;
   width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100%;
   justify-content: space-between;
 `;
 
@@ -15,7 +15,7 @@ export const SectionUI = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-height: 100%;
+  /* height: 100%; */
   position: relative;
 `;
 

@@ -43,7 +43,7 @@ export const routes = {
     viewTrack: true,
     path: "/shop",
     paramKeys: [],
-    element: AuthHoc(MainPage),
+    element: MainPage,
   },
   ["productDetail"]: {
     name: "product-detail",

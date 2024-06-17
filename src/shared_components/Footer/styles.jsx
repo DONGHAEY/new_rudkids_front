@@ -19,6 +19,7 @@ export const InfoBtnUI = styled.button`
   background: none;
   font-family: Pretendard-Bold;
   font-size: 10px;
+  color: black;
 `;
 
 export const FooterLabel = styled.div`

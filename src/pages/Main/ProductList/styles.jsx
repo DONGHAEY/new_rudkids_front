@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const ListUI = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 16px;
+  grid-auto-flow: row;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: minmax(0%, 100%);
+  column-gap: 16px;
   width: 90%;
-  min-height: 100%;
 `;
 
 export const ProductBoxUI = styled.div`
@@ -13,10 +14,11 @@ export const ProductBoxUI = styled.div`
   flex-direction: column;
   gap: 11px;
   width: auto;
-  height: auto;
+  height: 0%;
   margin-bottom: 16px;
   text-decoration: none;
   line-height: 0;
+  background-color: gainsboro;
 `;
 
 export const ProductImgWrapperUI = styled.div`
