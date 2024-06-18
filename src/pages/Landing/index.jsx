@@ -36,7 +36,7 @@ const LandingPage = () => {
       </TextGrp>
       <ToyIntroduce />
       <LinkButtonUI
-        to={"/shop?type=Toy"}
+        to={"/shop?category=Toy"}
         onClick={() =>
           trackClickButton("shop", {
             type: "Toy",
@@ -57,10 +57,10 @@ const LandingPage = () => {
       </MainBannerUI>
       <TShirtIntroduce />
       <LinkButtonUI
-        to={"/shop?type=Colthes"}
+        to={"/shop?category=Clothes"}
         onClick={() =>
           trackClickButton("shop", {
-            type: "Colthes",
+            type: "Clothes",
           })
         }
       >

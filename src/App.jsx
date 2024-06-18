@@ -16,10 +16,6 @@ import Loader from "./shared_components/Loader";
 import PublicBizAssets from "./global/public-biz-assets";
 import { init } from "@amplitude/analytics-browser";
 import { trackPageView, useTrackReadPageContents } from "./shared_analytics";
-import SymbolLoader from "./shared_components/SymbolLoader";
-import gsap from "gsap";
-import symbolSrc from "./shared_components/SymbolLoader/assets/symbol.webp";
-import { LoaderUI } from "./shared_components/SymbolLoader/styles";
 
 function App() {
   const [queryClient] = useRudkidsQueryClient();

@@ -59,20 +59,14 @@ const ProductDetailPage = ({ routeInfo }) => {
   }, [productData]);
 
   useEffect(() => {
-    if (!productDataLoading) {
-      const { name, price, id: product_id, type } = productData;
-      trackPageView("product-detail", {
-        name,
-        product_id,
-        type,
-        price,
-      });
-    }
-  }, [productDataLoading]);
-
-  if (productDataLoading) {
-    return <Loader />;
-  }
+    const { name, price, id: product_id, type } = productData;
+    trackPageView("product-detail", {
+      name,
+      product_id,
+      type,
+      price,
+    });
+  }, [productData]);
 
   return (
     <PageUI>

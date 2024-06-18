@@ -27,7 +27,7 @@ const SymbolLoader = ({ loading, position = "fixed", minDelaySec = 1 }) => {
     if (timeS >= minDelaySec && !loading) {
       gsap.to(loaderRef.current, {
         opacity: 0,
-        duration: 1.5,
+        duration: 1,
         onComplete: () => {
           setShow(false);
         },

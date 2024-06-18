@@ -1,27 +1,28 @@
-import ShopPage from "./pages/Shop";
-import ProductDetailPage from "./pages/ProductDetail";
-import LoginCallbackPage from "./pages/LoginCallback";
-import CartPage from "./pages/Cart";
-import CreateOrder from "./pages/CreateOrder";
-import OrderDetailPage from "./pages/OrderDetail";
-import PayPage from "./pages/Pay";
-import AuthHoc from "./shared_components/HOC/AuthHoc";
-import LoginPage from "./pages/Login";
-import InstaInfoPage from "./pages/InstaInfo";
-import FirstInvitePage from "./pages/FirstInvite";
-import TicketPage from "./pages/Ticket";
-import ProfilePage from "./pages/Profile";
-import ProfileEditPage from "./pages/ProfileEdit";
-import CreateRudcardPage from "./pages/CreateRudcard";
-import RankPage from "./pages/Rank";
-import RudGatePage from "./pages/RudGate";
-import _401Page from "./pages/401";
-import LeagalPage from "./pages/Legal";
-import OrderListPage from "./pages/OrderList";
-import CollectionPage from "./pages/Collection";
-import PayFailPage from "./pages/PayFail";
-import LandingPage from "./pages/Landing";
+import React, { lazy } from "react";
 import SymbolLoader from "./shared_components/SymbolLoader";
+import AuthHoc from "./shared_components/HOC/AuthHoc";
+const ShopPage = lazy(() => import("./pages/Shop"));
+const ProductDetailPage = lazy(() => import("./pages/ProductDetail"));
+const LoginCallbackPage = lazy(() => import("./pages/LoginCallback"));
+const CartPage = lazy(() => import("./pages/Cart"));
+const CreateOrder = lazy(() => import("./pages/CreateOrder"));
+const OrderDetailPage = lazy(() => import("./pages/OrderDetail"));
+const PayPage = lazy(() => import("./pages/Pay"));
+const LoginPage = lazy(() => import("./pages/Login"));
+const InstaInfoPage = lazy(() => import("./pages/InstaInfo"));
+const FirstInvitePage = lazy(() => import("./pages/FirstInvite"));
+const TicketPage = lazy(() => import("./pages/Ticket"));
+const ProfilePage = lazy(() => import("./pages/Profile"));
+const ProfileEditPage = lazy(() => import("./pages/ProfileEdit"));
+const CreateRudcardPage = lazy(() => import("./pages/CreateRudcard"));
+const RankPage = lazy(() => import("./pages/Rank"));
+const RudGatePage = lazy(() => import("./pages/RudGate"));
+const _401Page = lazy(() => import("./pages/401"));
+const LegalPage = lazy(() => import("./pages/Legal"));
+const OrderListPage = lazy(() => import("./pages/OrderList"));
+const CollectionPage = lazy(() => import("./pages/Collection"));
+const PayFailPage = lazy(() => import("./pages/PayFail"));
+const LandingPage = lazy(() => import("./pages/Landing"));
 
 export const routes = {
   ["404"]: {
@@ -191,6 +192,6 @@ export const routes = {
     viewTrack: false,
     path: "/legal",
     paramKeys: [],
-    element: LeagalPage,
+    element: LegalPage,
   },
 };

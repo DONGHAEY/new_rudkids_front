@@ -1,5 +1,12 @@
 import { useEffect } from "react";
-import { CopyShareUI, DescriptionTxtUI, HeadTxtUI, OkayBtnUI } from "./styles";
+import {
+  CopyShareUI,
+  DescriptionTxtUI,
+  HeadTxtUI,
+  OkayBtnUI,
+  TextWrapperUI,
+} from "./styles";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const CopyShare = ({ copyLink, onClose }) => {
   useEffect(() => {
@@ -13,15 +20,16 @@ const CopyShare = ({ copyLink, onClose }) => {
 
   return (
     <CopyShareUI>
-      <HeadTxtUI>✅ 프로필 링크 복사 완료</HeadTxtUI>
-      <br />
-      <DescriptionTxtUI>
-        Instagram 프로필 설명란에
-        <br />
-        링크를 추가해보세요!
-      </DescriptionTxtUI>
-      <br />
-      <OkayBtnUI onClick={onClose}>알겠어요</OkayBtnUI>
+      <div>
+        <Icon icon="lets-icons:check-fill" fontSize="30px" color="#00DB30" />
+      </div>
+      <TextWrapperUI>
+        <HeadTxtUI>프로필 링크 복사 완료</HeadTxtUI>
+        <DescriptionTxtUI>
+          Instagram 바이오에 링크를 추가해보세요!
+        </DescriptionTxtUI>
+      </TextWrapperUI>
+      <OkayBtnUI onClick={onClose}>확인</OkayBtnUI>
     </CopyShareUI>
   );
 };

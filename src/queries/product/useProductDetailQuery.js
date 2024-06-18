@@ -14,6 +14,7 @@ const useProductDetailQuery = (productName) => {
   return useQuery({
     queryKey: KEY(productName),
     queryFn: async () => await getProductDetail(productName),
+    suspense: true,
   });
 };
 

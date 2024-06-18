@@ -8,6 +8,11 @@ export const ModelSelectUI = styled.div`
   overflow-x: scroll;
   padding-bottom: 12.5px;
   /* margin-top: 24px; */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* 스크롤바 숨기기 */
+  }
 `;
 
 export const ModelUI = styled.div`

@@ -36,10 +36,11 @@ export const BoxSectionUI = styled.div`
 export const UserImgUI = styled.img`
   border-radius: 100%;
   object-fit: cover;
-  max-width: 113px;
+  width: 90%;
+  aspect-ratio: 1/1;
   position: absolute;
-  margin-inline: auto;
-  top: -40px;
+  margin-top: 25%;
+  z-index: 3;
 `;
 
 export const UserNickNameTxtUI = styled.p`
@@ -208,4 +209,39 @@ export const CollectionArrowUI = styled.div`
   right: 20px;
   top: 20px;
   font-size: 20px;
+`;
+
+export const ProfileImgWrapperUI = styled.div`
+  position: absolute;
+  top: -10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const CrownImgUI = styled.img`
+  width: 100%;
+  max-width: 113px;
+  z-index: 3;
+  opacity: ${({ opacity }) => opacity ?? 0};
+`;
+
+export const RankTxtUI = styled.p`
+  position: absolute;
+  z-index: 4;
+  font-size: 13px;
+  background-color: #fff500;
+  border-radius: 37px;
+  padding-inline: 15px;
+  padding-block: 10px;
+  line-height: 0%;
+  font-family: Poppins-Bold;
+  font-size: 16px;
+  right: -38%;
+  bottom: -3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 `;

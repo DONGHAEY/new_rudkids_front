@@ -22,6 +22,9 @@ import {
   CollectionTitleUI,
   CollectionCntTxtUI,
   CollectionArrowUI,
+  ProfileImgWrapperUI,
+  CrownImgUI,
+  RankTxtUI,
 } from "./styles";
 import { BsHeartFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
@@ -42,6 +45,8 @@ import useCollectionQuery from "../../queries/collection/userCollectionQuery";
 import Loader from "../../shared_components/Loader";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
 // import Background from "../../shared_components/Background";
+import crwonSrc from "./assets/crwon.png";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export const ProfilePage = ({ routeInfo }) => {
   const params = useParams();
@@ -71,6 +76,8 @@ export const ProfilePage = ({ routeInfo }) => {
 
   const userProfilePageLink = `${window.location.host}/profile/${userData?.id}`;
 
+  const rankSigns = ["st", "nd", "rd"];
+
   useEffect(() => {
     if (searchUserId) {
       updateTodayViewMutation.mutateAsync(searchUserId);
@@ -90,7 +97,16 @@ export const ProfilePage = ({ routeInfo }) => {
       <FlipCard cardImgSrc={userData?.cardImgUrl} isMe={isMyProfile} />
       <br />
       <BoxSectionUI>
-        <UserImgUI src={userData?.imageUrl} />
+        <ProfileImgWrapperUI>
+          <CrownImgUI src={crwonSrc} opacity={userData?.rank <= 3 ? 1 : 0} />
+          {userData?.rank <= 3 && (
+            <RankTxtUI>
+              <Icon icon="fa-solid:medal" /> {userData?.rank}
+              {rankSigns[userData?.rank - 1]}
+            </RankTxtUI>
+          )}
+          <UserImgUI src={userData?.imageUrl} />
+        </ProfileImgWrapperUI>
         <TopSectionUI>
           <TodayViewUI>
             <img src={eyeSrc} height="17px" />
