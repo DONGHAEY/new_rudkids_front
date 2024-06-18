@@ -40,7 +40,7 @@ export const ViedeoImgUI = styled.img`
 
 export const CallFromInfoUI = styled.div`
   width: 100%;
-  margin-top: -40%;
+  margin-top: -25%;
   aspect-ratio: 1/1;
   display: flex;
   flex-direction: column;
@@ -51,17 +51,13 @@ export const CallFromImgUI = styled.img`
   width: 33%;
   margin-bottom: 8px;
 `;
+export const SpacerUI = styled.div`
+  margin-top: 10px;
+`;
 
 export const ProfileNmTxtUI = styled.p`
   font-family: Poppins-Bold;
   font-size: 37.26px;
-  line-height: 105%;
-  color: white;
-`;
-
-export const FaceTimeTxtUI = styled.p`
-  font-family: Poppins-Bold;
-  font-size: 14px;
   line-height: 105%;
   color: white;
 `;
@@ -73,7 +69,7 @@ export const CallBtnUI = styled.div`
 `;
 
 export const CallOffImgBtnUI = styled.img`
-  width: 74.71px;
+  width: 60.71px;
   position: absolute;
   bottom: 10%;
   @keyframes fadeIn {
@@ -116,11 +112,35 @@ export const VideoUI = styled.video`
   z-index: -1;
 `;
 
-export const ThumnailUI = styled.img`
+export const ThumnailImgUI = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   position: absolute;
-  border-radius: 30.95px;
-  z-index: -1;
+  border: none;
+  border-radius: 30px;
+  z-index: -2;
+  filter: blur(5px);
+  backdrop-filter: blur(5px);
+`;
+
+export const FaceTimeSignUI = styled.div`
+  display: flex;
+  gap: 6px;
+  line-height: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const FaceTimeTxtUI = styled.p`
+  font-family: Poppins-Bold;
+  font-size: 10px;
+  color: white;
+  line-height: 0%;
+`;
+export const FaceTimeKrTxtUI = styled.p`
+  font-family: Pretendard-Bold;
+  font-size: 10px;
+  color: white;
+  line-height: 0%;
 `;

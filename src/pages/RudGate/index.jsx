@@ -30,8 +30,8 @@ import { useScreenshot } from "use-react-screenshot";
 import StorageKey from "../../storageKey";
 import { useNavigate } from "react-router-dom";
 import CallingModal from "../../shared_components/Calling";
-import scanAnimation from "./assets/scan_lottie.json";
-import congraturationAnimation from "./assets/congraturation.json";
+import scanAnimation from "./assets/scanning.json";
+import congraturation from "./assets/congraturation.json";
 import joinUsImgSrc from "./assets/join_us.webp";
 import rudgateImgSrc from "./assets/rudgate.webp";
 import videoSrc from "./assets/video.mp4";
@@ -196,23 +196,21 @@ const RudGatePage = () => {
           <>
             <CloseImgUI onClick={closeBtnClickHandler} src={closeIconSrc} />
             <PassStatImgUI src={passStat ? correctSrc : wrongSrc} />
-            {passStat === true && (
-              <CongraturationLtUI>
-                <Player src={congraturationAnimation} loop autoPlay />
-              </CongraturationLtUI>
-            )}
+            <CongraturationLtUI>
+              {passStat && <Player src={congraturation} loop autoplay />}
+            </CongraturationLtUI>
           </>
         )}
-        {scanMode && (
-          <ScanLtUI>
+        <ScanLtUI>
+          {scanMode && (
             <Player
               onEvent={scanLtCmplteHandler}
               src={scanAnimation}
               loop
               autoplay
             />
-          </ScanLtUI>
-        )}
+          )}
+        </ScanLtUI>
         <JoinUsImgUI src={joinUsImgSrc} />
       </WecamSectionUI>
       <BottomSectionUI>

@@ -12,15 +12,20 @@ import {
   CallTextInfo,
   VideoUI,
   CallFromImgUI,
+  ThumnailImgUI,
+  FaceTimeKrTxtUI,
+  FaceTimeSignUI,
+  SpacerUI,
 } from "./styles";
 import viedeoIconSrc from "./assets/viedeo-icon.png";
 import profileSrc from "./assets/profile.png";
-import facetimeSignSrc from "./assets/facetime_sign.svg";
 import callingLottie from "./assets/calling.json";
 import { Player } from "@lottiefiles/react-lottie-player";
-import callOffSrc from "./assets/call_off.svg";
+import callOffSrc from "./assets/call_off.png";
 import gsap from "gsap";
 import { track } from "@amplitude/analytics-browser";
+import thumnailSrc from "./assets/thumnail.png";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const CallingModal = ({ videoSrc, onClosed, pageFor = "" }) => {
   const [open, setOpen] = useState(true);
@@ -78,6 +83,7 @@ const CallingModal = ({ videoSrc, onClosed, pageFor = "" }) => {
     gsap.to(callBoxRef.current, {
       opacity: 0,
       duration: 0.5,
+      ease: "power1.in",
       onComplete: () => {
         setOpen(false);
       },
@@ -100,14 +106,10 @@ const CallingModal = ({ videoSrc, onClosed, pageFor = "" }) => {
       <CallBox ref={callBoxRef}>
         <ViedeoImgUI src={viedeoIconSrc} ref={callIconRef} />
         {scenes[sceneName]}
-        <VideoUI
-          ref={videoRef}
-          playsInline
-          onEnded={onFinished}
-          preload="metadata"
-        >
-          <source src={videoSrc + "#t=0.1"} type="video/mp4" />
+        <VideoUI ref={videoRef} playsInline onEnded={onFinished}>
+          <source src={videoSrc} type="video/mp4" />
         </VideoUI>
+        <ThumnailImgUI src={thumnailSrc} />
       </CallBox>
     </ModalUI>
   );
@@ -119,6 +121,7 @@ export const Step1 = ({ onAccept }) => {
       <CallFromInfoUI>
         <CallFromImgUI src={profileSrc} />
         <ProfileNmTxtUI>Dasha</ProfileNmTxtUI>
+        <SpacerUI />
         <FaceTimeTxtUI>FaceTime...</FaceTimeTxtUI>
       </CallFromInfoUI>
       <CallBtnUI onClick={onAccept}>
@@ -146,7 +149,11 @@ export const Step2 = ({ onFinished }) => {
         <img src={profileSrc} height="100%" />
         <CallTextInfo>
           <p>Dasha</p>
-          <img src={facetimeSignSrc} />
+          <FaceTimeSignUI>
+            <Icon fontSize="15px" icon="ph:video-camera-fill" />
+            <FaceTimeTxtUI>FaceTime</FaceTimeTxtUI>
+            <FaceTimeKrTxtUI>영상통화</FaceTimeKrTxtUI>
+          </FaceTimeSignUI>
         </CallTextInfo>
       </CallInfoUI>
       {sec >= 1 && <CallOffImgBtnUI onClick={onFinished} src={callOffSrc} />}
