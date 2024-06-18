@@ -16,6 +16,24 @@ const SymbolLoader = ({ loading, position = "fixed" }) => {
   const symbolRef = useRef();
   const [show, setShow] = useState(true);
 
+  const tlCompleteHandler = () => {
+    if (!loading) {
+      tl.pause();
+      gsap.to(loaderRef.current, {
+        opacity: 0,
+        duration: 1,
+        delay: 0.5,
+        onComplete: () => {
+          setShow(false);
+        },
+      });
+    } else {
+      tl.repeat(-1);
+      tl.yoyo();
+      tl.startTime(0);
+    }
+  };
+
   useEffect(() => {
     tl = gsap.timeline();
     tl.to(symbolRef.current, {
@@ -30,23 +48,14 @@ const SymbolLoader = ({ loading, position = "fixed" }) => {
       .to(symbolRef.current, {
         scale: 1,
         duration: 0.5,
-        yoyo: true,
-        onComplete: () => {
-          if (!loading) {
-            gsap.to(loaderRef.current, {
-              opacity: 0,
-              duration: 1,
-              delay: 0.5,
-              onComplete: () => {
-                setShow(false);
-              },
-            });
-          } else {
-            tl.startTime(0);
-          }
-        },
-      });
-    tl.startTime(lastD);
+        onComplete: tlCompleteHandler,
+      })
+      .paused();
+    if (loading) {
+      tl.startTime(0);
+    } else {
+      tl.startTime(lastD);
+    }
     return () => {
       setLastD(tl?.duration() ?? 0);
     };
