@@ -104,7 +104,9 @@ const RudGatePage = () => {
   const getInBtnClickHandler = () => {
     trackClickButton("get in");
     setPassedStat(true);
-    navigate("/login");
+    navigate("/login", {
+      replace: true,
+    });
   };
 
   const shareBtnClickHandler = () => {
@@ -161,14 +163,15 @@ const RudGatePage = () => {
   useEffect(() => {
     const stream = cameraRef.current?.video.srcObject;
     if (!stream) return;
-    const tracks = stream.getTracks();
-    tracks.forEach((track) => track.start());
+    // const tracks = stream.getTracks();
+
     return () => {
       const stream = cameraRef.current?.video.srcObject;
-      if (!stream) return;
+      // if (!stream) return;
       const tracks = stream.getTracks();
       tracks.forEach((track) => track.stop());
-      // cameraRef.current.video.srcObject = null;
+      cameraRef.current.video.srcObject = null;
+      setVideoPermission(false);
     };
   }, []);
 
@@ -241,11 +244,13 @@ const RudGatePage = () => {
         )}
       </BottomSectionUI>
       <ImgInstaShareModal dataUri={screenshot} />
-      <CallingModal
-        videoSrc={videoSrc}
-        onClosed={requestVideoPermission}
-        pageFor="rud gate"
-      />
+      {!videoPermission && (
+        <CallingModal
+          videoSrc={videoSrc}
+          onClosed={requestVideoPermission}
+          pageFor="rud gate"
+        />
+      )}
     </PageUI>
   );
 };
