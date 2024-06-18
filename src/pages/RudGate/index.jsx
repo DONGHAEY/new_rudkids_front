@@ -43,13 +43,13 @@ import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { drawVideoScene } from "./utils/draw";
 
-export const setPassedStat = (passStat) => {
+export const setPassResult = (passStat) => {
   localStorage.setItem(StorageKey.rud_gate_passed, passStat);
 };
-export const removePassedStat = () => {
+export const removePassedResult = () => {
   localStorage.removeItem(StorageKey.rud_gate_passed);
 };
-export const getPassedStat = () => {
+export const getPassedResult = () => {
   return localStorage.getItem(StorageKey.rud_gate_passed) ?? false;
 };
 
@@ -103,11 +103,23 @@ const RudGatePage = () => {
 
   const getInBtnClickHandler = () => {
     trackClickButton("get in");
+    setPassResult(true);
     const stream = cameraRef.current?.video.srcObject;
-    const tracks = stream.getTracks();
-    tracks.forEach((track) => track.stop());
-    cameraRef.current.video.srcObject = null;
-    setVideoPermission(false);
+    if (stream) {
+      // alert("video stopped");
+      if (stream.getVideoTracks && stream.getAudioTracks) {
+        stream.getVideoTracks().map((track) => {
+          stream.removeTrack(track);
+          track.stop();
+        });
+        stream.getAudioTracks().map((track) => {
+          stream.removeTrack(track);
+          track.stop();
+        });
+      } else {
+        stream.stop();
+      }
+    }
     navigate("/login", {
       replace: true,
     });
@@ -138,15 +150,23 @@ const RudGatePage = () => {
       allowStat = true;
     } catch (error) {
       allowStat = false;
-      setTimeout(() => {
-        requestVideoPermission();
-      }, 1000);
     }
     track("allow camera", {
       is_allowed: allowStat,
     });
+    localStorage.setItem(StorageKey.camera_permission, allowStat);
     setVideoPermission(allowStat);
+    if (!allowStat) {
+      window.location.reload();
+    }
   };
+
+  useEffect(() => {
+    const allowed = localStorage.getItem(StorageKey.camera_permission);
+    if (allowed === "true") {
+      setVideoPermission(true);
+    }
+  }, []);
 
   useEffect(() => {
     const video = cameraRef.current?.video;
@@ -160,7 +180,7 @@ const RudGatePage = () => {
         drawVideoScene(canvas, video);
       }
     };
-    const interval = setInterval(drawVideo, 1000 / 50); //50fps
+    const interval = setInterval(drawVideo, 1000 / 30); //30fps
     return () => clearInterval(interval);
   }, [videoPermission, scanMode, hasResult]);
 

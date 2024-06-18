@@ -21,7 +21,7 @@ import joinUsSrc from "./assets/joinUs.svg";
 import Background from "../../shared_components/Background";
 import StorageKey from "../../storageKey";
 import { useEffect } from "react";
-import { getPassedStat } from "../RudGate";
+import { getPassedResult } from "../RudGate";
 import { FixedPipVideo } from "../../shared_components/FixedPipVideo";
 import videoSrc from "./assets/login.mp4";
 import { trackClickButton } from "../../shared_analytics";
@@ -47,10 +47,12 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    const rudgatePassedStat = getPassedStat();
+    const rudgatePassedStat = getPassedResult();
     if (!rudgatePassedStat) {
       //루드게이트 통과 전, 로그인 할 수 없음., 이미 회원가입한 사람인 경우에도 휴대폰을 바꿨을 경우 다시 통과해야함.
-      navigate("/rud-gate");
+      navigate("/rud-gate", {
+        replace: true,
+      });
     }
   }, []);
 

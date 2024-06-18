@@ -156,7 +156,7 @@ export const Step2 = ({ onFinished }) => {
           </FaceTimeSignUI>
         </CallTextInfo>
       </CallInfoUI>
-      {sec >= 1 && <CallOffImgBtnUI onClick={onFinished} src={callOffSrc} />}
+      {sec >= 5 && <CallOffImgBtnUI onClick={onFinished} src={callOffSrc} />}
     </>
   );
 };
