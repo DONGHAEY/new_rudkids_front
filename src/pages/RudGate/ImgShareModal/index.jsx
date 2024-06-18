@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import RudAlert from "../../../shared_components/RudAlert";
-import shareImgSrc from "./assets/share_way.png";
+import shareImgSrc from "./assets/share_way.webp";
 import { ContentImgWrapperUI, ModalUI, RudAlertWrapperUI } from "./styles";
 
 const ImgShareModal = ({ dataUri }) => {

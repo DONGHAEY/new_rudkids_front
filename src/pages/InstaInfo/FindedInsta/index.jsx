@@ -8,8 +8,8 @@ import {
   ButtonListUI,
   ButtonUI,
 } from "./styles";
-import InstagramProfile from "./assets/instagram.png";
-import cautionImgSrc from "./assets/caution.png";
+import InstagramProfile from "./assets/instagram.webp";
+import cautionImgSrc from "./assets/caution.webp";
 import { PageUI, WrapperUI } from "../shared_styles";
 import Background from "../../../shared_components/Background";
 import { trackClickButton } from "../../../shared_analytics";

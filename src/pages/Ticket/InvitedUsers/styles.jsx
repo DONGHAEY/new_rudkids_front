@@ -1,12 +1,13 @@
 import Marquee from "react-fast-marquee";
 import styled from "styled-components";
 
-export const ScrollMarqueeUI = styled(Marquee)`
+export const ScrollMarqueeUI = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
   max-width: 430px;
   margin-top: 20px;
+  overflow: scroll;
 `;
 
 export const InvitedUserImgWrapperUI = styled.div`

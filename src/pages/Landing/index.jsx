@@ -10,11 +10,11 @@ import {
   Txt1UI,
   Txt2UI,
 } from "./styles";
-import bannerSrc from "./assets/banner.png";
+import bannerSrc from "./assets/banner.webp";
 import { ToyIntroduce } from "./ToyIntroduce";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import SlidingTape from "./SlidingTape";
-import backgroundSrc from "./assets/background.svg";
+import backgroundSrc from "./assets/background.webp";
 import ScrollKids from "./ScrollKids";
 import TShirtIntroduce from "./TShirtIntroduce";
 import { trackClickButton } from "../../shared_analytics";

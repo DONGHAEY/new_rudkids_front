@@ -17,9 +17,6 @@ import {
 import { useParams } from "react-router-dom";
 import useProductDetailQuery from "../../queries/product/useProductDetailQuery";
 import { useEffect, useMemo, useState } from "react";
-import Loader from "../../shared_components/Loader";
-import glb1Src from "./assets/1.glb";
-import glb2Src from "./assets/2.glb";
 import img1Src from "./assets/1.jpg";
 import img2Src from "./assets/2.jpg";
 import { trackPageView } from "../../shared_analytics";
@@ -47,13 +44,13 @@ const ProductDetailPage = ({ routeInfo }) => {
         name: "License",
         description: "",
         imageUrl: img1Src,
-        modelUrl: glb1Src,
+        modelUrl: "/Models/license.glb",
       },
       {
         name: "Tickes",
         description: "",
         imageUrl: img2Src,
-        modelUrl: glb2Src,
+        modelUrl: "/Models/ticket.glb",
       },
     ];
   }, [productData]);

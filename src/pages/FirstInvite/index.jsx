@@ -15,7 +15,7 @@ import {
 } from "./styles";
 import Friends from "./Friends";
 import ticketsSrc from "./assets/tickets.gif";
-import handSrc from "./assets/hand.png";
+import handSrc from "./assets/hand.webp";
 import boxSrc from "./assets/box.png";
 import { RiShareBoxFill } from "react-icons/ri";
 import ProgressBar from "./ProgressBar";
@@ -23,13 +23,13 @@ import { useState } from "react";
 import PicProgressBar from "./PicProgressBar";
 import useCreateInvitationMutation from "../../mutations/invitation/useCreateInvitationMutation";
 import useSetFirstInviteFinished from "../../mutations/user/useSetFirstInviteFinished";
-import congraturation from "./assets/congraturation.json";
 import { Player } from "@lottiefiles/react-lottie-player";
 import CallingModal from "../../shared_components/Calling";
 import { useSearchParams } from "react-router-dom";
 import videoSrc from "./assets/video.mp4";
 import { trackClickButton } from "../../shared_analytics";
 import useUserQuery from "../../queries/user/useUserQuery";
+import PublicLottieAssets from "../../global/public-lottie-assets";
 
 const FirstInvitePage = () => {
   const { data: userData } = useUserQuery();
@@ -98,7 +98,11 @@ const FirstInvitePage = () => {
       </FlexColUI>
       <LottieWrapperUI>
         {goalInviterCnt === inviterCnt && (
-          <Player controls={true} src={congraturation} autoplay />
+          <Player
+            controls={true}
+            src={PublicLottieAssets.congratuation}
+            autoplay
+          />
         )}
       </LottieWrapperUI>
       <Friends />

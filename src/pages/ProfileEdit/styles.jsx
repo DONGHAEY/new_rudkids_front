@@ -7,13 +7,6 @@ export const PageUI = styled.div`
   padding-inline: 25px;
 `;
 
-export const ListUI = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 export const LinkUI = styled.div`
   width: 100%;
   padding-block: 18px;

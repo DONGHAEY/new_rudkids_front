@@ -27,7 +27,7 @@ export const AddButtonUI = styled.button`
 `;
 
 export const ExplainTextUI = styled.p`
-  fontsize: 17px;
+  font-size: 17px;
   font-family: Pretendard-SemiBold;
 `;
 

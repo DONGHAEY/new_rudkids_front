@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { RiDragMoveFill } from "react-icons/ri";
 import { GuideLabelUI, HandImgUI } from "./styles";
-import handPicSrc from "./assets/hand.png";
+import handPicSrc from "./assets/hand.webp";
 import gsap from "gsap";
 
 const GuideLabel = () => {

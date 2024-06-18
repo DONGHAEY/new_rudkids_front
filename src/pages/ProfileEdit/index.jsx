@@ -1,19 +1,13 @@
 import PopupRoute from "../../shared_components/PopupRoute";
-import {
-  ColumnContentTxtUI,
-  ColumnNmTxtUI,
-  LinkUI,
-  ListUI,
-  PageUI,
-} from "./styles";
+import { ColumnContentTxtUI, ColumnNmTxtUI, LinkUI, PageUI } from "./styles";
 import { usePopup } from "../../hooks/usePopup";
 import BioEdit from "./BioEdit";
 import LinksEdit from "./LinksEdit";
 import useUserQuery from "../../queries/user/useUserQuery";
 import NicknameEdit from "./NicknameEdit";
-import rightIconSrc from "./assets/right.svg";
 import { useNavigate } from "react-router-dom";
 import Popup from "../../shared_components/Popup";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const ProfileEditPage = () => {
   const [navigatePopup] = usePopup();
@@ -71,7 +65,7 @@ const Link = ({ name, description, onClick }) => {
     <LinkUI onClick={onClick}>
       <ColumnNmTxtUI>{name}</ColumnNmTxtUI>
       <ColumnContentTxtUI>{description}</ColumnContentTxtUI>
-      <img src={rightIconSrc} height="50%" />
+      <Icon icon="mingcute:right-line" height="20px" />
     </LinkUI>
   );
 };

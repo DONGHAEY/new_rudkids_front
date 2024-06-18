@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-import letter1 from "./assets/letter1.png";
-import letter2 from "./assets/letter2.png";
+import letter1 from "./assets/letter1.webp";
+import letter2 from "./assets/letter2.webp";
 import {
   FromImgUI,
   FromNmTxtUI,

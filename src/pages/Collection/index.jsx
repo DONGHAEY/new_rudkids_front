@@ -9,7 +9,7 @@ import {
   TitleTxtUI,
   TitleWrapperUI,
 } from "./styles";
-import stampSrc from "./assets/stamp.svg";
+import stampSrc from "./assets/stamp.webp";
 import { useNavigate, useParams } from "react-router-dom";
 import useCollectionQuery from "../../queries/collection/userCollectionQuery";
 import { Icon } from "@iconify/react/dist/iconify.js";

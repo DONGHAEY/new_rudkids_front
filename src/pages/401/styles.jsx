@@ -67,20 +67,20 @@ export const WainterWrapperUI = styled.div`
 `;
 
 export const 머핀ImgUI = styled.img`
-  width: 90%;
+  width: 50%;
   position: absolute;
-  top: -41%;
+  top: -21%;
   z-index: 2;
-  right: -28%;
+  right: -8%;
 `;
 
 export const FuckImgUI = styled.img`
   position: absolute;
   z-index: 1;
-  top: -78%;
-  left: 0;
+  top: -43%;
+  right: -20%;
   opacity: 0;
-  width: 140%;
+  width: 100%;
 `;
 
 export const AskLinkUI = styled(Link)`

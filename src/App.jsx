@@ -1,21 +1,14 @@
-import { Route, Routes, useParams } from "react-router-dom";
-import { routes } from "./routes";
-import { QueryClientProvider } from "react-query";
-import useRudkidsQueryClient from "./rudkidsQueryClient";
-import {
-  Suspense,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import * as qs from "qs";
-import GlobalStyle from "../src/styles";
-import Loader from "./shared_components/Loader";
-import PublicBizAssets from "./global/public-biz-assets";
 import { init } from "@amplitude/analytics-browser";
+import * as qs from "qs";
+import { Suspense, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { QueryClientProvider } from "react-query";
+import { Route, Routes, useParams } from "react-router-dom";
+import GlobalStyle from "../src/styles";
+import PublicBizAssets from "./global/public-biz-assets";
+import { routes } from "./routes";
+import useRudkidsQueryClient from "./rudkidsQueryClient";
 import { trackPageView, useTrackReadPageContents } from "./shared_analytics";
+import Loader from "./shared_components/Loader";
 
 function App() {
   const [queryClient] = useRudkidsQueryClient();

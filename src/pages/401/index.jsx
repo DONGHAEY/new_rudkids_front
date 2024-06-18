@@ -11,13 +11,13 @@ import {
   WainterWrapperUI,
   머핀ImgUI,
 } from "./styles";
-import cakeImgSrc from "./assets/cake.svg";
-import fuckSrc from "./assets/fuck.svg";
-import waiterImgSrc from "./assets/waiter.svg";
+import cakeImgSrc from "./assets/cake.webp";
+import fuckSrc from "./assets/fuc.webp";
+import waiterImgSrc from "./assets/waiter.webp";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import Lottie from "react-lottie";
-import congraturation from "./assets/congraturation.json";
+import PublicLottieAssets from "../../global/public-lottie-assets";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 let tl = null;
 const _401Page = () => {
@@ -73,7 +73,7 @@ const _401Page = () => {
       {/*  */}
       <ButtonFixedUI>
         <WainterWrapperUI>
-          <img src={waiterImgSrc} />
+          <img width="100%" src={waiterImgSrc} />
           <머핀ImgUI ref={머핀Ref} src={cakeImgSrc} />
           <FuckImgUI ref={fuckRef} src={fuckSrc} />
         </WainterWrapperUI>
@@ -89,13 +89,7 @@ const _401Page = () => {
       </ButtonFixedUI>
       <LottieWrapperUI>
         {!getinClicked && (
-          <Lottie
-            options={{
-              animationData: congraturation,
-              autoplay: true,
-              loop: true,
-            }}
-          />
+          <Player src={PublicLottieAssets.congratuation} loop autoplay />
         )}
       </LottieWrapperUI>
     </PageUI>

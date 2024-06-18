@@ -16,7 +16,7 @@ import PaymentStatus from "../Pay/PaymentStatus";
 import OrderPrice from "../../shared_components/OrderPrice";
 import { useEffect } from "react";
 import Loader from "../../shared_components/Loader";
-import manSrc from "./assets/man.svg";
+import manSrc from "./assets/man.webp";
 
 const PayFailPage = () => {
   const navigate = useNavigate();

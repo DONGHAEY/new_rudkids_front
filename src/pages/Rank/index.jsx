@@ -14,7 +14,7 @@ import {
 import useRankedListQuery from "../../queries/user/userRankedListQuery";
 import Header from "../../shared_components/Header";
 import RankedList from "./RankedList";
-import rankStageSrc from "./assets/rank_stage.png";
+import rankStageSrc from "./assets/rank_stage.webp";
 
 const RankPage = () => {
   const { data: rankedList, isLoading } = useRankedListQuery();

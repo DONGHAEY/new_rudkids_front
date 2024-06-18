@@ -12,7 +12,7 @@ import useGetImgUrlMutation from "../../../mutations/instagram-profile/useGetImg
 import LoadingScene from "./LoadingScene";
 import { CompleteBtnUI, PageUI, WrapperUI } from "../shared_styles";
 import Background from "../../../shared_components/Background";
-import instaImgSrc from "./assets/instagram.png";
+import instaImgSrc from "./assets/instagram.webp";
 import { FixedPipVideo } from "../../../shared_components/FixedPipVideo";
 import videoSrc from "./assets/insta.mp4";
 

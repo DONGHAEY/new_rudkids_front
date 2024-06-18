@@ -117,6 +117,20 @@ export const WecamSectionUI = styled.div`
   z-index: 0;
 `;
 
+export const CameraAllowBtnUI = styled.div`
+  position: absolute;
+  top: 40%;
+  margin-inline: auto;
+  background: linear-gradient(180deg, #14ff00 0%, #10ce00 100%);
+  color: white;
+  border: none;
+  padding: 30px;
+  font-family: Pretendard-Bold;
+  font-size: 20px;
+  border-radius: 30px;
+  z-index: 0;
+`;
+
 export const AllowReqImgUI = styled.img`
   position: absolute;
   height: 100%;

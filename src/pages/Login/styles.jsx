@@ -22,6 +22,14 @@ export const LoginWrapperUI = styled.div`
   gap: 12px;
 `;
 
+export const LoginTxtUI = styled.p`
+  font-family: Poppins-Bold;
+  line-height: 110%;
+  font-size: 34px;
+  letter-spacing: 5%;
+  margin-bottom: 48px;
+`;
+
 export const LoginUI = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,7 +38,7 @@ export const LoginUI = styled.div`
   /* margin-top: 14px; */
   border-radius: 23.62px;
   max-height: 419.12px;
-  padding-block: 40px;
+  padding-block: 50px;
   margin-bottom: 18px;
   background-color: rgba(255, 255, 255, 0.6);
   -webkit-backdrop-filter: blur(5px);
@@ -69,7 +77,8 @@ export const LoginBtnTxtUI = styled.p`
 `;
 
 export const LoginBtnImgUI = styled.img`
-  height: 25px;
+  height: 34px;
+  padding: 5px;
 `;
 
 export const LoginCommentUI = styled.div`

@@ -7,6 +7,7 @@ import {
   LoginCommentArrowUI,
   LoginCommentTxtUI,
   LoginCommentUI,
+  LoginTxtUI,
   LoginUI,
   LoginWrapperUI,
 } from "./styles";
@@ -15,8 +16,7 @@ import KakaoSvg from "./assets/kakaotalk_.svg";
 import { PageUI } from "./styles";
 import StepIndicator from "../../shared_components/StepIndicator";
 import { useNavigate } from "react-router-dom";
-import headSrc from "./assets/head.svg";
-import joinUsSrc from "./assets/joinUs.svg";
+import joinUsSrc from "./assets/join_us.webp";
 import Background from "../../shared_components/Background";
 import StorageKey from "../../storageKey";
 import { useEffect } from "react";
@@ -76,8 +76,8 @@ const LoginPage = () => {
     <PageUI>
       <FixedPipVideo videoSrc={videoSrc} />
       <LoginWrapperUI>
-        <img width={"100%"} src={headSrc} />
         <LoginUI>
+          <LoginTxtUI>LOGIN</LoginTxtUI>
           <LoginCommentUI>
             <LoginCommentTxtUI>3초만에 간편로그인</LoginCommentTxtUI>
             <LoginCommentArrowUI />

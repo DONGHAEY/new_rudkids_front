@@ -38,7 +38,7 @@ export const routes = {
     path: "",
     paramKeys: [],
     element: AuthHoc(LandingPage),
-    fallback: <SymbolLoader loading />,
+    fallback: <SymbolLoader loading={true} />,
   },
   ["shop"]: {
     name: "shop",

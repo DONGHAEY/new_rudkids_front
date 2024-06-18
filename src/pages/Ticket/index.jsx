@@ -12,13 +12,11 @@ import Letter from "./Letter";
 import TimerButton from "./TimerButton";
 import { useEffect, useMemo, useState } from "react";
 import NumTimer from "./NumTimer";
+import tempUserSrc from "./assets/temp_user.webp";
 import InvitedUsers from "./InvitedUsers";
 import StorageKey from "../../storageKey";
 import Loader from "../../shared_components/Loader";
 import { trackClickButton, trackPageView } from "../../shared_analytics";
-
-const tempUserImgSrc =
-  "https://saocbhosfbzowqshlhfv.supabase.co/storage/v1/object/public/rudkids/profile/7x3kaki-instagram.png";
 
 export const setTicketId = (invitationId) => {
   sessionStorage.setItem(StorageKey.invitation_id, invitationId);
@@ -52,7 +50,7 @@ const TicketPage = ({ routeInfo }) => {
     const friendsImgUrls = invitationData?.friends?.map((d) => d.imageUrl);
     return [
       ...friendsImgUrls,
-      ...new Array(15 - friendsImgUrls.length).fill(tempUserImgSrc),
+      ...new Array(15 - friendsImgUrls.length).fill(tempUserSrc),
     ].sort(() => Math.random() - 0.5);
   }, [invitationData]);
 

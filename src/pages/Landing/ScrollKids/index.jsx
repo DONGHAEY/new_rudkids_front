@@ -1,10 +1,10 @@
 import { ScrollUI } from "./styles";
-import kid1 from "./assets/1.svg";
-import kid2 from "./assets/2.svg";
-import kid3 from "./assets/3.svg";
-import kid4 from "./assets/4.svg";
-import kid5 from "./assets/5.svg";
-import kid6 from "./assets/6.svg";
+import kid1 from "./assets/1.webp";
+import kid2 from "./assets/2.webp";
+import kid3 from "./assets/3.webp";
+import kid4 from "./assets/4.webp";
+import kid5 from "./assets/5.webp";
+import kid6 from "./assets/6.webp";
 import { createRef, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 

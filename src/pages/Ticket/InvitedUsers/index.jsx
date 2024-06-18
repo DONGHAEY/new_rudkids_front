@@ -5,12 +5,15 @@ import {
   RandomOnlineSignUI,
   ScrollMarqueeUI,
 } from "./styles";
+import Marquee from "react-fast-marquee";
 const InvitedUsers = ({ invitedUsers }) => {
   return (
-    <ScrollMarqueeUI direction="right">
-      {invitedUsers?.map((invitedUser, idx) => {
-        return <InvitedUser key={idx} userImgUrl={invitedUser} />;
-      })}
+    <ScrollMarqueeUI>
+      <Marquee direction="right">
+        {invitedUsers?.map((invitedUser, idx) => {
+          return <InvitedUser key={idx} userImgUrl={invitedUser} />;
+        })}
+      </Marquee>
     </ScrollMarqueeUI>
   );
 };

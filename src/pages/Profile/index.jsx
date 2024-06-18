@@ -45,7 +45,7 @@ import useCollectionQuery from "../../queries/collection/userCollectionQuery";
 import Loader from "../../shared_components/Loader";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
 // import Background from "../../shared_components/Background";
-import crwonSrc from "./assets/crwon.png";
+import crwonSrc from "./assets/crown.webp";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 export const ProfilePage = ({ routeInfo }) => {

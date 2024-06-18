@@ -6,8 +6,8 @@ import {
   OptionUI,
   SelectBoxUI,
 } from "./styles";
-import size1Src from "./assets/size-1.svg";
-import size2Src from "./assets/size-2.svg";
+import size1Src from "./assets/size-1.webp";
+import size2Src from "./assets/size-2.webp";
 
 const SelectBox = ({
   name,

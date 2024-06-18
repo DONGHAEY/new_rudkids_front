@@ -16,6 +16,7 @@ import {
   ScanLtUI,
   CongraturationLtUI,
   CanvasUI,
+  CameraAllowBtnUI,
 } from "./styles";
 import React, { useEffect, useRef, useState } from "react";
 import rudBottomSrc from "./assets/rud_gate_bottom.svg";
@@ -31,7 +32,6 @@ import StorageKey from "../../storageKey";
 import { useNavigate } from "react-router-dom";
 import CallingModal from "../../shared_components/Calling";
 import scanAnimation from "./assets/scanning.json";
-import congraturation from "./assets/congraturation.json";
 import joinUsImgSrc from "./assets/join_us.webp";
 import rudgateImgSrc from "./assets/rudgate.webp";
 import videoSrc from "./assets/video.mp4";
@@ -42,6 +42,7 @@ import { track } from "@amplitude/analytics-browser";
 import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { drawVideoScene } from "./utils/draw";
+import PublicLottieAssets from "../../global/public-lottie-assets";
 
 export const setPassResult = (passStat) => {
   localStorage.setItem(StorageKey.rud_gate_passed, passStat);
@@ -187,6 +188,9 @@ const RudGatePage = () => {
   return (
     <PageUI ref={shareSceneRef}>
       <WecamSectionUI>
+        <CameraAllowBtnUI onClick={requestVideoPermission}>
+          카메라 허용
+        </CameraAllowBtnUI>
         <CanvasUI ref={canvasRef} />
         {videoPermission && <HelpSignModal />}
         {videoPermission && (
@@ -209,7 +213,9 @@ const RudGatePage = () => {
             <CloseImgUI onClick={closeBtnClickHandler} src={closeIconSrc} />
             <PassStatImgUI src={passStat ? correctSrc : wrongSrc} />
             <CongraturationLtUI>
-              {passStat && <Player src={congraturation} loop autoplay />}
+              {passStat && (
+                <Player src={PublicLottieAssets.congratuation} loop autoplay />
+              )}
             </CongraturationLtUI>
           </>
         )}

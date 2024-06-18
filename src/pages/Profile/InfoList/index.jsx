@@ -4,9 +4,6 @@ import eyeSrc from "../assets/eye.svg";
 import { useNavigate } from "react-router-dom";
 
 const InfoList = ({ rank, totalView, followerCnt, isFollower }) => {
-  // const followMutation = useFollowMutation();
-  // const unFollowMutation = useUnFollowMutation();
-
   const navigate = useNavigate();
 
   const rankBtnClickHandler = () => {
@@ -21,7 +18,6 @@ const InfoList = ({ rank, totalView, followerCnt, isFollower }) => {
         {rank}
       </InfoBoxUI>
       <InfoBoxUI>
-        {/* <FaEye fontSize="28px" /> */}
         <img
           src={eyeSrc}
           style={{

@@ -1,6 +1,6 @@
-import asset1Src from "./assets/f1.svg";
-import asset2Src from "./assets/f2.svg";
-import asset3Src from "./assets/f3.svg";
+import asset1Src from "./assets/f1.webp";
+import asset2Src from "./assets/f2.webp";
+import asset3Src from "./assets/f3.webp";
 
 const Friends = () => {
   return (

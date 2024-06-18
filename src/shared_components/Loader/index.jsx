@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import LoadCircle from "./assets/Load.png";
 import { LoaderUI } from "./styles";
 import gsap from "gsap";
+import PublicBizAssets from "../../global/public-biz-assets";
 
 const Loader = ({ message, color, position = "fixed", delayMs = 0 }) => {
   const ref = useRef();
@@ -58,7 +58,7 @@ const Loader = ({ message, color, position = "fixed", delayMs = 0 }) => {
 
   return (
     <LoaderUI position={position}>
-      <img ref={ref} src={LoadCircle} height="150px" />
+      <img ref={ref} src={PublicBizAssets.loadCircle} height="150px" />
       <p style={{ color: color ?? "gray" }}>
         {message ?? messages[messageIdx]}
       </p>

@@ -17,14 +17,14 @@ import {
   FaceTimeSignUI,
   SpacerUI,
 } from "./styles";
-import viedeoIconSrc from "./assets/viedeo-icon.png";
-import profileSrc from "./assets/profile.png";
+import viedeoIconSrc from "./assets/video-icon.webp";
+import profileSrc from "./assets/profile.webp";
 import callingLottie from "./assets/calling.json";
 import { Player } from "@lottiefiles/react-lottie-player";
-import callOffSrc from "./assets/call_off.png";
+import callOffSrc from "./assets/call_off.webp";
 import gsap from "gsap";
 import { track } from "@amplitude/analytics-browser";
-import thumnailSrc from "./assets/thumnail.png";
+import thumnailSrc from "./assets/thumnail.webp";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const CallingModal = ({ videoSrc, onClosed, pageFor = "" }) => {

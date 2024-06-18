@@ -1,8 +1,7 @@
 import { useIsMutating } from "react-query";
 import { BuyNowButtonUI, Spacer, OrderBarUI, SubmitUI } from "./styles";
 import queryKey from "../../../queries/key";
-
-import paymentsimgSrc from "./assets/payments.png";
+import paymentsimgSrc from "./assets/payments.webp";
 
 const OrderBar = ({ totalPrice, onClick }) => {
   const orderMutating = useIsMutating([queryKey.order]);

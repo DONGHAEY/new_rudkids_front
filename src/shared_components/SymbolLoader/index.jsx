@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import symbolSrc from "./assets/symbol.webp";
 import { LoaderUI } from "./styles";
 import gsap from "gsap";
+import PublicBizAssets from "../../global/public-biz-assets";
 
 const SymbolLoader = ({ loading, position = "fixed", minDelaySec = 1 }) => {
   const loaderRef = useRef();
@@ -39,7 +39,7 @@ const SymbolLoader = ({ loading, position = "fixed", minDelaySec = 1 }) => {
 
   return (
     <LoaderUI ref={loaderRef} position={position}>
-      <img src={symbolSrc} width="70%" />
+      <img src={PublicBizAssets.symbol} width="70%" />
     </LoaderUI>
   );
 };

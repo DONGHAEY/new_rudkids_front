@@ -1,7 +1,7 @@
 import Marquee from "react-fast-marquee";
 import { TapeImgUI, TapeListUI, TapeTxtUI, TapeUI } from "./styles";
-import bannerTape1Src from "./assets/1.png";
-import bannerTape2Src from "./assets/2.png";
+import bannerTape1Src from "./assets/1.webp";
+import bannerTape2Src from "./assets/2.webp";
 
 const SlidingTape = () => {
   const banenrImgs = [bannerTape1Src, bannerTape2Src];
