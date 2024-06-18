@@ -34,13 +34,7 @@ const RudcardTemplate = ({
 
   return (
     <CardTemplateUI ref={ref}>
-      <img
-        style={{
-          display: "flex",
-          opacity: 1,
-        }}
-        src={cardSrc}
-      />
+      <img src={cardSrc} />
       <ProfileImgWrapperUI>
         <ProfileImgUI src={profileImgUrl} />
       </ProfileImgWrapperUI>

@@ -14,26 +14,25 @@ export const ProductBoxUI = styled.div`
   flex-direction: column;
   gap: 11px;
   width: auto;
-  height: 0%;
   margin-bottom: 16px;
   text-decoration: none;
   line-height: 0;
-  background-color: gainsboro;
 `;
 
 export const ProductImgWrapperUI = styled.div`
   background-color: white;
-  width: 100%;
-  aspect-ratio: 1/1;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  aspect-ratio: 1/1;
   border-radius: 14px;
 `;
 
 export const ProductImgUI = styled.img`
   width: 90%;
   height: 90%;
+  aspect-ratio: 1/1;
   object-fit: cover;
 `;
 

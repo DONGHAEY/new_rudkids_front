@@ -9,7 +9,6 @@ import {
   LoginCommentUI,
   LoginUI,
   LoginWrapperUI,
-  // TossTesterLoginUI,
 } from "./styles";
 import NaverSvg from "./assets/naver_.svg";
 import KakaoSvg from "./assets/kakaotalk_.svg";
