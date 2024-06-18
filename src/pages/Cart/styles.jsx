@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PublicBizAssets from "../../global/public-biz-assets";
 
 export const PageUI = styled.div`
   width: 100%;

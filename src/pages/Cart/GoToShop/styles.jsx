@@ -8,7 +8,7 @@ export const GoToShopUI = styled.div`
   justify-content: center;
   font-family: Pretendard-Bold;
   height: 100%;
-  margin-top: calc(80% - 200px);
+  margin-block: auto;
   color: white;
 `;
 
