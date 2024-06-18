@@ -103,7 +103,11 @@ const RudGatePage = () => {
 
   const getInBtnClickHandler = () => {
     trackClickButton("get in");
-    setPassedStat(true);
+    const stream = cameraRef.current?.video.srcObject;
+    const tracks = stream.getTracks();
+    tracks.forEach((track) => track.stop());
+    cameraRef.current.video.srcObject = null;
+    setVideoPermission(false);
     navigate("/login", {
       replace: true,
     });
@@ -159,21 +163,6 @@ const RudGatePage = () => {
     const interval = setInterval(drawVideo, 1000 / 50); //50fps
     return () => clearInterval(interval);
   }, [videoPermission, scanMode, hasResult]);
-
-  useEffect(() => {
-    const stream = cameraRef.current?.video.srcObject;
-    if (!stream) return;
-    // const tracks = stream.getTracks();
-
-    return () => {
-      const stream = cameraRef.current?.video.srcObject;
-      // if (!stream) return;
-      const tracks = stream.getTracks();
-      tracks.forEach((track) => track.stop());
-      cameraRef.current.video.srcObject = null;
-      setVideoPermission(false);
-    };
-  }, []);
 
   return (
     <PageUI ref={shareSceneRef}>
