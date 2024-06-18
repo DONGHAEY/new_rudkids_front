@@ -10,11 +10,10 @@ import {
 import CartProduct from "./CartProduct";
 import CheckoutBar from "./CheckoutBar";
 import Price from "../../shared_components/Price";
-import smileSellerSrc from "./assets/smile_kid_man.svg";
+import smileSellerSrc from "./assets/kid_man.webp";
 import { useMemo } from "react";
 import useCartQuery from "../../queries/cart/useCartQuery";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import GoToShop from "./GoToShop";
 
 const CartPage = () => {

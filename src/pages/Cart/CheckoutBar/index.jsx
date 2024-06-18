@@ -9,12 +9,12 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useIsFetching, useIsMutating } from "react-query";
 import queryKey from "../../../queries/key";
-import paymentsImgSrc from "./assets/payments.png";
+import paymentsImgSrc from "./assets/payments.webp";
 import mutationKey from "../../../mutations/key";
 import useCartQuery from "../../../queries/cart/useCartQuery";
 import { trackClickButton } from "../../../shared_analytics";
 import { useMemo } from "react";
-import poorManSrc from "./assets/poor_man.png";
+import poorManSrc from "./assets/poor_man.webp";
 
 const CheckoutBar = () => {
   const navigate = useNavigate();
