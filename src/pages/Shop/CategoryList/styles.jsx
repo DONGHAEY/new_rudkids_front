@@ -4,11 +4,12 @@ export const ScrollUI = styled.div`
   width: 100%;
   overflow: scroll;
   margin-block: 30px;
-  ::-webkit-scrollbar {
-    display: none;
+
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* 스크롤바 숨기기 */
   }
-  -ms-overflow-style: none; /* 인터넷 익스플로러 */
-  scrollbar-width: none; /* 파이어폭스 */
 `;
 
 export const SpacerUI = styled.div`

@@ -3,7 +3,7 @@ import symbolSrc from "./assets/symbol.webp";
 import { LoaderUI } from "./styles";
 import gsap from "gsap";
 
-const SymbolLoader = ({ loading, position = "fixed", minLoadSecond = 1 }) => {
+const SymbolLoader = ({ loading, position = "fixed", minDelaySec = 1 }) => {
   const loaderRef = useRef();
   const [timeS, setTimeS] = useState(0);
   const [show, setShow] = useState(true);
@@ -24,7 +24,7 @@ const SymbolLoader = ({ loading, position = "fixed", minLoadSecond = 1 }) => {
   }, [timeS]);
 
   useEffect(() => {
-    if (timeS >= minLoadSecond && !loading) {
+    if (timeS >= minDelaySec && !loading) {
       gsap.to(loaderRef.current, {
         opacity: 0,
         duration: 1.5,

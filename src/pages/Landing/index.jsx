@@ -19,11 +19,13 @@ import ScrollKids from "./ScrollKids";
 import TShirtIntroduce from "./TShirtIntroduce";
 import { trackClickButton } from "../../shared_analytics";
 import SymbolLoader from "../../shared_components/SymbolLoader";
+import Footer from "../../shared_components/Footer";
 
 const LandingPage = () => {
   return (
     <PageUI>
       <Header isFixed />
+      <SymbolLoader loading={false} />
       <MainBannerUI>
         <MainBannerImgUI src={bannerSrc} />
       </MainBannerUI>
@@ -67,7 +69,7 @@ const LandingPage = () => {
       </LinkButtonUI>
       <SlidingTape />
       <BlankUI />
-      <SymbolLoader color="black" />
+      <Footer />
     </PageUI>
   );
 };

@@ -12,6 +12,7 @@ export const FooterUI = styled.div`
   font-size: 10px;
   gap: 10px;
   text-decoration: none;
+  margin-top: 30px;
 `;
 
 export const InfoBtnUI = styled.button`

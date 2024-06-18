@@ -9,7 +9,7 @@ import * as qs from "qs";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
 import Loader from "../../shared_components/Loader";
 
-const MainPage = () => {
+const ShopPage = () => {
   const navigate = useNavigate();
   const searchObj = qs.parse(window.location.search?.replace("?", ""));
   const { data, isLoading } = useProductListQuery(searchObj);
@@ -48,4 +48,4 @@ const MainPage = () => {
         /> */
 }
 
-export default MainPage;
+export default ShopPage;

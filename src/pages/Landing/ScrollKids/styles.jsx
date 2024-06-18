@@ -7,10 +7,10 @@ export const ScrollUI = styled.div`
   height: 100%;
   overflow-x: scroll;
   align-items: end;
-  -ms-overflow-style: none;
-  ::-webkit-scrollbar {
-    display: none;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* 스크롤바 숨기기 */
   }
-  scrollbar-width: none; /* 파이어폭스 */
   z-index: 2;
 `;

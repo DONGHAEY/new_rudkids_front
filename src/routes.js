@@ -1,4 +1,4 @@
-import MainPage from "./pages/Main";
+import ShopPage from "./pages/Shop";
 import ProductDetailPage from "./pages/ProductDetail";
 import LoginCallbackPage from "./pages/LoginCallback";
 import CartPage from "./pages/Cart";
@@ -21,7 +21,7 @@ import OrderListPage from "./pages/OrderList";
 import CollectionPage from "./pages/Collection";
 import PayFailPage from "./pages/PayFail";
 import LandingPage from "./pages/Landing";
-import RudgateNewBetaPage from "./pages/RudgateCanvasV";
+import SymbolLoader from "./shared_components/SymbolLoader";
 
 export const routes = {
   ["404"]: {
@@ -37,13 +37,14 @@ export const routes = {
     path: "",
     paramKeys: [],
     element: AuthHoc(LandingPage),
+    fallback: <SymbolLoader loading />,
   },
   ["shop"]: {
     name: "shop",
     viewTrack: true,
     path: "/shop",
     paramKeys: [],
-    element: MainPage,
+    element: ShopPage,
   },
   ["productDetail"]: {
     name: "product-detail",
@@ -163,12 +164,6 @@ export const routes = {
     path: "/rud-gate",
     paramKeys: [],
     element: RudGatePage,
-  },
-  ["rudGateNewBeta"]: {
-    name: "rud-gate-new-beta",
-    viewTrack: false,
-    path: "/rud-gate-new-beta",
-    element: RudgateNewBetaPage,
   },
   ["createRudcard"]: {
     name: "create-rudcard",
