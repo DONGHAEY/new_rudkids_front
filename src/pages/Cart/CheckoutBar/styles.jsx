@@ -22,6 +22,7 @@ export const PoorManUI = styled.img`
   top: -48%;
   width: 30%;
   left: 0;
+  animation: bounceFadeIn 1s;
 `;
 
 export const OrderBarUI = styled.div`

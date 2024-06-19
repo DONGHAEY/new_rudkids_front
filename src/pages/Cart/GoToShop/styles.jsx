@@ -10,6 +10,8 @@ export const GoToShopUI = styled.div`
   height: 100%;
   margin-block: auto;
   color: white;
+  position: relative;
+  animation: bounceFadeIn 1s;
 `;
 
 export const ShopBtnUI = styled(Link)`

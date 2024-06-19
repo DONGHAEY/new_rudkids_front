@@ -8,6 +8,13 @@ export const CartProductUI = styled.div`
   min-height: 80px;
   background-color: rgba(255, 255, 255);
   border-radius: 20px;
+  animation: bounceFadeIn 500ms;
+`;
+
+export const ProductImgUI = styled.img`
+  height: 80px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 `;
 
 export const WrapperUI = styled.div`

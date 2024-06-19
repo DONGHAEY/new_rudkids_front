@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ListUI = styled.div`
   display: grid;
   grid-auto-flow: row;
+  min-height: 100%;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: minmax(0%, 100%);
   column-gap: 16px;
@@ -17,15 +18,8 @@ export const ProductBoxUI = styled.div`
   margin-bottom: 16px;
   text-decoration: none;
   line-height: 0;
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  animation: fadeIn 1s ease-in-out forwards;
+  position: relative;
+  animation: bounceFadeIn 1s;
 `;
 
 export const ProductImgWrapperUI = styled.div`

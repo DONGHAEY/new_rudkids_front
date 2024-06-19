@@ -16,10 +16,11 @@ import {
 } from "./styles";
 import { useParams } from "react-router-dom";
 import useProductDetailQuery from "../../queries/product/useProductDetailQuery";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import img1Src from "./assets/1.jpg";
 import img2Src from "./assets/2.jpg";
 import { trackPageView } from "../../shared_analytics";
+import Loader from "../../shared_components/Loader";
 
 const ProductDetailPage = ({ routeInfo }) => {
   const params = useParams();
@@ -66,48 +67,51 @@ const ProductDetailPage = ({ routeInfo }) => {
   }, [productData]);
 
   return (
-    <PageUI>
-      <Header $backgroundColor="none" />
-      <FlexWrapperUI>
-        <ModelDragger
-          modelName={models?.[selectedIdx]?.name}
-          modelUrls={models?.map((_) => _.modelUrl)}
-          modelIdx={selectedIdx}
-          setModelIdx={setSelectedIdx}
-        />
-        <ContentSectionUI>
-          <InfoRowUI>
-            <ProductNameTextUI>{productName}</ProductNameTextUI>
-            {productData?.isPackage && (
-              <PackageExplainUI>‼️ Package</PackageExplainUI>
-            )}
-          </InfoRowUI>
-          <ProductPriceTextUI>₩ {productPrice}</ProductPriceTextUI>
-        </ContentSectionUI>
-        <div
-          style={{
-            height: "5%",
-            width: "100%",
-          }}
-        />
-        <ModelSelect
-          models={models}
-          selectedIdx={selectedIdx}
-          setSelectedIdx={setSelectedIdx}
-        />
-        <ModelDescriptionUI>
-          <ModelDescriptionTextUI>
-            {productData?.description}
-          </ModelDescriptionTextUI>
-        </ModelDescriptionUI>
-      </FlexWrapperUI>
-      <DetailImgListUI>
-        {detailImageUrls?.map((detailIimageUrl, key) => {
-          return <img key={key} width="100%" src={detailIimageUrl} />;
-        })}
-      </DetailImgListUI>
-      <ActionBar productData={productData} />
-    </PageUI>
+    <Suspense fallback={<Loader />}>
+      <PageUI>
+        <Header $backgroundColor="none" />
+        <FlexWrapperUI>
+          <ModelDragger
+            modelName={models?.[selectedIdx]?.name}
+            modelUrls={models?.map((_) => _.modelUrl)}
+            modelIdx={selectedIdx}
+            setModelIdx={setSelectedIdx}
+          />
+          <ContentSectionUI>
+            <InfoRowUI>
+              <ProductNameTextUI>{productName}</ProductNameTextUI>
+              {productData?.isPackage && (
+                <PackageExplainUI>‼️ Package</PackageExplainUI>
+              )}
+            </InfoRowUI>
+            <ProductPriceTextUI>₩ {productPrice}</ProductPriceTextUI>
+          </ContentSectionUI>
+
+          <div
+            style={{
+              height: "5%",
+              width: "100%",
+            }}
+          />
+          <ModelSelect
+            models={models}
+            selectedIdx={selectedIdx}
+            setSelectedIdx={setSelectedIdx}
+          />
+          <ModelDescriptionUI>
+            <ModelDescriptionTextUI>
+              {productData?.description}
+            </ModelDescriptionTextUI>
+          </ModelDescriptionUI>
+        </FlexWrapperUI>
+        <DetailImgListUI>
+          {detailImageUrls?.map((detailIimageUrl, key) => {
+            return <img key={key} width="100%" src={detailIimageUrl} />;
+          })}
+        </DetailImgListUI>
+        <ActionBar productData={productData} />
+      </PageUI>
+    </Suspense>
   );
 };
 

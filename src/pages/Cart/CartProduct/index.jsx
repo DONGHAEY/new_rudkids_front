@@ -8,6 +8,7 @@ import {
   CloseIconWrapperUI,
   InfoTextWrapperUI,
   OptionsSectionUI,
+  ProductImgUI,
   QuantityButtonUI,
   QuantityGroupUI,
   QuantityTextUI,
@@ -16,6 +17,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import useEditCartProductQuantityMutation from "../../../mutations/cart/useEditCartProductQuantityMutation";
 import useDeleteCartProductMutation from "../../../mutations/cart/useDeleteCartProductMutation";
+import RudImage from "../../../shared_components/RudImage";
 
 const CartProduct = ({ cartProduct }) => {
   const editQuantityMutation = useEditCartProductQuantityMutation(
@@ -47,7 +49,7 @@ const CartProduct = ({ cartProduct }) => {
 
   return (
     <CartProductUI onClick={productClickHandler}>
-      <img height="80px" src={cartProduct.thumnail} />
+      <RudImage ImgUI={ProductImgUI} src={cartProduct.thumnail} />
       <WrapperUI>
         <InfoTextWrapperUI>
           <CartProductNameUI>{cartProduct.name}</CartProductNameUI>

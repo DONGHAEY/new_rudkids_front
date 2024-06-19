@@ -8,9 +8,9 @@ import {
 } from "./styles";
 import { FaRegPlayCircle } from "react-icons/fa";
 import { FaRegCirclePause } from "react-icons/fa6";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import GuideLabel from "./GuideLabel";
-import { Html, useGLTF } from "@react-three/drei";
+import { Html, Loader, useGLTF } from "@react-three/drei";
 import IndexChanger from "./IndexChanger";
 
 const ModelDragger = ({
@@ -20,6 +20,7 @@ const ModelDragger = ({
   modelName = "",
   background,
 }) => {
+  //
   const [isPlaying, setIsPlaying] = useState(true);
   const gltfs = useGLTF([...modelUrls]);
   const gltf = gltfs?.[modelIdx];
@@ -43,7 +44,7 @@ const ModelDragger = ({
         <ModelTextUI>{modelName}</ModelTextUI>
       </ModelTextWrapperUI>
       <CanvasUI {...canvasProps}>
-        {gltf && <Scene gltf={gltf} autoRotate={isPlaying} />}
+        <Scene gltf={gltf} autoRotate={isPlaying} />
         <Html fullscreen>
           {maxIndex !== 0 && (
             <IndexChanger

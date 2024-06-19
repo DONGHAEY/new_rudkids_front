@@ -1,3 +1,4 @@
+import RudImage from "../../../shared_components/RudImage";
 import {
   CartProductNameUI,
   CartProductPriceUI,
@@ -5,14 +6,13 @@ import {
   OptionsSectionUI,
   QuantityTextUI,
   FlexColUI,
+  ProductImgUI,
 } from "./styles";
 
 const CartProduct = ({ cartProduct }) => {
-  //
-
   return (
     <CartProductUI>
-      <img height="80px" src={cartProduct.thumnail} />
+      <RudImage ImgUI={ProductImgUI} src={cartProduct.thumnail} />
       <FlexColUI gap="9px">
         <FlexColUI gap="5px">
           <CartProductNameUI>{cartProduct.name}</CartProductNameUI>

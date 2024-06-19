@@ -22,6 +22,12 @@ export const FlexColUI = styled.div`
   width: 100%;
 `;
 
+export const ProductImgUI = styled.img`
+  height: 80px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+`;
+
 export const QuantityTextUI = styled.p`
   display: flex;
   flex-direction: row;
