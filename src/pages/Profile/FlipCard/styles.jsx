@@ -7,11 +7,12 @@ export const CardCameraUI = styled.div`
   width: 80%;
   height: auto;
   position: relative;
+  animation: bounceFadeIn 1s;
 `;
 
 export const CardUI = styled.div`
   width: 100%;
-  box-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
   position: relative;
   pointer-events: none;
   border-radius: 20px;

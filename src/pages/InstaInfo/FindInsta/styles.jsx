@@ -12,6 +12,7 @@ export const RudkidsInstaUI = styled.div`
   line-height: 110%;
   font-family: Poppins-Bold;
   gap: 10.18px;
+  margin-top: 24px;
   margin-bottom: 24px;
 `;
 

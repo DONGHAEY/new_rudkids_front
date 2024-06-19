@@ -45,8 +45,9 @@ export const SecondStage = styled(Link)`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  top: 10%;
+  top: 20%;
   text-decoration: none;
+  animation: bounceFadeIn 1s;
 `;
 
 export const FirstStage = styled(Link)`
@@ -57,8 +58,9 @@ export const FirstStage = styled(Link)`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  top: 0%;
+  top: 10%;
   text-decoration: none;
+  animation: bounceFadeIn 1s;
 `;
 export const ThirdStage = styled(Link)`
   position: absolute;
@@ -68,8 +70,9 @@ export const ThirdStage = styled(Link)`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  top: 10%;
+  top: 20%;
   text-decoration: none;
+  animation: bounceFadeIn 1s;
 `;
 
 export const RankerImgWrapperUI = styled.div`

@@ -9,6 +9,7 @@ export const RowWrapperUI = styled.div`
   max-width: 325.33px;
   gap: 15.28px;
   margin-top: 36px;
+  animation: bounceFadeIn 1s;
 `;
 
 export const InfoBoxUI = styled.div`
@@ -17,7 +18,6 @@ export const InfoBoxUI = styled.div`
   aspect-ratio: 1/1;
   border: none;
   background-color: white;
-
   color: black;
   /* padding-block: 23px; */
   display: flex;

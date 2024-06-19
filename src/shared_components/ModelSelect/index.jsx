@@ -1,3 +1,4 @@
+import RudImage from "../RudImage";
 import {
   ModelSelectUI,
   NameTextUI,
@@ -16,7 +17,7 @@ const ModelSelect = ({ models, setSelectedIdx, selectedIdx }) => {
               onClick={() => setSelectedIdx(idx)}
               $selected={idx === selectedIdx}
             >
-              <ProductComponentImgUI width="100%" src={imageUrl} />
+              <RudImage ImgUI={ProductComponentImgUI} src={imageUrl} />
             </ProductComponentImgWrapperUI>
             <NameTextUI>{name}</NameTextUI>
           </ModelUI>

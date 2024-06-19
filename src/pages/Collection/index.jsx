@@ -28,7 +28,7 @@ const CollectionPage = () => {
   const { data: collectedProducts = [], collectionLoading } =
     useCollectionQuery(userData?.id ?? null);
 
-  const min표시개수 = 10;
+  const min표시개수 = 8;
   const blank표시개수 =
     min표시개수 - collectedProducts?.length < 0
       ? 0

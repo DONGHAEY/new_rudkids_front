@@ -24,6 +24,7 @@ export const WrapperUI = styled.div`
   background-color: rgba(255, 255, 255, 0.6);
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
+  animation: fadeIn 1s;
 `;
 
 export const CompleteBtnUI = styled.button`

@@ -19,6 +19,7 @@ export const TopSectionUI = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 85%;
+  animation: bounceFadeIn 1s;
 `;
 
 export const BoxSectionUI = styled.div`
@@ -50,6 +51,7 @@ export const UserNickNameTxtUI = styled.p`
   letter-spacing: -0.88px;
   line-height: 100%;
   color: black;
+  animation: bounceFadeIn 2s;
 `;
 
 export const DescriptTxtUI = styled.div`
@@ -62,6 +64,7 @@ export const DescriptTxtUI = styled.div`
   text-align: center;
   font-family: Pretendard-SemiBold;
   font-size: 14px;
+  animation: bounceFadeIn 2s;
 `;
 
 export const TodayViewUI = styled.div`
@@ -92,6 +95,7 @@ export const LinksSectionUI = styled.div`
   width: 80%;
   background-color: white;
   border-radius: 12px;
+  animation: bounceFadeIn 1s;
 `;
 
 export const LinksUI = styled.div`
@@ -180,6 +184,7 @@ export const CollectionUI = styled.div`
   padding-block: 26px;
   border-radius: 12px;
   margin-top: 26px;
+  animation: bounceFadeIn 1s;
 `;
 export const CollectionHeadUI = styled.div`
   display: flex;
@@ -218,6 +223,7 @@ export const ProfileImgWrapperUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  animation: fadeIn 3s;
 `;
 
 export const CrownImgUI = styled.img`

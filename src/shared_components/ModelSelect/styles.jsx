@@ -47,5 +47,6 @@ export const ProductComponentImgWrapperUI = styled.div`
 export const ProductComponentImgUI = styled.img`
   /* position: absolute; */
   width: 90%;
+  aspect-ratio: 1/1;
   object-fit: cover;
 `;

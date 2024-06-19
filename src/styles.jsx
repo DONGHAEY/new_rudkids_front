@@ -30,6 +30,14 @@ const GlobalStyle = createGlobalStyle`
     height:100%;
   }
 
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
 
   @keyframes bounceFadeIn {

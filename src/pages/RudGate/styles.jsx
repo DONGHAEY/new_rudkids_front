@@ -119,16 +119,17 @@ export const WecamSectionUI = styled.div`
 
 export const CameraAllowBtnUI = styled.div`
   position: absolute;
-  top: 40%;
+  top: 50%;
   margin-inline: auto;
   background: linear-gradient(180deg, #14ff00 0%, #10ce00 100%);
   color: white;
   border: none;
-  padding: 30px;
+  padding: 20px;
   font-family: Pretendard-Bold;
   font-size: 20px;
   border-radius: 30px;
-  z-index: 3;
+  opacity: 80%;
+  z-index: 0;
 `;
 
 export const AllowReqImgUI = styled.img`
@@ -147,7 +148,6 @@ export const CanvasUI = styled.canvas`
   width: 100%;
   height: 100%;
   z-index: 1;
-  background-color: black;
   transform: scaleX(-1);
 `;
 

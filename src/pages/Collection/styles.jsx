@@ -20,6 +20,7 @@ export const TitleWrapperUI = styled.div`
   background-color: white;
   border-radius: 43.04px;
   border-bottom-left-radius: 0px;
+  animation: bounceFadeIn 1s;
 `;
 
 export const TitleTxtUI = styled.p`
@@ -52,6 +53,7 @@ export const CollectionBoxUI = styled.div`
   line-height: 120%;
   border: solid#f1f1f1 3px;
   gap: 10px;
+  animation: bounceFadeIn 1s;
 `;
 
 export const CollectionImgUI = styled.img`

@@ -20,6 +20,7 @@ export const LoginWrapperUI = styled.div`
   border-radius: 23px;
   width: 90%;
   gap: 12px;
+  animation: fadeIn 1s;
 `;
 
 export const LoginTxtUI = styled.p`

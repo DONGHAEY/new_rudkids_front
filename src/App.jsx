@@ -2,7 +2,7 @@ import { init } from "@amplitude/analytics-browser";
 import * as qs from "qs";
 import { Suspense, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { QueryClientProvider } from "react-query";
-import { Route, Routes, useParams } from "react-router-dom";
+import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import GlobalStyle from "../src/styles";
 import PublicBizAssets from "./global/public-biz-assets";
 import { routes } from "./routes";
@@ -13,6 +13,13 @@ import Loader from "./shared_components/Loader";
 function App() {
   const [queryClient] = useRudkidsQueryClient();
   const [originChecked, setOriginChecked] = useState(false);
+  const { pathname, search } = useLocation();
+
+  const imgPreload = (src) => {
+    let img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = src;
+  };
 
   useEffect(() => {
     if (originChecked) return;
@@ -20,27 +27,12 @@ function App() {
       process.env.REACT_APP_FE_URL,
       "http://172.30.1.16:3001",
     ];
-
     if (!allowOrigins.includes(window.location.origin)) {
-      window.location.href =
-        process.env.REACT_APP_FE_URL +
-        window.location.pathname +
-        window.location.search;
+      window.location.href = process.env.REACT_APP_FE_URL + pathname + search;
     } else {
       setOriginChecked(true);
     }
-  }, []);
-
-  useLayoutEffect(() => {
-    const imgPreload = (src) => {
-      let img = new Image();
-      img.crossOrigin = "anonymous";
-      img.src = src;
-    };
-    Object.values(PublicBizAssets)?.forEach((imgSrc) => {
-      imgPreload(imgSrc);
-    });
-  }, []);
+  }, [pathname, search]);
 
   useEffect(() => {
     if (!originChecked) return;
@@ -49,7 +41,14 @@ function App() {
         pageViews: false,
       },
     });
+    Object.values(PublicBizAssets)?.forEach((imgSrc) => {
+      imgPreload(imgSrc);
+    });
   }, [originChecked]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname, search]);
 
   if (!originChecked) {
     return null;

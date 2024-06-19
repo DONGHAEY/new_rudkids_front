@@ -65,7 +65,6 @@ const RudGatePage = () => {
   const [scanMode, setScanMode] = useState(false);
   const [screenshot, takeScreenshot] = useScreenshot();
   const [scanLtShowCnt, setScanLtShowCnt] = useState(0);
-  const [videoFinished, setVideoFinished] = useState(false);
   const [allowStat, setAllowStat] = useState(false);
 
   const hasResult = passStat !== "none";
@@ -110,22 +109,6 @@ const RudGatePage = () => {
   const getInBtnClickHandler = () => {
     trackClickButton("get in");
     setPassResult(true);
-    const stream = cameraRef.current?.video.srcObject;
-    if (stream) {
-      // alert("video stopped");
-      if (stream.getVideoTracks && stream.getAudioTracks) {
-        stream.getVideoTracks().map((track) => {
-          stream.removeTrack(track);
-          track.stop();
-        });
-        stream.getAudioTracks().map((track) => {
-          stream.removeTrack(track);
-          track.stop();
-        });
-      } else {
-        stream.stop();
-      }
-    }
     navigate("/login", {
       replace: true,
     });
@@ -164,21 +147,28 @@ const RudGatePage = () => {
   };
 
   useEffect(() => {
-    const videoFinished = localStorage.getItem(
-      StorageKey.rud_gate_video_finished
-    );
-    if (videoFinished === "true") {
-      setVideoFinished(true);
-    } else {
-      setVideoFinished(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (videoFinished) {
+    if (localStorage.getItem(StorageKey.rud_gate_video_finished) === "true") {
       requestVideoPermission();
     }
-  }, [videoFinished]);
+    return () => {
+      const stream = cameraRef.current?.video.srcObject;
+      if (stream) {
+        // alert("video stopped");
+        if (stream.getVideoTracks && stream.getAudioTracks) {
+          stream.getVideoTracks().map((track) => {
+            stream.removeTrack(track);
+            track.stop();
+          });
+          stream.getAudioTracks().map((track) => {
+            stream.removeTrack(track);
+            track.stop();
+          });
+        } else {
+          stream.stop();
+        }
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!allowStat) return;
@@ -200,11 +190,10 @@ const RudGatePage = () => {
   return (
     <PageUI ref={shareSceneRef}>
       <WecamSectionUI>
-        {!allowStat && (
-          <CameraAllowBtnUI onClick={requestVideoPermission}>
-            카메라 허용
-          </CameraAllowBtnUI>
-        )}
+        <CameraAllowBtnUI onClick={requestVideoPermission}>
+          Camera Allow
+        </CameraAllowBtnUI>
+
         <CanvasUI ref={canvasRef} />
         {allowStat && <HelpSignModal />}
         {allowStat && (
@@ -273,11 +262,11 @@ const RudGatePage = () => {
         )}
       </BottomSectionUI>
       <ImgInstaShareModal dataUri={screenshot} />
-      {!videoFinished && (
+      {!allowStat && (
         <CallingModal
           videoSrc={videoSrc}
           onClosed={() => {
-            setVideoFinished(true);
+            requestVideoPermission();
             localStorage.setItem(StorageKey.rud_gate_video_finished, true);
           }}
           pageFor="rud gate"
