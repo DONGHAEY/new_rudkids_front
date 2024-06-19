@@ -161,9 +161,6 @@ const RudGatePage = () => {
     track("allow camera", {
       is_allowed: allowStat,
     });
-    if (!allowStat) {
-      window.location.reload();
-    }
   };
 
   useEffect(() => {
