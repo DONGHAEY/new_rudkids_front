@@ -14,7 +14,6 @@ import {
 import moment from "moment";
 import cardSrc from "./assets/card_form.webp";
 import "./fonts.css";
-import { useEffect, useRef } from "react";
 
 const RudcardTemplate = ({
   name,
@@ -23,17 +22,9 @@ const RudcardTemplate = ({
   order,
   profileImgUrl,
   qrImgUrl,
-  onLoaded,
 }) => {
-  const ref = useRef();
-
-  //
-  useEffect(() => {
-    onLoaded(ref);
-  }, []);
-
   return (
-    <CardTemplateUI ref={ref}>
+    <CardTemplateUI>
       <img width="100%" src={cardSrc} />
       <ProfileImgWrapperUI>
         <ProfileImgUI src={profileImgUrl} />

@@ -5,7 +5,7 @@ import NameInput from "./NameInput";
 import BirthInput from "./BirthInput";
 import DescriptionInput from "./DescriptionInput";
 import useUserQuery from "../../queries/user/useUserQuery";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useEditCardImgUrlMutation from "../../mutations/user/useEditCardImgUrlMutation";
 import Loader from "../../shared_components/Loader";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ const CreateRudcardPage = () => {
   //
   const [isAlert, setIsAlert] = useState(false);
   const [cardCreating, setCardCreating] = useState(false);
-  const [cardRef, setCardRef] = useState(null);
+  const cardRef = useRef();
   //
   const { data: userData } = useUserQuery();
   const editCardImgUrlMutation = useEditCardImgUrlMutation();
@@ -168,6 +168,7 @@ const CreateRudcardPage = () => {
     <Popup title="루키즈 카드">
       <PageUI onSubmit={handleSubmit(submitHandler)}>
         <div
+          ref={cardRef}
           style={{
             width: "90%",
             position: "relative",
@@ -180,9 +181,6 @@ const CreateRudcardPage = () => {
             description={watch("description")}
             qrImgUrl={`https://api.qrserver.com/v1/create-qr-code/?data=https://www.rud.kids/profile/${userData?.id}&amp;size=100x100`}
             order={userData?.firstPaidNum || "?"}
-            onLoaded={(ref) => {
-              setCardRef(ref);
-            }}
           />
         </div>
         <InputListUI>
