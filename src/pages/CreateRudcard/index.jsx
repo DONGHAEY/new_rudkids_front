@@ -45,15 +45,7 @@ const CreateRudcardPage = () => {
     if (cardCreating) return;
     if (!canvasRef.current) alert("카드로드안됨");
     setCardCreating(true);
-    // const targetWidth = 1000;
-    // const width = cardCanvasRef.current.clientWidth;
-    // const height = cardCanvasRef.current.clientHeight;
-    // const aspect = width / height;
-    // const targetHeight = targetWidth / aspect;
-    // console.log(width, height);
-    // console.log(targetWidth, targetHeight);
-
-    const dataURI = canvasRef.current.toDataURL();
+    const dataURI = canvasRef.current.toDataURL("image/webp");
     fetch(dataURI)
       .then((res) => res.blob())
       .then(async (blob) => {
