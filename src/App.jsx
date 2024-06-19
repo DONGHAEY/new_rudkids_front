@@ -34,6 +34,7 @@ function App() {
   useLayoutEffect(() => {
     const imgPreload = (src) => {
       let img = new Image();
+      img.crossOrigin = "anonymous";
       img.src = src;
     };
     Object.values(PublicBizAssets)?.forEach((imgSrc) => {
