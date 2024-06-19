@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import loadImg1 from "./assets/1.webp";
 import loadImg2 from "./assets/2.webp";
 import { useQuery } from "react-query";
-import axiosInstance from "../../axiosInstance";
 
 const RudImage = ({ ImgUI, src, ...props }) => {
   const [loadingSec, setLoadingSec] = useState(0);
