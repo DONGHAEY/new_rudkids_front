@@ -12,7 +12,7 @@ import {
   TextBox2,
 } from "./styles";
 import moment from "moment";
-import cardSrc from "./assets/card_form.svg";
+import cardSrc from "./assets/card_form.webp";
 import "./fonts.css";
 import { useEffect, useRef } from "react";
 
@@ -34,7 +34,7 @@ const RudcardTemplate = ({
 
   return (
     <CardTemplateUI ref={ref}>
-      <img src={cardSrc} />
+      <img width="100%" src={cardSrc} />
       <ProfileImgWrapperUI>
         <ProfileImgUI src={profileImgUrl} />
       </ProfileImgWrapperUI>

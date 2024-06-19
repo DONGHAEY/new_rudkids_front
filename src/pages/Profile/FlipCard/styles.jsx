@@ -11,12 +11,10 @@ export const CardCameraUI = styled.div`
 
 export const CardUI = styled.div`
   width: 100%;
-  box-shadow: 0 0 0.5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.5);
   position: relative;
   pointer-events: none;
   border-radius: 20px;
-  /* background-color: green; */
-  /* padding: 30px; */
 `;
 
 export const CardFrontUI = styled.div`
