@@ -4,11 +4,19 @@ export const ScrollUI = styled.div`
   width: 100%;
   overflow: scroll;
   margin-block: 30px;
-
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  animation: fadeIn 1s ease-in-out forwards;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   &::-webkit-scrollbar {
-    display: none; /* 스크롤바 숨기기 */
+    display: none;
   }
 `;
 

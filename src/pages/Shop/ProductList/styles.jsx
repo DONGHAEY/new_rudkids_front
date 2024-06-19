@@ -17,6 +17,15 @@ export const ProductBoxUI = styled.div`
   margin-bottom: 16px;
   text-decoration: none;
   line-height: 0;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  animation: fadeIn 1s ease-in-out forwards;
 `;
 
 export const ProductImgWrapperUI = styled.div`

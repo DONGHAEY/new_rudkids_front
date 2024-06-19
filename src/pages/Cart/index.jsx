@@ -19,7 +19,7 @@ import GoToShop from "./GoToShop";
 const CartPage = () => {
   const { data: myCartData } = useCartQuery();
 
-  const hasProducts = myCartData?.cartProducts?.length !== 0;
+  const hasProducts = myCartData?.cartProducts?.length;
 
   const totalProductsPrice = useMemo(() => {
     if (!myCartData) return 0;
@@ -37,7 +37,7 @@ const CartPage = () => {
   return (
     <PageUI>
       <Header />
-      {hasProducts && (
+      {hasProducts ? (
         <FlexWrapperUI>
           <SectionDscrptTxtUI>My Cart</SectionDscrptTxtUI>
           <CartProductListUI>
@@ -55,8 +55,9 @@ const CartPage = () => {
             <img src={smileSellerSrc} width="100%" />
           </SmileSellerWrapperUI>
         </FlexWrapperUI>
+      ) : (
+        <GoToShop />
       )}
-      {!hasProducts && <GoToShop />}
       <CheckoutBar cartData={myCartData} />
     </PageUI>
   );
