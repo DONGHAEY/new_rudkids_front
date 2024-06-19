@@ -128,7 +128,7 @@ export const CameraAllowBtnUI = styled.div`
   font-family: Pretendard-Bold;
   font-size: 20px;
   border-radius: 30px;
-  z-index: 0;
+  z-index: 3;
 `;
 
 export const AllowReqImgUI = styled.img`

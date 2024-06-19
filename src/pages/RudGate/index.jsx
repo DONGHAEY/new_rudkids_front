@@ -65,11 +65,16 @@ const RudGatePage = () => {
   const [scanMode, setScanMode] = useState(false);
   const [screenshot, takeScreenshot] = useScreenshot();
   const [scanLtShowCnt, setScanLtShowCnt] = useState(0);
-  const [videoPermission, setVideoPermission] = useState(false);
+  const [videoFinished, setVideoFinished] = useState(false);
+  const [allowStat, setAllowStat] = useState(false);
 
   const hasResult = passStat !== "none";
 
   const takeAPhotoBtnClickHandler = async () => {
+    if (!allowStat) {
+      requestVideoPermission();
+      return;
+    }
     trackClickButton("take picture", { page: "rud gate" });
     setScanMode(true);
     const canvas = canvasRef.current;
@@ -152,24 +157,34 @@ const RudGatePage = () => {
     } catch (error) {
       allowStat = false;
     }
+    setAllowStat(allowStat);
     track("allow camera", {
       is_allowed: allowStat,
     });
-    localStorage.setItem(StorageKey.camera_permission, allowStat);
-    setVideoPermission(allowStat);
     if (!allowStat) {
       window.location.reload();
     }
   };
 
   useEffect(() => {
-    const allowed = localStorage.getItem(StorageKey.camera_permission);
-    if (allowed === "true") {
-      setVideoPermission(true);
+    const videoFinished = localStorage.getItem(
+      StorageKey.rud_gate_video_finished
+    );
+    if (videoFinished === "true") {
+      setVideoFinished(true);
+    } else {
+      setVideoFinished(false);
     }
   }, []);
 
   useEffect(() => {
+    if (videoFinished) {
+      requestVideoPermission();
+    }
+  }, [videoFinished]);
+
+  useEffect(() => {
+    if (!allowStat) return;
     const video = cameraRef.current?.video;
     const canvas = canvasRef.current;
     const drawVideo = () => {
@@ -183,17 +198,19 @@ const RudGatePage = () => {
     };
     const interval = setInterval(drawVideo, 1000 / 30); //30fps
     return () => clearInterval(interval);
-  }, [videoPermission, scanMode, hasResult]);
+  }, [allowStat, scanMode, hasResult]);
 
   return (
     <PageUI ref={shareSceneRef}>
       <WecamSectionUI>
-        <CameraAllowBtnUI onClick={requestVideoPermission}>
-          카메라 허용
-        </CameraAllowBtnUI>
+        {!allowStat && (
+          <CameraAllowBtnUI onClick={requestVideoPermission}>
+            카메라 허용
+          </CameraAllowBtnUI>
+        )}
         <CanvasUI ref={canvasRef} />
-        {videoPermission && <HelpSignModal />}
-        {videoPermission && (
+        {allowStat && <HelpSignModal />}
+        {allowStat && (
           <Webcam
             ref={cameraRef}
             width={1920}
@@ -259,10 +276,13 @@ const RudGatePage = () => {
         )}
       </BottomSectionUI>
       <ImgInstaShareModal dataUri={screenshot} />
-      {!videoPermission && (
+      {!videoFinished && (
         <CallingModal
           videoSrc={videoSrc}
-          onClosed={requestVideoPermission}
+          onClosed={() => {
+            setVideoFinished(true);
+            localStorage.setItem(StorageKey.rud_gate_video_finished, true);
+          }}
           pageFor="rud gate"
         />
       )}
