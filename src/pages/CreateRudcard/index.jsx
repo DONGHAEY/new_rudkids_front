@@ -5,7 +5,7 @@ import NameInput from "./NameInput";
 import BirthInput from "./BirthInput";
 import DescriptionInput from "./DescriptionInput";
 import useUserQuery from "../../queries/user/useUserQuery";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import useEditCardImgUrlMutation from "../../mutations/user/useEditCardImgUrlMutation";
 import Loader from "../../shared_components/Loader";
 import { useNavigate } from "react-router-dom";
@@ -13,9 +13,7 @@ import { Modal } from "@mui/material";
 import WarningAlert, { CannotAlert } from "./WarningAlert";
 import ImageInput from "./ImageInput";
 import Popup from "../../shared_components/Popup";
-import * as htmlToImage from "html-to-image";
 
-//
 const CreateRudcardPage = () => {
   const navigate = useNavigate();
   //
@@ -175,7 +173,7 @@ const CreateRudcardPage = () => {
             birth={watch("birth")}
             description={watch("description")}
             qrImgUrl={`https://api.qrserver.com/v1/create-qr-code/?data=https://www.rud.kids/profile/${userData?.id}&amp;size=100x100`}
-            order={userData?.firstPaidNum || "?"}
+            order={userData?.firstPaidNum}
             onLoad={(cansRef) => setCanvasRef(cansRef)}
           />
         </div>
@@ -203,7 +201,7 @@ const CreateRudcardPage = () => {
           <SaveBtnUI type="submit">만들기</SaveBtnUI>
         </SaveBtnSectionUI>
         <Modal open={isAlert} onClick={() => setIsAlert(false)}>
-          {!userData?.firstPaidNum ? (
+          {!1 ? (
             <CannotAlert />
           ) : (
             <WarningAlert

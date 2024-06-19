@@ -18,7 +18,7 @@ function App() {
     if (originChecked) return;
     const allowOrigins = [
       process.env.REACT_APP_FE_URL,
-      "http://172.30.1.1:3001",
+      "http://172.30.1.16:3001",
     ];
 
     if (!allowOrigins.includes(window.location.origin)) {
