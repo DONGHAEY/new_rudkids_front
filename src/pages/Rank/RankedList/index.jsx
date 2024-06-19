@@ -1,3 +1,4 @@
+import RudImage from "../../../shared_components/RudImage";
 import {
   RankListUI,
   RankNumTxtUI,
@@ -29,9 +30,10 @@ const RankedList = ({ rankedList }) => {
               <RankNumTxtUI>{idx + 1}</RankNumTxtUI>
             </RankNumUI>
             <UserImgWrapperUI>
-              <UserImgUI
+              <RudImage
+                ImgUI={UserImgUI}
+                src={rankedUser.imageUrl}
                 borderColor={colors[idx] ?? "none"}
-                src={rankedUser?.imageUrl}
               />
             </UserImgWrapperUI>
             <UserNmTxtUI>{rankedUser?.nickname}</UserNmTxtUI>

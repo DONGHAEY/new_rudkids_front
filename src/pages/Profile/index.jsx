@@ -47,6 +47,7 @@ import { useBodyBackground } from "../../hooks/useBodyBackground";
 // import Background from "../../shared_components/Background";
 import crwonSrc from "./assets/crown.webp";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import RudImage from "../../shared_components/RudImage";
 
 export const ProfilePage = ({ routeInfo }) => {
   const params = useParams();
@@ -105,7 +106,7 @@ export const ProfilePage = ({ routeInfo }) => {
               {rankSigns[userData?.rank - 1]}
             </RankTxtUI>
           )}
-          <UserImgUI src={userData?.imageUrl} />
+          <RudImage ImgUI={UserImgUI} src={userData?.imageUrl} />
         </ProfileImgWrapperUI>
         <TopSectionUI>
           <TodayViewUI>

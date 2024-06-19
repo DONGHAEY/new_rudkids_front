@@ -13,6 +13,7 @@ import {
   getProductDetail,
   KEY as productQueryKey,
 } from "../../../queries/product/useProductDetailQuery";
+import RudImage from "../../../shared_components/RudImage";
 
 const ProductList = ({ productList }) => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const ProductList = ({ productList }) => {
         return (
           <ProductBoxUI onClick={() => productClickHandler(name)} key={name}>
             <ProductImgWrapperUI>
-              <ProductImgUI src={thumnail} />
+              <RudImage ImgUI={ProductImgUI} src={thumnail} />
             </ProductImgWrapperUI>
             <ProductInfoWrapperUI>
               <ProductNameTxtUI>{name}</ProductNameTxtUI>

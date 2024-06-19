@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import useUserQuery from "../../../../queries/user/useUserQuery";
 import { useMemo } from "react";
 import defaultImgSrc from "./assets/default.svg";
+import RudImage from "../../../RudImage";
 
 const Profile = () => {
   const { data: userData, isLoading } = useUserQuery();
@@ -50,7 +51,7 @@ const Profile = () => {
   return (
     <ProfileUI onClick={onClick}>
       <ImgWrapperUI>
-        <ImgUI src={userData?.imageUrl ?? defaultImgSrc} />
+        <RudImage src={userData?.imageUrl ?? defaultImgSrc} ImgUI={ImgUI} />
       </ImgWrapperUI>
       <ContentWrapperUI>
         <NameTextUI>{userData?.nickname}</NameTextUI>

@@ -15,6 +15,7 @@ import useRankedListQuery from "../../queries/user/userRankedListQuery";
 import Header from "../../shared_components/Header";
 import RankedList from "./RankedList";
 import rankStageSrc from "./assets/rank_stage.webp";
+import RudImage from "../../shared_components/RudImage";
 
 const RankPage = () => {
   const { data: rankedList, isLoading } = useRankedListQuery();
@@ -30,7 +31,8 @@ const RankPage = () => {
         <RankStageImgUI src={rankStageSrc} />
         <SecondStage to={`/profile/${rankedList?.[1]?.id}`}>
           <RankerImgWrapperUI>
-            <RankerImgUI
+            <RudImage
+              ImgUI={RankerImgUI}
               src={rankedList?.[1]?.imageUrl}
               borderColor={colors[1]}
             />
@@ -40,7 +42,8 @@ const RankPage = () => {
         </SecondStage>
         <FirstStage to={`/profile/${rankedList?.[0]?.id}`}>
           <RankerImgWrapperUI>
-            <RankerImgUI
+            <RudImage
+              ImgUI={RankerImgUI}
               src={rankedList?.[0]?.imageUrl}
               borderColor={colors[0]}
             />
@@ -50,7 +53,8 @@ const RankPage = () => {
         </FirstStage>
         <ThirdStage to={`/profile/${rankedList?.[2]?.id}`}>
           <RankerImgWrapperUI>
-            <RankerImgUI
+            <RudImage
+              ImgUI={RankerImgUI}
               src={rankedList?.[2]?.imageUrl}
               borderColor={colors[2]}
             />

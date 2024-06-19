@@ -50,7 +50,7 @@ const CreateRudcardPage = () => {
       .then((res) => res.blob())
       .then(async (blob) => {
         const formData = new FormData();
-        const fileName = `card.png`;
+        const fileName = `card.webp`;
         const convertedFile = new File([blob], fileName, {
           type: blob.type,
         });

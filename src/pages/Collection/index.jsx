@@ -17,6 +17,7 @@ import useUserQuery from "../../queries/user/useUserQuery";
 import Header from "../../shared_components/Header";
 import Loader from "../../shared_components/Loader";
 import Background from "../../shared_components/Background";
+import RudImage from "../../shared_components/RudImage";
 
 const CollectionPage = () => {
   const params = useParams();
@@ -51,7 +52,7 @@ const CollectionPage = () => {
           const randomAngle = Math.floor(Math.random() * 360);
           return (
             <CollectionBoxUI key={idx}>
-              <CollectionImgUI src={orderProduct.thumnail} />
+              <RudImage ImgUI={CollectionImgUI} src={orderProduct.thumnail} />
               <p>{orderProduct.name}</p>
               <StampImgUI
                 top={randomTop}
