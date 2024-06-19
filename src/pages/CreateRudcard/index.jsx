@@ -21,7 +21,7 @@ const CreateRudcardPage = () => {
   //
   const [isAlert, setIsAlert] = useState(false);
   const [cardCreating, setCardCreating] = useState(false);
-  const cardRef = useRef();
+  const [canvasRef, setCanvasRef] = useState(null);
   //
   const { data: userData } = useUserQuery();
   const editCardImgUrlMutation = useEditCardImgUrlMutation();
@@ -45,20 +45,17 @@ const CreateRudcardPage = () => {
 
   const submit = async () => {
     if (cardCreating) return;
-    if (!cardRef.current) alert("카드로드안됨");
+    if (!canvasRef.current) alert("카드로드안됨");
     setCardCreating(true);
     // const targetWidth = 1000;
-    const width = cardRef.current.clientWidth;
-    const height = cardRef.current.clientHeight;
+    // const width = cardCanvasRef.current.clientWidth;
+    // const height = cardCanvasRef.current.clientHeight;
     // const aspect = width / height;
     // const targetHeight = targetWidth / aspect;
     // console.log(width, height);
     // console.log(targetWidth, targetHeight);
 
-    const dataURI = await htmlToImage.toPng(cardRef.current, {
-      width,
-      height,
-    });
+    const dataURI = canvasRef.current.toDataURL();
     fetch(dataURI)
       .then((res) => res.blob())
       .then(async (blob) => {
@@ -168,10 +165,8 @@ const CreateRudcardPage = () => {
     <Popup title="루키즈 카드">
       <PageUI onSubmit={handleSubmit(submitHandler)}>
         <div
-          ref={cardRef}
           style={{
             width: "90%",
-            position: "relative",
           }}
         >
           <CardTemplate
@@ -181,6 +176,7 @@ const CreateRudcardPage = () => {
             description={watch("description")}
             qrImgUrl={`https://api.qrserver.com/v1/create-qr-code/?data=https://www.rud.kids/profile/${userData?.id}&amp;size=100x100`}
             order={userData?.firstPaidNum || "?"}
+            onLoad={(cansRef) => setCanvasRef(cansRef)}
           />
         </div>
         <InputListUI>
