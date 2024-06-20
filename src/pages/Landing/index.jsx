@@ -1,76 +1,85 @@
-import Header from "../../shared_components/Header";
+import { Suspense } from "react";
+import LandingLoader from "./Loader";
+import starsBack from "./assets/star_background.webp";
 import {
-  BlankUI,
-  GrassBackgroundUI,
-  LinkButtonUI,
-  MainBannerImgUI,
-  MainBannerUI,
+  BackImgUI,
+  BotomSectionUI,
+  FooterImgUI,
+  GetInUI,
+  LogoImgUI,
+  MiddleSectionUI,
   PageUI,
-  TextGrp,
-  Txt1UI,
-  Txt2UI,
+  RollingMessagesUI,
+  RudkidsOnlyImgUI,
+  TopSectionUI,
 } from "./styles";
-import bannerSrc from "./assets/banner.webp";
-import { ToyIntroduce } from "./ToyIntroduce";
-import { Icon } from "@iconify/react/dist/iconify.js";
-import SlidingTape from "./SlidingTape";
-import backgroundSrc from "./assets/background.webp";
-import ScrollKids from "./ScrollKids";
-import TShirtIntroduce from "./TShirtIntroduce";
-import { trackClickButton } from "../../shared_analytics";
-import SymbolLoader from "../../shared_components/SymbolLoader";
-import Footer from "../../shared_components/Footer";
-
+import logo from "./assets/logo.webp";
+import rudkidsOnly from "./assets/rudkids_only.webp";
+import footer from "./assets/footer.webp";
+import fucChild from "./assets/fuc_child.webp";
+import getIn from "./assets/get_in.webp";
+import { Canvas } from "@react-three/fiber";
+import Scene from "./Scene";
+import { useBodyBackground } from "../../hooks/useBodyBackground";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import Marquee from "react-fast-marquee";
 const LandingPage = () => {
+  const size = useWindowSize();
+  useBodyBackground("rgba(255, 212, 0, 1)");
+
   return (
-    <PageUI>
-      <Header isFixed />
-      <SymbolLoader loading={false} />
-      <MainBannerUI>
-        <MainBannerImgUI src={bannerSrc} />
-      </MainBannerUI>
-      <SlidingTape />
-      <TextGrp>
-        <Txt1UI>Rudkids Toy</Txt1UI>
-        <Txt2UI>Rude Kids’ Special Toy!</Txt2UI>
-      </TextGrp>
-      <ToyIntroduce />
-      <LinkButtonUI
-        to={"/shop?category=Toy"}
-        onClick={() =>
-          trackClickButton("shop", {
-            type: "Toy",
-          })
-        }
-      >
-        Toy
-        <Icon icon="ep:right" />
-      </LinkButtonUI>
-      <SlidingTape />
-      <TextGrp>
-        <Txt1UI>T-Shirt</Txt1UI>
-        <Txt2UI>wearing rudness</Txt2UI>
-      </TextGrp>
-      <MainBannerUI>
-        <GrassBackgroundUI src={backgroundSrc} />
-        <ScrollKids />
-      </MainBannerUI>
-      <TShirtIntroduce />
-      <LinkButtonUI
-        to={"/shop?category=Clothes"}
-        onClick={() =>
-          trackClickButton("shop", {
-            type: "Clothes",
-          })
-        }
-      >
-        T-Shirt
-        <Icon icon="ep:right" />
-      </LinkButtonUI>
-      <SlidingTape />
-      <BlankUI />
-      <Footer />
-    </PageUI>
+    <Suspense fallback={<LandingLoader />}>
+      <LandingLoader />
+      <BackImgUI src={starsBack} />
+      <PageUI>
+        <div
+          style={{
+            height: size.height - 100,
+            width: "100%",
+            position: "relative",
+          }}
+        >
+          <RollingMessagesUI>
+            <Marquee>
+              <p>No BOARING ADULTS WE ARE RUDKIDS</p>
+              <p>No BOARING ADULTS WE ARE RUDKIDS</p>
+              <p>No BOARING ADULTS WE ARE RUDKIDS</p>
+            </Marquee>
+          </RollingMessagesUI>
+          <MiddleSectionUI>
+            <Canvas
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <Scene />
+            </Canvas>
+          </MiddleSectionUI>
+          <TopSectionUI>
+            <LogoImgUI src={logo} />
+            <RudkidsOnlyImgUI src={rudkidsOnly} />
+          </TopSectionUI>
+          <BotomSectionUI>
+            <img width="50%" src={fucChild} />
+          </BotomSectionUI>
+        </div>
+        <GetInUI>
+          <img src={getIn} width="75%" />
+        </GetInUI>
+        <div>
+          {new Array(350).fill(null).map((d, idx) => {
+            return (
+              <p key={idx}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            );
+          })}
+        </div>
+        <FooterImgUI src={footer} />
+      </PageUI>
+    </Suspense>
   );
 };
 

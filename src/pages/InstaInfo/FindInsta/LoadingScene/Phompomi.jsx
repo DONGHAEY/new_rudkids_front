@@ -1,8 +1,10 @@
 import { useSphere } from "@react-three/cannon";
 import { useThree } from "@react-three/fiber";
 
-export const Phompomi = ({ count, gltf, color }) => {
+export const Phompomi = ({ scene }) => {
+  //
   const { viewport } = useThree();
+
   const [ref] = useSphere((index) => ({
     mass: 0.5,
     position: [4 - Math.random() * 8, viewport.height, 0, 0],
@@ -10,27 +12,8 @@ export const Phompomi = ({ count, gltf, color }) => {
   }));
 
   return (
-    <instancedMesh
-      ref={ref}
-      args={[null, null, count]}
-      geometry={gltf?.nodes["pompom4"].geometry}
-      material={gltf?.materials[""]}
-      castShadow
-      receiveShadow
-    >
-      <meshStandardMaterial color={color ?? "black"} />
-    </instancedMesh>
+    <group ref={ref}>
+      <primitive castShadow receiveShadow object={scene} scale={0.8} />
+    </group>
   );
-
-  return {
-    /* <instancedMesh
-        ref={ref}
-        castShadow
-        receiveShadow
-        args={[null, null, count]}
-      >
-        <boxGeometry args={[1.2, 1.2, 1.2]} />
-        <meshStandardMaterial color="black" roughness={0} />
-      </instancedMesh> */
-  };
 };

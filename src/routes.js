@@ -22,9 +22,25 @@ const LegalPage = lazy(() => import("./pages/Legal"));
 const OrderListPage = lazy(() => import("./pages/OrderList"));
 const CollectionPage = lazy(() => import("./pages/Collection"));
 const PayFailPage = lazy(() => import("./pages/PayFail"));
+const HomePage = lazy(() => import("./pages/Home"));
 const LandingPage = lazy(() => import("./pages/Landing"));
+const TempPage = lazy(() => import("./pages/Temp"));
 
 export const routes = {
+  ["temp"]: {
+    name: "temp",
+    viewTrack: false,
+    path: "temp",
+    paramKeys: [],
+    element: TempPage,
+  },
+  ["landing"]: {
+    name: "landing",
+    viewTrack: false,
+    path: "landing",
+    paramKeys: [],
+    element: LandingPage,
+  },
   ["404"]: {
     name: "401",
     viewTrack: true,
@@ -32,12 +48,12 @@ export const routes = {
     paramKeys: [],
     element: _401Page,
   },
-  ["landing"]: {
-    name: "landing",
+  ["home"]: {
+    name: "home",
     viewTrack: true,
     path: "",
     paramKeys: [],
-    element: AuthHoc(LandingPage),
+    element: AuthHoc(HomePage),
     fallback: <SymbolLoader loading={true} />,
   },
   ["shop"]: {
