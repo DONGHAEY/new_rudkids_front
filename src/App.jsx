@@ -12,7 +12,7 @@ import Loader from "./shared_components/Loader";
 
 function App() {
   const [queryClient] = useRudkidsQueryClient();
-  const [originChecked, setOriginChecked] = useState(true);
+  const [originChecked, setOriginChecked] = useState(false);
   const { pathname, search } = useLocation();
 
   const imgPreload = (src) => {
@@ -25,7 +25,7 @@ function App() {
     if (originChecked) return;
     const allowOrigins = [
       process.env.REACT_APP_FE_URL,
-      "http://172.30.1.16:3001",
+      "http://192.168.0.182:3001",
     ];
     if (!allowOrigins.includes(window.location.origin)) {
       window.location.href = process.env.REACT_APP_FE_URL + pathname + search;

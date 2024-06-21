@@ -37,15 +37,6 @@ export const BottomImgUI = styled.img`
   z-index: 3;
 `;
 
-export const FooterImgUI = styled.img`
-  height: auto;
-  width: 100%;
-  background: none;
-  position: absolute;
-  bottom: 0;
-  z-index: 3;
-`;
-
 export const CenterDivUI = styled.div`
   position: absolute;
   margin: 0 auto;
@@ -78,7 +69,8 @@ export const ProgressUI = styled.div`
 
 export const ProgressTxtUI = styled.p`
   color: white;
-  font-size: 4.3vw;
+  font-size: max(3vw, 20px);
   color: white;
+  font-family: digital;
   margin-top: 2%;
 `;

@@ -1,13 +1,13 @@
+import "../fonts.css";
+
 import stars from "./assets/star_background.webp";
 import top from "./assets/top.webp";
 import bottom from "./assets/bottom.webp";
-import footer from "../assets/footer.webp";
 import centerlogo from "./assets/center_logo.webp";
 import {
   BottomImgUI,
   CenterDivUI,
   CenterLogoImgUI,
-  FooterImgUI,
   PageUI,
   ProgressBarUI,
   ProgressTxtUI,
@@ -50,7 +50,6 @@ const LandingLoader = () => {
       <TopImgUI src={top} />
       <StarsImgUI src={stars} />
       <BottomImgUI src={bottom} />
-      <FooterImgUI src={footer} />
       <CenterDivUI>
         <CenterLogoImgUI src={centerlogo} />
         <ProgressBarUI>

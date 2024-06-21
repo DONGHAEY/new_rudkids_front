@@ -6,7 +6,14 @@ const Scene = () => {
     <>
       <primitive object={gltf.scene} scale={1} />
       <ambientLight intensity={2} />
-      <OrbitControls minDistance={5} maxDistance={8} />
+      <OrbitControls
+        minDistance={5}
+        maxDistance={8}
+        autoRotate
+        enableZoom={false}
+        enableDamping={false}
+        enableRotate={false}
+      />
     </>
   );
 };
