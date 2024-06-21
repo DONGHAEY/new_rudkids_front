@@ -14,6 +14,7 @@ import {
   TopStickyUI,
   CanvasDragBlocker,
   BackImgUI,
+  ScrollDownUI,
 } from "./styles";
 import logo from "./assets/logo.webp";
 import getIn from "./assets/get_in.webp";
@@ -21,6 +22,7 @@ import rudkidsOnly from "./assets/rudkids_only.webp";
 import fucChild from "./assets/fuc_child.webp";
 import Scene from "./Scene";
 import starsBack from "./assets/star_background.webp";
+import scrollDown from "./assets/scroll_down.webp";
 import Marquee from "react-fast-marquee";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -29,46 +31,67 @@ const Page1 = () => {
 
   const logoRef = useRef();
   const getInRef = useRef();
+  const scrollDownRef = useRef();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.fromTo(
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: firstRef.current,
+        scrub: true,
+        start: "top top",
+        end: "center top",
+        pin: true,
+        // endTrigger: firstRef.current,
+        invalidateOnRefresh: true,
+      },
+    });
+    //
+    tl.fromTo(
       logoRef.current,
       { width: "55%", marginTop: "10%" },
       {
         marginTop: "2%",
         marginLeft: "-50%",
         width: "38%",
-        scrollTrigger: {
-          trigger: firstRef.current,
-          scrub: true,
-          start: "top top",
-          end: "center top",
-          endTrigger: firstRef.current,
-          invalidateOnRefresh: true,
-        },
       }
-    );
-    gsap.fromTo(
-      getInRef.current,
-      {
-        top: "73%",
-        width: "80%",
-      },
-      {
-        top: "-3%",
-        width: "43%",
-        right: "3%",
-        scrollTrigger: {
-          trigger: firstRef.current,
-          scrub: true,
-          start: "top top",
-          end: "center top",
-          endTrigger: firstRef.current,
-          invalidateOnRefresh: true,
+    )
+      .fromTo(
+        getInRef.current,
+        {
+          top: "73%",
+          width: "80%",
         },
-      }
-    );
+        {
+          top: "2%",
+          width: "43%",
+          right: "3%",
+        },
+        "<"
+      )
+      .fromTo(
+        firstRef.current,
+        { opacity: 1 },
+        {
+          opacity: 0,
+        },
+        "<"
+      );
+    // gsap.fromTo(
+    //   getInRef.current,
+    //   { opacity: 1 },
+    //   {
+    //     opacity: 0,
+    //     scrollTrigger: {
+    //       pin: true,
+    //       trigger: firstRef.current,
+    //       start: "top top",
+    //       end: "bottom top",
+    //       invalidateOnRefresh: true,
+    //       // toggleActions: "play reverse play reverse",
+    //     },
+    //   }
+    // );
   }, []);
   //
 
@@ -77,6 +100,8 @@ const Page1 = () => {
       <Page1UI ref={firstRef}>
         <RollingMessagesUI>
           <Marquee>
+            <p>No BOARING ADULTS</p>
+            <p>WE ARE RUDKIDS</p>
             <p>No BOARING ADULTS</p>
             <p>WE ARE RUDKIDS</p>
           </Marquee>
@@ -93,14 +118,17 @@ const Page1 = () => {
         <BotomSectionUI>
           <img width="50%" src={fucChild} />
         </BotomSectionUI>
-        <LogoWrapperUI>
-          <LogoImgUI src={logo} ref={logoRef} />
-        </LogoWrapperUI>
-        <TopStickyUI>
-          <GetInUI ref={getInRef} src={getIn} />
-        </TopStickyUI>
         <BackImgUI src={starsBack} />
       </Page1UI>
+      <LogoWrapperUI>
+        <LogoImgUI src={logo} ref={logoRef} />
+      </LogoWrapperUI>
+      <TopStickyUI>
+        <GetInUI ref={getInRef} src={getIn} />
+      </TopStickyUI>
+      {/* <ScrollDownUI ref={scrollDownRef}>
+          <img height="100%" src={scrollDown} />
+        </ScrollDownUI> */}
     </>
   );
 };

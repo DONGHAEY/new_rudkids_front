@@ -2,17 +2,27 @@ import styled from "styled-components";
 
 export const Page2UI = styled.div`
   width: 100%;
+  justify-content: space-between;
+  z-index: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const SectionUI = styled.div`
+  height: 30%;
+  /* background-color: gainsboro; */
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  z-index: 0;
-  /* height: 100vh; */
-  margin-bottom: 20%;
 `;
 
 export const ClothUI = styled.div`
   width: 70%;
+  /* margin-top: 20%; */
   /* background-color: gainsboro; */
   position: relative;
   min-height: 70px;
@@ -55,9 +65,8 @@ export const RightArrowImgUI = styled.img`
 `;
 
 export const NameBoxUI = styled.div`
-  margin-top: 4%;
   width: 55%;
-  height: 30px;
+  min-height: 30px;
   background-color: blue;
   font-size: max(1.2vw, 20px);
   color: white;
@@ -69,6 +78,7 @@ export const NameBoxUI = styled.div`
   border-radius: 10px;
   font-family: boba;
   border: solid 5px rgba(204, 204, 204, 1);
+  z-index: 9;
 `;
 
 export const WearingSignUI = styled.p`
@@ -76,4 +86,5 @@ export const WearingSignUI = styled.p`
   font-family: boba;
   color: blue;
   margin-top: 2%;
+  z-index: 9;
 `;

@@ -1,6 +1,6 @@
 import { init } from "@amplitude/analytics-browser";
 import * as qs from "qs";
-import { Suspense, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { QueryClientProvider } from "react-query";
 import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import GlobalStyle from "../src/styles";
@@ -12,7 +12,7 @@ import Loader from "./shared_components/Loader";
 
 function App() {
   const [queryClient] = useRudkidsQueryClient();
-  const [originChecked, setOriginChecked] = useState(false);
+  const [originChecked, setOriginChecked] = useState(true);
   const { pathname, search } = useLocation();
 
   const imgPreload = (src) => {

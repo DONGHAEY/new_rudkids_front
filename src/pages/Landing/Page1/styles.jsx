@@ -6,6 +6,7 @@ export const Page1UI = styled.div`
   width: 100%;
   position: relative;
   /* background-color: green; */
+  opacity: 1;
   background: radial-gradient(rgba(255, 242, 164, 1), rgba(255, 212, 0, 1));
 `;
 
@@ -92,6 +93,20 @@ export const TopStickyUI = styled.div`
   z-index: 9;
   pointer-events: none;
   touch-action: none;
+`;
+
+export const ScrollDownUI = styled.div`
+  position: fixed;
+  max-width: 430px;
+  width: 100%;
+  bottom: 3%;
+  z-index: 999;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5%;
 `;
 
 export const FaceImgUI = styled.img`

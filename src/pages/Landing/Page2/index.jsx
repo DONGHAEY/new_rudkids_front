@@ -10,6 +10,7 @@ import {
   NameBoxUI,
   RightArrowImgUI,
   WearingSignUI,
+  SectionUI,
 } from "./styles";
 
 import face1Img from "./assets/faces/1.webp";
@@ -55,22 +56,26 @@ const Page2 = () => {
 
   return (
     <Page2UI>
-      <ClothUI>
-        <FaceImgUI src={faces[currIdx].img} />
-        <img width="88%" src={clothes[currClothesIdx]} />
-        <ForMakersImgUI src={forMakers} />
-        <ArrowWrapperUI>
-          <LeftArrowImgUI src={left} onClick={leftClkHandler} />
-          <RightArrowImgUI src={right} onClick={rightClkHandler} />
-        </ArrowWrapperUI>
-      </ClothUI>
-      <NameBoxUI>{faces[currIdx].name}</NameBoxUI>
-      <WearingSignUI>Is now Wearing...</WearingSignUI>
-      <GameBar
-        onChange={() => {
-          setCurrIdx((currIdx + 1) % faces.length);
-        }}
-      />
+      <SectionUI>
+        <ClothUI>
+          <FaceImgUI src={faces[currIdx].img} />
+          <img width="88%" src={clothes[currClothesIdx]} />
+          <ForMakersImgUI src={forMakers} />
+          <ArrowWrapperUI>
+            <LeftArrowImgUI src={left} onClick={leftClkHandler} />
+            <RightArrowImgUI src={right} onClick={rightClkHandler} />
+          </ArrowWrapperUI>
+        </ClothUI>
+      </SectionUI>
+      <SectionUI>
+        <NameBoxUI>{faces[currIdx].name}</NameBoxUI>
+        <WearingSignUI>Is now Wearing...</WearingSignUI>
+        <GameBar
+          onChange={() => {
+            setCurrIdx((currIdx + 1) % faces.length);
+          }}
+        />
+      </SectionUI>
     </Page2UI>
   );
 };

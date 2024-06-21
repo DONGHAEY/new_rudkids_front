@@ -5,7 +5,7 @@ export const PageUI = styled.div`
   width: 100%;
   height: 100%;
   max-width: 430px;
-  z-index: 999;
+  z-index: 99;
   display: flex;
   flex-direction: column;
   align-items: center;

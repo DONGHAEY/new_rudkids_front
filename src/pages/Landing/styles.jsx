@@ -12,5 +12,5 @@ export const FooterImgUI = styled.img`
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
-  z-index: 999999;
+  z-index: 100;
 `;

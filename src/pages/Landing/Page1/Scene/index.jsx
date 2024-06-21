@@ -10,6 +10,7 @@ const Scene = () => {
         minDistance={5}
         maxDistance={8}
         autoRotate
+        autoRotateSpeed={20}
         enableZoom={false}
         enableDamping={false}
         enableRotate={false}
