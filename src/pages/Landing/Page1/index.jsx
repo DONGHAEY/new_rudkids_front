@@ -25,10 +25,11 @@ import starsBack from "./assets/star_background.webp";
 import scrollDown from "./assets/scroll_down.webp";
 import Marquee from "react-fast-marquee";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useWindowSize } from "../../../hooks/useWindowSize";
 
 const Page1 = () => {
+  const windowSize = useWindowSize();
   const firstRef = useRef();
-
   const logoRef = useRef();
   const getInRef = useRef();
   const scrollDownRef = useRef();
@@ -40,7 +41,7 @@ const Page1 = () => {
         trigger: firstRef.current,
         scrub: true,
         start: "top top",
-        end: "center top",
+        end: "bottom top",
         pin: true,
         // endTrigger: firstRef.current,
         invalidateOnRefresh: true,
@@ -49,7 +50,7 @@ const Page1 = () => {
     //
     tl.fromTo(
       logoRef.current,
-      { width: "55%", marginTop: "10%" },
+      { width: "55%", marginTop: "15%" },
       {
         marginTop: "2%",
         marginLeft: "-50%",
@@ -59,7 +60,7 @@ const Page1 = () => {
       .fromTo(
         getInRef.current,
         {
-          top: "73%",
+          top: "78%",
           width: "80%",
         },
         {
@@ -97,7 +98,12 @@ const Page1 = () => {
 
   return (
     <>
-      <Page1UI ref={firstRef}>
+      <Page1UI
+        ref={firstRef}
+        style={{
+          height: windowSize.height,
+        }}
+      >
         <RollingMessagesUI>
           <Marquee>
             <p>No BOARING ADULTS</p>
