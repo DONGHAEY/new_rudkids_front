@@ -43,6 +43,7 @@ import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { drawVideoScene } from "./utils/draw";
 import PublicLottieAssets from "../../global/public-lottie-assets";
+import takeAPhotoSnd from "./assets/take_a_photo.mp3";
 
 export const setPassResult = (passStat) => {
   localStorage.setItem(StorageKey.rud_gate_passed, passStat);
@@ -74,6 +75,7 @@ const RudGatePage = () => {
       requestVideoPermission();
       return;
     }
+    new Audio(takeAPhotoSnd).play();
     trackClickButton("take picture", { page: "rud gate" });
     setScanMode(true);
     const canvas = canvasRef.current;

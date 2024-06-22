@@ -2,7 +2,7 @@ import "../fonts.css";
 import { useScreenshot } from "use-react-screenshot";
 import {
   ArrowWrapperUI,
-  ClothUI,
+  ClothSectionUI,
   Page2UI,
   FaceImgUI,
   ForMakersImgUI,
@@ -11,6 +11,7 @@ import {
   RightArrowImgUI,
   WearingSignUI,
   SectionUI,
+  ClothImgUI,
 } from "./styles";
 
 import face1Img from "./assets/faces/1.webp";
@@ -31,6 +32,7 @@ import { GameBar } from "./GameBar";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 
 import ImgShareModal from "../../../shared_components/ImgShareModal";
+import clickSnd from "./assets/click.mp3";
 
 const Page2 = () => {
   const windowSize = useWindowSize();
@@ -47,16 +49,19 @@ const Page2 = () => {
   const clothes = [t1Img, t2Img, t3Img, t4Img];
   const [currClothesIdx, setCurrClothesIdx] = useState(0);
   const [dataUri, takeScreenshot] = useScreenshot();
-
   const [currIdx, setCurrIdx] = useState(0);
+
+  const clickAdo = new Audio(clickSnd);
+
   const leftClkHandler = () => {
-    if (currClothesIdx - 1 < 0) {
-      setCurrIdx(clothes.length - 1);
-      return;
-    }
-    setCurrClothesIdx((currClothesIdx - 1) % clothes.length);
+    clickAdo.play();
+    setCurrClothesIdx(
+      currClothesIdx - 1 < 0 ? clothes.length - 1 : currClothesIdx - 1
+    );
   };
+
   const rightClkHandler = () => {
+    clickAdo.play();
     setCurrClothesIdx((currClothesIdx + 1) % clothes.length);
   };
 
@@ -68,19 +73,19 @@ const Page2 = () => {
     <Page2UI
       ref={pageRef}
       style={{
-        minHeight: windowSize.height,
+        minHeight: "100vh",
       }}
     >
       <SectionUI>
-        <ClothUI>
+        <ClothSectionUI>
+          <ClothImgUI src={clothes[currClothesIdx]} />
           <FaceImgUI src={faces[currIdx].img} />
-          <img width="88%" src={clothes[currClothesIdx]} />
           <ForMakersImgUI src={forMakers} />
           <ArrowWrapperUI>
             <LeftArrowImgUI src={left} onClick={leftClkHandler} />
             <RightArrowImgUI src={right} onClick={rightClkHandler} />
           </ArrowWrapperUI>
-        </ClothUI>
+        </ClothSectionUI>
       </SectionUI>
       <SectionUI>
         <NameBoxUI>{faces[currIdx].name}</NameBoxUI>

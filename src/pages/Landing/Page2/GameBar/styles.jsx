@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const GameBarUI = styled.div`
-  width: 80%;
+  width: 85%;
   position: relative;
 `;
 

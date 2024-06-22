@@ -43,7 +43,6 @@ const Page1 = () => {
         start: "top top",
         end: "bottom top",
         pin: true,
-        // endTrigger: firstRef.current,
         invalidateOnRefresh: true,
       },
     });
@@ -77,8 +76,10 @@ const Page1 = () => {
           opacity: 0,
         },
         "<"
-      );
-    //
+      )
+      .to(scrollDownRef.current, {
+        opacity: 0,
+      });
   }, []);
 
   return (
@@ -117,9 +118,9 @@ const Page1 = () => {
       <TopStickyUI>
         <GetInUI ref={getInRef} src={getIn} />
       </TopStickyUI>
-      {/* <ScrollDownUI ref={scrollDownRef}>
-          <img height="100%" src={scrollDown} />
-        </ScrollDownUI> */}
+      <ScrollDownUI ref={scrollDownRef}>
+        <img height="100%" src={scrollDown} />
+      </ScrollDownUI>
     </>
   );
 };

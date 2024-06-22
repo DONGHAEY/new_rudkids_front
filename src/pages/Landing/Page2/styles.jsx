@@ -14,29 +14,31 @@ export const Page2UI = styled.div`
 `;
 
 export const SectionUI = styled.div`
-  height: 30%;
-  /* background-color: gainsboro; */
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const ClothUI = styled.div`
-  width: 70%;
-  margin-top: 37%;
-  /* background-color: gainsboro; */
-  position: relative;
-  min-height: 70px;
+export const ClothSectionUI = styled.div`
+  width: 80%;
+  aspect-ratio: 1/1;
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: center;
+  position: relative;
+`;
+
+export const ClothImgUI = styled.img`
+  position: absolute;
+  height: 80%;
+  bottom: 0;
 `;
 
 export const FaceImgUI = styled.img`
-  position: absolute;
-  width: 50%;
-  top: -30%;
+  z-index: 1;
+  width: 39%;
 `;
 
 export const ForMakersImgUI = styled.img`
@@ -58,12 +60,12 @@ export const ArrowWrapperUI = styled.div`
 
 export const LeftArrowImgUI = styled.img`
   width: 30%;
-  margin-left: -15%;
+  margin-left: -10%;
 `;
 
 export const RightArrowImgUI = styled.img`
   width: 30%;
-  margin-right: -15%;
+  margin-right: -10%;
 `;
 
 export const NameBoxUI = styled.div`
