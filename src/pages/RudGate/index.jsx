@@ -35,7 +35,7 @@ import scanAnimation from "./assets/scanning.json";
 import joinUsImgSrc from "./assets/join_us.webp";
 import rudgateImgSrc from "./assets/rudgate.webp";
 import videoSrc from "./assets/video.mp4";
-import ImgInstaShareModal from "./ImgShareModal";
+import ImgInstaShareModal from "../../shared_components/ImgShareModal";
 import HelpSignModal from "./HelpSignModal";
 import { trackClickButton } from "../../shared_analytics";
 import { track } from "@amplitude/analytics-browser";

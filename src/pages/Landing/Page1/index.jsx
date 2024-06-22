@@ -78,23 +78,8 @@ const Page1 = () => {
         },
         "<"
       );
-    // gsap.fromTo(
-    //   getInRef.current,
-    //   { opacity: 1 },
-    //   {
-    //     opacity: 0,
-    //     scrollTrigger: {
-    //       pin: true,
-    //       trigger: firstRef.current,
-    //       start: "top top",
-    //       end: "bottom top",
-    //       invalidateOnRefresh: true,
-    //       // toggleActions: "play reverse play reverse",
-    //     },
-    //   }
-    // );
+    //
   }, []);
-  //
 
   return (
     <>

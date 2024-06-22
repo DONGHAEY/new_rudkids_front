@@ -1,14 +1,16 @@
 import styled from "styled-components";
+import background from "../assets/background.webp";
 
 export const Page2UI = styled.div`
   width: 100%;
-  justify-content: space-between;
   z-index: 0;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background: url(${background});
+  background-repeat: none;
+  background-size: cover;
 `;
 
 export const SectionUI = styled.div`
@@ -22,7 +24,7 @@ export const SectionUI = styled.div`
 
 export const ClothUI = styled.div`
   width: 70%;
-  /* margin-top: 20%; */
+  margin-top: 37%;
   /* background-color: gainsboro; */
   position: relative;
   min-height: 70px;

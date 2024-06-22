@@ -8,6 +8,7 @@ import gsap from "gsap";
 
 import Page1 from "./Page1";
 import Page2 from "./Page2";
+import EatingKid from "./EatingKid";
 
 const LandingPage = () => {
   useBodyBackground("rgba(255, 212, 0, 1)");
@@ -17,6 +18,7 @@ const LandingPage = () => {
       <LandingLoader />
       <PageUI>
         <Page1 />
+        <EatingKid />
         <Page2 />
         <FooterImgUI src={footer} />
       </PageUI>

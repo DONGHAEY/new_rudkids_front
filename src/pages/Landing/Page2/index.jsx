@@ -1,5 +1,5 @@
 import "../fonts.css";
-
+import { useScreenshot } from "use-react-screenshot";
 import {
   ArrowWrapperUI,
   ClothUI,
@@ -26,10 +26,16 @@ import left from "./assets/buttons/left.webp";
 import right from "./assets/buttons/right.webp";
 import forMakers from "./assets/for_makers.webp";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { GameBar } from "./GameBar";
+import { useWindowSize } from "../../../hooks/useWindowSize";
+
+import ImgShareModal from "../../../shared_components/ImgShareModal";
 
 const Page2 = () => {
+  const windowSize = useWindowSize();
+
+  const pageRef = useRef();
   //
   const faces = [
     { img: face1Img, name: "Jim Morisson" },
@@ -40,9 +46,9 @@ const Page2 = () => {
 
   const clothes = [t1Img, t2Img, t3Img, t4Img];
   const [currClothesIdx, setCurrClothesIdx] = useState(0);
+  const [dataUri, takeScreenshot] = useScreenshot();
 
   const [currIdx, setCurrIdx] = useState(0);
-
   const leftClkHandler = () => {
     if (currClothesIdx - 1 < 0) {
       setCurrIdx(clothes.length - 1);
@@ -54,8 +60,17 @@ const Page2 = () => {
     setCurrClothesIdx((currClothesIdx + 1) % clothes.length);
   };
 
+  const takePageScreenShot = async () => {
+    takeScreenshot(pageRef.current);
+  };
+
   return (
-    <Page2UI>
+    <Page2UI
+      ref={pageRef}
+      style={{
+        minHeight: windowSize.height,
+      }}
+    >
       <SectionUI>
         <ClothUI>
           <FaceImgUI src={faces[currIdx].img} />
@@ -74,8 +89,10 @@ const Page2 = () => {
           onChange={() => {
             setCurrIdx((currIdx + 1) % faces.length);
           }}
+          onTake={takePageScreenShot}
         />
       </SectionUI>
+      <ImgShareModal dataUri={dataUri} />
     </Page2UI>
   );
 };
