@@ -74,6 +74,7 @@ const Page2 = () => {
       ref={pageRef}
       style={{
         minHeight: "100vh",
+        paddingTop: "20%",
       }}
     >
       <SectionUI>

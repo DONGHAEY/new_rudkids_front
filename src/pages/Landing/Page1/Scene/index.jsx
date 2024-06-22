@@ -1,8 +1,10 @@
 import { OrbitControls, useGLTF } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 
 const Scene = () => {
+  const three = useThree();
   const gltf = useGLTF("/Models/chain_box.glb");
   const boxRef = useRef();
 
@@ -19,6 +21,7 @@ const Scene = () => {
 
   useEffect(() => {
     rotateBox();
+    three.camera.position.y = 5;
   }, []);
 
   return (
@@ -29,13 +32,13 @@ const Scene = () => {
         recieveShadow
         object={gltf.scene}
         scale={1}
-        position-y={1.5}
+        position-y={2}
       />
       <directionalLight
         intensity={5}
         lookAt={[0, 0, 0]}
-        position={[0, 10, 0]}
-        color="white"
+        position={[0, 10, 10]}
+        color="gray"
       />
       <directionalLight
         intensity={5}

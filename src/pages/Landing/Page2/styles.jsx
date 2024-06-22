@@ -70,7 +70,7 @@ export const RightArrowImgUI = styled.img`
 
 export const NameBoxUI = styled.div`
   width: 55%;
-  min-height: 30px;
+  height: 30px;
   background-color: blue;
   font-size: max(1.2vw, 20px);
   color: white;
@@ -78,7 +78,8 @@ export const NameBoxUI = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 0%;
+  /* line-height: -30%; */
+  padding-top: 2%;
   border-radius: 10px;
   font-family: boba;
   border: solid 5px rgba(204, 204, 204, 1);

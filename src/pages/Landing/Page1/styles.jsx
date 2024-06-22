@@ -91,22 +91,20 @@ export const TopStickyUI = styled.div`
   max-width: 430px;
   margin: 0 auto;
   z-index: 9;
-  pointer-events: none;
-  touch-action: none;
 `;
 
 export const ScrollDownUI = styled.div`
   position: fixed;
   max-width: 430px;
   width: 100%;
-  bottom: 3%;
+  bottom: 1%;
   z-index: 999;
   margin: 0 auto;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 5%;
+  height: 8%;
 `;
 
 export const FaceImgUI = styled.img`
@@ -119,6 +117,8 @@ export const GetInUI = styled.img`
   border: none;
   width: 80%;
   position: absolute;
+  /* pointer-events: all;
+  touch-action: auto; */
 `;
 
 export const RollingMessagesUI = styled.div`

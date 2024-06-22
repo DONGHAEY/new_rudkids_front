@@ -23,16 +23,20 @@ import fucChild from "./assets/fuc_child.webp";
 import Scene from "./Scene";
 import starsBack from "./assets/star_background.webp";
 import scrollDown from "./assets/scroll_down.webp";
+import star from "./assets/star.webp";
 import Marquee from "react-fast-marquee";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useWindowSize } from "../../../hooks/useWindowSize";
+import { useNavigate } from "react-router-dom";
 
 const Page1 = () => {
+  const navigate = useNavigate();
   const windowSize = useWindowSize();
   const firstRef = useRef();
   const logoRef = useRef();
   const getInRef = useRef();
   const scrollDownRef = useRef();
+  const fucManRef = useRef();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -63,7 +67,7 @@ const Page1 = () => {
           width: "80%",
         },
         {
-          top: "2%",
+          top: "1.5%",
           width: "43%",
           right: "3%",
         },
@@ -79,7 +83,23 @@ const Page1 = () => {
       )
       .to(scrollDownRef.current, {
         opacity: 0,
+        scale: 0,
       });
+    gsap.to(scrollDownRef.current, {
+      marginBottom: "2%",
+      yoyo: true,
+      repeat: -1,
+      ease: "none",
+      duration: 1,
+    });
+    gsap.to(fucManRef.current, {
+      bottom: 0,
+      scale: 0,
+      yoyo: true,
+      repeatDelay: 4,
+      repeat: -1,
+      duration: 1.4,
+    });
   }, []);
 
   return (
@@ -92,10 +112,17 @@ const Page1 = () => {
       >
         <RollingMessagesUI>
           <Marquee>
-            <p>No BOARING ADULTS</p>
-            <p>WE ARE RUDKIDS</p>
-            <p>No BOARING ADULTS</p>
-            <p>WE ARE RUDKIDS</p>
+            <p>RUDE KIDS ONLY</p>
+            <img src={star} height="30px" />
+            <p>NO BORING ADULTS</p>
+            <img src={star} height="30px" />
+            <p>WEIRD PLACE</p>
+            <img src={star} height="30px" />
+            <p>RUDE KIDS ONLY</p>
+            <img src={star} height="30px" />
+            <p>NO BORING ADULTS</p>
+            <img src={star} height="30px" />
+            <p>WEIRD PLACE</p>
           </Marquee>
         </RollingMessagesUI>
         <MiddleSectionUI>
@@ -107,7 +134,7 @@ const Page1 = () => {
         <TopSectionUI>
           <RudkidsOnlyImgUI src={rudkidsOnly} />
         </TopSectionUI>
-        <BotomSectionUI>
+        <BotomSectionUI ref={fucManRef}>
           <img width="50%" src={fucChild} />
         </BotomSectionUI>
         <BackImgUI src={starsBack} />
@@ -116,7 +143,13 @@ const Page1 = () => {
         <LogoImgUI src={logo} ref={logoRef} />
       </LogoWrapperUI>
       <TopStickyUI>
-        <GetInUI ref={getInRef} src={getIn} />
+        <GetInUI
+          ref={getInRef}
+          src={getIn}
+          onClick={() => {
+            navigate("/login");
+          }}
+        />
       </TopStickyUI>
       <ScrollDownUI ref={scrollDownRef}>
         <img height="100%" src={scrollDown} />
