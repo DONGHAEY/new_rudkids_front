@@ -36,7 +36,7 @@ export const routes = {
   },
   ["landing"]: {
     name: "landing",
-    viewTrack: false,
+    viewTrack: true,
     path: "landing",
     paramKeys: [],
     element: LandingPage,

@@ -12,7 +12,7 @@ export const useBodyUpdownScroll = () => {
     const scrollPercentage = (scrollTop * 100) / (offsetHeight - clientHeight);
     scrollPos = scrollPercentage.toFixed(0);
     if (scrollPos <= maxScrollPos) return;
-    maxScrollPos = maxScrollPos;
+    maxScrollPos = scrollPos;
   }, []);
 
   useEffect(() => {

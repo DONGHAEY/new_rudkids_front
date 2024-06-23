@@ -122,9 +122,9 @@ const RudGatePage = () => {
           stream.removeTrack(track);
           track.stop();
         });
-        return;
+      } else {
+        stream.stop();
       }
-      stream.stop();
     }
     navigate("/login", {
       replace: true,
