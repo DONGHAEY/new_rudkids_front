@@ -16,11 +16,14 @@ import {
 } from "./styles";
 import { FiShare } from "react-icons/fi";
 import useCreateInvitationMutation from "../../../mutations/invitation/useCreateInvitationMutation";
+import { track } from "@amplitude/analytics-browser";
+import useDeleteInvitationMutation from "../../../mutations/invitation/deleteInvitationMutation";
 
 const max = 3;
 const Invite = ({ close }) => {
-  const createInvitationMutation = useCreateInvitationMutation("profile");
   const { data: userData } = useUserQuery();
+  const createInvitationMutation = useCreateInvitationMutation();
+  const deleteInvitationMutation = useDeleteInvitationMutation();
 
   const inviteCnt = userData?.invitateCnt;
 
@@ -32,8 +35,12 @@ const Invite = ({ close }) => {
         text: "이곳에서 일상속의 재미 프로젝트들을 만나보세요!",
         url: `https://www.rud.kids/invitation/${invitationId}`,
       });
+      track("send tickets", {
+        times: userData.invitateCnt,
+        type: "profile",
+      });
     } catch (e) {
-      // alert("제대로 완료해주세요.", invitationId);
+      await deleteInvitationMutation.mutateAsync(invitationId);
     }
   };
 

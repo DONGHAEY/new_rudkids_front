@@ -23,7 +23,7 @@ const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
       await updateImageUrlMutation.mutateAsync(instaImgUrl);
       const isRegistering = me?.instaId ? false : true;
       if (isRegistering) {
-        track("comeplete sign up", {
+        track("complete sign up", {
           user_id: me.id,
           date: moment(me.createdAt).format("YYYY-MM-DD"),
         });

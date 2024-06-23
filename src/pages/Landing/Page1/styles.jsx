@@ -5,8 +5,10 @@ export const Page1UI = styled.div`
   height: ${({ height }) => height ?? "100vh"};
   width: 100%;
   position: relative;
-  /* background-color: green; */
   opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: radial-gradient(rgba(255, 242, 164, 1), rgba(255, 212, 0, 1));
 `;
 
@@ -46,7 +48,7 @@ export const CanvasDragBlocker = styled.div`
 
 export const BotomSectionUI = styled.div`
   position: absolute;
-  bottom: 20%;
+  bottom: 15%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -57,31 +59,35 @@ export const BotomSectionUI = styled.div`
   z-index: 3;
 `;
 
-export const LogoWrapperUI = styled.div`
+export const TopFixedUI = styled.div`
   position: fixed;
   width: 100%;
+  height: 15%;
   max-width: 430px;
   margin-inline: 0 auto;
   top: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 9;
-  pointer-events: none;
-  touch-action: none;
 `;
 
 export const LogoImgUI = styled.img`
-  /* position: absolute; */
+  width: 20%;
+  top: -5%;
+  position: fixed;
 `;
 
 export const RudkidsOnlyImgUI = styled.img`
-  width: 70%;
-  margin-top: 5%;
+  width: 65%;
+  position: absolute;
+  top: 21%;
+  z-index: 1;
 `;
 
 export const TopStickyUI = styled.div`
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
@@ -113,12 +119,15 @@ export const FaceImgUI = styled.img`
   top: -30%;
 `;
 
-export const GetInUI = styled.img`
-  border: none;
-  width: 80%;
-  position: absolute;
-  /* pointer-events: all;
-  touch-action: auto; */
+export const GetInUI = styled.div`
+  position: fixed;
+  width: 100%;
+  max-width: 300px;
+  height: 10%;
+  margin-inline: auto;
+  top: 78%;
+  background-color: black;
+  z-index: 9;
 `;
 
 export const RollingMessagesUI = styled.div`

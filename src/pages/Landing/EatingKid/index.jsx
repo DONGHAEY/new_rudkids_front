@@ -17,27 +17,24 @@ const EatingKid = () => {
   const a = 100 / (지구개수 + 1);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: kidWrapperRef.current,
-        scrub: 0.3,
-        start: "top center",
-        end: "bottom center",
-        onUpdate: (e) => {
-          let sectionSize = Math.floor(100 / (지구개수 * 2));
-          const t = Math.floor((e.progress * 100) / sectionSize);
-          if (t % 2 !== 0) {
-            setMopen(true);
-          } else {
-            setMopen(false);
-            setCurridx(Math.floor(t / 2));
-          }
-          const left = (a * t) / 2;
-          gsap.set(kidRef.current, {
-            left: `${left - 2}%`,
-          });
-        },
+    ScrollTrigger.create({
+      trigger: kidWrapperRef.current,
+      scrub: 0.3,
+      start: "top center",
+      end: "bottom center",
+      onUpdate: (e) => {
+        let sectionSize = Math.floor(100 / (지구개수 * 2));
+        const t = Math.floor((e.progress * 100) / sectionSize);
+        if (t % 2 !== 0) {
+          setMopen(true);
+        } else {
+          setMopen(false);
+          setCurridx(Math.floor(t / 2));
+        }
+        const left = (a * t) / 2;
+        gsap.set(kidRef.current, {
+          left: `${left - 2}%`,
+        });
       },
     });
   }, []);

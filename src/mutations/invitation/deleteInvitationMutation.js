@@ -2,28 +2,27 @@ import { useMutation, useQueryClient } from "react-query";
 import mutationKey from "../../mutations/key";
 import axiosInstance from "../../axiosInstance";
 import { KEY as userQueryKey } from "../../queries/user/useUserQuery";
-import { track } from "@amplitude/analytics-browser";
 
-export const KEY = [mutationKey.invitation, "create"];
+export const KEY = [mutationKey.invitation, "delete"];
 
-const createInvitation = async () => {
+const deleteInvitation = async (invitationId) => {
   return await axiosInstance
-    .post("/api/invitation/friend")
+    .delete(`/api/invitation/${invitationId}`)
     .then((res) => res.data);
 };
 
-const useCreateInvitationMutation = () => {
+const useDeleteInvitationMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: createInvitation,
+    mutationFn: async (invitationId) => deleteInvitation(invitationId),
     onSuccess: async () => {
       const me = await queryClient.getQueryData(userQueryKey("my"));
       if (!me) return;
-      me.invitateCnt++;
+      me.invitateCnt--;
       await queryClient.setQueryData(userQueryKey("my"), me);
     },
   });
 };
 
-export default useCreateInvitationMutation;
+export default useDeleteInvitationMutation;

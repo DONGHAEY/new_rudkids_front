@@ -5,7 +5,7 @@ import {
   CanvasUI,
   GetInUI,
   LogoImgUI,
-  LogoWrapperUI,
+  TopFixedUI,
   MiddleSectionUI,
   RollingMessagesUI,
   RudkidsOnlyImgUI,
@@ -28,13 +28,13 @@ import Marquee from "react-fast-marquee";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import { useNavigate } from "react-router-dom";
+import EatingKid from "../EatingKid";
 
 const Page1 = () => {
   const navigate = useNavigate();
   const windowSize = useWindowSize();
   const firstRef = useRef();
   const logoRef = useRef();
-  const getInRef = useRef();
   const scrollDownRef = useRef();
   const fucManRef = useRef();
 
@@ -53,26 +53,13 @@ const Page1 = () => {
     //
     tl.fromTo(
       logoRef.current,
-      { width: "55%", marginTop: "15%" },
+      { width: "55%", top: "15%" },
       {
-        marginTop: "2%",
+        top: "2%",
         marginLeft: "-50%",
         width: "38%",
       }
     )
-      .fromTo(
-        getInRef.current,
-        {
-          top: "78%",
-          width: "80%",
-        },
-        {
-          top: "1.5%",
-          width: "43%",
-          right: "3%",
-        },
-        "<"
-      )
       .fromTo(
         firstRef.current,
         { opacity: 1 },
@@ -126,31 +113,19 @@ const Page1 = () => {
           </Marquee>
         </RollingMessagesUI>
         <MiddleSectionUI>
-          <CanvasUI>
+          <CanvasUI shadows={"soft"}>
             <Scene />
           </CanvasUI>
           <CanvasDragBlocker />
         </MiddleSectionUI>
-        <TopSectionUI>
-          <RudkidsOnlyImgUI src={rudkidsOnly} />
-        </TopSectionUI>
+        <RudkidsOnlyImgUI src={rudkidsOnly} />
         <BotomSectionUI ref={fucManRef}>
-          <img width="50%" src={fucChild} />
+          <img width="80%" src={fucChild} />
         </BotomSectionUI>
         <BackImgUI src={starsBack} />
       </Page1UI>
-      <LogoWrapperUI>
-        <LogoImgUI src={logo} ref={logoRef} />
-      </LogoWrapperUI>
-      <TopStickyUI>
-        <GetInUI
-          ref={getInRef}
-          src={getIn}
-          onClick={() => {
-            navigate("/login");
-          }}
-        />
-      </TopStickyUI>
+      {/* <TopFixedUI></TopFixedUI> */}
+      <LogoImgUI src={logo} ref={logoRef} />
       <ScrollDownUI ref={scrollDownRef}>
         <img height="100%" src={scrollDown} />
       </ScrollDownUI>
