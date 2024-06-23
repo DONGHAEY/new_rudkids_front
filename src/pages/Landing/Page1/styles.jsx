@@ -103,7 +103,7 @@ export const ScrollDownUI = styled.div`
   position: fixed;
   max-width: 430px;
   width: 100%;
-  bottom: 1%;
+  bottom: 7%;
   z-index: 999;
   margin: 0 auto;
   text-align: center;

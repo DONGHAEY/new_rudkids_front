@@ -30,7 +30,6 @@ import { useWindowSize } from "../../../hooks/useWindowSize";
 import { useNavigate } from "react-router-dom";
 
 const Page1 = () => {
-  const navigate = useNavigate();
   const windowSize = useWindowSize();
   const firstRef = useRef();
   const logoRef = useRef();

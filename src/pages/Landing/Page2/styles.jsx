@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import background from "../assets/background.webp";
+import background from "./assets/background.webp";
 
 export const Page2UI = styled.div`
   width: 100%;
@@ -11,6 +11,7 @@ export const Page2UI = styled.div`
   background: url(${background});
   background-repeat: none;
   background-size: cover;
+  background-size: 120%;
 `;
 
 export const SectionUI = styled.div`
@@ -32,13 +33,13 @@ export const ClothSectionUI = styled.div`
 
 export const ClothImgUI = styled.img`
   position: absolute;
-  height: 80%;
+  height: 78%;
   bottom: 0;
 `;
 
 export const FaceImgUI = styled.img`
   z-index: 1;
-  width: 39%;
+  width: 36%;
 `;
 
 export const ForMakersImgUI = styled.img`
