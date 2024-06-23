@@ -34,7 +34,7 @@ import scanAnimation from "./assets/scanning.json";
 import joinUsImgSrc from "./assets/join_us.webp";
 import rudgateImgSrc from "./assets/rudgate.webp";
 import videoSrc from "./assets/video.mp4";
-import ImgInstaShareModal from "../../shared_components/ImgShareModal";
+import ImgShareModal from "../../shared_components/ImgShareModal";
 import HelpSignModal from "./HelpSignModal";
 import { trackClickButton } from "../../shared_analytics";
 import { track } from "@amplitude/analytics-browser";
@@ -56,20 +56,21 @@ export const getPassedResult = () => {
 };
 
 const maxScanLtShowCnt = 3;
+
 const RudGatePage = () => {
   const navigate = useNavigate();
   const shareSceneRef = useRef();
   const cameraRef = useRef(null);
   const canvasRef = useRef(null);
 
-  const [screenshot, takeScreenshot] = useScreenshot(shareSceneRef.current);
   const [passStat, setPassStat] = useState("none");
   const [scanMode, setScanMode] = useState(false);
-  const [dataUri, setDataUri] = useState();
   const [scanLtShowCnt, setScanLtShowCnt] = useState(0);
   const [allowStat, setAllowStat] = useState(false);
+  const [screenshotOpen, setScreenshotOpen] = useState(false);
 
   const hasResult = passStat !== "none";
+
   const takeAPhotoBtnClickHandler = async () => {
     if (!allowStat) {
       requestVideoPermission();
@@ -99,7 +100,9 @@ const RudGatePage = () => {
       setPassStat(passStat);
     });
     const image = canvasRef.current;
-    await hands.send({ image });
+    try {
+      await hands.send({ image });
+    } catch (e) {}
   };
 
   const closeBtnClickHandler = () => {
@@ -135,16 +138,21 @@ const RudGatePage = () => {
     trackClickButton("share", {
       page: "rud gate",
     });
-    await takeScreenshot(shareSceneRef.current);
+    setScreenshotOpen(true);
   };
 
   const scanLtCmplteHandler = (e) => {
     if (e !== "loop") {
       return;
     }
-    if (passStat !== null || maxScanLtShowCnt >= scanLtShowCnt) {
+    if (passStat !== "none") {
       setScanLtShowCnt(0);
       setScanMode(false);
+      return;
+    } else if (scanLtShowCnt >= maxScanLtShowCnt) {
+      setScanLtShowCnt(0);
+      setScanMode(false);
+      setPassStat(false);
       return;
     }
     setScanLtShowCnt(scanLtShowCnt + 1);
@@ -163,16 +171,6 @@ const RudGatePage = () => {
       is_allowed: allowStat,
     });
   };
-
-  useEffect(() => {
-    if (localStorage.getItem(StorageKey.rud_gate_video_finished) === "true") {
-      requestVideoPermission();
-    }
-  }, []);
-
-  useEffect(() => {
-    setDataUri(screenshot);
-  }, [screenshot]);
 
   useEffect(() => {
     if (!allowStat) return;
@@ -197,7 +195,6 @@ const RudGatePage = () => {
         <CameraAllowBtnUI onClick={requestVideoPermission}>
           Camera Allow
         </CameraAllowBtnUI>
-
         <CanvasUI ref={canvasRef} />
         {allowStat && <HelpSignModal />}
         {allowStat && (
@@ -265,21 +262,18 @@ const RudGatePage = () => {
           </ButtonListUI>
         )}
       </BottomSectionUI>
-      <ImgInstaShareModal
-        dataUri={dataUri}
-        setDataUri={setDataUri}
+      <ImgShareModal
+        targetRef={shareSceneRef}
+        open={screenshotOpen}
+        close={() => setScreenshotOpen(false)}
         fileName="rud-gate.png"
       />
-      {!allowStat && (
-        <CallingModal
-          videoSrc={videoSrc}
-          onClosed={() => {
-            requestVideoPermission();
-            localStorage.setItem(StorageKey.rud_gate_video_finished, true);
-          }}
-          pageFor="rud gate"
-        />
-      )}
+
+      <CallingModal
+        videoSrc={videoSrc}
+        onClosed={() => requestVideoPermission()}
+        pageFor="rud gate"
+      />
     </PageUI>
   );
 };

@@ -18,11 +18,13 @@ const AuthHoc = (Page) => {
         setUserId(userData.id);
         setRender(true);
         return;
-      } else if (currentLocation === "/") {
-        setUserId(null);
-        setRender(true);
-        return;
-      } else {
+      }
+      // else if (currentLocation === "/") {
+      //   setUserId(null);
+      //   setRender(true);
+      //   return;
+      // }
+      else {
         setUserId(null);
         setLoginCallbackUrl(currentLocation);
         navigate(`/login`);

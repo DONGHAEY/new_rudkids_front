@@ -1,21 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import RudAlert from "../RudAlert";
 import shareImgSrc from "./assets/share_way.webp";
 import { ContentImgWrapperUI, ModalUI, RudAlertWrapperUI } from "./styles";
+import { useScreenshot } from "use-react-screenshot";
 
-const ImgShareModal = ({ dataUri, setDataUri, fileName = "" }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const ImgShareModal = ({
+  open,
+  close,
+  targetRef,
+  fileName = "",
+  ...navigatorProps
+}) => {
+  const [screenshot, takeScreenshot] = useScreenshot();
 
   useEffect(() => {
-    if (dataUri) setIsOpen(true);
-  }, [dataUri]);
+    if (!open) return;
+    takeScreenshot(targetRef.current);
+  }, [open]);
 
   const captureShare = async () => {
-    if (!dataUri) {
+    if (!screenshot) {
       alert("일시적인 오류입니다");
       return;
     }
-    const response = await fetch(dataUri);
+    const response = await fetch(screenshot);
     const blob = await response.blob();
     const filename = `${fileName ?? "rud-gate.png"}`;
     const imageFile = new File([blob], filename, {
@@ -24,16 +32,12 @@ const ImgShareModal = ({ dataUri, setDataUri, fileName = "" }) => {
     await window.navigator.share({
       files: [imageFile],
       text: "https://instagram.com/rudkidss",
+      ...navigatorProps,
     });
   };
 
-  const close = () => {
-    setDataUri(null);
-    setIsOpen(false);
-  };
-
   return (
-    <ModalUI open={isOpen} onClose={close}>
+    <ModalUI open={open} onClose={close} disableAutoFocus>
       <RudAlertWrapperUI>
         <RudAlert onClose={close}>
           <ContentImgWrapperUI>

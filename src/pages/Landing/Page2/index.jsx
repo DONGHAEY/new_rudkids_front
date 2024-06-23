@@ -1,5 +1,4 @@
 import "../fonts.css";
-import { useScreenshot } from "use-react-screenshot";
 import {
   ArrowWrapperUI,
   ClothSectionUI,
@@ -31,11 +30,11 @@ import { GameBar } from "./GameBar";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import ImgShareModal from "../../../shared_components/ImgShareModal";
 import clickSnd from "./assets/click.mp3";
-import * as htmlToImg from "html-to-image";
 
 const Page2 = () => {
   //
   const windowSize = useWindowSize();
+  const [pageScreenshotOpen, setPageScreenshotOpen] = useState(false);
   const pageRef = useRef();
 
   const faces = [
@@ -47,8 +46,6 @@ const Page2 = () => {
 
   const clothes = [t1Img, t2Img, t3Img, t4Img];
   const [currClothesIdx, setCurrClothesIdx] = useState(0);
-  const [screenshot, takeScreenshot] = useScreenshot();
-  const [dataUri, setDataUri] = useState("");
   const [currIdx, setCurrIdx] = useState(0);
 
   const clickAdo = new Audio(clickSnd);
@@ -66,8 +63,7 @@ const Page2 = () => {
   };
 
   const takePageScreenShot = async () => {
-    const dataUri = await htmlToImg.toPng(pageRef.current);
-    setDataUri(dataUri);
+    setPageScreenshotOpen(true);
   };
 
   return (
@@ -100,8 +96,9 @@ const Page2 = () => {
         />
       </SectionUI>
       <ImgShareModal
-        dataUri={dataUri}
-        setDataUri={setDataUri}
+        targetRef={pageRef}
+        open={pageScreenshotOpen}
+        close={() => setPageScreenshotOpen(false)}
         fileName="rud-clothes.png"
       />
     </Page2UI>
