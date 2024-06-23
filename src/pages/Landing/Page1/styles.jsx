@@ -65,7 +65,7 @@ export const TopFixedUI = styled.div`
   height: 15%;
   max-width: 430px;
   margin-inline: 0 auto;
-  top: 0;
+  top: 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,9 +74,9 @@ export const TopFixedUI = styled.div`
 `;
 
 export const LogoImgUI = styled.img`
-  width: 20%;
-  top: -5%;
-  position: fixed;
+  position: absolute;
+  max-width: 200px;
+  z-index: 9;
 `;
 
 export const RudkidsOnlyImgUI = styled.img`

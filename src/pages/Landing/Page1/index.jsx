@@ -28,7 +28,6 @@ import Marquee from "react-fast-marquee";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import { useNavigate } from "react-router-dom";
-import EatingKid from "../EatingKid";
 
 const Page1 = () => {
   const navigate = useNavigate();
@@ -53,11 +52,11 @@ const Page1 = () => {
     //
     tl.fromTo(
       logoRef.current,
-      { width: "55%", top: "15%" },
+      { width: "50%", top: "30%" },
       {
-        top: "2%",
-        marginLeft: "-50%",
-        width: "38%",
+        top: "0%",
+        left: "3%",
+        width: "40%",
       }
     )
       .fromTo(
@@ -124,8 +123,9 @@ const Page1 = () => {
         </BotomSectionUI>
         <BackImgUI src={starsBack} />
       </Page1UI>
-      {/* <TopFixedUI></TopFixedUI> */}
-      <LogoImgUI src={logo} ref={logoRef} />
+      <TopFixedUI>
+        <LogoImgUI src={logo} ref={logoRef} />
+      </TopFixedUI>
       <ScrollDownUI ref={scrollDownRef}>
         <img height="100%" src={scrollDown} />
       </ScrollDownUI>

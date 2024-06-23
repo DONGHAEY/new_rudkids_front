@@ -34,6 +34,7 @@ const AuthHoc = (Page) => {
       if (!userData) return;
       if (!userData?.isInvited) {
         navigate("/401");
+        return;
       }
       if (!userData?.instagramId) {
         navigate(`/insta-info?callback=${currentLocation}`);

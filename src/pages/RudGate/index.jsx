@@ -27,7 +27,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import correctSrc from "./assets/correct.webp";
 import wrongSrc from "./assets/wrong.webp";
 import closeIconSrc from "./assets/closeicon.svg";
-import { useScreenshot } from "use-react-screenshot";
+import * as htmlToImg from "html-to-image";
 import StorageKey from "../../storageKey";
 import { useNavigate } from "react-router-dom";
 import CallingModal from "../../shared_components/Calling";
@@ -64,7 +64,7 @@ const RudGatePage = () => {
 
   const [passStat, setPassStat] = useState("none");
   const [scanMode, setScanMode] = useState(false);
-  const [screenshot, takeScreenshot] = useScreenshot();
+  const [dataUri, setDataUri] = useState();
   const [scanLtShowCnt, setScanLtShowCnt] = useState(0);
   const [allowStat, setAllowStat] = useState(false);
 
@@ -111,16 +111,32 @@ const RudGatePage = () => {
   const getInBtnClickHandler = () => {
     trackClickButton("get in");
     setPassResult(true);
+    const stream = cameraRef.current?.video.srcObject;
+    if (stream) {
+      if (stream.getVideoTracks && stream.getAudioTracks) {
+        stream.getVideoTracks().map((track) => {
+          stream.removeTrack(track);
+          track.stop();
+        });
+        stream.getAudioTracks().map((track) => {
+          stream.removeTrack(track);
+          track.stop();
+        });
+        return;
+      }
+      stream.stop();
+    }
     navigate("/login", {
       replace: true,
     });
   };
 
-  const shareBtnClickHandler = () => {
+  const shareBtnClickHandler = async () => {
     trackClickButton("share", {
       page: "rud gate",
     });
-    takeScreenshot(shareSceneRef.current);
+    const dataUri = await htmlToImg.toPng(shareSceneRef.current);
+    setDataUri(dataUri);
   };
 
   const scanLtCmplteHandler = (e) => {
@@ -130,6 +146,7 @@ const RudGatePage = () => {
     if (passStat !== null || maxScanLtShowCnt >= scanLtShowCnt) {
       setScanLtShowCnt(0);
       setScanMode(false);
+      return;
     }
     setScanLtShowCnt(scanLtShowCnt + 1);
   };
@@ -152,24 +169,6 @@ const RudGatePage = () => {
     if (localStorage.getItem(StorageKey.rud_gate_video_finished) === "true") {
       requestVideoPermission();
     }
-    return () => {
-      const stream = cameraRef.current?.video.srcObject;
-      if (stream) {
-        // alert("video stopped");
-        if (stream.getVideoTracks && stream.getAudioTracks) {
-          stream.getVideoTracks().map((track) => {
-            stream.removeTrack(track);
-            track.stop();
-          });
-          stream.getAudioTracks().map((track) => {
-            stream.removeTrack(track);
-            track.stop();
-          });
-        } else {
-          stream.stop();
-        }
-      }
-    };
   }, []);
 
   useEffect(() => {
@@ -263,7 +262,7 @@ const RudGatePage = () => {
           </ButtonListUI>
         )}
       </BottomSectionUI>
-      <ImgInstaShareModal dataUri={screenshot} />
+      <ImgInstaShareModal dataUri={dataUri} setDataUri={setDataUri} />
       {!allowStat && (
         <CallingModal
           videoSrc={videoSrc}

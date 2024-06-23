@@ -3,7 +3,7 @@ import RudAlert from "../RudAlert";
 import shareImgSrc from "./assets/share_way.webp";
 import { ContentImgWrapperUI, ModalUI, RudAlertWrapperUI } from "./styles";
 
-const ImgShareModal = ({ dataUri }) => {
+const ImgShareModal = ({ dataUri, setDataUri, fileName = "" }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const ImgShareModal = ({ dataUri }) => {
     }
     const response = await fetch(dataUri);
     const blob = await response.blob();
-    const filename = `rud-gate.png`;
+    const filename = `${fileName ?? "rud-gate.png"}`;
     const imageFile = new File([blob], filename, {
       type: blob.type,
     });
@@ -27,7 +27,10 @@ const ImgShareModal = ({ dataUri }) => {
     });
   };
 
-  const close = () => setIsOpen(false);
+  const close = () => {
+    setDataUri(null);
+    setIsOpen(false);
+  };
 
   return (
     <ModalUI open={isOpen} onClose={close}>

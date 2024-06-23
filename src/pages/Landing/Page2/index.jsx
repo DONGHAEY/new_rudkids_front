@@ -26,19 +26,18 @@ import t4Img from "./assets/t-shirts/t4.webp";
 import left from "./assets/buttons/left.webp";
 import right from "./assets/buttons/right.webp";
 import forMakers from "./assets/for_makers.webp";
-
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GameBar } from "./GameBar";
 import { useWindowSize } from "../../../hooks/useWindowSize";
-
 import ImgShareModal from "../../../shared_components/ImgShareModal";
 import clickSnd from "./assets/click.mp3";
+import * as htmlToImg from "html-to-image";
 
 const Page2 = () => {
-  const windowSize = useWindowSize();
-
-  const pageRef = useRef();
   //
+  const windowSize = useWindowSize();
+  const pageRef = useRef();
+
   const faces = [
     { img: face1Img, name: "Jim Morisson" },
     { img: face2Img, name: "curt cobain" },
@@ -48,7 +47,8 @@ const Page2 = () => {
 
   const clothes = [t1Img, t2Img, t3Img, t4Img];
   const [currClothesIdx, setCurrClothesIdx] = useState(0);
-  const [dataUri, takeScreenshot] = useScreenshot();
+  const [screenshot, takeScreenshot] = useScreenshot();
+  const [dataUri, setDataUri] = useState("");
   const [currIdx, setCurrIdx] = useState(0);
 
   const clickAdo = new Audio(clickSnd);
@@ -66,7 +66,8 @@ const Page2 = () => {
   };
 
   const takePageScreenShot = async () => {
-    takeScreenshot(pageRef.current);
+    const dataUri = await htmlToImg.toPng(pageRef.current);
+    setDataUri(dataUri);
   };
 
   return (
@@ -98,7 +99,11 @@ const Page2 = () => {
           onTake={takePageScreenShot}
         />
       </SectionUI>
-      <ImgShareModal dataUri={dataUri} />
+      <ImgShareModal
+        dataUri={dataUri}
+        setDataUri={setDataUri}
+        fileName="rud-clothes.png"
+      />
     </Page2UI>
   );
 };
