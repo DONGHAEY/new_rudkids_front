@@ -27,7 +27,6 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import correctSrc from "./assets/correct.webp";
 import wrongSrc from "./assets/wrong.webp";
 import closeIconSrc from "./assets/closeicon.svg";
-import * as htmlToImg from "html-to-image";
 import StorageKey from "../../storageKey";
 import { useNavigate } from "react-router-dom";
 import CallingModal from "../../shared_components/Calling";
@@ -43,6 +42,7 @@ import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { drawVideoScene } from "./utils/draw";
 import PublicLottieAssets from "../../global/public-lottie-assets";
+import { useScreenshot } from "use-react-screenshot";
 import takeAPhotoSnd from "./assets/take_a_photo.mp3";
 
 export const setPassResult = (passStat) => {
@@ -62,6 +62,7 @@ const RudGatePage = () => {
   const cameraRef = useRef(null);
   const canvasRef = useRef(null);
 
+  const [screenshot, takeScreenshot] = useScreenshot(shareSceneRef.current);
   const [passStat, setPassStat] = useState("none");
   const [scanMode, setScanMode] = useState(false);
   const [dataUri, setDataUri] = useState();
@@ -69,7 +70,6 @@ const RudGatePage = () => {
   const [allowStat, setAllowStat] = useState(false);
 
   const hasResult = passStat !== "none";
-
   const takeAPhotoBtnClickHandler = async () => {
     if (!allowStat) {
       requestVideoPermission();
@@ -135,8 +135,7 @@ const RudGatePage = () => {
     trackClickButton("share", {
       page: "rud gate",
     });
-    const dataUri = await htmlToImg.toPng(shareSceneRef.current);
-    setDataUri(dataUri);
+    await takeScreenshot(shareSceneRef.current);
   };
 
   const scanLtCmplteHandler = (e) => {
@@ -170,6 +169,10 @@ const RudGatePage = () => {
       requestVideoPermission();
     }
   }, []);
+
+  useEffect(() => {
+    setDataUri(screenshot);
+  }, [screenshot]);
 
   useEffect(() => {
     if (!allowStat) return;
@@ -262,7 +265,11 @@ const RudGatePage = () => {
           </ButtonListUI>
         )}
       </BottomSectionUI>
-      <ImgInstaShareModal dataUri={dataUri} setDataUri={setDataUri} />
+      <ImgInstaShareModal
+        dataUri={dataUri}
+        setDataUri={setDataUri}
+        fileName="rud-gate.png"
+      />
       {!allowStat && (
         <CallingModal
           videoSrc={videoSrc}
