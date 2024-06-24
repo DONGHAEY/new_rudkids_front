@@ -42,7 +42,7 @@ const TicketPage = ({ routeInfo }) => {
       duration: totalSecond - remainSecond,
     });
     setTicketId(invitationId);
-    navigate("/landing");
+    navigate("/");
   };
 
   const invitedUsers = useMemo(() => {

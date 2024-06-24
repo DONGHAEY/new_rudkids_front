@@ -131,7 +131,6 @@ export const GetInUI = styled.div`
 `;
 
 export const RollingMessagesUI = styled.div`
-  /* position: sticky; */
   font-family: digital;
   top: 0;
   width: 100%;

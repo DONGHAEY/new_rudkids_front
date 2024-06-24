@@ -4,15 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { useMemo } from "react";
 
 const useRudkidsQueryClient = () => {
+  //
   const navigate = useNavigate();
-
   const onError = (e) => {
     const { response } = e;
     switch (response?.status) {
       case 401:
-        if (window.location.pathname === "/") {
-          break;
-        }
+        // if (window.location.pathname === "/") {
+        //   break;
+        // }
         queryClient.cancelQueries([queryKey.user, "my"]);
         queryClient.cancelMutations(queryKey.user);
         queryClient.setQueryData([queryKey.user, "my"], null);

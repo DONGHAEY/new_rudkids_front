@@ -43,7 +43,7 @@ const AuthHoc = (Page) => {
         return;
       }
       if (!userData?.isFirstInviteFinished) {
-        navigate(`/first-invite?callback=${currentLocation}`);
+        navigate(`/invite?callback=${currentLocation}`);
         return;
       }
     }, [userData]);

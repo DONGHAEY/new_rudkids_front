@@ -13,8 +13,10 @@ import {
   PageUI,
   TitleImgUI,
 } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 const Page3 = ({ ref }) => {
+  const navigate = useNavigate();
   return (
     <PageUI ref={ref}>
       <TitleImgUI src={title} />
@@ -28,7 +30,12 @@ const Page3 = ({ ref }) => {
         />
         <img src={buttons} width="100%" />
       </ButtonsWrapperUI>
-      <GetInButtonUI src={getIn} />
+      <GetInButtonUI
+        src={getIn}
+        onClick={() => {
+          navigate("/login");
+        }}
+      />
       <BottomImgUI src={footer} />
     </PageUI>
   );

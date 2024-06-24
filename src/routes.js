@@ -1,6 +1,7 @@
 import React, { lazy } from "react";
 import SymbolLoader from "./shared_components/SymbolLoader";
 import AuthHoc from "./shared_components/HOC/AuthHoc";
+
 const ShopPage = lazy(() => import("./pages/Shop"));
 const ProductDetailPage = lazy(() => import("./pages/ProductDetail"));
 const LoginCallbackPage = lazy(() => import("./pages/LoginCallback"));
@@ -10,13 +11,12 @@ const OrderDetailPage = lazy(() => import("./pages/OrderDetail"));
 const PayPage = lazy(() => import("./pages/Pay"));
 const LoginPage = lazy(() => import("./pages/Login"));
 const InstaInfoPage = lazy(() => import("./pages/InstaInfo"));
-const FirstInvitePage = lazy(() => import("./pages/FirstInvite"));
+const FirstInvitePage = lazy(() => import("./pages/Invite"));
 const TicketPage = lazy(() => import("./pages/Ticket"));
 const ProfilePage = lazy(() => import("./pages/Profile"));
 const ProfileEditPage = lazy(() => import("./pages/ProfileEdit"));
 const CreateRudcardPage = lazy(() => import("./pages/CreateRudcard"));
 const RankPage = lazy(() => import("./pages/Rank"));
-const RudGatePage = lazy(() => import("./pages/RudGate"));
 const _401Page = lazy(() => import("./pages/401"));
 const LegalPage = lazy(() => import("./pages/Legal"));
 const OrderListPage = lazy(() => import("./pages/OrderList"));
@@ -37,7 +37,7 @@ export const routes = {
   ["landing"]: {
     name: "landing",
     viewTrack: true,
-    path: "landing",
+    path: "/",
     paramKeys: [],
     element: LandingPage,
   },
@@ -51,7 +51,7 @@ export const routes = {
   ["home"]: {
     name: "home",
     viewTrack: true,
-    path: "",
+    path: "/home",
     paramKeys: [],
     element: AuthHoc(HomePage),
     fallback: <SymbolLoader loading={true} />,
@@ -147,10 +147,10 @@ export const routes = {
     paramKeys: [],
     element: InstaInfoPage,
   },
-  ["firstInvite"]: {
-    name: "first-invite",
+  ["invite"]: {
+    name: "invite",
     viewTrack: true,
-    path: "/first-invite",
+    path: "/invite",
     paramKeys: [],
     element: FirstInvitePage,
   },
@@ -174,13 +174,6 @@ export const routes = {
     path: "/profile/:user_id",
     paramKeys: ["user_id"],
     element: ProfilePage,
-  },
-  ["rudGate"]: {
-    name: "rud-gate",
-    viewTrack: true,
-    path: "/rud-gate",
-    paramKeys: [],
-    element: RudGatePage,
   },
   ["createRudcard"]: {
     name: "create-rudcard",

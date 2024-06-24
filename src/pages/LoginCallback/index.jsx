@@ -46,7 +46,7 @@ const LoginCallbackPage = ({ routeInfo }) => {
             navigate(`/insta-info?callback=${savedLoginCallbackUrl}`);
             return;
           } else if (!me?.isFirstInviteFinished) {
-            navigate(`/first-invite?callback=${savedLoginCallbackUrl}`);
+            navigate(`/invite?callback=${savedLoginCallbackUrl}`);
             return;
           }
           navigate(savedLoginCallbackUrl);

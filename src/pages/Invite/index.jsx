@@ -33,7 +33,7 @@ import PublicLottieAssets from "../../global/public-lottie-assets";
 import useDeleteInvitationMutation from "../../mutations/invitation/deleteInvitationMutation";
 import { track } from "@amplitude/analytics-browser";
 
-const FirstInvitePage = () => {
+const InvitePage = () => {
   const { data: userData } = useUserQuery();
   const createInvitationMutation = useCreateInvitationMutation();
   const deleteInvitationMutation = useDeleteInvitationMutation();
@@ -42,7 +42,7 @@ const FirstInvitePage = () => {
   const goalInviterCnt = 3;
   const [inviterCnt, setInviterCnt] = useState(0);
   const [searchParams] = useSearchParams();
-  const callback = searchParams.get("callback") ?? "/";
+  const callback = searchParams.get("callback") ?? "/home";
 
   const inviteClickHandler = async () => {
     const invitationId = await createInvitationMutation.mutateAsync();
@@ -121,4 +121,4 @@ const FirstInvitePage = () => {
   );
 };
 
-export default FirstInvitePage;
+export default InvitePage;

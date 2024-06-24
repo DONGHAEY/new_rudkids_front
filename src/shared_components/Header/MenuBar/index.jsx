@@ -17,18 +17,18 @@ const menuButtonDtList = [
   {
     name: "Home",
     iconNm: "bxs:home",
-    path: "/",
+    path: "/home",
   },
   {
     name: "Shop",
     iconNm: "mdi:shopping",
     path: "/shop",
   },
-  {
-    name: "Rude\nCamera",
-    iconNm: "ph:camera-fill",
-    path: "/rud-gate",
-  },
+  // {
+  //   name: "Rude\nCamera",
+  //   iconNm: "ph:camera-fill",
+  //   path: "/rud-gate",
+  // },
   {
     name: "Rank",
     iconNm: "mdi:prize",
@@ -39,11 +39,11 @@ const menuButtonDtList = [
     iconNm: "ph:heart-fill",
     path: "/collection",
   },
-  {
-    name: "About",
-    iconNm: "mdi:information",
-    path: "/about",
-  },
+  // {
+  //   name: "About",
+  //   iconNm: "mdi:information",
+  //   path: "/about",
+  // },
 ];
 
 const MenuBar = ({ onClosed }) => {

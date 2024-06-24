@@ -19,8 +19,6 @@ import { useNavigate } from "react-router-dom";
 import joinUsSrc from "./assets/join_us.webp";
 import Background from "../../shared_components/Background";
 import StorageKey from "../../storageKey";
-import { useEffect } from "react";
-import { getPassedResult } from "../RudGate";
 import { FixedPipVideo } from "../../shared_components/FixedPipVideo";
 import videoSrc from "./assets/login.mp4";
 import { trackClickButton } from "../../shared_analytics";
@@ -36,7 +34,8 @@ export const getLoginCallbackUrl = () => {
 };
 
 const LoginPage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
   const clickHandler = (provider) => {
     trackClickButton("login", {
       provider: provider,
@@ -45,15 +44,15 @@ const LoginPage = () => {
     window.location.href = loginUrl;
   };
 
-  useEffect(() => {
-    const rudgatePassedStat = getPassedResult();
-    if (!rudgatePassedStat) {
-      //루드게이트 통과 전, 로그인 할 수 없음., 이미 회원가입한 사람인 경우에도 휴대폰을 바꿨을 경우 다시 통과해야함.
-      navigate("/rud-gate", {
-        replace: true,
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   const rudgatePassedStat = getPassedResult();
+  //   if (!rudgatePassedStat) {
+  //     //루드게이트 통과 전, 로그인 할 수 없음., 이미 회원가입한 사람인 경우에도 휴대폰을 바꿨을 경우 다시 통과해야함.
+  //     navigate("/rud-gate", {
+  //       replace: true,
+  //     });
+  //   }
+  // }, []);
 
   const providers = [
     {
