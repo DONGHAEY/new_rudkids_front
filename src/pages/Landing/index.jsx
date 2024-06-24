@@ -112,8 +112,8 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <Suspense fallback={<LandingLoader />}>
-      <LandingLoader onComplete={loadCompleteHandler} />
+    <Suspense fallback={<LandingLoader isFallback />}>
+      <LandingLoader onComplete={loadCompleteHandler} isFallback={false} />
       <PageUI>
         <Page1 />
         <Page2 />

@@ -6,32 +6,30 @@ import {
   ProgressUI,
 } from "./styled";
 import gsap from "gsap";
+import StorageKey from "../../storageKey";
 
 const ProgressBar = ({ progress, onComplete, description }) => {
   const progressRef = useRef();
 
   useEffect(() => {
-    if (!progressRef.current) return;
-    if (progress === 100) {
-      gsap.to(progressRef.current, {
-        width: `100%`,
+    const beforeProgress = sessionStorage.getItem(StorageKey.progress) ?? 0;
+    gsap.fromTo(
+      progressRef.current,
+      {
+        width: `${beforeProgress}%`,
+      },
+      {
+        width: `${progress}%`,
         duration: 0.3,
         onComplete: () => {
-          onComplete();
+          if (progress === 100) {
+            onComplete();
+          }
         },
-      });
-      return;
-    }
-    gsap.to(progressRef.current, {
-      width: `${progress}%`,
-      duration: 0.3,
-      onComplete: () => {
-        if (progress === 100) {
-          onComplete();
-        }
-      },
-    });
-  }, [progress, progressRef.current]);
+      }
+    );
+    sessionStorage.setItem(StorageKey.progress, progress);
+  }, [progress]);
 
   return (
     <>

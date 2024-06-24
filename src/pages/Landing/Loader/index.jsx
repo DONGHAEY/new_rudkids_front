@@ -18,7 +18,7 @@ import { useProgress } from "@react-three/drei";
 import gsap from "gsap";
 import ProgressBar from "../../../shared_components/ProgressBar";
 
-const LandingLoader = ({ onComplete }) => {
+const LandingLoader = ({ onComplete, isFallback }) => {
   const [show, setShow] = useState(true);
   const { progress } = useProgress();
 
@@ -87,7 +87,9 @@ const LandingLoader = ({ onComplete }) => {
             setPlayBtn(true);
           }}
         />
-        {playBtn && <PlayBtnUI src={play} onClick={playBtnClick} />}
+        {playBtn && !isFallback && (
+          <PlayBtnUI src={play} onClick={playBtnClick} />
+        )}
       </CenterDivUI>
       <FooterImgUI src={PublicBizAssets.footer} />
     </PageUI>
