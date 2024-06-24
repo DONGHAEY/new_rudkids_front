@@ -34,6 +34,8 @@ export const FromImgUI = styled.img`
   position: absolute;
   border-radius: 100%;
   max-width: 90px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
   top: -55px;
   left: 0px;
   border: solid 8px white;

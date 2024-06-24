@@ -32,13 +32,16 @@ const Scene = () => {
         node.receiveShadow = true;
       }
     });
-    // console.log(gltf.scene);
-    // gltf.scene.environment = THREE.NeutralToneMapping;
   }, [gltf.scene]);
 
   return (
     <>
-      <primitive ref={boxRef} object={gltf.scene} scale={1} position-y={1} />
+      <primitive
+        ref={boxRef}
+        object={gltf.scene}
+        scale={1.1}
+        position-y={0.3}
+      />
       <Environment preset="forest" />
       <directionalLight
         intensity={1.3}

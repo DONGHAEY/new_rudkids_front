@@ -17,6 +17,8 @@ const EatingKid = () => {
   const a = 100 / (지구개수 + 1);
 
   useEffect(() => {
+    if (!kidWrapperRef.current) return;
+    gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.create({
       trigger: kidWrapperRef.current,
       scrub: 0.3,
@@ -37,7 +39,7 @@ const EatingKid = () => {
         });
       },
     });
-  }, []);
+  }, [kidWrapperRef.current]);
 
   return (
     <EatingKidWrapperUI ref={kidWrapperRef}>

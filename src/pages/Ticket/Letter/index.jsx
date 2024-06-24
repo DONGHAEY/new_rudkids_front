@@ -10,6 +10,7 @@ import {
   LetterUI,
 } from "./styles";
 import gsap from "gsap";
+import RudImage from "../../../shared_components/RudImage";
 
 const Letter = ({ fromImageUrl, fromName }) => {
   const ref = useRef();
@@ -28,7 +29,7 @@ const Letter = ({ fromImageUrl, fromName }) => {
     <LetterUI>
       <LetterBackImgUI src={letter1} />
       <LetterContentUI ref={ref}>
-        <FromImgUI src={fromImageUrl} />
+        <RudImage ImgUI={FromImgUI} src={fromImageUrl} />
         <FromNmTxtUI>@{fromName}</FromNmTxtUI>
       </LetterContentUI>
       <LetterFrontImgUI src={letter2} />

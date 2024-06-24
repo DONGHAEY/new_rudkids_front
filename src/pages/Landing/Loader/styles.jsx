@@ -37,6 +37,14 @@ export const BottomImgUI = styled.img`
   z-index: 3;
 `;
 
+export const FooterImgUI = styled.img`
+  position: absolute;
+  background-color: gray;
+  bottom: 0;
+  width: 100%;
+  z-index: 4;
+`;
+
 export const CenterDivUI = styled.div`
   position: absolute;
   margin: 0 auto;
@@ -49,7 +57,7 @@ export const CenterDivUI = styled.div`
 `;
 
 export const CenterLogoImgUI = styled.img`
-  width: 70%;
+  width: 60%;
 `;
 export const ProgressBarUI = styled.div`
   margin-top: 8%;
@@ -69,8 +77,13 @@ export const ProgressUI = styled.div`
 
 export const ProgressTxtUI = styled.p`
   color: white;
-  font-size: max(3vw, 20px);
+  font-size: max(2vw, 15px);
   color: white;
   font-family: digital;
   margin-top: 2%;
+`;
+export const PlayBtnUI = styled.img`
+  width: 13%;
+  margin-top: 4%;
+  aspect-ratio: 1/1;
 `;

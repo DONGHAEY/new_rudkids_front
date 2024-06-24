@@ -8,11 +8,28 @@ export const PageUI = styled.div`
   justify-content: center;
 `;
 
-export const FooterImgUI = styled.img`
+export const FooterUI = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
   max-width: 430px;
-  margin: 0 auto;
-  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-inline: 0 auto;
+  margin: 0;
+  z-index: 3;
+`;
+
+export const FooterImgUI = styled.img`
+  width: 100%;
+  bottom: 0;
+  z-index: 1;
+`;
+
+export const FucChildUI = styled.img`
+  position: absolute;
+  right: 5%;
+  bottom: 90%;
+  width: 50%;
 `;

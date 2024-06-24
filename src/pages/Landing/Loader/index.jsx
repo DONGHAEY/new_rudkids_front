@@ -1,14 +1,18 @@
 import "../fonts.css";
-
 import stars from "./assets/star_background.webp";
 import top from "./assets/top.webp";
 import bottom from "./assets/bottom.webp";
 import centerlogo from "./assets/center_logo.webp";
+import footer from "../assets/footer.webp";
+import play from "./assets/play.webp";
+
 import {
   BottomImgUI,
   CenterDivUI,
   CenterLogoImgUI,
+  FooterImgUI,
   PageUI,
+  PlayBtnUI,
   ProgressBarUI,
   ProgressTxtUI,
   ProgressUI,
@@ -19,7 +23,7 @@ import { useEffect, useRef, useState } from "react";
 import { useProgress } from "@react-three/drei";
 import gsap from "gsap";
 
-const LandingLoader = () => {
+const LandingLoader = ({ onComplete }) => {
   const [show, setShow] = useState(true);
   const { progress } = useProgress();
 
@@ -28,46 +32,57 @@ const LandingLoader = () => {
   const topRef = useRef();
   const bottomRef = useRef();
   const progressRef = useRef();
+  const [playBtn, setPlayBtn] = useState(false);
 
-  useEffect(() => {
-    gsap.to(progressRef.current, {
-      width: `${progress}%`,
-      duration: 0.5,
-    });
-    if (progress === 100) {
-      const tl = gsap.timeline();
-      tl.to(
-        topRef.current,
+  const playBtnClick = () => {
+    const tl = gsap.timeline();
+    tl.to(
+      topRef.current,
+      {
+        top: `-${topRef.current.clientHeight}px`,
+        duration: 1,
+      },
+      "<"
+    )
+      .to(
+        bottomRef.current,
         {
-          top: `-${topRef.current.clientHeight}px`,
-          delay: 1,
+          bottom: `-${bottomRef.current.clientHeight}px`,
           duration: 1,
         },
         "<"
       )
-        .to(
-          bottomRef.current,
-          {
-            bottom: `-${bottomRef.current.clientHeight}px`,
-            duration: 1,
-          },
-          "<"
-        )
-        .to(
-          loaderRef.current,
-          {
-            opacity: 0,
-            duration: 1,
-            delay: 2.5,
-            onComplete: () => {
-              setShow(false);
-            },
-          },
-          "<"
-        );
-      tl.startTime(0);
+      .to(loaderRef.current, {
+        opacity: 0,
+        duration: 1,
+        onComplete: () => {
+          setShow(false);
+        },
+      });
+    onComplete();
+  };
+
+  useEffect(() => {
+    if (!progressRef.current) return;
+    //
+    if (progress === 100) {
+      gsap.to(progressRef.current, {
+        width: `100%`,
+        duration: 0.3,
+      });
+      setPlayBtn(true);
+      return;
     }
-  }, [progress]);
+    gsap.to(progressRef.current, {
+      width: `${progress}%`,
+      duration: 0.3,
+      onComplete: () => {
+        if (progress === 100) {
+          setPlayBtn(true);
+        }
+      },
+    });
+  }, [progress, progressRef.current]);
 
   useEffect(() => {
     gsap.fromTo(
@@ -97,7 +112,9 @@ const LandingLoader = () => {
           <ProgressUI ref={progressRef} />
         </ProgressBarUI>
         <ProgressTxtUI>Loading {progress}%</ProgressTxtUI>
+        {playBtn && <PlayBtnUI src={play} onClick={playBtnClick} />}
       </CenterDivUI>
+      <FooterImgUI src={footer} />
     </PageUI>
   );
 };
