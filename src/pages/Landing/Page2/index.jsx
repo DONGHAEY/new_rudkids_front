@@ -97,8 +97,8 @@ const Page2 = () => {
     >
       <SectionUI>
         <ClothSectionUI>
-          <ClothImgUI src={clothes[currClothesIdx]} />
           <FaceImgUI src={faces[currIdx].img} />
+          <ClothImgUI src={clothes[currClothesIdx]} />
           <ForMakersImgUI src={forMakers} />
           <ArrowWrapperUI>
             <LeftArrowImgUI src={left} onClick={leftClkHandler} />

@@ -36,11 +36,13 @@ export const ClothImgUI = styled.img`
   position: absolute;
   height: 78%;
   bottom: 0;
+  z-index: 0;
 `;
 
 export const FaceImgUI = styled.img`
   z-index: 1;
   width: 36%;
+  position: absolute;
 `;
 
 export const ForMakersImgUI = styled.img`
