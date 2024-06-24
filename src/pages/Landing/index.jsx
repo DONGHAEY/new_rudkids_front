@@ -35,25 +35,17 @@ const LandingPage = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".page1",
-        scrub: true,
-        start: "top top",
-        end: "bottom top",
-        pin: true,
-        invalidateOnRefresh: true,
-      },
-    });
-    tl.fromTo(
-      logoRef.current,
-      { width: "60%", marginLeft: 0, marginTop: "5%" },
-      {
-        marginTop: "0%",
-        marginLeft: "-50%",
-        width: "40%",
-      }
-    )
+    const tl = gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".page1",
+          scrub: true,
+          start: "top top",
+          end: "bottom top",
+          pin: true,
+          invalidateOnRefresh: true,
+        },
+      })
       .fromTo(
         ".page1",
         { opacity: 1 },
@@ -72,7 +64,27 @@ const LandingPage = () => {
       .to(scrollDownRef.current, {
         opacity: 0,
         scale: 0,
-      })
+      });
+
+    const t2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".page2",
+        endTrigger: ".page3",
+        scrub: true,
+        start: "top bottom",
+        end: "top top",
+        invalidateOnRefresh: true,
+      },
+    });
+    t2.fromTo(
+      logoRef.current,
+      { width: "60%", marginLeft: 0, marginTop: "5%" },
+      {
+        marginTop: "0%",
+        marginLeft: "-50%",
+        width: "40%",
+      }
+    )
       .fromTo(
         getInRef.current,
         {
@@ -82,25 +94,15 @@ const LandingPage = () => {
           left: "50%",
         },
         "<"
+      )
+      .to(logoRef.current, { marginLeft: 0, width: "60%" })
+      .to(
+        getInRef.current,
+        {
+          left: "100%",
+        },
+        "<"
       );
-
-    const t2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".page2",
-        scrub: true,
-        start: "100% center",
-        end: "+=200% center",
-        invalidateOnRefresh: true,
-      },
-    });
-
-    t2.to(logoRef.current, { marginLeft: 0, width: "60%" }).to(
-      getInRef.current,
-      {
-        left: "100%",
-      },
-      "<"
-    );
 
     gsap.to(scrollDownRef.current, {
       marginBottom: "4%",
