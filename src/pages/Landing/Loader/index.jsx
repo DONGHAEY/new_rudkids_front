@@ -59,13 +59,13 @@ const LandingLoader = ({ onComplete }) => {
           setShow(false);
           onComplete();
         },
-      });
-    tl.play(0);
+      })
+      .play(0);
   };
 
   useEffect(() => {
     if (!progressRef.current) return;
-    //
+    /////
     if (progress === 100) {
       gsap.to(progressRef.current, {
         width: `100%`,

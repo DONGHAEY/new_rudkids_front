@@ -3,7 +3,6 @@ import title from "./assets/title.webp";
 import buttons from "./assets/buttons.webp";
 import footer from "./assets/footer.webp";
 import insta from "./assets/insta.webp";
-
 import getIn from "../assets/get_in.webp";
 import {
   BottomImgUI,
@@ -14,11 +13,29 @@ import {
   TitleImgUI,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import gsap from "gsap";
 
-const Page3 = ({ ref }) => {
+const Page3 = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    gsap.fromTo(
+      ".getin",
+      {
+        scale: 0.7,
+      },
+      {
+        scale: 1,
+        duration: 0.7,
+        yoyo: true,
+        repeat: -1,
+      }
+    );
+  }, []);
+
   return (
-    <PageUI ref={ref}>
+    <PageUI className="page3">
       <TitleImgUI src={title} />
       <EatingKid />
       <ButtonsWrapperUI>
@@ -31,6 +48,7 @@ const Page3 = ({ ref }) => {
         <img src={buttons} width="100%" />
       </ButtonsWrapperUI>
       <GetInButtonUI
+        className="getin"
         src={getIn}
         onClick={() => {
           navigate("/login");

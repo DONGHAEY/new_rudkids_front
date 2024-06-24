@@ -2,14 +2,13 @@ import styled from "styled-components";
 
 export const PageUI = styled.div`
   display: flex;
+    flex-direction: column;
   width: 100%;
-  height: 100vh;
+  padding-bottom: 25%;
   background-color: black;
-  flex-direction: column;
   align-items: center;
   position: relative;
   gap: 1%;
-  z-index: 99;
 `;
 
 export const TitleImgUI = styled.img`
@@ -28,16 +27,13 @@ export const InstaImgUI = styled.img`
   width: 30%;
 `;
 export const GetInButtonUI = styled.img`
-  width: 70%;
-  margin-block: 4%;
+  width: 75%;
+  margin-bottom: 10%;
   margin-top: 6%;
   z-index: 1;
-  position: sticky;
-  bottom: 5%;
 `;
 
 export const BottomImgUI = styled.img`
   width: 90%;
-  bottom: 3%;
-  position: absolute;
+  /* position: absolute; */
 `;

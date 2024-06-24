@@ -11,7 +11,7 @@ export const EatingKidWrapperUI = styled.div`
 
 export const KidUI = styled.img`
   position: absolute;
-  z-index: 1;
-  width: 15%;
-  margin-bottom: 5%;
+  z-index: 0;
+  width: 18%;
+  margin-bottom: 10%;
 `;

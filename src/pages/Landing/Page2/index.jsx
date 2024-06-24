@@ -68,6 +68,7 @@ const Page2 = () => {
 
   return (
     <Page2UI
+      className="page2"
       ref={pageRef}
       style={{
         minHeight: "100vh",

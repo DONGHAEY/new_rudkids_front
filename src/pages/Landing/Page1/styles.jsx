@@ -62,20 +62,19 @@ export const BotomSectionUI = styled.div`
 export const TopFixedUI = styled.div`
   position: fixed;
   width: 100%;
-  height: 15%;
   max-width: 430px;
   margin-inline: 0 auto;
-  top: 2%;
+  top: 3%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* overflow: hidden; */
   z-index: 9;
 `;
 
 export const LogoImgUI = styled.img`
   position: absolute;
-  max-width: 200px;
+  margin-left: 0;
   z-index: 9;
 `;
 
@@ -120,13 +119,12 @@ export const FaceImgUI = styled.img`
 `;
 
 export const GetInUI = styled.div`
-  position: fixed;
-  width: 100%;
-  max-width: 300px;
-  height: 10%;
+  position: absolute;
+  width: 50%;
+  max-width: 200px;
+  left: 100%;
   margin-inline: auto;
-  top: 78%;
-  background-color: black;
+  top: 2%;
   z-index: 9;
 `;
 

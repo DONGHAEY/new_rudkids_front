@@ -29,7 +29,7 @@ export const FooterImgUI = styled.img`
 
 export const FucChildUI = styled.img`
   position: absolute;
-  right: 5%;
+  right: 3%;
   bottom: 90%;
-  width: 50%;
+  width: 57%;
 `;

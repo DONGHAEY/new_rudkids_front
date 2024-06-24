@@ -15,7 +15,6 @@ import NaverSvg from "./assets/naver_.svg";
 import KakaoSvg from "./assets/kakaotalk_.svg";
 import { PageUI } from "./styles";
 import StepIndicator from "../../shared_components/StepIndicator";
-import { useNavigate } from "react-router-dom";
 import joinUsSrc from "./assets/join_us.webp";
 import Background from "../../shared_components/Background";
 import StorageKey from "../../storageKey";

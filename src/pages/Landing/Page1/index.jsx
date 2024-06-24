@@ -1,5 +1,3 @@
-import gsap from "gsap";
-import { useEffect, useRef } from "react";
 import {
   BotomSectionUI,
   CanvasUI,
@@ -27,7 +25,7 @@ const Page1 = ({ ref }) => {
 
   return (
     <Page1UI
-      ref={ref}
+      className="page1"
       style={{
         height: windowSize.height,
       }}

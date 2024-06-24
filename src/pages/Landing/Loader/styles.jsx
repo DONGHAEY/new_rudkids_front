@@ -86,4 +86,5 @@ export const PlayBtnUI = styled.img`
   width: 13%;
   margin-top: 4%;
   aspect-ratio: 1/1;
+  z-index: 3;
 `;
