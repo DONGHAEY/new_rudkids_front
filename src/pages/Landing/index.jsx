@@ -1,4 +1,4 @@
-import { Suspense, createRef, useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import LandingLoader from "./Loader";
 import { PageUI, FooterImgUI, FooterUI, FucChildUI } from "./styles";
 import footer from "./assets/footer.webp";
@@ -45,7 +45,6 @@ const LandingPage = () => {
         invalidateOnRefresh: true,
       },
     });
-
     tl.fromTo(
       logoRef.current,
       { width: "60%", marginLeft: 0, marginTop: "5%" },
@@ -89,11 +88,12 @@ const LandingPage = () => {
       scrollTrigger: {
         trigger: ".page2",
         scrub: true,
-        start: "top top",
-        end: "bottom top",
+        start: "100% center",
+        end: "+=200% center",
         invalidateOnRefresh: true,
       },
     });
+
     t2.to(logoRef.current, { marginLeft: 0, width: "60%" }).to(
       getInRef.current,
       {
@@ -109,6 +109,7 @@ const LandingPage = () => {
       ease: "none",
       duration: 0.5,
     });
+
     gsap.fromTo(
       fucChildRef.current,
       {

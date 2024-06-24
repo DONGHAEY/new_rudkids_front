@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PageUI = styled.div`
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
   width: 100%;
   padding-bottom: 25%;
   background-color: black;
