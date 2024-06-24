@@ -4,13 +4,28 @@ import ButtonFontTest from "./Tests/ButtonFontTest";
 import StickTest2 from "./Tests/StickTest2";
 import FixedTest1 from "./Tests/FixedTest";
 import LandingLoader from "./Tests/LandingLoader";
+import RudWindow from "../../shared_components/RudWindow";
 
 function Temp() {
   // return <LandingLoader />;
-  return <StickTest />;
+  // return <StickTest />;
   // return <ButtonFontTest />;
   // return <StickTest2 />;
   // return <FixedTest1 />;
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <RudWindow />
+    </div>
+  );
 }
 
 export default Temp;

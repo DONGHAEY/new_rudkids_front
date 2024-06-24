@@ -13,22 +13,31 @@ export const SetInstaUI = styled.div`
 
 export const ImageUI = styled.img`
   border-radius: 100%;
-  width: 114px;
+  width: 37%;
 `;
 
 export const InstaIdTxtUI = styled.p`
-  font-family: Pretendard-Bold;
-  font-size: 22px;
-  padding-block: 14px;
-  padding-inline: 20px;
+  font-family: boba;
+  font-size: clamp(1.1rem, 6vw, 1.5rem);
   border-radius: 52px;
   line-height: 100%;
-  border: solid 2.6px #ebebeb;
-  margin-top: 13px;
+  margin-top: 5%;
+  margin-bottom: 8%;
 `;
 
-export const CheckWrapperUI = styled.div`
-  height: 100px;
-  transform: scale(1);
-  margin-bottom: 0px;
+export const CompleteBtnUI = styled.div`
+  text-align: center;
+  padding-block: 5%;
+  font-size: 16px;
+`;
+
+export const WrapperUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 23%;
+  margin-bottom: 15%;
+  animation: fadeIn 1s;
 `;

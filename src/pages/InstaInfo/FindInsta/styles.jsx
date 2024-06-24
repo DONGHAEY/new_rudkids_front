@@ -1,54 +1,67 @@
 import styled from "styled-components";
-import PublicBizAssets from "../../../global/public-biz-assets";
 
-export const RudkidsInstaUI = styled.div`
-  padding-inline: 19px;
-  padding-block: 16px;
-  background-color: white;
-  border-radius: 56.98px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 110%;
-  font-family: Poppins-Bold;
-  gap: 10.18px;
-  margin-top: 24px;
-  margin-bottom: 24px;
+export const RudkidsInstaUI = styled.img`
+  width: 50%;
+  margin-bottom: 5%;
+  margin-top: 10%;
 `;
 
 export const TitleTxtUI = styled.div`
   color: black;
-  font-family: Poppins-Bold;
-  font-size: 34px;
+  font-family: boba;
+  font-size: clamp(1.3rem, 7vw, 1.9rem);
   line-height: 110%;
   letter-spacing: 0%;
-  margin-bottom: 37px;
+  margin-bottom: 5%;
 `;
 
-export const InstagramIdInputWrapperUI = styled.div`
-  width: 100%;
-  display: flex;
+export const FormLabelUI = styled.p`
+  font-family: boba;
+  margin-top: 4%;
 `;
 
 export const InstagramIdFormUI = styled.div`
-  width: 80%;
-  max-width: 245px;
+  width: 70%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  margin-top: 8%;
+  gap: 3%;
 `;
 
 export const InstagramIdInputUI = styled.input`
   display: flex;
   width: 100%;
   background-color: #eeeeee;
-  height: 59px;
-  border-radius: 46px;
+  padding-block: 5%;
+  padding-inline: 2%;
+  box-shadow: 2px 2px 0px 1px black;
   font-size: 16px;
   color: #737373;
-  border: none;
   font-family: Pretendard-Bold;
-  padding-inline: 30px;
+`;
+
+export const ButtonWrapperUI = styled.div`
+  width: 70%;
+  display: flex;
+  text-align: center;
+  margin-top: 10%;
+`;
+
+export const SubmitBtnUI = styled.div`
+  padding-block: 10px;
+  width: 100%;
+  font-size: clamp(0.7rem, 3vw, 0.9rem);
+`;
+
+export const WrapperUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 10%;
+  margin-bottom: 10%;
+  animation: fadeIn 1s;
 `;

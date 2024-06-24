@@ -1,14 +1,14 @@
-import { ImageUI, InstaIdTxtUI, CheckWrapperUI } from "./styles";
+import { ImageUI, InstaIdTxtUI, WrapperUI, CompleteBtnUI } from "./styles";
 import useUpdateImageUrlMutation from "../../../mutations/user/useUpdateImageUrlMutation";
 import useUpdateInstaIdMutation from "../../../mutations/user/userUpdateInstaIdMutation";
-import Lottie from "react-lottie";
-import checkLottie from "./assets/check_lottie.json";
-import { CompleteBtnUI, PageUI, WrapperUI } from "../shared_styles";
+import { PageUI, SpacerUI } from "../shared_styles";
 import Background from "../../../shared_components/Background";
 import Loader from "../../../shared_components/Loader";
 import useUserQuery from "../../../queries/user/useUserQuery";
 import { Identify, identify, track } from "@amplitude/analytics-browser";
 import moment from "moment";
+import RudWindow from "../../../shared_components/RudWindow";
+import { WindowButtonUI } from "../../../shared_components/RudWindow/shared_styles";
 
 const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
   const { data: me } = useUserQuery();
@@ -42,35 +42,19 @@ const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
 
   return (
     <PageUI>
-      <WrapperUI>
-        <CheckWrapperUI>
-          <Lottie
-            width="100%"
-            options={{
-              loop: true,
-              autoplay: true,
-              animationData: checkLottie,
-              rendererSettings: {
-                preserveAspectRatio: "xMidYMid slice",
-              },
-            }}
-          />
-        </CheckWrapperUI>
-        <ImageUI src={instaImgUrl} />
-        <InstaIdTxtUI>@{instaId}</InstaIdTxtUI>
-        <CompleteBtnUI
-          style={{
-            width: "70%",
-            marginTop: "15px",
-          }}
-          onClick={clickHandler}
-        >
-          완료
-        </CompleteBtnUI>
-      </WrapperUI>
+      <SpacerUI />
+      <RudWindow>
+        <WrapperUI>
+          <ImageUI src={instaImgUrl} />
+          <InstaIdTxtUI>@{instaId}</InstaIdTxtUI>
+          <WindowButtonUI width="70%" onClick={clickHandler}>
+            <CompleteBtnUI>완료</CompleteBtnUI>
+          </WindowButtonUI>
+        </WrapperUI>
+      </RudWindow>
       {(updateInstaIdMutation?.isLoading ||
         updateImageUrlMutation?.isLoading) && <Loader />}
-      <Background />
+      <Background position="absolute" />
     </PageUI>
   );
 };

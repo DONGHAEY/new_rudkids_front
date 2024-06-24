@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BackgroundUI = styled.div`
-  position: ${({ isFixed }) => (isFixed ? "fixed" : "absolute")};
+  position: ${({ position }) => position ?? "fixed"};
   top: 0;
   width: 100%;
   height: 100%;
@@ -18,6 +18,7 @@ export const BackgroundImgUI = styled.img`
   height: 100%;
   max-width: 430px;
   z-index: ${({ zIndex }) => zIndex ?? -1};
+  object-fit: cover;
 `;
 
 export const BottomImgUI = styled.img`

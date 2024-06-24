@@ -2,40 +2,40 @@ import styled from "styled-components";
 
 export const TitleTxtUI = styled.div`
   color: black;
-  font-family: Poppins-Bold;
-  font-size: 34px;
-  line-height: 110%;
+  font-family: boba;
+  font-size: clamp(1.53rem, 8vw, 2rem);
+  line-height: 50%;
   letter-spacing: 0%;
   margin-bottom: 8px;
 `;
 
 export const AskTxtUI = styled.p`
   font-family: Pretendard-SemiBold;
-  font-size: 15px;
+  font-size: clamp(0.6rem, 3vw, 0.8rem);
   margin-bottom: 20px;
 `;
 
 export const InstagramImgWrapperUI = styled.div`
   position: relative;
-  max-height: 110px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-export const InstagramImgUI = styled.img`
-  width: 60%;
-  top: 4.5px;
-  right: 4.5px;
+export const ProfileImgUI = styled.img`
+  width: 29.5%;
+  top: 5%;
+  right: 26.7%;
   border-radius: 100%;
   position: absolute;
 `;
 
 export const InstagramNmTxtUI = styled.p`
-  font-family: Pretendard-Bold;
+  font-family: boba;
   font-size: 22px;
   margin-top: 10px;
-`;
-
-export const CautionImgUI = styled.img`
-  width: 85%;
+  font-size: clamp(1.1rem, 6vw, 1.5rem);
 `;
 
 export const ButtonListUI = styled.div`
@@ -43,17 +43,27 @@ export const ButtonListUI = styled.div`
   flex-direction: row;
   justify-content: space-around;
   gap: 7px;
-  width: 80%;
+  width: 70%;
   margin-top: 30px;
 `;
 
 export const ButtonUI = styled.button`
   width: 100%;
-  height: 62px;
+  padding-block: 13%;
   background: ${({ background }) => background ?? "black"};
   color: ${({ color }) => color ?? "white"};
   border: none;
-  border-radius: 20px;
   font-family: Pretendard-Bold;
-  font-size: 18px;
+  font-size: clamp(0.7rem, 4.5vw, 1rem);
+`;
+
+export const WrapperUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 10%;
+  margin-bottom: 10%;
+  animation: fadeIn 1s;
 `;

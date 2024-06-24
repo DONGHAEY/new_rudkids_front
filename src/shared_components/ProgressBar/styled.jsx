@@ -19,7 +19,7 @@ export const ProgressUI = styled.div`
 
 export const ProgressTxtUI = styled.p`
   color: white;
-  font-size: max(2vw, 15px);
+  font-size: clamp(0.5rem, 4.9vw, 1.1rem);
   color: white;
   font-family: digital;
   margin-top: 2%;
@@ -27,7 +27,7 @@ export const ProgressTxtUI = styled.p`
 
 export const DescriptionTxtUI = styled.p`
   color: white;
-  font-size: max(1.8vw, 15px);
+  font-size: clamp(0.5rem, 4vw, 1rem);
   color: white;
   font-family: Pretendard-Bold;
   margin-bottom: 2%;
