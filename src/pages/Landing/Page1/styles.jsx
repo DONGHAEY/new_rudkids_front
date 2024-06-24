@@ -81,7 +81,7 @@ export const LogoImgUI = styled.img`
 export const RudkidsOnlyImgUI = styled.img`
   width: 65%;
   position: absolute;
-  top: 21%;
+  top: 25%;
   z-index: 1;
 `;
 

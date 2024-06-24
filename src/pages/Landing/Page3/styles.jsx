@@ -4,11 +4,10 @@ export const PageUI = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-bottom: 25%;
+  padding-block: 25%;
   background-color: black;
   align-items: center;
   position: relative;
-  gap: 1%;
 `;
 
 export const TitleImgUI = styled.img`

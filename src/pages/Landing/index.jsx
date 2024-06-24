@@ -76,9 +76,11 @@ const LandingPage = () => {
         scrub: true,
         start: "top bottom",
         end: "top top",
+        // markers: true,
         invalidateOnRefresh: true,
       },
     });
+
     t2.fromTo(
       logoRef.current,
       { width: "60%", marginLeft: 0, marginTop: "5%" },
@@ -94,11 +96,11 @@ const LandingPage = () => {
           left: "100%",
         },
         {
-          left: "50%",
+          left: "48%",
         },
         "<"
       )
-      .to(logoRef.current, { marginLeft: 0, width: "60%" })
+      .to(logoRef.current, { marginLeft: 0, width: "60%", delay: 2 })
       .to(
         getInRef.current,
         {
