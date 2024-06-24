@@ -1,4 +1,3 @@
-import "../fonts.css";
 import {
   ArrowWrapperUI,
   ClothSectionUI,

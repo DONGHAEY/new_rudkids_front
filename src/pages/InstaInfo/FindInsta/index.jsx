@@ -48,12 +48,15 @@ const FindInsta = ({ setFindedInstaInfo }) => {
 
   if (showLoading) {
     return (
-      <LoadingScene
-        blackholeActive={!getInstagramInfoMutation.isLoading}
-        onComplete={() => {
-          setShowLoading(false);
-        }}
-      />
+      <>
+        <LoadingScene
+          blackholeActive={!getInstagramInfoMutation.isLoading}
+          onComplete={() => {
+            setShowLoading(false);
+          }}
+        />
+        <Background />
+      </>
     );
   }
 

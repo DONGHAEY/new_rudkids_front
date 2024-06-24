@@ -1,10 +1,7 @@
-import "../fonts.css";
-import stars from "./assets/star_background.webp";
 import top from "./assets/top.webp";
-import bottom from "./assets/bottom.webp";
 import centerlogo from "./assets/center_logo.webp";
-import footer from "../assets/footer.webp";
 import play from "./assets/play.webp";
+import PublicBizAssets from "../../../global/public-biz-assets";
 
 import {
   BottomImgUI,
@@ -13,15 +10,13 @@ import {
   FooterImgUI,
   PageUI,
   PlayBtnUI,
-  ProgressBarUI,
-  ProgressTxtUI,
-  ProgressUI,
   StarsImgUI,
   TopImgUI,
 } from "./styles";
 import { useEffect, useRef, useState } from "react";
 import { useProgress } from "@react-three/drei";
 import gsap from "gsap";
+import ProgressBar from "../../../shared_components/ProgressBar";
 
 const LandingLoader = ({ onComplete }) => {
   const [show, setShow] = useState(true);
@@ -31,7 +26,6 @@ const LandingLoader = ({ onComplete }) => {
   const loaderRef = useRef();
   const topRef = useRef();
   const bottomRef = useRef();
-  const progressRef = useRef();
   const [playBtn, setPlayBtn] = useState(false);
 
   const playBtnClick = () => {
@@ -64,30 +58,6 @@ const LandingLoader = ({ onComplete }) => {
   };
 
   useEffect(() => {
-    if (!progressRef.current) return;
-    /////
-    if (progress === 100) {
-      gsap.to(progressRef.current, {
-        width: `100%`,
-        duration: 0.3,
-        onComplete: () => {
-          setPlayBtn(true);
-        },
-      });
-      return;
-    }
-    gsap.to(progressRef.current, {
-      width: `${progress}%`,
-      duration: 0.3,
-      onComplete: () => {
-        if (progress === 100) {
-          setPlayBtn(true);
-        }
-      },
-    });
-  }, [progress, progressRef.current]);
-
-  useEffect(() => {
     gsap.fromTo(
       logoRef.current,
       {
@@ -107,17 +77,19 @@ const LandingLoader = ({ onComplete }) => {
   return (
     <PageUI ref={loaderRef}>
       <TopImgUI src={top} ref={topRef} />
-      <StarsImgUI src={stars} />
-      <BottomImgUI src={bottom} ref={bottomRef} />
+      <StarsImgUI src={PublicBizAssets.background} />
+      <BottomImgUI src={PublicBizAssets.bottom} ref={bottomRef} />
       <CenterDivUI>
         <CenterLogoImgUI src={centerlogo} ref={logoRef} />
-        <ProgressBarUI>
-          <ProgressUI ref={progressRef} />
-        </ProgressBarUI>
-        <ProgressTxtUI>Loading {progress}%</ProgressTxtUI>
+        <ProgressBar
+          progress={progress}
+          onComplete={() => {
+            setPlayBtn(true);
+          }}
+        />
         {playBtn && <PlayBtnUI src={play} onClick={playBtnClick} />}
       </CenterDivUI>
-      <FooterImgUI src={footer} />
+      <FooterImgUI src={PublicBizAssets.footer} />
     </PageUI>
   );
 };

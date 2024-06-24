@@ -1,12 +1,12 @@
 import { Html, useGLTF } from "@react-three/drei";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Physics } from "@react-three/cannon";
 import { Phompomi } from "./Phompomi";
 import { PointerCollider } from "./PointerCollider";
 import { BoundaryPlanes } from "./BoundaryPlanes";
 import { CanvasUI } from "./styles";
 import { Blackhole } from "./Blackhole";
-import Loader from "./Loader";
+import ProgressBar from "../../../../shared_components/ProgressBar";
 
 const colors = [0xfee639, 0xed2424, 0x2f70b7];
 
@@ -33,6 +33,22 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
   );
   const [gravity, setGravity] = useState([0, -100.8, 0]);
 
+  const [progress, setProgress] = useState(50);
+  useEffect(() => {
+    const rand = Math.floor(Math.random() * 5) + 1;
+    if (progress >= 99) return;
+    if (progress + rand > 99) {
+      setProgress(99);
+      return;
+    }
+    const timeout = setTimeout(() => {
+      setProgress(progress + rand);
+    }, 500);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [progress]);
+
   return (
     <Canvas>
       <ambientLight intensity={10} />
@@ -45,11 +61,6 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
         position={[10, 10, -5]}
         lookAt={[0, 0, 0]}
         intensity={10}
-        // shadow-mapSize={[256, 256]}
-        // shadow-camera-left={-10}
-        // shadow-camera-right={10}
-        // shadow-camera-top={10}
-        // shadow-camera-bottom={-10}
       />
       <directionalLight
         position={[0, 20, 0]}
@@ -99,12 +110,10 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
             fullscreen
             position={[0, 0, 10]}
           >
-            <div
-              style={{
-                marginTop: "-35%",
-              }}
-            ></div>
-            <Loader isFinished={blackholeActive} />
+            <ProgressBar
+              progress={progress}
+              description="내 인스타 프로필 찾는중.."
+            />
           </Html>
         </Physics>
       </Suspense>

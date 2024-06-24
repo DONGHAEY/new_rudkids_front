@@ -1,7 +1,6 @@
 import { Suspense, useEffect, useRef } from "react";
 import LandingLoader from "./Loader";
 import { PageUI, FooterImgUI, FooterUI, FucChildUI } from "./styles";
-import footer from "./assets/footer.webp";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
 import Page1 from "./Page1";
 import Page2 from "./Page2";
@@ -15,8 +14,10 @@ import scrollDown from "./assets/scroll_down.webp";
 import fucChild from "./assets/fuc_child.webp";
 import getIn from "./assets/get_in.webp";
 import { useNavigate } from "react-router-dom";
+import PublicBizAssets from "../../global/public-biz-assets";
 
 const LandingPage = () => {
+  //
   const landingSnd = new Audio(landinigMp3);
 
   const loadCompleteHandler = () => {
@@ -25,7 +26,7 @@ const LandingPage = () => {
   };
 
   useBodyBackground("rgba(255, 212, 0, 1)");
-  //
+
   const navigate = useNavigate();
   const scrollDownRef = useRef();
   const logoRef = useRef();
@@ -132,7 +133,7 @@ const LandingPage = () => {
         </ScrollDownUI>
         <FooterUI>
           <FucChildUI src={fucChild} ref={fucChildRef} />
-          <FooterImgUI ref={footerImgRef} src={footer} />
+          <FooterImgUI ref={footerImgRef} src={PublicBizAssets.footer} />
         </FooterUI>
       </PageUI>
     </Suspense>
