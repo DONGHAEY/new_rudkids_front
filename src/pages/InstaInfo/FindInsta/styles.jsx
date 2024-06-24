@@ -50,9 +50,9 @@ export const ButtonWrapperUI = styled.div`
 `;
 
 export const SubmitBtnUI = styled.div`
-  padding-block: 10px;
+  padding-block: 5%;
   width: 100%;
-  font-size: clamp(0.7rem, 3vw, 0.9rem);
+  font-size: clamp(0.8rem, 4vw, 1rem);
 `;
 
 export const WrapperUI = styled.div`

@@ -1,4 +1,11 @@
-import { ImageUI, InstaIdTxtUI, WrapperUI, CompleteBtnUI } from "./styles";
+import {
+  ProfileImgUI,
+  InstaIdTxtUI,
+  WrapperUI,
+  CompleteBtnUI,
+  ProfileImgWrapperUI,
+  InstaRingImgUI,
+} from "./styles";
 import useUpdateImageUrlMutation from "../../../mutations/user/useUpdateImageUrlMutation";
 import useUpdateInstaIdMutation from "../../../mutations/user/userUpdateInstaIdMutation";
 import { PageUI, SpacerUI } from "../shared_styles";
@@ -9,6 +16,7 @@ import { Identify, identify, track } from "@amplitude/analytics-browser";
 import moment from "moment";
 import RudWindow from "../../../shared_components/RudWindow";
 import { WindowButtonUI } from "../../../shared_components/RudWindow/shared_styles";
+import instaRing from "./assets/insta_ring.webp";
 
 const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
   const { data: me } = useUserQuery();
@@ -45,7 +53,10 @@ const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
       <SpacerUI />
       <RudWindow>
         <WrapperUI>
-          <ImageUI src={instaImgUrl} />
+          <ProfileImgWrapperUI>
+            <ProfileImgUI src={instaImgUrl} />
+            <InstaRingImgUI src={instaRing} />
+          </ProfileImgWrapperUI>
           <InstaIdTxtUI>@{instaId}</InstaIdTxtUI>
           <WindowButtonUI width="70%" onClick={clickHandler}>
             <CompleteBtnUI>완료</CompleteBtnUI>
