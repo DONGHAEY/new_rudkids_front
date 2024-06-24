@@ -57,9 +57,10 @@ const LandingLoader = ({ onComplete }) => {
         duration: 1,
         onComplete: () => {
           setShow(false);
+          onComplete();
         },
       });
-    onComplete();
+    tl.play(0);
   };
 
   useEffect(() => {
@@ -69,8 +70,10 @@ const LandingLoader = ({ onComplete }) => {
       gsap.to(progressRef.current, {
         width: `100%`,
         duration: 0.3,
+        onComplete: () => {
+          setPlayBtn(true);
+        },
       });
-      setPlayBtn(true);
       return;
     }
     gsap.to(progressRef.current, {
