@@ -23,7 +23,7 @@ export const removeLoginCallbackUrl = () => {
   localStorage.removeItem(StorageKey.login_callback_url);
 };
 export const getLoginCallbackUrl = () => {
-  return localStorage.getItem(StorageKey.login_callback_url) ?? "/";
+  return localStorage.getItem(StorageKey.login_callback_url) ?? "/home";
 };
 
 const LoginPage = () => {

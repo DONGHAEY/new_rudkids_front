@@ -35,6 +35,7 @@ import { track } from "@amplitude/analytics-browser";
 
 const InvitePage = () => {
   const { data: userData } = useUserQuery();
+  //
   const createInvitationMutation = useCreateInvitationMutation();
   const deleteInvitationMutation = useDeleteInvitationMutation();
   const setFirstInviteFinisheMutation = useSetFirstInviteFinished();
