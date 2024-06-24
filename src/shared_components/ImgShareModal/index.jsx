@@ -31,7 +31,6 @@ const ImgShareModal = ({
     });
     await window.navigator.share({
       files: [imageFile],
-      text: "https://instagram.com/rudkidss",
       ...navigatorProps,
     });
   };
