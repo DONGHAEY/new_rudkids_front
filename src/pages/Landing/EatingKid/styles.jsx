@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const EatingKidWrapperUI = styled.div`
   width: 100%;
-  height: 100px;
+  height: 140px;
   display: flex;
   align-items: center;
   position: relative;

@@ -30,6 +30,7 @@ import { GameBar } from "./GameBar";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import ImgShareModal from "../../../shared_components/ImgShareModal";
 import clickSnd from "./assets/click.mp3";
+import gsap from "gsap";
 
 const Page2 = () => {
   //
@@ -65,6 +66,26 @@ const Page2 = () => {
   const takePageScreenShot = async () => {
     setPageScreenshotOpen(true);
   };
+
+  useEffect(() => {
+    // const tl2 = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: pageRef.current,
+    //     top: "top top",
+    //     // end: "top top",
+    //     markers: true,
+    //   },
+    // });
+    // tl2.fromTo(
+    //   pageRef.current,
+    //   {
+    //     opacity: 0,
+    //   },
+    //   {
+    //     opacity: 1,
+    //   }
+    // );
+  }, []);
 
   return (
     <Page2UI

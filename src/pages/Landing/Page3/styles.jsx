@@ -18,12 +18,16 @@ export const TitleImgUI = styled.img`
 
 export const ButtonsWrapperUI = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
   width: 90%;
 `;
 export const InstaImgUI = styled.img`
   position: absolute;
-  top: -6%;
-  right: -3%;
+  top: -8%;
+  right: -1.5%;
   width: 30%;
 `;
 export const GetInButtonUI = styled.img`
@@ -36,4 +40,23 @@ export const GetInButtonUI = styled.img`
 export const BottomImgUI = styled.img`
   width: 90%;
   /* position: absolute; */
+`;
+
+export const FlipWrapperUI = styled.div`
+  perspective: 500px;
+  transform-style: preserve-3d;
+  width: 70%;
+  position: relative;
+`;
+
+export const FlipFrontImgUI = styled.img`
+  width: 100%;
+`;
+
+export const FlipBackImgUI = styled(FlipFrontImgUI)`
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  left: 0;
 `;

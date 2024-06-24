@@ -32,4 +32,19 @@ export const FucChildUI = styled.img`
   right: 3%;
   bottom: 90%;
   width: 57%;
+  @keyframes motion2 {
+    0% {
+      transform: translate3d(0, 100%, 0);
+    }
+    50% {
+      transform: translate3d(0, 100%, 0);
+    }
+    75% {
+      transform: translateZ(0);
+    }
+    100% {
+      transform: translate3d(0, 100%, 0);
+    }
+  }
+  animation: motion2 5s infinite;
 `;

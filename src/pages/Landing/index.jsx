@@ -64,6 +64,9 @@ const LandingPage = () => {
       .to(scrollDownRef.current, {
         opacity: 0,
         scale: 0,
+      })
+      .to(".page2", {
+        opacity: 1,
       });
 
     const t2 = gsap.timeline({
@@ -103,27 +106,6 @@ const LandingPage = () => {
         },
         "<"
       );
-
-    gsap.to(scrollDownRef.current, {
-      marginBottom: "4%",
-      yoyo: true,
-      repeat: -1,
-      ease: "none",
-      duration: 0.5,
-    });
-
-    gsap.fromTo(
-      fucChildRef.current,
-      {
-        bottom: "90%",
-      },
-      {
-        bottom: "-300%",
-        yoyo: true,
-        repeat: -1,
-        repeatDelay: 2,
-      }
-    );
   }, []);
 
   return (
@@ -147,7 +129,7 @@ const LandingPage = () => {
           <img height="100%" src={scrollDown} />
         </ScrollDownUI>
         <FooterUI>
-          <FucChildUI ref={fucChildRef} src={fucChild} />
+          <FucChildUI src={fucChild} ref={fucChildRef} />
           <FooterImgUI ref={footerImgRef} src={footer} />
         </FooterUI>
       </PageUI>

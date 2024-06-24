@@ -110,6 +110,18 @@ export const ScrollDownUI = styled.div`
   align-items: center;
   justify-content: center;
   height: 8%;
+  @keyframes motion {
+    0% {
+      margin-bottom: 0%;
+    }
+    50% {
+      margin-bottom: 3%;
+    }
+    100% {
+      margin-bottom: 0%;
+    }
+  }
+  animation: motion 3s infinite;
 `;
 
 export const FaceImgUI = styled.img`

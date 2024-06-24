@@ -11,6 +11,7 @@ export const Page2UI = styled.div`
   background: url(${background});
   background-repeat: none;
   background-size: cover;
+  opacity: 0;
   background-size: 120%;
 `;
 
