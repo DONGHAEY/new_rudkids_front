@@ -36,7 +36,7 @@ const CartProduct = ({ cartProduct }) => {
 
   const deleteClickHandler = async (e) => {
     e.stopPropagation();
-    if (window.confirm("정말로 삭제하시겠습니까?")) {
+    if (window.confirm("정말로 삭제하겠어?..")) {
       await deleteMutation.mutateAsync();
     }
   };

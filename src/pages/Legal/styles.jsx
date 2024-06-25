@@ -8,6 +8,15 @@ export const PageUI = styled.div`
   min-height: 100%;
 `;
 
+export const ButtonListUI = styled.div`
+  width: 90%;
+  display: flex;
+  align-items: center;
+  gap: 3%;
+  text-align: center;
+  margin-top: 20px;
+`;
+
 export const TextWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,6 +26,13 @@ export const TextWrapperUI = styled.div`
   gap: 10px;
   margin-block: 20px;
   padding-inline: 10px;
+`;
+
+export const ContentsTitleUI = styled.h1`
+  margin-block: 30px;
+  text-align: left;
+  width: 95%;
+  font-size: 40px;
 `;
 
 export const H1 = styled.p`

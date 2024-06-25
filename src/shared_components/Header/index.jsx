@@ -32,11 +32,10 @@ const Header = ({ isFixed = true }) => {
         <IconLinkUI onClick={listBtnClickHandler}>
           <Icon icon="material-symbols:menu" color="black" />
         </IconLinkUI>
-        <LogoIconUI to="/">
+        <LogoIconUI to="/home">
           <img height="100%" src={PublicBizAssets.logo} />
         </LogoIconUI>
         <IconLinkUI to="/cart">
-          {/* <CartTxtUI> */}
           <Icon icon="mdi:cart" color="black" />
           {/* </CartTxtUI> */}
           <CartCntTextUI>{cartCntData}</CartCntTextUI>

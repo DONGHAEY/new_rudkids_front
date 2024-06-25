@@ -3,6 +3,7 @@ import {
   FooterLabel,
   FooterUI,
   InfoBtnUI,
+  InstaLinkUI,
   LinkUI,
 } from "./styles";
 import { useState } from "react";
@@ -20,12 +21,13 @@ const Footer = () => {
           Email: rudkidss@gmail.com
           <br />
           <LinkUI to="/legal">Legal|법률</LinkUI>
-          <LinkUI to="/privacy">Privacy|개인정보처리방침</LinkUI>
         </FooterContentsUI>
       )}
       <FooterLabel>
         <InfoBtnUI onClick={() => setOpen(!open)}>Information</InfoBtnUI>
-        <p>@rudkidss</p>
+        <InstaLinkUI href={"https://www.instagram.com/rudkidss"}>
+          @rudkidss
+        </InstaLinkUI>
       </FooterLabel>
     </FooterUI>
   );

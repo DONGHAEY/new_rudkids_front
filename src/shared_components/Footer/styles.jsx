@@ -41,3 +41,8 @@ export const LinkUI = styled(Link)`
   color: black;
   margin-inline: 3px;
 `;
+
+export const InstaLinkUI = styled.a`
+  text-decoration: none;
+  color: black;
+`;
