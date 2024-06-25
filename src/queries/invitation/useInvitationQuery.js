@@ -14,6 +14,8 @@ const useInvitationQuery = (invitationId) => {
   return useQuery({
     queryKey: KEY(invitationId),
     queryFn: async () => await getInvitation(invitationId),
+    enabled: invitationId != undefined,
+    suspense: true,
   });
 };
 

@@ -197,7 +197,7 @@ export const routes = {
   },
   ["legal"]: {
     name: "legal",
-    viewTrack: false,
+    viewTrack: true,
     path: "/legal",
     paramKeys: [],
     element: LegalPage,

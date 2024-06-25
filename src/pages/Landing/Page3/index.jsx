@@ -20,6 +20,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { trackClickButton } from "../../../shared_analytics";
 
 const Page3 = () => {
   const navigate = useNavigate();
@@ -66,6 +67,9 @@ const Page3 = () => {
         <InstaImgUI
           src={insta}
           onClick={() => {
+            trackClickButton("rudkidss instagram", {
+              page: "landing",
+            });
             window.location.href = "https://www.instagram.com/rudkidss";
           }}
         />

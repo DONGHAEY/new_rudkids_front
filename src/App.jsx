@@ -82,17 +82,6 @@ function App() {
 }
 
 const TrackPageView = ({ children, pageName }) => {
-  const params = useParams();
-  const searchParams = useMemo(() => {
-    const searchParams = qs.parse(window.location.search.replace("?", ""));
-    return searchParams;
-  }, [window.location.search]);
-
-  const options = {
-    ...params,
-    ...searchParams,
-  };
-
   useTrackReadPageContents(pageName);
 
   useEffect(() => {
@@ -100,9 +89,9 @@ const TrackPageView = ({ children, pageName }) => {
     const c_url_ = sessionStorage.getItem("c_url");
     if (c_url_ !== c_url) {
       sessionStorage.setItem("c_url", c_url);
-      trackPageView(pageName, options);
+      trackPageView(pageName);
     }
-  }, [pageName, options]);
+  }, [pageName]);
 
   return children;
 };

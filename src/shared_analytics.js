@@ -11,16 +11,17 @@ export const trackPageView = (pageName, options) => {
   track(`view ${pageName} page`, options);
 };
 
+let maxScrollPos = 0;
+let scrollPos = 0;
+
 export const useTrackReadPageContents = (pageName) => {
-  let maxScrollPos = 0;
-  let scrollPos = 0;
   const scrollHandler = () => {
     const scrollTop = gsap.getProperty("html", "scrollTop");
     const clientHeight = gsap.getProperty("html", "clientHeight");
     const offsetHeight = gsap.getProperty("#root > div", "offsetHeight");
     const scrollPercentage = (scrollTop * 100) / (offsetHeight - clientHeight);
-    scrollPos = scrollPercentage.toFixed(0);
-    if (scrollPos >= maxScrollPos) {
+    scrollPos = Math.round(scrollPercentage);
+    if (scrollPos > maxScrollPos) {
       maxScrollPos = scrollPos;
     }
   };
@@ -39,7 +40,7 @@ export const useTrackReadPageContents = (pageName) => {
         duration_time: durationTime.toFixed(1),
         max_scroll_position: maxScrollPos,
         end_scroll_position: scrollPos,
-        page_name: pageName,
+        page: pageName,
       });
     };
   }, [pageName]);

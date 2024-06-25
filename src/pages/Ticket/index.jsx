@@ -16,7 +16,11 @@ import tempUserSrc from "./assets/temp_user.webp";
 import InvitedUsers from "./InvitedUsers";
 import StorageKey from "../../storageKey";
 import Loader from "../../shared_components/Loader";
-import { trackClickButton, trackPageView } from "../../shared_analytics";
+import {
+  trackClickButton,
+  trackPageView,
+  useTrackReadPageContents,
+} from "../../shared_analytics";
 
 export const setTicketId = (invitationId) => {
   sessionStorage.setItem(StorageKey.invitation_id, invitationId);
@@ -79,6 +83,8 @@ const TicketPage = ({ routeInfo }) => {
       }
     }
   }, [isLoading]);
+
+  useTrackReadPageContents("ticket");
 
   if (isLoading) {
     return <Loader />;

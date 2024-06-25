@@ -19,7 +19,10 @@ import useProductDetailQuery from "../../queries/product/useProductDetailQuery";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import img1Src from "./assets/1.jpg";
 import img2Src from "./assets/2.jpg";
-import { trackPageView } from "../../shared_analytics";
+import {
+  trackPageView,
+  useTrackReadPageContents,
+} from "../../shared_analytics";
 import Loader from "../../shared_components/Loader";
 
 const ProductDetailPage = ({ routeInfo }) => {
@@ -65,6 +68,7 @@ const ProductDetailPage = ({ routeInfo }) => {
       price,
     });
   }, [productData]);
+  useTrackReadPageContents("product-detail");
 
   return (
     <Suspense fallback={<Loader />}>

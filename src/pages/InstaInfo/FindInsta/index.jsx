@@ -17,6 +17,7 @@ import instaImgSrc from "../assets/instagram.webp";
 import instaBtnImgSrc from "./assets/insta_btn.webp";
 import RudWindow from "../../../shared_components/RudWindow";
 import { WindowButtonUI } from "../../../shared_components/RudWindow/shared_styles";
+import { trackClickButton } from "../../../shared_analytics";
 
 const FindInsta = ({ setFindedInstaInfo }) => {
   const [instagramId, setInstagramId] = useState("");
@@ -65,6 +66,9 @@ const FindInsta = ({ setFindedInstaInfo }) => {
     <PageUI>
       <RudkidsInstaUI
         onClick={() => {
+          trackClickButton("rudkidss instagram", {
+            page: "insta-info",
+          });
           window.location.href = "https://www.instagram.com/rudkidss";
         }}
         src={instaBtnImgSrc}

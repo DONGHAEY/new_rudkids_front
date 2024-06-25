@@ -24,11 +24,6 @@ const menuButtonDtList = [
     iconNm: "mdi:shopping",
     path: "/shop",
   },
-  // {
-  //   name: "Rude\nCamera",
-  //   iconNm: "ph:camera-fill",
-  //   path: "/rud-gate",
-  // },
   {
     name: "Rank",
     iconNm: "mdi:prize",
@@ -39,11 +34,6 @@ const menuButtonDtList = [
     iconNm: "ph:heart-fill",
     path: "/collection",
   },
-  // {
-  //   name: "About",
-  //   iconNm: "mdi:information",
-  //   path: "/about",
-  // },
 ];
 
 const MenuBar = ({ onClosed }) => {
@@ -51,6 +41,17 @@ const MenuBar = ({ onClosed }) => {
 
   const ref = useRef();
   const dimmRef = useRef();
+
+  const clickHandler = (e, path) => {
+    e.stopPropagation();
+    close(() => {
+      if (path.includes("http") || path.includes("https")) {
+        window.location = path;
+        return;
+      }
+      navigate(path);
+    });
+  };
 
   useEffect(() => {
     if (!ref.current || !dimmRef.current) return;
@@ -110,24 +111,35 @@ const MenuBar = ({ onClosed }) => {
         <MenuBtnListUI>
           {menuButtonDtList?.map((menuButtonDt, idx) => {
             return (
-              <MenuBtnUI
+              <MenuBtn
                 key={idx}
                 onClick={(e) => {
-                  e.stopPropagation();
+                  clickHandler(e, menuButtonDt.path);
                   trackClickButton("nav bar", {
                     type: menuButtonDt.name,
                   });
-                  close(() => navigate(menuButtonDt.path));
                 }}
-                background={
-                  SignatureGradients[idx % SignatureGradients?.length]
-                }
-              >
-                <Icon icon={menuButtonDt.iconNm} height="30%" />
-                <MenuBtnTextUI>{menuButtonDt.name}</MenuBtnTextUI>
-              </MenuBtnUI>
+                name={menuButtonDt.name}
+                path={menuButtonDt.path}
+                iconNm={menuButtonDt.iconNm}
+                idx={idx}
+              />
             );
           })}
+          <MenuBtn
+            idx={0}
+            name="Rudkidss"
+            iconNm="hugeicons:instagram"
+            onClick={(e) => {
+              trackClickButton("nav bar", {
+                type: "instagram",
+              });
+              trackClickButton("rudkidss instagram", {
+                page: "nav bar",
+              });
+              clickHandler(e, "https://www.instagram.com/rudkidss");
+            }}
+          />
         </MenuBtnListUI>
       </MenuBarUI>
       <DimmUI
@@ -140,6 +152,19 @@ const MenuBar = ({ onClosed }) => {
         }}
       />
     </>
+  );
+};
+
+const MenuBtn = ({ name, iconNm, idx, onClick }) => {
+  return (
+    <MenuBtnUI
+      key={idx}
+      onClick={onClick}
+      background={SignatureGradients[idx % SignatureGradients?.length]}
+    >
+      <Icon icon={iconNm} height="30%" />
+      <MenuBtnTextUI>{name}</MenuBtnTextUI>
+    </MenuBtnUI>
   );
 };
 

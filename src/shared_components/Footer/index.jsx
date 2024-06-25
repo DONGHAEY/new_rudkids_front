@@ -1,3 +1,4 @@
+import { trackClickButton } from "../../shared_analytics";
 import {
   FooterContentsUI,
   FooterLabel,
@@ -25,7 +26,14 @@ const Footer = () => {
       )}
       <FooterLabel>
         <InfoBtnUI onClick={() => setOpen(!open)}>Information</InfoBtnUI>
-        <InstaLinkUI href={"https://www.instagram.com/rudkidss"}>
+        <InstaLinkUI
+          href={"https://www.instagram.com/rudkidss"}
+          onClick={() => {
+            trackClickButton("rudkidss instagram", {
+              page: "footer",
+            });
+          }}
+        >
           @rudkidss
         </InstaLinkUI>
       </FooterLabel>
