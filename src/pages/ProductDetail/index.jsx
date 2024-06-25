@@ -90,7 +90,6 @@ const ProductDetailPage = ({ routeInfo }) => {
             </InfoRowUI>
             <ProductPriceTextUI>₩ {productPrice}</ProductPriceTextUI>
           </ContentSectionUI>
-
           <div
             style={{
               height: "5%",

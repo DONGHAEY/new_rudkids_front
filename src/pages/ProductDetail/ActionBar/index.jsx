@@ -18,10 +18,11 @@ const ActionBar = ({ productData }) => {
 
   const cartButtonClickHandler = async (options = []) => {
     console.log(productData.optionGroups.length);
-    if (productData?.optionGroups?.length !== 0 && !options) {
+    if (productData?.optionGroups?.length !== 0 && !options?.length) {
       setSelectOptionModal(true);
       return;
     }
+
     const optionIds = options?.map((option) => option.id) ?? [];
     try {
       await putCartProductMutation.mutateAsync(
@@ -53,9 +54,7 @@ const ActionBar = ({ productData }) => {
           },
         }
       );
-    } catch (e) {
-      alert(e);
-    }
+    } catch (e) {}
     return;
   };
 
