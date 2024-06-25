@@ -49,6 +49,7 @@ const MenuBar = ({ onClosed }) => {
         window.location = path;
         return;
       }
+
       navigate(path);
     });
   };

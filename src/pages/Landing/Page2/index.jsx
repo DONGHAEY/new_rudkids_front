@@ -99,6 +99,7 @@ const Page2 = () => {
         targetRef={pageRef}
         open={pageScreenshotOpen}
         close={() => setPageScreenshotOpen(false)}
+        pageName="landing"
         fileName="rud-clothes.png"
       />
     </Page2UI>

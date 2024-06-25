@@ -2,13 +2,19 @@ import { track } from "@amplitude/analytics-browser";
 import gsap from "gsap";
 import moment from "moment";
 import { useEffect } from "react";
+import StorageKey from "./storageKey";
 
 export const trackClickButton = (buttonName, options) => {
   track(`click ${buttonName} button`, options);
 };
 
 export const trackPageView = (pageName, options) => {
-  track(`view ${pageName} page`, options);
+  let c_url = window.location.href + window.location.search;
+  const c_url_ = sessionStorage.getItem(StorageKey.current_url);
+  if (c_url_ !== c_url) {
+    sessionStorage.setItem(StorageKey.current_url, c_url);
+    track(`view ${pageName} page`, options);
+  }
 };
 
 let maxScrollPos = 0;

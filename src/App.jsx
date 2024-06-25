@@ -1,5 +1,4 @@
 import { init } from "@amplitude/analytics-browser";
-import * as qs from "qs";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import { QueryClientProvider } from "react-query";
 import { Route, Routes, useLocation, useParams } from "react-router-dom";
@@ -82,15 +81,10 @@ function App() {
 }
 
 const TrackPageView = ({ children, pageName }) => {
+  //
   useTrackReadPageContents(pageName);
-
   useEffect(() => {
-    let c_url = window.location.href + window.location.search;
-    const c_url_ = sessionStorage.getItem("c_url");
-    if (c_url_ !== c_url) {
-      sessionStorage.setItem("c_url", c_url);
-      trackPageView(pageName);
-    }
+    trackPageView(pageName);
   }, [pageName]);
 
   return children;

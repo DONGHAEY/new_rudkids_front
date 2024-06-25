@@ -3,12 +3,15 @@ import RudAlert from "../RudAlert";
 import shareImgSrc from "./assets/share_way.webp";
 import { ContentImgWrapperUI, ModalUI, RudAlertWrapperUI } from "./styles";
 import { useScreenshot } from "use-react-screenshot";
+import { trackClickButton } from "../../shared_analytics";
+import { track } from "@amplitude/analytics-browser";
 
 const ImgShareModal = ({
   open,
   close,
   targetRef,
   fileName = "",
+  pageName = "",
   ...navigatorProps
 }) => {
   const [screenshot, takeScreenshot] = useScreenshot();
@@ -29,10 +32,22 @@ const ImgShareModal = ({
     const imageFile = new File([blob], filename, {
       type: blob.type,
     });
-    await window.navigator.share({
-      files: [imageFile],
-      ...navigatorProps,
+    try {
+      await window.navigator.share({
+        files: [imageFile],
+        ...navigatorProps,
+      });
+      track("complete share", {
+        page: pageName,
+      });
+    } catch (e) {}
+  };
+
+  const shareBtnClickHandler = () => {
+    trackClickButton("share", {
+      page: pageName,
     });
+    captureShare();
   };
 
   return (
@@ -40,7 +55,7 @@ const ImgShareModal = ({
       <RudAlertWrapperUI>
         <RudAlert onClose={close}>
           <ContentImgWrapperUI>
-            <img src={shareImgSrc} width="80%" onClick={captureShare} />
+            <img src={shareImgSrc} width="80%" onClick={shareBtnClickHandler} />
           </ContentImgWrapperUI>
         </RudAlert>
       </RudAlertWrapperUI>
