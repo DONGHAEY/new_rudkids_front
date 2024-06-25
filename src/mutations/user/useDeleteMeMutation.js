@@ -23,7 +23,7 @@ const useDeleteMeMutation = () => {
       await queryClient.invalidateQueries(userKey("my"));
     },
     onSuccess: () => {
-      track("deleted me");
+      track("complete delete user");
     },
   });
 };

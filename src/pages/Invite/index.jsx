@@ -113,11 +113,7 @@ const InvitePage = () => {
         )}
       </LottieWrapperUI>
       <Friends />
-      <CallingModal
-        videoSrc={videoSrc}
-        onClosed={() => {}}
-        pageFor="first invite"
-      />
+      <CallingModal videoSrc={videoSrc} onClosed={() => {}} pageFor="invite" />
     </PageUI>
   );
 };

@@ -15,6 +15,7 @@ import NicknameEdit from "./NicknameEdit";
 import { useNavigate } from "react-router-dom";
 import Popup from "../../shared_components/Popup";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { trackClickButton } from "../../shared_analytics";
 
 const ProfileEditPage = () => {
   const [navigatePopup] = usePopup();
@@ -25,6 +26,7 @@ const ProfileEditPage = () => {
   const deleteUserMutation = useDeleteMeMutation();
 
   const deleteBtnClickHandler = async () => {
+    trackClickButton("delete user");
     const stat = window.confirm(
       "정말로 탈퇴하실것입니까? 탈퇴시 이용내역이 삭제됩니다(주문관련 예외)"
     );

@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useCreatePaymentMutation from "../../mutations/payment/useCreatePaymentMutation";
+import useDeleteCartMutation from "../../mutations/cart/useDeleteCartMutation";
 import useOrderDetailQuery from "../../queries/order/useOrderDetailQuery";
 import Loader from "../../shared_components/Loader";
-import { track } from "@amplitude/analytics-browser";
+import { Revenue, track, revenue } from "@amplitude/analytics-browser";
 
 const PayPage = () => {
   const navigate = useNavigate();
 
   const createPaymentMutation = useCreatePaymentMutation();
+  const deleteCartMutation = useDeleteCartMutation();
   const [searchParams] = useSearchParams();
   const orderId = searchParams.get("orderId");
   const paymentKey = searchParams.get("paymentKey");
@@ -45,6 +47,15 @@ const PayPage = () => {
                 orderProduct.options?.map((option) => {
                   options[option.groupName] = option.name;
                 });
+                const revenueEvent = new Revenue()
+                  .setProductId(orderProduct.productId)
+                  .setPrice(orderProduct.price)
+                  .setQuantity(orderProduct.quantity)
+                  .setRevenueType("purchase")
+                  .setEventProperties({
+                    ...options,
+                  });
+                revenue(revenueEvent);
                 return {
                   product_id: orderProduct.productId,
                   product_name: orderProduct.name,
@@ -54,6 +65,7 @@ const PayPage = () => {
                 };
               }),
             });
+            deleteCartMutation.mutateAsync();
             navigate(`/order/${orderId}`, {
               replace: true,
             });
