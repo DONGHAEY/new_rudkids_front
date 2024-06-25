@@ -1,28 +1,24 @@
 import styled from "styled-components";
 
-export const TimerButtonUI = styled.div`
+export const ButtonWrapperUI = styled.div`
+  width: 75%;
+  margin-block: 20px;
+  gap: 5px;
+`;
+
+export const ButtonUI = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 75%;
-  margin-top: 30px;
-  border-radius: 67px;
-  gap: 5px;
-  padding-top: 15px;
-  padding-block: 19px;
-  align-items: center;
+  padding-block: 5%;
   justify-content: center;
-  /* background: linear-gradient(
-    90deg,
-    rgba(232, 0, 0, 1) 0%,
-    rgba(255, 104, 104, 1) 100%
-  ); */
-  background-color: #ffd600;
+  align-items: center;
 `;
 
 export const TimelineUI = styled.div`
   display: flex;
   flex-direction: row;
-  width: 65%;
+  width: 60%;
   height: 12.08px;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.5);
@@ -36,7 +32,9 @@ export const TimelineFillUI = styled.div`
 `;
 
 export const ButtonTxtUI = styled.p`
-  font-family: Poppins-Bold;
+  font-family: boba;
   color: black;
+  width: 100%;
+  text-align: center;
   font-size: 28px;
 `;

@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
 import {
   TimelineUI,
-  TimerButtonUI,
+  ButtonWrapperUI,
   ButtonTxtUI,
   TimelineFillUI,
+  ButtonUI,
 } from "./styles";
 import gsap from "gsap";
+import { WindowButtonUI } from "../../../shared_components/RudWindow/shared_styles";
 
 const TimerButton = ({ timerOffset, onClick }) => {
   const buttonRef = useRef();
@@ -35,12 +37,19 @@ const TimerButton = ({ timerOffset, onClick }) => {
   }, []);
 
   return (
-    <TimerButtonUI onClick={onClick} ref={buttonRef}>
-      <ButtonTxtUI>OPEN</ButtonTxtUI>
-      <TimelineUI>
-        <TimelineFillUI ref={ref} />
-      </TimelineUI>
-    </TimerButtonUI>
+    <ButtonWrapperUI onClick={onClick} ref={buttonRef}>
+      <WindowButtonUI
+        border="rgba(171, 167, 160, 1)"
+        background="rgba(211, 206, 197, 1)"
+      >
+        <ButtonUI>
+          <ButtonTxtUI>OPEN!</ButtonTxtUI>
+          <TimelineUI>
+            <TimelineFillUI ref={ref} />
+          </TimelineUI>
+        </ButtonUI>
+      </WindowButtonUI>
+    </ButtonWrapperUI>
   );
 };
 

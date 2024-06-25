@@ -19,7 +19,6 @@ import { ToyIntroduce } from "./ToyIntroduce";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import SlidingTape from "./SlidingTape";
 import { trackClickButton } from "../../shared_analytics";
-
 import SymbolLoader from "../../shared_components/SymbolLoader";
 import Footer from "../../shared_components/Footer";
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import backgroundImgUrl from "./assets/background.webp";
+import PublicBizAssets from "../../global/public-biz-assets";
 
 export const PageUI = styled.div`
   display: flex;
@@ -8,7 +8,8 @@ export const PageUI = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
-  background-image: url(${backgroundImgUrl});
+  background-color: red;
+  background-image: url(${PublicBizAssets.background});
   background-repeat: none;
   background-size: cover;
 `;
@@ -17,6 +18,7 @@ export const TitleTxtUI = styled.p`
   font-size: clamp(1rem, 8vw, 2.2rem);
   font-family: Pretendard-Bold;
   line-height: 100%;
+  color: white;
 `;
 
 export const SubTitleTxtUI = styled.p`
@@ -25,6 +27,7 @@ export const SubTitleTxtUI = styled.p`
   margin-top: 14px;
   line-height: 100%;
   font-size: clamp(0.8rem, 4.3vw, 1.1rem);
+  color: white;
 `;
 
 export const MiddleSectionUI = styled.div`
