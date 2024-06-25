@@ -30,7 +30,6 @@ const LoginCallbackPage = ({ routeInfo }) => {
           if (!me.isInvited) {
             const ticketId = getTicketId();
             if (!ticketId) {
-              alert("초대티켓을 받은 사람만 활동 가능합니다!!");
               navigate(`/401`);
               return;
             }
