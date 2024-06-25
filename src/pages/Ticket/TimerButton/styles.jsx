@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const ButtonWrapperUI = styled.div`
-  width: 75%;
-  margin-block: 20px;
+  width: 70%;
+  margin-block: 5%;
   gap: 5px;
 `;
 
@@ -10,7 +10,7 @@ export const ButtonUI = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding-block: 5%;
+  padding-block: 8%;
   justify-content: center;
   align-items: center;
 `;

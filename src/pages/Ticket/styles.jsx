@@ -24,7 +24,7 @@ export const TitleTxtUI = styled.p`
 export const SubTitleTxtUI = styled.p`
   font-size: 18px;
   font-family: Pretendard-Bold;
-  margin-top: 14px;
+  margin-top: 5%;
   line-height: 100%;
   font-size: clamp(0.8rem, 4.3vw, 1.1rem);
   color: white;
@@ -42,8 +42,8 @@ export const DescriptSectionUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-top: 10%;
+  margin-bottom: 4%;
   gap: 0px;
 `;
 
