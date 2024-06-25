@@ -5,14 +5,15 @@ export const BackgroundUI = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  margin: 0 auto;
+  margin-inline: 0 auto;
   max-width: 430px;
   z-index: ${({ zIndex }) => zIndex ?? -1};
   background-color: red;
 `;
 
 export const BackgroundImgUI = styled.img`
-  position: ${({ isFixed }) => (isFixed ? "fixed" : "absolute")};
+  position: absolute;
+  left: 0;
   top: 0;
   width: 100%;
   height: 100%;
@@ -25,4 +26,5 @@ export const BottomImgUI = styled.img`
   width: 100%;
   position: absolute;
   bottom: 0;
+  left: 0;
 `;

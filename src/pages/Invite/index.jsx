@@ -50,8 +50,8 @@ const InvitePage = () => {
 
     try {
       await window.navigator.share({
-        title: "일상속의 작은 재미의 상점 - Rudkids",
-        text: "이곳에서 일상속의 재미 프로젝트들을 만나보세요!",
+        title: "Rudkids",
+        text: "야 ㅁㅊ 이거 너 아님?",
         url: `https://www.rud.kids/ticket/${invitationId}`,
       });
       if (inviterCnt + 1 <= goalInviterCnt) {

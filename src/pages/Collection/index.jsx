@@ -45,6 +45,7 @@ const CollectionPage = () => {
         <TitleTxtUI>{userData?.nickname}'s</TitleTxtUI>
         <TitleTxtUI>Collection</TitleTxtUI>
       </TitleWrapperUI>
+      <Background />
       <ListUI>
         {collectedProducts?.map((orderProduct, idx) => {
           const randomTop = Math.floor(Math.random() * 60);
@@ -73,7 +74,6 @@ const CollectionPage = () => {
           <p>주문 내역</p>
         </GoOrderBtnUI>
       )}
-      <Background />
     </PageUI>
   );
 };
