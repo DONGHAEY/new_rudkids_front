@@ -45,6 +45,11 @@ export const OptionUI = styled.div`
   border-bottom: #dedede 1px solid;
 `;
 
+export const OptionImgUI = styled.img`
+  height: 55px;
+  border-radius: 10px;
+`;
+
 export const ColUI = styled.div`
   display: flex;
   flex-direction: column;

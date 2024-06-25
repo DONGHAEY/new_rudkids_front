@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import {
   ColUI,
+  OptionImgUI,
   OptionListUI,
   OptionTxtUI,
   OptionUI,
@@ -8,6 +9,7 @@ import {
 } from "./styles";
 import size1Src from "./assets/size-1.webp";
 import size2Src from "./assets/size-2.webp";
+import size3Src from "./assets/size-3.webp";
 
 const SelectBox = ({
   name,
@@ -24,6 +26,7 @@ const SelectBox = ({
   const imgObj = {
     ["Size-1"]: size1Src,
     ["Size-2"]: size2Src,
+    ["Size-3"]: size3Src,
   };
 
   return (
@@ -34,7 +37,7 @@ const SelectBox = ({
             const imgUrl = imgObj[`${name}-${option?.name}`];
             return (
               <OptionUI onClick={() => optionClickHandler(option)}>
-                {imgUrl && <img height="55px" src={imgUrl} />}
+                {imgUrl && <OptionImgUI src={imgUrl} />}
                 <p>
                   {name} : {option?.name}
                 </p>

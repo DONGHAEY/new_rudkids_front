@@ -17,15 +17,17 @@ const ActionBar = ({ productData }) => {
   const putCartProductMutation = useAddCartProductMutation();
 
   const cartButtonClickHandler = async (options = []) => {
-    if (productData?.optionGroups?.length !== 0 && !options?.length) {
+    console.log(productData.optionGroups.length);
+    if (productData?.optionGroups?.length !== 0 && !options) {
       setSelectOptionModal(true);
       return;
     }
+    const optionIds = options?.map((option) => option.id) ?? [];
     try {
       await putCartProductMutation.mutateAsync(
         {
           productId: productData.id,
-          optionIds: options?.map((option) => option.id),
+          optionIds: optionIds,
         },
         {
           onSuccess: () => {
@@ -51,7 +53,9 @@ const ActionBar = ({ productData }) => {
           },
         }
       );
-    } catch (e) {}
+    } catch (e) {
+      alert(e);
+    }
     return;
   };
 
@@ -59,7 +63,7 @@ const ActionBar = ({ productData }) => {
     <>
       <ActionBarWrapperUI>
         <ActionBarUI>
-          <ActionButtonUI onClick={cartButtonClickHandler}>
+          <ActionButtonUI onClick={() => cartButtonClickHandler([])}>
             <BsCartPlusFill fontSize="25px" />
             <p>Cart</p>
           </ActionButtonUI>

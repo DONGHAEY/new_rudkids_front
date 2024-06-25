@@ -1,10 +1,7 @@
 import Header from "../../shared_components/Header";
 import {
-  BlankUI,
-  GrassBackgroundUI,
   LinkButtonUI,
   MainBannerImgUI,
-  MainBannerUI,
   PageUI,
   SpacerUI,
   TextGrp,
@@ -43,7 +40,7 @@ const HomePage = () => {
     trackClickButton("rudkidss instagram", {
       page: "home",
     });
-    window.location = "www.instagram.com/rudkidss";
+    window.location.href = "https://www.instagram.com/rudkidss";
   };
 
   return (
