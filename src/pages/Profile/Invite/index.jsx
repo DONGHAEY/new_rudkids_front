@@ -33,7 +33,7 @@ const Invite = ({ close }) => {
       await window.navigator.share({
         title: "Rudkids",
         text: "야 ㅁㅊ 이거 너 아님?",
-        url: `https://www.rud.kids/invitation/${invitationId}`,
+        url: `https://www.rud.kids/ticket/${invitationId}`,
       });
       track("send tickets", {
         times: userData.invitateCnt,
