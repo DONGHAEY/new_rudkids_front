@@ -5,14 +5,22 @@ import { useQuery } from "react-query";
 
 const RudImage = ({ ImgUI, src, ...props }) => {
   const [loadingSec, setLoadingSec] = useState(0);
+  const [hasErr, setHasErr] = useState(false);
 
   const loadImgs = [loadImg1, loadImg2];
-  const { data: image, isLoading } = useQuery(["image", src], () =>
-    fetch(src).then((res) => res.blob())
-  );
+  const { data: image, isLoading } = useQuery(["image", src], {
+    queryFn: () => fetch(src).then((res) => res.blob()),
+    enabled: src !== "",
+  });
+
+  const render = image && !hasErr;
+
+  const errorHandler = () => {
+    setHasErr(true);
+  };
 
   useEffect(() => {
-    if (!isLoading) return;
+    if (render) return;
     const timeout = setTimeout(() => {
       setLoadingSec(loadingSec + 1);
     }, 200);
@@ -21,8 +29,14 @@ const RudImage = ({ ImgUI, src, ...props }) => {
     };
   }, [loadingSec]);
 
-  if (!isLoading) {
-    return <ImgUI src={URL.createObjectURL(image)} {...props} />;
+  if (render) {
+    return (
+      <ImgUI
+        {...props}
+        src={URL.createObjectURL(image)}
+        onError={errorHandler}
+      />
+    );
   }
 
   return <ImgUI src={loadImgs[loadingSec % loadImgs.length]} {...props} />;

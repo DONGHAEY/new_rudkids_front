@@ -6,21 +6,15 @@ export const PageUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* justify-content: space-between; */
   width: 100%;
   height: 100vh;
   background-image: url(${backgroundImgUrl});
   background-repeat: none;
   background-size: cover;
-  /* background: linear-gradient(
-    180deg,
-    rgba(255, 248, 96, 1) 0%,
-    rgba(255, 255, 255, 1) 100%
-  ); */
 `;
 
 export const TitleTxtUI = styled.p`
-  font-size: 30px;
+  font-size: clamp(1rem, 8vw, 2.2rem);
   font-family: Pretendard-Bold;
   line-height: 100%;
 `;
@@ -30,6 +24,7 @@ export const SubTitleTxtUI = styled.p`
   font-family: Pretendard-Bold;
   margin-top: 14px;
   line-height: 100%;
+  font-size: clamp(0.8rem, 4.3vw, 1.1rem);
 `;
 
 export const MiddleSectionUI = styled.div`

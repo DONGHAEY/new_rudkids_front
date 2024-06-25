@@ -9,7 +9,6 @@ import {
   CenterLogoImgUI,
   FooterImgUI,
   PageUI,
-  PlayBtnUI,
   StarsImgUI,
   TopImgUI,
 } from "./styles";
@@ -72,6 +71,28 @@ const LandingLoader = ({ onComplete, isFallback }) => {
     );
   }, []);
 
+  useEffect(() => {
+    if (!playBtn) {
+      gsap.set(logoRef.current, {
+        opacity: 1,
+        width: "60%",
+      });
+      return;
+    }
+    gsap.to(logoRef.current, {
+      opacity: 0,
+      duration: 1,
+      onComplete: () => {
+        logoRef.current.src = play;
+        gsap.to(logoRef.current, {
+          width: "25%",
+          opacity: 1,
+          duration: 1,
+        });
+      },
+    });
+  }, [playBtn]);
+
   if (!show) return null;
 
   return (
@@ -80,16 +101,21 @@ const LandingLoader = ({ onComplete, isFallback }) => {
       <StarsImgUI src={PublicBizAssets.background} />
       <BottomImgUI src={PublicBizAssets.bottom} ref={bottomRef} />
       <CenterDivUI>
-        <CenterLogoImgUI src={centerlogo} ref={logoRef} />
+        <CenterLogoImgUI
+          src={centerlogo}
+          ref={logoRef}
+          onClick={() => {
+            if (playBtn) {
+              playBtnClick();
+            }
+          }}
+        />
         <ProgressBar
           progress={progress}
           onComplete={() => {
             setPlayBtn(true);
           }}
         />
-        {playBtn && !isFallback && (
-          <PlayBtnUI src={play} onClick={playBtnClick} />
-        )}
       </CenterDivUI>
       <FooterImgUI src={PublicBizAssets.footer} />
     </PageUI>

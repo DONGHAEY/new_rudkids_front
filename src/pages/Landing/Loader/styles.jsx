@@ -58,11 +58,5 @@ export const CenterDivUI = styled.div`
 
 export const CenterLogoImgUI = styled.img`
   width: 60%;
-`;
-
-export const PlayBtnUI = styled.img`
-  width: 13%;
-  margin-top: 4%;
-  aspect-ratio: 1/1;
-  z-index: 3;
+  margin-bottom: 3%;
 `;

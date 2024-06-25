@@ -89,8 +89,8 @@ const TicketPage = ({ routeInfo }) => {
       <InvitedUsers invitedUsers={invitedUsers} />
       <MiddleSectionUI>
         <DescriptSectionUI>
-          <TitleTxtUI>초대장이 도착했어요!</TitleTxtUI>
-          <SubTitleTxtUI>당신, 루키즈가 되고싶어?</SubTitleTxtUI>
+          <TitleTxtUI>입장권이 발급됐어요!</TitleTxtUI>
+          <SubTitleTxtUI>{invitationData.description}</SubTitleTxtUI>
         </DescriptSectionUI>
         <Letter
           fromImageUrl={invitationData?.fromImageUrl}

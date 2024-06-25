@@ -6,6 +6,7 @@ import {
   ScrollMarqueeUI,
 } from "./styles";
 import Marquee from "react-fast-marquee";
+import RudImage from "../../../shared_components/RudImage";
 const InvitedUsers = ({ invitedUsers }) => {
   return (
     <ScrollMarqueeUI>
@@ -25,7 +26,7 @@ const InvitedUser = ({ userImgUrl }) => {
 
   return (
     <InvitedUserImgWrapperUI>
-      <InvitedUserImgUI src={userImgUrl} />
+      <RudImage ImgUI={InvitedUserImgUI} src={userImgUrl ?? ""} />
       {randomBoolean && <RandomOnlineSignUI />}
     </InvitedUserImgWrapperUI>
   );
