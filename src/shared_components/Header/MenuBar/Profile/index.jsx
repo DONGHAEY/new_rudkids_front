@@ -15,7 +15,7 @@ import defaultImgSrc from "./assets/default.svg";
 import RudImage from "../../../RudImage";
 
 const Profile = () => {
-  const { data: userData, isLoading } = useUserQuery();
+  const { data: userData, isLoading } = useUserQuery(null, true);
   const navigate = useNavigate();
 
   const onClick = () => {

@@ -10,13 +10,12 @@ const useRudkidsQueryClient = () => {
     const { response } = e;
     switch (response?.status) {
       case 401:
-        // if (window.location.pathname === "/") {
-        //   break;
-        // }
         queryClient.cancelQueries([queryKey.user, "my"]);
         queryClient.cancelMutations(queryKey.user);
         queryClient.setQueryData([queryKey.user, "my"], null);
-        navigate(`/login`);
+        navigate(
+          `/login?callback=${window.location.pathname}${window.location.search}`
+        );
         break;
       default:
         break;

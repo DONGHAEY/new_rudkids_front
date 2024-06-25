@@ -1,7 +1,6 @@
 import React, { lazy } from "react";
 import SymbolLoader from "./shared_components/SymbolLoader";
 import AuthHoc from "./shared_components/HOC/AuthHoc";
-
 const ShopPage = lazy(() => import("./pages/Shop"));
 const ProductDetailPage = lazy(() => import("./pages/ProductDetail"));
 const LoginCallbackPage = lazy(() => import("./pages/LoginCallback"));

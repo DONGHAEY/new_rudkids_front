@@ -16,14 +16,22 @@ export const getOtherUser = async (userId) => {
     .then((response) => response.data);
 };
 
-const useUserQuery = (userId = null) => {
+const useUserQuery = (userId = null, isOptional = false) => {
   return useQuery({
     queryKey: KEY(userId),
     queryFn: async () => {
-      if (userId) {
-        return await getOtherUser(userId);
+      try {
+        if (userId) {
+          return await getOtherUser(userId);
+        }
+        return await getMeUser();
+      } catch (e) {
+        if (isOptional) {
+          return null;
+        } else {
+          throw e;
+        }
       }
-      return await getMeUser();
     },
   });
 };

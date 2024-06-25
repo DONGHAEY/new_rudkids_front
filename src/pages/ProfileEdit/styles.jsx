@@ -51,3 +51,14 @@ export const CardEmptyBtnUI = styled.button`
   border: none;
   font-family: Pretendard-Bold;
 `;
+
+export const DeleteMeBtnUI = styled.button`
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: Pretendard-Medium;
+  border: none;
+  background: none;
+`;
