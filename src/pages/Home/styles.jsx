@@ -10,21 +10,18 @@ export const PageUI = styled.div`
 `;
 
 export const MainBannerUI = styled.div`
-  width: 85%;
-  min-height: 130px;
-  aspect-ratio: 4/3;
-  border-radius: 18px;
-  background: gainsboro;
+  width: 100%;
   position: relative;
-  margin-top: 22px;
+  margin: 0;
   overflow: hidden;
 `;
 
 export const GrassBackgroundUI = styled.img`
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
+  /* position: absolute; */
+  height: 100px;
   object-fit: cover;
-  position: absolute;
   z-index: 1;
 `;
 
@@ -36,6 +33,10 @@ export const ScrollUI = styled.div`
   overflow: scroll;
   align-items: end;
   z-index: 2;
+`;
+
+export const SpacerUI = styled.div`
+  margin-top: ${({ marginTop }) => marginTop ?? "30px"};
 `;
 
 export const MainBannerImgUI = styled.img`
@@ -58,7 +59,7 @@ export const ToyIntroUI = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 88%;
+  width: 92%;
   margin-top: 20px;
   position: relative;
   /* border-radius: 14px; */
@@ -69,19 +70,18 @@ export const TextGrp = styled.div`
   margin-top: 30px;
 `;
 export const Txt1UI = styled.p`
-  font-family: Poppins-Bold;
+  font-family: boba;
   font-size: 24px;
 `;
 
 export const Txt2UI = styled.p`
-  font-family: Poppins-Bold;
+  font-family: boba;
   font-size: 16px;
 `;
 
 export const LinkButtonUI = styled(Link)`
   background: #ed2024;
   border-radius: 47px;
-  margin-bottom: 10px;
   color: white;
   width: 90%;
   text-decoration: none;
@@ -89,7 +89,7 @@ export const LinkButtonUI = styled(Link)`
   justify-content: center;
   align-items: center;
   padding-block: 20px;
-  font-size: 24px;
+  font-size: 20px;
   margin-top: 12px;
   font-family: Poppins-Bold;
   display: flex;

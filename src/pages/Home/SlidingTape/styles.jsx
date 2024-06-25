@@ -8,8 +8,6 @@ export const TapeListUI = styled.div`
   align-items: center;
   justify-content: center;
   background: white;
-
-  padding-block: 23px;
 `;
 
 export const TapeUI = styled.div`

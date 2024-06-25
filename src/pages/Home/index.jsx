@@ -6,69 +6,66 @@ import {
   MainBannerImgUI,
   MainBannerUI,
   PageUI,
+  SpacerUI,
   TextGrp,
   Txt1UI,
   Txt2UI,
 } from "./styles";
-import bannerSrc from "./assets/banner.webp";
+import home1Webp from "./assets/home_1.webp";
+import home2Webp from "./assets/home_2.webp";
+import arrowDownWebp from "./assets/arrow_down.webp";
+import instaBtnWebp from "./assets/insta_button.webp";
 import { ToyIntroduce } from "./ToyIntroduce";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import SlidingTape from "./SlidingTape";
-import backgroundSrc from "./assets/background.webp";
-import ScrollKids from "./ScrollKids";
-import TShirtIntroduce from "./TShirtIntroduce";
 import { trackClickButton } from "../../shared_analytics";
+
 import SymbolLoader from "../../shared_components/SymbolLoader";
 import Footer from "../../shared_components/Footer";
 
 const HomePage = () => {
+  const ShopBtn = ({ category, name }) => {
+    return (
+      <LinkButtonUI
+        to={"/shop?category=Toy"}
+        onClick={() =>
+          trackClickButton("shop", {
+            type: category,
+          })
+        }
+      >
+        {name ?? category}
+        <Icon icon="ep:right" />
+      </LinkButtonUI>
+    );
+  };
+
+  const instaBtnClickHandler = () => {
+    trackClickButton("rudkidss instagram", {
+      page: "home",
+    });
+    window.location = "www.instagram.com/rudkidss";
+  };
+
   return (
     <PageUI>
-      <Header isFixed />
       <SymbolLoader loading={false} />
-      <MainBannerUI>
-        <MainBannerImgUI src={bannerSrc} />
-      </MainBannerUI>
+      <Header isFixed />
+      <SpacerUI />
+      <MainBannerImgUI src={home1Webp} />
       <SlidingTape />
+      <MainBannerImgUI src={home2Webp} />
+      <SpacerUI />
+      <img src={arrowDownWebp} width="50%" />
+      <SpacerUI marginTop="5px" />
+      <img onClick={instaBtnClickHandler} src={instaBtnWebp} width="80%" />
+      <SpacerUI />
       <TextGrp>
         <Txt1UI>Rudkids Toy</Txt1UI>
         <Txt2UI>Rude Kids’ Special Toy!</Txt2UI>
       </TextGrp>
       <ToyIntroduce />
-      <LinkButtonUI
-        to={"/shop?category=Toy"}
-        onClick={() =>
-          trackClickButton("shop", {
-            type: "Toy",
-          })
-        }
-      >
-        Toy
-        <Icon icon="ep:right" />
-      </LinkButtonUI>
-      <SlidingTape />
-      <TextGrp>
-        <Txt1UI>T-Shirt</Txt1UI>
-        <Txt2UI>wearing rudness</Txt2UI>
-      </TextGrp>
-      <MainBannerUI>
-        <GrassBackgroundUI src={backgroundSrc} />
-        <ScrollKids />
-      </MainBannerUI>
-      <TShirtIntroduce />
-      <LinkButtonUI
-        to={"/shop?category=Clothes"}
-        onClick={() =>
-          trackClickButton("shop", {
-            type: "Clothes",
-          })
-        }
-      >
-        T-Shirt
-        <Icon icon="ep:right" />
-      </LinkButtonUI>
-      <SlidingTape />
-      <BlankUI />
+      <ShopBtn category="Toy" />
       <Footer />
     </PageUI>
   );

@@ -6,5 +6,5 @@ export const TShirtIntroduceUI = styled.div`
   align-items: center;
   margin-top: 15px;
   gap: 15px;
-  width: 85%;
+  width: 92%;
 `;
