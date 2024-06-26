@@ -82,10 +82,10 @@ function CreateOrderPage() {
         {
           onSuccess: async (orderData) => {
             let originForToss = process.env.REACT_APP_FE_URL ?? "";
-            if (!originForToss.includes("http://localhost")) {
-              originForToss =
-                "https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app";
-            }
+            // if (!originForToss.includes("http://localhost")) {
+            //   originForToss =
+            //     "https://web-new-rudkids-front-2aat2cluqq3tx7.sel5.cloudtype.app";
+            // }
             const obj = {
               orderId: orderData?.id,
               orderName: `루키즈`,

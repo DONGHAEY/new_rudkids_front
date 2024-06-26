@@ -1,7 +1,7 @@
 import { init } from "@amplitude/analytics-browser";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect } from "react";
 import { QueryClientProvider } from "react-query";
-import { Route, Routes, useLocation, useParams } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import GlobalStyle from "../src/styles";
 import PublicBizAssets from "./global/public-biz-assets";
 import { routes } from "./routes";
@@ -11,7 +11,6 @@ import Loader from "./shared_components/Loader";
 
 function App() {
   const [queryClient] = useRudkidsQueryClient();
-  const [originChecked, setOriginChecked] = useState(false);
   const { pathname, search } = useLocation();
 
   const imgPreload = (src) => {
@@ -21,20 +20,6 @@ function App() {
   };
 
   useEffect(() => {
-    if (originChecked) return;
-    const allowOrigins = [
-      process.env.REACT_APP_FE_URL,
-      "http://192.168.0.182:3001",
-    ];
-    if (!allowOrigins.includes(window.location.origin)) {
-      window.location.href = process.env.REACT_APP_FE_URL + pathname + search;
-    } else {
-      setOriginChecked(true);
-    }
-  }, [pathname, search]);
-
-  useEffect(() => {
-    if (!originChecked) return;
     init(process.env["REACT_APP_AMPLITUDE_KEY"], {
       defaultTracking: {
         pageViews: false,
@@ -43,15 +28,11 @@ function App() {
     Object.values(PublicBizAssets)?.forEach((imgSrc) => {
       imgPreload(imgSrc);
     });
-  }, [originChecked]);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname, search]);
-
-  if (!originChecked) {
-    return null;
-  }
 
   return (
     <QueryClientProvider client={queryClient}>
