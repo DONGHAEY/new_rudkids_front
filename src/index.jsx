@@ -17,7 +17,7 @@ const checkCorrectOrigin = () => {
   const { pathname, search, origin } = window.location;
   const isSameOrigin = correctOrigin === origin;
   if (!isSameOrigin) {
-    window.location = pathname + search;
+    window.location = correctOrigin + pathname + search;
   }
   return isSameOrigin;
 };
