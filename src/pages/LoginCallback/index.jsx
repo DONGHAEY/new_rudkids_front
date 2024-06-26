@@ -42,13 +42,19 @@ const LoginCallbackPage = ({ routeInfo }) => {
             }
           }
           if (!me.instagramId) {
-            navigate(`/insta-info?callback=${savedLoginCallbackUrl}`);
+            navigate(`/insta-info?callback=${savedLoginCallbackUrl}`, {
+              replace: true,
+            });
             return;
           } else if (!me?.isFirstInviteFinished) {
-            navigate(`/invite?callback=${savedLoginCallbackUrl}`);
+            navigate(`/invite?callback=${savedLoginCallbackUrl}`, {
+              replace: true,
+            });
             return;
           }
-          navigate(savedLoginCallbackUrl);
+          navigate(savedLoginCallbackUrl, {
+            replace: true,
+          });
         },
       });
     })();

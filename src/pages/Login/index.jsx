@@ -15,6 +15,7 @@ import StorageKey from "../../storageKey";
 import { trackClickButton } from "../../shared_analytics";
 import RudWindow from "../../shared_components/RudWindow";
 import { WindowButtonUI } from "../../shared_components/RudWindow/shared_styles";
+import { useSearchParams } from "react-router-dom";
 
 export const setLoginCallbackUrl = (callbackUrl) => {
   localStorage.setItem(StorageKey.login_callback_url, callbackUrl);
@@ -27,12 +28,14 @@ export const getLoginCallbackUrl = () => {
 };
 
 const LoginPage = () => {
-  // const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const callback = searchParams.get("callback") ?? "/home";
 
   const clickHandler = (provider) => {
     trackClickButton("login", {
       provider: provider,
     });
+    setLoginCallbackUrl(callback);
     const loginUrl = `${process.env.REACT_APP_SERVER_URL}/api/auth/${provider}`;
     window.location.href = loginUrl;
   };
