@@ -51,11 +51,13 @@ const TicketPage = ({ routeInfo }) => {
 
   const invitedUsers = useMemo(() => {
     if (!invitationData) return [];
-    const friendsImgUrls = invitationData?.friends?.map((d) => d.imageUrl);
-    return [
-      ...friendsImgUrls,
-      ...new Array(15 - friendsImgUrls.length).fill(tempUserSrc),
-    ].sort(() => Math.random() - 0.5);
+
+    const friendsImgUrls = invitationData.friends?.map((d) => d.imageUrl);
+    let tempUsers = [];
+    if (friendsImgUrls.length < 15) {
+      tempUsers = new Array(15 - friendsImgUrls?.length).fill(tempUserSrc);
+    }
+    return [...friendsImgUrls, ...tempUsers].sort(() => Math.random() - 0.5);
   }, [invitationData]);
 
   useEffect(() => {
