@@ -2,7 +2,6 @@ import { Loader } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import useUserQuery from "../../queries/user/useUserQuery";
 import { useNavigate } from "react-router-dom";
-import { setLoginCallbackUrl } from "../../pages/Login";
 import { setUserId } from "@amplitude/analytics-browser";
 
 const AuthHoc = (Page) => {
@@ -26,8 +25,7 @@ const AuthHoc = (Page) => {
       // }
       else {
         setUserId(null);
-        setLoginCallbackUrl(currentLocation);
-        navigate(`/login`);
+        navigate(`/login?callback=${currentLocation}`);
         return;
       }
     }, [userData, isLoading]);

@@ -15,9 +15,10 @@ import fucChild from "./assets/fuc_child.webp";
 import getIn from "./assets/get_in.webp";
 import { useNavigate } from "react-router-dom";
 import PublicBizAssets from "../../global/public-biz-assets";
+import useUserQuery from "../../queries/user/useUserQuery";
 
 const LandingPage = () => {
-  //
+  const { data: optionalUserData } = useUserQuery(null, true);
   const landingSnd = new Audio(landinigMp3);
 
   const loadCompleteHandler = () => {
@@ -34,63 +35,26 @@ const LandingPage = () => {
   const fucChildRef = useRef();
   const footerImgRef = useRef();
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const tl = gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: ".page1",
-          scrub: true,
-          start: "top top",
-          end: "bottom top",
-          pin: true,
-          invalidateOnRefresh: true,
-        },
-      })
-      .fromTo(
-        ".page1",
-        { opacity: 1 },
-        {
-          opacity: 0,
-        },
-        "<"
-      )
-      .to(
-        fucChildRef.current,
-        {
-          opacity: 0,
-        },
-        "<"
-      )
-      .to(
-        scrollDownRef.current,
-        {
-          opacity: 0,
-          scale: 0,
-        },
-        "<"
-      )
-      .to(
-        ".page2",
-        {
-          opacity: 1,
-        },
-        "<"
-      );
+  const getInClickHandler = async () => {
+    if (optionalUserData) {
+      navigate("/home");
+    } else {
+      navigate("/login");
+    }
+  };
 
-    const t2 = gsap.timeline({
+  const topSectionTimline = () => {
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".page2",
         endTrigger: ".page3",
         scrub: true,
         start: "top bottom",
         end: "top top",
-        // markers: true,
         invalidateOnRefresh: true,
       },
     });
-
-    t2.fromTo(
+    tl.fromTo(
       logoRef.current,
       { width: "60%", marginLeft: 0, marginTop: "5%" },
       {
@@ -117,6 +81,55 @@ const LandingPage = () => {
         },
         "<"
       );
+  };
+
+  const pageScrollOpacityTimeline = () => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".page1",
+        scrub: true,
+        start: "top top",
+        end: "bottom top",
+        pin: true,
+        invalidateOnRefresh: true,
+      },
+    });
+    tl.fromTo(
+      ".page1",
+      { opacity: 1 },
+      {
+        opacity: 0,
+      },
+      "<"
+    )
+      .to(
+        fucChildRef.current,
+        {
+          opacity: 0,
+        },
+        "<"
+      )
+      .to(
+        scrollDownRef.current,
+        {
+          opacity: 0,
+          scale: 0,
+        },
+        "<"
+      )
+      .to(
+        ".page2",
+        {
+          opacity: 1,
+        },
+        "<"
+      );
+  };
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    topSectionTimline();
+    pageScrollOpacityTimeline();
   }, []);
 
   return (
@@ -128,11 +141,7 @@ const LandingPage = () => {
         <Page3 />
         <TopFixedUI>
           <LogoImgUI src={logo} ref={logoRef} />
-          <GetInUI
-            src={getIn}
-            ref={getInRef}
-            onClick={() => navigate("/login")}
-          >
+          <GetInUI src={getIn} ref={getInRef} onClick={getInClickHandler}>
             <img src={getIn} width="100%" />
           </GetInUI>
         </TopFixedUI>
