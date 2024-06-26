@@ -193,7 +193,7 @@ const CreateRudcardPage = () => {
           <SaveBtnUI type="submit">만들기</SaveBtnUI>
         </SaveBtnSectionUI>
         <Modal open={isAlert} onClick={() => setIsAlert(false)}>
-          {!1 ? (
+          {!userData.firstPaidNum ? (
             <CannotAlert />
           ) : (
             <WarningAlert
