@@ -34,6 +34,11 @@ const menuButtonDtList = [
     iconNm: "ph:heart-fill",
     path: "/collection",
   },
+  {
+    name: "support",
+    iconNm: "material-symbols-light:contact-support",
+    path: "/support",
+  },
 ];
 
 const MenuBar = ({ onClosed }) => {
@@ -100,6 +105,16 @@ const MenuBar = ({ onClosed }) => {
       );
   };
 
+  const instaBtnClickHandler = (e) => {
+    trackClickButton("nav bar", {
+      type: "instagram",
+    });
+    trackClickButton("rudkidss instagram", {
+      page: "nav bar",
+    });
+    clickHandler(e, "https://www.instagram.com/rudkidss");
+  };
+
   return (
     <>
       <MenuBarUI ref={ref} onClick={() => close()}>
@@ -128,18 +143,10 @@ const MenuBar = ({ onClosed }) => {
             );
           })}
           <MenuBtn
-            idx={0}
+            idx={2}
             name="Rudkidss"
             iconNm="hugeicons:instagram"
-            onClick={(e) => {
-              trackClickButton("nav bar", {
-                type: "instagram",
-              });
-              trackClickButton("rudkidss instagram", {
-                page: "nav bar",
-              });
-              clickHandler(e, "https://www.instagram.com/rudkidss");
-            }}
+            onClick={instaBtnClickHandler}
           />
         </MenuBtnListUI>
       </MenuBarUI>

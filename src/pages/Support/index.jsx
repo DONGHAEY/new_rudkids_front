@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Header from "../../shared_components/Header";
 import QnaForm from "./QnaForm";
-import { BtnListUI, PageUI } from "./styles";
+import { BtnListUI, PageUI, SectionUI } from "./styles";
 import { WindowButtonUI } from "../../shared_components/RudWindow/shared_styles";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
 import Faq from "./Faq";
+import Footer from "../../shared_components/Footer";
 
 const componentInfos = [
   {
@@ -24,23 +25,26 @@ export const SupportPage = () => {
 
   return (
     <PageUI>
-      <Header />
-      <BtnListUI>
-        {componentInfos?.map((componentInfo, idx) => {
-          const selected = componentIdx === idx;
-          return (
-            <WindowButtonUI
-              background={selected ? "rgba(200, 50, 50)" : null}
-              border={selected ? "rgba(255, 0, 0)" : null}
-              onClick={() => setComponentIdx(idx)}
-              key={idx}
-            >
-              {componentInfo.name}
-            </WindowButtonUI>
-          );
-        })}
-      </BtnListUI>
-      {componentInfos[componentIdx].component}
+      <SectionUI>
+        <Header />
+        <BtnListUI>
+          {componentInfos?.map((componentInfo, idx) => {
+            const selected = componentIdx === idx;
+            return (
+              <WindowButtonUI
+                background={selected ? "rgba(200, 50, 50)" : null}
+                border={selected ? "rgba(255, 0, 0)" : null}
+                onClick={() => setComponentIdx(idx)}
+                key={idx}
+              >
+                {componentInfo.name}
+              </WindowButtonUI>
+            );
+          })}
+        </BtnListUI>
+        {componentInfos[componentIdx].component}
+      </SectionUI>
+      <Footer />
     </PageUI>
   );
 };

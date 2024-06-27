@@ -51,7 +51,8 @@ export const SubmitBtnUI = styled.button`
 
 export const TextAreaUI = styled.textarea`
   font-family: Pretendard-Medium;
-  font-size: 15px;
-  height: 80px;
+  font-size: 13px;
+  height: 70px;
   border-radius: 10px;
+  padding: 10px;
 `;

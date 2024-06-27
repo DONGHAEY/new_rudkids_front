@@ -15,7 +15,6 @@ import usecreateQnaMutation from "../../../mutations/support/createQnaMutation";
 
 const QnaForm = () => {
   const fileRef = useRef();
-
   const uploadFileMutation = useUploadFileMutation();
   const createQnaMutation = usecreateQnaMutation();
 
@@ -168,7 +167,10 @@ const QnaForm = () => {
           value="동의안함"
         />
       </div>
-      <SubmitBtnUI type="submit" disabled={createQnaMutation.isLoading}>
+      <SubmitBtnUI
+        type="submit"
+        disabled={createQnaMutation.isLoading || uploadFileMutation.isLoading}
+      >
         submit
       </SubmitBtnUI>
     </FormUI>
