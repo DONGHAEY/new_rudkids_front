@@ -9,6 +9,8 @@ const mutationKey = {
   invitation: "invitation",
   profile: "profile",
   payment: "payment",
+  qna: "qna",
+  file: "file",
 };
 
 export default mutationKey;

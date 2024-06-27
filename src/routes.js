@@ -1,6 +1,7 @@
 import React, { lazy } from "react";
 import SymbolLoader from "./shared_components/SymbolLoader";
 import AuthHoc from "./shared_components/HOC/AuthHoc";
+import { SupportPage } from "./pages/Support";
 const ShopPage = lazy(() => import("./pages/Shop"));
 const ProductDetailPage = lazy(() => import("./pages/ProductDetail"));
 const LoginCallbackPage = lazy(() => import("./pages/LoginCallback"));
@@ -201,5 +202,12 @@ export const routes = {
     path: "/legal",
     paramKeys: [],
     element: LegalPage,
+  },
+  ["support"]: {
+    name: "support",
+    viewTrack: true,
+    path: "/support",
+    paramKeys: [],
+    element: SupportPage,
   },
 };
