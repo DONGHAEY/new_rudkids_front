@@ -42,7 +42,7 @@ const Header = ({ isFixed = true }) => {
         </IconLinkUI>
       </HeaderUI>
       {isFixed && <SpacerUI />}
-      <MenuBarModalUI open={menuBarOpen} hideBackdrop disableAutoFocus>
+      <MenuBarModalUI open={menuBarOpen} disableAutoFocus>
         <MenuBar onClosed={(d) => setMenuBarOpen(false)} />
       </MenuBarModalUI>
     </>

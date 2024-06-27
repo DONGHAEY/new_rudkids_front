@@ -7,7 +7,6 @@ import useRudkidsQueryClient from "./rudkidsQueryClient";
 import { trackPageView, useTrackReadPageContents } from "./shared_analytics";
 import { useWindowScrollInit } from "./hooks/useWindowScrollInit";
 import Loader from "./shared_components/Loader";
-import Footer from "./shared_components/Footer";
 
 function App() {
   const [queryClient] = useRudkidsQueryClient();

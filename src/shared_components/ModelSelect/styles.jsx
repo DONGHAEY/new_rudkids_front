@@ -30,7 +30,7 @@ export const NameTextUI = styled.p`
 export const ProductComponentImgWrapperUI = styled.div`
   position: relative;
   object-fit: cover;
-  width: 120px;
+  width: 110px;
   aspect-ratio: 1/1;
   display: flex;
   align-items: center;

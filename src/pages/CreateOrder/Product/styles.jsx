@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CartProductUI = styled.div`
+export const ProductUI = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -53,7 +53,7 @@ export const QuantityButtonUI = styled.div`
   cursor: pointer;
 `;
 
-export const CartProductNameUI = styled.p`
+export const ProductNameUI = styled.p`
   font-size: 15px;
   line-height: 20px;
   font-family: Poppins-Bold;
@@ -62,7 +62,7 @@ export const CartProductNameUI = styled.p`
   line-height: 120%;
 `;
 
-export const CartProductPriceUI = styled.p`
+export const ProductPriceUI = styled.p`
   font-size: 15px;
   line-height: 20px;
   font-family: Poppins-Bold;

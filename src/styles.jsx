@@ -10,8 +10,8 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     height:100%;
     max-width: 430px;
-    min-width: 300px;
     margin: 0 auto;
+    /* margin-block: 0; */
     padding: 0;
   }
 

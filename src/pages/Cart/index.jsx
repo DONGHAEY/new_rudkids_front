@@ -29,8 +29,7 @@ const CartPage = () => {
     });
     return totalProductsPrice;
   }, [myCartData?.cartProducts]);
-
-  const totalShippingPrice = myCartData?.shippingPrice;
+  const totalShippingPrice = 1;
 
   useBodyBackground("#1a94d9");
 

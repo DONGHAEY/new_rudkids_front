@@ -3,12 +3,17 @@ import SelectBox from "./SelectBox";
 import ActionBar from "./ActionBar";
 import { useEffect, useState } from "react";
 
-const SelectModal = ({ open, onClose, optionGroups, onSelected }) => {
+const SelectModal = ({
+  open,
+  onClose,
+  optionGroups,
+  onSelected,
+  actionName,
+}) => {
   const [focusingId, setFocusingId] = useState(null);
-
   const [selectedOptions, setSelectedOptions] = useState({});
 
-  const cartClickHandler = () => {
+  const actionBtnClickHandler = () => {
     onSelected(Object.values(selectedOptions));
     onClose();
   };
@@ -53,7 +58,11 @@ const SelectModal = ({ open, onClose, optionGroups, onSelected }) => {
             );
           })}
         </SelectBoxListUI>
-        <ActionBar onCartClick={cartClickHandler} disabled={btnDisabled} />
+        <ActionBar
+          actionName={actionName}
+          onClick={actionBtnClickHandler}
+          disabled={btnDisabled}
+        />
       </BottomBoxUI>
     </CenterModalUI>
   );

@@ -30,8 +30,7 @@ const ProductDetailPage = ({ routeInfo }) => {
   const productName = params[routeInfo.paramKeys[0]];
   const [selectedIdx, setSelectedIdx] = useState(0);
 
-  const { data: productData, isLoading: productDataLoading } =
-    useProductDetailQuery(productName);
+  const { data: productData } = useProductDetailQuery(productName);
 
   const productPrice = productData?.price?.toLocaleString("ko-KR");
 

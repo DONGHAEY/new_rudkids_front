@@ -10,60 +10,84 @@ import { useState } from "react";
 import SelectModal from "./SelectModal";
 import PutCartSuccessModal from "./PutCartSuccess";
 import { track } from "@amplitude/analytics-browser";
+import { setOrderingProducts } from "../../CreateOrder";
+import { useNavigate } from "react-router-dom";
 
 const ActionBar = ({ productData }) => {
+  const [actionName, setActionName] = useState();
   const [selectOptionModal, setSelectOptionModal] = useState(false);
   const [putCartSuccessModal, setPutCartSuccessModal] = useState(false);
   const putCartProductMutation = useAddCartProductMutation();
 
-  const cartButtonClickHandler = async (options = []) => {
-    console.log(productData.optionGroups.length);
+  const navigate = useNavigate();
+
+  const addToCartHandler = async (options = []) => {
+    setActionName("cart");
     if (productData?.optionGroups?.length !== 0 && !options?.length) {
       setSelectOptionModal(true);
       return;
     }
-
-    const optionIds = options?.map((option) => option.id) ?? [];
     try {
       await putCartProductMutation.mutateAsync(
         {
           productId: productData.id,
-          optionIds: optionIds,
+          optionIds: options?.map((option) => option.id) ?? [],
+          quantity: 1,
         },
         {
           onSuccess: () => {
-            let {
-              id: product_id,
-              name: product_name,
-              category,
-              price,
-            } = productData;
-            let optionObj = {};
-            options?.map((option) => {
-              price += option.price;
-              optionObj[option.groupName] = option.name;
-            });
-            track("add to cart", {
-              product_id,
-              product_name,
-              category,
-              price,
-              ...optionObj,
-            });
+            trackAction("add to cart", productData, options);
             setPutCartSuccessModal(true);
           },
         }
       );
     } catch (e) {}
-    return;
+  };
+
+  const buyNowHandler = (options) => {
+    setActionName("buy now");
+    if (productData?.optionGroups?.length !== 0 && !options?.length) {
+      setSelectOptionModal(true);
+      return;
+    }
+    const orderingProduct = {
+      name: productData.name,
+      price: productData.price,
+      productId: productData.id,
+      category: productData.category,
+      price: productData.price,
+      thumnail: productData.thumnail,
+      quantity: 1,
+      options: options?.map((option) => {
+        return {
+          id: option.id,
+          groupName: option.groupName,
+          name: option.name,
+          price: option.price,
+        };
+      }),
+    };
+    setOrderingProducts([orderingProduct]);
+    navigate("/create-order");
+  };
+
+  const optionSelectedHandler = (options) => {
+    if (actionName === "cart") {
+      addToCartHandler(options);
+    } else if (actionName === "buy now") {
+      buyNowHandler(options);
+    }
   };
 
   return (
     <>
       <ActionBarWrapperUI>
         <ActionBarUI>
-          <ActionButtonUI onClick={() => cartButtonClickHandler([])}>
-            <BsCartPlusFill fontSize="25px" />
+          <ActionButtonUI onClick={buyNowHandler}>
+            <p>BuyNow</p>
+          </ActionButtonUI>
+          <ActionButtonUI onClick={addToCartHandler}>
+            <BsCartPlusFill fontSize="23px" />
             <p>Cart</p>
           </ActionButtonUI>
         </ActionBarUI>
@@ -71,10 +95,9 @@ const ActionBar = ({ productData }) => {
       <SelectModal
         open={selectOptionModal}
         onClose={() => setSelectOptionModal(false)}
+        actionName={actionName}
         optionGroups={productData?.optionGroups}
-        onSelected={async (options) => {
-          await cartButtonClickHandler(options);
-        }}
+        onSelected={optionSelectedHandler}
       />
       <PutCartSuccessModal
         productData={productData}
@@ -84,6 +107,22 @@ const ActionBar = ({ productData }) => {
       <SpacerUI />
     </>
   );
+};
+
+const trackAction = (actionName, productData, options) => {
+  let { id: product_id, name: product_name, category, price } = productData;
+  let optionObj = {};
+  options?.map((option) => {
+    price += option.price;
+    optionObj[option.groupName] = option.name;
+  });
+  track(actionName, {
+    product_id,
+    product_name,
+    category,
+    price,
+    ...optionObj,
+  });
 };
 
 export default ActionBar;

@@ -12,50 +12,49 @@ import {
   AgreementUI,
   PriceWrapperUI,
 } from "./styles";
-import CartProduct from "./CartProduct";
+import Product from "./Product";
 import Header from "../../shared_components/Header";
 import Shipping from "../../shared_components/Shipping";
 import { usePaymentWidget } from "../../hooks/usePaymentWidget";
 import OrderBar from "./OrderBar";
 import Price from "../../shared_components/Price";
-import useCartQuery from "../../queries/cart/useCartQuery";
 import useCreateOrderMutation from "../../mutations/order/useCreateOrderMutation";
+import StorageKey from "../../storageKey";
+import useUserQuery from "../../queries/user/useUserQuery";
 
 function CreateOrderPage() {
+  const { data: userData } = useUserQuery();
+  const orderingProducts = useMemo(() => getOrderingProducts(), []);
+
   const paymentMethodsRef = useRef();
   const paymentAgreementRef = useRef();
 
-  const { data: cartData } = useCartQuery();
   const createOrderMutation = useCreateOrderMutation();
 
   const [shipping, setShipping] = useState(null);
   const [generatedOrder, setGeneratedOrder] = useState(null);
 
   const [paymentWidget] = usePaymentWidget({
-    customerKey: cartData?.id,
+    customerKey: userData?.id,
     widgetClientKey: process.env["REACT_APP_TOSS_WIDGET_KEY"],
   });
 
   const totalProductsPrice = useMemo(() => {
-    if (!cartData) return 0;
+    if (!orderingProducts.length) return 0;
     let totalProductsPrice = 0;
-    cartData?.cartProducts?.forEach((cartProduct) => {
+    orderingProducts?.forEach((cartProduct) => {
       totalProductsPrice += cartProduct?.price * cartProduct.quantity;
     });
     return totalProductsPrice;
-  }, [cartData?.cartProducts]);
+  }, [orderingProducts]);
 
-  const totalShippingPrice = cartData?.shippingPrice;
+  const totalShippingPrice = 1;
 
   const totalPrice = totalProductsPrice + totalShippingPrice;
 
   const submitHandler = async () => {
-    if (!cartData?.id) {
-      alert("카트 정보가 없습니다!");
-      return;
-    }
-    if (cartData?.cartProducts?.length <= 0) {
-      alert("카트가 비어있습니다.");
+    if (orderingProducts?.length <= 0) {
+      alert("주문 상품 내용이 비어있습니다.");
       return;
     }
     if (!shipping) {
@@ -68,15 +67,15 @@ function CreateOrderPage() {
       alert("필수 약관에 동의해주세요!");
       return;
     }
-    // if (!paymentMethodsRef.current?.getSelectedPaymentMethod()) {
-    //   alert("결제방식을 선택해주세요!");
-    //   return;
-    // }
 
     if (!generatedOrder) {
       await createOrderMutation.mutateAsync(
         {
-          cartId: cartData?.id,
+          orderingProducts: orderingProducts?.map((cartProduct) => ({
+            productId: cartProduct.productId,
+            quantity: cartProduct.quantity,
+            optionIds: cartProduct?.options?.map((option) => option.id),
+          })),
           shipping,
         },
         {
@@ -128,15 +127,12 @@ function CreateOrderPage() {
         <SectionDescriptionUI>
           <SectionDscrptTxtUI>Order Products</SectionDscrptTxtUI>
           <ProductLengthTextUI>
-            {cartData?.cartProducts?.length}개
+            {orderingProducts?.length}개
           </ProductLengthTextUI>
         </SectionDescriptionUI>
         <ListWrapperUI>
-          {cartData?.cartProducts?.map((cartProductData) => (
-            <CartProduct
-              key={cartProductData.id}
-              cartProduct={cartProductData}
-            />
+          {orderingProducts?.map((productData) => (
+            <Product key={productData.id} {...productData} />
           ))}
         </ListWrapperUI>
       </FlexWrapperUI>
@@ -162,6 +158,17 @@ function CreateOrderPage() {
       <OrderBar onClick={submitHandler} totalPrice={totalPrice} />
     </PageUI>
   );
+}
+
+export function setOrderingProducts(products) {
+  sessionStorage.setItem(
+    StorageKey.ordering_products,
+    JSON.stringify(products)
+  );
+}
+
+function getOrderingProducts() {
+  return JSON.parse(sessionStorage.getItem(StorageKey.ordering_products)) ?? [];
 }
 
 export default CreateOrderPage;

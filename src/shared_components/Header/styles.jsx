@@ -29,7 +29,7 @@ export const HeaderUI = styled.div`
   max-width: 370px;
   height: 55px;
   padding-block: 8px;
-  margin: 0 auto;
+  margin-inline: 0 auto;
   display: flex;
   flex-direction: row;
   font-size: 25px;
@@ -49,8 +49,7 @@ export const IconLinkUI = styled(Link)`
 `;
 
 export const SpacerUI = styled.div`
-  margin-top: 63px;
-  /* padding-top: 5px; */
+  margin-top: 60px;
 `;
 
 export const CartCntTextUI = styled.p`

@@ -12,6 +12,7 @@ import queryKey from "../../../queries/key";
 import paymentsImgSrc from "./assets/payments.webp";
 import mutationKey from "../../../mutations/key";
 import useCartQuery from "../../../queries/cart/useCartQuery";
+import { setOrderingProducts } from "../../CreateOrder";
 import { trackClickButton } from "../../../shared_analytics";
 import { useMemo } from "react";
 import poorManSrc from "./assets/poor_man.webp";
@@ -51,6 +52,7 @@ const CheckoutBar = () => {
       total_price: totalPrice,
       count: cartData?.cartProducts?.length,
     });
+    setOrderingProducts(cartData?.cartProducts);
     navigate(`/create-order`);
   };
 

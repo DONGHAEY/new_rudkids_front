@@ -4,6 +4,7 @@ const StorageKey = {
   invitation_id: "INVITATION_ID",
   rud_gate_passed: "RUD_GATE_PASSED",
   current_url: "CURRENT_URL",
+  ordering_products: "ORDERING_PRODUCTS",
 };
 
 export default StorageKey;
