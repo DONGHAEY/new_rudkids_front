@@ -1,14 +1,14 @@
 import { BsCartPlusFill } from "react-icons/bs";
-import { CartButtonUI, ActionBarUI, SpacerUI } from "./styles";
+import { ActionButtonUI, ActionBarUI } from "./styles";
 
 const ActionBar = ({ disabled = true, onClick, actionName }) => {
   return (
     <>
       <ActionBarUI>
-        <CartButtonUI disabled={disabled} onClick={onClick}>
+        <ActionButtonUI disabled={disabled} onClick={onClick}>
           <BsCartPlusFill fontSize="20px" />
           <p>{actionName}</p>
-        </CartButtonUI>
+        </ActionButtonUI>
       </ActionBarUI>
     </>
   );

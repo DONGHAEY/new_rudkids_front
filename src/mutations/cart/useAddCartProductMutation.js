@@ -6,12 +6,9 @@ import { Identify, identify } from "@amplitude/analytics-browser";
 
 export const KEY = [mutationKey.cart, "cart_product", "add"];
 
-export const addCartProduct = async (productId, optionIds = []) => {
+export const addCartProduct = async (addToCartData) => {
   return await axiosInstance
-    .post(`/api/cart/cart_product`, {
-      productId,
-      optionIds,
-    })
+    .post(`/api/cart/cart_product`, addToCartData)
     .then((response) => response.data);
 };
 
@@ -19,8 +16,8 @@ const useAddCartProductMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
-    mutationFn: async ({ productId, optionIds = [] }) => {
-      await addCartProduct(productId, optionIds);
+    mutationFn: async (addToCartData) => {
+      await addCartProduct(addToCartData);
     },
     onSuccess: async () => {
       const cartProdsCntData = await queryClient.getQueryData(cartProdsCntKey);

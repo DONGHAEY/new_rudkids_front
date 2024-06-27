@@ -6,9 +6,10 @@ export const ActionBarUI = styled.div`
   justify-content: center;
   width: 95%;
   gap: 18px;
+  height: 60px;
 `;
 
-export const CartButtonUI = styled.button`
+export const ActionButtonUI = styled.button`
   background-color: ${({ disabled }) => (disabled ? "#F0F0F0" : "red")};
   border: none;
   border-radius: 30px;
@@ -22,7 +23,7 @@ export const CartButtonUI = styled.button`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 57px;
-  gap: 10px;
+  padding-block: 5%;
+  gap: 3%;
   cursor: pointer;
 `;

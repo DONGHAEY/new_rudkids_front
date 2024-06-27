@@ -50,6 +50,7 @@ const ActionBar = ({ productData }) => {
       setSelectOptionModal(true);
       return;
     }
+    trackAction("buy now", productData, options);
     const orderingProduct = {
       name: productData.name,
       price: productData.price,
@@ -83,12 +84,16 @@ const ActionBar = ({ productData }) => {
     <>
       <ActionBarWrapperUI>
         <ActionBarUI>
-          <ActionButtonUI onClick={buyNowHandler}>
-            <p>BuyNow</p>
-          </ActionButtonUI>
-          <ActionButtonUI onClick={addToCartHandler}>
+          <ActionButtonUI
+            onClick={addToCartHandler}
+            $backgroundColor="black"
+            $color="white"
+          >
             <BsCartPlusFill fontSize="23px" />
             <p>Cart</p>
+          </ActionButtonUI>
+          <ActionButtonUI onClick={buyNowHandler}>
+            <p>BuyNow</p>
           </ActionButtonUI>
         </ActionBarUI>
       </ActionBarWrapperUI>
