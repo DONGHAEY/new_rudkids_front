@@ -37,7 +37,7 @@ const LoginPage = () => {
     });
     setLoginCallbackUrl(callback);
     const loginUrl = `${process.env.REACT_APP_SERVER_URL}/api/auth/${provider}`;
-    window.location.href = loginUrl;
+    window.location = loginUrl;
   };
 
   const providers = [

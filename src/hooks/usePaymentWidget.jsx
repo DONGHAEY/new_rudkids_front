@@ -6,7 +6,6 @@ export const usePaymentWidget = ({ widgetClientKey, customerKey }) => {
 
   useEffect(() => {
     (async () => {
-      console.log(widgetClientKey, ",", customerKey, "-------");
       if (!widgetClientKey || !customerKey) return;
       try {
         const loadedWidget = await loadPaymentWidget(
@@ -14,9 +13,7 @@ export const usePaymentWidget = ({ widgetClientKey, customerKey }) => {
           customerKey
         );
         setPaymentWidget(loadedWidget);
-      } catch (error) {
-        console.error("Error fetching payment widget:", error);
-      }
+      } catch (error) {}
     })();
   }, [widgetClientKey, customerKey]);
 

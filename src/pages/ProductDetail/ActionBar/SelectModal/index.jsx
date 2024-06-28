@@ -2,6 +2,7 @@ import { BottomBoxUI, CenterModalUI, SelectBoxListUI } from "./styles";
 import SelectBox from "./SelectBox";
 import ActionBar from "./ActionBar";
 import { useEffect, useState } from "react";
+import QuantityController from "./QuantityController";
 
 const SelectModal = ({
   open,
@@ -11,10 +12,11 @@ const SelectModal = ({
   actionName,
 }) => {
   const [focusingId, setFocusingId] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   const [selectedOptions, setSelectedOptions] = useState({});
 
   const actionBtnClickHandler = () => {
-    onSelected(Object.values(selectedOptions));
+    onSelected(Object.values(selectedOptions), quantity);
     onClose();
   };
 
@@ -57,6 +59,7 @@ const SelectModal = ({
               />
             );
           })}
+          <QuantityController quantity={quantity} setQuantity={setQuantity} />
         </SelectBoxListUI>
         <ActionBar
           actionName={actionName}

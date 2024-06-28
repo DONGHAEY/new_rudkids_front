@@ -21,8 +21,7 @@ const ActionBar = ({ productData }) => {
 
   const navigate = useNavigate();
 
-  const addToCartHandler = async (options = []) => {
-    setActionName("cart");
+  const addToCartHandler = async (options = [], quantity) => {
     if (productData?.optionGroups?.length !== 0 && !options?.length) {
       setSelectOptionModal(true);
       return;
@@ -32,7 +31,7 @@ const ActionBar = ({ productData }) => {
         {
           productId: productData.id,
           optionIds: options?.map((option) => option.id) ?? [],
-          quantity: 1,
+          quantity: quantity,
         },
         {
           onSuccess: () => {
@@ -44,12 +43,7 @@ const ActionBar = ({ productData }) => {
     } catch (e) {}
   };
 
-  const buyNowHandler = (options) => {
-    setActionName("buy now");
-    if (productData?.optionGroups?.length !== 0 && !options?.length) {
-      setSelectOptionModal(true);
-      return;
-    }
+  const buyNowHandler = (options, quantity) => {
     trackAction("buy now", productData, options);
     const orderingProduct = {
       name: productData.name,
@@ -58,7 +52,7 @@ const ActionBar = ({ productData }) => {
       category: productData.category,
       price: productData.price,
       thumnail: productData.thumnail,
-      quantity: 1,
+      quantity: quantity,
       options: options?.map((option) => {
         return {
           id: option.id,
@@ -72,11 +66,11 @@ const ActionBar = ({ productData }) => {
     navigate("/create-order?type=buy now");
   };
 
-  const optionSelectedHandler = (options) => {
+  const optionSelectedHandler = (options, quantity) => {
     if (actionName === "cart") {
-      addToCartHandler(options);
+      addToCartHandler(options, quantity);
     } else if (actionName === "buy now") {
-      buyNowHandler(options);
+      buyNowHandler(options, quantity);
     }
   };
 
@@ -85,14 +79,22 @@ const ActionBar = ({ productData }) => {
       <ActionBarWrapperUI>
         <ActionBarUI>
           <ActionButtonUI
-            onClick={addToCartHandler}
+            onClick={() => {
+              setSelectOptionModal(true);
+              setActionName("cart");
+            }}
             $backgroundColor="black"
             $color="white"
           >
             <BsCartPlusFill fontSize="23px" />
             <p>Cart</p>
           </ActionButtonUI>
-          <ActionButtonUI onClick={buyNowHandler}>
+          <ActionButtonUI
+            onClick={() => {
+              setSelectOptionModal(true);
+              setActionName("buy now");
+            }}
+          >
             <p>BuyNow</p>
           </ActionButtonUI>
         </ActionBarUI>

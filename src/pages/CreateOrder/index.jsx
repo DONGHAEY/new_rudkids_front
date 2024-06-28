@@ -22,7 +22,7 @@ import useCreateOrderMutation from "../../mutations/order/useCreateOrderMutation
 import StorageKey from "../../storageKey";
 import useUserQuery from "../../queries/user/useUserQuery";
 import useDeleteCartMutation from "../../mutations/cart/useDeleteCartMutation";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function CreateOrderPage() {
   const [searchParams] = useSearchParams();

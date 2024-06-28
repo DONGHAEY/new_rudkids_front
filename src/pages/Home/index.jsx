@@ -18,8 +18,11 @@ import SlidingTape from "./SlidingTape";
 import { trackClickButton } from "../../shared_analytics";
 import SymbolLoader from "../../shared_components/SymbolLoader";
 import Footer from "../../shared_components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   const ShopBtn = ({ category, name }) => {
     return (
       <LinkButtonUI
@@ -48,9 +51,9 @@ const HomePage = () => {
       <SymbolLoader loading={false} />
       <Header isFixed />
       <SpacerUI />
-      <MainBannerImgUI src={home1Webp} />
+      <MainBannerImgUI src={home1Webp} onClick={() => navigate("/shop")} />
       <SlidingTape />
-      <MainBannerImgUI src={home2Webp} />
+      <MainBannerImgUI src={home2Webp} onClick={() => navigate("/shop")} />
       <SpacerUI />
       <img src={arrowDownWebp} width="50%" />
       <SpacerUI marginTop="5px" />
