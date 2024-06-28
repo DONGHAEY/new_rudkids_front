@@ -53,7 +53,7 @@ const CheckoutBar = () => {
       count: cartData?.cartProducts?.length,
     });
     setOrderingProducts(cartData?.cartProducts);
-    navigate(`/create-order`);
+    navigate(`/create-order?type=checkout`);
   };
 
   return (

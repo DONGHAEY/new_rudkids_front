@@ -69,7 +69,7 @@ const ActionBar = ({ productData }) => {
       }),
     };
     setOrderingProducts([orderingProduct]);
-    navigate("/create-order");
+    navigate("/create-order?type=buy now");
   };
 
   const optionSelectedHandler = (options) => {

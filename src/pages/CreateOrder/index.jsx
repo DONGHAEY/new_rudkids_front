@@ -21,8 +21,12 @@ import Price from "../../shared_components/Price";
 import useCreateOrderMutation from "../../mutations/order/useCreateOrderMutation";
 import StorageKey from "../../storageKey";
 import useUserQuery from "../../queries/user/useUserQuery";
+import useDeleteCartMutation from "../../mutations/cart/useDeleteCartMutation";
+import { useParams, useSearchParams } from "react-router-dom";
 
 function CreateOrderPage() {
+  const [searchParams] = useSearchParams();
+
   const { data: userData } = useUserQuery();
   const orderingProducts = useMemo(() => getOrderingProducts(), []);
 
@@ -30,9 +34,12 @@ function CreateOrderPage() {
   const paymentAgreementRef = useRef();
 
   const createOrderMutation = useCreateOrderMutation();
+  const deleteCartMutation = useDeleteCartMutation();
 
   const [shipping, setShipping] = useState(null);
   const [generatedOrder, setGeneratedOrder] = useState(null);
+
+  const btnType = searchParams.get("type");
 
   const [paymentWidget] = usePaymentWidget({
     customerKey: userData?.id,
@@ -80,6 +87,9 @@ function CreateOrderPage() {
         },
         {
           onSuccess: async (orderData) => {
+            if (btnType === "checkout") {
+              await deleteCartMutation.mutateAsync();
+            }
             let originForToss = process.env.REACT_APP_ORIGIN_FOR_TOSS;
             const obj = {
               orderId: orderData?.id,

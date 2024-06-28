@@ -65,7 +65,6 @@ const PayPage = () => {
                 };
               }),
             });
-            deleteCartMutation.mutateAsync();
             navigate(`/order/${orderId}`, {
               replace: true,
             });
