@@ -42,6 +42,13 @@ const FindInsta = ({ setFindedInstaInfo }) => {
     });
   };
 
+  const rudkidsInstaClickHandler = () => {
+    trackClickButton("rudkidss instagram", {
+      page: "insta-info",
+    });
+    window.open("https://www.instagram.com/rudkidss");
+  };
+
   useEffect(() => {
     if (!showLoading && temp) {
       setFindedInstaInfo(temp);
@@ -64,15 +71,7 @@ const FindInsta = ({ setFindedInstaInfo }) => {
 
   return (
     <PageUI>
-      <RudkidsInstaUI
-        onClick={() => {
-          trackClickButton("rudkidss instagram", {
-            page: "insta-info",
-          });
-          window.location.href = "https://www.instagram.com/rudkidss";
-        }}
-        src={instaBtnImgSrc}
-      />
+      <RudkidsInstaUI onClick={rudkidsInstaClickHandler} src={instaBtnImgSrc} />
       <RudWindow>
         <WrapperUI>
           <TitleTxtUI>

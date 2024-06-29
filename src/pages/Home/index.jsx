@@ -43,7 +43,7 @@ const HomePage = () => {
     trackClickButton("rudkidss instagram", {
       page: "home",
     });
-    window.location.href = "https://www.instagram.com/rudkidss";
+    window.open("https://www.instagram.com/rudkidss");
   };
 
   return (

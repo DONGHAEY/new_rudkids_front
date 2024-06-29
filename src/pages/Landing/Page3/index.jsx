@@ -70,7 +70,7 @@ const Page3 = () => {
             trackClickButton("rudkidss instagram", {
               page: "landing",
             });
-            window.location.href = "https://www.instagram.com/rudkidss";
+            window.open("https://www.instagram.com/rudkidss");
           }}
         />
         <FlipWrapperUI onClick={() => setIsFlip(!isFlip)}>

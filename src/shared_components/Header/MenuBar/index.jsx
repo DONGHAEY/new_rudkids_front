@@ -103,7 +103,6 @@ const MenuBar = ({ onClosed }) => {
     trackClickButton("rudkidss instagram", {
       page: "nav bar",
     });
-    clickHandler_(e, "https://www.instagram.com/rudkidss");
   };
 
   return (
@@ -136,9 +135,10 @@ const MenuBar = ({ onClosed }) => {
           })}
           <MenuBtn
             idx={2}
-            name="Rudkidss"
+            name="@Rudkidss"
             iconNm="hugeicons:instagram"
             onClick={instaBtnClickHandler}
+            href={"https://www.instagram.com/rudkidss"}
           />
         </MenuBtnListUI>
         <div

@@ -9,8 +9,8 @@ export const DimmUI = styled.div`
 
 export const MenuBarUI = styled.div`
   background-color: #e1e1e1;
-  width: 85%;
-  max-width: 230px;
+  width: 70%;
+  max-width: 200px;
   height: 100%;
   overflow: scroll;
   display: flex;
@@ -27,4 +27,6 @@ export const MenuBtnListUI = styled.div`
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   grid-gap: 5%;
+  margin-inline: 0 auto;
+  padding-bottom: 25%;
 `;

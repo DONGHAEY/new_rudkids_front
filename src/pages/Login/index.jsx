@@ -36,8 +36,6 @@ const LoginPage = () => {
       provider: provider,
     });
     setLoginCallbackUrl(callback);
-    const loginUrl = `${process.env.REACT_APP_SERVER_URL}/api/auth/${provider}`;
-    window.location = loginUrl;
   };
 
   const providers = [
@@ -72,6 +70,7 @@ const LoginPage = () => {
                 background={provider.background}
                 border={provider.border}
                 onClick={() => clickHandler(provider.name)}
+                href={`${process.env.REACT_APP_SERVER_URL}/api/auth/${provider.name}`}
               >
                 <LoginBtnUI>
                   <LoginBtnImgUI src={provider.logoImgSrc} />

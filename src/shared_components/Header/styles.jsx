@@ -7,6 +7,7 @@ export const MenuBarModalUI = styled(Modal)`
   width: 100%;
   height: 100%;
   max-width: 430px;
+  position: relative;
   margin: 0 auto;
   z-index: 999;
 `;

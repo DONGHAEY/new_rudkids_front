@@ -6,9 +6,9 @@ export const useBodyBackground = (background) => {
     //사용전 index.html themecolor 고정 없게 해둬야함.
     // const before = document.body.style.background;
     document.body.style.background = background;
-    // return () => {
-    //   document.body.style.background = before;
-    // };
+    return () => {
+      document.body.style.background = "none";
+    };
   }, [background]);
 
   return null;
