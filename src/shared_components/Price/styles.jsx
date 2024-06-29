@@ -26,7 +26,7 @@ export const TxtWrapperUI = styled.div`
 
 export const ColumnTextUI = styled.p`
   font-family: Pretendard-Bold;
-  font-size: clamp(0rem, 4.6vw, 0.98rem);
+  font-size: clamp(0rem, 4.6vw, 1rem);
   line-height: 100%;
 `;
 export const OneDPTxtUI = styled.p`

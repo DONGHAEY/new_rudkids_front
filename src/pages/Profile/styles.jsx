@@ -131,9 +131,9 @@ export const InviteBtnUI = styled.div`
   justify-content: center;
   background: linear-gradient(180deg, #1d1d1d 0%, #2f2f2f 100%);
   color: white;
-  padding-block: 20px;
+  padding-block: 5%;
   border-radius: 16px;
-  font-size: 16px;
+  font-size: clamp(0rem, 5vw, 1.1rem);
   font-family: Pretendard-Bold;
   border: none;
   width: 85%;

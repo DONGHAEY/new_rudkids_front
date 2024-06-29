@@ -20,7 +20,7 @@ export const InvitationUI = styled.div`
 export const TitleTxtUI = styled.p`
   font-family: Poppins-Bold;
   font-size: 28px;
-  line-height: 28px;
+  font-size: clamp(0rem, 8vw, 1.8rem);
   text-align: center;
   line-height: 119%;
 `;
@@ -28,6 +28,7 @@ export const TitleTxtUI = styled.p`
 export const DescriptionTxtUI = styled.p`
   font-family: Pretendard-SemiBold;
   font-size: 11.41px;
+  font-size: clamp(0rem, 4vw, 0.8rem);
   color: #727272;
   line-height: 100%;
   letter-spacing: -5%;
@@ -43,16 +44,15 @@ export const BlueWrapperUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  padding-block: 18px;
-  padding-inline: 17px;
+  padding-block: 7%;
+  padding-inline: 7%;
   border-radius: 15.21px;
 `;
 
 export const BoxDiv = styled.div`
   background-color: #2a2a2a;
-  padding-inline: 15px;
-  padding-block: 8px;
+  padding-inline: 7%;
+  padding-block: 5%;
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -61,7 +61,7 @@ export const BoxDiv = styled.div`
 
 export const BoxTxtUI = styled.p`
   font-family: Pretendard-SemiBold;
-  font-size: 11.41px;
+  font-size: clamp(0rem, 4vw, 0.8rem);
   color: white;
   letter-spacing: -1px;
 `;
@@ -71,7 +71,8 @@ export const TicketListUI = styled.div`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  gap: 10px;
+  gap: 4%;
+  margin-top: 8%;
 `;
 
 export const TicketImg = styled.img`
@@ -84,10 +85,9 @@ export const ButtonUI = styled.button`
   align-items: center;
   justify-content: center;
   background-color: #202020;
-  padding-inline: 19px;
-  padding-block: 15px;
+  padding-block: 7%;
   max-width: 218px;
-  gap: 9px;
+  gap: 5%;
   width: 80%;
   border: none;
   border-radius: 13.31px;
@@ -95,7 +95,7 @@ export const ButtonUI = styled.button`
 
 export const ButtonTxtUI = styled.p`
   font-family: Pretendard-SemiBold;
-  font-size: 15px;
+  font-size: clamp(0rem, 4.3vw, 1rem);
   line-height: 100%;
   letter-spacing: -5%;
   color: white;
