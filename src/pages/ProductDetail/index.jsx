@@ -113,8 +113,8 @@ const ProductDetailPage = ({ routeInfo }) => {
             return <img key={key} width="100%" src={detailIimageUrl} />;
           })}
         </DetailImgListUI>
+        <ActionBar productData={productData} />
       </PageUI>
-      <ActionBar productData={productData} />
     </Suspense>
   );
 };

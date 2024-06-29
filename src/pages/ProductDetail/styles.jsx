@@ -6,6 +6,7 @@ export const PageUI = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  min-height: 100%;
   background-color: white;
 `;
 
@@ -13,8 +14,8 @@ export const FlexWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3.5%;
-  width: 85%;
+  margin-top: 3%;
+  width: 86%;
 `;
 
 export const SectionDscrptTxtUI = styled.h2`
@@ -27,7 +28,7 @@ export const SectionDscrptTxtUI = styled.h2`
 `;
 
 export const ContentSectionUI = styled.div`
-  padding-block: 12%;
+  padding-block: 9%;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -56,15 +57,15 @@ export const InfoRowUI = styled.div`
 
 export const ProductNameTextUI = styled.h1`
   font-family: Poppins-Bold;
-  font-size: clamp(1.3rem, 7vw, 2rem);
+  font-size: clamp(0rem, 14vw, 1.6rem);
   line-height: 100%;
   word-spacing: -5%;
-  padding-right: 5%;
+  padding-right: 8%;
 `;
 
 export const ProductPriceTextUI = styled.h3`
   font-family: Poppins-Bold;
-  font-size: clamp(0.8rem, 5vw, 1.4rem);
+  font-size: clamp(0.8rem, 5vw, 1rem);
   line-height: 100%;
   line-height: auto;
   /* letter-spacing: -1px; */
@@ -84,7 +85,7 @@ export const ModelDescriptionUI = styled.div`
 
 export const ModelDescriptionTextUI = styled.p`
   font-family: Pretendard-Medium;
-  font-size: 14.5px;
+  font-size: clamp(0.6rem, 4vw, 1rem);
 `;
 
 export const DetailImgListUI = styled.div`

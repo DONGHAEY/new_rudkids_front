@@ -1,10 +1,5 @@
 import { BsCartPlusFill } from "react-icons/bs";
-import {
-  ActionBarUI,
-  ActionBarWrapperUI,
-  ActionButtonUI,
-  SpacerUI,
-} from "./styles";
+import { ActionBarUI, ActionBarWrapperUI, ActionButtonUI } from "./styles";
 import useAddCartProductMutation from "../../../mutations/cart/useAddCartProductMutation";
 import { useState } from "react";
 import SelectModal from "./SelectModal";
@@ -86,7 +81,7 @@ const ActionBar = ({ productData }) => {
             $backgroundColor="black"
             $color="white"
           >
-            <BsCartPlusFill fontSize="23px" />
+            <BsCartPlusFill fontSize="140%" />
             <p>Cart</p>
           </ActionButtonUI>
           <ActionButtonUI
@@ -111,7 +106,6 @@ const ActionBar = ({ productData }) => {
         isOpen={putCartSuccessModal}
         onClose={() => setPutCartSuccessModal(false)}
       />
-      <SpacerUI />
     </>
   );
 };
