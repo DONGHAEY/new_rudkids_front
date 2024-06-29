@@ -1,17 +1,10 @@
-import {
-  MenuBarUI,
-  MenuBtnListUI,
-  MenuBtnTextUI,
-  MenuBtnUI,
-  DimmUI,
-} from "./styles";
+import { MenuBarUI, MenuBtnListUI, DimmUI } from "./styles";
 import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import SignatureGradients from "../../../global/signature-gradients";
 import gsap from "gsap";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { trackClickButton } from "../../../shared_analytics";
+import MenuBtn from "./MenuBtn";
 
 const menuButtonDtList = [
   {
@@ -54,7 +47,6 @@ const MenuBar = ({ onClosed }) => {
         window.location = path;
         return;
       }
-
       navigate(path);
     });
   };
@@ -120,21 +112,22 @@ const MenuBar = ({ onClosed }) => {
       <MenuBarUI ref={ref} onClick={() => close()}>
         <div
           style={{
-            height: "12%",
+            marginTop: "10%",
           }}
         />
         <Profile />
         <MenuBtnListUI>
           {menuButtonDtList?.map((menuButtonDt, idx) => {
+            const clickHandler = (e) => {
+              clickHandler(e, menuButtonDt.path);
+              trackClickButton("nav bar", {
+                type: menuButtonDt.name,
+              });
+            };
             return (
               <MenuBtn
                 key={idx}
-                onClick={(e) => {
-                  clickHandler(e, menuButtonDt.path);
-                  trackClickButton("nav bar", {
-                    type: menuButtonDt.name,
-                  });
-                }}
+                onClick={clickHandler}
                 name={menuButtonDt.name}
                 path={menuButtonDt.path}
                 iconNm={menuButtonDt.iconNm}
@@ -149,30 +142,14 @@ const MenuBar = ({ onClosed }) => {
             onClick={instaBtnClickHandler}
           />
         </MenuBtnListUI>
+        <div
+          style={{
+            marginTop: "5%",
+          }}
+        />
       </MenuBarUI>
-      <DimmUI
-        ref={dimmRef}
-        onMouseDown={(e) => {
-          close();
-        }}
-        onTouchStart={(e) => {
-          close();
-        }}
-      />
+      <DimmUI ref={dimmRef} onMouseDown={close} onTouchStart={close} />
     </>
-  );
-};
-
-const MenuBtn = ({ name, iconNm, idx, onClick }) => {
-  return (
-    <MenuBtnUI
-      key={idx}
-      onClick={onClick}
-      background={SignatureGradients[idx % SignatureGradients?.length]}
-    >
-      <Icon icon={iconNm} height="30%" />
-      <MenuBtnTextUI>{name}</MenuBtnTextUI>
-    </MenuBtnUI>
   );
 };
 

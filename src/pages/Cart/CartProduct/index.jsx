@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import useEditCartProductQuantityMutation from "../../../mutations/cart/useEditCartProductQuantityMutation";
 import useDeleteCartProductMutation from "../../../mutations/cart/useDeleteCartProductMutation";
 import RudImage from "../../../shared_components/RudImage";
+import { useMemo } from "react";
 
 const CartProduct = ({ cartProduct }) => {
   const editQuantityMutation = useEditCartProductQuantityMutation(
@@ -47,25 +48,33 @@ const CartProduct = ({ cartProduct }) => {
     navigate(`/product/${cartProduct.name}`);
   };
 
+  const optionsTxt = useMemo(() => {
+    let optionsTxt = "";
+    cartProduct?.options?.forEach((option, idx) => {
+      const isLast = idx === cartProduct.options.length - 1;
+      optionsTxt += `${option.groupName} : ${option.name}${
+        !isLast ? "&ensp;" : ""
+      }`;
+    });
+    return optionsTxt;
+  }, [cartProduct?.options]);
+
   return (
     <CartProductUI onClick={productClickHandler}>
       <RudImage ImgUI={ProductImgUI} src={cartProduct.thumnail} />
+      {/* <ProductImgUI /> */}
       <WrapperUI>
         <InfoTextWrapperUI>
           <CartProductNameUI>{cartProduct.name}</CartProductNameUI>
           <CartProductPriceUI>
             ₩ {cartProduct?.price?.toLocaleString("ko-KR")}
           </CartProductPriceUI>
-          {cartProduct?.options?.length !== 0 && (
-            <OptionsSectionUI>
-              {cartProduct?.options?.map((option) => {
-                return (
-                  <p key={option?.id}>
-                    {option.groupName} : {option.name}
-                  </p>
-                );
-              })}
-            </OptionsSectionUI>
+          {optionsTxt && (
+            <OptionsSectionUI
+              dangerouslySetInnerHTML={{
+                __html: optionsTxt,
+              }}
+            ></OptionsSectionUI>
           )}
         </InfoTextWrapperUI>
         <QuantityGroupUI>

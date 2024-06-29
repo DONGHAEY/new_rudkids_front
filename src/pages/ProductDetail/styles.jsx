@@ -13,8 +13,8 @@ export const FlexWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 3.5%;
   width: 85%;
-  padding-top: 32px;
 `;
 
 export const SectionDscrptTxtUI = styled.h2`

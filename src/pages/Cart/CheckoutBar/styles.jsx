@@ -5,7 +5,7 @@ export const SpacerUI = styled.div`
 `;
 
 export const OrderBarWrapperUI = styled.div`
-  position: fixed;
+  position: sticky;
   bottom: 0;
   width: 100%;
   pointer-events: none;
@@ -14,7 +14,7 @@ export const OrderBarWrapperUI = styled.div`
 `;
 
 export const PaymentsImgUI = styled.img`
-  height: 24px;
+  width: 70%;
 `;
 
 export const PoorManUI = styled.img`
@@ -31,9 +31,9 @@ export const OrderBarUI = styled.div`
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   background-color: rgba(244, 244, 244, 0.93);
-  padding-bottom: 24px;
-  padding-top: 30px;
-  padding-inline: 30px;
+  padding-bottom: 7.5%;
+  padding-top: 9.5%;
+  padding-inline: 10%;
   flex-direction: column;
   gap: 16px;
   justify-content: space-between;
@@ -42,11 +42,11 @@ export const OrderBarUI = styled.div`
 export const BuyButtonUI = styled.button`
   background-color: ${({ disabled }) => (disabled ? "gray" : "#ec0000")};
   color: white;
-  height: 60px;
   border: none;
   border-radius: 24px;
   pointer-events: all;
   font-family: Poppins-Bold;
-  font-size: 20px;
+  font-size: clamp(0.8rem, 6vw, 1.3rem);
+  padding-block: 5%;
   cursor: pointer;
 `;

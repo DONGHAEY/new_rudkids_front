@@ -5,7 +5,7 @@ import {
   PageUI,
   SectionDscrptTxtUI,
   PriceWrapperUI,
-  SmileSellerWrapperUI,
+  SmileSellerImgUI,
 } from "./styles";
 import CartProduct from "./CartProduct";
 import CheckoutBar from "./CheckoutBar";
@@ -50,9 +50,7 @@ const CartPage = () => {
               totalShippingPrice={totalShippingPrice}
             />
           </PriceWrapperUI>
-          <SmileSellerWrapperUI>
-            <img src={smileSellerSrc} width="100%" />
-          </SmileSellerWrapperUI>
+          <SmileSellerImgUI src={smileSellerSrc} />
         </FlexWrapperUI>
       ) : (
         <GoToShop />

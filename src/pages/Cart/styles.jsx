@@ -9,9 +9,7 @@ export const PageUI = styled.div`
 `;
 
 export const FlexWrapperUI = styled.div`
-  padding-block: 10px;
-  padding-top: 45px;
-  padding-bottom: 20px;
+  padding-top: 10%;
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -35,9 +33,10 @@ export const CartProductListUI = styled.div`
 
 export const PriceWrapperUI = styled.div`
   width: 100%;
-  margin-top: 60px;
+  margin-top: 22%;
 `;
 
-export const SmileSellerWrapperUI = styled.div`
-  margin-top: 73px;
+export const SmileSellerImgUI = styled.img`
+  margin-top: 10%;
+  width: 100%;
 `;

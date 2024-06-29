@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const ProfileUI = styled.div`
   background-color: #f3f3f3;
   border-radius: 126px;
-  padding: 15px;
-  padding-inline: 20px;
+  padding-inline: 7%;
+  padding-block: 8%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -12,10 +12,14 @@ export const ProfileUI = styled.div`
 `;
 
 export const ImgWrapperUI = styled.div`
-  height: 50px;
+  height: 100%;
+  padding: 1%;
   aspect-ratio: 1/1;
   object-fit: cover;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ImgUI = styled.img`
@@ -39,16 +43,16 @@ export const LoginTextUI = styled.p`
 `;
 
 export const NameTextUI = styled.p`
-  font-size: 17px;
-  line-height: 25px;
+  font-size: clamp(0.5rem, 5.5vw, 1rem);
+  line-height: 150%;
   font-family: Poppins-Bold;
   overflow: hidden;
   letter-spacing: -1px;
 `;
 
 export const RankingTextUI = styled.p`
-  font-size: 13px;
-  line-height: 18px;
+  font-size: clamp(0.3rem, 4.5vw, 0.8rem);
+  line-height: 150%;
   font-family: Poppins-SemiBold;
   color: #8e8e8e;
 `;

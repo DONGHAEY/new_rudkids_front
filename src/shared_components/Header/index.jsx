@@ -28,20 +28,18 @@ const Header = ({ isFixed = true }) => {
 
   return (
     <>
-      <HeaderUI position={isFixed ? "fixed" : "relative"}>
+      <HeaderUI position={isFixed ? "sticky" : "relative"}>
         <IconLinkUI onClick={listBtnClickHandler}>
           <Icon icon="material-symbols:menu" color="black" />
         </IconLinkUI>
         <LogoIconUI to="/home">
-          <img height="100%" src={PublicBizAssets.logo} />
+          <img width="100%" src={PublicBizAssets.logo} />
         </LogoIconUI>
         <IconLinkUI to="/cart">
           <Icon icon="mdi:cart" color="black" />
-          {/* </CartTxtUI> */}
           <CartCntTextUI>{cartCntData}</CartCntTextUI>
         </IconLinkUI>
       </HeaderUI>
-      {isFixed && <SpacerUI />}
       <MenuBarModalUI open={menuBarOpen} disableAutoFocus>
         <MenuBar onClosed={(d) => setMenuBarOpen(false)} />
       </MenuBarModalUI>

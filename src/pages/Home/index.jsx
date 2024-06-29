@@ -50,7 +50,7 @@ const HomePage = () => {
     <PageUI>
       <SymbolLoader loading={false} />
       <Header isFixed />
-      <SpacerUI />
+      <SpacerUI marginTop="1%" />
       <MainBannerImgUI src={home1Webp} onClick={() => navigate("/shop")} />
       <SlidingTape />
       <MainBannerImgUI src={home2Webp} onClick={() => navigate("/shop")} />

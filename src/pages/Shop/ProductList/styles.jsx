@@ -6,7 +6,7 @@ export const ListUI = styled.div`
   min-height: 100%;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: minmax(0%, 100%);
-  column-gap: 16px;
+  column-gap: 5%;
   width: 90%;
 `;
 
@@ -15,7 +15,7 @@ export const ProductBoxUI = styled.div`
   flex-direction: column;
   gap: 11px;
   width: auto;
-  margin-bottom: 16px;
+  margin-bottom: 9%;
   text-decoration: none;
   line-height: 0;
   position: relative;

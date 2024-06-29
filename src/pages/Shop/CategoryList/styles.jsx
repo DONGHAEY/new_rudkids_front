@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const ScrollUI = styled.div`
   width: 100%;
   overflow: scroll;
-  margin-block: 30px;
+  padding-top: 2.5%;
+  margin-bottom: 5%;
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -33,7 +34,7 @@ export const TypeBtnListUI = styled.div`
 
 export const TypeButtonUI = styled.button`
   display: flex;
-  padding-inline: 17px;
+  padding-inline: 5%;
   border: none;
   padding-block: 9px;
   background-color: ${({ $selected }) =>

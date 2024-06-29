@@ -26,18 +26,18 @@ const ShopPage = () => {
   };
 
   return (
-    <PageUI>
-      <SectionUI>
-        <Header />
+    <>
+      <Header />
+      <PageUI>
         <CategoryList
           typeCategory={searchObj["category"]}
           setTypeCategory={(type) => setSearchProperty("category", type)}
         />
         <ProductList productList={data?.data} />
-      </SectionUI>
+        {isLoading && <Loader color="white" />}
+      </PageUI>
       <Footer />
-      {isLoading && <Loader color="white" />}
-    </PageUI>
+    </>
   );
 };
 

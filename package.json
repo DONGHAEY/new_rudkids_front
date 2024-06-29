@@ -21,6 +21,7 @@
     "axios": "^1.6.8",
     "data-uri-to-buffer": "^6.0.2",
     "data-uri-to-file": "^0.1.8",
+    "framer-motion": "^11.2.12",
     "framer-motion-3d": "^11.0.8",
     "gsap": "^3.12.5",
     "html-to-image": "^1.11.11",
