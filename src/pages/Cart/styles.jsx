@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const PageUI = styled.div`
   width: 100%;
-  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100%;
+  position: relative;
 `;
 
 export const FlexWrapperUI = styled.div`
@@ -32,10 +33,12 @@ export const CartProductListUI = styled.div`
 
 export const PriceWrapperUI = styled.div`
   width: 100%;
-  margin-top: 22%;
+  margin-top: 10%;
 `;
 
 export const SmileSellerImgUI = styled.img`
-  margin-top: 10%;
   width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 `;

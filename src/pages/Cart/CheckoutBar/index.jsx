@@ -56,22 +56,20 @@ const CheckoutBar = () => {
   };
 
   return (
-    <>
-      <OrderBarWrapperUI>
-        <OrderBarUI>
-          {totalPrice === 0 && <PoorManUI src={poorManSrc} />}
-          <div>
-            <PaymentsImgUI src={paymentsImgSrc} />
-          </div>
-          <BuyButtonUI
-            disabled={cartMutating || cartQuerying || isEmptyCart}
-            onClick={buyButtonClickHandler}
-          >
-            Check Out!
-          </BuyButtonUI>
-        </OrderBarUI>
-      </OrderBarWrapperUI>
-    </>
+    <OrderBarWrapperUI>
+      <OrderBarUI>
+        {totalPrice === 0 && <PoorManUI src={poorManSrc} />}
+        <div>
+          <PaymentsImgUI src={paymentsImgSrc} />
+        </div>
+        <BuyButtonUI
+          disabled={cartMutating || cartQuerying || isEmptyCart}
+          onClick={buyButtonClickHandler}
+        >
+          Check Out!
+        </BuyButtonUI>
+      </OrderBarUI>
+    </OrderBarWrapperUI>
   );
 };
 

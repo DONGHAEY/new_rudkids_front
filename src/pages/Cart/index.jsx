@@ -34,29 +34,39 @@ const CartPage = () => {
   useBodyBackground("#0027F1");
 
   return (
-    <PageUI>
+    <>
       <Header />
-      {hasProducts ? (
-        <FlexWrapperUI>
-          <SectionDscrptTxtUI>My Cart</SectionDscrptTxtUI>
-          <CartProductListUI>
-            {myCartData?.cartProducts?.map((cartProduct) => (
-              <CartProduct key={cartProduct.id} cartProduct={cartProduct} />
-            ))}
-          </CartProductListUI>
-          <PriceWrapperUI>
-            <Price
-              totalProductsPrice={totalProductsPrice}
-              totalShippingPrice={totalShippingPrice}
-            />
-          </PriceWrapperUI>
-          <SmileSellerImgUI src={smileSellerSrc} />
-        </FlexWrapperUI>
-      ) : (
-        <GoToShop />
-      )}
+      <PageUI>
+        {hasProducts ? (
+          <FlexWrapperUI>
+            <SectionDscrptTxtUI>My Cart</SectionDscrptTxtUI>
+            <CartProductListUI>
+              {myCartData?.cartProducts?.map((cartProduct) => (
+                <CartProduct key={cartProduct.id} cartProduct={cartProduct} />
+              ))}
+            </CartProductListUI>
+            <PriceWrapperUI>
+              <Price
+                totalProductsPrice={totalProductsPrice}
+                totalShippingPrice={totalShippingPrice}
+              />
+            </PriceWrapperUI>
+          </FlexWrapperUI>
+        ) : (
+          <GoToShop />
+        )}
+
+        <SmileSellerImgUI src={smileSellerSrc} />
+        <img
+          src={smileSellerSrc}
+          width="100%"
+          style={{
+            opacity: 0,
+          }}
+        />
+      </PageUI>
       <CheckoutBar cartData={myCartData} />
-    </PageUI>
+    </>
   );
 };
 
