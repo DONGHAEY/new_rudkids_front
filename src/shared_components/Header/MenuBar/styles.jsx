@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DimmUI = styled.div`
-  position: fixed;
+  position: absolute;
   height: 100%;
   width: 100%;
   z-index: -1;

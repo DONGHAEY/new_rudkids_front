@@ -40,7 +40,7 @@ const MenuBar = ({ onClosed }) => {
   const ref = useRef();
   const dimmRef = useRef();
 
-  const clickHandler = (e, path) => {
+  const clickHandler_ = (e, path) => {
     e.stopPropagation();
     close(() => {
       if (path.includes("http") || path.includes("https")) {
@@ -104,7 +104,7 @@ const MenuBar = ({ onClosed }) => {
     trackClickButton("rudkidss instagram", {
       page: "nav bar",
     });
-    clickHandler(e, "https://www.instagram.com/rudkidss");
+    clickHandler_(e, "https://www.instagram.com/rudkidss");
   };
 
   return (
@@ -118,8 +118,8 @@ const MenuBar = ({ onClosed }) => {
         <Profile />
         <MenuBtnListUI>
           {menuButtonDtList?.map((menuButtonDt, idx) => {
-            const clickHandler = (e) => {
-              clickHandler(e, menuButtonDt.path);
+            const menuBtnClickHandler = (e) => {
+              clickHandler_(e, menuButtonDt.path);
               trackClickButton("nav bar", {
                 type: menuButtonDt.name,
               });
@@ -127,7 +127,7 @@ const MenuBar = ({ onClosed }) => {
             return (
               <MenuBtn
                 key={idx}
-                onClick={clickHandler}
+                onClick={menuBtnClickHandler}
                 name={menuButtonDt.name}
                 path={menuButtonDt.path}
                 iconNm={menuButtonDt.iconNm}

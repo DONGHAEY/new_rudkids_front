@@ -9,8 +9,6 @@ import {
 } from "./styles";
 
 const Price = ({ totalProductsPrice, totalShippingPrice }) => {
-  // const shipping_ = ""
-
   return (
     <PriceUI>
       <SpaceBetweenUI $flexDirection="column" gap="23px">
