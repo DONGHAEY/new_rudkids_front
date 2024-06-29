@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const EmptyShippingUI = styled.div`
   width: 100%;
-  height: 184px;
+  padding-block: 16%;
   border: solid 2px #c3e2ff;
   border-radius: 12px;
   background-color: #ffffff;
@@ -10,28 +10,27 @@ export const EmptyShippingUI = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px;
 `;
 
 export const AddButtonUI = styled.button`
   background-color: #257ed6;
   color: white;
   border: none;
-  border-radius: 24px;
-  padding: 16px;
+  border-radius: clamp(0rem, 4vw, 1rem);
+  padding: 4%;
+  margin-top: 5%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 5px;
 `;
 
 export const ExplainTextUI = styled.p`
-  font-size: 17px;
+  font-size: clamp(0rem, 4vw, 1rem);
   font-family: Pretendard-SemiBold;
 `;
 
 export const AddBtnTextUI = styled.p`
   font-family: Pretendard-Bold;
-  font-size: 14px;
+  font-size: clamp(0rem, 4.5vw, 1rem);
 `;

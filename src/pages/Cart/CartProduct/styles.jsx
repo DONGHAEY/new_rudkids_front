@@ -7,7 +7,7 @@ export const CartProductUI = styled.div`
   align-items: center;
   padding: 5%;
   background-color: rgba(255, 255, 255);
-  border-radius: 20px;
+  border-radius: clamp(0rem, 5vw, 1rem);
   margin-block: 2%;
   animation: bounceFadeIn 500ms;
 `;
@@ -91,6 +91,7 @@ export const CloseIconWrapperUI = styled.div`
   top: 0;
   right: 0;
   padding: 3%;
+  z-index: 9;
   font-size: 22px;
   cursor: pointer;
 `;

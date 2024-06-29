@@ -27,10 +27,9 @@ export const SectionDscrptTxtUI = styled.h2`
 `;
 
 export const ContentSectionUI = styled.div`
-  padding-block: 29px;
+  padding-block: 12%;
   display: flex;
   width: 100%;
-  gap: 12px;
   flex-direction: column;
 `;
 
@@ -57,18 +56,19 @@ export const InfoRowUI = styled.div`
 
 export const ProductNameTextUI = styled.h1`
   font-family: Poppins-Bold;
-  font-size: 24px;
-  line-height: 24px;
-  /* letter-spacing: -1px; */
+  font-size: clamp(1.3rem, 7vw, 2rem);
+  line-height: 100%;
   word-spacing: -5%;
+  padding-right: 5%;
 `;
 
 export const ProductPriceTextUI = styled.h3`
   font-family: Poppins-Bold;
-  font-size: 18px;
-  line-height: 18px;
+  font-size: clamp(0.8rem, 5vw, 1.4rem);
+  line-height: 100%;
   line-height: auto;
   /* letter-spacing: -1px; */
+  margin-top: 5%;
   word-spacing: -5%;
 `;
 

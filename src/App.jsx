@@ -9,7 +9,9 @@ import { useWindowScrollInit } from "./hooks/useWindowScrollInit";
 import Loader from "./shared_components/Loader";
 
 function App() {
+  //
   const [queryClient] = useRudkidsQueryClient();
+
   useWindowScrollInit();
 
   return (
@@ -34,7 +36,6 @@ function App() {
           />
         ))}
       </Routes>
-
       <GlobalStyle />
     </QueryClientProvider>
   );

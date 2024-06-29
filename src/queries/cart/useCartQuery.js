@@ -12,6 +12,7 @@ const useCartQuery = () => {
   return useQuery({
     queryKey: KEY,
     queryFn: getCart,
+    suspense: true,
   });
 };
 

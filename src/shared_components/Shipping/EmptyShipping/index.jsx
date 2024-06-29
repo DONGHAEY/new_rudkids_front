@@ -25,8 +25,8 @@ const EmptyShipping = ({ onChange }) => {
     <EmptyShippingUI>
       <ExplainTextUI>배송지를 먼저 입력해주세요</ExplainTextUI>
       <AddButtonUI onClick={addBtnClickHandler}>
-        <IoMdAdd fontSize="18px" />
-        <AddBtnTextUI>등록하기</AddBtnTextUI>
+        <IoMdAdd fontSize="clamp(0rem, 7vw, 1rem)" />
+        <AddBtnTextUI>&nbsp;등록하기</AddBtnTextUI>
       </AddButtonUI>
       <PopupRoute name="shipping-add">
         <AddEditShipping

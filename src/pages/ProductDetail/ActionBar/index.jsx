@@ -95,7 +95,7 @@ const ActionBar = ({ productData }) => {
               setActionName("buy now");
             }}
           >
-            <p>BuyNow</p>
+            <p>Buy Now</p>
           </ActionButtonUI>
         </ActionBarUI>
       </ActionBarWrapperUI>

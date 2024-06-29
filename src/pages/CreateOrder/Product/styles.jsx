@@ -10,7 +10,7 @@ export const ProductUI = styled.div`
   background-color: rgba(255, 255, 255, 0.9);
   border: solid 2px;
   border-color: #e7e7e7;
-  border-radius: 20px;
+  border-radius: clamp(0rem, 5vw, 4rem); /* 20px **/
   margin-block: 1.5%;
 `;
 

@@ -18,7 +18,7 @@ export const FlexWrapperUI = styled.div`
 `;
 
 export const ShippingAddressSectionUI = styled.div`
-  padding-top: 32px;
+  padding-top: 9%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +26,7 @@ export const ShippingAddressSectionUI = styled.div`
 `;
 
 export const PaySectionUI = styled.div`
-  padding-top: 32px;
+  padding-top: 9%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +56,7 @@ export const AgreementUI = styled.div`
 
 export const PriceWrapperUI = styled.div`
   width: 100%;
-  margin-top: 22px;
+  margin-top: 9%;
 `;
 
 export const SectionDscrptTxtUI = styled.h2`
@@ -69,12 +69,4 @@ export const ListWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-`;
-
-export const FieldsWrapperUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  gap: 15px;
-  padding-block: 10px;
 `;

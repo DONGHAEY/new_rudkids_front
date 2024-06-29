@@ -5,7 +5,7 @@ export const PriceUI = styled.div`
   flex-direction: column;
   padding: 7.8%;
   background-color: white;
-  border-radius: 20px;
+  border-radius: clamp(0rem, 5.5vw, 1rem);
   margin-bottom: 20px;
 `;
 
@@ -45,7 +45,7 @@ export const ColumnValueTextUI = styled.p`
 
 export const TotalTextUI = styled.p`
   font-family: Poppins-Bold;
-  font-size: clamp(0.8rem, 5vw, 1rem);
+  font-size: clamp(0rem, 5vw, 1rem);
   line-height: 120%;
 `;
 

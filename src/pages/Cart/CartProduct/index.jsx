@@ -21,11 +21,12 @@ import RudImage from "../../../shared_components/RudImage";
 import { useMemo } from "react";
 
 const CartProduct = ({ cartProduct }) => {
+  const navigate = useNavigate();
+
   const editQuantityMutation = useEditCartProductQuantityMutation(
     cartProduct?.id
   );
   const deleteMutation = useDeleteCartProductMutation(cartProduct?.id);
-
   const quantityPlusClickHandler = async (e) => {
     e.stopPropagation();
     await editQuantityMutation.mutateAsync(cartProduct.quantity + 1);
@@ -34,7 +35,6 @@ const CartProduct = ({ cartProduct }) => {
     e.stopPropagation();
     await editQuantityMutation.mutateAsync(cartProduct.quantity - 1);
   };
-
   const deleteClickHandler = async (e) => {
     e.stopPropagation();
     if (window.confirm("정말로 삭제하겠어?..")) {
@@ -42,11 +42,7 @@ const CartProduct = ({ cartProduct }) => {
     }
   };
 
-  const navigate = useNavigate();
-
-  const productClickHandler = () => {
-    navigate(`/product/${cartProduct.name}`);
-  };
+  const productClickHandler = () => navigate(`/product/${cartProduct.name}`);
 
   const optionsTxt = useMemo(() => {
     let optionsTxt = "";
@@ -73,7 +69,7 @@ const CartProduct = ({ cartProduct }) => {
               dangerouslySetInnerHTML={{
                 __html: optionsTxt,
               }}
-            ></OptionsSectionUI>
+            />
           )}
         </InfoTextWrapperUI>
         <QuantityGroupUI>

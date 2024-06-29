@@ -36,10 +36,10 @@ export const ActionButtonUI = styled.button`
   background-color: ${({ $backgroundColor }) => $backgroundColor ?? "red"};
   color: ${({ $color }) => $color ?? "white"};
   border: none;
-  border-radius: 30px;
+  border-radius: clamp(0.4rem, 10vw, 1.6rem);
   font-family: Poppins-Bold;
   pointer-events: all;
-  font-size: clamp(0.8rem, 4.3vw, 1.1rem);
+  font-size: clamp(0.8rem, 4.3vw, 1rem);
   padding-inline: 8%;
   width: 100%;
   display: flex;

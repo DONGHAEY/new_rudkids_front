@@ -36,9 +36,7 @@ const renderApp = () => {
 const init = () => {
   if (!checkCorrectOrigin()) return;
   const publicImageUrls = Object.values(PublicBizAssets);
-  publicImageUrls?.forEach((imgUrl) => {
-    imgPreload(imgUrl);
-  });
+  publicImageUrls?.forEach((imgUrl) => imgPreload(imgUrl));
   amplitudeInit(process.env["REACT_APP_AMPLITUDE_KEY"], {
     defaultTracking: {
       pageViews: false,

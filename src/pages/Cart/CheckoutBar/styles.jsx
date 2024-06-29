@@ -26,8 +26,8 @@ export const PoorManUI = styled.img`
 export const OrderBarUI = styled.div`
   display: flex;
   width: 100%;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  border-top-left-radius: clamp(0rem, 10vw, 2rem);
+  border-top-right-radius: clamp(0rem, 10vw, 2rem);
   background-color: rgba(244, 244, 244, 0.93);
   padding-bottom: 7.5%;
   padding-top: 9.5%;

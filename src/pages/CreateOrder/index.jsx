@@ -135,7 +135,7 @@ function CreateOrderPage() {
 
   return (
     <PageUI>
-      <Header isFixed={true} $backgroundColor="none" />
+      <Header isFixed={true} $backgroundColor="none" color="black" />
       <FlexWrapperUI>
         <SectionDescriptionUI>
           <SectionDscrptTxtUI>Order Products</SectionDscrptTxtUI>

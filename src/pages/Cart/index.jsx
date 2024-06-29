@@ -29,14 +29,13 @@ const CartPage = () => {
     });
     return totalProductsPrice;
   }, [myCartData?.cartProducts]);
-  const totalShippingPrice = 1;
 
   useBodyBackground("#0027F1");
 
   return (
     <>
-      <Header />
       <PageUI>
+        <Header />
         {hasProducts ? (
           <FlexWrapperUI>
             <SectionDscrptTxtUI>My Cart</SectionDscrptTxtUI>
@@ -48,14 +47,13 @@ const CartPage = () => {
             <PriceWrapperUI>
               <Price
                 totalProductsPrice={totalProductsPrice}
-                totalShippingPrice={totalShippingPrice}
+                totalShippingPrice={1}
               />
             </PriceWrapperUI>
           </FlexWrapperUI>
         ) : (
           <GoToShop />
         )}
-
         <SmileSellerImgUI src={smileSellerSrc} />
         <img
           src={smileSellerSrc}
