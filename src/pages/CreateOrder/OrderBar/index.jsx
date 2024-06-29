@@ -1,21 +1,17 @@
 import { useIsMutating } from "react-query";
-import { BuyNowButtonUI, Spacer, OrderBarUI, SubmitUI } from "./styles";
+import { BuyNowButtonUI, OrderBarUI, SubmitUI, PaymentImgUI } from "./styles";
 import queryKey from "../../../queries/key";
 import paymentsimgSrc from "./assets/payments.webp";
 
-const OrderBar = ({ totalPrice, onClick }) => {
+const OrderBar = ({ onClick }) => {
   const orderMutating = useIsMutating([queryKey.order]);
 
   return (
     <OrderBarUI>
       <SubmitUI>
-        <img
-          src={paymentsimgSrc}
-          style={{
-            width: "65%",
-            objectFit: "cover",
-          }}
-        />
+        <div>
+          <PaymentImgUI src={paymentsimgSrc} />
+        </div>
         <BuyNowButtonUI disabled={orderMutating !== 0} onClick={onClick}>
           BUY NOW
         </BuyNowButtonUI>

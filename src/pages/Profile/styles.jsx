@@ -15,7 +15,7 @@ export const PageUI = styled.div`
 export const TopSectionUI = styled.div`
   display: flex;
   position: absolute;
-  top: 15px;
+  top: 3%;
   align-items: center;
   justify-content: space-between;
   width: 85%;
@@ -28,10 +28,18 @@ export const BoxSectionUI = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-block: 100px;
+  padding-block: 23%;
   border-top-left-radius: 34px;
   border-top-right-radius: 34px;
   background-color: rgba(255, 255, 255, 0.8);
+`;
+
+export const MiddleSectionUI = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8.3%;
+  margin-bottom: 8.3%;
 `;
 
 export const UserImgUI = styled.img`
@@ -40,13 +48,13 @@ export const UserImgUI = styled.img`
   width: 90%;
   aspect-ratio: 1/1;
   position: absolute;
-  margin-top: 25%;
+  margin-top: 23%;
   z-index: 3;
 `;
 
 export const UserNickNameTxtUI = styled.p`
-  margin-top: -10px;
   font-size: 20px;
+  margin-top: -2%;
   font-family: Poppins-Bold;
   letter-spacing: -0.88px;
   line-height: 100%;
@@ -58,9 +66,9 @@ export const DescriptTxtUI = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
-  line-height: 140%;
+  line-height: 130%;
   height: auto;
-  margin-top: 11px;
+  margin-top: 2.2%;
   text-align: center;
   font-family: Pretendard-SemiBold;
   font-size: 14px;
@@ -70,47 +78,41 @@ export const DescriptTxtUI = styled.div`
 export const TodayViewUI = styled.div`
   display: flex;
   align-items: center;
-  padding: 7px;
-  padding-inline: 18px;
+  font-size: clamp(0rem, 4.3vw, 1.1rem);
+  padding-inline: 5%;
+  padding-block: 2%;
   font-family: Poppins-SemiBold;
-  gap: 8.82px;
+  gap: 7px;
   line-height: 0%;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 25px;
 `;
 
 export const SettingBtnUI = styled(Link)`
-  padding: 9px;
+  padding: 2%;
   text-decoration: none;
   line-height: 0%;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 100%;
-  font-size: 20px;
+  font-size: clamp(0rem, 6vw, 1.2rem);
   color: #555555;
 `;
 
+export const LinksTxtUI = styled.p`
+  margin-bottom: 5%;
+  font-family: Poppins-SemiBold;
+  font-size: clamp(0rem, 4.8vw, 1.2rem);
+`;
+
 export const LinksSectionUI = styled.div`
-  margin-top: 30px;
   display: flex;
-  width: 80%;
+  flex-direction: column;
+  padding: 7%;
+  overflow: hidden;
   background-color: white;
   border-radius: 12px;
   animation: bounceFadeIn 1s;
-`;
-
-export const LinksUI = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding-block: 25px;
-  padding-inline: 25px;
-  gap: 10px;
-  overflow: hidden;
-`;
-
-export const SectionNmTxtUI = styled.p`
-  font-family: Poppins-SemiBold;
-  line-height: 100%;
+  margin-top: 8.3%;
 `;
 
 export const BottomBarUI = styled.div`
@@ -172,48 +174,15 @@ export const CenterModalUI = styled(Modal)`
   margin: 0 auto;
 `;
 
-export const CollectionUI = styled.div`
-  width: 80%;
+export const CollectionSectionUI = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  min-height: 15px;
-  background: white;
-  padding-block: 26px;
-  border-radius: 12px;
-  margin-top: 26px;
+  margin-top: 8.3%;
   animation: bounceFadeIn 1s;
-`;
-export const CollectionHeadUI = styled.div`
-  display: flex;
-  gap: 11px;
-  align-items: center;
-  position: relative;
-`;
-
-export const CollectionTitleUI = styled.p`
-  font-family: Poppins-SemiBold;
-  font-size: 20px;
-  line-height: 100%;
-`;
-export const CollectionCntTxtUI = styled.p`
-  background-color: #e9e9e9;
-  color: black;
-  padding: 5px;
-  border-radius: 7px;
-  font-family: Poppins-SemiBold;
-  font-size: 16px;
-  line-height: 100%;
-  padding-block: 3px;
-`;
-
-export const CollectionArrowUI = styled.div`
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  font-size: 20px;
 `;
 
 export const ProfileImgWrapperUI = styled.div`
@@ -224,11 +193,11 @@ export const ProfileImgWrapperUI = styled.div`
   align-items: center;
   justify-content: center;
   animation: fadeIn 3s;
+  width: 27%;
 `;
 
 export const CrownImgUI = styled.img`
   width: 100%;
-  max-width: 113px;
   z-index: 3;
   opacity: ${({ opacity }) => opacity ?? 0};
 `;
@@ -236,16 +205,15 @@ export const CrownImgUI = styled.img`
 export const RankTxtUI = styled.p`
   position: absolute;
   z-index: 4;
-  font-size: 13px;
   background-color: #fff500;
   border-radius: 37px;
-  padding-inline: 15px;
-  padding-block: 10px;
+  padding-inline: 12.5%;
+  padding-block: 8.5%;
   line-height: 0%;
   font-family: Poppins-Bold;
-  font-size: 16px;
-  right: -38%;
-  bottom: -3px;
+  font-size: clamp(0rem, 4.3vw, 1.08rem);
+  right: -33%;
+  bottom: -3%;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -60,7 +60,9 @@ const CheckoutBar = () => {
       <OrderBarWrapperUI>
         <OrderBarUI>
           {totalPrice === 0 && <PoorManUI src={poorManSrc} />}
-          <PaymentsImgUI src={paymentsImgSrc} />
+          <div>
+            <PaymentsImgUI src={paymentsImgSrc} />
+          </div>
           <BuyButtonUI
             disabled={cartMutating || cartQuerying || isEmptyCart}
             onClick={buyButtonClickHandler}

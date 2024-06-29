@@ -38,22 +38,20 @@ const Links = ({ links }) => {
   return (
     <LinksScrollerUI>
       {links?.map((link) => {
-        return <Link link={link} key={link} />;
+        const platform = platforms.find((platform) =>
+          link.includes(platform.domain)
+        );
+        return (
+          <LinkUI href={link}>
+            {platform?.iconSrc ? (
+              <img src={platform.iconSrc} width="55%" />
+            ) : (
+              <BsLink fontSize={"30px"} color="black" />
+            )}
+          </LinkUI>
+        );
       })}
     </LinksScrollerUI>
-  );
-};
-
-const Link = ({ link }) => {
-  const platform = platforms.find((platform) => link.includes(platform.domain));
-  return (
-    <LinkUI href={link}>
-      {platform?.iconSrc ? (
-        <img src={platform.iconSrc} width="60%" />
-      ) : (
-        <BsLink fontSize={"20px"} color="black" />
-      )}
-    </LinkUI>
   );
 };
 

@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const RowWrapperUI = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+
   height: auto;
-  width: 80%;
+  margin: 0 auto;
+  width: 100%;
   max-width: 325.33px;
-  gap: 15.28px;
-  margin-top: 36px;
+  gap: 4%;
   animation: bounceFadeIn 1s;
 `;
 
@@ -19,14 +20,13 @@ export const InfoBoxUI = styled.div`
   border: none;
   background-color: white;
   color: black;
-  /* padding-block: 23px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 3%;
   justify-content: center;
   border-radius: 15px;
-  font-size: 15px;
+  font-size: clamp(0rem, 5vw, 1rem);
   font-family: Poppins-SemiBold;
   position: relative;
 `;

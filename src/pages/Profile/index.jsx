@@ -1,5 +1,5 @@
 import Header from "../../shared_components/Header";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   BottomBarUI,
   BoxSectionUI,
@@ -8,23 +8,19 @@ import {
   InviteBtnUI,
   CenterModalUI,
   LinksSectionUI,
-  LinksUI,
   PageUI,
-  SectionNmTxtUI,
   SettingBtnUI,
   ShareBtnUI,
   TodayViewUI,
   TopSectionUI,
   UserImgUI,
   UserNickNameTxtUI,
-  CollectionUI,
-  CollectionHeadUI,
-  CollectionTitleUI,
-  CollectionCntTxtUI,
-  CollectionArrowUI,
+  CollectionSectionUI,
   ProfileImgWrapperUI,
   CrownImgUI,
   RankTxtUI,
+  MiddleSectionUI,
+  LinksTxtUI,
 } from "./styles";
 import { BsHeartFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
@@ -48,13 +44,12 @@ import { useBodyBackground } from "../../hooks/useBodyBackground";
 import crwonSrc from "./assets/crown.webp";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import RudImage from "../../shared_components/RudImage";
+import { Collection } from "./Collection";
 
 export const ProfilePage = ({ routeInfo }) => {
   const params = useParams();
   const searchUserId = params[routeInfo.paramKeys[0]];
-  const { data: userData, isLoading: userLoading } = useUserQuery(searchUserId);
-  const { data: collectedProducts, isLoading: collectionLoading } =
-    useCollectionQuery(userData?.id);
+  const { data: userData } = useUserQuery(searchUserId);
 
   const followToggleMutation = useFollowToggleMutation();
   const updateTodayViewMutation = useUpdateTodayViewMutation();
@@ -68,14 +63,13 @@ export const ProfilePage = ({ routeInfo }) => {
     followToggleMutation.mutateAsync(searchUserId);
   };
 
-  const navigate = useNavigate();
-
   const inviteBtnClickHandler = () => setInvitePopup(true);
   const shareBtnClickHandler = () => setShareCopyPopup(true);
   const onInviteCloseHandler = () => setInvitePopup(false);
   const onShareCloseHandler = () => setShareCopyPopup(false);
 
   const userProfilePageLink = `${window.location.host}/profile/${userData?.id}`;
+  const hasCrown = userData?.rank <= 3;
 
   const rankSigns = ["st", "nd", "rd"];
 
@@ -85,11 +79,7 @@ export const ProfilePage = ({ routeInfo }) => {
     }
   }, [searchUserId]);
 
-  useBodyBackground("#1a94d9");
-
-  if (userLoading || collectionLoading) {
-    return <Loader />;
-  }
+  useBodyBackground("#0027F1");
 
   return (
     <PageUI>
@@ -99,8 +89,8 @@ export const ProfilePage = ({ routeInfo }) => {
       <br />
       <BoxSectionUI>
         <ProfileImgWrapperUI>
-          <CrownImgUI src={crwonSrc} opacity={userData?.rank <= 3 ? 1 : 0} />
-          {userData?.rank <= 3 && (
+          <CrownImgUI src={crwonSrc} opacity={hasCrown ? 1 : 0} />
+          {hasCrown && (
             <RankTxtUI>
               <Icon icon="fa-solid:medal" /> {userData?.rank}
               {rankSigns[userData?.rank - 1]}
@@ -110,7 +100,7 @@ export const ProfilePage = ({ routeInfo }) => {
         </ProfileImgWrapperUI>
         <TopSectionUI>
           <TodayViewUI>
-            <img src={eyeSrc} height="17px" />
+            <Icon icon="ph:eye-fill" />
             {userData?.view?.todayCnt}
           </TodayViewUI>
           {isMyProfile && (
@@ -119,33 +109,21 @@ export const ProfilePage = ({ routeInfo }) => {
         </TopSectionUI>
         <UserNickNameTxtUI>{userData?.nickname}</UserNickNameTxtUI>
         <DescriptTxtUI>{userData?.introduce}</DescriptTxtUI>
-        <InfoList
-          rank={userData?.rank}
-          followerCnt={userData?.followerCnt}
-          totalView={userData?.view?.totalCnt}
-          isFollower={userData?.isFollower}
-        />
-        <LinksSectionUI>
-          <LinksUI>
-            <SectionNmTxtUI>Links</SectionNmTxtUI>
+        <MiddleSectionUI>
+          <InfoList
+            rank={userData?.rank}
+            followerCnt={userData?.followerCnt}
+            totalView={userData?.view?.totalCnt}
+            isFollower={userData?.isFollower}
+          />
+          <LinksSectionUI>
+            <LinksTxtUI>Links</LinksTxtUI>
             <Links links={userData?.links} />
-          </LinksUI>
-        </LinksSectionUI>
-        <CollectionUI
-          onClick={() => {
-            navigate(`/collection/${userData?.id}`);
-          }}
-        >
-          <CollectionArrowUI>
-            <GoArrowUpRight fontSize="25px" />
-          </CollectionArrowUI>
-          <CollectionHeadUI>
-            <CollectionTitleUI>Collection</CollectionTitleUI>
-            <CollectionCntTxtUI>
-              {collectedProducts?.length ?? 0}
-            </CollectionCntTxtUI>
-          </CollectionHeadUI>
-        </CollectionUI>
+          </LinksSectionUI>
+          <CollectionSectionUI>
+            <Collection userData={userData} />
+          </CollectionSectionUI>
+        </MiddleSectionUI>
         <BottomBarUI>
           {isMyProfile && (
             <InviteBtnUI onClick={inviteBtnClickHandler}>

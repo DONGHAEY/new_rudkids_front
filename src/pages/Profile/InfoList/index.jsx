@@ -1,7 +1,7 @@
 import { FaHeart, FaMedal } from "react-icons/fa";
 import { InfoBoxUI, RowWrapperUI } from "./styles";
-import eyeSrc from "../assets/eye.svg";
 import { useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const InfoList = ({ rank, totalView, followerCnt, isFollower }) => {
   const navigate = useNavigate();
@@ -12,22 +12,19 @@ const InfoList = ({ rank, totalView, followerCnt, isFollower }) => {
 
   return (
     <RowWrapperUI>
-      {/*  */}
       <InfoBoxUI onClick={rankBtnClickHandler}>
-        <FaMedal fontSize="28px" />
+        <FaMedal fontSize="clamp(0rem, 7vw, 1.6rem)" />
         {rank}
       </InfoBoxUI>
       <InfoBoxUI>
-        <img
-          src={eyeSrc}
-          style={{
-            width: "34px",
-          }}
-        />
+        <Icon icon="ph:eye-fill" fontSize="clamp(0rem, 7vw, 1.6rem)" />
         {totalView?.toLocaleString("ko-kr")}
       </InfoBoxUI>
       <InfoBoxUI>
-        <FaHeart color={isFollower ? "red" : "black"} fontSize="28px" />
+        <FaHeart
+          color={isFollower ? "red" : "black"}
+          fontSize="clamp(0rem, 7vw, 1.6rem"
+        />
         {followerCnt?.toLocaleString("ko-kr")}
       </InfoBoxUI>
       {/*  */}

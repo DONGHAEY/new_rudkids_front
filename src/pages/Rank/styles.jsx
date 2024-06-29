@@ -6,12 +6,7 @@ export const PageUI = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    0deg,
-    rgba(18, 150, 240, 1) 0%,
-    rgba(189, 226, 251, 1) 100%
-  );
+  min-height: 100%;
 `;
 
 export const BottomSectionUI = styled.div`
@@ -33,7 +28,6 @@ export const RankStageWrapperUI = styled.div`
   flex-direction: column;
   align-items: center;
   width: 88%;
-  margin-top: 30px;
   position: relative;
 `;
 

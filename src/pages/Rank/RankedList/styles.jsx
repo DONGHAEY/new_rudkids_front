@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const RankListUI = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background: white;
   padding-block: 47px;
   z-index: 3;

@@ -14,7 +14,7 @@ const ShopPage = () => {
   const searchObj = qs.parse(window.location.search?.replace("?", ""));
   const { data, isLoading } = useProductListQuery(searchObj);
 
-  useBodyBackground("#1a94d9");
+  useBodyBackground("#0027F1");
 
   const setSearchProperty = (key, value) => {
     const searchObj = qs.parse(window.location.search?.replace("?", "")) ?? {};

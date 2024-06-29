@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ListUI = styled.div`
   display: grid;
   grid-auto-flow: row;
-  min-height: 100%;
+  margin-top: 2%;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: minmax(0%, 100%);
   column-gap: 5%;
@@ -13,7 +13,6 @@ export const ListUI = styled.div`
 export const ProductBoxUI = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 11px;
   width: auto;
   margin-bottom: 9%;
   text-decoration: none;
@@ -33,8 +32,8 @@ export const ProductImgWrapperUI = styled.div`
 `;
 
 export const ProductImgUI = styled.img`
-  width: 90%;
-  height: 90%;
+  width: 85%;
+  height: 85%;
   aspect-ratio: 1/1;
   object-fit: cover;
 `;
@@ -42,20 +41,20 @@ export const ProductImgUI = styled.img`
 export const ProductInfoWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  margin-top: 3.5%;
 `;
 
 export const ProductNameTxtUI = styled.p`
   font-family: Poppins-Bold;
-  font-size: 14px;
-  line-height: 100%;
+  font-size: clamp(0rem, 3.8vw, 0.9rem);
+  line-height: 180%;
   letter-spacing: 0%;
   color: white;
 `;
 
 export const ProductPriceTxtUI = styled.p`
   font-family: Poppins-Bold;
-  font-size: 11px;
+  font-size: clamp(0rem, 3vw, 0.8rem);
   line-height: 100%;
   letter-spacing: 0%;
   color: white;

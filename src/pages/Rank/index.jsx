@@ -16,11 +16,14 @@ import Header from "../../shared_components/Header";
 import RankedList from "./RankedList";
 import rankStageSrc from "./assets/rank_stage.webp";
 import RudImage from "../../shared_components/RudImage";
+import { useBodyBackground } from "../../hooks/useBodyBackground";
 
 const RankPage = () => {
   const { data: rankedList, isLoading } = useRankedListQuery();
 
   const colors = ["#FFF500", "#FF0000", "#6ED4FF"];
+
+  useBodyBackground("#0027F1");
 
   if (isLoading) return null;
 

@@ -12,6 +12,7 @@ export const OrderBarWrapperUI = styled.div`
 export const PaymentsImgUI = styled.img`
   width: 65%;
   object-fit: cover;
+  margin-bottom: 5%;
 `;
 
 export const PoorManUI = styled.img`
@@ -32,7 +33,6 @@ export const OrderBarUI = styled.div`
   padding-top: 9.5%;
   padding-inline: 10%;
   flex-direction: column;
-  gap: 20px;
   justify-content: space-between;
 `;
 

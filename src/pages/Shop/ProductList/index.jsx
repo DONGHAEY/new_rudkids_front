@@ -40,7 +40,9 @@ const ProductList = ({ productList }) => {
             </ProductImgWrapperUI>
             <ProductInfoWrapperUI>
               <ProductNameTxtUI>{name}</ProductNameTxtUI>
-              <ProductPriceTxtUI>{price}</ProductPriceTxtUI>
+              <ProductPriceTxtUI>
+                {price.toLocaleString("ko-KR")}
+              </ProductPriceTxtUI>
             </ProductInfoWrapperUI>
           </ProductBoxUI>
         );

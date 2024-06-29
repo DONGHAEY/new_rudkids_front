@@ -31,7 +31,7 @@ const CartPage = () => {
   }, [myCartData?.cartProducts]);
   const totalShippingPrice = 1;
 
-  useBodyBackground("#1a94d9");
+  useBodyBackground("#0027F1");
 
   return (
     <PageUI>

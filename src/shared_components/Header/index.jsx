@@ -22,21 +22,17 @@ const Header = ({ isFixed = true }) => {
     setMenuBarOpen(true);
   };
 
-  if (isLoading) {
-    return <Loader delayMs={250} />;
-  }
-
   return (
     <>
       <HeaderUI position={isFixed ? "sticky" : "relative"}>
         <IconLinkUI onClick={listBtnClickHandler}>
-          <Icon icon="material-symbols:menu" color="black" />
+          <Icon icon="material-symbols:menu" color="white" />
         </IconLinkUI>
         <LogoIconUI to="/home">
           <img width="100%" src={PublicBizAssets.logo} />
         </LogoIconUI>
         <IconLinkUI to="/cart">
-          <Icon icon="mdi:cart" color="black" />
+          <Icon icon="mdi:cart" color="white" />
           <CartCntTextUI>{cartCntData}</CartCntTextUI>
         </IconLinkUI>
       </HeaderUI>

@@ -33,6 +33,7 @@ const useUserQuery = (userId = null, isOptional = false) => {
         }
       }
     },
+    suspense: true,
   });
 };
 

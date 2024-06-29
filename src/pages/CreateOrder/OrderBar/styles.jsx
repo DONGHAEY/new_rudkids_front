@@ -16,6 +16,11 @@ export const SubmitUI = styled.div`
   width: 100%;
 `;
 
+export const PaymentImgUI = styled.img`
+  width: 65%;
+  object-fit: cover;
+`;
+
 export const BuyNowButtonUI = styled.button`
   background-color: ${({ disabled }) => (disabled ? "gray" : "#ec0000")};
   color: white;

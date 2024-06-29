@@ -9,7 +9,7 @@ export const PageUI = styled.div`
 `;
 
 export const FlexWrapperUI = styled.div`
-  padding-top: 8.5%;
+  padding-top: 3%;
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -18,8 +18,8 @@ export const FlexWrapperUI = styled.div`
 export const SectionDscrptTxtUI = styled.h2`
   font-family: Poppins-SemiBold;
   font-size: 20px;
-  margin-bottom: 5%;
   letter-spacing: 0px;
+  margin-left: 1%;
   text-align: left;
   color: white;
 `;

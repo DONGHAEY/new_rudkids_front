@@ -16,31 +16,30 @@ export const GoToShopUI = styled.div`
 
 export const ShopBtnUI = styled(Link)`
   text-decoration: none;
-
   color: black;
-  margin-top: 30px;
+  margin-top: 18%;
   background-color: white;
   border-radius: 18px;
   border: none;
-  padding-inline: 94px;
-  padding-block: 18px;
+  padding-inline: 53%;
+  padding-block: 12%;
   font-family: Poppins-Bold;
-  font-size: 17.24px;
+  font-size: clamp(0rem, 5vw, 1.2rem);
   color: black;
 `;
 
 export const MessageUI = styled.p`
   font-family: Pretendard-Bold;
-  font-size: 17px;
+  font-size: clamp(0rem, 5vw, 1rem);
   line-height: 120%;
-  margin-top: 23px;
+  margin-top: 14%;
   color: white;
 `;
 
 export const SubMessageUI = styled.p`
   font-family: Pretendard-Bold;
-  font-size: 14px;
+  font-size: clamp(0rem, 3.5vw, 0.8rem);
   line-height: 120%;
-  margin-top: 12px;
+  margin-top: 5%;
   color: white;
 `;
