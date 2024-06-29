@@ -1,25 +1,26 @@
 import {
+  ColUI,
   ColumnTextUI,
   ColumnValueTextUI,
   OneDPTxtUI,
   PriceUI,
-  SpaceBetweenUI,
   TotalPriceTextUI,
   TotalTextUI,
+  TxtWrapperUI,
 } from "./styles";
 
 const Price = ({ totalProductsPrice, totalShippingPrice }) => {
   return (
     <PriceUI>
-      <SpaceBetweenUI $flexDirection="column" gap="23px">
-        <SpaceBetweenUI $flexDirection="column" gap="10px">
-          <SpaceBetweenUI>
+      <ColUI>
+        <ColUI>
+          <TxtWrapperUI>
             <ColumnTextUI>총 상품금액</ColumnTextUI>
             <ColumnValueTextUI>
               ₩ {Number(totalProductsPrice).toLocaleString("ko-kr")}
             </ColumnValueTextUI>
-          </SpaceBetweenUI>
-          <SpaceBetweenUI>
+          </TxtWrapperUI>
+          <TxtWrapperUI>
             <ColumnTextUI>배송비</ColumnTextUI>
             <ColumnValueTextUI color={"black"}>
               ₩ {Number(totalShippingPrice).toLocaleString("ko-kr")}
@@ -27,9 +28,9 @@ const Price = ({ totalProductsPrice, totalShippingPrice }) => {
                 <OneDPTxtUI>&emsp;1원 배송</OneDPTxtUI>
               )}
             </ColumnValueTextUI>
-          </SpaceBetweenUI>
-        </SpaceBetweenUI>
-        <SpaceBetweenUI>
+          </TxtWrapperUI>
+        </ColUI>
+        <TxtWrapperUI marginTop="10%">
           <TotalTextUI>Total</TotalTextUI>
           <TotalPriceTextUI>
             ₩{" "}
@@ -37,8 +38,8 @@ const Price = ({ totalProductsPrice, totalShippingPrice }) => {
               "ko-kr"
             )}
           </TotalPriceTextUI>
-        </SpaceBetweenUI>
-      </SpaceBetweenUI>
+        </TxtWrapperUI>
+      </ColUI>
     </PriceUI>
   );
 };

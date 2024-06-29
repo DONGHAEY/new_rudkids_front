@@ -52,7 +52,6 @@ const MenuBar = ({ onClosed }) => {
   };
 
   useEffect(() => {
-    if (!ref.current || !dimmRef.current) return;
     const timeline = gsap.timeline();
     timeline
       .fromTo(
@@ -74,7 +73,7 @@ const MenuBar = ({ onClosed }) => {
         },
         "<"
       );
-  }, [ref.current, dimmRef.current]);
+  }, []);
 
   const close = (callback) => {
     const timeline = gsap.timeline();
@@ -112,7 +111,7 @@ const MenuBar = ({ onClosed }) => {
       <MenuBarUI ref={ref} onClick={() => close()}>
         <div
           style={{
-            marginTop: "10%",
+            marginTop: "25%",
           }}
         />
         <Profile />

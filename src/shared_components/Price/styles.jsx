@@ -9,30 +9,36 @@ export const PriceUI = styled.div`
   margin-bottom: 20px;
 `;
 
-export const SpaceBetweenUI = styled.div`
+export const ColUI = styled.div`
   display: flex;
-  flex-direction: ${({ $flexDirection }) => $flexDirection ?? "row"};
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  gap: ${({ gap }) => gap ?? "0px"};
   width: 100%;
+`;
+
+export const TxtWrapperUI = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: ${({ marginTop }) => marginTop ?? "3%"};
 `;
 
 export const ColumnTextUI = styled.p`
   font-family: Pretendard-Bold;
-  font-size: clamp(0.8rem, 4.5vw, 0.95rem);
-  line-height: 120%;
+  font-size: clamp(0rem, 4.6vw, 0.98rem);
+  line-height: 100%;
 `;
 export const OneDPTxtUI = styled.p`
   font-family: Pretendard-Bold;
-  font-size: clamp(0.5rem, 4.5vw, 0.8rem);
+  font-size: clamp(0rem, 4.3vw, 0.8rem);
   color: #0057ff;
 `;
 
 export const ColumnValueTextUI = styled.p`
   font-family: Pretendard-SemiBold;
   line-height: 120%;
-  font-size: clamp(0.6rem, 6vw, 1.3rem);
+  font-size: clamp(0rem, 6.2vw, 1rem);
   display: flex;
   color: black;
 `;
@@ -45,6 +51,6 @@ export const TotalTextUI = styled.p`
 
 export const TotalPriceTextUI = styled.p`
   font-family: Poppins-Bold;
-  font-size: clamp(0.6rem, 8vw, 1.5rem);
+  font-size: clamp(0rem, 8vw, 1.5rem);
   line-height: 120%;
 `;
