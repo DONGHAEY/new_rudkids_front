@@ -11,21 +11,21 @@ export const SubmitUI = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 30px;
-  padding-bottom: 24px;
+  padding-inline: 7%;
+  padding-bottom: 5.5%;
   width: 100%;
 `;
 
 export const BuyNowButtonUI = styled.button`
   background-color: ${({ disabled }) => (disabled ? "gray" : "#ec0000")};
   color: white;
-  height: 60px;
   border: none;
   border-radius: 24px;
-  gap: 15px;
+  width: 100%;
   pointer-events: all;
   font-family: Poppins-Bold;
-  font-size: 20px;
+  font-size: clamp(0.8rem, 6vw, 1.3rem);
+  padding-block: 5%;
   display: flex;
   flex-direction: row;
   align-items: center;

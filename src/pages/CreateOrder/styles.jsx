@@ -10,7 +10,7 @@ export const PageUI = styled.div`
 `;
 
 export const FlexWrapperUI = styled.div`
-  padding-top: 45px;
+  padding-top: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,16 +35,16 @@ export const PaySectionUI = styled.div`
 
 export const ProductLengthTextUI = styled.h2`
   font-family: Poppins-SemiBold;
-  font-size: 20px;
+  font-size: clamp(0rem, 5vw, 1.2rem);
   text-align: left;
+  margin-left: 5%;
 `;
 
 export const SectionDescriptionUI = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 13px;
-  margin-bottom: 15px;
+  margin-bottom: 4%;
 `;
 export const PaymentWidgetUI = styled.div`
   width: 100%;
@@ -61,14 +61,13 @@ export const PriceWrapperUI = styled.div`
 
 export const SectionDscrptTxtUI = styled.h2`
   font-family: Pretendard-SemiBold;
-  font-size: 20px;
+  font-size: clamp(0rem, 4.9vw, 1.3rem);
   text-align: left;
 `;
 
 export const ListWrapperUI = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 14px;
   width: 100%;
 `;
 

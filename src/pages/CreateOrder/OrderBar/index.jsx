@@ -9,9 +9,13 @@ const OrderBar = ({ totalPrice, onClick }) => {
   return (
     <OrderBarUI>
       <SubmitUI>
-        <div>
-          <img src={paymentsimgSrc} height="24px" />
-        </div>
+        <img
+          src={paymentsimgSrc}
+          style={{
+            width: "65%",
+            objectFit: "cover",
+          }}
+        />
         <BuyNowButtonUI disabled={orderMutating !== 0} onClick={onClick}>
           BUY NOW
         </BuyNowButtonUI>

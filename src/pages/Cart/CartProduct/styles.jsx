@@ -8,6 +8,7 @@ export const CartProductUI = styled.div`
   padding: 5%;
   background-color: rgba(255, 255, 255);
   border-radius: 20px;
+  margin-block: 2%;
   animation: bounceFadeIn 500ms;
 `;
 
@@ -22,7 +23,8 @@ export const ProductImgUI = styled.img`
 export const WrapperUI = styled.div`
   display: flex;
   flex-direction: column;
-  padding-left: 8.9%;
+  width: 100%;
+  padding-left: 9%;
 `;
 
 export const InfoTextWrapperUI = styled.div`
@@ -34,15 +36,15 @@ export const QuantityGroupUI = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8%;
-  margin-top: 9px;
+  width: 100%;
+  margin-top: 5%;
+  gap: 6%;
 `;
 
 export const QuantityTextUI = styled.p`
   font-family: Poppins-SemiBold;
-  min-width: 15px;
   text-align: center;
-  font-size: 12px;
+  font-size: clamp(0rem, 3.8vw, 0.8rem);
 `;
 
 export const QuantityButtonUI = styled.div`
@@ -51,16 +53,16 @@ export const QuantityButtonUI = styled.div`
   justify-content: center;
   background-color: #767676;
   color: white;
-  width: 12px;
-  height: 12px;
-  font-size: 8px;
+  aspect-ratio: 1/1;
+  font-size: clamp(0rem, 3vw, 0.5rem);
+  padding: 1%;
   border-radius: 100%;
   cursor: pointer;
   position: relative;
 `;
 
 export const CartProductNameUI = styled.p`
-  font-size: clamp(0.8rem, 5vw, 1.03rem);
+  font-size: clamp(0rem, 5vw, 1.03rem);
   font-family: Poppins-Bold;
   letter-spacing: -0.05em;
   line-height: 120%;
@@ -68,7 +70,7 @@ export const CartProductNameUI = styled.p`
 `;
 
 export const CartProductPriceUI = styled.p`
-  font-size: clamp(0.6rem, 4.3vw, 0.9rem);
+  font-size: clamp(0rem, 4.3vw, 0.9rem);
   font-family: Poppins-Bold;
   line-height: 200%;
 `;
@@ -79,7 +81,7 @@ export const OptionsSectionUI = styled.div`
   flex-direction: row;
   align-items: center;
   line-height: 100%;
-  font-size: clamp(0.4rem, 3.5vw, 0.75rem);
+  font-size: clamp(0rem, 3.5vw, 0.75rem);
   letter-spacing: -0.05em;
   color: #6f6f6f;
 `;
@@ -88,7 +90,7 @@ export const CloseIconWrapperUI = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  padding: 10px;
+  padding: 3%;
   font-size: 22px;
   cursor: pointer;
 `;

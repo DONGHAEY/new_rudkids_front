@@ -9,7 +9,7 @@ export const PageUI = styled.div`
 `;
 
 export const FlexWrapperUI = styled.div`
-  padding-top: 10%;
+  padding-top: 8.5%;
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -18,7 +18,7 @@ export const FlexWrapperUI = styled.div`
 export const SectionDscrptTxtUI = styled.h2`
   font-family: Poppins-SemiBold;
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 5%;
   letter-spacing: 0px;
   text-align: left;
   color: white;
@@ -28,7 +28,6 @@ export const CartProductListUI = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 14px;
 `;
 
 export const PriceWrapperUI = styled.div`

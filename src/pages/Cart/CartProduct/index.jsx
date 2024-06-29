@@ -62,7 +62,6 @@ const CartProduct = ({ cartProduct }) => {
   return (
     <CartProductUI onClick={productClickHandler}>
       <RudImage ImgUI={ProductImgUI} src={cartProduct.thumnail} />
-      {/* <ProductImgUI /> */}
       <WrapperUI>
         <InfoTextWrapperUI>
           <CartProductNameUI>{cartProduct.name}</CartProductNameUI>

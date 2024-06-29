@@ -5,25 +5,25 @@ export const ProductUI = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-block: 24px;
+  padding-block: 5.5%;
   padding-inline: 5%;
-  gap: 30px;
-  /* min-height: 80px; */
   background-color: rgba(255, 255, 255, 0.9);
   border: solid 2px;
   border-color: #e7e7e7;
   border-radius: 20px;
+  margin-block: 1.5%;
 `;
 
 export const FlexColUI = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ gap }) => gap ?? 0};
   width: 100%;
+  margin-left: 13%;
 `;
 
 export const ProductImgUI = styled.img`
-  height: 80px;
+  width: 30%;
+  max-width: 88px;
   aspect-ratio: 1/1;
   object-fit: cover;
 `;
@@ -36,56 +36,31 @@ export const QuantityTextUI = styled.p`
   min-width: 15px;
   text-align: center;
   color: #6f6f6f;
-  font-size: 12px;
-  line-height: 120%;
-`;
-
-export const QuantityButtonUI = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #767676;
-  color: white;
-  width: 12px;
-  height: 12px;
-  font-size: 8px;
-  border-radius: 100%;
-  cursor: pointer;
+  font-size: clamp(0rem, 3.3vw, 0.8rem);
+  line-height: 250%;
 `;
 
 export const ProductNameUI = styled.p`
-  font-size: 15px;
-  line-height: 20px;
+  font-size: clamp(0rem, 5vw, 1rem);
   font-family: Poppins-Bold;
   letter-spacing: -0.3px;
   word-spacing: 0px;
-  line-height: 120%;
+  line-height: 100%;
 `;
 
 export const ProductPriceUI = styled.p`
-  font-size: 15px;
-  line-height: 20px;
+  font-size: clamp(0rem, 3.8vw, 0.95rem);
   font-family: Poppins-Bold;
   letter-spacing: -0.3px;
   word-spacing: 0px;
-  line-height: 120%;
+  line-height: 200%;
 `;
 
 export const OptionsSectionUI = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 5px;
   line-height: 120%;
   font-family: Pretendard-Bold;
-  font-size: 12px;
+  font-size: clamp(0rem, 3vw, 0.75rem);
   color: #6f6f6f;
-`;
-
-export const CloseIconWrapperUI = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
-  font-size: 22px;
-  cursor: pointer;
 `;

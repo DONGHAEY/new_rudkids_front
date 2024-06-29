@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import RudImage from "../../../shared_components/RudImage";
 import {
   ProductNameUI,
@@ -10,22 +11,29 @@ import {
 } from "./styles";
 
 const Product = ({ thumnail, name, price, quantity, options }) => {
+  const optionsTxt = useMemo(() => {
+    let optionsTxt = "";
+    options?.forEach((option, idx) => {
+      const isLast = idx === options.length - 1;
+      optionsTxt += `${option.groupName} : ${option.name}${
+        !isLast ? "&ensp;" : ""
+      }`;
+    });
+    return optionsTxt;
+  }, [options]);
+
   return (
     <ProductUI>
       <RudImage ImgUI={ProductImgUI} src={thumnail} />
-      <FlexColUI gap="9px">
-        <FlexColUI gap="5px">
-          <ProductNameUI>{name}</ProductNameUI>
-          <ProductPriceUI>₩ {price.toLocaleString("ko-KR")}</ProductPriceUI>
-        </FlexColUI>
-        {options?.length !== 0 && (
-          <OptionsSectionUI>
-            {options?.map((option) => (
-              <p key={option?.id}>
-                {option?.groupName}: {option?.name}
-              </p>
-            ))}
-          </OptionsSectionUI>
+      <FlexColUI>
+        <ProductNameUI>{name}</ProductNameUI>
+        <ProductPriceUI>₩ {price.toLocaleString("ko-KR")}</ProductPriceUI>
+        {optionsTxt && (
+          <OptionsSectionUI
+            dangerouslySetInnerHTML={{
+              __html: optionsTxt,
+            }}
+          />
         )}
         <QuantityTextUI>{quantity}개</QuantityTextUI>
       </FlexColUI>

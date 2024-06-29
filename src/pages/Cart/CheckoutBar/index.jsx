@@ -4,7 +4,6 @@ import {
   OrderBarWrapperUI,
   PaymentsImgUI,
   PoorManUI,
-  SpacerUI,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useIsFetching, useIsMutating } from "react-query";
