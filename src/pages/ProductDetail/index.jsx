@@ -24,12 +24,12 @@ import {
   useTrackReadPageContents,
 } from "../../shared_analytics";
 import Loader from "../../shared_components/Loader";
+import { useBodyBackground } from "../../hooks/useBodyBackground";
 
 const ProductDetailPage = ({ routeInfo }) => {
   const params = useParams();
   const productName = params[routeInfo.paramKeys[0]];
   const [selectedIdx, setSelectedIdx] = useState(0);
-
   const { data: productData } = useProductDetailQuery(productName);
 
   const productPrice = productData?.price?.toLocaleString("ko-KR");
@@ -69,10 +69,12 @@ const ProductDetailPage = ({ routeInfo }) => {
   }, [productData]);
   useTrackReadPageContents("product-detail");
 
+  useBodyBackground("white");
+
   return (
     <Suspense fallback={<Loader />}>
       <PageUI>
-        <Header $backgroundColor="none" />
+        <Header $backgroundColor="none" color="black" />
         <FlexWrapperUI>
           <ModelDragger
             modelName={models?.[selectedIdx]?.name}
