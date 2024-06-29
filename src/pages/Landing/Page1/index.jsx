@@ -20,7 +20,7 @@ import star from "./assets/star.webp";
 import Marquee from "react-fast-marquee";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 
-const Page1 = ({ ref }) => {
+const Page1 = () => {
   const windowSize = useWindowSize();
 
   return (
@@ -46,7 +46,7 @@ const Page1 = ({ ref }) => {
         </Marquee>
       </RollingMessagesUI>
       <MiddleSectionUI>
-        <CanvasUI shadows={"soft"}>
+        <CanvasUI>
           <Scene />
         </CanvasUI>
         <CanvasDragBlocker />

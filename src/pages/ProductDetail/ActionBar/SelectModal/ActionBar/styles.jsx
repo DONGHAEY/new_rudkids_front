@@ -16,7 +16,7 @@ export const ActionButtonUI = styled.button`
   font-family: Poppins-Bold;
   pointer-events: all;
   color: ${({ disabled }) => (disabled ? "black" : "white")};
-  font-size: 15px;
+  font-size: 18px;
   padding-inline: 15px;
   width: 100%;
   display: flex;

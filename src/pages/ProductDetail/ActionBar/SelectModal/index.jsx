@@ -1,5 +1,5 @@
 import { BottomBoxUI, CenterModalUI, SelectBoxListUI } from "./styles";
-import SelectBox from "./SelectBox";
+import OptionSelect from "./OptionSelect";
 import ActionBar from "./ActionBar";
 import { useEffect, useState } from "react";
 import QuantityController from "./QuantityController";
@@ -33,7 +33,7 @@ const SelectModal = ({
         <SelectBoxListUI>
           {optionGroups?.map((optionGroup) => {
             return (
-              <SelectBox
+              <OptionSelect
                 key={optionGroup?.name}
                 name={optionGroup?.name}
                 options={optionGroup?.options}

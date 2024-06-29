@@ -11,7 +11,7 @@ import size1Src from "./assets/size-1.webp";
 import size2Src from "./assets/size-2.webp";
 import size3Src from "./assets/size-3.webp";
 
-const SelectBox = ({
+const OptionSelect = ({
   name,
   options = [],
   value,
@@ -36,7 +36,10 @@ const SelectBox = ({
           {options?.map((option) => {
             const imgUrl = imgObj[`${name}-${option?.name}`];
             return (
-              <OptionUI onClick={() => optionClickHandler(option)}>
+              <OptionUI
+                key={option.id}
+                onClick={() => optionClickHandler(option)}
+              >
                 {imgUrl && <OptionImgUI src={imgUrl} />}
                 <p>
                   {name} : {option?.name}
@@ -59,4 +62,4 @@ const SelectBox = ({
   );
 };
 
-export default SelectBox;
+export default OptionSelect;

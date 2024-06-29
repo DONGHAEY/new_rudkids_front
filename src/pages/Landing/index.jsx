@@ -43,7 +43,7 @@ const LandingPage = () => {
     }
   };
 
-  const topSectionTimline = () => {
+  const topSectionTimline = (gsap) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".page2",
@@ -83,7 +83,7 @@ const LandingPage = () => {
       );
   };
 
-  const pageScrollOpacityTimeline = () => {
+  const pageScrollOpacityTimeline = (gsap) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".page1",
@@ -128,8 +128,8 @@ const LandingPage = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    topSectionTimline();
-    pageScrollOpacityTimeline();
+    topSectionTimline(gsap);
+    pageScrollOpacityTimeline(gsap);
   }, []);
 
   return (

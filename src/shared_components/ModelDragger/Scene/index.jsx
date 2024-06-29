@@ -1,4 +1,4 @@
-import { OrbitControls, Plane } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import React, { createRef, useEffect } from "react";
 

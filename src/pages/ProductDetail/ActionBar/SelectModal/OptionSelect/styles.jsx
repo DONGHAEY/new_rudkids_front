@@ -9,8 +9,8 @@ export const SelectBoxUI = styled.div`
   background-color: white;
   border: 1.4px solid #dedede;
   border-radius: 9px;
-  padding-inline: 29px;
-  padding-block: 18px;
+  padding-inline: 8.5%;
+  padding-block: 5.5%;
   font-family: Poppins-Bold;
   font-size: 16px;
 `;
@@ -33,12 +33,12 @@ export const OptionListUI = styled.div`
 `;
 
 export const OptionUI = styled.div`
-  padding-block: 13px;
+  padding-block: 4%;
   line-height: 100%;
   font-family: Poppins-Bold;
   line-height: 100%;
   display: flex;
-  gap: 22px;
+  gap: 5%;
   align-items: center;
   padding-inline: 20px;
   background-color: #f1f1f1;
@@ -46,7 +46,8 @@ export const OptionUI = styled.div`
 `;
 
 export const OptionImgUI = styled.img`
-  height: 55px;
+  height: 50px;
+  aspect-ratio: 1/1;
   border-radius: 10px;
 `;
 
