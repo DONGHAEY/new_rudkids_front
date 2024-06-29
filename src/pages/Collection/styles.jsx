@@ -11,13 +11,13 @@ export const PageUI = styled.div`
 `;
 
 export const TitleWrapperUI = styled.div`
-  margin-top: 40px;
+  margin-top: 10%;
   display: flex;
-  padding-block: 14.35px;
-  padding-inline: 16px;
+  padding-block: 3.5%;
+  padding-inline: 5%;
   text-align: center;
   justify-content: center;
-  gap: 10px;
+  gap: 3%;
   background-color: white;
   border-radius: 43.04px;
   border-bottom-left-radius: 0px;
@@ -26,16 +26,17 @@ export const TitleWrapperUI = styled.div`
 
 export const TitleTxtUI = styled.p`
   font-family: Poppins-Bold;
-  font-size: 20px;
+  font-size: clamp(0rem, 5.5vw, 1.4rem);
   line-height: 120%;
 `;
 
 export const ListUI = styled.div`
-  margin-top: 20px;
+  margin-top: 7%;
   margin-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 16px;
+  grid-column-gap: 5%;
+  grid-row-gap: 3%;
   width: 90%;
 `;
 
@@ -95,7 +96,7 @@ export const GoOrderBtnUI = styled.div`
   justify-content: center;
   font-family: Pretendard-SemiBold;
   /* text-shadow: black; */
-  font-size: 18.13px;
+  font-size: clamp(0rem, 6.7vw, 1.3rem);
   letter-spacing: -5%;
   border-radius: 64px;
   z-index: 3;

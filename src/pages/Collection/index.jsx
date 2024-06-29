@@ -15,18 +15,18 @@ import useCollectionQuery from "../../queries/collection/userCollectionQuery";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import useUserQuery from "../../queries/user/useUserQuery";
 import Header from "../../shared_components/Header";
-import Loader from "../../shared_components/Loader";
-import Background from "../../shared_components/Background";
 import RudImage from "../../shared_components/RudImage";
+import { useBodyBackground } from "../../hooks/useBodyBackground";
 
 const CollectionPage = () => {
   const params = useParams();
   const userParamId = params["user_id"] ?? null;
 
   const navigate = useNavigate();
-  const { data: userData, userLoading } = useUserQuery(userParamId);
-  const { data: collectedProducts = [], collectionLoading } =
-    useCollectionQuery(userData?.id ?? null);
+  const { data: userData } = useUserQuery(userParamId);
+  const { data: collectedProducts = [] } = useCollectionQuery(
+    userData?.id ?? undefined
+  );
 
   const min표시개수 = 8;
   const blank표시개수 =
@@ -34,9 +34,7 @@ const CollectionPage = () => {
       ? 0
       : min표시개수 - collectedProducts?.length ?? 0;
 
-  if (collectionLoading || userLoading) {
-    return <Loader />;
-  }
+  useBodyBackground("#0027F1");
 
   return (
     <PageUI>
@@ -45,7 +43,6 @@ const CollectionPage = () => {
         <TitleTxtUI>{userData?.nickname}'s</TitleTxtUI>
         <TitleTxtUI>Collection</TitleTxtUI>
       </TitleWrapperUI>
-      <Background />
       <ListUI>
         {collectedProducts?.map((orderProduct, idx) => {
           const randomTop = Math.floor(Math.random() * 60);

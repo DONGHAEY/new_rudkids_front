@@ -49,7 +49,7 @@ const HomePage = () => {
   return (
     <PageUI>
       <SymbolLoader loading={false} />
-      <Header isFixed />
+      <Header isFixed color="black" />
       <SpacerUI marginTop="1%" />
       <MainBannerImgUI src={home1Webp} onClick={() => navigate("/shop")} />
       <SlidingTape />

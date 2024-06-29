@@ -17,6 +17,8 @@ const useCollectionQuery = (userId) => {
       if (!userId) return [];
       return await getCollection(userId);
     },
+    suspense: true,
+    enabled: userId != undefined,
   });
 };
 
