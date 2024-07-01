@@ -9,14 +9,6 @@ export const PageUI = styled.div`
   min-height: 100%;
 `;
 
-export const BottomSectionUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  height: 100%;
-`;
-
 export const RankStageImgUI = styled.img`
   width: 100%;
   margin-bottom: -10px;

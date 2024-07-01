@@ -67,6 +67,7 @@ const RankPage = () => {
         </ThirdStage>
       </RankStageWrapperUI>
       {/* <BottomSectionUI> */}
+
       <RankedList rankedList={[...rankedList]} />
       {/* </BottomSectionUI> */}
     </PageUI>

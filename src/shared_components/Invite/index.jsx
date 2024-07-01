@@ -1,4 +1,4 @@
-import useUserQuery from "../../../queries/user/useUserQuery";
+import useUserQuery from "../../queries/user/useUserQuery";
 import ticketSrc from "./assets/ticket.png";
 import usedTicketSrc from "./assets/used_ticket.png";
 import {
@@ -15,9 +15,9 @@ import {
   ButtonTxtUI,
 } from "./styles";
 import { FiShare } from "react-icons/fi";
-import useCreateInvitationMutation from "../../../mutations/invitation/useCreateInvitationMutation";
+import useCreateInvitationMutation from "../../mutations/invitation/useCreateInvitationMutation";
 import { track } from "@amplitude/analytics-browser";
-import useDeleteInvitationMutation from "../../../mutations/invitation/deleteInvitationMutation";
+import useDeleteInvitationMutation from "../../mutations/invitation/deleteInvitationMutation";
 
 const max = 3;
 const Invite = ({ close }) => {

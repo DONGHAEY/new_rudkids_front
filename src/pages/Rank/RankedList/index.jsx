@@ -1,4 +1,5 @@
 import RudImage from "../../../shared_components/RudImage";
+import TopRankSign from "../TopRankSign";
 import {
   RankListUI,
   RankNumTxtUI,
@@ -16,8 +17,8 @@ const RankedList = ({ rankedList }) => {
 
   return (
     <RankListUI>
+      <TopRankSign />
       {rankedList?.map((rankedUser, idx) => {
-        if (!rankedUser?.imageUrl) return;
         return (
           <RankUI key={idx} to={`/profile/${rankedUser?.id}`}>
             <RankNumUI>
