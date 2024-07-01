@@ -70,7 +70,6 @@ const ProfileEditPage = () => {
             navigate(`/insta-info?callback=${window.location.href}`);
           }}
         />
-
         <PopupRoute name="Links Edit">
           <LinksEdit links={userData?.links} />
         </PopupRoute>

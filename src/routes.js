@@ -2,7 +2,6 @@ import React, { lazy } from "react";
 import SymbolLoader from "./shared_components/SymbolLoader";
 import AuthHoc from "./shared_components/HOC/AuthHoc";
 
-import SupportPage from "./pages/Support";
 const ShopPage = lazy(() => import("./pages/Shop"));
 const ProductDetailPage = lazy(() => import("./pages/ProductDetail"));
 const LoginCallbackPage = lazy(() => import("./pages/LoginCallback"));
@@ -25,7 +24,8 @@ const CollectionPage = lazy(() => import("./pages/Collection"));
 const PayFailPage = lazy(() => import("./pages/PayFail"));
 const HomePage = lazy(() => import("./pages/Home"));
 const LandingPage = lazy(() => import("./pages/Landing"));
-// const SupportPage = lazy(() => import("./pages/Support"));
+const SupportPage = lazy(() => import("./pages/Support"));
+const TempPage = lazy(() => import("./pages/Temp"));
 
 export const routes = {
   ["landing"]: {
@@ -203,5 +203,12 @@ export const routes = {
     path: "/support",
     paramKeys: [],
     element: SupportPage,
+  },
+  ["temp"]: {
+    name: "temp",
+    viewTrack: true,
+    path: "/temp",
+    paramKeys: [],
+    element: TempPage,
   },
 };

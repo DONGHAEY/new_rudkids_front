@@ -5,6 +5,7 @@ export const PageUI = styled.div`
   flex-direction: column;
   align-items: center;
   padding-inline: 25px;
+  position: relative;
 `;
 
 export const LinkUI = styled.div`
@@ -61,4 +62,5 @@ export const DeleteMeBtnUI = styled.button`
   font-family: Pretendard-Medium;
   border: none;
   background: none;
+  z-index: 9;
 `;

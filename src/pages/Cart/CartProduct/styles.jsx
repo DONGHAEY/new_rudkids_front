@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const CartProductUI = styled.div`
-  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -10,6 +9,7 @@ export const CartProductUI = styled.div`
   border-radius: clamp(0rem, 5vw, 1rem);
   margin-block: 2%;
   animation: bounceFadeIn 500ms;
+  position: relative;
 `;
 
 export const ProductImgUI = styled.img`
@@ -91,7 +91,6 @@ export const CloseIconWrapperUI = styled.div`
   top: 0;
   right: 0;
   padding: 3%;
-  z-index: 9;
   font-size: 22px;
   cursor: pointer;
 `;

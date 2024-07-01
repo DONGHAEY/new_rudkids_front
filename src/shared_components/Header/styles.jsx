@@ -33,6 +33,17 @@ export const HeaderUI = styled.div`
   justify-content: space-between;
 `;
 
+export const IconUI = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.7rem, 8vw, 2rem);
+  text-align: center;
+  text-decoration: none;
+  color: black;
+`;
+
 export const IconLinkUI = styled(Link)`
   position: relative;
   display: flex;

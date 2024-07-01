@@ -1,9 +1,9 @@
 import {
   LogoIconUI,
-  SpacerUI,
   HeaderUI,
   IconLinkUI,
   CartCntTextUI,
+  IconUI,
 } from "./styles";
 import MenuBar from "./MenuBar";
 import { useState } from "react";
@@ -17,16 +17,14 @@ const Header = ({ isFixed = true, color = "white" }) => {
 
   const [menuBarOpen, setMenuBarOpen] = useState(false);
 
-  const listBtnClickHandler = () => {
-    setMenuBarOpen(true);
-  };
+  const listBtnClickHandler = () => setMenuBarOpen(true);
 
   return (
     <>
       <HeaderUI position={isFixed ? "sticky" : "relative"}>
-        <IconLinkUI onClick={listBtnClickHandler}>
+        <IconUI onClick={listBtnClickHandler}>
           <Icon icon="material-symbols:menu" color={color} />
-        </IconLinkUI>
+        </IconUI>
         <LogoIconUI to="/home">
           <img width="100%" src={PublicBizAssets.logo} />
         </LogoIconUI>
