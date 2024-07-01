@@ -27,7 +27,7 @@ const ProfileEditPage = () => {
 
   const deleteBtnClickHandler = async () => {
     trackClickButton("delete user");
-    const stat = window.confirm(
+    const stat = await window?.confirm(
       "정말로 탈퇴하실것입니까? 탈퇴시 이용내역이 삭제됩니다(주문관련 예외)"
     );
     if (stat) {

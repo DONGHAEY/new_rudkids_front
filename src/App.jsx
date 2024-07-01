@@ -45,6 +45,7 @@ const DefaultTrackPageView = ({ children, pageName }) => {
   useEffect(() => {
     trackPageView(pageName);
   }, [pageName]);
+
   return children;
 };
 

@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const CartProductUI = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   padding: 5%;
   background-color: rgba(255, 255, 255);
   border-radius: clamp(0rem, 5vw, 1rem);
@@ -87,10 +86,10 @@ export const OptionsSectionUI = styled.div`
 `;
 
 export const CloseIconWrapperUI = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 3%;
-  font-size: 22px;
+  padding: 0.1%;
+  font-size: clamp(0rem, 6vw, 1.4rem);
   cursor: pointer;
+  position: absolute;
+  top: 5%;
+  right: 3%;
 `;
