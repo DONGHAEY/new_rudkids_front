@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Header from "../../shared_components/Header";
 import QnaForm from "./QnaForm";
 import { BtnListUI, PageUI, SectionUI } from "./styles";
@@ -6,45 +5,47 @@ import { WindowButtonUI } from "../../shared_components/RudWindow/shared_styles"
 import { useBodyBackground } from "../../hooks/useBodyBackground";
 import Faq from "./Faq";
 import Footer from "../../shared_components/Footer";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-const componentInfos = [
-  {
-    name: "FAQ",
-    component: <Faq />,
-  },
-  {
-    name: "QNA",
-    component: <QnaForm />,
-  },
-];
+const componentInfos = {
+  faq: <Faq />,
+  qna: <QnaForm />,
+};
 
-export const SupportPage = () => {
-  const [componentIdx, setComponentIdx] = useState(0);
+const SupportPage = () => {
+  const [searchParams] = useSearchParams();
+  const tab = searchParams.get("tab") ?? "faq";
 
-  useBodyBackground("#1a94d9");
+  const navigate = useNavigate();
+
+  useBodyBackground("#0027F1");
 
   return (
     <PageUI>
       <SectionUI>
         <Header />
         <BtnListUI>
-          {componentInfos?.map((componentInfo, idx) => {
-            const selected = componentIdx === idx;
+          {Object.keys(componentInfos)?.map((key, idx) => {
+            const selected = key === tab;
             return (
               <WindowButtonUI
                 background={selected ? "rgba(200, 50, 50)" : null}
                 border={selected ? "rgba(255, 0, 0)" : null}
-                onClick={() => setComponentIdx(idx)}
+                onClick={() => {
+                  navigate(`?tab=${key}`);
+                }}
                 key={idx}
               >
-                {componentInfo.name}
+                {key}
               </WindowButtonUI>
             );
           })}
         </BtnListUI>
-        {componentInfos[componentIdx].component}
+        {componentInfos[tab]}
       </SectionUI>
       <Footer />
     </PageUI>
   );
 };
+
+export default SupportPage;

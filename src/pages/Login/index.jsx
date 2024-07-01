@@ -31,14 +31,12 @@ const LoginPage = () => {
   const [searchParams] = useSearchParams();
   const callback = searchParams.get("callback") ?? "/home";
 
-  const clickHandler = (provider) => {
+  const clickHandler = (providerName) => {
     trackClickButton("login", {
-      provider: provider,
+      provider: providerName,
     });
     setLoginCallbackUrl(callback);
-    window.open(
-      `${process.env.REACT_APP_SERVER_URL}/api/auth/${provider.name}`
-    );
+    window.open(`${process.env.REACT_APP_SERVER_URL}/api/auth/${providerName}`);
   };
 
   const providers = [
