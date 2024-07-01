@@ -5,6 +5,8 @@ export const PageUI = styled.div`
   flex-direction: column;
   align-items: center;
   padding-inline: 25px;
+  min-height: 100%;
+  background-color: white;
   position: relative;
 `;
 

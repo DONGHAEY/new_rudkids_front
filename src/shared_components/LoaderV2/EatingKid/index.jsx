@@ -41,17 +41,16 @@ const EatingKid = () => {
     <EatingKidWrapperUI ref={kidWrapperRef}>
       {/*  */}
       <KidUI ref={kidRef} src={mopen ? openKid : closeKid} />
-      {new Array(earthCnt).fill(null).map((_, idx) => {
-        // alert(idx, kidIdx);
-        if (idx < kidIdx && kidIdx <= idx + 2) {
+      {new Array(earthCnt).fill(null).map((_, earthIdx) => {
+        if (earthIdx < kidIdx && kidIdx <= earthIdx + 2) {
           return <></>;
         }
         return (
           <img
             src={earth}
-            width={"8%"}
             style={{
-              left: `${a * (idx + 1)}%`,
+              width: "8%",
+              left: `${a * (earthIdx + 1)}%`,
               position: "absolute",
             }}
           />

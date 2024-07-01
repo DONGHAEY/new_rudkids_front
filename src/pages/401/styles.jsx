@@ -1,101 +1,47 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const PageUI = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   height: 100%;
+  position: relative;
 `;
 
-export const ButtonFixedUI = styled.div`
+export const TextSectionUI = styled.div`
+  margin-inline: 10%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  position: fixed;
-  bottom: 5%;
-  width: 100%;
-  max-width: 290px;
-  text-align: center;
-`;
-
-export const GetInButtonUI = styled.button`
-  border-radius: 22px;
-  background-color: black;
-  color: white;
-  padding-inline: 95px;
-  padding-block: 25px;
-  border: none;
-  font-family: Poppins-Bold;
-  font-size: 24px;
-  line-height: 114%;
-  letter-spacing: 0%;
-`;
-
-export const TopTxtSectionUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 15px;
-  margin-top: 10%;
-  min-height: 130px;
-  height: 30%;
-  z-index: 10;
-`;
-
-export const Txt1UI = styled.p`
-  font-family: Poppins-Bold;
-  font-size: 22px;
-  line-height: 100%;
-  letter-spacing: 0%;
-`;
-
-export const Txt2UI = styled.p`
-  font-family: Pretendard-Bold;
-  font-size: 36px;
-  line-height: 130%;
-  letter-spacing: 0%;
-`;
-
-export const WainterWrapperUI = styled.div`
-  position: absolute;
-  bottom: 100%;
-  left: -10%;
-  z-index: 3;
-`;
-
-export const 머핀ImgUI = styled.img`
-  width: 50%;
-  position: absolute;
-  top: -21%;
-  z-index: 2;
-  right: -8%;
-`;
-
-export const FuckImgUI = styled.img`
-  position: absolute;
+  margin-top: 25%;
+  height: 20%;
+  gap: 5%;
   z-index: 1;
-  top: -43%;
-  right: -20%;
-  opacity: 0;
-  width: 100%;
 `;
 
-export const AskLinkUI = styled(Link)`
+export const TitleUI = styled.p`
   font-family: Pretendard-Bold;
-  font-size: 15px;
+  font-size: clamp(0rem, 4.5vw, 1.2rem);
   color: black;
+  line-height: 180%;
 `;
 
-export const LottieWrapperUI = styled.div`
-  display: flex;
-  position: fixed;
-  top: 0;
-  margin: auto;
-  width: 100%;
-  max-width: 430px;
-  z-index: 5;
-  pointer-events: none;
+export const ExplainUI = styled.p`
+  font-family: Pretendard-Bold;
+  font-size: clamp(0rem, 7.5vw, 2rem);
+  color: black;
+  line-height: 130%;
+`;
+
+export const FuckManImgUI = styled.img`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 90%;
+`;
+
+export const InfoIconWrapperUI = styled.div`
+  position: absolute;
+  top: 5%;
+  right: 8%;
+  font-size: 20px;
 `;
