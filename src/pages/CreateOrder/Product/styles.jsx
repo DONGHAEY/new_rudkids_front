@@ -10,7 +10,7 @@ export const ProductUI = styled.div`
   background-color: rgba(255, 255, 255, 0.9);
   border: solid 2px;
   border-color: #e7e7e7;
-  border-radius: clamp(0rem, 5vw, 4rem); /* 20px **/
+  border-radius: clamp(0rem, 5vw, 1rem);
   margin-block: 1.5%;
 `;
 
@@ -41,7 +41,7 @@ export const QuantityTextUI = styled.p`
 `;
 
 export const ProductNameUI = styled.p`
-  font-size: clamp(0rem, 5vw, 1rem);
+  font-size: clamp(0rem, 4vw, 1rem);
   font-family: Poppins-Bold;
   letter-spacing: -0.3px;
   word-spacing: 0px;

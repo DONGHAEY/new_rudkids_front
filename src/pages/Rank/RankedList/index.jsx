@@ -39,7 +39,7 @@ const RankedList = ({ rankedList }) => {
             </UserImgWrapperUI>
             <UserNmTxtUI>{rankedUser?.nickname}</UserNmTxtUI>
             <UserViewCntUI>
-              <Icon icon="ph:eye-fill" color="black" />
+              <Icon icon="ph:eye-fill" color="black" fontSize={"160%"} />
               {Number(
                 rankedUser?.view?.totalCnt + rankedUser?.view?.todayCnt
               )?.toLocaleString("ko-KR")}

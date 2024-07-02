@@ -15,68 +15,87 @@ export const RudAlertContentsUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block: 30px;
-  padding-inline: 30px;
+  padding: clamp(0rem, 8vw, 1.9rem);
 `;
 
 export const TitleTxtUI = styled.p`
   font-family: Poppins-SemiBold;
-  font-size: 22px;
+  font-size: clamp(0rem, 5vw, 1.37rem);
   letter-spacing: -3%;
   line-height: 100%;
 `;
 
 export const ProductBoxUI = styled.div`
-  margin-top: 18px;
+  margin-top: 5.5%;
   display: flex;
+  width: 70%;
   align-items: center;
   justify-content: space-between;
-  gap: 26px;
   background-color: white;
-  border-radius: 12px;
+  border-radius: clamp(0rem, 4vw, 1rem);
   overflow: hidden;
-  padding-block: 14px;
-  padding-inline: 25px;
+  padding-block: 4%;
+  padding-inline: 5%;
+`;
+
+export const ProductImgWrapperUI = styled.div`
+  width: 40%;
+  aspect-ratio: 1/1;
+`;
+
+export const ProductImgUI = styled.img`
+  width: 100%;
 `;
 
 export const ProductNameTxtUI = styled.p`
   font-family: Poppins-Bold;
-  font-size: 14.18px;
-  line-height: -3%;
+  font-size: clamp(0rem, 3.8vw, 1rem);
+  line-height: 100%;
 `;
 
 export const ProductPriceTxtUI = styled.p`
   font-family: Poppins-Bold;
-  font-size: 13px;
+  font-size: clamp(0rem, 3.4vw, 0.9rem);
+  margin-top: 3%;
 `;
 
 export const BtnListUI = styled.div`
   display: flex;
   width: 100%;
-  gap: 11px;
-  margin-top: 29px;
-  height: 60px;
+  gap: 3%;
+  margin-top: 8%;
+  height: 100%;
 `;
 
 export const GoCartBtnUI = styled.button`
   font-family: Pretendard-Bold;
-  font-size: 16px;
+  font-size: clamp(0rem, 3.8vw, 1rem);
   line-height: 0%;
   width: 100%;
   background: linear-gradient(180deg, #ffffff 0%, #dedede 100%);
   border: #aeaeae solid 1.4px;
   color: black;
-  border-radius: 20px;
+  border-radius: clamp(0rem, 4vw, 1.3rem);
+  padding-block: clamp(0rem, 8vw, 1.7rem);
 `;
 
 export const ConfirmBtnUI = styled.button`
   font-family: Pretendard-Bold;
-  font-size: 16px;
+  font-size: clamp(0rem, 3.8vw, 1rem);
   line-height: 0%;
   width: 80%;
   background: linear-gradient(180deg, #14ff00 0%, #10ce00 100%);
   border: #00b01c solid 1.4px;
   color: white;
+  padding-block: clamp(0rem, 8vw, 1.7rem);
   text-shadow: rgba(0, 0, 0, 0.6) 1px 1px 1px;
-  border-radius: 20px;
+  border-radius: clamp(0rem, 4vw, 1.3rem);
+`;
+
+export const TxtWrapperUI = styled.div`
+  margin-left: 10%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 3%;
 `;

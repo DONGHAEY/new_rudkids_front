@@ -12,35 +12,32 @@ const ActionBar = ({ productData }) => {
   const [actionName, setActionName] = useState();
   const [selectOptionModal, setSelectOptionModal] = useState(false);
   const [putCartSuccessModal, setPutCartSuccessModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const putCartProductMutation = useAddCartProductMutation();
-
   const navigate = useNavigate();
 
-  const addToCartHandler = async (options = [], quantity) => {
-    if (productData?.optionGroups?.length !== 0 && !options?.length) {
-      setSelectOptionModal(true);
-      return;
-    }
-    try {
-      await putCartProductMutation.mutateAsync(
-        {
-          productId: productData.id,
-          optionIds: options?.map((option) => option.id) ?? [],
-          quantity: quantity,
-        },
-        {
-          onSuccess: () => {
-            trackAction("add to cart", productData, options);
-            setPutCartSuccessModal(true);
-          },
-        }
-      );
-    } catch (e) {}
+  const addToCartHandler = async (selectedProduct) => {
+    await putCartProductMutation
+      .mutateAsync({
+        productId: selectedProduct.id,
+        optionIds: selectedProduct?.options?.map((option) => option.id) ?? [],
+        quantity: selectedProduct.quantity,
+      })
+      .then(() => {
+        trackAction("add to cart", selectedProduct);
+        setPutCartSuccessModal(true);
+      });
   };
 
-  const buyNowHandler = (options, quantity) => {
-    trackAction("buy now", productData, options);
-    const orderingProduct = {
+  const buyNowHandler = (selectedProduct) => {
+    trackAction("buy now", selectedProduct);
+    setOrderingProducts([selectedProduct]);
+    navigate("/create-order?type=buy now");
+  };
+
+  const optionSelectedHandler = (options, quantity) => {
+    const selectedProduct = {
+      id: productData.id,
       name: productData.name,
       price: productData.price,
       productId: productData.id,
@@ -57,15 +54,11 @@ const ActionBar = ({ productData }) => {
         };
       }),
     };
-    setOrderingProducts([orderingProduct]);
-    navigate("/create-order?type=buy now");
-  };
-
-  const optionSelectedHandler = (options, quantity) => {
+    setSelectedProduct(selectedProduct);
     if (actionName === "cart") {
-      addToCartHandler(options, quantity);
+      addToCartHandler(selectedProduct);
     } else if (actionName === "buy now") {
-      buyNowHandler(options, quantity);
+      buyNowHandler(selectedProduct);
     }
   };
 
@@ -102,7 +95,7 @@ const ActionBar = ({ productData }) => {
         onSelected={optionSelectedHandler}
       />
       <PutCartSuccessModal
-        productData={productData}
+        selectedProduct={selectedProduct}
         isOpen={putCartSuccessModal}
         onClose={() => setPutCartSuccessModal(false)}
       />
@@ -110,8 +103,15 @@ const ActionBar = ({ productData }) => {
   );
 };
 
-const trackAction = (actionName, productData, options) => {
-  let { id: product_id, name: product_name, category, price } = productData;
+const trackAction = (actionName, selectedProduct) => {
+  let {
+    id: product_id,
+    name: product_name,
+    category,
+    price,
+    options,
+    quantity,
+  } = selectedProduct;
   let optionObj = {};
   options?.map((option) => {
     price += option.price;
@@ -122,6 +122,7 @@ const trackAction = (actionName, productData, options) => {
     product_name,
     category,
     price,
+    quantity,
     ...optionObj,
   });
 };
