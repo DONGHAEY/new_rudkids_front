@@ -6,7 +6,7 @@ export const ProductUI = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding-block: 5.5%;
-  padding-inline: 5%;
+  padding-inline: 5.5%;
   background-color: rgba(255, 255, 255, 0.9);
   border: solid 2px;
   border-color: #e7e7e7;
@@ -18,12 +18,11 @@ export const FlexColUI = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-left: 13%;
+  margin-left: 9.3%;
 `;
 
 export const ProductImgUI = styled.img`
-  width: 30%;
-  max-width: 88px;
+  width: 26%;
   aspect-ratio: 1/1;
   object-fit: cover;
 `;
