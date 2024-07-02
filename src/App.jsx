@@ -14,31 +14,31 @@ function App() {
 
   useWindowScrollInit();
 
-  // const currentRoute = Object.values(routes)?.find(
-  //   (route) => route.path === pathname
-  // );
+  window.onpopstate = function (event) {
+    window.location.reload();
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          {Object.values(routes)?.map((route) => (
-            <Route
-              key={route.path}
-              path={route.path}
-              element={
-                route.viewTrack ? (
+      <Routes>
+        {Object.values(routes)?.map((route) => (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={
+              <Suspense fallback={route.fallback ?? <Loader />}>
+                {route.viewTrack ? (
                   <DefaultTrackPageView pageName={route.name}>
                     <route.element routeInfo={route} />
                   </DefaultTrackPageView>
                 ) : (
                   <route.element routeInfo={route} />
-                )
-              }
-            />
-          ))}
-        </Routes>
-      </Suspense>
+                )}
+              </Suspense>
+            }
+          />
+        ))}
+      </Routes>
       <GlobalStyle />
     </QueryClientProvider>
   );
