@@ -42,7 +42,7 @@ const TicketPage = ({ routeInfo }) => {
 
   const clickHandler = () => {
     trackClickButton("ticket open", {
-      invitorName: invitationData.invitorId,
+      invitor_name: invitationData.invitorId,
       duration: totalSecond - remainSecond,
     });
     setTicketId(invitationId);

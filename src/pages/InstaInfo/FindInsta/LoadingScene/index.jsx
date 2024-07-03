@@ -7,6 +7,7 @@ import { BoundaryPlanes } from "./BoundaryPlanes";
 import { CanvasUI } from "./styles";
 import { Blackhole } from "./Blackhole";
 import ProgressBar from "../../../../shared_components/ProgressBar";
+import { useTrackLoadingTime } from "../../../../shared_analytics";
 
 const colors = [0xfee639, 0xed2424, 0x2f70b7];
 
@@ -48,6 +49,8 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
       clearTimeout(timeout);
     };
   }, [progress]);
+
+  useTrackLoadingTime("insta-info", "getting instagram id");
 
   return (
     <Canvas>

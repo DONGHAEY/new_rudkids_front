@@ -43,13 +43,31 @@ export const useTrackReadPageContents = (pageName) => {
       const ed = moment();
       const durationTime = moment.duration(ed.diff(st)).asSeconds();
       track(`read contents`, {
-        duration_time: durationTime.toFixed(1),
+        duration_time: durationTime.toFixed(0),
         max_scroll_position: maxScrollPos,
         end_scroll_position: scrollPos,
         page: pageName,
       });
     };
   }, [pageName]);
+};
 
-  return <></>;
+export const useTrackLoadingTime = (pageName, type = "normal") => {
+  //
+  useEffect(() => {
+    const start = moment();
+    return () => {
+      if (!pageName) return;
+      const end = moment();
+      var duration = moment.duration(end.diff(start));
+      var seconds = duration.asSeconds().toFixed(0);
+      if (seconds > 1) {
+        track("view loading", {
+          page: pageName,
+          duration_time: seconds,
+          type,
+        });
+      }
+    };
+  }, [pageName]);
 };

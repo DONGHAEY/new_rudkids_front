@@ -1,6 +1,6 @@
 import { Suspense, useEffect } from "react";
 import { QueryClientProvider } from "react-query";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import GlobalStyle from "../src/styles";
 import { routes } from "./routes";
 import useRudkidsQueryClient from "./rudkidsQueryClient";
@@ -21,7 +21,9 @@ function App() {
             key={route.path}
             path={route.path}
             element={
-              <Suspense fallback={route.fallback ?? <Loader />}>
+              <Suspense
+                fallback={route.fallback ?? <Loader pageName={route.name} />}
+              >
                 {route.viewTrack ? (
                   <DefaultTrackPageView pageName={route.name}>
                     <route.element routeInfo={route} />
