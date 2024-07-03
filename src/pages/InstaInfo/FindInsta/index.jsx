@@ -2,7 +2,6 @@ import {
   InstagramIdFormUI,
   InstagramIdInputUI,
   TitleTxtUI,
-  RudkidsInstaUI,
   SubmitBtnUI,
   ButtonWrapperUI,
   FormLabelUI,
@@ -11,13 +10,11 @@ import {
 import { useEffect, useState } from "react";
 import useGetImgUrlMutation from "../../../mutations/instagram-profile/useGetImgUrl";
 import LoadingScene from "./LoadingScene";
-import { PageUI } from "../shared_styles";
+import { PageUI, SpacerUI } from "../shared_styles";
 import Background from "../../../shared_components/Background";
 import instaImgSrc from "../assets/instagram.webp";
-import instaBtnImgSrc from "./assets/insta_btn.webp";
 import RudWindow from "../../../shared_components/RudWindow";
 import { WindowButtonUI } from "../../../shared_components/RudWindow/shared_styles";
-import { trackClickButton } from "../../../shared_analytics";
 
 const FindInsta = ({ setFindedInstaInfo }) => {
   const [instagramId, setInstagramId] = useState("");
@@ -42,13 +39,6 @@ const FindInsta = ({ setFindedInstaInfo }) => {
     });
   };
 
-  const rudkidsInstaClickHandler = () => {
-    trackClickButton("rudkidss instagram", {
-      page: "insta-info",
-    });
-    window.open("https://www.instagram.com/rudkidss");
-  };
-
   useEffect(() => {
     if (!showLoading && temp) {
       setFindedInstaInfo(temp);
@@ -71,7 +61,7 @@ const FindInsta = ({ setFindedInstaInfo }) => {
 
   return (
     <PageUI>
-      <RudkidsInstaUI onClick={rudkidsInstaClickHandler} src={instaBtnImgSrc} />
+      <SpacerUI />
       <RudWindow>
         <WrapperUI>
           <TitleTxtUI>
