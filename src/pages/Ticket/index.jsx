@@ -23,13 +23,13 @@ import {
 } from "../../shared_analytics";
 
 export const setTicketId = (invitationId) => {
-  sessionStorage.setItem(StorageKey.invitation_id, invitationId);
+  localStorage.setItem(StorageKey.invitation_id, invitationId);
 };
 export const removeTicketId = () => {
-  sessionStorage.removeItem(StorageKey.invitation_id);
+  localStorage.removeItem(StorageKey.invitation_id);
 };
 export const getTicketId = () => {
-  return sessionStorage.getItem(StorageKey.invitation_id) ?? null;
+  return localStorage.getItem(StorageKey.invitation_id) ?? null;
 };
 
 const TicketPage = ({ routeInfo }) => {
