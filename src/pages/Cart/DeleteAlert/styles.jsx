@@ -13,6 +13,7 @@ export const CenterModalUI = styled(Modal)`
 export const WrapperUI = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding-block: 10%;
   padding-inline: 5%;
 `;
@@ -28,8 +29,8 @@ export const AskSectionUI = styled.div`
 `;
 
 export const BtnListUI = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   margin-top: 8%;
-  gap: 2%;
+  gap: 3%;
 `;
