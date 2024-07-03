@@ -30,31 +30,25 @@ const LoginCallbackPage = ({ routeInfo }) => {
           if (!me.isInvited) {
             const ticketId = getTicketId();
             if (!ticketId) {
-              navigate(`/401`);
+              window.location.href = "/401";
               return;
             }
             try {
               await acceptInvitationMutation.mutateAsync(ticketId);
             } catch (e) {
               alert("유효하지 않은 초대권을 받은 것 같아요!");
-              navigate(`/401`);
+              window.location.href = "/401";
               return;
             }
           }
           if (!me.instagramId) {
-            navigate(`/insta-info?callback=${savedLoginCallbackUrl}`, {
-              replace: true,
-            });
+            window.location.href = `/insta-info?callback=${savedLoginCallbackUrl}`;
             return;
           } else if (!me?.isFirstInviteFinished) {
-            navigate(`/invite?callback=${savedLoginCallbackUrl}`, {
-              replace: true,
-            });
+            window.location.href = `/invite?callback=${savedLoginCallbackUrl}`;
             return;
           }
-          navigate(savedLoginCallbackUrl, {
-            replace: true,
-          });
+          window.location.href = savedLoginCallbackUrl;
         },
       });
     })();
