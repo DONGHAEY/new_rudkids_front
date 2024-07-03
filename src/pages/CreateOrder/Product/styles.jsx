@@ -25,6 +25,7 @@ export const ProductImgUI = styled.img`
   width: 26%;
   aspect-ratio: 1/1;
   object-fit: cover;
+  border-radius: clamp(0rem, 2vw, 0.6rem);
 `;
 
 export const QuantityTextUI = styled.p`
@@ -43,6 +44,7 @@ export const ProductNameUI = styled.p`
   font-size: clamp(0rem, 4vw, 1rem);
   font-family: Poppins-Bold;
   letter-spacing: -0.3px;
+
   word-spacing: 0px;
   line-height: 100%;
 `;

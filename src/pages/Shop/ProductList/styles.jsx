@@ -28,7 +28,7 @@ export const ProductImgWrapperUI = styled.div`
   justify-content: center;
   width: 100%;
   aspect-ratio: 1/1;
-  border-radius: 14px;
+  border-radius: clamp(0rem, 3vw, 1rem);
   overflow: hidden;
 `;
 

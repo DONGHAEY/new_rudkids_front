@@ -17,6 +17,7 @@ export const ProductImgUI = styled.img`
   aspect-ratio: 1/1;
   background-color: ghostwhite;
   object-fit: cover;
+  border-radius: clamp(0rem, 2vw, 0.6rem);
 `;
 
 export const WrapperUI = styled.div`
@@ -61,7 +62,7 @@ export const QuantityButtonUI = styled.div`
 `;
 
 export const CartProductNameUI = styled.p`
-  font-size: clamp(0rem, 5vw, 1.03rem);
+  font-size: clamp(0rem, 3.8vw, 1rem);
   font-family: Poppins-Bold;
   letter-spacing: -0.05em;
   line-height: 120%;
@@ -69,7 +70,7 @@ export const CartProductNameUI = styled.p`
 `;
 
 export const CartProductPriceUI = styled.p`
-  font-size: clamp(0rem, 4.3vw, 0.9rem);
+  font-size: clamp(0rem, 3.6vw, 0.95rem);
   font-family: Poppins-Bold;
   line-height: 200%;
 `;
@@ -80,7 +81,7 @@ export const OptionsSectionUI = styled.div`
   flex-direction: row;
   align-items: center;
   line-height: 100%;
-  font-size: clamp(0rem, 3.5vw, 0.75rem);
+  font-size: clamp(0rem, 3vw, 0.75rem);
   letter-spacing: -0.05em;
   color: #6f6f6f;
 `;

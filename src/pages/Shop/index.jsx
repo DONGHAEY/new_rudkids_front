@@ -1,5 +1,5 @@
 import Header from "../../shared_components/Header";
-import { PageUI, SectionUI } from "./styles";
+import { PageUI } from "./styles";
 import ProductList from "./ProductList";
 import CategoryList from "./CategoryList";
 import useProductListQuery from "../../queries/product/useProductListQuery";
