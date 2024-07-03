@@ -20,7 +20,7 @@ import useSendInvitationMutation from "../../mutations/invitation/useSendInvitat
 const max = 3;
 const Invite = ({ fromPage }) => {
   const { data: userData } = useUserQuery();
-  const sendInvitationMutation = useSendInvitationMutation();
+  const sendInvitationMutation = useSendInvitationMutation("friends");
 
   const inviteCnt = userData?.invitateCnt;
 
