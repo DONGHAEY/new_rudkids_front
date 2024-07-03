@@ -22,7 +22,6 @@ export const TimelineUI = styled.div`
   height: 12.08px;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.5);
-  /* max-width: 133.33px; */
   border-radius: 63px;
 `;
 

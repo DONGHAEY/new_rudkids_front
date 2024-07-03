@@ -10,7 +10,6 @@ import Loader from "./shared_components/Loader";
 
 function App() {
   const [queryClient] = useRudkidsQueryClient();
-  const { pathname } = useLocation();
 
   useWindowScrollInit();
 

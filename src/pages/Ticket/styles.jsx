@@ -51,7 +51,6 @@ export const FixedBototmSectionUI = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
-  /* max-height: 300px; */
   z-index: 3;
   display: flex;
   flex-direction: column;

@@ -29,11 +29,12 @@ export const ProductImgWrapperUI = styled.div`
   width: 100%;
   aspect-ratio: 1/1;
   border-radius: 14px;
+  overflow: hidden;
 `;
 
 export const ProductImgUI = styled.img`
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
 `;
