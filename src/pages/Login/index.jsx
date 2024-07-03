@@ -16,6 +16,7 @@ import { trackClickButton } from "../../shared_analytics";
 import RudWindow from "../../shared_components/RudWindow";
 import { WindowButtonUI } from "../../shared_components/RudWindow/shared_styles";
 import { useSearchParams } from "react-router-dom";
+import useTossTesterLoginMutation from "../../mutations/auth/useTossTesterLoginMutation";
 
 export const setLoginCallbackUrl = (callbackUrl) => {
   localStorage.setItem(StorageKey.login_callback_url, callbackUrl);
@@ -30,6 +31,8 @@ export const getLoginCallbackUrl = () => {
 const LoginPage = () => {
   const [searchParams] = useSearchParams();
   const callback = searchParams.get("callback") ?? "/home";
+
+  const tossPaymentLoginMutation = useTossTesterLoginMutation();
 
   const clickHandler = (providerName) => {
     trackClickButton("login", {
@@ -80,6 +83,13 @@ const LoginPage = () => {
                 </LoginBtnUI>
               </WindowButtonUI>
             ))}
+            <WindowButtonUI
+              onClick={async () => {
+                await tossPaymentLoginMutation.mutateAsync();
+              }}
+            >
+              TossPayments Login
+            </WindowButtonUI>
           </LoginBtnListUI>
         </LoginUI>
       </RudWindow>

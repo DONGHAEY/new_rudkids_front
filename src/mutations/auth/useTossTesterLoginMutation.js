@@ -20,7 +20,7 @@ const useTossTesterLoginMutation = () => {
     mutationKey: KEY,
     mutationFn: async () => await tossTesterLogin(),
     onSuccess: () => {
-      navigate("/");
+      navigate("/shop");
     },
   });
 };
