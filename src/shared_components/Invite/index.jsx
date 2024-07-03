@@ -15,33 +15,17 @@ import {
   ButtonTxtUI,
 } from "./styles";
 import { FiShare } from "react-icons/fi";
-import useCreateInvitationMutation from "../../mutations/invitation/useCreateInvitationMutation";
-import { track } from "@amplitude/analytics-browser";
-import useDeleteInvitationMutation from "../../mutations/invitation/deleteInvitationMutation";
+import useSendInvitationMutation from "../../mutations/invitation/useSendInvitationMutation";
 
 const max = 3;
-const Invite = ({ close }) => {
+const Invite = ({ fromPage }) => {
   const { data: userData } = useUserQuery();
-  const createInvitationMutation = useCreateInvitationMutation();
-  const deleteInvitationMutation = useDeleteInvitationMutation();
+  const sendInvitationMutation = useSendInvitationMutation();
 
   const inviteCnt = userData?.invitateCnt;
 
   const inviteBtnClickHandler = async () => {
-    const invitationId = await createInvitationMutation.mutateAsync();
-    try {
-      await window.navigator.share({
-        title: "Rudkids",
-        text: "야 ㅁㅊ 이거 너 아님?",
-        url: `https://www.rud.kids/ticket/${invitationId}`,
-      });
-      track("send tickets", {
-        times: userData.invitateCnt,
-        type: "profile",
-      });
-    } catch (e) {
-      await deleteInvitationMutation.mutateAsync(invitationId);
-    }
+    await sendInvitationMutation.mutateAsync(fromPage);
   };
 
   return (

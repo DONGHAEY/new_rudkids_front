@@ -142,7 +142,7 @@ export const ProfilePage = ({ routeInfo }) => {
         </BottomBarUI>
       </BoxSectionUI>
       <CenterModalUI open={invitePopup} onClose={onInviteCloseHandler}>
-        <Invite close={onInviteCloseHandler} />
+        <Invite close={onInviteCloseHandler} fromPage="profile" />
       </CenterModalUI>
       <CenterModalUI open={shareCopyPopup}>
         <CopyShare

@@ -16,6 +16,7 @@ export const getOtherUser = async (userId) => {
     .then((response) => response.data);
 };
 
+// userId를 비워두면, 나의 정보를 주는 함수입니다.
 const useUserQuery = (userId = null, isOptional = false) => {
   return useQuery({
     queryKey: KEY(userId),
