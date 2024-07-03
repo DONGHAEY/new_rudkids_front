@@ -18,10 +18,12 @@ import { useNavigate } from "react-router-dom";
 import useEditCartProductQuantityMutation from "../../../mutations/cart/useEditCartProductQuantityMutation";
 import useDeleteCartProductMutation from "../../../mutations/cart/useDeleteCartProductMutation";
 import RudImage from "../../../shared_components/RudImage";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import DeleteAlert from "../DeleteAlert";
 
 const CartProduct = ({ cartProduct }) => {
   const navigate = useNavigate();
+  const [deleteAskModal, setDeleteAskModal] = useState(false);
 
   const editQuantityMutation = useEditCartProductQuantityMutation(
     cartProduct?.id
@@ -37,14 +39,17 @@ const CartProduct = ({ cartProduct }) => {
     await editQuantityMutation.mutateAsync(cartProduct.quantity - 1);
   };
 
+  const productClickHandler = () => navigate(`/product/${cartProduct.name}`);
+
   const deleteClickHandler = async (e) => {
     e.stopPropagation();
-    if (await window?.confirm("정말로 삭제하겠어?..")) {
-      await deleteMutation.mutateAsync();
-    }
+    setDeleteAskModal(true);
   };
 
-  const productClickHandler = () => navigate(`/product/${cartProduct.name}`);
+  const deleteConfirmHandler = async (e) => {
+    await deleteMutation.mutateAsync();
+    setDeleteAskModal(false);
+  };
 
   const optionsTxt = useMemo(() => {
     let optionsTxt = "";
@@ -87,6 +92,11 @@ const CartProduct = ({ cartProduct }) => {
       <CloseIconWrapperUI onClick={deleteClickHandler}>
         <IoIosClose color="#999999" />
       </CloseIconWrapperUI>
+      <DeleteAlert
+        open={deleteAskModal}
+        setOpen={setDeleteAskModal}
+        onConfirm={deleteConfirmHandler}
+      />
     </CartProductUI>
   );
 };

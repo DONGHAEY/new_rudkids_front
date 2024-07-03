@@ -16,6 +16,7 @@ import {
 } from "./styles";
 import { useNavigate } from "react-router-dom";
 import RudImage from "../../../../shared_components/RudImage";
+import { ButtonUI } from "../../../../shared_components/RudAlert/shared_styles";
 
 const PutCartSuccessModal = ({ isOpen, onClose, selectedProduct }) => {
   const navigate = useNavigate();
@@ -47,14 +48,19 @@ const PutCartSuccessModal = ({ isOpen, onClose, selectedProduct }) => {
             </TxtWrapperUI>
           </ProductBoxUI>
           <BtnListUI>
-            <GoCartBtnUI
+            <ButtonUI
               onClick={() => {
                 navigate("/cart");
               }}
             >
               장바구니로 이동
-            </GoCartBtnUI>
-            <ConfirmBtnUI onClick={onClose}>확인</ConfirmBtnUI>
+            </ButtonUI>
+            <ButtonUI
+              background="linear-gradient(180deg, #14ff00 0%, #10ce00 100%)"
+              onClick={onClose}
+            >
+              확인
+            </ButtonUI>
           </BtnListUI>
         </RudAlertContentsUI>
       </RudAlert>

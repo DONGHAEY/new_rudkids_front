@@ -9,13 +9,9 @@ import { useWindowScrollInit } from "./hooks/useWindowScrollInit";
 import Loader from "./shared_components/Loader";
 
 function App() {
+  //
   const [queryClient] = useRudkidsQueryClient();
-
   useWindowScrollInit();
-
-  window.onpopstate = function (event) {
-    window.location.reload();
-  };
 
   return (
     <QueryClientProvider client={queryClient}>
