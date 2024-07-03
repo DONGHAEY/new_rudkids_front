@@ -31,7 +31,6 @@ export const getLoginCallbackUrl = () => {
 const LoginPage = () => {
   const [searchParams] = useSearchParams();
   const callback = searchParams.get("callback") ?? "/home";
-
   const tossPaymentLoginMutation = useTossTesterLoginMutation();
 
   const clickHandler = (providerName) => {
@@ -83,13 +82,16 @@ const LoginPage = () => {
                 </LoginBtnUI>
               </WindowButtonUI>
             ))}
-            <WindowButtonUI
-              onClick={async () => {
-                await tossPaymentLoginMutation.mutateAsync();
-              }}
-            >
-              TossPayments Login
-            </WindowButtonUI>
+            {searchParams.get("toss_tester") && (
+              <WindowButtonUI
+                onClick={async () => {
+                  const uuid = searchParams.get("toss_tester");
+                  await tossPaymentLoginMutation.mutateAsync(uuid);
+                }}
+              >
+                TossPayments Login
+              </WindowButtonUI>
+            )}
           </LoginBtnListUI>
         </LoginUI>
       </RudWindow>
