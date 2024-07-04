@@ -1,3 +1,4 @@
+import { useAlert } from "../../hooks/useRudAlert";
 import {
   TrackingInfoUI,
   RowUI,
@@ -9,6 +10,8 @@ import {
 import { BiSolidCopyAlt } from "react-icons/bi";
 
 const TrackingInfo = ({ trackingNumber }) => {
+  const alert = useAlert();
+
   return (
     <ColUI gap="18px">
       <TrackingInfoUI>

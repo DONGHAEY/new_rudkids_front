@@ -16,7 +16,6 @@ import Popup from "../../shared_components/Popup";
 
 const CreateRudcardPage = () => {
   const navigate = useNavigate();
-  //
   const [isAlert, setIsAlert] = useState(false);
   const [cardCreating, setCardCreating] = useState(false);
   const [canvasRef, setCanvasRef] = useState(null);
@@ -43,7 +42,7 @@ const CreateRudcardPage = () => {
 
   const submit = async () => {
     if (cardCreating) return;
-    if (!canvasRef.current) alert("카드로드안됨");
+    if (!canvasRef.current) return;
     setCardCreating(true);
     const dataURI = canvasRef.current.toDataURL("image/webp");
     fetch(dataURI)
@@ -57,7 +56,6 @@ const CreateRudcardPage = () => {
         formData.append("file", convertedFile);
         await editCardImgUrlMutation.mutateAsync(formData, {
           onSuccess: () => {
-            alert("카드등록에 성공함.");
             navigate(-1);
           },
           onSettled: () => {

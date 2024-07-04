@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import RudAlert from "../RudAlert";
+import { RudAlertModal } from "../RudAlert";
 import shareImgSrc from "./assets/share_way.webp";
-import { ContentImgWrapperUI, ModalUI, RudAlertWrapperUI } from "./styles";
+import { ContentImgWrapperUI } from "./styles";
 import { useScreenshot } from "use-react-screenshot";
 import { trackClickButton } from "../../shared_analytics";
 import { track } from "@amplitude/analytics-browser";
@@ -51,15 +51,11 @@ const ImgShareModal = ({
   };
 
   return (
-    <ModalUI open={open} onClose={close} disableAutoFocus>
-      <RudAlertWrapperUI>
-        <RudAlert onClose={close}>
-          <ContentImgWrapperUI>
-            <img src={shareImgSrc} width="80%" onClick={shareBtnClickHandler} />
-          </ContentImgWrapperUI>
-        </RudAlert>
-      </RudAlertWrapperUI>
-    </ModalUI>
+    <RudAlertModal onClose={close} open={open}>
+      <ContentImgWrapperUI>
+        <img src={shareImgSrc} width="80%" onClick={shareBtnClickHandler} />
+      </ContentImgWrapperUI>
+    </RudAlertModal>
   );
 };
 

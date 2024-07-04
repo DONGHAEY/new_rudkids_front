@@ -24,8 +24,10 @@ import useUserQuery from "../../queries/user/useUserQuery";
 import useDeleteCartMutation from "../../mutations/cart/useDeleteCartMutation";
 import { useSearchParams } from "react-router-dom";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
+import { useAlert } from "../../hooks/useRudAlert";
 
 function CreateOrderPage() {
+  const alert = useAlert();
   const [searchParams] = useSearchParams();
 
   const { data: userData } = useUserQuery();

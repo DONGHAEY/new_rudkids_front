@@ -15,13 +15,13 @@ import Background from "../../../shared_components/Background";
 import instaImgSrc from "../assets/instagram.webp";
 import RudWindow from "../../../shared_components/RudWindow";
 import { WindowButtonUI } from "../../../shared_components/RudWindow/shared_styles";
+import { useAlert } from "../../../hooks/useRudAlert";
 
 const FindInsta = ({ setFindedInstaInfo }) => {
+  const alert = useAlert();
   const [instagramId, setInstagramId] = useState("");
   const [showLoading, setShowLoading] = useState(false);
-
   const getInstagramInfoMutation = useGetImgUrlMutation();
-
   const [temp, setTemp] = useState();
 
   const findInstagramInfo = (instagramId) => {

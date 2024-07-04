@@ -5,9 +5,10 @@ import useEditNicknameMutation from "../../../mutations/user/userEditNicknameMut
 import { usePopup } from "../../../hooks/usePopup";
 import { useForm } from "react-hook-form";
 import Popup from "../../../shared_components/Popup";
+import { useAlert } from "../../../hooks/useRudAlert";
 
 const NicknameEdit = ({ nickname: beforeNickname }) => {
-  //
+  const alert = useAlert();
   const [, popupBack] = usePopup();
   const editNicknameMutation = useEditNicknameMutation();
   const [nickname, setNickname] = useState("");

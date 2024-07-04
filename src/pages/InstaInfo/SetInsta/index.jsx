@@ -17,9 +17,12 @@ import moment from "moment";
 import RudWindow from "../../../shared_components/RudWindow";
 import { WindowButtonUI } from "../../../shared_components/RudWindow/shared_styles";
 import instaRing from "./assets/insta_ring.webp";
+import { useAlert } from "../../../hooks/useRudAlert";
 
 const SetInsta = ({ instaId, instaImgUrl, onComplete }) => {
   const { data: me } = useUserQuery();
+
+  const alert = useAlert();
 
   const updateImageUrlMutation = useUpdateImageUrlMutation();
   const updateInstaIdMutation = useUpdateInstaIdMutation();

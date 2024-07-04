@@ -1,15 +1,12 @@
 import { useMemo } from "react";
-import RudAlert from "../../../../shared_components/RudAlert";
+import { RudAlertModal } from "../../../../shared_components/RudAlert";
 import {
   BtnListUI,
-  ConfirmBtnUI,
-  GoCartBtnUI,
   ProductBoxUI,
   ProductImgUI,
   ProductImgWrapperUI,
   ProductNameTxtUI,
   ProductPriceTxtUI,
-  PutCartSuccessModalUI,
   RudAlertContentsUI,
   TitleTxtUI,
   TxtWrapperUI,
@@ -32,39 +29,37 @@ const PutCartSuccessModal = ({ isOpen, onClose, selectedProduct }) => {
   }, [selectedProduct]);
 
   return (
-    <PutCartSuccessModalUI open={isOpen}>
-      <RudAlert onClose={onClose}>
-        <RudAlertContentsUI>
-          <TitleTxtUI>✅ Added to Cart!</TitleTxtUI>
-          <ProductBoxUI>
-            <ProductImgWrapperUI>
-              <RudImage ImgUI={ProductImgUI} src={selectedProduct?.thumnail} />
-            </ProductImgWrapperUI>
-            <TxtWrapperUI>
-              <ProductNameTxtUI>{selectedProduct?.name}</ProductNameTxtUI>
-              <ProductPriceTxtUI>
-                ₩ {totalPrice?.toLocaleString("ko-KR")}
-              </ProductPriceTxtUI>
-            </TxtWrapperUI>
-          </ProductBoxUI>
-          <BtnListUI>
-            <ButtonUI
-              onClick={() => {
-                navigate("/cart");
-              }}
-            >
-              장바구니로 이동
-            </ButtonUI>
-            <ButtonUI
-              background="linear-gradient(180deg, #14ff00 0%, #10ce00 100%)"
-              onClick={onClose}
-            >
-              확인
-            </ButtonUI>
-          </BtnListUI>
-        </RudAlertContentsUI>
-      </RudAlert>
-    </PutCartSuccessModalUI>
+    <RudAlertModal onClose={onClose} open={isOpen}>
+      <RudAlertContentsUI>
+        <TitleTxtUI>✅ Added to Cart!</TitleTxtUI>
+        <ProductBoxUI>
+          <ProductImgWrapperUI>
+            <RudImage ImgUI={ProductImgUI} src={selectedProduct?.thumnail} />
+          </ProductImgWrapperUI>
+          <TxtWrapperUI>
+            <ProductNameTxtUI>{selectedProduct?.name}</ProductNameTxtUI>
+            <ProductPriceTxtUI>
+              ₩ {totalPrice?.toLocaleString("ko-KR")}
+            </ProductPriceTxtUI>
+          </TxtWrapperUI>
+        </ProductBoxUI>
+        <BtnListUI>
+          <ButtonUI
+            onClick={() => {
+              navigate("/cart");
+            }}
+          >
+            장바구니로 이동
+          </ButtonUI>
+          <ButtonUI
+            background="linear-gradient(180deg, #14ff00 0%, #10ce00 100%)"
+            onClick={onClose}
+          >
+            확인
+          </ButtonUI>
+        </BtnListUI>
+      </RudAlertContentsUI>
+    </RudAlertModal>
   );
 };
 

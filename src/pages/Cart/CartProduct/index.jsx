@@ -18,13 +18,12 @@ import { useNavigate } from "react-router-dom";
 import useEditCartProductQuantityMutation from "../../../mutations/cart/useEditCartProductQuantityMutation";
 import useDeleteCartProductMutation from "../../../mutations/cart/useDeleteCartProductMutation";
 import RudImage from "../../../shared_components/RudImage";
-import { useMemo, useState } from "react";
-import DeleteAlert from "../DeleteAlert";
+import { useMemo } from "react";
+import { useConfirm } from "../../../hooks/useRudConfirm";
 
 const CartProduct = ({ cartProduct }) => {
   const navigate = useNavigate();
-  const [deleteAskModal, setDeleteAskModal] = useState(false);
-
+  const confirm = useConfirm();
   const editQuantityMutation = useEditCartProductQuantityMutation(
     cartProduct?.id
   );
@@ -43,12 +42,9 @@ const CartProduct = ({ cartProduct }) => {
 
   const deleteClickHandler = async (e) => {
     e.stopPropagation();
-    setDeleteAskModal(true);
-  };
-
-  const deleteConfirmHandler = async (e) => {
-    await deleteMutation.mutateAsync();
-    setDeleteAskModal(false);
+    if (await confirm("정말로 삭제하시겠습니까?")) {
+      await deleteMutation.mutateAsync();
+    }
   };
 
   const optionsTxt = useMemo(() => {
@@ -92,11 +88,6 @@ const CartProduct = ({ cartProduct }) => {
       <CloseIconWrapperUI onClick={deleteClickHandler}>
         <IoIosClose color="#999999" />
       </CloseIconWrapperUI>
-      <DeleteAlert
-        open={deleteAskModal}
-        setOpen={setDeleteAskModal}
-        onConfirm={deleteConfirmHandler}
-      />
     </CartProductUI>
   );
 };

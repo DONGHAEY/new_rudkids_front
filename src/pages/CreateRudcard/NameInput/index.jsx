@@ -2,8 +2,11 @@ import { InputUI, NameInputNmTxtUI, NameInputUI } from "./styles";
 import cancelIconSrc from "./assets/cancel.svg";
 import ErrorMsg from "../ErrorMsg";
 import { useEffect, useState } from "react";
+import { useAlert } from "../../../hooks/useRudAlert";
 
 const NameInput = ({ field, fieldState }) => {
+  const alert = useAlert();
+
   const maxLength = 16;
   const regex = /^[A-Za-z0-9!@#$%^&*()_+={}\[\]:;"'<>,.?/\\|-]+$/;
 

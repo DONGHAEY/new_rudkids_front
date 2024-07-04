@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import RudAlert from "../../../shared_components/RudAlert";
+import { RudAlert } from "../../../shared_components/RudAlert";
 import CreateRudCardSrc from "./assets/CreateRudCard.svg";
 import useUserQuery from "../../../queries/user/useUserQuery";
 import moment from "moment/moment";

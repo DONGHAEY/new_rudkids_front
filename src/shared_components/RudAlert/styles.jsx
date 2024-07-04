@@ -1,4 +1,16 @@
+import { Modal } from "@mui/material";
 import styled from "styled-components";
+
+export const ModalUI = styled(Modal)`
+  width: 90%;
+  max-width: 390px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const RudAlertUI = styled.div`
   display: flex;

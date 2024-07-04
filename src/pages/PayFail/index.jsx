@@ -17,8 +17,10 @@ import OrderPrice from "../../shared_components/OrderPrice";
 import { useEffect } from "react";
 import Loader from "../../shared_components/Loader";
 import manSrc from "./assets/man.webp";
+import { useAlert } from "../../hooks/useRudAlert";
 
 const PayFailPage = () => {
+  const alert = useAlert();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const orderId = searchParams.get("orderId");
@@ -28,31 +30,22 @@ const PayFailPage = () => {
 
   useEffect(() => {
     if (!orderId) {
-      navigate("/", {
-        replace: true,
-      });
       alert("정상적인 접근이 아님");
+      navigate("/");
     }
     if (!orderData) return;
     if (orderData.payment) {
-      navigate(`/order/${orderId}`, {
-        replace: true,
-      });
+      navigate(`/order/${orderId}`);
     }
   }, [orderData]);
 
   const rePay = () => {
     if (paymentKey && amount) {
       navigate(
-        `/pay?orderId=${orderId}&paymentKey=${paymentKey}&amount=${amount}`,
-        {
-          replace: true,
-        }
+        `/pay?orderId=${orderId}&paymentKey=${paymentKey}&amount=${amount}`
       );
     } else {
-      navigate("/create-order", {
-        replace: true,
-      });
+      navigate("/create-order");
     }
   };
 

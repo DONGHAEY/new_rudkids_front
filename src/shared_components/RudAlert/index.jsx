@@ -1,8 +1,7 @@
-import { ContentUI, RudAlertHeadUI, RudAlertUI } from "./styles";
+import { ContentUI, ModalUI, RudAlertHeadUI, RudAlertUI } from "./styles";
 import closeIconSrc from "./assets/closeicon.svg";
 
-//
-const RudAlert = ({ children, onClose }) => {
+export const RudAlert = ({ children, onClose }) => {
   return (
     <RudAlertUI>
       <RudAlertHeadUI>
@@ -14,4 +13,10 @@ const RudAlert = ({ children, onClose }) => {
   );
 };
 
-export default RudAlert;
+export const RudAlertModal = ({ children, onClose, open }) => {
+  return (
+    <ModalUI open={open} onClose={onClose} disableAutoFocus>
+      <RudAlert onClose={onClose}>{children}</RudAlert>
+    </ModalUI>
+  );
+};

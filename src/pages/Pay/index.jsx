@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useCreatePaymentMutation from "../../mutations/payment/useCreatePaymentMutation";
-import useDeleteCartMutation from "../../mutations/cart/useDeleteCartMutation";
 import useOrderDetailQuery from "../../queries/order/useOrderDetailQuery";
 import Loader from "../../shared_components/Loader";
 import { Revenue, track, revenue } from "@amplitude/analytics-browser";
+import { useAlert } from "../../hooks/useRudAlert";
 
 const PayPage = () => {
+  //
   const navigate = useNavigate();
+  const alert = useAlert();
 
   const createPaymentMutation = useCreatePaymentMutation();
-  const deleteCartMutation = useDeleteCartMutation();
   const [searchParams] = useSearchParams();
   const orderId = searchParams.get("orderId");
   const paymentKey = searchParams.get("paymentKey");
@@ -20,10 +21,10 @@ const PayPage = () => {
 
   useEffect(() => {
     if (!orderId || !paymentKey || !amount) {
-      alert("정상적인 접근이 아님");
       navigate("/", {
         replace: "/",
       });
+      alert("정상적인 접근이 아님");
     }
     (async () => {
       await createPaymentMutation.mutateAsync(
@@ -34,7 +35,9 @@ const PayPage = () => {
         },
         {
           onError: (e) => {
-            navigate(`/pay-fail${window.location.search}`);
+            navigate(`/pay-fail${window.location.search}`, {
+              replace: true,
+            });
             alert(e?.response?.data?.message ?? "결제에 실패했습니다");
           },
           onSuccess: () => {

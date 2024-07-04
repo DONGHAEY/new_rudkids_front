@@ -15,8 +15,10 @@ import useEditLinksMutation from "../../../mutations/user/useEditLinksMutation";
 import { useEffect, useRef, useState } from "react";
 import { usePopup } from "../../../hooks/usePopup";
 import Popup from "../../../shared_components/Popup";
+import { useAlert } from "../../../hooks/useRudAlert";
 
 const LinksEdit = ({ links }) => {
+  const alert = useAlert();
   const [_, popupBack] = usePopup();
   const editLinksMutation = useEditLinksMutation();
   const linkInputRef = useRef();

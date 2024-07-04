@@ -15,7 +15,6 @@ import { useMemo } from "react";
 import useCartQuery from "../../queries/cart/useCartQuery";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
 import GoToShop from "./GoToShop";
-import DeleteAlert from "./DeleteAlert";
 
 const CartPage = () => {
   const { data: myCartData } = useCartQuery();
@@ -64,7 +63,6 @@ const CartPage = () => {
           }}
         />
       </PageUI>
-
       <CheckoutBar cartData={myCartData} />
     </>
   );

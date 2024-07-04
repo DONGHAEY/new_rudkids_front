@@ -21,6 +21,7 @@ import {
   trackPageView,
   useTrackReadPageContents,
 } from "../../shared_analytics";
+import { useAlert } from "../../hooks/useRudAlert";
 
 export const setTicketId = (invitationId) => {
   localStorage.setItem(StorageKey.invitation_id, invitationId);
@@ -33,6 +34,7 @@ export const getTicketId = () => {
 };
 
 const TicketPage = ({ routeInfo }) => {
+  const alert = useAlert();
   const totalSecond = 60;
   const navigate = useNavigate();
   const [remainSecond, setRemainSecond] = useState(totalSecond);
@@ -80,8 +82,8 @@ const TicketPage = ({ routeInfo }) => {
         invitor_name: invitationData.invitorId,
       });
       if (!invitationData) {
-        navigate("/401");
         alert("없는 초대장입니다.");
+        navigate("/401");
       }
     }
   }, [isLoading]);

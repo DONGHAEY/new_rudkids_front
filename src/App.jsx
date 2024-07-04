@@ -5,38 +5,45 @@ import GlobalStyle from "../src/styles";
 import { routes } from "./routes";
 import useRudkidsQueryClient from "./rudkidsQueryClient";
 import { trackPageView, useTrackReadPageContents } from "./shared_analytics";
-import { useWindowScrollInit } from "./hooks/useWindowScrollInit";
+
 import Loader from "./shared_components/Loader";
+import { AlertProvider } from "./hooks/useRudAlert";
+import { ConfirmProvider } from "./hooks/useRudConfirm";
 
 function App() {
   //
   const [queryClient] = useRudkidsQueryClient();
-  useWindowScrollInit();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Routes>
-        {Object.values(routes)?.map((route) => (
-          <Route
-            key={route.path}
-            path={route.path}
-            element={
-              <Suspense
-                fallback={route.fallback ?? <Loader pageName={route.name} />}
-              >
-                {route.viewTrack ? (
-                  <DefaultTrackPageView pageName={route.name}>
-                    <route.element routeInfo={route} />
-                  </DefaultTrackPageView>
-                ) : (
-                  <route.element routeInfo={route} />
-                )}
-              </Suspense>
-            }
-          />
-        ))}
-      </Routes>
-      <GlobalStyle />
+      <AlertProvider>
+        <ConfirmProvider>
+          <Routes>
+            {Object.values(routes)?.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={
+                  <Suspense
+                    fallback={
+                      route.fallback ?? <Loader pageName={route.name} />
+                    }
+                  >
+                    {route.viewTrack ? (
+                      <DefaultTrackPageView pageName={route.name}>
+                        <route.element routeInfo={route} />
+                      </DefaultTrackPageView>
+                    ) : (
+                      <route.element routeInfo={route} />
+                    )}
+                  </Suspense>
+                }
+              />
+            ))}
+          </Routes>
+          <GlobalStyle />
+        </ConfirmProvider>
+      </AlertProvider>
     </QueryClientProvider>
   );
 }

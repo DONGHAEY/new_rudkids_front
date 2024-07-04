@@ -12,8 +12,10 @@ import {
 } from "./styles";
 import useUploadFileMutation from "../../../mutations/file/useUploadFile";
 import usecreateQnaMutation from "../../../mutations/support/createQnaMutation";
+import { useAlert } from "../../../hooks/useRudAlert";
 
 const QnaForm = () => {
+  const alert = useAlert();
   const fileRef = useRef();
   const uploadFileMutation = useUploadFileMutation();
   const createQnaMutation = usecreateQnaMutation();
@@ -26,7 +28,9 @@ const QnaForm = () => {
 
   const submitHandler = async (data) => {
     if (data.agreement !== "동의함") {
-      alert("개인정보 수집 및 이용 동의를 해주시면 처리해드리겠습니다 :)");
+      await alert(
+        "개인정보 수집 및 이용 동의를 해주시면 처리해드리겠습니다 :)"
+      );
       return;
     }
     const attachment = fileRef.current.files[0];
@@ -39,8 +43,8 @@ const QnaForm = () => {
     }
 
     createQnaMutation.mutateAsync(data, {
-      onSuccess: () => {
-        alert("제출 처리되었습니다!");
+      onSuccess: async () => {
+        await alert("제출 처리되었습니다!");
         window.location.reload();
       },
     });

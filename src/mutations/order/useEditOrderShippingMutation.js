@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "react-query";
 import mutationKey from "../key";
 import axiosInstance from "../../axiosInstance";
 import { KEY as ORDER_KEY } from "../../queries/order/useOrderDetailQuery";
+import { useAlert } from "../../hooks/useRudAlert";
 
 export const KEY = [mutationKey.order, "shipping", "edit"];
 
@@ -12,6 +13,7 @@ const editOrderShipping = async ({ orderId, shipping }) => {
 };
 
 const useEditOrderShippingMutation = (orderId) => {
+  const alert = useAlert();
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
