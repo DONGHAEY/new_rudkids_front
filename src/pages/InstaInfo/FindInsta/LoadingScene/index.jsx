@@ -39,7 +39,7 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
     const rand = Math.floor(Math.random() * 5) + 1;
     if (progress >= 99) return;
     if (progress + rand > 99) {
-      setProgress(99);
+      setProgress(100);
       return;
     }
     const timeout = setTimeout(() => {
