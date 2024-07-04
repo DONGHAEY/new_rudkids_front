@@ -36,7 +36,7 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
 
   const [progress, setProgress] = useState(50);
   useEffect(() => {
-    const rand = Math.floor(Math.random() * 5) + 1;
+    const rand = Math.floor(Math.random() * 3) + 1;
     if (progress >= 99) return;
     if (progress + rand > 99) {
       setProgress(100);
