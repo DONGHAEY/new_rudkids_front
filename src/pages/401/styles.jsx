@@ -43,5 +43,5 @@ export const InfoIconWrapperUI = styled.div`
   position: absolute;
   top: 5%;
   right: 8%;
-  font-size: 20px;
+  font-size: 25px;
 `;

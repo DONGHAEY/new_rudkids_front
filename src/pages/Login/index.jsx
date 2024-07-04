@@ -38,7 +38,6 @@ const LoginPage = () => {
       provider: providerName,
     });
     setLoginCallbackUrl(callback);
-    window.location.href = `${process.env.REACT_APP_SERVER_URL}/api/auth/${providerName}`;
   };
 
   const providers = [
@@ -74,7 +73,9 @@ const LoginPage = () => {
                 border={provider.border}
                 onClick={() => clickHandler(provider.name)}
               >
-                <LoginBtnUI>
+                <LoginBtnUI
+                  href={`${process.env.REACT_APP_SERVER_URL}/api/auth/${provider.name}`}
+                >
                   <LoginBtnImgUI src={provider.logoImgSrc} />
                   <LoginBtnTxtUI color={provider.textColor}>
                     {provider.how} 계속하기

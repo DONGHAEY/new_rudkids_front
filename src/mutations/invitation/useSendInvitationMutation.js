@@ -4,7 +4,7 @@ import axiosInstance from "../../axiosInstance";
 import useUserQuery, {
   KEY as userQueryKey,
 } from "../../queries/user/useUserQuery";
-import { track } from "@amplitude/analytics-browser";
+import { Identify, identify, track } from "@amplitude/analytics-browser";
 
 export const KEY = [mutationKey.invitation, "send"];
 
@@ -47,6 +47,11 @@ const useSendInvitationMutation = (type) => {
 
     onSuccess: async (isInviteComplete) => {
       if (isInviteComplete) {
+        if (type !== "onboarding") {
+          const idenifyObj = new Identify();
+          idenifyObj.add("invite_count");
+          identify(idenifyObj);
+        }
         const me = await queryClient.getQueryData(userQueryKey("my"));
         me.invitateCnt++;
         track("send tickets", {

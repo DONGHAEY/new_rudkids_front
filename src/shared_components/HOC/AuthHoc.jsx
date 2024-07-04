@@ -17,15 +17,9 @@ const AuthHoc = (Page) => {
         setUserId(userData.id);
         setRender(true);
         return;
-      }
-      // else if (currentLocation === "/") {
-      //   setUserId(null);
-      //   setRender(true);
-      //   return;
-      // }
-      else {
+      } else {
         setUserId(null);
-        navigate(`/login?callback=${currentLocation}`);
+        window.location.href = `/login?callback=${currentLocation}`;
         return;
       }
     }, [userData, isLoading]);
@@ -33,15 +27,15 @@ const AuthHoc = (Page) => {
     useEffect(() => {
       if (!userData) return;
       if (!userData?.isInvited) {
-        navigate("/401");
+        window.location.href = "/401";
         return;
       }
       if (!userData?.instagramId) {
-        navigate(`/insta-info?callback=${currentLocation}`);
+        window.location.href = `/insta-info?callback=${currentLocation}`;
         return;
       }
       if (!userData?.isFirstInviteFinished) {
-        navigate(`/invite?callback=${currentLocation}`);
+        window.location.href = `/invite?callback=${currentLocation}`;
         return;
       }
     }, [userData]);

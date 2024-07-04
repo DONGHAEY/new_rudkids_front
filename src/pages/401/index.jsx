@@ -9,8 +9,17 @@ import {
   TextSectionUI,
   TitleUI,
 } from "./styles";
+import { trackClickButton } from "../../shared_analytics";
 
 const _401Page = () => {
+  //
+  const instaBtnClickHandler = () => {
+    window.open("https://www.instagram.com/rudkidss");
+    trackClickButton("rudkidss instagram", {
+      page: "landing",
+    });
+  };
+
   return (
     <PageUI>
       {/*  */}
@@ -23,8 +32,8 @@ const _401Page = () => {
         </ExplainUI>
       </TextSectionUI>
       <FuckManImgUI src={fuckManSrc} />
-      <InfoIconWrapperUI>
-        <Icon icon="material-symbols:info-outline" />
+      <InfoIconWrapperUI onClick={instaBtnClickHandler}>
+        <Icon icon="mdi:instagram" />
       </InfoIconWrapperUI>
     </PageUI>
   );

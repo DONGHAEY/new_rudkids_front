@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const RudWndowUI = styled.div`
+  animation: bounceFadeIn 1s;
   width: ${({ width }) => width ?? "80%"};
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   position: relative;
   background-color: #c1bcb4;
 `;

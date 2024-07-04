@@ -40,13 +40,14 @@ export const LoginBtnListUI = styled.div`
   width: 80%;
 `;
 
-export const LoginBtnUI = styled.div`
+export const LoginBtnUI = styled.a`
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-block: 10px;
   padding-inline: 4%;
   gap: 10px;
+  text-decoration: none;
 `;
 
 export const LoginBtnTxtUI = styled.p`
