@@ -37,9 +37,9 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
   const [progress, setProgress] = useState(50);
   useEffect(() => {
     const rand = Math.floor(Math.random() * 3) + 1;
-    if (progress === 100) return;
-    if (progress + rand >= 100) {
-      setProgress(100);
+    if (progress >= 99) return;
+    if (progress + rand >= 99) {
+      setProgress(99);
       return;
     }
     const timeout = setTimeout(() => {
@@ -49,6 +49,12 @@ const LoadingScene = ({ blackholeActive, onComplete }) => {
       clearTimeout(timeout);
     };
   }, [progress]);
+
+  useEffect(() => {
+    if (blackholeActive) {
+      setProgress(100);
+    }
+  }, [blackholeActive]);
 
   useTrackLoadingTime("insta-info", "getting instagram id");
 

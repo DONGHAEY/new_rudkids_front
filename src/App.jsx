@@ -8,11 +8,14 @@ import { trackPageView, useTrackReadPageContents } from "./shared_analytics";
 
 import Loader from "./shared_components/Loader";
 import { AlertProvider } from "./hooks/useRudAlert";
+import { useWindowScrollInit } from "./hooks/useWindowScrollInit";
 import { ConfirmProvider } from "./hooks/useRudConfirm";
 
 function App() {
   //
   const [queryClient] = useRudkidsQueryClient();
+
+  useWindowScrollInit();
 
   return (
     <QueryClientProvider client={queryClient}>
