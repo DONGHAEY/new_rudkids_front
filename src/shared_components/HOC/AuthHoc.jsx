@@ -1,15 +1,16 @@
 import { Loader } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import useUserQuery from "../../queries/user/useUserQuery";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setUserId } from "@amplitude/analytics-browser";
 
 const AuthHoc = (Page) => {
   const AuthComp = (props) => {
     const navigate = useNavigate();
+    const { pathname, search } = useLocation();
     const [render, setRender] = useState(false);
     const { data: userData, isLoading } = useUserQuery();
-    const currentLocation = window.location.pathname + window.location.search;
+    const currentLocation = pathname + search;
 
     useEffect(() => {
       if (isLoading) return;
@@ -19,7 +20,9 @@ const AuthHoc = (Page) => {
         return;
       } else {
         setUserId(null);
-        window.location.href = `/login?callback=${currentLocation}`;
+        navigate(`/login?callback=${currentLocation}`, {
+          replace: true,
+        });
         return;
       }
     }, [userData, isLoading]);
@@ -27,15 +30,21 @@ const AuthHoc = (Page) => {
     useEffect(() => {
       if (!userData) return;
       if (!userData?.isInvited) {
-        window.location.href = "/401";
+        navigate(`/401`, {
+          replace: true,
+        });
         return;
       }
       if (!userData?.instagramId) {
-        window.location.href = `/insta-info?callback=${currentLocation}`;
+        navigate(`/insta-info?callback=${currentLocation}`, {
+          replace: true,
+        });
         return;
       }
       if (!userData?.isFirstInviteFinished) {
-        window.location.href = `/invite?callback=${currentLocation}`;
+        navigate(`/invite?callback=${currentLocation}`, {
+          replace: true,
+        });
         return;
       }
     }, [userData]);

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import RudWindow from "../../shared_components/RudWindow";
 import cardSrc from "./assets/card_form.webp";
 import { useAlert } from "../../hooks/useRudAlert";
+import { useNavigate } from "react-router-dom";
+import { useConfirm } from "../../hooks/useRudConfirm";
 
 // const [dataUri, setDataUri] = useState("");
 
@@ -41,7 +43,8 @@ function Temp() {
   // return <StickTest2 />;
   // return <FixedTest1 />;
 
-  const alert = useAlert();
+  const navigate = useNavigate();
+  const confirm = useConfirm();
 
   return (
     <div
@@ -56,7 +59,17 @@ function Temp() {
       <RudWindow />
       {/* <button onClick={drawTest}>가상캔버스 그려보기</button> */}
       {/* <img src={dataUri} width="80%" /> */}
-      <button>test</button>
+      <button
+        onClick={async () => {
+          if (await confirm("정말로 테스트할거야?")) {
+            navigate("/shop", {
+              replace: true,
+            });
+          }
+        }}
+      >
+        test
+      </button>
     </div>
   );
 }

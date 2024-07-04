@@ -9,11 +9,12 @@ import useAcceptInvitationMutation from "../../mutations/invitation/useAcceptInv
 import { useAlert } from "../../hooks/useRudAlert";
 
 const LoginCallbackPage = ({ routeInfo }) => {
+  const alert = useAlert();
   const params = useParams();
+  const navigate = useNavigate();
   const platformName = params[routeInfo.paramKeys[0]];
   const oauthLoginMutation = useOauthLoginMutation(platformName);
   const acceptInvitationMutation = useAcceptInvitationMutation();
-  const alert = useAlert();
 
   useEffect(() => {
     if (!platformName) return;
@@ -24,31 +25,49 @@ const LoginCallbackPage = ({ routeInfo }) => {
       await oauthLoginMutation.mutateAsync(searchParams, {
         onError: (e) => {
           alert("알 수 없는 에러가 발생했어요!");
-          window.location.href = `/login`;
+          // window.location.href = `/login`;
+          navigate("/login", {
+            replace: true,
+          });
         },
         onSuccess: async (me) => {
           if (!me.isInvited) {
             const ticketId = getTicketId();
             if (!ticketId) {
-              window.location.href = "/401";
+              // window.location.href = "/401";
+              navigate("/401", {
+                replace: true,
+              });
               return;
             }
             try {
               await acceptInvitationMutation.mutateAsync(ticketId);
             } catch (e) {
               alert("유효하지 않은 초대권을 받은 것 같아요!");
-              window.location.href = "/401";
+              // window.location.href = "/401";
+              navigate("/401", {
+                replace: true,
+              });
               return;
             }
           }
           if (!me.instagramId) {
-            window.location.href = `/insta-info?callback=${savedLoginCallbackUrl}`;
+            // window.location.href = `/insta-info?callback=${savedLoginCallbackUrl}`;
+            navigate(`/insta-info?callback=${savedLoginCallbackUrl}`, {
+              replace: true,
+            });
             return;
           } else if (!me?.isFirstInviteFinished) {
-            window.location.href = `/invite?callback=${savedLoginCallbackUrl}`;
+            // window.location.href = `/invite?callback=${savedLoginCallbackUrl}`;
+            navigate(`/invite?callback=${savedLoginCallbackUrl}`, {
+              replace: true,
+            });
             return;
           }
-          window.location.href = savedLoginCallbackUrl;
+          // window.location.href = savedLoginCallbackUrl;
+          navigate(`${savedLoginCallbackUrl}`, {
+            replace: true,
+          });
         },
       });
     })();

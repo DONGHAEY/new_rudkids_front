@@ -23,13 +23,14 @@ import PicProgressBar from "./PicProgressBar";
 import useSetFirstInviteFinished from "../../mutations/user/useSetFirstInviteFinished";
 import { Player } from "@lottiefiles/react-lottie-player";
 import CallingModal from "../../shared_components/Calling";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import videoSrc from "./assets/video.mp4";
 import { trackClickButton } from "../../shared_analytics";
 import useUserQuery from "../../queries/user/useUserQuery";
 import PublicLottieAssets from "../../global/public-lottie-assets";
 import useSendInvitationMutation from "../../mutations/invitation/useSendInvitationMutation";
 const InvitePage = () => {
+  const navigate = useNavigate();
   const { data: userData } = useUserQuery();
 
   const defaultInviteCnt = 3;
@@ -52,7 +53,9 @@ const InvitePage = () => {
 
   const completeHandler = async () => {
     trackClickButton("complete sending tickets");
-    window.location.href = callback;
+    navigate(callback, {
+      replace: true,
+    });
   };
 
   return (
