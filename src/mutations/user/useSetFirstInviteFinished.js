@@ -1,6 +1,7 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import axiosInstance from "../../axiosInstance";
 import mutationKey from "../key";
+import { KEY as userKey } from "../../queries/user/useUserQuery";
 
 export const KEY = [mutationKey.user, "first_invite_finished"];
 
@@ -11,9 +12,15 @@ const setFirstInviteFinished = async () => {
 };
 
 const useSetFirstInviteFinished = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: KEY,
     mutationFn: setFirstInviteFinished,
+    onSuccess: async () => {
+      const user = await queryClient.getQueryData(userKey("my"));
+      user.isFirstInviteFinished = true;
+      await queryClient.setQueryData(userKey("my"), user);
+    },
   });
 };
 
