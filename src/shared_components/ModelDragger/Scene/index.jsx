@@ -1,13 +1,18 @@
 import { OrbitControls } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
+import gsap from "gsap";
 import React, { createRef, useEffect } from "react";
 
-const Scene = ({ autoRotate = false, gltf }) => {
+const Scene2 = ({ autoRotate = false, gltfs = [], selectedIdx }) => {
   //
-  const distance = 5.5;
-  const itemModelRef = createRef();
 
+  const distance = 5.5;
+  const componentsDistance = 10;
   const three = useThree();
+
+  const modelRefs = gltfs.map((_) => {
+    return createRef(null);
+  });
 
   const getPositionForXZAngle = (distance, angleRad) => {
     return {
@@ -16,10 +21,42 @@ const Scene = ({ autoRotate = false, gltf }) => {
     };
   };
 
-  useEffect(() => {
+  const initCamera = () => {
     const { x, z } = getPositionForXZAngle(distance, Math.PI * 2);
     three.camera.position.set(x, 0, z);
-  }, [gltf, three.camera]);
+  };
+
+  const initCopmonents = () => {
+    modelRefs?.forEach((ref, idx) => {
+      const pos = {
+        x: idx * componentsDistance,
+        y: 0,
+        z: 0,
+      };
+      gsap.set(ref.current.position, pos);
+    });
+  };
+
+  const shiftComponents = () => {
+    modelRefs?.forEach((ref, idx) => {
+      ref.current.visible = selectedIdx === idx ? true : false;
+      gsap.to(ref.current.position, {
+        x: (idx - selectedIdx) * componentsDistance,
+        y: 0,
+        z: 0,
+        duration: 0.3,
+      });
+    });
+  };
+
+  useEffect(() => {
+    initCopmonents();
+  }, []);
+
+  useEffect(() => {
+    initCamera();
+    shiftComponents();
+  }, [selectedIdx]);
 
   return (
     <>
@@ -27,7 +64,7 @@ const Scene = ({ autoRotate = false, gltf }) => {
       <directionalLight
         position={[0, 5, 3]}
         lookAt={[0, 0, 0]}
-        intensity={1.2}
+        intensity={1.6}
         color="white"
       />
       <directionalLight
@@ -36,13 +73,16 @@ const Scene = ({ autoRotate = false, gltf }) => {
         intensity={1.2}
         color="white"
       />
-      <primitive
-        ref={itemModelRef}
-        object={gltf.scene}
-        scale={1}
-        position={[0, 0.1, 0]}
-      />
-
+      {gltfs?.map((gltf, idx) => {
+        return (
+          <primitive
+            key={idx}
+            object={gltf?.scene}
+            ref={modelRefs[idx]}
+            scale={1}
+          />
+        );
+      })}
       <OrbitControls
         minDistance={distance}
         maxDistance={distance}
@@ -57,4 +97,4 @@ const Scene = ({ autoRotate = false, gltf }) => {
   );
 };
 
-export default Scene;
+export default Scene2;

@@ -11,7 +11,6 @@ const IndexChanger = ({ setIndex, index, maxIndex }) => {
       setIndex(maxIndex);
       return;
     }
-
     setIndex(index - 1);
   };
 

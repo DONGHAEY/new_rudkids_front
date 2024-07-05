@@ -43,11 +43,12 @@ const EatingKid = () => {
       <KidUI ref={kidRef} src={mopen ? openKid : closeKid} />
       {new Array(earthCnt).fill(null).map((_, earthIdx) => {
         if (earthIdx < kidIdx && kidIdx <= earthIdx + 2) {
-          return <></>;
+          return null;
         }
         return (
           <img
             src={earth}
+            key={earthIdx}
             style={{
               width: "8%",
               left: `${a * (earthIdx + 1)}%`,

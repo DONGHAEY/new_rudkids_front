@@ -30,7 +30,6 @@ const ProductDetailPage = ({ routeInfo }) => {
   const productName = params[routeInfo.paramKeys[0]];
   const [selectedIdx, setSelectedIdx] = useState(0);
   const { data: productData } = useProductDetailQuery(productName);
-
   const productPrice = productData?.price?.toLocaleString("ko-KR");
 
   const detailImageUrls = useMemo(() => {
@@ -67,7 +66,6 @@ const ProductDetailPage = ({ routeInfo }) => {
     });
   }, [productData]);
   useTrackReadPageContents("product-detail");
-
   useBodyBackground("white");
 
   return (

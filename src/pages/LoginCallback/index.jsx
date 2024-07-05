@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import qs from "qs";
 import useOauthLoginMutation from "../../mutations/auth/useOauthLoginMutation";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loader from "../../shared_components/Loader";
 import { getLoginCallbackUrl, removeLoginCallbackUrl } from "../Login";
 import { getTicketId } from "../Ticket";
@@ -11,7 +11,6 @@ import { useAlert } from "../../hooks/useRudAlert";
 const LoginCallbackPage = ({ routeInfo }) => {
   const alert = useAlert();
   const params = useParams();
-  // const navigate = useNavigate();
   const platformName = params[routeInfo.paramKeys[0]];
   const oauthLoginMutation = useOauthLoginMutation(platformName);
   const acceptInvitationMutation = useAcceptInvitationMutation();

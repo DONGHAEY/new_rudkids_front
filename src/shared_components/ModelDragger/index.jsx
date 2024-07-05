@@ -1,4 +1,3 @@
-import Scene from "./Scene";
 import {
   CanvasUI,
   ModelDraggerBackgroundUI,
@@ -8,10 +7,11 @@ import {
 } from "./styles";
 import { FaRegPlayCircle } from "react-icons/fa";
 import { FaRegCirclePause } from "react-icons/fa6";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import GuideLabel from "./GuideLabel";
-import { Html, Loader, useGLTF } from "@react-three/drei";
+import { Html, useGLTF } from "@react-three/drei";
 import IndexChanger from "./IndexChanger";
+import Scene from "./Scene";
 
 const ModelDragger = ({
   modelUrls = [],
@@ -22,8 +22,8 @@ const ModelDragger = ({
 }) => {
   //
   const [isPlaying, setIsPlaying] = useState(true);
-  const gltfs = useGLTF([...modelUrls]);
-  const gltf = gltfs?.[modelIdx];
+  const gltfs = useGLTF(modelUrls);
+  // const gltf = gltfs?.[modelIdx];
   const maxIndex = modelUrls?.length - 1;
 
   const canvasProps = {
@@ -44,7 +44,8 @@ const ModelDragger = ({
         <ModelTextUI>{modelName}</ModelTextUI>
       </ModelTextWrapperUI>
       <CanvasUI {...canvasProps}>
-        <Scene gltf={gltf} autoRotate={isPlaying} />
+        {/* <Scene gltf={gltf} autoRotate={isPlaying} /> */}
+        <Scene gltfs={gltfs} autoRotate={isPlaying} selectedIdx={modelIdx} />
         <Html fullscreen>
           {maxIndex !== 0 && (
             <IndexChanger
