@@ -24,8 +24,10 @@ const CollectionPage = lazy(() => import("./pages/Collection"));
 const PayFailPage = lazy(() => import("./pages/PayFail"));
 const HomePage = lazy(() => import("./pages/Home"));
 const LandingPage = lazy(() => import("./pages/Landing"));
+const Landing2Page = lazy(() => import("./pages/Landing2"));
 const SupportPage = lazy(() => import("./pages/Support"));
 const TempPage = lazy(() => import("./pages/Temp"));
+const StoryPage = lazy(() => import("./pages/Story"));
 
 export const routes = {
   ["landing"]: {
@@ -34,6 +36,13 @@ export const routes = {
     path: "/",
     paramKeys: [],
     element: LandingPage,
+  },
+  ["landing2"]: {
+    name: "landing2",
+    viewTrack: true,
+    path: "/landing2",
+    paramKeys: [],
+    element: Landing2Page,
   },
   ["404"]: {
     name: "401",
@@ -210,5 +219,12 @@ export const routes = {
     path: "/temp",
     paramKeys: [],
     element: TempPage,
+  },
+  ["story"]: {
+    name: "story",
+    viewTrack: true,
+    path: "/story/:name",
+    paramKeys: ["name"],
+    element: StoryPage,
   },
 };

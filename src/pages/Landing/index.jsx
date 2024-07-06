@@ -1,21 +1,29 @@
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import LandingLoader from "./Loader";
-import { PageUI, FooterImgUI, FooterUI, FucChildUI } from "./styles";
+import {
+  PageUI,
+  FooterImgUI,
+  FooterUI,
+  FucChildUI,
+  LogoImgUI,
+  ScrollDownUI,
+  TopFixedUI,
+} from "./styles";
 import { useBodyBackground } from "../../hooks/useBodyBackground";
 import Page1 from "./Page1";
 import Page2 from "./Page2";
 import Page3 from "./Page3";
 import landinigMp3 from "./assets/landing.mp3";
-import { GetInUI, LogoImgUI, ScrollDownUI, TopFixedUI } from "./Page1/styles";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logo from "./assets/logo.webp";
 import scrollDown from "./assets/scroll_down.webp";
 import fucChild from "./assets/fuc_child.webp";
-import getIn from "./assets/get_in.webp";
 import { useNavigate } from "react-router-dom";
 import PublicBizAssets from "../../global/public-biz-assets";
 import useUserQuery from "../../queries/user/useUserQuery";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import GetInButton from "./GetInButton";
 
 const LandingPage = () => {
   const { data: optionalUserData } = useUserQuery(null, true);
@@ -23,12 +31,15 @@ const LandingPage = () => {
 
   const loadCompleteHandler = () => {
     landingSnd.play();
-    window.scrollTo(0, 0);
+    landingSnd.onended = () => {
+      landingSnd.play();
+    };
   };
 
   useBodyBackground("rgba(255, 212, 0, 1)");
 
   const navigate = useNavigate();
+
   const scrollDownRef = useRef();
   const logoRef = useRef();
   const getInRef = useRef();
@@ -43,12 +54,12 @@ const LandingPage = () => {
     }
   };
 
-  const topSectionTimline = (gsap) => {
+  const topSectionTimline = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".page2",
         endTrigger: ".page3",
-        scrub: true,
+        scrub: 2,
         start: "top bottom",
         end: "top top",
         invalidateOnRefresh: true,
@@ -83,11 +94,11 @@ const LandingPage = () => {
       );
   };
 
-  const pageScrollOpacityTimeline = (gsap) => {
+  const pageScrollOpacityTimeline = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".page1",
-        scrub: true,
+        scrub: 2,
         start: "top top",
         end: "bottom top",
         pin: true,
@@ -126,30 +137,46 @@ const LandingPage = () => {
       );
   };
 
+  const getInProgress = () => {
+    ScrollTrigger.create({
+      trigger: ".container",
+      scrub: true,
+      endTrigger: ".page3",
+      start: "top top",
+      end: "end end",
+      onUpdate: (self) => setProgress(self.progress * 100),
+    });
+  };
+
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    topSectionTimline(gsap);
-    pageScrollOpacityTimeline(gsap);
+    topSectionTimline();
+    pageScrollOpacityTimeline();
+    getInProgress();
+    return () => {
+      landingSnd.pause();
+    };
   }, []);
 
   return (
     <Suspense fallback={<LandingLoader isFallback />}>
       <LandingLoader onComplete={loadCompleteHandler} isFallback={false} />
-      <PageUI>
+      <PageUI className="container">
         <Page1 />
         <Page2 />
         <Page3 />
         <TopFixedUI>
           <LogoImgUI src={logo} ref={logoRef} />
-          <GetInUI src={getIn} ref={getInRef} onClick={getInClickHandler}>
-            <img src={getIn} width="100%" />
-          </GetInUI>
+          <GetInButton
+            ref={getInRef}
+            onClick={getInClickHandler}
+            progress={progress}
+          />
         </TopFixedUI>
-        <ScrollDownUI ref={scrollDownRef}>
-          <img height="100%" src={scrollDown} />
-        </ScrollDownUI>
+        <ScrollDownUI ref={scrollDownRef} src={scrollDown} />
         <FooterUI>
-          <FucChildUI src={fucChild} ref={fucChildRef} />
+          <FucChildUI ref={fucChildRef} src={fucChild} />
           <FooterImgUI ref={footerImgRef} src={PublicBizAssets.footer} />
         </FooterUI>
       </PageUI>

@@ -12,18 +12,6 @@ export const Page1UI = styled.div`
   background: radial-gradient(rgba(255, 242, 164, 1), rgba(255, 212, 0, 1));
 `;
 
-export const TopSectionUI = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  top: 18%;
-  touch-action: none;
-  pointer-events: none;
-  position: absolute;
-`;
-
 export const MiddleSectionUI = styled.div`
   position: absolute;
   display: flex;
@@ -59,25 +47,6 @@ export const BotomSectionUI = styled.div`
   z-index: 3;
 `;
 
-export const TopFixedUI = styled.div`
-  position: fixed;
-  width: 100%;
-  max-width: 430px;
-  margin-inline: 0 auto;
-  top: 3%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  z-index: 9;
-`;
-
-export const LogoImgUI = styled.img`
-  position: absolute;
-  margin-left: 0;
-  z-index: 9;
-`;
-
 export const RudkidsOnlyImgUI = styled.img`
   width: 65%;
   position: absolute;
@@ -85,59 +54,10 @@ export const RudkidsOnlyImgUI = styled.img`
   z-index: 1;
 `;
 
-export const TopStickyUI = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  max-width: 430px;
-  margin: 0 auto;
-  z-index: 9;
-`;
-
-export const ScrollDownUI = styled.div`
-  position: fixed;
-  max-width: 430px;
-  width: 100%;
-  bottom: 7%;
-  z-index: 7;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 8%;
-  @keyframes motion {
-    0% {
-      margin-bottom: 0%;
-    }
-    50% {
-      margin-bottom: 3%;
-    }
-    100% {
-      margin-bottom: 0%;
-    }
-  }
-  animation: motion 3s infinite;
-`;
-
 export const FaceImgUI = styled.img`
   position: absolute;
   width: 50%;
   top: -30%;
-`;
-
-export const GetInUI = styled.div`
-  position: absolute;
-  width: 50%;
-  max-width: 200px;
-  left: 100%;
-  margin-inline: auto;
-  top: 2%;
-  z-index: 9;
 `;
 
 export const RollingMessagesUI = styled.div`

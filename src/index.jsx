@@ -34,7 +34,7 @@ const renderApp = () => {
 };
 
 const init = () => {
-  if (!checkCorrectOrigin()) return;
+  // if (!checkCorrectOrigin()) return;
   const publicImageUrls = Object.values(PublicBizAssets);
   publicImageUrls?.forEach((imgUrl) => imgPreload(imgUrl));
   amplitudeInit(process.env["REACT_APP_AMPLITUDE_KEY"], {

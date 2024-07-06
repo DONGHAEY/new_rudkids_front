@@ -10,11 +10,13 @@ import Loader from "./shared_components/Loader";
 import { AlertProvider } from "./hooks/useRudAlert";
 import { useWindowScrollInit } from "./hooks/useWindowScrollInit";
 import { ConfirmProvider } from "./hooks/useRudConfirm";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  //
   const [queryClient] = useRudkidsQueryClient();
-
   useWindowScrollInit();
 
   return (

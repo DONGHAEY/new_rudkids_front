@@ -51,6 +51,13 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   
+  .hidden_scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 
 `;
 

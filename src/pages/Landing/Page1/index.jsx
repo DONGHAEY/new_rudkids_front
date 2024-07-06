@@ -8,8 +8,6 @@ import {
   RollingMessagesUI,
   RudkidsOnlyImgUI,
   Page1UI,
-  TopSectionUI,
-  TopStickyUI,
   CanvasDragBlocker,
   BackImgUI,
 } from "./styles";

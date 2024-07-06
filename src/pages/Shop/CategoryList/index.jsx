@@ -10,7 +10,7 @@ const CategoryList = ({ setTypeCategory, typeCategory }) => {
   };
 
   return (
-    <ScrollUI>
+    <ScrollUI className="hidden_scrollbar">
       <TypeBtnListUI>
         {Object.keys(typeCategories)?.map((key) => (
           <TypeButtonUI

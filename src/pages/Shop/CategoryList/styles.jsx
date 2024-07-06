@@ -14,11 +14,6 @@ export const ScrollUI = styled.div`
     }
   }
   animation: fadeIn 1s ease-in-out forwards;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 export const SpacerUI = styled.div`

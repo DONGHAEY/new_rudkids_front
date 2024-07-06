@@ -1,13 +1,6 @@
 import Header from "../../shared_components/Header";
 import Footer from "../../shared_components/Footer";
-import {
-  ButtonListUI,
-  ContentsTitleUI,
-  H1,
-  PageUI,
-  TextWrapperUI,
-} from "./styles";
-import { useState } from "react";
+import { ButtonListUI, ContentsTitleUI, PageUI, TextWrapperUI } from "./styles";
 import { WindowButtonUI } from "../../shared_components/RudWindow/shared_styles";
 import { legalContents } from "./legalContents";
 import { useNavigate, useSearchParams } from "react-router-dom";
