@@ -25,6 +25,8 @@ export const GetInUI = styled.div`
   position: absolute;
   width: 100%;
   max-width: 200px;
+  -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.8) inset;
+  box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.8) inset;
   left: 100%;
   margin-inline: auto;
   top: 2%;
@@ -42,8 +44,9 @@ export const GetInProgressUI = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(0deg, #a50f16 10%, #ff1f35 100%);
+  background: linear-gradient(180deg, #a50f16 0%, #ff1f35 100%);
   left: 0;
+
   z-index: 0;
 `;
 

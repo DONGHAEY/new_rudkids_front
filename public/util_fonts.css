@@ -9,3 +9,9 @@
   src: url("/Fonts/Utils/boba.otf") format("woff2");
   font-display: swap;
 }
+
+@font-face {
+  font-family: "Dinosaur";
+  src: url("/Fonts/Utils/Dinosaur.ttf") format("woff2");
+  font-display: swap;
+}

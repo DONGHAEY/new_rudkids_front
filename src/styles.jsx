@@ -51,6 +51,18 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   
+    @keyframes bounceRepeat {
+    0% {
+      transform: translate3d(0, 30%, 0);
+    }
+    50% {
+      transform: translateZ(0);
+    }
+    100% {
+      transform: translate3d(0, 30%, 0);
+    }
+  }
+
   .hidden_scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
