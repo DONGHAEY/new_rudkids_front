@@ -3,9 +3,11 @@ import {
   FaceWrapperUI,
   FromTxtUI,
   IntroduceSectionUI,
+  LeftArrowUI,
   PersonaFaceUI,
   PersonaNameUI,
   PersonaUI,
+  RightArrowUI,
   RudkidsSignUI,
   SayBoxUI,
 } from "./styles";
@@ -69,6 +71,8 @@ const Persona = () => {
   return (
     <PersonaUI>
       <FaceWrapperUI>
+        <LeftArrowUI src={leftArrow} onClick={leftBtnClickHandler} />
+        <RightArrowUI src={rightArrow} onClick={rightBtnClickHandler} />
         <RudkidsSignUI>
           RUDE
           <br />
@@ -81,10 +85,6 @@ const Persona = () => {
         <FromTxtUI>{personaInfo.from}</FromTxtUI>
         <SayBoxUI>"{personaInfo.message}"</SayBoxUI>
       </IntroduceSectionUI>
-      <ArrowsSectionUI>
-        <img src={leftArrow} width="18%" onClick={leftBtnClickHandler} />
-        <img src={rightArrow} width="18%" onClick={rightBtnClickHandler} />
-      </ArrowsSectionUI>
     </PersonaUI>
   );
 };

@@ -8,7 +8,7 @@ const Landing2Page = () => {
       {/*  */}
       <Section2 />
       {/*  */}
-      <Background position="fixed" />
+      <Background position="fixed" isFooter={false} />
     </PageUI>
   );
 };

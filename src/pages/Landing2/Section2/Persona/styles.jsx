@@ -22,6 +22,18 @@ export const FaceWrapperUI = styled.div`
   max-width: 300px;
 `;
 
+export const LeftArrowUI = styled.img`
+  position: absolute;
+  left: -20%;
+  width: 28%;
+`;
+
+export const RightArrowUI = styled.img`
+  position: absolute;
+  right: -20%;
+  width: 28%;
+`;
+
 export const RudkidsSignUI = styled.div`
   padding: 5%;
   background: red;
@@ -72,11 +84,11 @@ export const SayBoxUI = styled.div`
   text-align: center;
   background-color: white;
   border-radius: clamp(0rem, 5vw, 1rem);
-  padding: 3%;
-  padding-inline: 4%;
+  padding: 4%;
+  padding-inline: 5%;
   border: solid 2px black;
   font-family: dinosaur;
-  font-size: clamp(0rem, 2.8vw, 0.7rem);
+  font-size: clamp(0rem, 3vw, 0.8rem);
   white-space: pre-wrap;
 `;
 
