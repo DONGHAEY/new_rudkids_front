@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { WindowButtonUI } from "../../shared_components/RudWindow/shared_styles";
 
 export const PageUI = styled.div`
   display: flex;
@@ -13,12 +14,12 @@ export const PageUI = styled.div`
 
 export const LoginTxtUI = styled.p`
   font-family: boba;
-  font-size: clamp(1.7rem, 10.5vw, 2.5rem);
+  font-size: clamp(0rem, 8vw, 2rem);
   line-height: 100%;
 `;
 
 export const SpacerUI = styled.div`
-  margin-top: 30%;
+  margin-top: 20%;
 `;
 
 export const LoginUI = styled.div`
@@ -26,39 +27,35 @@ export const LoginUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding-block: 60px;
-  padding-top: 40px;
+  padding-block: 7%;
   font-family: boba;
 `;
 
-export const LoginBtnListUI = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  width: 80%;
-`;
-
-export const LoginBtnUI = styled.a`
+export const LoginBtnUI = styled(WindowButtonUI)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-block: 10px;
+  justify-content: center;
+  padding-block: 3%;
   padding-inline: 4%;
+  margin-top: 3%;
   gap: 10px;
+  margin-bottom: 10%;
   text-decoration: none;
 `;
 
-export const LoginBtnTxtUI = styled.p`
-  font-family: Pretendard-SemiBold;
-  letter-spacing: -5%;
-  font-size: clamp(0.7rem, 4vw, 1rem);
-  text-align: center;
-  color: ${({ color }) => color ?? "black"};
+export const FakeLoginFormUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  font-family: Pretendard-Bold;
+  margin-top: 3%;
 `;
 
-export const LoginBtnImgUI = styled.img`
-  height: 30px;
-  padding: 5px;
+export const LoginInputUI = styled.input`
+  padding: 5%;
+  margin-top: 1%;
+  border: solid 1px black;
+  font-family: Pretendard-Bold;
+  font-size: clamp(0rem, 3vw, 0.8rem);
 `;

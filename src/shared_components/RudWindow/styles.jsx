@@ -3,18 +3,27 @@ import styled from "styled-components";
 export const RudWndowUI = styled.div`
   animation: bounceFadeIn 1s;
   width: ${({ width }) => width ?? "80%"};
+  max-width: 380px;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  background-color: #c1bcb4;
+  background-color: #d4d4d4;
+  border-style: inset;
+  border: 0px 5px 5px 5px solid;
+  border-left: 5px solid;
+  border-bottom: 5px solid;
+  border-right: 5px solid;
+  border-left-color: rgba(144, 140, 133, 1);
+  border-right-color: rgba(92, 90, 86, 1);
+  border-bottom-color: rgba(92, 90, 86, 1);
 `;
 
 export const HeadUI = styled.div`
   height: 25px;
   width: 100%;
   border-style: inset;
-  background-color: #1b3c8d;
+  background-color: #015fe9;
   color: white;
   display: flex;
   flex-direction: row;
@@ -25,10 +34,10 @@ export const HeadUI = styled.div`
   border-top: 5px solid;
   border-bottom: 5px solid;
   border-right: 5px solid;
-  border-top-color: rgba(24, 50, 117, 1);
-  border-left-color: rgba(20, 45, 104, 1);
-  border-right-color: rgba(12, 26, 61, 1);
-  border-bottom-color: rgba(12, 26, 61, 1);
+  border-top-color: rgba(0, 79, 191, 1);
+  border-left-color: rgba(0, 70, 173, 1);
+  border-right-color: rgba(1, 45, 111, 1);
+  border-bottom-color: rgba(1, 41, 102, 1);
   position: relative;
 `;
 

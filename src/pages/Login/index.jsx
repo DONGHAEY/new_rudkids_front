@@ -1,22 +1,19 @@
 import {
   SpacerUI,
-  LoginBtnImgUI,
-  LoginBtnListUI,
-  LoginBtnTxtUI,
   LoginBtnUI,
   LoginTxtUI,
   LoginUI,
+  FakeLoginFormUI,
+  LoginInputUI,
 } from "./styles";
-import NaverSvg from "./assets/naver_.svg";
-import KakaoSvg from "./assets/kakaotalk_.svg";
 import { PageUI } from "./styles";
 import Background from "../../shared_components/Background";
 import StorageKey from "../../storageKey";
-import { trackClickButton } from "../../shared_analytics";
 import RudWindow from "../../shared_components/RudWindow";
 import { WindowButtonUI } from "../../shared_components/RudWindow/shared_styles";
 import { useSearchParams } from "react-router-dom";
 import useTossTesterLoginMutation from "../../mutations/auth/useTossTesterLoginMutation";
+import LoginBtns from "../../shared_components/LoginBtns";
 
 export const setLoginCallbackUrl = (callbackUrl) => {
   localStorage.setItem(StorageKey.login_callback_url, callbackUrl);
@@ -33,67 +30,33 @@ const LoginPage = () => {
   const callback = searchParams.get("callback") ?? "/home";
   const tossPaymentLoginMutation = useTossTesterLoginMutation();
 
-  const clickHandler = (providerName) => {
-    trackClickButton("login", {
-      provider: providerName,
-    });
-    setLoginCallbackUrl(callback);
-  };
-
-  const providers = [
-    {
-      how: "카카오톡으로",
-      logoImgSrc: KakaoSvg,
-      background: "rgba(245, 235, 16, 1)",
-      border: "rgba(195, 186, 12, 1)",
-      textColor: "black",
-      name: "kakao",
-    },
-    {
-      how: "네이버로",
-      logoImgSrc: NaverSvg,
-      background: "rgba(75, 182, 75, 1)",
-      border: "rgba(55, 130, 53, 1)",
-      textColor: "white",
-      name: "naver",
-    },
-  ];
-
   return (
     <PageUI>
       <SpacerUI />
       <RudWindow>
         <LoginUI>
           <LoginTxtUI>Login</LoginTxtUI>
-          <LoginBtnListUI>
-            {providers?.map((provider, idx) => (
-              <WindowButtonUI
-                key={idx}
-                background={provider.background}
-                border={provider.border}
-                onClick={() => clickHandler(provider.name)}
-              >
-                <LoginBtnUI
-                  href={`${process.env.REACT_APP_SERVER_URL}/api/auth/${provider.name}`}
-                >
-                  <LoginBtnImgUI src={provider.logoImgSrc} />
-                  <LoginBtnTxtUI color={provider.textColor}>
-                    {provider.how} 계속하기
-                  </LoginBtnTxtUI>
-                </LoginBtnUI>
-              </WindowButtonUI>
-            ))}
-            {searchParams.get("toss_tester") && (
-              <WindowButtonUI
-                onClick={async () => {
-                  const uuid = searchParams.get("toss_tester");
-                  await tossPaymentLoginMutation.mutateAsync(uuid);
-                }}
-              >
-                TossPayments Login
-              </WindowButtonUI>
-            )}
-          </LoginBtnListUI>
+          <FakeLoginFormUI>
+            <LoginInputUI placeholder="아이디(이메일)" />
+            <LoginInputUI placeholder="비밀번호" />
+            <LoginBtnUI
+              background="rgba(51, 51, 51, 1)"
+              border="rgba(40, 40, 40, 1)"
+            >
+              로그인하기
+            </LoginBtnUI>
+          </FakeLoginFormUI>
+          <LoginBtns callback={callback} />
+          {searchParams.get("toss_tester") && (
+            <WindowButtonUI
+              onClick={async () => {
+                const uuid = searchParams.get("toss_tester");
+                await tossPaymentLoginMutation.mutateAsync(uuid);
+              }}
+            >
+              TossPayments Login
+            </WindowButtonUI>
+          )}
         </LoginUI>
       </RudWindow>
       <Background position={"absolute"} />

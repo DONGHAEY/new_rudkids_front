@@ -7,6 +7,6 @@ export const WindowButtonUI = styled.button`
   color: ${({ color }) => color ?? "white"};
   box-shadow: 1px 1px 0px 3px black;
   font-family: Pretendard-Bold;
-  font-size: clamp(0.7rem, 3vw, 0.9rem);
+  font-size: clamp(0rem, 3vw, 0.9rem);
   text-decoration: none;
 `;

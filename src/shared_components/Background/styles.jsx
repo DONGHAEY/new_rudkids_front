@@ -8,7 +8,7 @@ export const BackgroundUI = styled.div`
   margin-inline: 0 auto;
   max-width: 430px;
   z-index: ${({ zIndex }) => zIndex ?? -1};
-  background-color: red;
+  background: linear-gradient(180deg, #ffffff 0%, #0186ff 100%);
 `;
 
 export const BackgroundImgUI = styled.img`

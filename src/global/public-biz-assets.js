@@ -3,8 +3,8 @@ const PublicBizAssets = {
   load2: "/Images/load2.webp",
   logo: "/Images/logo.webp",
   symbol: "/Images/symbol.webp",
-  background: "/Images/stars_background.webp",
-  bottom: "/Images/bottom.webp",
+  // background: "/Images/stars_background.webp",
+  // bottom: "/Images/bottom.webp",
   footer: "/Images/footer.webp",
 };
 

@@ -28,6 +28,7 @@ const Landing2Page = lazy(() => import("./pages/Landing2"));
 const SupportPage = lazy(() => import("./pages/Support"));
 const TempPage = lazy(() => import("./pages/Temp"));
 const StoryPage = lazy(() => import("./pages/Story"));
+const FakeSignupPage = lazy(() => import("./pages/FakeSignup"));
 
 export const routes = {
   ["landing"]: {
@@ -226,5 +227,12 @@ export const routes = {
     path: "/story/:name",
     paramKeys: ["name"],
     element: StoryPage,
+  },
+  ["fakeSignup"]: {
+    name: "fake_signup",
+    viewTrack: true,
+    path: "/signup",
+    paramKeys: [],
+    element: FakeSignupPage,
   },
 };

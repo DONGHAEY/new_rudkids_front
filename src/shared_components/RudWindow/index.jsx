@@ -21,7 +21,6 @@ const RudWindow = ({ width = "80%", children }) => {
         </CloseBtnUI>
       </HeadUI>
       <ContentsUI>{children}</ContentsUI>
-      <WindowBorderUI />
     </RudWndowUI>
   );
 };
