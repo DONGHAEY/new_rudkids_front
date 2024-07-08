@@ -14,6 +14,8 @@ import { WindowButtonUI } from "../../shared_components/RudWindow/shared_styles"
 import { useSearchParams } from "react-router-dom";
 import useTossTesterLoginMutation from "../../mutations/auth/useTossTesterLoginMutation";
 import LoginBtns from "../../shared_components/LoginBtns";
+import { useState } from "react";
+import LoginModal from "../FakeSignup/LoginModal";
 
 export const setLoginCallbackUrl = (callbackUrl) => {
   localStorage.setItem(StorageKey.login_callback_url, callbackUrl);
@@ -28,6 +30,7 @@ export const getLoginCallbackUrl = () => {
 const LoginPage = () => {
   const [searchParams] = useSearchParams();
   const callback = searchParams.get("callback") ?? "/home";
+  const [loginModal, setLoginModal] = useState();
   const tossPaymentLoginMutation = useTossTesterLoginMutation();
 
   return (
@@ -40,6 +43,7 @@ const LoginPage = () => {
             <LoginInputUI placeholder="아이디(이메일)" />
             <LoginInputUI placeholder="비밀번호" />
             <LoginBtnUI
+              onClick={() => setLoginModal(true)}
               background="rgba(51, 51, 51, 1)"
               border="rgba(40, 40, 40, 1)"
             >
@@ -59,6 +63,7 @@ const LoginPage = () => {
           )}
         </LoginUI>
       </RudWindow>
+      <LoginModal isOpen={loginModal} />
       <Background position={"absolute"} />
     </PageUI>
   );

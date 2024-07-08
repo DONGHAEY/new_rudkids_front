@@ -11,6 +11,7 @@ import naverSrc from "./assets/naver_.svg";
 import FastStartSign from "./FastStartSign";
 import { trackClickButton } from "../../shared_analytics";
 import { setLoginCallbackUrl } from "../../pages/Login";
+import { routes } from "../../routes";
 
 const LoginBtns = ({ callback = "/home", isShowSignup = true }) => {
   //
@@ -40,7 +41,9 @@ const LoginBtns = ({ callback = "/home", isShowSignup = true }) => {
           <img src={naverSrc} width="50%" />
         </NaverBtnUI>
       </BtnListUI>
-      {isShowSignup && <SignupBtnUI>회원가입하기</SignupBtnUI>}
+      {isShowSignup && (
+        <SignupBtnUI href={routes.fakeSignup.path}>회원가입하기</SignupBtnUI>
+      )}
     </LoginBtnsUI>
   );
 };
