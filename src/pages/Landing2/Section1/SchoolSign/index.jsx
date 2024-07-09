@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
 import schoolSign from "./assets/school_sign.webp";
-import { SchoolSignUI } from "./styles";
+import { SchoolSignUI, SchoolSignWrapperUI } from "./styles";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
 
 const SchoolSign = () => {
+  const schoolSignWrapperRef = useRef();
   const schoolSignRef = useRef();
 
   useEffect(() => {
@@ -15,8 +16,8 @@ const SchoolSign = () => {
 
     const timeline = gsap.timeline({
       scrollTrigger: {
-        trigger: schoolSignRef.current,
-        start: "top center+10%",
+        trigger: schoolSignWrapperRef.current,
+        start: "top center",
         end: "bottom top",
         toggleActions: "play reverse play reverse",
       },
@@ -34,7 +35,11 @@ const SchoolSign = () => {
     );
   }, []);
 
-  return <SchoolSignUI ref={schoolSignRef} src={schoolSign} />;
+  return (
+    <SchoolSignWrapperUI ref={schoolSignWrapperRef}>
+      <SchoolSignUI src={schoolSign} ref={schoolSignRef} />
+    </SchoolSignWrapperUI>
+  );
 };
 
 export default SchoolSign;

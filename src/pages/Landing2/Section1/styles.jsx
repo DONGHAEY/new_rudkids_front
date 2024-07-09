@@ -14,7 +14,6 @@ export const BeetweenUI = styled.div`
   flex-direction: row;
   justify-content: end;
   align-items: end;
-  padding-right: 5%;
   position: relative;
   width: 100%;
   z-index: 1;

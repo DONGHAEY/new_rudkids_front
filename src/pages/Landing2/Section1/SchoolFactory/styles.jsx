@@ -22,7 +22,7 @@ export const StudentImgUI = styled.img`
 export const AxisPipeUI = styled.img`
   position: absolute;
   bottom: 20%;
-  /* z-index:; */
+  z-index: 0;
   width: 100%;
 `;
 
