@@ -5,9 +5,31 @@ export const SectionUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(251, 235, 36, 1) 100%
-  );
+  background: #003487;
+  position: relative;
+`;
+
+export const BeetweenUI = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: end;
+  padding-right: 5%;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  margin-bottom: 7%;
+`;
+
+export const ColliderUI = styled.img`
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+`;
+
+export const TeacherImgUI = styled.img`
+  position: absolute;
+  width: 60%;
+  bottom: 0;
+  left: 0;
 `;

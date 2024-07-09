@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import man from "./assets/man.webp";
 import woman from "./assets/woman.webp";
 import normal from "./assets/normal.webp";
@@ -24,11 +24,7 @@ const Students = () => {
           scrollerRef.current.scrollWidth - scrollerRef.current.clientWidth,
         duration: d,
         ease: "none",
-        onComplete: () => {
-          console.log(scrollerRef.current.scrollWidth);
-          console.log(scrollerRef.current.clientWidth);
-          setStudentsLength(studentsLength + d);
-        },
+        onComplete: () => setStudentsLength(studentsLength + d),
       }
     );
   };
@@ -55,8 +51,8 @@ const Student = ({ index, scrollerRef }) => {
     ScrollTrigger.create({
       scroller: scrollerRef.current,
       trigger: studentRef.current,
-      start: "left left",
-      end: "center left",
+      start: "-50% left",
+      end: "right left",
       horizontal: true,
       onEnter: () => {
         setBarcord(true);
@@ -76,7 +72,7 @@ const Student = ({ index, scrollerRef }) => {
         <NormalBarcordUI
           src={normal}
           initial={{
-            scale: 1.6,
+            scale: 2.5,
           }}
           animate={{
             scale: 1,

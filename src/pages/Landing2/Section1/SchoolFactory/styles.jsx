@@ -15,7 +15,7 @@ export const WrapperUI = styled.div`
 `;
 
 export const StudentImgUI = styled.img`
-  width: 110px;
+  width: 120px;
   padding-inline: 10px;
 `;
 
@@ -29,8 +29,7 @@ export const AxisPipeUI = styled.img`
 export const NormalBarcordUI = styled(motion.img)`
   position: absolute;
   width: 80%;
-  top: 30%;
-  left: 30%;
-  transform: rotateZ(${Math.random() < 1 ? "-" : ""}${Math.random() * 90});
+  top: 40%;
+  left: 8%;
   z-index: 99;
 `;
