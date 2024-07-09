@@ -9,10 +9,9 @@ const SchoolSign = () => {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: schoolSignRef.current,
-        start: "center center+100%",
-        end: "center center",
-        scrub: 1.8,
-        // markers: true,
+        start: "top center+10%",
+        end: "bottom top",
+        toggleActions: "play reverse play reverse",
       },
     });
     timeline.fromTo(
@@ -22,11 +21,21 @@ const SchoolSign = () => {
       },
       {
         transform: "perspective(400px) rotateX(0deg)",
+        duration: 0.7,
       }
     );
   }, []);
 
-  return <img ref={schoolSignRef} src={schoolSign} width="50%" />;
+  return (
+    <img
+      style={{
+        transformOrigin: "center bottom",
+      }}
+      ref={schoolSignRef}
+      src={schoolSign}
+      width="50%"
+    />
+  );
 };
 
 export default SchoolSign;
