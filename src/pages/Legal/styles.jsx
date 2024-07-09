@@ -25,7 +25,15 @@ export const TextWrapperUI = styled.div`
   font-size: 13px;
   gap: 10px;
   margin-block: 20px;
-  padding-inline: 10px;
+  padding-inline: 5%;
+  h1 {
+    font-family: Pretendard-Bold;
+  }
+  li,
+  p,
+  ol {
+    font-family: Pretendard-Medium;
+  }
 `;
 
 export const ContentsTitleUI = styled.h1`
@@ -33,6 +41,7 @@ export const ContentsTitleUI = styled.h1`
   text-align: left;
   width: 95%;
   font-size: 40px;
+  font-family: Pretendard-Bold;
 `;
 
 export const H1 = styled.p`

@@ -43,7 +43,7 @@ const LeagalPage = () => {
         dangerouslySetInnerHTML={{
           __html: contents,
         }}
-      ></TextWrapperUI>
+      />
       <Footer />
     </PageUI>
   );
