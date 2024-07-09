@@ -14,7 +14,6 @@ import {
 
 import leftArrow from "./assets/leftbutton@2x.webp";
 import rightArrow from "./assets/rightbutton@2x.webp";
-
 import steveJobs from "./assets/stevejobs_1@2x.webp";
 import albertEinstein from "./assets/einstein_1@2x.webp";
 import kurtCobain from "./assets/kurt_1@2x.webp";

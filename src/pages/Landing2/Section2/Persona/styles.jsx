@@ -56,8 +56,8 @@ export const PersonaNameUI = styled.p`
   position: absolute;
   font-family: dinosaur;
   font-size: clamp(0rem, 5vw, 1rem);
-  -webkit-text-stroke: clamp(0rem, 2vw, 0.1rem) black;
-  text-shadow: black 2px 3px;
+  -webkit-text-stroke: clamp(0rem, 0.6vw, 0.1rem) black;
+  text-shadow: black clamp(0rem, 0.6vw, 0.1rem) clamp(0rem, 0.7vw, 0.1rem);
   color: white;
   top: 14%;
 `;
@@ -87,8 +87,8 @@ export const SayBoxUI = styled.div`
   padding: 4%;
   padding-inline: 5%;
   border: solid 2px black;
-  font-family: dinosaur;
-  font-size: clamp(0rem, 3vw, 0.8rem);
+  font-family: Poppins-Bold;
+  font-size: clamp(0rem, 3.5vw, 1rem);
   white-space: pre-wrap;
 `;
 
