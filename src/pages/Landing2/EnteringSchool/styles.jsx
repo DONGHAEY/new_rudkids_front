@@ -28,13 +28,13 @@ export const SchoolImgWrapperUI = styled.div`
 
 export const SchoolSignUI = styled.p`
   position: absolute;
-  bottom: -13%;
+  bottom: -16%;
   font-family: Poppins-Bold;
-  font-size: clamp(0rem, 3vw, 1.6rem);
+  font-size: clamp(0rem, 8vw, 1.6rem);
   background-color: white;
-  padding: 5%;
-  padding-block: 2.5%;
-  border-radius: clamp(0rem, 6vw, 1.4rem);
+  padding-inline: 7%;
+  padding-block: 3%;
+  border-radius: clamp(0rem, 16vw, 3.2rem);
 `;
 
 export const SmokeLtWrapperUI = styled.div`

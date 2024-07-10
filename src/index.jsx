@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
+import { clarity } from "react-microsoft-clarity";
 import { init as amplitudeInit } from "@amplitude/analytics-browser";
 import PublicBizAssets from "./global/public-biz-assets";
 
@@ -44,6 +45,7 @@ const init = () => {
         pageViews: false,
       },
     });
+    clarity.init(process.env["REACT_APP_CLARITY"]);
   }
   renderApp();
 };

@@ -82,13 +82,14 @@ const EnteringSchool = () => {
         scale: 1,
         rotateY: "0deg",
         rotateZ: "0deg",
-      })
-      .repeat(2);
+      });
+    // .repeat(1);
 
     wholeTimeline
       .add(childrenGoDownTimline)
       .add(schoolProcessingTimeline)
       .to(ref.current, {
+        delay: 1,
         filter: "grayscale(150%)",
       });
 
@@ -99,6 +100,7 @@ const EnteringSchool = () => {
       scrub: 1.3,
       anticipatePin: 1,
       pin: true,
+      // pinSpacing: false,
       animation: wholeTimeline,
     });
   }, []);
