@@ -5,6 +5,7 @@ import GetInButton from "./GetInButton";
 import { BottomFixed, BottomSpacerUI, PageUI } from "./styles";
 import { useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import EnteringSchool from "./EnteringSchool";
 
 const Landing2Page = () => {
   const [progress, setProgress] = useState(0);
@@ -24,6 +25,7 @@ const Landing2Page = () => {
 
   return (
     <PageUI ref={pageRef}>
+      <EnteringSchool />
       <Section1 />
       <Section2 />
       <Background position="fixed" isFooter={false} />

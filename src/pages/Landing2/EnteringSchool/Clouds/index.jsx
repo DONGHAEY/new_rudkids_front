@@ -1,9 +1,10 @@
 import { CloudWrapperUI, CloudsWrapperUI } from "./styles";
 import cloud from "./assets/cloud.webp";
+import { forwardRef } from "react";
 
-const Clouds = () => {
+const Clouds = forwardRef((props, ref = null) => {
   return (
-    <CloudsWrapperUI>
+    <CloudsWrapperUI ref={ref}>
       {/*  */}
       <CloudWrapperUI marginTop="10%">
         <img src={cloud} width="120%" />
@@ -16,6 +17,6 @@ const Clouds = () => {
       </CloudWrapperUI>
     </CloudsWrapperUI>
   );
-};
+});
 
 export default Clouds;

@@ -3,12 +3,12 @@ import SchoolFactory from "./SchoolFactory";
 import SchoolSign from "./SchoolSign";
 import collider from "./assets/collider.webp";
 import teacher from "./assets/teacher.webp";
-import EnteringSchool from "./EnteringSchool";
+import EnteringSchool from "../EnteringSchool";
 
 const Section1 = () => {
   return (
     <SectionUI>
-      <EnteringSchool />
+      {/* <EnteringSchool /> */}
       <SchoolFactory />
       <BeetweenUI>
         <TeacherImgUI src={teacher} />
