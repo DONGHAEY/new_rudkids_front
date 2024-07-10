@@ -14,6 +14,7 @@ export const EnteringSchoolUI = styled.div`
     rgba(255, 247, 51, 1) 50%,
     rgba(255, 142, 5, 1) 100%
   );
+  overflow: hidden;
 `;
 
 export const SchoolImgWrapperUI = styled.div`
@@ -56,19 +57,19 @@ export const GrassImgUI = styled.img`
 export const Child1ImgUI = styled.img`
   position: absolute;
   width: 30%;
-  top: 5%;
+  top: 15%;
 `;
 
 export const Child2ImgUI = styled.img`
   position: absolute;
   width: 20%;
-  top: 10%;
+  top: 15%;
   left: 10%;
 `;
 
 export const Child3ImgUI = styled.img`
   position: absolute;
   width: 30%;
-  top: 5%;
+  top: 15%;
   right: 14%;
 `;

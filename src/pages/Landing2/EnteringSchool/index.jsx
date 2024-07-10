@@ -88,9 +88,10 @@ const EnteringSchool = () => {
     wholeTimeline
       .add(childrenGoDownTimline)
       .add(schoolProcessingTimeline)
-      .to(ref.current, {
-        delay: 1,
-        filter: "grayscale(150%)",
+      .to(schoolRef.current, {
+        scale: 12,
+        marginLeft: "20%",
+        marginBottom: "180%",
       });
 
     ScrollTrigger.create({

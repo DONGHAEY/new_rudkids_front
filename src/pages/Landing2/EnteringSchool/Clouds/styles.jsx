@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CloudsWrapperUI = styled.div`
   width: 80%;
   display: flex;
-  margin-top: 30%;
+  margin-top: 48%;
 `;
 
 export const CloudWrapperUI = styled.div`
