@@ -45,7 +45,7 @@ export const routes = {
     paramKeys: [],
     element: Landing2Page,
   },
-  ["404"]: {
+  ["401"]: {
     name: "401",
     viewTrack: true,
     path: "401",

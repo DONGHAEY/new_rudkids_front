@@ -3,19 +3,20 @@ import { useEffect, useState } from "react";
 import useUserQuery from "../../queries/user/useUserQuery";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setUserId } from "@amplitude/analytics-browser";
+import { OnboardingSteps } from "../../global/onboarding-steps";
 
 const AuthHoc = (Page) => {
   const AuthComp = (props) => {
     const navigate = useNavigate();
     const { pathname, search } = useLocation();
     const [render, setRender] = useState(false);
-    const { data: userData, isLoading } = useUserQuery();
+    const { data: me, isLoading } = useUserQuery();
     const currentLocation = pathname + search;
 
     useEffect(() => {
       if (isLoading) return;
-      if (userData) {
-        setUserId(userData.id);
+      if (me) {
+        setUserId(me.id);
         setRender(true);
         return;
       } else {
@@ -25,29 +26,30 @@ const AuthHoc = (Page) => {
         });
         return;
       }
-    }, [userData, isLoading]);
+    }, [me, isLoading]);
 
     useEffect(() => {
-      if (!userData) return;
-      if (!userData?.isInvited) {
-        navigate(`/401`, {
+      if (!me) return;
+      if (me.onboardingStep === OnboardingSteps.COMPLETE_SIGNUP) {
+        navigate("/401", {
           replace: true,
         });
         return;
       }
-      if (!userData?.instagramId) {
+      if (me.onboardingStep === OnboardingSteps.COMPLETE_ACCEPT_INVITATION) {
         navigate(`/insta-info?callback=${currentLocation}`, {
           replace: true,
         });
         return;
       }
-      if (!userData?.isFirstInviteFinished) {
-        navigate(`/invite?callback=${currentLocation}`, {
+      if (me.onboardingStep === OnboardingSteps.WAITING) {
+        navigate("/waiting", {
           replace: true,
         });
         return;
       }
-    }, [userData]);
+      //강초페 관련 로직 추가 예정 기달.
+    }, [me]);
 
     if (!render) return <Loader />;
 

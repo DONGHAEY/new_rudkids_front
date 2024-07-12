@@ -6,7 +6,13 @@ import {
   getMeUser,
   KEY as userQueryKey,
 } from "../../queries/user/useUserQuery";
-import { setUserId } from "@amplitude/analytics-browser";
+import {
+  Identify,
+  identify,
+  setUserId,
+  track,
+} from "@amplitude/analytics-browser";
+import moment from "moment";
 
 export const KEY = [mutationKey.auth];
 
@@ -15,8 +21,7 @@ const oauthLogin = async (platformName, searchParams) => {
     .get(`/api/auth/${platformName}?${qs.stringify(searchParams)}`, {
       withCredentials: true,
     })
-    .then((response) => response.data)
-    .catch((e) => e);
+    .then((response) => response.data);
 };
 
 const useOauthLoginMutation = (platformName) => {
@@ -24,8 +29,20 @@ const useOauthLoginMutation = (platformName) => {
   return useMutation({
     mutationKey: KEY,
     mutationFn: async (searchParams) => {
-      await oauthLogin(platformName, searchParams);
+      const { type } = await oauthLogin(platformName, searchParams);
       return await getMeUser().then((me) => {
+        if (type === "sign_up") {
+          track("complete sign up", {
+            user_id: me.id,
+            date: moment(me.createdAt).format("YYYY-MM-DD"),
+          });
+          const identifyObj = new Identify();
+          identifyObj.setOnce(
+            "sign up date",
+            moment(me.createdAt).format("YYYY-MM-DD")
+          );
+          identify(identifyObj);
+        }
         setUserId(me.id);
         queryClient.setQueryData(userQueryKey(), me);
         return me;

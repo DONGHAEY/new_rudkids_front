@@ -17,7 +17,7 @@ const useAcceptInvitationMutation = () => {
     mutationKey: KEY,
     mutationFn: async (invitationId) => await acceptInvitation(invitationId),
     onSuccess: async () => {
-      await queryClient.refetchQueries(userQueryKey("my"));
+      await queryClient.invalidateQueries(userQueryKey("my"));
     },
   });
 };

@@ -1,12 +1,22 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const PageUI = styled.div`
+export const SpaceBetweenUI = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   min-height: 100%;
+  justify-content: space-between;
+`;
+
+export const PageUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  width: 100%;
+  height: 100%;
 `;
 
 export const RankStageImgUI = styled.img`

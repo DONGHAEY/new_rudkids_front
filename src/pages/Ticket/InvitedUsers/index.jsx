@@ -11,8 +11,8 @@ const InvitedUsers = ({ invitedUsers }) => {
   return (
     <ScrollMarqueeUI>
       <Marquee direction="right">
-        {invitedUsers?.map((invitedUser, idx) => {
-          return <InvitedUser key={idx} userImgUrl={invitedUser} />;
+        {invitedUsers?.map((imageUrl, idx) => {
+          return <InvitedUser key={idx} userImgUrl={imageUrl} />;
         })}
       </Marquee>
     </ScrollMarqueeUI>

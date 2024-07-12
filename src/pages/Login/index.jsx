@@ -18,13 +18,13 @@ import { useState } from "react";
 import LoginModal from "../FakeSignup/LoginModal";
 
 export const setLoginCallbackUrl = (callbackUrl) => {
-  localStorage.setItem(StorageKey.login_callback_url, callbackUrl);
+  sessionStorage.setItem(StorageKey.login_callback_url, callbackUrl);
 };
 export const removeLoginCallbackUrl = () => {
-  localStorage.removeItem(StorageKey.login_callback_url);
+  sessionStorage.removeItem(StorageKey.login_callback_url);
 };
 export const getLoginCallbackUrl = () => {
-  return localStorage.getItem(StorageKey.login_callback_url) ?? "/home";
+  return sessionStorage.getItem(StorageKey.login_callback_url) ?? "/home";
 };
 
 const LoginPage = () => {

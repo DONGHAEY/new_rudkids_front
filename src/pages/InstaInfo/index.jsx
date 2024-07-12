@@ -4,28 +4,33 @@ import FindedInsta from "./FindedInsta";
 import SetInsta from "./SetInsta";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useUserQuery from "../../queries/user/useUserQuery";
+import { OnboardingSteps } from "../../global/onboarding-steps";
 
 const InstaInfoPage = () => {
-  const navivate = useNavigate();
+  const navigate = useNavigate();
 
-  const { data: userData } = useUserQuery();
+  const { data: me } = useUserQuery();
   const [findedInstaInfo, setFindedInstaInfo] = useState(null);
   const [isSetting, setIsSetting] = useState(false);
   const [searchParams] = useSearchParams();
   const callback = searchParams.get("callback") ?? "/home";
+
+  const onSetInstagramFinished = async () => {
+    if (me.onboardingStep === OnboardingSteps.WAITING) {
+      navigate("/waiting", {
+        replace: true,
+      });
+      return;
+    }
+    navigate(callback);
+  };
 
   if (isSetting) {
     return (
       <SetInsta
         instaId={findedInstaInfo.instaId}
         instaImgUrl={findedInstaInfo.instaImgUrl}
-        onComplete={() => {
-          if (!userData?.isFirstInviteFinished) {
-            navivate(`/invite?callback=${callback}`);
-          } else {
-            navivate(callback);
-          }
-        }}
+        onComplete={onSetInstagramFinished}
       />
     );
   }

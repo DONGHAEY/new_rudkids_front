@@ -7,6 +7,7 @@ import { getLoginCallbackUrl, removeLoginCallbackUrl } from "../Login";
 import { getTicketId } from "../Ticket";
 import useAcceptInvitationMutation from "../../mutations/invitation/useAcceptInvitationMutation";
 import { useAlert } from "../../hooks/useRudAlert";
+import { OnboardingSteps } from "../../global/onboarding-steps";
 
 const LoginCallbackPage = ({ routeInfo }) => {
   const alert = useAlert();
@@ -23,7 +24,8 @@ const LoginCallbackPage = ({ routeInfo }) => {
     oauthLoginMutation
       .mutateAsync(searchParams)
       .then(async (me) => {
-        if (!me.isInvited) {
+        alert(`${me.onboardingStep} ${OnboardingSteps.COMPLETE_SIGNUP}`);
+        if (me.onboardingStep === OnboardingSteps.COMPLETE_SIGNUP) {
           const ticketId = getTicketId();
           if (!ticketId) {
             window.location.href = "/401";
@@ -31,23 +33,25 @@ const LoginCallbackPage = ({ routeInfo }) => {
           }
           try {
             await acceptInvitationMutation.mutateAsync(ticketId);
+            me.onboardingStep = OnboardingSteps.COMPLETE_ACCEPT_INVITATION;
           } catch (e) {
-            alert("유효하지 않은 초대권을 받은 것 같아요!");
+            await alert("유효하지 않은 초대권을 받은 것 같아요!");
             window.location.href = "/401";
             return;
           }
         }
-        if (!me.instagramId) {
-          window.location.href = `/insta-info?callback=${savedLoginCallbackUrl}`;
+        if (me.onboardingStep === OnboardingSteps.COMPLETE_ACCEPT_INVITATION) {
+          window.location.href = `/insta-info`;
           return;
-        } else if (!me?.isFirstInviteFinished) {
-          window.location.href = `/invite?callback=${savedLoginCallbackUrl}`;
+        }
+        if (me.onboardingStep === OnboardingSteps.WAITING) {
+          window.location.href = "/waiting";
           return;
         }
         window.location.href = savedLoginCallbackUrl;
       })
-      .catch((e) => {
-        alert("알 수 없는 에러가 발생했어요!");
+      .catch(async (e) => {
+        await alert(e.response.data.message ?? "알 수 없는 에러 발생");
         window.location.href = `/login`;
       });
   }, [platformName]);

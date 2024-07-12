@@ -47,7 +47,7 @@ const LandingPage = () => {
   const footerImgRef = useRef();
 
   const getInClickHandler = async () => {
-    if (optionalUserData) {
+    if (optionalUserData && optionalUserData.isInvited) {
       navigate("/home");
     } else {
       navigate("/login");

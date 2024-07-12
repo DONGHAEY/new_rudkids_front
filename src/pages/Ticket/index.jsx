@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useInvitationQuery from "../../queries/invitation/useInvitationQuery";
+import useMarkUsersQuery from "../../queries/invitation/useMarkerUsersQuery";
 import {
   FixedBototmSectionUI,
   MiddleSectionUI,
@@ -41,6 +42,7 @@ const TicketPage = ({ routeInfo }) => {
   const params = useParams();
   const invitationId = params[routeInfo?.paramKeys[0]];
   const { data: invitationData, isLoading } = useInvitationQuery(invitationId);
+  const { data: markerUsersData = [] } = useMarkUsersQuery(invitationData?.id);
 
   const clickHandler = () => {
     trackClickButton("ticket open", {
@@ -52,15 +54,13 @@ const TicketPage = ({ routeInfo }) => {
   };
 
   const invitedUsers = useMemo(() => {
-    if (!invitationData) return [];
-
-    const friendsImgUrls = invitationData.friends?.map((d) => d.imageUrl);
+    const friendsImgUrls = markerUsersData?.map((d) => d.instagram.imageUrl);
     let tempUsers = [];
     if (friendsImgUrls.length < 15) {
       tempUsers = new Array(15 - friendsImgUrls?.length).fill(tempUserSrc);
     }
     return [...friendsImgUrls, ...tempUsers].sort(() => Math.random() - 0.5);
-  }, [invitationData]);
+  }, [markerUsersData]);
 
   useEffect(() => {
     if (remainSecond <= 0) {

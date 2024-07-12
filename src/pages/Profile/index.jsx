@@ -64,8 +64,7 @@ export const ProfilePage = ({ routeInfo }) => {
   const onShareCloseHandler = () => setShareCopyPopup(false);
 
   const userProfilePageLink = `${window.location.host}/profile/${userData?.id}`;
-  const hasCrown = userData?.rank <= 3;
-
+  const hasCrown = userData?.rankOfView <= 3;
   const rankSigns = ["st", "nd", "rd"];
 
   useEffect(() => {
@@ -87,11 +86,11 @@ export const ProfilePage = ({ routeInfo }) => {
           <CrownImgUI src={crwonSrc} opacity={hasCrown ? 1 : 0} />
           {hasCrown && (
             <RankTxtUI>
-              <Icon icon="fa-solid:medal" /> {userData?.rank}
-              {rankSigns[userData?.rank - 1]}
+              <Icon icon="fa-solid:medal" /> {userData?.rankOfView}
+              {rankSigns[userData?.rankOfView - 1]}
             </RankTxtUI>
           )}
-          <RudImage ImgUI={UserImgUI} src={userData?.imageUrl} />
+          <RudImage ImgUI={UserImgUI} src={userData?.instagram.imageUrl} />
         </ProfileImgWrapperUI>
         <TopSectionUI>
           <TodayViewUI>
@@ -106,7 +105,7 @@ export const ProfilePage = ({ routeInfo }) => {
         <DescriptTxtUI>{userData?.introduce}</DescriptTxtUI>
         <MiddleSectionUI>
           <InfoList
-            rank={userData?.rank}
+            rank={userData?.rankOfView}
             followerCnt={userData?.followerCnt}
             totalView={userData?.view?.totalCnt}
             isFollower={userData?.isFollower}

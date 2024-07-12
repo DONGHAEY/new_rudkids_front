@@ -27,11 +27,11 @@ const Profile = () => {
   };
 
   const sign = useMemo(() => {
-    if (userData?.rank === 1) return "st";
-    if (userData?.rank === 2) return "nd";
-    if (userData?.rank === 3) return "rd";
+    if (userData?.rankOfView === 1) return "st";
+    if (userData?.rankOfView === 2) return "nd";
+    if (userData?.rankOfView === 3) return "rd";
     return "st";
-  }, [userData?.rank]);
+  }, [userData?.rankOfView]);
 
   if (!userData) {
     return (
@@ -51,12 +51,15 @@ const Profile = () => {
   return (
     <ProfileUI onClick={onClick}>
       <ImgWrapperUI>
-        <RudImage src={userData?.imageUrl ?? defaultImgSrc} ImgUI={ImgUI} />
+        <RudImage
+          src={userData?.instagram.imageUrl ?? defaultImgSrc}
+          ImgUI={ImgUI}
+        />
       </ImgWrapperUI>
       <ContentWrapperUI>
         <NameTextUI>{userData?.nickname}</NameTextUI>
         <RankingTextUI>
-          {userData?.rank}
+          {userData?.rankOfView}
           {sign} Ranking
         </RankingTextUI>
       </ContentWrapperUI>

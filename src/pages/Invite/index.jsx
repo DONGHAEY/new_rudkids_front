@@ -20,7 +20,7 @@ import boxSrc from "./assets/box.png";
 import { RiShareBoxFill } from "react-icons/ri";
 import ProgressBar from "./ProgressBar";
 import PicProgressBar from "./PicProgressBar";
-import useSetFirstInviteFinished from "../../mutations/user/useSetFirstInviteFinished";
+// import useSetFirstInviteFinished from "../../mutations/user/useSetFirstInviteFinished";
 import { Player } from "@lottiefiles/react-lottie-player";
 import CallingModal from "../../shared_components/Calling";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -36,19 +36,14 @@ const InvitePage = () => {
   const defaultInviteCnt = 3;
   //
   const sendInvitationMutation = useSendInvitationMutation("onboarding");
-  const setFirstInviteFinishedMutation = useSetFirstInviteFinished();
+  // const setFirstInviteFinishedMutation = useSetFirstInviteFinished();
 
   const [searchParams] = useSearchParams();
   const callback = searchParams.get("callback") ?? "/home";
 
   const inviterCnt = userData?.invitateCnt;
   const inviteClickHandler = async () => {
-    const isInviteComplete = await sendInvitationMutation.mutateAsync();
-    if (isInviteComplete) {
-      if (userData.invitateCnt === defaultInviteCnt) {
-        await setFirstInviteFinishedMutation.mutateAsync();
-      }
-    }
+    await sendInvitationMutation.mutateAsync();
   };
 
   const completeHandler = async () => {
